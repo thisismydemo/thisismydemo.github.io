@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>This Is My Demo</title>
-    <link>http://thisismydemo.cloud/</link>
-    <description>Recent content on This Is My Demo</description>
+    <title>Front Matter on This Is My Demo</title>
+    <link>http://thisismydemo.cloud/tags/front-matter/</link>
+    <description>Recent content in Front Matter on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2023</copyright>
-    <lastBuildDate>Wed, 18 Jan 2023 17:28:29 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jan 2023 17:28:29 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/front-matter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building My New Blog on Hugo and GitHub Pages</title>
       <link>http://thisismydemo.cloud/post/blogging-with-github-pages-and-hugo/</link>

@@ -59,5 +59,7 @@
     "GitHub Pages",
     "Hugo"
   ],
-  "frontMatter.taxonomy.categories": []
+  "frontMatter.taxonomy.categories": [],
+  "frontMatter.content.autoUpdateDate": false,
+  "frontMatter.preview.host": "http://localhost:1313"
 }
