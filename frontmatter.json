@@ -50,8 +50,20 @@
   "frontMatter.content.publicFolder": "static",
   "frontMatter.content.pageFolders": [
     {
-      "title": "post",
-      "path": "[[workspace]]/content/post"
+      "title": "Pages",
+      "path": "[[workspace]]/content",
+      "excludeSubdir": true,
+      "previewPath": "post"
+    },
+    {
+      "title": "Blog posts",
+      "path": "[[workspace]]/content/posts"
+    },
+    {
+      "title": "docs",
+      "path": "[[workspace]]/docs",
+      "filePrefix": "",
+      "contentTypes": ["doc"]
     }
   ],
   "frontMatter.taxonomy.tags": [
@@ -60,6 +72,6 @@
     "Hugo"
   ],
   "frontMatter.taxonomy.categories": [],
-  "frontMatter.content.autoUpdateDate": false,
+  "frontMatter.content.autoUpdateDate": true,
   "frontMatter.preview.host": "http://localhost:1313"
 }
