@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>This Is My Demo</title>
+    <title>Archive on This Is My Demo</title>
     <link>http://thisismydemo.cloud/archive/</link>
-    <description>Recent content on This Is My Demo</description>
+    <description>Recent content in Archive on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Derechos de autor 2023</copyright><atom:link href="http://thisismydemo.cloud/archive/index.xml" rel="self" type="application/rss+xml" />

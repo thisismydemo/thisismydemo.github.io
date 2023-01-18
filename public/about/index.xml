@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>This Is My Demo</title>
+    <title>About on This Is My Demo</title>
     <link>http://thisismydemo.cloud/about/</link>
-    <description>Recent content on This Is My Demo</description>
+    <description>Recent content in About on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Derechos de autor 2023</copyright><atom:link href="http://thisismydemo.cloud/about/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Derechos de autor 2023</copyright>
+    <lastBuildDate>Thu, 28 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
