@@ -65,7 +65,7 @@ weight = 100
 author = "Kristopher J Turner"
 description = "Just another blog about clouds?"
 keywords = "blog,developer,personal"
-img_home = "img/home-bg.jpg"
+img_home = "img/blog-bg.jpg"
 img_404 = "img/404-bg.jpg"
 
 useFaviconGenerator = true
