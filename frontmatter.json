@@ -54,16 +54,6 @@
       "path": "[[workspace]]/content",
       "excludeSubdir": true,
       "previewPath": "post"
-    },
-    {
-      "title": "Blog posts",
-      "path": "[[workspace]]/content/posts"
-    },
-    {
-      "title": "docs",
-      "path": "[[workspace]]/docs",
-      "filePrefix": "",
-      "contentTypes": ["doc"]
     }
   ],
   "frontMatter.taxonomy.tags": [
