@@ -1,6 +1,6 @@
 ---
 title: About
-description: archive archive archive
+description: Who I am?
 header_img: /img/boots_bg.jpg
 short: true
 aliases: ["about-us", "about-hugo", "contact"]

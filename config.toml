@@ -77,7 +77,7 @@ custom_css = [] # ["css/custom.css"]  Add your file to assets folder  [assets/cs
 enable = true
 gravatarEmail = ""
 # Overwritten by your gravatar image if `gravatarEmail` is filled
-avatar = "img/me.jfif"
+avatar = "img/me.jpg"
 bio = "I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands"
 
 [params.social]
