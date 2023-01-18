@@ -15,7 +15,7 @@ enableEmoji = true
 ignoreErrors = ["error-remote-getjson"]
 
 disqusShortname = ""
-googleAnalytics = ""
+googleAnalytics = "G-C78KZ1DN40"
 
 [outputs]
 home = ["HTML", "JSON", "RSS"]
@@ -50,11 +50,6 @@ name = "Archive"
 url = "/archive/"
 weight = 10
 [[menu.main]]
-identifier = "guide"
-name = "Guide"
-url = "/series/themes-guide/"
-weight = 20
-[[menu.main]]
 identifier = "about"
 name = "About"
 url = "/about/"
@@ -62,7 +57,7 @@ weight = 50
 [[menu.main]]
 identifier = "github"
 name = "Github"
-url = "https://github.com/roninro/hugo-theme-puppet/"
+url = "https://github.com/thisismydemo/"
 weight = 100
 
 
@@ -83,7 +78,7 @@ enable = true
 gravatarEmail = ""
 # Overwritten by your gravatar image if `gravatarEmail` is filled
 avatar = "img/me.jfif"
-bio = "I work in the fog."
+bio = "I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands"
 
 [params.social]
 github = "kristopherjturner"
