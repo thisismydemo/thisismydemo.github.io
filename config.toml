@@ -1,0 +1,4 @@
+baseURL = 'http://thisismydemo.cloud/'
+languageCode = 'en-us'
+title = 'This Is My Demo'
+theme = 'ananke'
