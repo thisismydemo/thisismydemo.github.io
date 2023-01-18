@@ -62,6 +62,10 @@
       "path": "[[workspace]]/content/post"
     }
   ],
-  "frontMatter.taxonomy.tags": [],
+  "frontMatter.taxonomy.tags": [
+    "Front Matter",
+    "GitHub Pages",
+    "Hugo"
+  ],
   "frontMatter.taxonomy.categories": []
 }
