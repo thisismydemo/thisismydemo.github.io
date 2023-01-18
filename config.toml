@@ -2,7 +2,7 @@ baseURL = 'http://thisismydemo.cloud/'
 languageCode = 'en-us'
 title = 'This Is My Demo'
 theme = 'puppet'
-copyright = "2023"
+copyright = "Derechos de autor 2023"
 paginate = 3
 
 defaultContentLanguage = "en"
