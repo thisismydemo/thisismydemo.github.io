@@ -1,7 +1,7 @@
 ---
 title: Building My New Blog on Hugo and GitHub Pages
-date: 2023-01-18T09:48:52-06:00
-draft: true
+date: 2023-01-18T17:28:29.317Z
+draft: false
 description: This blog is about my experince deploying my newly created blog on GitHub
   Pages using Hugo and Front Matter.
 tags:
@@ -11,4 +11,4 @@ tags:
 ---
 
 ## Introduction
-This is **bold* test, and this is *emphaized* text. sslkjaskfjdskjk
+This is my test blog trying to teach myself Hugo, Github Pages, and Front Matter.
