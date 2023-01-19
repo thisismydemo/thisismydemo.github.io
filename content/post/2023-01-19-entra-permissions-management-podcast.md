@@ -12,7 +12,7 @@ tags:
   - Permissions Management
 categories:
   - Entra Permissions Management
-lastmod: 2023-01-19T22:12:50.112Z
+lastmod: 2023-01-19T22:49:19.417Z
 ---
 
 
@@ -23,7 +23,8 @@ I recently had the privilege to be on [The Microsoft 425Show](https://425show.si
 
 You can access the show podcast from this link [Entra Permissions Management: Partner Perspectives](https://425show.simplecast.com/episodes/entra-permissions-management-partner-perspectives) or stick around and listen below.
 
-<iframe height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/11b47041-df62-46cc-a8cf-41d70ce82c35?dark=false"></iframe>
+<iframe 
+height="200px" width="100%" frameborder="no" scrolling="no" seamless src="https://player.simplecast.com/11b47041-df62-46cc-a8cf-41d70ce82c35?dark=false"></iframe>
 
 ***
 
