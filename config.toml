@@ -116,7 +116,7 @@ dateFormat = "2006-01-02"
 showReadingTime = false
 
 # Minimum word count to display the Table of Contents
-tocMinWordCount = 100
+tocMinWordCount = 20
 
 # Footer configuration
 showFooter = true
