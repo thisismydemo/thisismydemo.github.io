@@ -136,7 +136,7 @@ showFooterLanguageChooser = true
 showSocialMedia = true
 
 # show an archive link in the footer
-showArchive = false
+showArchive = true
 
 # archive grouping: "2006" by year, "2006-01" by month
 archiveDateGrouping = "2006-01"
@@ -145,8 +145,9 @@ archiveDateGrouping = "2006-01"
 # all icons https://fontawesome.com/icons?d=gallery&m=free
 # brand icons https://fontawesome.com/icons?d=gallery&s=brands&m=free
 socialMediaLinks = [
-    { link = "https://twitter.com/TheRealLednerb", icon = "fab fa-twitter", rel = "me" },
+    { link = "https://www.linkedin.com/in/kristopherjturner/", icon = "fab fa-linkedin"},
     { link = "https://github.com/thisismydemo", icon = "fab fa-github" },
+    { link = "https://about.me/kristopherjturner", icon = "fab fa-address-card" },
 ]
 
 # credits line configuration
