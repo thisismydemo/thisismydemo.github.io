@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://thisismydemo.cloud/de/author/</loc>
+    <loc>http://thisismydemo.cloud/es/author/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -10,16 +10,16 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/author/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/author/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/author/"
+                />
   </url><url>
-    <loc>http://thisismydemo.cloud/de/categories/</loc>
+    <loc>http://thisismydemo.cloud/es/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -27,16 +27,16 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/categories/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/categories/"
+                />
   </url><url>
-    <loc>http://thisismydemo.cloud/de/</loc>
+    <loc>http://thisismydemo.cloud/es/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -44,16 +44,16 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/"
+                />
   </url><url>
-    <loc>http://thisismydemo.cloud/de/series/</loc>
+    <loc>http://thisismydemo.cloud/es/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -61,16 +61,16 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/series/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/series/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/series/"
+                />
   </url><url>
-    <loc>http://thisismydemo.cloud/de/tags/</loc>
+    <loc>http://thisismydemo.cloud/es/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -78,13 +78,13 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/tags/"
+                hreflang="de"
+                href="http://thisismydemo.cloud/de/tags/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="de"
-                href="http://thisismydemo.cloud/de/tags/"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/tags/"
                 />
   </url>
 </urlset>

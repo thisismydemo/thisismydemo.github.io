@@ -14,6 +14,11 @@
                 />
     <xhtml:link
                 rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/author/"
+                />
+    <xhtml:link
+                rel="alternate"
                 hreflang="en"
                 href="http://thisismydemo.cloud/author/"
                 />
@@ -23,6 +28,11 @@
                 rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -40,6 +50,11 @@
                 />
     <xhtml:link
                 rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/series/"
+                />
+    <xhtml:link
+                rel="alternate"
                 hreflang="en"
                 href="http://thisismydemo.cloud/series/"
                 />
@@ -52,6 +67,11 @@
                 />
     <xhtml:link
                 rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
                 hreflang="en"
                 href="http://thisismydemo.cloud/tags/"
                 />
@@ -61,6 +81,11 @@
                 rel="alternate"
                 hreflang="de"
                 href="http://thisismydemo.cloud/de/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/"
                 />
     <xhtml:link
                 rel="alternate"
