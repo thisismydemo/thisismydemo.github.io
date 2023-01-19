@@ -50,18 +50,24 @@
   "frontMatter.content.publicFolder": "static",
   "frontMatter.content.pageFolders": [
     {
-      "title": "Pages",
-      "path": "[[workspace]]/content",
-      "excludeSubdir": true,
+      "title": "post",
+      "path": "[[workspace]]/content/post",
       "previewPath": "post"
+ 
+      
     }
   ],
   "frontMatter.taxonomy.tags": [
+    "Entra Permissions Management",
     "Front Matter",
     "GitHub Pages",
-    "Hugo"
+    "Hugo",
+    "Microsoft Entra",
+    "Permissions Management"
   ],
-  "frontMatter.taxonomy.categories": [],
+  "frontMatter.taxonomy.categories": [
+    "Entra Permissions Management"
+  ],
   "frontMatter.content.autoUpdateDate": true,
   "frontMatter.preview.host": "http://localhost:1313"
 }
