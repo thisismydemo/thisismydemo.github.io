@@ -80,7 +80,7 @@ disqusShortname = ""
     subtitle = "Just another blog about the cloud?"
 
     # if you want to use libravatar or gravatar for the header image
-    avatarEmail = "code@lednerb.de"
+    avatarEmail = "kristopherjturner@outlook.com"
 
     # set an path to the image file you want to use | overwrites avatar by email
     customImage = ""
