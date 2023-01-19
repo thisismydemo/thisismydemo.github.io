@@ -4,6 +4,34 @@
     <title>Tags on This Is My Demo</title>
     <link>http://thisismydemo.cloud/tags/</link>
     <description>Recent content in Tags on This Is My Demo</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 19 Jan 2023 07:52:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Front Matter</title>
+      <link>http://thisismydemo.cloud/tags/front-matter/</link>
+      <pubDate>Thu, 19 Jan 2023 07:52:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/front-matter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GitHub Pages</title>
+      <link>http://thisismydemo.cloud/tags/github-pages/</link>
+      <pubDate>Thu, 19 Jan 2023 07:52:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/github-pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://thisismydemo.cloud/tags/hugo/</link>
+      <pubDate>Thu, 19 Jan 2023 07:52:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

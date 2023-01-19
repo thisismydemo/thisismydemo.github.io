@@ -42,6 +42,11 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
+        },
+        {
+          "title": "lastmod",
+          "name": "lastmod",
+          "type": "datetime"
         }
       ]
     }
@@ -53,8 +58,6 @@
       "title": "post",
       "path": "[[workspace]]/content/post",
       "previewPath": "post"
- 
-      
     }
   ],
   "frontMatter.taxonomy.tags": [

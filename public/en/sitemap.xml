@@ -2,6 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://thisismydemo.cloud/post/creating-blog-hugo-github-pages/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/front-matter/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/github-pages/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/hugo/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="de"
+                href="http://thisismydemo.cloud/de/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://thisismydemo.cloud/tags/"
+                />
+  </url><url>
+    <loc>http://thisismydemo.cloud/</loc>
+    <lastmod>2023-01-19T07:52:55+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="de"
+                href="http://thisismydemo.cloud/de/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://thisismydemo.cloud/es/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://thisismydemo.cloud/"
+                />
+  </url><url>
     <loc>http://thisismydemo.cloud/about/</loc>
   </url><url>
     <loc>http://thisismydemo.cloud/archive/</loc>
@@ -57,40 +108,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://thisismydemo.cloud/series/"
-                />
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="http://thisismydemo.cloud/de/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://thisismydemo.cloud/tags/"
-                />
-  </url><url>
-    <loc>http://thisismydemo.cloud/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="http://thisismydemo.cloud/de/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://thisismydemo.cloud/es/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://thisismydemo.cloud/"
                 />
   </url>
 </urlset>
