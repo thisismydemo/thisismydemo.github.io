@@ -12,7 +12,7 @@ tags:
   - Permissions Management
 categories:
   - Entra Permissions Management
-lastmod: 2023-01-19T22:52:58.672Z
+lastmod: 2023-01-20T00:28:02.327Z
 ---
 
 
