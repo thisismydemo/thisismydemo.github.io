@@ -16,23 +16,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>Development</title>
-      <link>http://thisismydemo.cloud/categories/development/</link>
-      <pubDate>Mon, 16 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/categories/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>http://thisismydemo.cloud/categories/golang/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/categories/golang/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
