@@ -16,5 +16,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Azure Site Recovery</title>
+      <link>http://thisismydemo.cloud/categories/azure-site-recovery/</link>
+      <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/categories/azure-site-recovery/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

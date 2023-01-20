@@ -3,13 +3,13 @@ title: Festive Tech Calendar 2022
 description: My submission to the Festive Tech Calendar 2022.
 date: 2023-01-01T15:58:24.000Z
 preview: /img/festivetechtwittersmall.png
-draft: true
+draft: false
 tags:
   - Festive Tech Calendar
   - Azure Site Recovery
 categories:
   - Azure Site Recovery
-lastmod: 2023-01-20T16:11:11.188Z
+lastmod: 2023-01-20T16:15:38.448Z
 thumbnail: /img/festivetechtwittersmall.png
 lead: Day 31 - Azure Site Recovery to save your bacon, Christmas ham, or your job?
 ---
