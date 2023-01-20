@@ -47,6 +47,16 @@
           "title": "lastmod",
           "name": "lastmod",
           "type": "datetime"
+        },
+        {
+          "title": "thumbnail",
+          "name": "thumbnail",
+          "type": "string"
+        },
+        {
+          "title": "lead",
+          "name": "lead",
+          "type": "string"
         }
       ]
     }

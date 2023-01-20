@@ -3,7 +3,7 @@ title: Creating this blog using Hugo and GitHub Pages
 description: A quick blog on how I setup this blog using GitHub Pages, Hugo, and Front
   Matter.
 date: 2023-01-01T07:52:45.000Z
-preview: /img/20230119201320.png
+preview: /img/demo_logo.png
 draft: false
 tags:
   - GitHub Pages
@@ -11,7 +11,7 @@ tags:
   - Front Matter
 categories: []
 slug: creating-blog-hugo-github-pages
-lastmod: 2023-01-20T15:33:31.751Z
+lastmod: 2023-01-20T15:57:32.436Z
 thumbnail: img/demo_logo.png
 lead: Learning new stuff?
 ---
