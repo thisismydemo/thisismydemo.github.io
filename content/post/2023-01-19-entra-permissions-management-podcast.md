@@ -3,7 +3,7 @@ title: Entra Permissions Management Podcast
 description: "I was recently on the Microsoft 425Show talking about Entra Permissions
   Management from a Partner Perspective. "
 date: 2023-01-19T22:12:45.776Z
-preview: /Microsoft425Show.jpg
+preview: img/Microsoft425Show.jpg
 draft: false
 tags:
   - Entra Permissions Management
@@ -12,7 +12,7 @@ tags:
   - Permissions Management
 categories:
   - Entra Permissions Management
-lastmod: 2023-01-20T00:28:02.327Z
+lastmod: 2023-01-20T14:42:37.921Z
 ---
 
 
