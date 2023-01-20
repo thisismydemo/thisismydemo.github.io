@@ -1,21 +1,23 @@
 ---
 title: Using Intune's Proactive Remediation Script Packages to configure clients to
   retrieve Kerberos tickets for Azure Files.
-description: ""
-date: 2023-01-20T16:33:32.103Z
-preview: ""
-draft: true
+description: Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos
+  tickets for Azure Files.
+date: 2023-01-20T18:22:25.583Z
+preview: /img/intune_header.png
+draft: false
 tags:
   - Azure Files
   - Intune
-  - PowerShell
   - Poractive Remediation
+  - PowerShell
+  - Endpoint Management
 categories:
   - Azure Files
   - Intune
-lastmod: 2023-01-20T17:34:03.379Z
+lastmod: 2023-01-20T18:24:50.439Z
 thumbnail: img/intune_header.png
-lead: ""
+lead: Intune and Azure FIles
 ---
 In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
 
@@ -91,7 +93,7 @@ If the machine is noncompliant the remediate script will run within seconds. The
 ```
 <
 .DESCRIPTION
-        Remediates and createsthe registry key CloudKerberosTicketRetrievalEnabled and
+        Remediates and creates the registry key CloudKerberosTicketRetrievalEnabled and
         assigns the correct value to enable it.
 
 .NOTES
@@ -116,50 +118,41 @@ Stop-Transcript#
 To create a proactive remediation script package:
 
 1. Go to the Endpoint Manager Admin center.
-
 2. Click on Reports then on Endpoint analytics.
-
 3. Click on Proactive remediation
 
-![image](img/intune_header.png)
+![Image](/img/1673471104826.png)
 
-3. From the Proactive remediations blade, click on + Create script package.
-
-4. Under the basic tab on the Create custom script enter the desired information for:
+4. From the Proactive remediations blade, click on + Create script package.
+5. Under the basic tab on the Create custom script enter the desired information for:
 
 - **Name**
 - **Description**
 - **Publisher**
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQFwDJuj0wCYeg/article-inline_image-shrink_1500_2232/0/1673471441568?e=1679529600&v=beta&t=g1E9sTg2GkXZGvr_xEwXKFmUC0KL0nkoYSpxdwExIl4)</figure>
+![Image](/img/1673471441568.png)
 
-5\. Click Next
+6. Click Next
+7. Under the settings tab on the Create custom script page add the detect and remediate scripts.
+8. For ***Run this script using the logged-on credentials*** we will leave that as No. We want the system account which will have the permissions to add the registry key to run this script.
 
-6\. Under the settings tab on the Create custom script page add the detect and remediate scripts.
+![Image](/img/1673471707209.png)
 
-7\. For ***Run this script using the logged-on credentials*** we will leave that as No. We want the system account which will have the permissions to add the registry key to run this script.
+9. Click on Next.
+10. Click Next on the Scope Tags tab.
+11. On the assignment tab, we will assign this package to **All Devices**.
+12. Edit the schedule for All Devices. I will edit this schedule to run every morning at 9:00 AM. If a computer is offline at that time, the next time that computer comes back online even if it is after 9:00 AM the script will run and report back.
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQGPM9HXMm-26A/article-inline_image-shrink_1500_2232/0/1673471707209?e=1679529600&v=beta&t=L6HJqWwYRSLrfovs4JgQiDXUk1L60TKRuv7V4GyGrEc)</figure>
+![Image](/img/1673471882456.png)
 
-8\. Click on Next.
+13. Click Apply to save the schedule. Then click Next.
+14. Review the configuration and if everything is correct click Create.
 
-9\. Click Next on the Scope Tags tab.
-
-10\. On the assignment tab, we will assign this package to **All Devices**.
-
-11\. Edit the schedule for All Devices. I will edit this schedule to run every morning at 9:00 AM. If a computer is offline at that time, the next time that computer comes back online even if it is after 9:00 AM the script will run and report back.
-
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQEUdeQsDe3V5w/article-inline_image-shrink_1500_2232/0/1673471882456?e=1679529600&v=beta&t=H4Zb_Md0oFB7NgEUtE_1H_i_xL9kt7HIBmCFwO9gCbU)</figure>
-
-12\. Click Apply to save the schedule. Then click Next.
-
-13\. Review the configuration and if everything is correct click Create.
-
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQHosIFfDMhRvQ/article-inline_image-shrink_1000_1488/0/1673471985809?e=1679529600&v=beta&t=5NEjhisyfQDat5Pp9fII6b7O5JC4z1fJBVdCOw-t9TQ)</figure>
+![Image](/img/1673471985809.png)
 
 Now that the package has been created, we will want to monitor that it was actually successfully deployed to our devices. We can view the status by returning to the proactive remediations blade. You will see the newly created proactive remediation script package exist and is Active. It will take some time for this package to be applied across your environment.
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQHFGih-X9jklA/article-inline_image-shrink_1500_2232/0/1673472348863?e=1679529600&v=beta&t=6BCCASM-HdN-w7CADaT68RoSHd9gNZ6XSS2YqtJCQBE)</figure>
+![Image](/img/1673472348863.png)
 
 ### Monitoring the Proactive Remediation Package
 
@@ -167,15 +160,15 @@ From the proactive remediation screen, you can see the overview, the current pro
 
 The **overview**blade will give you a dashboard with a nice overview of the status of your proactive remediation package
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQE2GGd0m-ggsw/article-inline_image-shrink_1000_1488/0/1673472901465?e=1679529600&v=beta&t=wTQdXryeyG8A9TvtaRUnr2fXuxyWSwigy5wyyq13XRQ)</figure>
+![Image](/img/1673472901465.png)
 
 From the **Properties** page you can see what configurations are set for the specific proactive remediation package.
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQGhF0TTTFLOGA/article-inline_image-shrink_1000_1488/0/1673472941079?e=1679529600&v=beta&t=BlG-ApXap6_0mWxcpOVks4sp798HSjbDsJn1zYJLz3I)</figure>
+![Image](/img/1673472941079.png)
 
 From the **Device Status** page, you can see the status of each device. Here you should see each device, the username assigned to that device. The detection status will either show a green Without Issues or an orange With Issues. Under Remediation status, if the detection status was without issues, this will show a dark blue Not Run. If if the detection status was orange and the remediation script ran successful it will be light blue and say issue fixed. If the remediation status showed Failed than the remediation didn't succeed, and it will try again on the next scheduled time.
 
-<figure class="reader-image-block__figure" style="box-sizing: inherit; margin: var(--artdeco-reset-base-margin-zero); padding: var(--artdeco-reset-base-padding-zero); border: var(--artdeco-reset-base-border-zero); font-size: var(--artdeco-reset-base-font-size-hundred-percent); vertical-align: var(--artdeco-reset-base-vertical-align-baseline); background: var(--artdeco-reset-base-background-transparent); display: var(--artdeco-reset-base-display-block);">![No alt text provided for this image](https://media.licdn.com/dms/image/D5612AQGVMFooM2uFtA/article-inline_image-shrink_1500_2232/0/1673472975951?e=1679529600&v=beta&t=gBbCC1OMJ_r2S8XUPKZLYDadU2v-S5mWbwS1uBeDaT4)</figure>
+![Image](/img/1673472975951.png)
 
 Once the Regkey for the CloudKerberosTicketRetrivalEnbaled has been set, you should now be set to continue the configuration of Azure Kerberos authentication for hybrid accounts on in order to create mapped drives from your clients to your Azure Files.
 
