@@ -13,7 +13,7 @@ bio = "I am a Principal Consultant at Invoke LLC currently living in Texas. My i
 avatar = "img/me.jpg"
 
 [Params]
-description = "My blog about Cloud Technologies" # Description of your site
+description = "Just aother blog about the cloud?" # Description of your site
 opengraph = true
 twitter_cards = false
 readmore = false                                 # Show "Read more" button in list if true
