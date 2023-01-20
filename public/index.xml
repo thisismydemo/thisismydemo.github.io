@@ -32,8 +32,7 @@ You can access the show podcast from this link Entra Permissions Management: Par
       <pubDate>Tue, 25 Jan 2022 14:00:00 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/about/</guid>
-      <description>Our website builds with Hugo static site generator and Mainroad theme. This demo allows you to see what Mainroad based website looks like before deciding to go with it. Just keep in mind that the current demo shows the basics, a small part of what the combination of Hugo and Mainroad can do.
-About Mainroad Mainroad is a responsive, simple, clean and content-focused Hugo theme based on the MH Magazine lite WordPress theme.</description>
+      <description>What is This Is A Demo? This blog started as a way to play with the idea of moving my old blogs from sources like WordPress, Blogger, etc to something I could control myself. Also something that was free. :) So this blog was born out of the need to learn how to use Hugo, GitHub Pages, and a front end like Front Matter. I have a way to go because everything is all new to me.</description>
     </item>
     
   </channel>
