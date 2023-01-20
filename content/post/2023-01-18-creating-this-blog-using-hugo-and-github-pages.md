@@ -9,7 +9,7 @@ tags:
   - GitHub Pages
   - Hugo
   - Front Matter
-categories: ""
+categories: []
 slug: creating-blog-hugo-github-pages
 lastmod: 2023-01-19T07:52:55.141Z
 ---
