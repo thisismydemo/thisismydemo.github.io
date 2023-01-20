@@ -30,7 +30,12 @@ home = "right"   # Configure layout for home page
 list = "right"   # Configure layout for list pages
 single = "right" # Configure layout for single pages
 # Enable widgets in given order
-widgets = ["search", "recent", "categories", "taglist"]
+widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
+
+[Params.widgets.social]
+# Enable parts of social widget
+linkedin = "KristopherJTurner"
+github = "thisismydemo"
 
 [Params.widgets]
 recent_num = 5       # Set the number of articles in the "Recent articles" widget
