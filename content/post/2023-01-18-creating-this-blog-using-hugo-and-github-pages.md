@@ -11,7 +11,9 @@ tags:
   - Front Matter
 categories: []
 slug: creating-blog-hugo-github-pages
-lastmod: 2023-01-20T15:22:35.761Z
+lastmod: 2023-01-20T15:33:31.751Z
+thumbnail: img/demo_logo.png
+lead: Learning new stuff?
 ---
 
 I am teaching myself as I create this new blog, new technology like Hugo, Front Matter, and Github pages.  This post will be updated as I go and become more comfortable with markdown language and everything else that having a static blog in Github requires.

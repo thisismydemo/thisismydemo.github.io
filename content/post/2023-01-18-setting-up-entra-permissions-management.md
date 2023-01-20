@@ -11,4 +11,7 @@ tags:
   - Permissions Management
 categories:
   - Entra Permissions Management
+thumbnail: img/placeholder.png
+lead: Example lead - highlighted near the title
+lastmod: 2023-01-20T15:35:00.181Z
 ---

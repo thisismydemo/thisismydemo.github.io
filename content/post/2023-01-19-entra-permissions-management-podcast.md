@@ -12,12 +12,11 @@ tags:
   - Permissions Management
 categories:
   - Entra Permissions Management
-lastmod: 2023-01-20T14:42:37.921Z
+lastmod: 2023-01-20T15:30:42.533Z
+thumbnail: img/Microsoft425Show.jpg
+lead: The Microsoft 425Show
 ---
 
-
-The Microsoft 425Show
-=====================
 
 I recently had the privilege to be on [The Microsoft 425Show](https://425show.simplecast.com/), a **Microsoft security chat show**.  The topic of the podcast was Entra Permissions Management: Partner Perspectives.  I had a great time talking with co-workers and with [Shannon Kuehn](https://www.linkedin.com/in/shannonkuehn) a Senior Product Manager in the Identity product group at Microsoft.
 
