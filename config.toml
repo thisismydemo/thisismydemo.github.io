@@ -16,10 +16,10 @@ avatar = "img/me.jpg"
 description = "My blog about Cloud Technologies" # Description of your site
 opengraph = true
 twitter_cards = false
-readmore = false                                          # Show "Read more" button in list if true
+readmore = false                                 # Show "Read more" button in list if true
 authorbox = true
 pager = true
-post_meta = ["date", "categories"]                        # Order of post meta information
+post_meta = ["date", "categories"]               # Order of post meta information
 mainSections = ["post", "docs"]
 
 
@@ -27,7 +27,7 @@ mainSections = ["post", "docs"]
 subtitle = "Just another blog about the cloud?" # Logo subtitle
 
 [Params.sidebar]
-home = "left"   # Configure layout for home page
+home = "left"    # Configure layout for home page
 list = "right"   # Configure layout for list pages
 single = "right" # Configure layout for single pages
 # Enable widgets in given order
@@ -48,3 +48,19 @@ defaultMarkdownHandler = 'goldmark'
 [markup.goldmark.renderer]
 # change to 'true' if you need to render raw HTML within your markdown content
 unsafe = true
+
+[Languages]
+[Languages.en]
+weight = 1
+[Languages.de]
+weight = 2
+title = "Dies ist meine Demo"
+subtitle = "Nur ein weiterer Blog über die Cloud?"
+[Languages.es]
+weight = 3
+title = "Esta es mi demo"
+subtitle = "¿Otro blog sobre la nube?"
+[Languages.fr]
+weight = 4
+title = "Ceci est ma démo"
+subtitle = "Juste un autre blog sur le cloud ?"
