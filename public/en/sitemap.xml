@@ -2,14 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://thisismydemo.cloud/tags/azure-files/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-files/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
-  </url><url>
     <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -31,26 +25,26 @@
                 href="http://thisismydemo.cloud/categories/"
                 />
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/endpoint-management/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/intune/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/categories/entra-permissions-management/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/intune/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/poractive-remediation/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/tags/microsoft-entra/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/permissions-management/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/powershell/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -72,8 +66,11 @@
                 href="http://thisismydemo.cloud/tags/"
                 />
   </url><url>
+    <loc>http://thisismydemo.cloud/tags/the-microsoft-425show/</loc>
+    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -95,26 +92,29 @@
                 href="http://thisismydemo.cloud/"
                 />
   </url><url>
+    <loc>http://thisismydemo.cloud/tags/azure-files/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/azure-files/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/endpoint-management/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/intune/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/intune/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/poractive-remediation/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/powershell/</loc>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</loc>
-    <lastmod>2023-01-20T18:24:50+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/entra-permissions-management/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/microsoft-entra/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/permissions-management/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/the-microsoft-425show/</loc>
-    <lastmod>2023-01-20T15:30:42+00:00</lastmod>
+    <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-site-recovery/</loc>
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>

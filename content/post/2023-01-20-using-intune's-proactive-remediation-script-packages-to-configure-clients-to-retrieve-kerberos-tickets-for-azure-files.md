@@ -3,7 +3,7 @@ title: Using Intune's Proactive Remediation Script Packages to configure clients
   retrieve Kerberos tickets for Azure Files.
 description: Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos
   tickets for Azure Files.
-date: 2023-01-20T18:22:25.583Z
+date: 2023-01-11T18:22:25.000Z
 preview: /img/intune_header.png
 draft: false
 tags:
@@ -15,7 +15,7 @@ tags:
 categories:
   - Azure Files
   - Intune
-lastmod: 2023-01-20T18:24:50.439Z
+lastmod: 2023-01-20T18:25:53.358Z
 thumbnail: img/intune_header.png
 lead: Intune and Azure FIles
 ---

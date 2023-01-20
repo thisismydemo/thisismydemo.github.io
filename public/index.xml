@@ -6,18 +6,7 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jan 2023 18:22:25 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</title>
-      <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
-      <pubDate>Fri, 20 Jan 2023 18:22:25 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
-      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
-There are three methods that can accomplish this on your client computers.
-Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
-    </item>
-    
+    <lastBuildDate>Thu, 19 Jan 2023 22:12:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Entra Permissions Management Podcast</title>
       <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>
@@ -26,6 +15,17 @@ Configure an Intune Policy and apply it to the clients. Configure Group Policy o
       <guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid>
       <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.
 You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
+    </item>
+    
+    <item>
+      <title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</title>
+      <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
+      <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
+      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
+There are three methods that can accomplish this on your client computers.
+Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
     </item>
     
     <item>
