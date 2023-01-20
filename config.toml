@@ -27,7 +27,7 @@ mainSections = ["post", "docs"]
 subtitle = "Just another blog about the cloud?" # Logo subtitle
 
 [Params.sidebar]
-home = "left"    # Configure layout for home page
+home = "right"    # Configure layout for home page
 list = "right"   # Configure layout for list pages
 single = "right" # Configure layout for single pages
 # Enable widgets in given order
