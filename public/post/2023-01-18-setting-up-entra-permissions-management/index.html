@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Setting Up Entra Permissions Management - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="This is a short blog on how to configure Entra Permissions Management for the first time. ">
+		<meta property="og:title" content="Setting Up Entra Permissions Management" />
+<meta property="og:description" content="This is a short blog on how to configure Entra Permissions Management for the first time. " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-01-18T17:59:11+00:00" />
+<meta property="article:modified_time" content="2023-01-20T20:13:58+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Just another blog about the cloud?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Setting Up Entra Permissions Management</h1>
+			<p class="post__lead">Get your hands dirty with Entra Permissions Management</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-18T17:59:11Z">January 18, 2023</time>
+	<time class="meta__text" datetime="2023-01-20T20:13:58Z">(Last Modified: January 20, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/entra-permissions-management/" rel="category">Entra Permissions Management</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/entra/entra-01.jpg" alt="Setting Up Entra Permissions Management">
+		
+	</figure><div class="content post__content clearfix">
+			<p>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in.  The Identity product group has a nice little user guide out there on <a href="https://learn.microsoft.com/en-us/azure/active-directory/cloud-infrastructure-entitlement-management/permissions-management-trial-user-guide">Microsoft Learn Trial user guide: Microsoft Entra Permissions Management</a>.  There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an <a href="https://www.invokellc.com/offers/microsoft-entra-permissions-management-multi-cloud-risk-assessment">Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk</a>.</p>
+<p>For now, I will just walk you through how to start your Entra Permissions Management journey.</p>
+<h3 id="what-is-microsoft-entra-permissions-management">What is Microsoft Entra Permissions Management?</h3>
+<p>Microsoft Entra Permissions Management is a cloud infrastructure entitlement management (CIEM) product that provides comprehensive visibility and control over permissions for any identity and any resource in Microsoft Azure, Amazon Web Services (AWS) and Google Cloud Platform (GCP). Microsoft Entra Permissions Management is one solution among many multiclouid identitiy and access products</p>
+<p>The entire product family includes:</p>
+<ul>
+<li>Azure Active Directory</li>
+<li>Microsoft Entra Permissions Management</li>
+<li>Microsoft Entra Verified ID</li>
+<li>Microsoft Entra Workload Identities</li>
+<li>Microsoft Entra Identity Governance</li>
+</ul>
+<h2 id="setting-up-permissions-management">Setting Up Permissions Management</h2>
+<p>Before we being there are a few things that are needed in order to setup a trail for Permissions Management.</p>
+<ul>
+<li>An Azure AD Tenant</li>
+<li>Be a Global Administrator or have access to a user that is a Global Administrator</li>
+<li>Have not already had a trail of Permissions Management enabled and expired.</li>
+</ul>
+<h3 id="starting-the-90-day-trial">Starting the 90-day trial</h3>
+<p>There are a few different ways to start the trial.  I will talk about three of them.</p>
+<ol>
+<li>From the Entra Permissions Management Website</li>
+<li>From the M365 Admin Portal</li>
+<li>From Azure Active Directory Portal.</li>
+</ol>
+<h4 id="from-the-entra-permissoins-management-website">From THe Entra Permissoins Management Website</h4>
+<p>The first way is to go to the Entra Permissions Management web site and click on the Try For Free button.</p>
+<p><img src="/img/entra/entra-01.jpg" alt="Image"></p>
+<p>It will then prompt you for to enter an email address.  Enter your work account that belongs to the tenant that you will be using to try out Entra.</p>
+<p><img src="/img/entra/entra-02.jpg" alt="Image"></p>
+<p>If you tenant already has had a trial, or a trial is currently going then you will see the next screen.</p>
+<p><img src="/img/entra/entra-03.jpg" alt="Image"></p>
+<h4 id="from-the-m365-portal">From the M365 Portal</h4>
+<p>You can also sign up through the M365 admin portal by going to Purchase Services.</p>
+<p>Select Entra Permissions Management under Security and Identity</p>
+<p><img src="/img/entra/entra-04.jpg" alt="Image"></p>
+<p>At this point you should have an option to start the trail.  On my tenant, I already have the trail activated so all I can do is hit manage.</p>
+<p><img src="/img/entra/entra-05.jpg" alt="Image">5</p>
+<p>Once the trail has been started you can come back here to manage it.</p>
+<p><img src="/img/entra/entra-06.jpg" alt="Image"></p>
+<h4 id="from-azure-ad-portal">From Azure AD Portal</h4>
+<p>In the Azure AD portal, select Permissions Management, and then select the link to purchase a license or begin a trial.</p>
+<ol>
+<li>Go to Entra services and use your credentials to sign in to Azure Active Directory.</li>
+<li>If you aren&rsquo;t already authenticated, sign in as a global administrator user.</li>
+<li>If needed, activate the global administrator role in your Azure AD tenant.</li>
+<li>In the Azure AD portal, select Permissions Management, and then select the link to purchase a license or begin a trial.</li>
+</ol>
+<h3 id="configure-data-collection-settings">Configure Data Collection Settings</h3>
+<p>Once you have signed up for the trial.  The first screen that launches is the Data Collectors dashboard.</p>
+<p><img src="/img/entra/entra-config-01.jpg" alt="Image"></p>
+<p>We will be onboarding an Azure Subscription. Select Azure under the Data Collectors tab.  There are three options that we can choose from.</p>
+<ol>
+<li>Automaticlly manage</li>
+<li>Enter Authorization Systems</li>
+<li>Select Authorization Systems</li>
+</ol>
+<p>Option 1 allows subscriptions to be automaticlly detect and monitored.
+Option 2 we will have the ability to specify certain subscriptions to manage and monitor.
+Option 3 will  allow us to specify the authorization system where we will later select  subscriptions to monitor.</p>
+<p><img src="/img/entra/entra-config-02.jpg" alt="Image"></p>
+<p>Since this is just collecting data at this point I will always go with Option 1.</p>
+<p>First thing is to create the role assignments.  This can be done three ways:</p>
+<ul>
+<li>Via Console</li>
+<li>Via PowerShell</li>
+<li>Via Azure Command Line</li>
+</ul>
+<p>I am going to do this via PowerShell and target the Root Management Group.  In order to target the root management group the user configuring this needs to have the correct roles assigned.</p>
+<pre tabindex="0"><code>New-AzRoleAssignment -ApplicationId b46c3ac5-9da6-418f-a849-0a07a10b3c6c  -RoleDefinitionName &#34;Reader&#34; -Scope &#34;/providers/Microsoft.Management/managementGroups/&lt;managementgroup&gt;&#34;
+</code></pre><p><img src="/img/entra/entra-config-03.jpg" alt="Image"></p>
+<p>Once the role assignment has been grated access to the authorization system we can continue by click Verify Now &amp; Save.
+From the Dashboard you can now check the progress of the collector that was just created.
+<img src="/img/entra/entra-config-04.jpg" alt="Image"></p>
+<p><img src="/img/entra/entra-config-05.jpg" alt="Image"></p>
+<p><img src="/img/entra/entra-config-06.jpg" alt="Image"></p>
+<p>After a few minutes all the discovered subscriptions should be in a status of &ldquo;Onboarded&rdquo;. Now that our data collector has been setup, we can go back to the Entra Permissons Management dashboard.</p>
+<p><img src="/img/entra/entra-config-07.jpg" alt="Image"></p>
+<hr>
+<p>So now we have successfully signed up for Entra Permissions Management and we have successfully onboarded our Microsoft Azure Subscriptions. There is so much more to do at this point.</p>
+<ul>
+<li>Onboard GCP projects</li>
+<li>Onboard AWS accounts</li>
+<li>Discover and Assess</li>
+<li>Remediate &amp; manage</li>
+<li>Monitor &amp; alert</li>
+</ul>
+<p>All these will come as I blog more about Microsoft Entra Permissions Management. For now this blog was just focusing on how to setup Entra Permissions Management. I am excited to share more about what Entra Permissions Management can do for you and your origination.  Not even just Entra Permissions Management but the entire Entra family of products.</p>
+<p>I think my next blog will be showing how to configure a data collector for a Google Cloud project.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/entra-permissions-management/" rel="tag">Entra Permissions Management</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/microsoft-entra/" rel="tag">Microsoft Entra</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/permissions-management/" rel="tag">Permissions Management</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/2023-01-19-entra-permissions-management-podcast/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Entra Permissions Management Podcast</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-19-entra-permissions-management-podcast/">Entra Permissions Management Podcast</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-18-setting-up-entra-permissions-management/">Setting Up Entra Permissions Management</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/">Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-20-festive-tech-calendar-2022/">Festive Tech Calendar 2022</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/creating-blog-hugo-github-pages/">Creating this blog using Hugo and GitHub Pages</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+<div class="widget-languages widget">
+	<h4 class="widget__title">Languages</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/">
+					<span class="widget-languages__link-btn widget__link-btn btn">EN</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/de/">
+					<span class="widget-languages__link-btn widget__link-btn btn">DE</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/es/">
+					<span class="widget-languages__link-btn widget__link-btn btn">ES</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/fr/">
+					<span class="widget-languages__link-btn widget__link-btn btn">FR</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

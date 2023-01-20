@@ -18,6 +18,15 @@ You can access the show podcast from this link Entra Permissions Management: Par
     </item>
     
     <item>
+      <title>Setting Up Entra Permissions Management</title>
+      <link>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</link>
+      <pubDate>Wed, 18 Jan 2023 17:59:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</guid>
+      <description>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in. The Identity product group has a nice little user guide out there on Microsoft Learn Trial user guide: Microsoft Entra Permissions Management. There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk.</description>
+    </item>
+    
+    <item>
       <title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
