@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Onboard a Google Cloud Platform project to Entra Permissions Management - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Onboarding Google Cloud Platorm project to Microsoft Entra Permissions Management">
+		<meta property="og:title" content="Onboard a Google Cloud Platform project to Entra Permissions Management" />
+<meta property="og:description" content="Onboarding Google Cloud Platorm project to Microsoft Entra Permissions Management" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-01-20T22:46:04+00:00" />
+<meta property="article:modified_time" content="2023-01-21T00:32:55+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Just another blog about the cloud?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Onboard a Google Cloud Platform project to Entra Permissions Management</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-20T22:46:04Z">January 20, 2023</time>
+	<time class="meta__text" datetime="2023-01-21T00:32:55Z">(Last Modified: January 21, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/entra-permissions-management/" rel="category">Entra Permissions Management</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/entra/gcp.png" alt="Onboard a Google Cloud Platform project to Entra Permissions Management">
+		
+	</figure><div class="content post__content clearfix">
+			<p>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.</p>
+<p>First let&rsquo;s login to the Entra Permissions Management dashboard.</p>
+<p><img src="/img/entra/entra-gcp-01.jpg" alt="Image"></p>
+<p>Click on the gear in the top right corner to open up the Data Collectors dashboard.</p>
+<p><img src="/img/entra/entra-gcp-02.jpg" alt="Image"></p>
+<p>Click the GCP under the Data Collectors tab then click Create Configuration. In the Configure data collection: GCP window we will need information about our Google Cloud project. That information can be found on your Google Cloud Project info dashboard.</p>
+<p>We will create the Azure AD OIDC App first. The script that will run looks like this:</p>
+<pre tabindex="0"><code>#use this script for Azure version &lt;3.7 
+az ad app create --display-name &#34;mciem-gcp-oidc-app&#34; --identifier-uris &#34;api://mciem-gcp-oidc-app&#34; --available-to-other-tenants false 
+
+#use this script for Azure version &gt;3.7 
+az ad app create --display-name &#34;mciem-gcp-oidc-app&#34; --identifier-uris &#34;api://mciem-gcp-oidc-app&#34; --sign-in-audience AzureADMyOrg 
+
+#PowerShell Script 
+New-AzureADApplication -DisplayName  &#34;mciem-gcp-oidc-app&#34; -IdentifierUris &#34;api://mciem-gcp-oidc-app&#34; 
+</code></pre><p>Note: In order for the first line to run I had to remove the &ndash;available-to-other-tenants false.  I will look into this and update this blog.</p>
+<p>Also, take note that you will need to only run the first or 2nd line depending on Azure version.  Then run the 3rd line in Azure Powershell.</p>
+<p><img src="/img/entra/entra-gcp-03.jpg" alt="Image"></p>
+<p><img src="/img/entra/entra-gcp-04.jpg" alt="Image"></p>
+<p>Once the required fields have been filled in.  We will copy the script under Google Cloud Script.  This script looks like this:</p>
+<pre tabindex="0"><code>#!/bin/bash -x
+
+export AZURE_APP_ID=b46c3ac5-9da6-418f-a849-0a07a10b3c6c
+export AZURE_TENANT_ID=bc1693b0-9755-40dc-98c0-ae29a51cc39d
+export AZURE_AUTHORITY_URL=sts.windows.net
+
+export GCP_OIDC_PROJECT_NUMBER=321301204886
+export GCP_OIDC_SERVICE_ACCOUNT_NAME=mciem-service
+export GCP_OIDC_WIP_ID=mciem-wi-pool
+export GCP_OIDC_WIP_PROVIDER_ID=mciem-wi-provider
+
+export GCP_OIDC_PROJECT_NAME=$(gcloud projects list --filter=&#34;PROJECT_NUMBER=$GCP_OIDC_PROJECT_NUMBER&#34; --format=&#34;value(projectName)&#34;)
+export GCP_OIDC_PROJECT_ID=$(gcloud projects list --filter=&#34;PROJECT_NUMBER=$GCP_OIDC_PROJECT_NUMBER&#34; --format=&#34;value(projectId)&#34;)
+
+gcloud config set project $GCP_OIDC_PROJECT_ID
+
+echo In project name:$GCP_OIDC_PROJECT_NAME number:$GCP_OIDC_PROJECT_NUMBER id:$GCP_OIDC_PROJECT_ID
+
+echo Enabling IAM API in project $GCP_OIDC_PROJECT_ID
+gcloud services enable iam.googleapis.com
+
+echo Enabling IAM Credential API in project $GCP_OIDC_PROJECT_ID
+gcloud services enable iamcredentials.googleapis.com
+
+echo Enabling IAM Credential API in project $GCP_OIDC_PROJECT_ID
+gcloud services enable cloudresourcemanager.googleapis.com
+
+echo Create workload identity pool ${GCP_OIDC_WIP_ID}
+gcloud iam workload-identity-pools \
+  create ${GCP_OIDC_WIP_ID} \
+  --location=&#34;global&#34; \
+  --description=&#34;ms-ciem-workload-identity-pool&#34; \
+  --display-name=&#34;ms-ciem-workload-identity-pool&#34;
+
+echo Create workload identity pool provider ${GCP_OIDC_WIP_PROVIDER_ID}
+gcloud iam workload-identity-pools providers \
+  create-oidc ${GCP_OIDC_WIP_PROVIDER_ID} \
+  --location=global \
+  --description=&#34;ms-ciem-wip-provider&#34; \
+  --display-name=&#34;ms-ciem-wip-provider&#34; \
+  --workload-identity-pool=&#34;${GCP_OIDC_WIP_ID}&#34; \
+  --issuer-uri=&#34;https://${AZURE_AUTHORITY_URL}/${AZURE_TENANT_ID}/&#34; \
+  --allowed-audiences=&#34;api://mciem-gcp-oidc-app&#34; \
+  --attribute-condition=&#34;attribute.appid==\&#34;${AZURE_APP_ID}\&#34;&#34; \
+--attribute-mapping=&#34;google.subject=assertion.sub, attribute.tid=assertion.tid, attribute.appid=assertion.appid&#34;
+
+
+echo Create IAM service account ${GCP_OIDC_SERVICE_ACCOUNT_NAME}
+gcloud iam service-accounts \
+  create ${GCP_OIDC_SERVICE_ACCOUNT_NAME} \
+  --description=&#34;ms-ciem-service-account&#34; \
+  --display-name=&#34;ms-ciem-service-account&#34;
+
+echo Add IAM policy binding for iam.workloadIdentityUser to ${GCP_OIDC_SERVICE_ACCOUNT_NAME}@${GCP_OIDC_PROJECT_ID}.iam.gserviceaccount.com
+gcloud iam service-accounts \
+  add-iam-policy-binding projects/${GCP_OIDC_PROJECT_ID}/serviceAccounts/${GCP_OIDC_SERVICE_ACCOUNT_NAME}@${GCP_OIDC_PROJECT_ID}.iam.gserviceaccount.com \
+  --role roles/iam.workloadIdentityUser \
+  --member &#34;principalSet://iam.googleapis.com/projects/${GCP_OIDC_PROJECT_NUMBER}/locations/global/workloadIdentityPools/${GCP_OIDC_WIP_ID}/*&#34;
+</code></pre><p>You can run this script from within Google Cloud&rsquo;s Shell just like we did for the Azure based scripts. Click to download the script.  Open up GCP Shell then upload the script.</p>
+<p><img src="/img/entra/entra-gcp-05.jpg" alt="Image"></p>
+<p>Once we click next we will need to create the role bindings.  I am going to do this at the Organization level.  Download the script that is needed to run and upload it to Google CLI again.</p>
+<p><img src="/img/entra/entra-gcp-06.jpg" alt="Image"></p>
+<p>Make sure you change the OrgID.</p>
+<pre tabindex="0"><code>gcloud organizations add-iam-policy-binding &lt;orgID&gt; --member=&#34;serviceAccount:mciem-service@gcp-oidc-entra-demo.iam.gserviceaccount.com&#34; --role=&#34;roles/iam.securityReviewer&#34;
+  gcloud organizations add-iam-policy-binding &lt;orgID&gt; --member=&#34;serviceAccount:mciem-service@gcp-oidc-entra-demo.iam.gserviceaccount.com&#34; --role=&#34;roles/viewer&#34;
+</code></pre><p>We can now click Next and review and confirm.</p>
+<p><img src="/img/entra/entra-gcp-07.jpg" alt="Image"></p>
+<p>Just like with onboarding an Azure Data Collector you can check on the status by going to the Data Collectors dashboard.</p>
+<p><img src="/img/entra/entra-gcp-08.jpg" alt="Image"></p>
+<p>After a few minutes the status should have turned to Onboarded.</p>
+<p><img src="/img/entra/entra-gcp-09.jpg" alt="Image"></p>
+<p>Now we can return to our Entra Permissions Management dashboard and we can see we are reciveving data not only from our Azure subscriptions but also from our Google proejcts as well.</p>
+<p><img src="/img/entra/entra-gcp-10.jpg" alt="Image"></p>
+<p>Just like that, in a matter of a few mintues we now have our Azure cloud and our Google cloud connected to Entra Permissions Management. We still have a lot of work to do but this is where it starts to get even more exiciting.</p>
+<p>In future post I want to talk about the following topics for Entra Permissions Management:</p>
+<ul>
+<li>Discover &amp; Assess</li>
+<li>Remediate &amp; Manage</li>
+<li>Monitor &amp; Alert</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/entra-permissions-management/" rel="tag">Entra Permissions Management</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/google-cloud-platform/" rel="tag">Google Cloud Platform</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/2023-01-19-entra-permissions-management-podcast/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Entra Permissions Management Podcast</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/">Onboard a Google Cloud Platform project to Entra Permissions Management</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-19-entra-permissions-management-podcast/">Entra Permissions Management Podcast</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-18-setting-up-entra-permissions-management/">Setting Up Entra Permissions Management</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/">Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-20-festive-tech-calendar-2022/">Festive Tech Calendar 2022</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+<div class="widget-languages widget">
+	<h4 class="widget__title">Languages</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/">
+					<span class="widget-languages__link-btn widget__link-btn btn">EN</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/de/">
+					<span class="widget-languages__link-btn widget__link-btn btn">DE</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/es/">
+					<span class="widget-languages__link-btn widget__link-btn btn">ES</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/fr/">
+					<span class="widget-languages__link-btn widget__link-btn btn">FR</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
