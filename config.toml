@@ -13,7 +13,7 @@ bio = "I am a Principal Consultant at Invoke LLC currently living in Texas. My i
 avatar = "img/me.jpg"
 
 [Params]
-description = "My blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Description of your site
+description = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Description of your site
 opengraph = true
 twitter_cards = false
 readmore = false                                 # Show "Read more" button in list if true
@@ -24,7 +24,7 @@ mainSections = ["post", "docs"]
 
 
 [Params.logo]
-subtitle = "My blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Logo subtitle
+subtitle = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Logo subtitle
 
 [Params.sidebar]
 home = "right"    # Configure layout for home page
