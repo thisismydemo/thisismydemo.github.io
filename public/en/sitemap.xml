@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -25,23 +25,14 @@
                 href="http://thisismydemo.cloud/categories/"
                 />
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/entra-permissions-management/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/google-cloud-platform/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</loc>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -64,7 +55,7 @@
                 />
   </url><url>
     <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -85,6 +76,27 @@
                 hreflang="en"
                 href="http://thisismydemo.cloud/"
                 />
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/windows-server/</loc>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/windows-terminal/</loc>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/windows-terminal/</loc>
+    <lastmod>2023-01-31T17:39:48+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
+    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/entra-permissions-management/</loc>
+    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/google-cloud-platform/</loc>
+    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</loc>
+    <lastmod>2023-01-21T00:32:55+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</loc>
     <lastmod>2023-01-20T15:30:42+00:00</lastmod>

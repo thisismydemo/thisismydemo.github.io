@@ -6,7 +6,16 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jan 2023 22:46:04 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Jan 2023 15:04:33 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Enable Windows Terminal on Windows Servers</title>
+      <link>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</link>
+      <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</guid>
+      <description>Early this year I had written a blog talking about how to enable Windows Terminal on Windows Server. However, I deleted that blog and all content and can&amp;rsquo;t find my backups so I am re-writing it once again. I wanted to share my experience with installing Windows Terminal on Windows Server and what I had to do to get around the blockers I ran into. As I mentioned in the last blog I had ran into issues that other bloggers never seemed to run into when installing Windows Terminal.</description>
+    </item>
+    
     <item>
       <title>Onboard a Google Cloud Platform project to Entra Permissions Management</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link>
