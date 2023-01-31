@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proactive Remediation on This Is My Demo</title>
+    <link>http://thisismydemo.cloud/tags/proactive-remediation/</link>
+    <description>Recent content in Proactive Remediation on This Is My Demo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Jan 2023 15:53:58 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/proactive-remediation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
+      <link>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</link>
+      <pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</guid>
+      <description>I want to start this blog out by saying I am not an Intune expert. In fact I don&amp;rsquo;t really spend much time with Intune. However, once in a while there are projects that require certain tools like InTune so once in a while I do get my hands on Intune. So I want to share what I have learned about Intune Proactive Remediation and how to create and apply them in your Endpoint environment.</description>
+    </item>
+    
+  </channel>
+</rss>

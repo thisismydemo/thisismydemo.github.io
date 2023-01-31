@@ -6,7 +6,16 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jan 2023 15:04:33 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 31 Jan 2023 15:53:58 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intune Proactive Remediation</title>
+      <link>http://thisismydemo.cloud/categories/intune-proactive-remediation/</link>
+      <pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/categories/intune-proactive-remediation/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Windows Terminal</title>
       <link>http://thisismydemo.cloud/categories/windows-terminal/</link>
