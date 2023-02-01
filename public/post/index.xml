@@ -6,7 +6,19 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jan 2023 15:53:58 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 14:59:27 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Customize My WIndows Terminal Please? </title>
+      <link>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</link>
+      <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</guid>
+      <description>Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
+The three areas I always change are:
+Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?
+Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</description>
+    </item>
+    
     <item>
       <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
       <link>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</link>

@@ -6,7 +6,16 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Jan 2023 15:53:58 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 14:59:27 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows Terminal</title>
+      <link>http://thisismydemo.cloud/tags/windows-terminal/</link>
+      <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/windows-terminal/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Intune</title>
       <link>http://thisismydemo.cloud/tags/intune/</link>
@@ -31,15 +40,6 @@
       <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/windows-server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Windows Terminal</title>
-      <link>http://thisismydemo.cloud/tags/windows-terminal/</link>
-      <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/windows-terminal/</guid>
       <description></description>
     </item>
     
