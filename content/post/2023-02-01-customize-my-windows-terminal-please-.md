@@ -8,7 +8,7 @@ tags:
   - Windows Terminal
 categories:
   - Windows Terminal
-lastmod: 2023-02-01T16:05:43.589Z
+lastmod: 2023-02-01T16:08:38.716Z
 thumbnail: img/wsterm_customize/wsterm_02.png
 lead: My favorite Windows Terminal customizations
 ---
