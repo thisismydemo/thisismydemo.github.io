@@ -6,7 +6,17 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 14:59:27 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Feb 2023 20:34:11 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Grant Users Access To Entra Permissions Management Portal</title>
+      <link>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</link>
+      <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</guid>
+      <description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.
+I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description>
+    </item>
+    
     <item>
       <title>Customize My WIndows Terminal Please? </title>
       <link>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</link>

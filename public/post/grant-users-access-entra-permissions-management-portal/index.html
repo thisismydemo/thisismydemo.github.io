@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>How To Grant Users Access To Entra Permissions Management Portal - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="How To Grant Users Access To Entra Permissions Management Portal" />
+<meta property="og:description" content="This is going to be one of those blogs that I write based off of things I didn&rsquo;t know but learned in the heat of the moment.
+I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&hellip; nothing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-08T20:34:11+00:00" />
+<meta property="article:modified_time" content="2023-02-08T20:34:40+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">How To Grant Users Access To Entra Permissions Management Portal</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-08T20:34:11Z">February 08, 2023</time>
+	<time class="meta__text" datetime="2023-02-08T20:34:40Z">(Last Modified: February 08, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/entra-permissions-management/" rel="category">Entra Permissions Management</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/entra_user_management/epm_user_03.png" alt="How To Grant Users Access To Entra Permissions Management Portal">
+		
+	</figure><div class="content post__content clearfix">
+			<p>This is going to be one of those blogs that I write based off of things I didn&rsquo;t know but learned in the heat of the moment.</p>
+<p>I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need.  (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&hellip; nothing. They all linked to how to manage users and groups within the Portal but only at an administrative level.</p>
+<p>The Microsoft Documentation shows how to add users/groups to the Entra Management Portal at the Administrative level using the <a href="https://learn.microsoft.com/en-us/azure/active-directory/cloud-infrastructure-entitlement-management/ui-user-management#manage-groups">management dashboard</a>. In short, the documentation shows how to manage at a user level to see what permissions they are assigned.  It then discusses how to add groups to manage those permissions to the portal. Basically with three levels of permissions to Authorization systems:  Admin for all Authorization System Types, Admin for selected Authorization System Types, or Custom.</p>
+<p>This is great for managing administrative task and controlling the level of permissions your administrations have within Entra Permissions Management.</p>
+<p>However, the questions came up one day, How does a normal user access the portal to make a  request for more permissions?  In theory, this can be done using existing ITSM tools that may already be in place in your environment. These can easier be integrated with workflows for users to request permissions, admins to approve and deny, etc.</p>
+<p>However, I knew that it could be done via the Entra Permissions Management portal without giving users anymore permissions to it then needed.  This was the part that isn&rsquo;t documented anywhere that I can find.  I reached out to a co-worker, sort of embarrassed that I didn&rsquo;t know this, for some help.  The good thing is, he had ran in this himself, and also found out how to assign the right permissions himself by accident.</p>
+<p>So we don&rsquo;t want our users to see this error:</p>
+<p><img src="/img/entra_user_management/epm_user_03.png" alt=""></p>
+<p>But we also don&rsquo;t want to give them permissions to see more than they need like this:</p>
+<p><img src="/img/entra_user_management/epm_user_04.png" alt=""></p>
+<p>We just want them to be able to request more permissions and only see this:</p>
+<p><img src="/img/entra_user_management/epm_user_11.png" alt=""></p>
+<h3 id="how-is-it-done">How Is It Done?</h3>
+<p>First we need to create an Azure AD Group. I have crated a few default groups to use for various levels of permissions to the portal. The group I will be using will be <strong>EPM - User Portal Access</strong>.  I also made this a dynamic user membership type and placed all active users in this group.</p>
+<p><img src="/img/entra_user_management/epm_user_01.png" alt=""></p>
+<p>Now we need to login to the Entra Permissions Management portal. Once logged in click on the profile picture in the upper right hand.  Then select User management from the drop down menu.</p>
+<p><img src="/img/entra_user_management/epm_user_05.png" alt=""></p>
+<p>We are going to create Permissions by clicking on Create Permissions.</p>
+<p><img src="/img/entra_user_management/epm_user_06.png" alt=""></p>
+<p>On the Set Group permissions window, enter the newly created AAD Group, then select Admin for select Authorization Systems Types. Then click Next.</p>
+<p><img src="/img/entra_user_management/epm_user_07.png" alt=""></p>
+<p>On the next screen leave everything blank and click Next.</p>
+<p><img src="/img/entra_user_management/epm_user_08.png" alt=""></p>
+<p>On the next screen click Save.</p>
+<p><img src="/img/entra_user_management/epm_user_09.png" alt=""></p>
+<p>Now our newly created AAD Group has been assigned permissions but no viewer, controller or approver permissions, to the portal.</p>
+<p><img src="/img/entra_user_management/epm_user_10.png" alt=""></p>
+<p>At this point we will test one of users that do not have any special permissions to the portal.  Earlier the user would have gotten this when he tried to log on.</p>
+<p><img src="/img/entra_user_management/epm_user_03.png" alt=""></p>
+<p>But now when he logs on he will see the following screen:</p>
+<p><img src="/img/entra_user_management/epm_user_11.png" alt=""></p>
+<p>Now this is exactly what we wanted to see when a user that needs to request more permissions can see when they log on to the Entra Permissions Management portal.</p>
+<p>I just wanted to note, this isn&rsquo;t how it is documented with Microsoft. In fact, as I mentioned above it isn&rsquo;t documented anywhere.  There may be a better way to manage this but this is how my co-worker discovered how to do it and how I will be doing it moving forward.</p>
+<p>I can see another blog coming with even more information on how to manage users and permissions using Entra Permissions Management.</p>
+<hr>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/entra-permissions-management/" rel="tag">Entra Permissions Management</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/2023-02-01-customize-my-windows-terminal-please-/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Customize My WIndows Terminal Please? </p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thisismydemo" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/grant-users-access-entra-permissions-management-portal/">How To Grant Users Access To Entra Permissions Management Portal</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-02-01-customize-my-windows-terminal-please-/">Customize My WIndows Terminal Please? </a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/intune-proactive-remediation-scripts/">My Intune Proactive Remediation Scripts</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-31-intunes-proactive-remediations/">Intune Proactive Remediation - Check if KB5007253 is installed.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2023-01-31-enable-windows-terminal-on-windows-servers/">Enable Windows Terminal on Windows Servers</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+<div class="widget-languages widget">
+	<h4 class="widget__title">Languages</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/">
+					<span class="widget-languages__link-btn widget__link-btn btn">EN</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/de/">
+					<span class="widget-languages__link-btn widget__link-btn btn">DE</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/es/">
+					<span class="widget-languages__link-btn widget__link-btn btn">ES</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/fr/">
+					<span class="widget-languages__link-btn widget__link-btn btn">FR</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -6,7 +6,16 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 14:59:27 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Feb 2023 20:34:11 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Entra Permissions Management</title>
+      <link>http://thisismydemo.cloud/tags/entra-permissions-management/</link>
+      <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/entra-permissions-management/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Windows Terminal</title>
       <link>http://thisismydemo.cloud/tags/windows-terminal/</link>
@@ -49,15 +58,6 @@
       <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/windows-server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Entra Permissions Management</title>
-      <link>http://thisismydemo.cloud/tags/entra-permissions-management/</link>
-      <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/entra-permissions-management/</guid>
       <description></description>
     </item>
     
