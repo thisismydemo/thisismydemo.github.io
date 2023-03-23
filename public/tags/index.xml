@@ -6,7 +6,34 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Feb 2023 20:34:11 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 19:51:12 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure IoT</title>
+      <link>http://thisismydemo.cloud/tags/azure-iot/</link>
+      <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-iot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Sphere</title>
+      <link>http://thisismydemo.cloud/tags/azure-sphere/</link>
+      <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-sphere/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Sphere Development Kit</title>
+      <link>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</link>
+      <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Entra Permissions Management</title>
       <link>http://thisismydemo.cloud/tags/entra-permissions-management/</link>
