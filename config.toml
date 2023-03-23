@@ -35,7 +35,7 @@ widgets = ["search", "recent", "categories", "taglist", "social", "languages"]
 
 [Params.widgets.social]
 # Enable parts of social widget
- witter = "@countrycloudboy"
+Twitter = "@countrycloudboy"
 linkedin = "KristopherJTurner"
 github = "thisismydemo"
 
