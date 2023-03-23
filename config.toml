@@ -15,7 +15,7 @@ avatar = "img/me.jpg"
 [Params]
 description = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Description of your site
 opengraph = true
-twitter_cards = false
+twitter_cards = true
 readmore = false                                 # Show "Read more" button in list if true
 authorbox = true
 pager = true
