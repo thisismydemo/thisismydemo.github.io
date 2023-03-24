@@ -3,19 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://thisismydemo.cloud/tags/azure-iot/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-sphere/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-sphere-development-kit/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -37,14 +28,17 @@
                 href="http://thisismydemo.cloud/categories/"
                 />
   </url><url>
-    <loc>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</loc>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/iot-edge/</loc>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -67,7 +61,7 @@
                 />
   </url><url>
     <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -88,6 +82,27 @@
                 hreflang="en"
                 href="http://thisismydemo.cloud/"
                 />
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</loc>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/vision-ai-developer-kit/</loc>
+    <lastmod>2023-03-24T02:29:35+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/azure-sphere/</loc>
+    <lastmod>2023-03-24T01:19:29+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/azure-sphere-development-kit/</loc>
+    <lastmod>2023-03-24T01:19:29+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</loc>
+    <lastmod>2023-03-24T01:19:29+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</loc>
+    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</loc>
+    <lastmod>2023-03-23T20:16:21+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
     <lastmod>2023-02-08T20:34:40+00:00</lastmod>

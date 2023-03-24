@@ -6,20 +6,38 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Mar 2023 19:51:12 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure IoT</title>
       <link>http://thisismydemo.cloud/tags/azure-iot/</link>
-      <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
+      <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-iot/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Iot Edge</title>
+      <link>http://thisismydemo.cloud/tags/iot-edge/</link>
+      <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/iot-edge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vision AI Developer Kit</title>
+      <link>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</link>
+      <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Azure Sphere</title>
       <link>http://thisismydemo.cloud/tags/azure-sphere/</link>
-      <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
+      <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-sphere/</guid>
       <description></description>

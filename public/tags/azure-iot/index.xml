@@ -6,7 +6,29 @@
     <description>Recent content in Azure IoT on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Mar 2023 19:51:12 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-iot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-iot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting my Vision AI DevKit Back Up And Running</title>
+      <link>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</link>
+      <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</guid>
+      <description>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&amp;rsquo;t used this in a while, now I need to reset it and set it up again.
+The process The first thing I did was install the Android Debug Bridge (ADB).</description>
+    </item>
+    
+    <item>
+      <title>Is my Azure Sphere a rock now?</title>
+      <link>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</link>
+      <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</guid>
+      <description>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
+However&amp;hellip;&amp;hellip;&amp;hellip;.
+According to Microsoft&amp;rsquo;s documentation on how to claim the device there is a call out:
+Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.</description>
+    </item>
+    
     <item>
       <title>My Azure Sphere Needs Reset?</title>
       <link>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</link>
