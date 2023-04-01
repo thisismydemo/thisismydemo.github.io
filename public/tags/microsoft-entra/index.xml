@@ -6,7 +6,16 @@
     <description>Recent content in Microsoft Entra on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Jan 2023 22:12:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/microsoft-entra/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/microsoft-entra/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applying The Final Firmware Update for the Azure Percept DK</title>
+      <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
+      <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
+    </item>
+    
     <item>
       <title>Entra Permissions Management Podcast</title>
       <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>

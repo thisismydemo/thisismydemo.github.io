@@ -6,7 +6,16 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Applying The Final Firmware Update for the Azure Percept DK</title>
+      <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
+      <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
+    </item>
+    
     <item>
       <title>Getting my Vision AI DevKit Back Up And Running</title>
       <link>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</link>

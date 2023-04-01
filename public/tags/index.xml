@@ -6,13 +6,40 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure IoT</title>
       <link>http://thisismydemo.cloud/tags/azure-iot/</link>
-      <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-iot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Percept</title>
+      <link>http://thisismydemo.cloud/tags/azure-percept/</link>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-percept/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Percept Development Kit</title>
+      <link>http://thisismydemo.cloud/tags/azure-percept-development-kit/</link>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-percept-development-kit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microsoft Entra</title>
+      <link>http://thisismydemo.cloud/tags/microsoft-entra/</link>
+      <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/microsoft-entra/</guid>
       <description></description>
     </item>
     
@@ -40,15 +67,6 @@
       <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-sphere/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Azure Percept Development Kit</title>
-      <link>http://thisismydemo.cloud/tags/azure-percept-development-kit/</link>
-      <pubDate>Thu, 23 Mar 2023 22:58:14 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/azure-percept-development-kit/</guid>
       <description></description>
     </item>
     
@@ -121,15 +139,6 @@
       <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/google-cloud-platform/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Microsoft Entra</title>
-      <link>http://thisismydemo.cloud/tags/microsoft-entra/</link>
-      <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/microsoft-entra/</guid>
       <description></description>
     </item>
     
