@@ -6,7 +6,25 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Apr 2023 15:41:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure AD</title>
+      <link>http://thisismydemo.cloud/tags/azure-ad/</link>
+      <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-ad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cross-Tenant Synchronization</title>
+      <link>http://thisismydemo.cloud/tags/cross-tenant-synchronization/</link>
+      <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/cross-tenant-synchronization/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Azure IoT</title>
       <link>http://thisismydemo.cloud/tags/azure-iot/</link>

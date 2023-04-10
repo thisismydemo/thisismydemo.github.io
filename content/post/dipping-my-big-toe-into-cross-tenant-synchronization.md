@@ -1,15 +1,19 @@
 ---
 title: Dipping My Big Toe Into Cross-Tenant Synchronization Part I
 description: ""
-date: 2023-04-04T15:04:07.465Z
+date: 2023-04-10T15:41:45.665Z
 preview: /img/crosstenantsync/my-topo.png
-draft: true
-tags: ""
-categories: ""
-lastmod: 2023-04-08T16:51:35.478Z
+draft: false
+tags:
+  - Azure AD
+  - Cross-Tenant Synchronization
+categories:
+  - Cross-Tenant Synchronization
+  - Azure Active Directory
+lastmod: 2023-04-10T15:43:18.848Z
 thumbnail: /img/crosstenantsync/my-topo.png
 lead: Part I - I have a very big Big Toe!!!
-slug: dipping-big-toe-cross-tenant-synchronization-part-I
+slug: dipping-big-toe-cross-tenant-synchronization-part
 ---
 
 So, I am very interested in What cross-tenant synchronization is and what it could do for me and maybe for customers?  Since I have a number of tenants I thought it would be good to at least try this preview feature and blog about my experience.
@@ -234,3 +238,57 @@ Once this was successful, I saw two more sections pop up called Mappings and Set
 For this section everything is configured from the Source tenant which is countrycloudboy.onmicrosoft.com.  We are going to define who will be provisioned.  This will be done either by attributes of the user or assignment to the configuration.
 
 The documentation says to start small.  However, if you don't go big then you shouldn't show up or something like that? Kidding, this is a non-production environment anyway.  I also only have about 2 users in each of these tenants anyway. So I will go big and include everyone.
+
+To start the documentation had me following the tasks:
+
+1. I went back to Azure Active Directory, then Cross Tenant Synchronization. Clicking on Configurations I then clicked on the Configuration created earlier, This Is My Demo Production.
+2. From the This Is My Demo Production configuration, click on Provisioning and then I expanded Settings.
+3. Here I can set the scope of the provisioning. In most cases you would pilot this and only select a specific group of users for testing.  For my blog, I kept the default scope, Sync only assigned users and groups, so I can mimic what I may need to do in a customer environment.
+4. I also added my email to get notifications if a failure occurs.
+5. There is section to prevent accidental deletion of users and groups as well.
+6. Next click on Users and Groups. This is where I will add a group I created with my test users for provisioning. Once selected I clicked Assign.
+
+![](/img/crosstenantsync/crosssync-015.png)
+
+There is another step that could be taken to include scoping filters on who has been defined for provisioning. This would assist in further limiting which users I would sync.  This can be done using attributed-based scoping filters. At this time I wouldn't do anything with attribute mapping but I may in other parts of this blog.
+
+However, it would be good to at least look at the Attribute mappings to better understand what data is flowing between the source tenant and my target tenant.
+
+### Testing My Provisioning Configurations
+
+So, now from what I understand, everything is ready for testing. Cross my fingers that things will work.  :
+
+Following the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/azure/active-directory/multi-tenant-organizations/cross-tenant-synchronization-configure#step-11-test-provision-on-demand) I am going to do an on-demand provisioning test on one of my users.
+
+1. First I went back to my This Is My Demo Production configuration. Next click on Provision on demand just under Overview.
+2. I searched for one of my test accounts using the Select a user or group field.
+
+![](/img/crosstenantsync/crosssync-016.png)
+
+3. I then hit Provision and waited and waited and waited as it first ran validations.
+
+![](/img/crosstenantsync/crosssync-017.png)
+
+From what I understand it worked.  I will read more on why it skipped those actions. To double check, I went over to sheepandcows.onmicrosoft.com.  This time I didn't log on to my tenantadmin@sheepandcows.onmicrosoft.com account.  I just switched directories using my tenantadmin@countrycloudboy.onmicrosoft.com.  This was one sign that my provisioning worked. The next sign was seeing the account in that tenants Active Directory.
+
+![](/img/crosstenantsync/crosssync-018.png)
+
+So now I know that provisioning is configured correctly.  Time to move forward with my next steps which is starting my provisioning job and monitoring the provisioning job.
+
+### Enabling the Provisioning Job and Monitoring
+
+This step was quick and easy. I logged back on to my source tenant, countrycloudboy.microsoft.com.
+
+1. Going back to Azure Active Directory then Cross-Tenant synchronization, I selected the configuration, This Is My Demo Production, and then on the overview screen I clicked Start Provisioning.
+
+![](/img/crosstenantsync/crosssync-019.png)
+
+This is also where I would monitor provisioning. I can check audit logs and provision logs here.
+
+### The Rest of the story...
+
+At this point I have successfully configured Cross-Tenant synchronization between my countrycloudboy.onmicrosoft.com tenant and my sheepandcows.onmicrosoft.com tenant. This topology right now is configured as a single source, single target design.  In future parts of this blog, I will add more tenants and configure everything as a Mesh topology. I will also try using Graph API to configure my other tenants.  So I end this blog with the following configuration:
+
+![](/img/crosstenantsync/single-target-parti.png)
+
+My users in my countrycloudyboy.onmicrosoft.com now will be synced to my sheepandcows.onmicrosoft.com tenant and have the same access to my Microsoft and Non-Microsoft services and applications. This sync right now is only one way. This I will change in future blogs as well to allow synchronization both directions.
