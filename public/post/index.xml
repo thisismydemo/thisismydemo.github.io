@@ -6,7 +6,16 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Apr 2023 15:41:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 May 2023 15:11:44 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Microsoft Sentinel Content From A Repository - Introduction</title>
+      <link>http://thisismydemo.cloud/post/2023-05-17-deploying-microsoft-sentinel-content-from-a-repository/</link>
+      <pubDate>Wed, 17 May 2023 15:11:44 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/2023-05-17-deploying-microsoft-sentinel-content-from-a-repository/</guid>
+      <description>So recently I have been dragged kicking and screaming into the security world. Well, not really dragged, if you know me I am a large guy and it would be more like fork lifting me kicking and screaming? Anyway, I actually love working with security products like Microsoft Sentinel, Defender for Cloud and the many other Defender for.. Products Microsoft offers, along with Identify solutions like Entra Permissions Management and more.</description>
+    </item>
+    
     <item>
       <title>Dipping My Big Toe Into Cross-Tenant Synchronization Part I</title>
       <link>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</link>
