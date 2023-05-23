@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>How to Integrate Microsoft Sentinel and Freshservice - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="How to Integrate Microsoft Sentinel and Freshservice" />
+<meta property="og:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don&rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-05-22T23:13:05+00:00" />
+<meta property="article:modified_time" content="2023-05-23T21:13:20+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Integrate Microsoft Sentinel and Freshservice"/>
+<meta name="twitter:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don&rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system."/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">How to Integrate Microsoft Sentinel and Freshservice</h1>
+			<p class="post__lead">Sometimes your customers can teach you a thing or two.</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-22T23:13:05Z">May 22, 2023</time>
+	<time class="meta__text" datetime="2023-05-23T21:13:20Z">(Last Modified: May 23, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/microsoft-sentinel/" rel="category">Microsoft Sentinel</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/sentinel-freshservice/freshservice-025.png" alt="How to Integrate Microsoft Sentinel and Freshservice">
+		
+	</figure><div class="content post__content clearfix">
+			<p>There are times even your customers can teach you something.  Recently while onboarding <a href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel">Microsoft Sentinel</a> for a customer I ran into one of those times.  I had been asked by the customer to integrate Microsoft Sentinel with <a href="https://www.freshworks.com/freshservice/">Freshservice</a>.  Fresh service is one of many cloud based ITSM that I have run along my fun career.  I personally don&rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system. Just like with all or most of my blogs, I write these in hopes that others can find a solution they are looking for but also, as I get older I forget a lot more than I remember.  This way I can search Bing once again in 6 months or a year and find my blog I wrote on this subject.</p>
+<p>So this blog is about my experience integrating Microsoft Sentinel with Freshservice. So the three main areas I am going to write about are:</p>
+<ul>
+<li>Was there a playbook created already for Freshservice?</li>
+<li>Created A Freshservice account for testing.</li>
+<li>Created a playbook and logic app.</li>
+</ul>
+<h2 id="is-there-a-playbook-for-freshservice">Is there a playbook for Freshservice?</h2>
+<p>So when I started I did what we all do. I immediately went into the Content Hub to search for Freshservice. However, there isn&rsquo;t any Freshservice content available.  I couldn&rsquo;t find anything in any of the community repos I know about as well. Don&rsquo;t worry, there is hope.  I can dust off my logic app skills (the little I had) and try to create one.  Instead of creating one from scratch let&rsquo;s not re-invite the wheel.  From all the content solutions I have already installed I had two playbooks that I could use to copy. The first was the Create and Update Service Now Record provided and supported by the community.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-001.png" alt=""></p>
+<p>Then I also found a playbook from ZenDesk, <a href="https://github.com/Azure/Azure-Sentinel/tree/master/Playbooks/Create-Zendesk-Ticket">Create Zendesk Ticket</a>.  This was in the Content Hub and was created by Brian Delaney.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-002.png" alt=""></p>
+<p>Out of the two, the ZenDesk Logic App looked like the easiest for me to edit and use.  So  I went with the Create Zendesk Ticket playbook. More information below on how I created and configured the playbook for Freshservice.</p>
+<h2 id="freshservice-account">Freshservice Account</h2>
+<p>So, how do I even test this playbook to make sure it works. I never used <a href="https://www.freshworks.com/freshservice/">freshservice</a>, and I wasn&rsquo;t going to ask the customer for access to Freshservice. So I went to their website, and clicked Free Trial.  Why not?  Make sure when you click Free Trial that you select the correct product.  You will need to scroll down  to their IT Services PRoducts and click on Free Trial under Freshservice.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-003.png" alt=""></p>
+<p>It took maybe 5 minutes at the most before I had my account setup.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-004.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-005.png" alt=""></p>
+<p>So now I have my account.  The next thing was to do some research on how to continue. I knew there was a logic app connector in preview for Freshservice. So the next step was to create the playbook.</p>
+<h2 id="create-playbook-and-logic-app">Create Playbook and Logic App</h2>
+<p>So at this point, I now have a Freshservice account that I can test with. I know the plan that I have, which is to create a playbook from the Create Zendesk Ticket template.</p>
+<p>So step one was to go to my Microsoft Sentinel workspace.  From there I went to Automation under Configuration.  Under the Playbook Templates (Preview) I searched for Zendesk and then clicked on Create Playbook.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-006.png" alt=""></p>
+<p>The following steps I took to create the playbook:</p>
+<ol>
+<li>On Create Playbook, on the Basics blade, I renamed the default playbook from Create-ZenDesk-Ticket to Create-FreshServiceITSM-Ticket.</li>
+<li>On the Parameters blade I just ignored that. Since I would be deleting the ZenDesk connector anyway.</li>
+<li>The next two blades, Connections and Review &amp; Create I just left defaults.</li>
+<li>Last I clicked, Create and continue to designer.</li>
+</ol>
+<p><img src="/img/sentinel-freshservice/freshservice-007.png" alt=""></p>
+<p>Here I edited the Connections step:</p>
+<p><img src="/img/sentinel-freshservice/freshservice-008.png" alt=""></p>
+<p>For this demo I just used my account to connect the logic apps to the proper Tenant.  However, you should really connect with a managed identity or at least a service principal account.  So don&rsquo;t do as I do, but do as I say?</p>
+<p>The next step was to remove the Zendesk Connector and then add the Freshservice Connector. This part is fairly straight forward.  You click on the three dots to the right on the Zendesk connector then click Delete. To add the Freshservice connector, just click on the + New Step button.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-009.png" alt=""></p>
+<p>When you first click on the connector to add it, the next screen will prompt you to select an action.  Here I picked Create a Ticket (Preview). The other options is to update a ticket or and a note to a ticket.</p>
+<p>Now it is time to edit the Freshservice connector. This is where things got really interesting.  Doing a Bing search, there is limited to no information out there on how to configure the Freshservice logic app connector.  I played with it for a while and found a few links that took me to the Freshservice community site.  There was a post that was over a year old with someone asking about authenticating and no one had responded.  Playing around more I did find a link that directed me to Freshservice and and article on how to create an API Key. However, still no clear documentation on how to actually configure the fields needed.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-010.png" alt=""></p>
+<p>I tried my username but then I was like, I never got a password. How do I log on to Freshservice anyway?  That is when I went back to the dashboard and saw I never verified my email account.  For some reason, all my Freshservice email went directly to spam. I found the email to verify my account, and verified it.  From there it ask me to create a password which I did. So my account is verified.</p>
+<p>So from this point I was on my own.  So I tried just my username and password for the user name and password field. The one thing I need to call out, when you put your Site URL, don&rsquo;t add the / at the end. It doesn&rsquo;t like that.</p>
+<p>At this point I clicked Create.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-013.png" alt=""></p>
+<p>So it looked like it worked!!!  (Hint, this is sarcasm)</p>
+<p><img src="/img/sentinel-freshservice/freshservice-014.png" alt=""></p>
+<p>So once again, I am at a section that I can&rsquo;t find any documentation for. What is the Requester ID?  It is asking for an integer and an email address that I tried associated with my account wouldn&rsquo;t work. I tried a few different combos.</p>
+<p>I did what anyone would do. I just started filling out stuff. I assumed I could find that ID in the Freshservice dashboard for my user profile. I couldn&rsquo;t find anything. So i made up a number and put it there.  The rest was pretty simple to follow.  The rest is just like any other logic app in Sentinel. I went simple for this one.  For subject, I selected some dynamic content for a Microsoft Sentinel incident.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-015.png" alt=""></p>
+<p>I clicked Save. The logic app save was completed and I thought, hey, this was easy.  Let&rsquo;s test!</p>
+<p>Note, I did find that if I selected any Dynamic content based off &ldquo;alerts&rdquo; that it would change the logic app and this step to For Each.  Maybe someone with more Logic App experience can explain that to me. I am assuming something because it was an Alert and not an Incident but you know what assume means?</p>
+<p>The easiest way to test a playbook is to go back to Microsoft Sentinel, click on incidents, select an incident. Then in then in the Incident information blade to the right, at the bottom there is a dropdown called Actions.  Select Actions and then select Run Playbook (Preview).</p>
+<p><img src="/img/sentinel-freshservice/freshservice-016.png" alt=""></p>
+<p>At the Run Playbook on incident blade, click on Run next to the playbook that was just created.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-017.png" alt=""></p>
+<p>Now, again. Great, the playbook ran and looked to be successful. But was it????  Let&rsquo;s go back to the playbook and open it to see what the logic apps status is.  I still haven&rsquo;t received a ticket yet in Freshservice so something didn&rsquo;t work. To get back to the logic apps, click on automation under configuration. Click on active playbooks at the top, and then select the playbook just created which my case is the Create-FreshServiceITSM-Ticket. To my surprise, the logic app ran successful.  Yet still no ticket???</p>
+<p><img src="/img/sentinel-freshservice/freshservice-018.png" alt=""></p>
+<p>So something is wrong. Going back to the Logic App Designer I was interested in what my Requester Id was? How do I get that from Freshservice and did I really connect successfully to the Freshservice API? I didn&rsquo;t even enter an API key or username for that API key. I went back to the community forums and posted a question.  I wasn&rsquo;t expecting an answer right away. Which I don&rsquo;t think I even have one now. I sent a message via chat on the Freshservice support page but sat there for a long time with no response.  I was stuck and now I had to get back on a call with my customer to do more work on this project.</p>
+<p>Luckily, the customer actually had experience the logic app connector for Freshservice in the past.  Which, now I was about to learn something from my customer instead of the other way around.  He explained how to get the Freshservice connector first connected and authenticated. Again, there is no documentation out there that I could find so I went with what the customer said.</p>
+<p>So let&rsquo;s go back to the connector and change the connection. To do so, from the designer, just click on the Change connection on the Create Ticket step. For this purpose, I created a new connection.  Named it FreshServiceAPIConnection.  Now get this, the password is just any character. My customer told me to just put an X or something in that field. The site URL is the same I used before, <a href="https://thisismydemo.freshservice.com">https://thisismydemo.freshservice.com</a> without a / at the end. The user name is the API Key.</p>
+<p>The API key can be generated from the profile screen.  Now the question is, and I don&rsquo;t know, can you create a service account or some kind of managed identity in FreshService for this? Using an API key from a standard user account seems a bit unsecure and questionable for this?</p>
+<p><img src="/img/sentinel-freshservice/freshservice-012.png" alt=""></p>
+<p>So now I have my information on the Connection screen for the Freshservice connector.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-019.png" alt=""></p>
+<p>Just like before the connection was made. However, now when I go to Requester ID, if I click the dropdown I do get user accounts.  The problem is, these are user accounts.  These are not service accounts, or even my admin account.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-020.png" alt=""></p>
+<p>So my customer once again gave me some knowledge. He showed me how to get the Requester Id from my account.  The easiest way was to go to your profile and within the URL the number show is the requester id.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-021.png" alt=""></p>
+<p>So now I have my requester Id correctly.  Let&rsquo;s see what happens when I click save and try to run the playbook again?</p>
+<p><img src="/img/sentinel-freshservice/freshservice-022.png" alt=""></p>
+<p>The playbook saved just fine. Now let&rsquo;s go test the playbook again. To do this, we go back to Sentinel, under Threat Management click on Incidents.  Select an incident, then on the incident information blade to the right, click on the Actions drop down menu at the bottom, then click on Run Playbook (Preview). Then on the Run playbook on incident blade, select the playbook we want to run and click run.</p>
+<p>Again, the playbook ran successfully. However, within seconds I got an notification in my Freshservice dashboard that a new ticket was created.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-023.png" alt=""></p>
+<p>Now it is time to go back to the Logic App and start to customize the information that will be sent with the ticket.  We also want to crate an automation rule that will run this playbook automatically based off specific criteria.</p>
+<p>The one thing I did notice is on the ticket in Freshservice it came in as a low priority. However, that incident in Sentinel was a Medium incident.  I will need to dig deeper in how to map the severity in Freshservice.</p>
+<p><img src="/img/sentinel-freshservice/freshservice-024.png" alt=""></p>
+<p>However, over all it was a success.  I was able to create a ticket in Freshservice from incidents triggered in Microsoft Sentinel.  There are things I would like to find out and maybe Freshservice can email me some things like documentation and explain some of my issues above? But overall, the job is done and what the customer needed and expected has been accomplished. I will keep playing and seeing what else can be done. There doesn&rsquo;t look to be away to have two way communication, so closing a ticket in Freshservice doesn&rsquo;t trigger a playbook in Sentinel to close the incident. I will be interested in seeing how a ticket can be updated from other playbooks that I will create. However, I don&rsquo;t think I will spend too much more time on this.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/microsoft-sentinel/" rel="tag">Microsoft Sentinel</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/freshservice/" rel="tag">FreshService</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Principal Consultant at Invoke LLC currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/deploying-microsoft-sentinel-content-repository-introduction/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Deploying Microsoft Sentinel Content From A Repository - Introduction</p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thisismydemo" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/integrate-microsoft-sentinel-freshservice/">How to Integrate Microsoft Sentinel and Freshservice</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/deploying-microsoft-sentinel-content-repository-introduction/">Deploying Microsoft Sentinel Content From A Repository - Introduction</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dipping-big-toe-cross-tenant-synchronization-part/">Dipping My Big Toe Into Cross-Tenant Synchronization Part I</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/applying-the-final-firmware-update-for-the-azure-percept-dk/">Applying The Final Firmware Update for the Azure Percept DK</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/getting-my-vision-ai-devkit-back-up-and-running/">Getting my Vision AI DevKit Back Up And Running</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/@countrycloudboy" target="_blank">
+				<svg class="widget-social__link-icon icon icon-twitter" width="24" height="24" viewBox="0 0 384 312"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+<div class="widget-languages widget">
+	<h4 class="widget__title">Languages</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/">
+					<span class="widget-languages__link-btn widget__link-btn btn">EN</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/de/">
+					<span class="widget-languages__link-btn widget__link-btn btn">DE</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/es/">
+					<span class="widget-languages__link-btn widget__link-btn btn">ES</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/fr/">
+					<span class="widget-languages__link-btn widget__link-btn btn">FR</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 17 May 2023 15:11:44 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploying Microsoft Sentinel Content From A Repository - Introduction</title>
-      <link>http://thisismydemo.cloud/post/2023-05-17-deploying-microsoft-sentinel-content-from-a-repository/</link>
+      <link>http://thisismydemo.cloud/post/deploying-microsoft-sentinel-content-repository-introduction/</link>
       <pubDate>Wed, 17 May 2023 15:11:44 +0000</pubDate>
       
-      <guid>http://thisismydemo.cloud/post/2023-05-17-deploying-microsoft-sentinel-content-from-a-repository/</guid>
+      <guid>http://thisismydemo.cloud/post/deploying-microsoft-sentinel-content-repository-introduction/</guid>
       <description>So recently I have been dragged kicking and screaming into the security world. Well, not really dragged, if you know me I am a large guy and it would be more like fork lifting me kicking and screaming? Anyway, I actually love working with security products like Microsoft Sentinel, Defender for Cloud and the many other Defender for.. Products Microsoft offers, along with Identify solutions like Entra Permissions Management and more.</description>
     </item>
     
