@@ -6,7 +6,16 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 May 2023 23:13:05 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jun 2023 00:18:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Home Assistant</title>
+      <link>http://thisismydemo.cloud/categories/home-assistant/</link>
+      <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/categories/home-assistant/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Microsoft Sentinel</title>
       <link>http://thisismydemo.cloud/categories/microsoft-sentinel/</link>
