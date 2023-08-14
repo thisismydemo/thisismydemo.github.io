@@ -5,6 +5,6 @@
     <link>http://thisismydemo.cloud/de/categories/</link>
     <description>Recent content in Categories on Dies ist meine Demo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://thisismydemo.cloud/de/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>de</language><atom:link href="http://thisismydemo.cloud/de/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -83,5 +83,7 @@
     "Entra Permissions Management"
   ],
   "frontMatter.content.autoUpdateDate": true,
-  "frontMatter.preview.host": "http://localhost:1313"
+  "frontMatter.preview.host": "http://localhost:1313",
+  "frontMatter.content.fmHighlight": true,
+  "frontMatter.dashboard.openOnStart": true
 }

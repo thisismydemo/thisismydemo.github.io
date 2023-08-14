@@ -5,6 +5,6 @@
     <link>http://thisismydemo.cloud/es/tags/</link>
     <description>Recent content in Tags on Esta es mi demo</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://thisismydemo.cloud/es/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>es</language><atom:link href="http://thisismydemo.cloud/es/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
