@@ -70,18 +70,6 @@
       "previewPath": "post"
     }
   ],
-  "frontMatter.taxonomy.tags": [
-    "Entra Permissions Management",
-    "Front Matter",
-    "GitHub Pages",
-    "Hugo",
-    "Microsoft Entra",
-    "Permissions Management",
-    "The Microsoft 425Show"
-  ],
-  "frontMatter.taxonomy.categories": [
-    "Entra Permissions Management"
-  ],
   "frontMatter.content.autoUpdateDate": true,
   "frontMatter.preview.host": "http://localhost:1313",
   "frontMatter.content.fmHighlight": true,
