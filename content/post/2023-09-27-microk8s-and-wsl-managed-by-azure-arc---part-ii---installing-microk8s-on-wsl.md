@@ -12,7 +12,7 @@ categories:
   - Azure Arc-Enabled Kubernetes
   - Azure Arc-Enabled Servers
   - MicroK8S
-lastmod: 2023-09-28T16:46:56.163Z
+lastmod: 2023-09-28T16:56:40.032Z
 thumbnail: /img/microk8s_arc/OIP.png
 lead: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
 slug: microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl
@@ -26,7 +26,7 @@ In this blog series I am going to discuss my experiences with MicroK8S, installi
 This is the first blog in a series of blogs.
 
 1. [Installing MicroK8s on Windows Subsystem for Linux (WSL)](https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/)
-2. Azure Arc-enabled servers:  Installing Azure Connected Machine Agent
+2. [Azure Arc-enabled servers:  Installing Azure Connected Machine Agent](https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/)
 3. Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure
 
 -------------------------------

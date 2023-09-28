@@ -1,9 +1,9 @@
 ---
 title: MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes
 description: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
-date: 2023-09-27T20:42:29.558Z
+date: 2023-09-28T17:01:35.308Z
 preview: /img/microk8s_arc/azure-kubernetes.png
-draft: true
+draft: false
 tags:
   - Azure Arc
   - Kubernetes
@@ -12,10 +12,15 @@ categories:
   - Azure Arc-Enabled Kubernetes
   - Azure Arc-Enabled Servers
   - MicroK8S
-lastmod: 2023-09-28T15:39:17.084Z
+lastmod: 2023-09-28T17:01:52.228Z
 thumbnail: /img/microk8s_arc/azure-kubernetes.png
 lead: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
 slug: microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes
+keywords:
+  - Azure Arc
+  - Kubernetes
+  - WSL
+  - MicroK8s
 ---
 In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
 
@@ -121,11 +126,11 @@ This next window is where we will add the cluster details. The following is the 
 * Region
 * NEtwork Connectivity
 
-The subscription and Resource group we used is the same that we used for the Azure Arc agent in my previous blog. As mentioned in that blog, this is just a demo so all my Azure Arc resources will be in the same resource group. This I would not do in a real world situation.  For the Cluster name, this will be the name of the Azure Cluster resource that you will see in the portal, etc.  It does not need to make the actual Kubernetes cluster name but to make it easier for management, I would in a real world situation try to keep some sort of naming schema that matches your actual cluster names, or at least have the actual cluster name in the name along with something else.  In this demo, I just called my cluster name MicroK8s-WSL-Cluster01.  Since it will be removed soon it doesn't matter to me.  For our network connectivity, I went with public endpoint.  However, I highly recommend moving forward if at all possible to start using Private endpoints for all your Azure resources if they are capable of doing so.
+The subscription and Resource group we used is the same that we used for the Azure Arc agent in my previous blog. As mentioned in that blog, this is just a demo so all my Azure Arc resources will be in the same resource group. This I would not do in a real world situation.  For the Cluster name, this will be the name of the Azure Cluster resource that we will see in the portal, etc.  It does not need to make the actual Kubernetes cluster name but to make it easier for management, I would in a real world situation try to keep some sort of naming schema that matches our actual cluster names, or at least have the actual cluster name in the name along with something else.  In this demo, I just called my cluster name MicroK8s-WSL-Cluster01.  Since it will be removed soon it doesn't matter to me.  For our network connectivity, I went with public endpoint.  However, I highly recommend moving forward if at all possible to start using Private endpoints for all our Azure resources if they are capable of doing so.
 
 ![](/img/microk8s_arc/Screenshot%202023-09-26%20161037.png)
 
-As with the Azure Arc Agent deployment, we have the capability of customizing Physical location tags as well as custom resource tags. I highly recommend using tags for all your Azure resources.
+As with the Azure Arc Agent deployment, we have the capability of customizing Physical location tags as well as custom resource tags. I highly recommend using tags for all our Azure resources.
 
 ![](/img/microk8s_arc/Screenshot%202023-09-26%20161211.png)
 
@@ -155,7 +160,7 @@ The next process should take a few minutes or more. I went and got some cream an
 
 ![](/img/microk8s_arc/Screenshot%202023-09-27%20130410.png)
 
-Once the script runs and is completed the cluster information will be displayed and it should have a provisiongState of Succeeded.  We can go back to the Azure Portal and click next on the screen we left open. This will verify that the cluster is connected and give us a message with a green check that our cluster was successfully connected to Azure.  Even though there is a "create" button , but it doesn't really seem to do anything.  You can click the Go to Cluster button below the Green check toward the top.
+Once the script runs and is completed the cluster information will be displayed and it should have a provisiongState of Succeeded.  We can go back to the Azure Portal and click next on the screen we left open. This will verify that the cluster is connected and give us a message with a green check that our cluster was successfully connected to Azure.  Even though there is a "create" button , but it doesn't really seem to do anything.  We can click the Go to Cluster button below the Green check toward the top.
 
 ![](/img/microk8s_arc/Screenshot%202023-09-27%20130827.png)
 

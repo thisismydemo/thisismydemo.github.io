@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-09-28T14:00:00+00:00" />
-<meta property="article:modified_time" content="2023-09-28T16:48:56+00:00" />
+<meta property="article:modified_time" content="2023-09-28T16:59:49+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"/>
@@ -82,7 +82,7 @@ if (!doNotTrack) {
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-28T14:00:00Z">September 28, 2023</time>
-	<time class="meta__text" datetime="2023-09-28T16:48:56Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	<time class="meta__text" datetime="2023-09-28T16:59:49Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 		</header>
@@ -96,7 +96,7 @@ if (!doNotTrack) {
 <p>This is the second blog in a series of blogs.</p>
 <ol>
 <li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">Installing MicroK8s on Windows Subsystem for Linux (WSL)</a></li>
-<li>Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</li>
+<li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</a></li>
 <li>Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure</li>
 </ol>
 <hr>
@@ -112,15 +112,15 @@ if (!doNotTrack) {
 <li>Client Secret Description</li>
 <li>Role Assignments</li>
 </ul>
-<p>For the name, I selected something that I would know what this service principal is.  For my scope assignment, I am going to assign this at the subscription level. You could just assign this SPN at the resource group level if needed for more granular control.  The subscription, is selected for the current subscription.  Last but not least, the Role Assignments.  Here we have three choices:  Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator.  I selected all three but in a production environment to have more control over access you should create separate service principles for each.</p>
+<p>For the name, I selected something that I would know what this service principal is.  For my scope assignment, I am going to assign this at the subscription level. We could just assign this SPN at the resource group level if needed for more granular control.  The subscription, is selected for the current subscription.  Last but not least, the Role Assignments.  Here we have three choices:  Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator.  I selected all three but in a production environment to have more control over access we should create separate service principles for each.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093706.png" alt=""></p>
-<p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret.  Make sure you record these and place them in a safe area for future use.</p>
+<p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret.  Make sure we record these and place them in a safe area for future use.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093749.png" alt=""></p>
 <p>Now that the Service Principal has been created we can go back into the Arc Blade under Service Principals and we will see our newly created SP.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093922.png" alt=""></p>
 <p>Now we are ready to move forward with the creation of the Azure Arc Agent onboarding script.</p>
 <h2 id="register-azure-resource-providers">Register Azure Resource Providers</h2>
-<p>We already have registered all the needed resource providers in the past. However, if this is the first time you are deploying any Arc related resources the following commands will register these resource providers for you.</p>
+<p>We already have registered all the needed resource providers in the past. However, if this is the first time we are deploying any Arc related resources the following commands will register these resource providers for us.</p>
 <pre tabindex="0"><code>az account set --subscription &#34;{Your Subscription Name}&#34;
 az provider register --namespace &#39;Microsoft.HybridCompute&#39;
 az provider register --namespace &#39;Microsoft.GuestConfiguration&#39;
@@ -136,23 +136,23 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 <li>Operating System</li>
 <li>Connectivity Method</li>
 </ul>
-<p>The subscription and Resource group fields should be selected where you would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources.  In production or a none demo environment, you would have many resource groups all based off of criteria like environments, or locations, etc.  This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward.  The next important area I will call out is the Operating system section.  Since this is a Linux box we need to make sure we change that to Linux.  We will leave Connectivity method default for Public Endpoint.  Moving forward, I highly suggest you start using Private Endpoints to help secure your environment.</p>
+<p>The subscription and Resource group fields should be selected where we would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources.  In production or a none demo environment, I would have many resource groups all based off of criteria like environments, or locations, etc.  This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward.  The next important area I will call out is the Operating system section.  Since this is a Linux box we need to make sure we change that to Linux.  We will leave Connectivity method default for Public Endpoint.  Moving forward, I highly suggest we start using Private Endpoints to help secure our environment.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094047.png" alt=""></p>
 <p>This section is important for many reasons.  Tagging Azure resources has many benefit and in any environment should be mandatory to have tagging. Here we will tag these resources based off of physical location.  I will also add a custom tags to allow others to know this is a demo environment, and who owns this resource, etc.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094127.png" alt=""></p>
-<p>We now have our onboarding script ready. You can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p>
+<p>We now have our onboarding script ready. We can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094314.png" alt=""></p>
 <p>So now we are ready to install the agent.  This will happen in our next few steps.</p>
 <h2 id="install-the-azure-arc-agent">Install the Azure Arc Agent</h2>
-<p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution you would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p>
+<p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution I would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094417.png" alt=""></p>
 <p>After about 2 or 3 minutes the Arc agent will have been deployed.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094702.png" alt=""></p>
 <p>We now can go to the Azure Portal, back to the Azure Arc blade and select Machines under Infrastructure.  Give it some time, maybe 5 to 15 minutes and our newly manged Linux server will now show up and should have a status of Connected.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094749.png" alt=""></p>
-<p>If I click on the resource we can see more information about this Azure connected machine.  From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow you to have one management tool to manage all your on premises and multi-cloud resources.  From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p>
+<p>If I click on the resource we can see more information about this Azure connected machine.  From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow us to have one management tool to manage all our on premises and multi-cloud resources.  From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p>
 <p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20095536.png" alt=""></p>
-<p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much you can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc.  We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p>
+<p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much we can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc.  We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -192,6 +192,12 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
 			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</p>
 		</a>
 	</div>
 </nav>
@@ -234,11 +240,11 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc/">MicroK8S and WSL Managed by Azure Arc</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/">Deploy Home Assistant and My Home Automation Adventure.</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/integrate-microsoft-sentinel-freshservice/">How to Integrate Microsoft Sentinel and Freshservice</a></li>
 		</ul>
 	</div>
 </div>

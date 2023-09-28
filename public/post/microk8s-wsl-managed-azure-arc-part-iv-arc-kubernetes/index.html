@@ -4,21 +4,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Getting my Vision AI DevKit Back Up And Running - This Is My Demo</title>
+	<title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:title" content="Getting my Vision AI DevKit Back Up And Running" />
-<meta property="og:description" content="Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&rsquo;t used this in a while, now I need to reset it and set it up again.
-The process The first thing I did was install the Android Debug Bridge (ADB)." />
+	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes" />
+<meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-03-24T01:32:43+00:00" />
-<meta property="article:modified_time" content="2023-03-24T02:29:35+00:00" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-28T17:01:35+00:00" />
+<meta property="article:modified_time" content="2023-09-28T17:01:52+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Getting my Vision AI DevKit Back Up And Running"/>
-<meta name="twitter:description" content="Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&rsquo;t used this in a while, now I need to reset it and set it up again.
-The process The first thing I did was install the Android Debug Bridge (ADB)."/>
+<meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes"/>
+<meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -79,44 +77,104 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Getting my Vision AI DevKit Back Up And Running</h1>
+			<h1 class="post__title">MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</h1>
+			<p class="post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T01:32:43Z">March 24, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T02:29:35Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/vision-ai-developer-kit/" rel="category">Vision AI Developer Kit</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-28T17:01:35Z">September 28, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:01:52Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 		</header>
 		
 	<figure class="post__thumbnail thumbnail">
 		
-		<img class="thumbnail__image" src="/img/visionaidevkit/devkitimage.png" alt="Getting my Vision AI DevKit Back Up And Running">
+		<img class="thumbnail__image" src="/img/microk8s_arc/azure-kubernetes.png" alt="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes">
 		
 	</figure><div class="content post__content clearfix">
-			<p>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my <a href="https://azure.github.io/Vision-AI-DevKit-Pages/docs/Get_Started/">Vision AI DevKit</a>.  This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&rsquo;t used this in a while, now I need to reset it and set it up again.</p>
-<h2 id="the-process">The process</h2>
-<p>The first thing I did was install the Android Debug Bridge (ADB). I used Chocolatey again to install this needed tool.  The command is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>choco install adb
-</span></span></code></pre></div><p>I wanted to note, that after I plugged in this device I got three green bars.  Three green bars means the device is online and actually connected to an IoT Hub. I wonder which IoT Hub?</p>
-<p>So just to be safe, I reset the device.  To do this you hold down the power button for 5 seconds.  This will set the device back to an Access Point mode.</p>
-<p>This device is and has always been easy to work with.  Resetting it is pretty much a breeze.  Once you have the device in Access Point Mode you need to connect to it via WiFi.</p>
-<p>The name of the access point will very, most of the time it is MSIOT followed by the last 6 number of the devices MAC address.  ONce you have connected to the access point (the password is usually listed under the bottom of the device) we went to <a href="http://setupaicamera.ms">http://setupaicamera.ms</a>.</p>
-<p>I did this from my phone so my screen shots do not exist.</p>
-<p>Once connected it will ask if you want SSH enabled.  I enabled it on mine so I can do some remote management of it.  It wll ask  for the credentials you want to use as well as a password. Not secure key which is strange.</p>
-<p>I also mark the box for Developer mode enabled.  Why not?</p>
-<p>Next we setup the WiFi the kit will connect to. You also have a opportunity to configure the Docker domain name server.  I leave that blank.</p>
-<p>Once the camera is connected and online it will give you a device code that you will use when you log on to your tenant on the next screen.</p>
-<p>Once you are connected it will prompt you to accept the Permissions to access the tenant.</p>
-<p>The last few screens are to setup the Subscription you will use as well as the IoT Hub you will connect to. Once this is done, you will need to give the device a name.  At this point you will now see that your camera is downloading the Azure IoT Edge runtime. From this point on we can go and monitor the device from the Azure Portal.</p>
-<p>Open the Azure Portal and go to your IoT Hub.</p>
-<p><img src="/img/visionaidevkit/reset001.png" alt=""></p>
-<p>Click on Devices under Device Management.  You should see the newly deployed device.  The device will also show up under IoT Edge under Device Management as well. Click on the device to see the status.</p>
-<p><img src="/img/visionaidevkit/reset002.png" alt=""></p>
-<p>We now have a working device again and I can start to deploy IoT Edge Modules to it for further demonstrations.</p>
-<p>After a frustrating night with my Azure Sphere (Rock) Development Kit and learning that my Azure Percept devices are about to become rocks it is always nice to know I can still use this little trusty device.</p>
-<p>To test that the device is also working just go to http://IPADDRESS:3000 in your browser or in VLC.</p>
-<p>I do think the AI needs to be trained a little more for this module&hellip;. a dog???? Well, I have been called worse. The worst is being called late to the dinner table&hellip;.   (da dum!)</p>
-<p><img src="/img/visionaidevkit/reset004.png" alt=""></p>
+			<p>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.</p>
+<p>This is the third blog in a series of blogs.</p>
+<ol>
+<li>Installing MicroK8s on Windows Subsystem for Linux (WSL)</li>
+<li>Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</li>
+<li>Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure</li>
+</ol>
+<hr>
+<h1 id="managing-microk8s-cluster-with-azure-arc-enabled-kubernetes">Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes</h1>
+<p>In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.  In this blog I will go over creating the prerequisites and how to connect this cluster to Azure.  This blog assumes we already have MicroK8s installed and running on the WSL instance and that the Azure Arc Agent is installed and connected.</p>
+<p>So we are on the final few steps to have deployed MicroK8s on my Windows 10 WSL instance and then having the cluster managed by Azure Arc-enabled Kubernetes. Some of the things I will do in this blog:</p>
+<ul>
+<li>Install both Helm and Kubectl on my WSL instance</li>
+<li>Copy the MicroK8s config to my Kube config location</li>
+<li>Install Azure CLI  on the WSL instance</li>
+<li>Then we will configure Azure CLI to connect Kubernetes to Azure Arc</li>
+</ul>
+<h2 id="install-azure-cli">Install Azure CLI</h2>
+<p>From within the WSL instance I will run the following command to install Azure CLI.</p>
+<pre tabindex="0"><code>curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+</code></pre><p>Next we will install the Azure Arc for Kubernetes extension using Azure CLI command:</p>
+<pre tabindex="0"><code>az extension add --name connectedk8s
+</code></pre><h2 id="kube-configurations">.Kube Configurations</h2>
+<p>In the first blog in this series we gave the user specific permissions to allow the user to use MicroK8s commands. For a refresher this is the commands I ran:</p>
+<pre tabindex="0"><code>sudo usermod -aG microk8s $USER
+sudo chown -f -R $USER ~/.kube
+</code></pre><p>I am not sure if I ran the following command in my previous blog.  Just to make sure I will run this command to use my host&rsquo;s kubectl command. I will export the microk8s config into a my .kube directory.</p>
+<pre tabindex="0"><code>cd $HOME
+mkdir .kube
+cd .kube
+microk8s config &gt; config
+</code></pre><p>The same thing can be done with the following one line command:</p>
+<pre tabindex="0"><code>microk8s config &gt;&gt; ~/.kube/config
+</code></pre><h2 id="register-providers-on-subscription">Register Providers on Subscription</h2>
+<p>I have deployed Azure Arc resources plenty of times on this subscription so I didn&rsquo;t need to register any of the providers.  If this was a new subscription I would have registered the following providers:</p>
+<pre tabindex="0"><code>az provider register --namespace Microsoft.Kubernetes
+az provider register --namespace Microsoft.KubernetesConfiguration
+az provider register --namespace Microsoft.ExtendedLocations
+</code></pre><h2 id="kubeconfig-and-cluster-readiness">Kubeconfig and Cluster Readiness</h2>
+<p>Here we will install Helm and KubeCtl on the WSL host.  We will also configure our host to use the kubconfig file in order for Azure CLI to interact with the cluster.</p>
+<p>To install Helm on the host run the following snap command:</p>
+<pre tabindex="0"><code>sudo snap install helm
+</code></pre><p>To install KubeCtl on the host run the following snap command:</p>
+<pre tabindex="0"><code>sudo snap install kubectl --classic
+</code></pre><p>Now we need to enable Azure CLI to interact with the Kubernetes cluster running on our WSL host.  We will export our config file and use the default context by running the following commands:</p>
+<pre tabindex="0"><code>microk8s config &gt;&gt; $HOME/.kube/config
+kubectl config get-contexts
+kubectl config use-context microk8s
+</code></pre><h2 id="connect-microk8s-cluster-to-azure">Connect MicroK8s Cluster to Azure</h2>
+<p>Now we will add our MicroK8s cluster to Azure starting within the portal. The first thing we need to do is go into the Azure Arc blade in the Azure Portal. On the left under Infrastructure, we will click on Kubernetes clusters.  In the window to the right, click on add in the menu at the top, and select Add a Kubernetes cluster with Azure Arc.</p>
+<p>Some items to call out on this next window is making sure we have Azure CLI installed which we do. That our Kubeconfig file and the user that accesses has cluster admin permissions, and that we already have our Kubernetes cluster deployed.  Which all of the above has been done to this point.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20160848.png" alt=""></p>
+<p>This next window is where we will add the cluster details. The following is the information we will need to provide:</p>
+<ul>
+<li>Subscription</li>
+<li>Resource Group</li>
+<li>Cluster Name</li>
+<li>Region</li>
+<li>NEtwork Connectivity</li>
+</ul>
+<p>The subscription and Resource group we used is the same that we used for the Azure Arc agent in my previous blog. As mentioned in that blog, this is just a demo so all my Azure Arc resources will be in the same resource group. This I would not do in a real world situation.  For the Cluster name, this will be the name of the Azure Cluster resource that we will see in the portal, etc.  It does not need to make the actual Kubernetes cluster name but to make it easier for management, I would in a real world situation try to keep some sort of naming schema that matches our actual cluster names, or at least have the actual cluster name in the name along with something else.  In this demo, I just called my cluster name MicroK8s-WSL-Cluster01.  Since it will be removed soon it doesn&rsquo;t matter to me.  For our network connectivity, I went with public endpoint.  However, I highly recommend moving forward if at all possible to start using Private endpoints for all our Azure resources if they are capable of doing so.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161037.png" alt=""></p>
+<p>As with the Azure Arc Agent deployment, we have the capability of customizing Physical location tags as well as custom resource tags. I highly recommend using tags for all our Azure resources.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161211.png" alt=""></p>
+<p>This next section is where we can download or just copy the shell script. I copied it myself to a note pad to use later. At this point we are ready to start running the script on our WSL instance.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161302.png" alt=""></p>
+<p>First we need to logon to our subscription via Azure CLI.  To do so we ran the following commands from our WSL instance:</p>
+<pre tabindex="0"><code>az login --use-device-code
+</code></pre><p>Next I needed to set my Azure Subscription since my account has access to many subscriptions within this tenant. We can do this by running the following Azure CLI command:</p>
+<pre tabindex="0"><code>az account set --subscription [Subscription]
+</code></pre><p>I am now logged in via Azure CLI and ready to run the next part of my script that I just copied from the portal. Here is the script I ran:</p>
+<pre tabindex="0"><code>az connectedk8s connect --name &#34;MicroK8s-WSL-Cluster01&#34; --resource-group &#34;Arc-Management-SouthCentral-Demo-RG&#34; --location &#34;southcentralus&#34; --correlation-id &#34;c18ab9d0-685e-48e7-ab55-12588447b0ed&#34; --tags &#34;Datacenter=Office City=Waco StateOrDistrict=TX CountryOrRegion=US&#34;
+</code></pre><p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130001.png" alt=""></p>
+<p>The next process should take a few minutes or more. I went and got some cream and sugar and a little bit of hot coffee to go along with it at this point.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130410.png" alt=""></p>
+<p>Once the script runs and is completed the cluster information will be displayed and it should have a provisiongState of Succeeded.  We can go back to the Azure Portal and click next on the screen we left open. This will verify that the cluster is connected and give us a message with a green check that our cluster was successfully connected to Azure.  Even though there is a &ldquo;create&rdquo; button , but it doesn&rsquo;t really seem to do anything.  We can click the Go to Cluster button below the Green check toward the top.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130827.png" alt=""></p>
+<p>The next window we see is the Azure Arc blade for the newly created connected Kubernetes cluster. Here we will see the overview of our Azure managed Kubernetes cluster. We can also see all the resources available and configuration, include monitoring and automation that we can do with this cluster on the left.  There is so much more that we can do at this point.  Out of the box the two that I would do is enable Container Insights to monitor the cluster, and to enable Windows Defender and Microsoft Sentinel for this cluster.</p>
+<p>In fact, I think there will be a Part V of this blog that will do some of the things we should be doing once we connect a Kubernetes cluster to Azure using Azure Arc.  That or an entire blog on its own.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131130.png" alt=""></p>
+<p>This view is just what we will now see in the Azure Arc blade under the Kubernetes section of Infrastructure.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131304.png" alt=""></p>
+<p>So, at this point we now have our MicroK8s cluster that is running on an instance of WSL on my Windows 10 laptop, which is managed by Azure Arc-enabled servers, now connected fully to Azure.  This cluster can be fully managed by many Azure services now at this point.  We can deploy solutions via GitOps, apply configuration policies to meet compliance and regulations via Azure Policy, monitor this cluster using Container Insights via Azure Monitor, and more.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -125,13 +183,13 @@ if (!doNotTrack) {
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-iot/" rel="tag">Azure IoT</a>
+			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/vision-ai-developer-kit/" rel="tag">Vision AI Developer Kit</a>
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">Kubernetes</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/iot-edge/" rel="tag">Iot Edge</a>
+			<a class="tags__link btn" href="/tags/microsk8s/" rel="tag">MicrosK8S</a>
 		</li>
 	</ul>
 </div>
@@ -153,15 +211,9 @@ if (!doNotTrack) {
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/is-my-azure-sphere-a-rock-now/" rel="prev">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
-			<p class="pager__title">Is my Azure Sphere a rock now?</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/applying-the-final-firmware-update-for-the-azure-percept-dk/" rel="next">
-			<span class="pager__subtitle">Next&thinsp;»</span>
-			<p class="pager__title">Applying The Final Firmware Update for the Azure Percept DK</p>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</p>
 		</a>
 	</div>
 </nav>

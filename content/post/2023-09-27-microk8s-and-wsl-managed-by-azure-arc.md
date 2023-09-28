@@ -12,7 +12,7 @@ categories:
   - Azure Arc-Enabled Kubernetes
   - Azure Arc-Enabled Servers
   - MicroK8S
-lastmod: 2023-09-28T16:55:30.300Z
+lastmod: 2023-09-28T16:56:55.496Z
 thumbnail: /img/microk8s_arc/wsl2.png
 lead: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
 slug: microk8s-wsl-managed-azure-arc
@@ -33,4 +33,3 @@ The blog will be broken up into the following three sections:
 3. Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure
 
 Who knows?  I may extend this blog series to much more. Right now, I feel those are the 3 areas I am going to focus on.
-
