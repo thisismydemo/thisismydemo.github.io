@@ -6,7 +6,34 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 16 Jun 2023 00:18:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Sep 2023 16:00:00 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Arc</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+      <pubDate>Wed, 27 Sep 2023 16:00:00 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>http://thisismydemo.cloud/tags/kubernetes/</link>
+      <pubDate>Wed, 27 Sep 2023 16:00:00 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MicrosK8S</title>
+      <link>http://thisismydemo.cloud/tags/microsk8s/</link>
+      <pubDate>Wed, 27 Sep 2023 16:00:00 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/microsk8s/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Home Assistant</title>
       <link>http://thisismydemo.cloud/tags/home-assistant/</link>

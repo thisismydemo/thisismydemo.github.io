@@ -2,8 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/azure-arc-enabled-kubernetes/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/azure-arc-enabled-servers/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -25,23 +34,23 @@
                 href="http://thisismydemo.cloud/categories/"
                 />
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/tags/kubernetes/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/home-assistant/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/categories/microk8s/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/home-assistant/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/home-automation/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <loc>http://thisismydemo.cloud/tags/microsk8s/</loc>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -64,7 +73,7 @@
                 />
   </url><url>
     <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+    <lastmod>2023-09-28T16:07:12+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -85,6 +94,18 @@
                 hreflang="en"
                 href="http://thisismydemo.cloud/"
                 />
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</loc>
+    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/home-assistant/</loc>
+    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/home-assistant/</loc>
+    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/home-automation/</loc>
+    <lastmod>2023-06-16T01:43:16+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/freshservice/</loc>
     <lastmod>2023-05-23T21:13:20+00:00</lastmod>

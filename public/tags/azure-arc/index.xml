@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Arc on This Is My Demo</title>
+    <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+    <description>Recent content in Azure Arc on This Is My Demo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 27 Sep 2023 16:00:00 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MicroK8S and WSL Managed by Azure Arc</title>
+      <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</link>
+      <pubDate>Wed, 27 Sep 2023 16:00:00 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</guid>
+      <description>I recently started a new job with a company that isn&amp;rsquo;t a 100% Microsoft shop. It has been many years since I have worked in a environment that everyone wasn&amp;rsquo;t drinking the Microsoft Kool-Aid. Not a bad thing if you do, I did and I loved that flavor. However, new job means new challenges and new way of doing things.
+In this blog series I am going to discuss my experiences with MicroK8S.</description>
+    </item>
+    
+  </channel>
+</rss>
