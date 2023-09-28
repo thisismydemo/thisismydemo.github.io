@@ -1,7 +1,7 @@
 ---
 title: MicroK8S and WSL Managed by Azure Arc
 description: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
-date: 2023-09-27T16:00:00.000Z
+date: 2023-09-25T16:00:00.000Z
 preview: /img/microk8s_arc/wsl2.png
 draft: false
 tags:
@@ -12,7 +12,7 @@ categories:
   - Azure Arc-Enabled Kubernetes
   - Azure Arc-Enabled Servers
   - MicroK8S
-lastmod: 2023-09-28T17:05:59.190Z
+lastmod: 2023-09-28T17:08:24.582Z
 thumbnail: /img/microk8s_arc/wsl2.png
 lead: A blog series about my experiences with MicroK8S, WSL, and Azure Arc
 slug: microk8s-wsl-managed-azure-arc
