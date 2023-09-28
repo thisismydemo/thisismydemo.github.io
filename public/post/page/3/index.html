@@ -79,6 +79,32 @@ if (!doNotTrack) {
 	</header><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/">
+		<img class="thumbnail__image" src="/img/intune_header.png" alt="Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/" rel="bookmark">
+			Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Intune and Azure FIles</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-11T18:22:25Z">January 11, 2023</time>
+	<time class="meta__text" datetime="2023-01-20T18:25:53Z">(Last Modified: January 20, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-files/" rel="category">Azure Files</a>, <a class="meta__link" href="/categories/intune/" rel="category">Intune</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
+There are three methods that can accomplish this on your client computers.
+Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&rsquo;s Intune Proactive remediation.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/2023-01-20-festive-tech-calendar-2022/">
 		<img class="thumbnail__image" src="/img/festivetechtwittersmall.png" alt="Festive Tech Calendar 2022">
 		</a>
@@ -146,11 +172,11 @@ Use Azure Site Recovery to save your bacon&hellip; Christmas ham&hellip; or mayb
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc/">MicroK8S and WSL Managed by Azure Arc</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/">Deploy Home Assistant and My Home Automation Adventure.</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/integrate-microsoft-sentinel-freshservice/">How to Integrate Microsoft Sentinel and Freshservice</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/deploying-microsoft-sentinel-content-repository-introduction/">Deploying Microsoft Sentinel Content From A Repository - Introduction</a></li>
 		</ul>
 	</div>
 </div>

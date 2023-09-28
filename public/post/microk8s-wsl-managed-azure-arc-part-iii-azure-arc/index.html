@@ -4,18 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL - This Is My Demo</title>
+	<title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
-		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL" />
+		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc" />
 <meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-09-27T19:00:00+00:00" />
-<meta property="article:modified_time" content="2023-09-28T16:46:56+00:00" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-28T14:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-28T16:48:56+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL"/>
+<meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"/>
 <meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,59 +77,82 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</h1>
+			<h1 class="post__title">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</h1>
 			<p class="post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T19:00:00Z">September 27, 2023</time>
-	<time class="meta__text" datetime="2023-09-28T16:46:56Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-28T14:00:00Z">September 28, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T16:48:56Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 		</header>
 		
 	<figure class="post__thumbnail thumbnail">
 		
-		<img class="thumbnail__image" src="/img/microk8s_arc/OIP.png" alt="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL">
+		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
 		
 	</figure><div class="content post__content clearfix">
 			<p>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.</p>
-<p>This is the first blog in a series of blogs.</p>
+<p>This is the second blog in a series of blogs.</p>
 <ol>
 <li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">Installing MicroK8s on Windows Subsystem for Linux (WSL)</a></li>
 <li>Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</li>
 <li>Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure</li>
 </ol>
 <hr>
-<h1 id="installing-microk8s-on-wsl">Installing MicroK8s on WSL</h1>
-<p>In this blog I will discuss my experience with installing Microk8s on <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux (WSL)</a>. I will add a short section on how to get WSL 2 installed on Windows 10 which should also work for Windows 11.  Then I will go into how to install MicroK8s on WSL.  So let the demo begin?</p>
-<h2 id="install-windows-subsystem-for-linux-wsl">Install Windows Subsystem for Linux (WSL)</h2>
-<p>There isn&rsquo;t much to installing WSL2 these days.  In the past it was a pain to get it installed on Windows 10.  Windows 11 made it easier to install.  Most of the headaches came from all the prerequisites that were needed.  However, installing WSL on Windows 10 is simple, a one liner and a reboot. For more detailed information on how to install WSL on Windows 10 or Windows 11 please check out the following Microsoft Learn Document at <a href="https://learn.microsoft.com/en-us/windows/wsl/install">How to install Linux on Windows with WSL</a>.</p>
-<p>So, we just need open a command prompt or PowerShell in administrator mode and then enter the following command:</p>
-<pre tabindex="0"><code>wsl --install
-</code></pre><p>There are other things we may need to check. Make sure that we are using WSL 2.  Make sure we have defined our distribution of Linux.  By default it will be Ubuntu which is what I will be using in this blog.</p>
-<p>We can check what distributions are available by running the following command:</p>
-<pre tabindex="0"><code>wsl -l -o
-</code></pre><p>To verify that we are running Ubuntu and it is running under WSL 2 the following command will work:</p>
-<pre tabindex="0"><code>wsl -l -v
-</code></pre><p>Once WSL has been installed we can move forward to install MicroK8s on WSL.</p>
-<h2 id="install-microk8s-on-wsl">Install MicroK8s on WSL</h2>
-<p>So now I have WSL installed and configured.  I am ready to install MicroK8s.  This installation was straight forward and surprisingly simple. I read a few different blogs and some had you do something with multipass and others snap and so on.  I picked the easiest route for my little brain.</p>
-<p>First thing is to enable systemd which will enable running snap and MicroK8s natively.</p>
-<pre tabindex="0"><code>echo -e &#34;[boot]\nsystemd=true&#34; | sudo tee /etc/wsl.conf
-</code></pre><p>Next we will install MicrosK8s</p>
-<pre tabindex="0"><code>sudo snap install microk8s --classic
-</code></pre><p>At this point we can monitor and wait for the installation.</p>
-<pre tabindex="0"><code>sudo microk8s status --wait-ready
-</code></pre><p>Once the installation is completed we need to make sure that our node is running and using the WSL2 kernel:</p>
-<pre tabindex="0"><code>sudo microk8s kubectl get node -o wide
-</code></pre><p>Once installed we need to make sure the user is allowed to use MicroK8s commands:</p>
-<pre tabindex="0"><code>sudo usermod -aG microk8s $USER
-sudo chown -f -R $USER ~/.kube
-</code></pre><p>To get the cluster ready for our next blog series I also installed DNS, Storage, and the Dashboard functionality.</p>
-<pre tabindex="0"><code>sudo microk8s enable dns
-sudo microk8s enable storage
-sudo microk8s enable dashboard
-</code></pre><p>At this point we now have a single node MicroK8s cluster running in WSL. In my next blog I will explain how to install the Azure Arc Agent, also known as the Azure Connected Machine Agent in order to manage my WSL instance via Azure Arc-enabled servers.  The blog following, will go into details on how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes.</p>
+<h1 id="azure-arc-enabled-servers---installing-the-azure-connected-machine-agent-azure-arc-agent">Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent)</h1>
+<p>In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.  In this blog I will go over creating the prerequisites needed to install the Arc Agent on Windows Subsystem for Linux (WSL)</p>
+<h2 id="azure-arc-service-principal">Azure Arc Service Principal</h2>
+<p>So I started with creating a new Azure Arc Service Principal that would be used to onboard my WSL instance. There are a few ways to do this but I am going to do it in the portal for this blog. From the Azure portal go to the Azure Arc blade and the under Management, select Service principals. From here we will create a new service principal.</p>
+<p>Here in this section I will fille in the following fields:</p>
+<ul>
+<li>Name</li>
+<li>Scope assignment level</li>
+<li>Subscription Name</li>
+<li>Client Secret Description</li>
+<li>Role Assignments</li>
+</ul>
+<p>For the name, I selected something that I would know what this service principal is.  For my scope assignment, I am going to assign this at the subscription level. You could just assign this SPN at the resource group level if needed for more granular control.  The subscription, is selected for the current subscription.  Last but not least, the Role Assignments.  Here we have three choices:  Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator.  I selected all three but in a production environment to have more control over access you should create separate service principles for each.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093706.png" alt=""></p>
+<p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret.  Make sure you record these and place them in a safe area for future use.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093749.png" alt=""></p>
+<p>Now that the Service Principal has been created we can go back into the Arc Blade under Service Principals and we will see our newly created SP.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093922.png" alt=""></p>
+<p>Now we are ready to move forward with the creation of the Azure Arc Agent onboarding script.</p>
+<h2 id="register-azure-resource-providers">Register Azure Resource Providers</h2>
+<p>We already have registered all the needed resource providers in the past. However, if this is the first time you are deploying any Arc related resources the following commands will register these resource providers for you.</p>
+<pre tabindex="0"><code>az account set --subscription &#34;{Your Subscription Name}&#34;
+az provider register --namespace &#39;Microsoft.HybridCompute&#39;
+az provider register --namespace &#39;Microsoft.GuestConfiguration&#39;
+az provider register --namespace &#39;Microsoft.HybridConnectivity&#39;
+az provider register --namespace &#39;Microsoft.AzureArcData&#39;
+</code></pre><h2 id="create-the-azure-arc-agent-onboarding-script">Create the Azure Arc Agent Onboarding Script</h2>
+<p>From the Arc Blade, under Infrastructure we will select Machines. To the right, we will than click on Add/Create at the top of the menu bar and select Add a machine. The next screen we will have three options. I have selected Add a single server at this time. For one offs and for demos this is acceptable. However, I wouldn&rsquo;t want to do this one at a time for 100&rsquo;s of machines.  This is where I would select Add multiple servers, we would then use the onboarding service account, and a different script to onboard our machines using tools like COnfigMgr for Windows servers or Ansible or something like that for Linux.</p>
+<p>Here we will fill in the following fields:</p>
+<ul>
+<li>Subscription</li>
+<li>Resource Group</li>
+<li>Region</li>
+<li>Operating System</li>
+<li>Connectivity Method</li>
+</ul>
+<p>The subscription and Resource group fields should be selected where you would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources.  In production or a none demo environment, you would have many resource groups all based off of criteria like environments, or locations, etc.  This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward.  The next important area I will call out is the Operating system section.  Since this is a Linux box we need to make sure we change that to Linux.  We will leave Connectivity method default for Public Endpoint.  Moving forward, I highly suggest you start using Private Endpoints to help secure your environment.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094047.png" alt=""></p>
+<p>This section is important for many reasons.  Tagging Azure resources has many benefit and in any environment should be mandatory to have tagging. Here we will tag these resources based off of physical location.  I will also add a custom tags to allow others to know this is a demo environment, and who owns this resource, etc.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094127.png" alt=""></p>
+<p>We now have our onboarding script ready. You can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094314.png" alt=""></p>
+<p>So now we are ready to install the agent.  This will happen in our next few steps.</p>
+<h2 id="install-the-azure-arc-agent">Install the Azure Arc Agent</h2>
+<p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution you would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094417.png" alt=""></p>
+<p>After about 2 or 3 minutes the Arc agent will have been deployed.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094702.png" alt=""></p>
+<p>We now can go to the Azure Portal, back to the Azure Arc blade and select Machines under Infrastructure.  Give it some time, maybe 5 to 15 minutes and our newly manged Linux server will now show up and should have a status of Connected.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094749.png" alt=""></p>
+<p>If I click on the resource we can see more information about this Azure connected machine.  From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow you to have one management tool to manage all your on premises and multi-cloud resources.  From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20095536.png" alt=""></p>
+<p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much you can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc.  We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -166,15 +189,9 @@ sudo microk8s enable dashboard
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc/" rel="prev">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
-			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" rel="next">
-			<span class="pager__subtitle">Next&thinsp;»</span>
-			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</p>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</p>
 		</a>
 	</div>
 </nav>
