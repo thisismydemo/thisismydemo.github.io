@@ -40,7 +40,7 @@ github = "thisismydemo"
 
 [Params.widgets.search]
   cached = false # activate cache if true
-  url = "https://google.com/search"
+  url = "https://bing.com/search"
   [Params.widgets.search.input]
     name = "sitesearch"
     pre = ""
