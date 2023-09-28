@@ -4,25 +4,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Is my Azure Sphere a rock now? - This Is My Demo</title>
+	<title>MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:title" content="Is my Azure Sphere a rock now?" />
-<meta property="og:description" content="In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
-However&hellip;&hellip;&hellip;.
-According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
-Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization." />
+	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL" />
+<meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-03-24T01:06:44+00:00" />
-<meta property="article:modified_time" content="2023-03-24T01:19:29+00:00" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-09-27T19:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-28T16:36:39+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Is my Azure Sphere a rock now?"/>
-<meta name="twitter:description" content="In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
-However&hellip;&hellip;&hellip;.
-According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
-Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization."/>
+<meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL"/>
+<meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -83,36 +77,59 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Is my Azure Sphere a rock now?</h1>
-			<p class="post__lead">Yet another piece of Microsoft Hardware that is going into the rock draw</p>
+			<h1 class="post__title">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</h1>
+			<p class="post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T01:06:44Z">March 24, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T01:19:29Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-sphere-development-kit/" rel="category">Azure Sphere Development Kit</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T19:00:00Z">September 27, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T16:36:39Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 		</header>
 		
 	<figure class="post__thumbnail thumbnail">
 		
-		<img class="thumbnail__image" src="/img/azsphereregister/register_004.png" alt="Is my Azure Sphere a rock now?">
+		<img class="thumbnail__image" src="/img/microk8s_arc/OIP.png" alt="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL">
 		
 	</figure><div class="content post__content clearfix">
-			<p>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from <a href="https://www.thisismydemo.cloud/post/my-azure-sphere-needs-reset/">My Azure Sphere Needs Reset?</a></p>
-<p>However&hellip;&hellip;&hellip;.</p>
-<p>According to <a href="https://learn.microsoft.com/en-us/azure-sphere/install/claim-device?tabs=cliv2beta#choose-a-tenant">Microsoft&rsquo;s documentation</a> on how to claim the device there is a call out:</p>
-<blockquote>
-<p>Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization. A device can be claimed only once. Once claimed, the device is permanently associated with the Azure Sphere tenant.</p>
-</blockquote>
-<p>This I was not aware of nor could I do anything about since I last used this device when I worked for Microsoft for some demos on a tenant I no longer have access to.</p>
-<p>First I wanted to see if the tenant it was claimed by showed up.  So I ran the following command:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>azsphere tenant list
-</span></span></code></pre></div><p>It did not show any tenants so I thought I might get lucky.  So I went to create a tenant&hellip;..</p>
-<p>So when I went to create a new tenant for this device I ran into a small problem:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>azsphere tenant create --name &lt;tenant-name or tenant-ID&gt;
-</span></span></code></pre></div><p><img src="/img/azsphereregister/register_004.png" alt=""></p>
-<p>So I am thinking this device is now a rock?  I am stuck here until I can hopefully find answers on Twitter or LinkedIn.  Since I don&rsquo;t have support associated with any of my demo subscriptions I am at the mercy of the community.</p>
-<p>I hope I can blog a more happier ending sooner than later.  However, until then I feel like this is just become another rock in my Microsoft hardware rock draw.  It will have to join my Azure Percept devices soon.</p>
+			<p>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.</p>
+<p>This is the first blog in a series of blogs.</p>
+<ol>
+<li>Installing MicroK8s on Windows Subsystem for Linux (WSL)</li>
+<li>Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</li>
+<li>Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure</li>
+</ol>
+<hr>
+<h1 id="installing-microk8s-on-wsl">Installing MicroK8s on WSL</h1>
+<p>In this blog I will discuss my experience with installing Microk8s on <a href="https://learn.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux (WSL)</a>. I will add a short section on how to get WSL 2 installed on Windows 10 which should also work for Windows 11.  Then I will go into how to install MicroK8s on WSL.  So let the demo begin?</p>
+<h2 id="install-windows-subsystem-for-linux-wsl">Install Windows Subsystem for Linux (WSL)</h2>
+<p>There isn&rsquo;t much to installing WSL2 these days.  In the past it was a pain to get it installed on Windows 10.  Windows 11 made it easier to install.  Most of the headaches came from all the prerequisites that were needed.  However, installing WSL on Windows 10 is simple, a one liner and a reboot. For more detailed information on how to install WSL on Windows 10 or Windows 11 please check out the following Microsoft Learn Document at <a href="https://learn.microsoft.com/en-us/windows/wsl/install">How to install Linux on Windows with WSL</a>.</p>
+<p>So, we just need open a command prompt or PowerShell in administrator mode and then enter the following command:</p>
+<pre tabindex="0"><code>wsl --install
+</code></pre><p>There are other things we may need to check. Make sure that we are using WSL 2.  Make sure we have defined our distribution of Linux.  By default it will be Ubuntu which is what I will be using in this blog.</p>
+<p>We can check what distributions are available by running the following command:</p>
+<pre tabindex="0"><code>wsl -l -o
+</code></pre><p>To verify that we are running Ubuntu and it is running under WSL 2 the following command will work:</p>
+<pre tabindex="0"><code>wsl -l -v
+</code></pre><p>Once WSL has been installed we can move forward to install MicroK8s on WSL.</p>
+<h2 id="install-microk8s-on-wsl">Install MicroK8s on WSL</h2>
+<p>So now I have WSL installed and configured.  I am ready to install MicroK8s.  This installation was straight forward and surprisingly simple. I read a few different blogs and some had you do something with multipass and others snap and so on.  I picked the easiest route for my little brain.</p>
+<p>First thing is to enable systemd which will enable running snap and MicroK8s natively.</p>
+<pre tabindex="0"><code>echo -e &#34;[boot]\nsystemd=true&#34; | sudo tee /etc/wsl.conf
+</code></pre><p>Next we will install MicrosK8s</p>
+<pre tabindex="0"><code>sudo snap install microk8s --classic
+</code></pre><p>At this point we can monitor and wait for the installation.</p>
+<pre tabindex="0"><code>sudo microk8s status --wait-ready
+</code></pre><p>Once the installation is completed we need to make sure that our node is running and using the WSL2 kernel:</p>
+<pre tabindex="0"><code>sudo microk8s kubectl get node -o wide
+</code></pre><p>Once installed we need to make sure the user is allowed to use MicroK8s commands:</p>
+<pre tabindex="0"><code>sudo usermod -aG microk8s $USER
+sudo chown -f -R $USER ~/.kube
+</code></pre><p>To get the cluster ready for our next blog series I also installed DNS, Storage, and the Dashboard functionality.</p>
+<pre tabindex="0"><code>sudo microk8s enable dns
+sudo microk8s enable storage
+sudo microk8s enable dashboard
+</code></pre><p>At this point we now have a single node MicroK8s cluster running in WSL. In my next blog I will explain how to install the Azure Arc Agent, also known as the Azure Connected Machine Agent in order to manage my WSL instance via Azure Arc-enabled servers.  The blog following, will go into details on how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -121,10 +138,13 @@ if (!doNotTrack) {
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-sphere/" rel="tag">Azure Sphere</a>
+			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
 		</li>
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-iot/" rel="tag">Azure IoT</a>
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">Kubernetes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/microsk8s/" rel="tag">MicrosK8S</a>
 		</li>
 	</ul>
 </div>
@@ -146,15 +166,9 @@ if (!doNotTrack) {
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/what-my-azure-percept-dk-devices-are-being-retired/" rel="prev">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
-			<p class="pager__title">What! My Azure Percept DK Devices Are Being Retired???</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/getting-my-vision-ai-devkit-back-up-and-running/" rel="next">
-			<span class="pager__subtitle">Next&thinsp;»</span>
-			<p class="pager__title">Getting my Vision AI DevKit Back Up And Running</p>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc</p>
 		</a>
 	</div>
 </nav>
