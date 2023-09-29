@@ -6,7 +6,17 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Sep 2023 17:01:35 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Sep 2023 17:20:35 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My MicroK8s Cluster Is Now Manged by Azure. What is next?</title>
+      <link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</link>
+      <pubDate>Thu, 28 Sep 2023 17:20:35 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</guid>
+      <description>In a previous blog series MicroK8S and WSL Managed by Azure Arc - A blog series about my experiences with MicroK8S, WSL, and Azure Arc I had a curiosity to see if I could deploy MicroK8s on my WIndows 10 WSL instance and then manage the WSL instance with Azure Arc and then manage the MicroK8s cluster using Arc-enabled Kubernetes.
+So let&amp;rsquo;s refresh here a little. I was able to get a MicroK8s cluster deployed on WSL running on my Windows 10 laptop.</description>
+    </item>
+    
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</link>

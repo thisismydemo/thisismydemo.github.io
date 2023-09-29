@@ -2,8 +2,8 @@
 title: My MicroK8s Cluster Is Now Manged by Azure. What is next?
 description: ""
 date: 2023-09-28T17:20:35.988Z
-preview: /img/microsk8s_mgmt_arc/1_ZGA9YPjXDWukHAXhO2QDUQ.png
-draft: true
+preview: /img/microsk8s_mgmt_arc/AzureArc3.png
+draft: false
 tags:
   - Azure Arc
   - MicrosK8S
@@ -11,8 +11,8 @@ tags:
 categories:
   - Azure Arc-Enabled Kubernetes
   - MicroK8S
-lastmod: 2023-09-28T17:53:52.441Z
-thumbnail: /img/microsk8s_mgmt_arc/1_ZGA9YPjXDWukHAXhO2QDUQ.png
+lastmod: 2023-09-29T16:53:29.516Z
+thumbnail: /img/microsk8s_mgmt_arc/AzureArc3.png
 lead: Using Azure Arc-enabled Kubernetes to Monitor, Secure, Regulate, Deploy and more
 keywords:
   - Azure Arc
@@ -29,13 +29,13 @@ So let's refresh here a little. I was able to get a MicroK8s cluster deployed on
 
 To start, let me share the Microsoft Learn Document [What is Azure Arc-enabled Kubernetes](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/overview) so we are all on the same page when it comes to what it is and what it can do.
 
-At a high level we can do some of the following to our Kubernetes clusters running anyway as long as we can manage them using Azure Arc.  Here is a short list of things I will try to blog about here:
+At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS. As long as we can manage them using Azure Arc there is a good number of Azure tools and services we now have access to.  Here is a short list of things I will try to blog about here:
 
 * Deploying Configurations using GitOps
 * Azure Resource Graph Queries
 * Identity and Access Management
 * Installing Cluster Extensions
-* Monitor our Cluster using Azure Monitor Container Insights
+* Monitor our Cluster using Azure Monitor Container Insights (Prometheus, and Grafana)
 * Access Secrets from an Azure Key Vault
 * Policy Enforcements using Azure Policy
 * Threat Protection using Microsoft Defender for Cloud
@@ -44,7 +44,6 @@ At a high level we can do some of the following to our Kubernetes clusters runni
 * Event Grid on Kubernetes
 * Azure Arc-enabled Data Services
 
-These are some but not all of the things I would love to dig in and blog about here.  It may be multiple blogs. I do want to cover Monitoring our cluster using Azure Monitor Container Insights, Azure Policy, and Microsoft Defender for Cloud for sure in this series.  Some of the solutions I would not be able to deploy on my little single node cluster running on WSL.
+These are some but not all of the things I would love to dig in and blog about here.  It may be multiple blogs. I do want to cover Monitoring our cluster using Azure Monitor Container Insights, Azure Policy, and Microsoft Defender for Cloud for sure in this series.  Some of the solutions I would not be able to deploy on my little single node cluster running on WSL. So I may end up blogging about those services with MicroK8s running on a VM running within Azure Stack HCI or something fun.
 
--------
-
+So join me on this next adventure.  My first blog that I will attempt to write is Monitor our Cluster using **Azure Monitor Container Insights with some mention about Prometheus nad Managed Grafana.**

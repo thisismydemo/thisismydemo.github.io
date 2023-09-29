@@ -6,13 +6,22 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Sep 2023 17:01:35 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Sep 2023 17:20:35 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Arc-Enabled Kubernetes</title>
       <link>http://thisismydemo.cloud/categories/azure-arc-enabled-kubernetes/</link>
-      <pubDate>Thu, 28 Sep 2023 17:01:35 +0000</pubDate>
+      <pubDate>Thu, 28 Sep 2023 17:20:35 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/categories/azure-arc-enabled-kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MicroK8S</title>
+      <link>http://thisismydemo.cloud/categories/microk8s/</link>
+      <pubDate>Thu, 28 Sep 2023 17:20:35 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/categories/microk8s/</guid>
       <description></description>
     </item>
     
@@ -22,15 +31,6 @@
       <pubDate>Thu, 28 Sep 2023 17:01:35 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/categories/azure-arc-enabled-servers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MicroK8S</title>
-      <link>http://thisismydemo.cloud/categories/microk8s/</link>
-      <pubDate>Thu, 28 Sep 2023 17:01:35 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/categories/microk8s/</guid>
       <description></description>
     </item>
     
