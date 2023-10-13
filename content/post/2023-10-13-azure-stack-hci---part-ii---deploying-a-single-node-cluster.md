@@ -11,7 +11,7 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-13T20:01:18.691Z
+lastmod: 2023-10-13T20:09:57.710Z
 thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-ii-deploying-single-node-cluster
@@ -31,7 +31,7 @@ Why a one node cluster and what do I need to consider because I am only running 
 
 ## Deploying My Infrastructure
 
-The first step was to get my infrastructure deployed.  The problem is I don't have any infrastructure to deploy a four node let alone a single node cluster. So I followed [Matt McSpirit's Hybrid Jump Start](https://github.com/DellGEOS/HybridJumpstart/tree/main) to get everything going. To jump straight to it, you can go to the [Deployment In Azure](https://github.com/DellGEOS/HybridJumpstart/blob/main/modules/module_0/3_azure_vm_deployment.md) module and just get kicking.
+The first step was to get my infrastructure deployed.  The problem is I don't have any infrastructure to deploy a four node let alone a single node cluster. So I followed Dell's own [Matt McSpirit and his Hybrid Jump Start](https://github.com/DellGEOS/HybridJumpstart/tree/main) to get everything going. To jump straight to it, you can go to the [Deployment In Azure](https://github.com/DellGEOS/HybridJumpstart/blob/main/modules/module_0/3_azure_vm_deployment.md) module and just get kicking.
 
 Even though this blog is about deploying a single node server I still followed most of his instructions, at least to get the Azure VM deployed and have a pre-built AD infrastructure and 4 future Azure Stack HCI nodes waiting for me. This saves a lot of time because, well I don't have a lot of time, and I am also technology lazy and don't want to do it myself.
 
@@ -154,7 +154,7 @@ This is just the beginning of the journey for this cluster. There is so much mor
 
 ## Why A One Node Cluster?
 
-There are use cases for a single node cluster but not many. Dell makes a nice little certified server for HCI edge related workloads.  THese would be great for those remote locations, in a back of a truck running AKS and some sort of AI solution to monitor and maintain  railway lines, pipelines, pipelines, etc.  Help assist with fire management for our forrest, etc.  Remember, there is no HA for any workloads running on this cluster. If the box dies, it dies. I hope we had a good backup? But for some use cases, this may be enough, to run that edge application remotely.  This bring up why we would want at least a two node cluster for HA, not just for the VM workloads, but also for storage resiliency. But to add to that high availability and storage resiliency we need to go even bigger, three or more nodes.
+There are use cases for a single node cluster. Dell makes a nice little certified server for HCI and Edge related workloads. In fact, they are the only Microsoft Partner with the **First and only Azure Stack HCI offering in the Premier Solution Category**, their newly released [Dell APEX CLoud Platform for Microsoft Azure](https://www.dell.com/en-us/dt/apex/cloud-platforms/microsoft-azure.htm) solution. However, this is a single node blog so let's stick with the smaller single nodes, which Dell does make. These single node solutions would be great for those remote locations, Edge solutions like in a back of a truck running AKS and some sort of AI solution to monitor and maintain  railway lines, pipelines, pipelines, etc.  Help assist with fire management for our forrest, etc.  Remember, there is no HA for any workloads running on this cluster. If the box dies, it dies. I hope we had a good backup? But for some use cases, this may be enough, to run that edge application remotely.  This bring up why we would want at least a two node cluster for HA, not just for the VM workloads, but also for storage resiliency. But to add to that high availability and storage resiliency we need to go even bigger, three or more nodes.
 
 With a single node cluster we will need to update these clusters differently than we would a multi node cluster. Stretch clusters are not supported in a single node cluster configuration. (Now that should be obvious.)  When updating, we need to consider that the box will go down during updates, so the workloads will go down as well.
 
