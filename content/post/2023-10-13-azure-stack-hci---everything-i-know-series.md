@@ -8,7 +8,7 @@ tags:
     - Azure Stack HCI
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-13T17:24:32.016Z
+lastmod: 2023-10-13T17:30:24.220Z
 thumbnail: /img/azshci-series/azure-stack-hci.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-series
@@ -34,6 +34,8 @@ In this series I plan to touch on the following topics:
 * Azure Virtual Desktop on Azure Stack HCI
 * Application Services on Azure Stack HCI
 * Use cases and more...
+
+Or and one more subject that may be in this series or it's own. My learning of how to automate as much of this as possible using Terraform. Which I have never used but now need to learn.
 
 To start this series I will give you a bit of history about my experience with this product, what Azure Stack HCI is and is not, when you should or need to use Azure Stack HCI, and more.
 
