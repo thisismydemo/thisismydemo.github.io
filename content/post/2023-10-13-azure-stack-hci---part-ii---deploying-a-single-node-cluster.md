@@ -2,7 +2,7 @@
 title: Azure Stack HCI - Part II - Deploying A Single Node Cluster
 description: ""
 date: 2023-10-13T17:42:45.167Z
-preview: /img/azshci-series/azure-stack-hci.png
+preview: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 draft: false
 tags:
     - Azure Stack HCI
@@ -11,8 +11,8 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-13T19:39:58.094Z
-thumbnail: /img/azshci-series/azure-stack-hci.png
+lastmod: 2023-10-13T20:01:18.691Z
+thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-ii-deploying-single-node-cluster
 keywords:
