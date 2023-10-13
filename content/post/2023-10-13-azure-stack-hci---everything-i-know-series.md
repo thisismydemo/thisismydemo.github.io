@@ -8,7 +8,7 @@ tags:
     - Azure Stack HCI
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-13T17:20:01.075Z
+lastmod: 2023-10-13T17:24:32.016Z
 thumbnail: /img/azshci-series/azure-stack-hci.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-series
@@ -92,10 +92,10 @@ Azure Stack HCI combines the following:
 
 - **Purpose**: Azure Stack Edge is a cloud-managed appliance that brings Azure's compute, storage, and machine learning capabilities to the edge.
 - **When to Use**:
-  -For scenarios where you need to process data locally due to latency, connectivity, or regulatory requirements.
-  If you need to analyze, transform, and filter data at the edge before sending it to Azure.
-  When you want to deploy and run containerized applications at the edge.
-  If you require built-in AI capabilities at the edge, such as models for anomaly detection, image recognition, etc.
+  - For scenarios where you need to process data locally due to latency, connectivity, or regulatory requirements.
+  - If you need to analyze, transform, and filter data at the edge before sending it to Azure.
+  - When you want to deploy and run containerized applications at the edge.
+  - If you require built-in AI capabilities at the edge, such as models for anomaly detection, image recognition, etc.
 
 In summary, the choice between these three options boils down to your specific needs:
 
