@@ -6,7 +6,17 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Oct 2023 16:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2023 17:42:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</title>
+      <link>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</link>
+      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</guid>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+Part II is going to be about deploying a single node Azure Stack HCI cluster.</description>
+    </item>
+    
     <item>
       <title>Azure Stack HCI - Everything I know Series</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-series/</link>

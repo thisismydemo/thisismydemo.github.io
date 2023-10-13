@@ -6,13 +6,40 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Oct 2023 16:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Oct 2023 17:42:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Stack HCI</title>
       <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
-      <pubDate>Fri, 13 Oct 2023 16:15:49 +0000</pubDate>
+      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PowerShell</title>
+      <link>http://thisismydemo.cloud/tags/powershell/</link>
+      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/powershell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WAC</title>
+      <link>http://thisismydemo.cloud/tags/wac/</link>
+      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/wac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows Admin Center</title>
+      <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
+      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/windows-admin-center/</guid>
       <description></description>
     </item>
     
@@ -256,15 +283,6 @@
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/intune/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PowerShell</title>
-      <link>http://thisismydemo.cloud/tags/powershell/</link>
-      <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/powershell/</guid>
       <description></description>
     </item>
     

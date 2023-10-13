@@ -14,7 +14,7 @@ My Azure Stack HCI Infrastructure Deploying a Single Node HCI Cluster Single ser
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-series/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-10-13T16:15:49+00:00" />
-<meta property="article:modified_time" content="2023-10-13T17:20:01+00:00" />
+<meta property="article:modified_time" content="2023-10-13T17:30:24+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Stack HCI - Everything I know Series"/>
@@ -86,7 +86,7 @@ if (!doNotTrack) {
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-13T16:15:49Z">October 13, 2023</time>
-	<time class="meta__text" datetime="2023-10-13T17:20:01Z">(Last Modified: October 13, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2023-10-13T17:30:24Z">(Last Modified: October 13, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -115,6 +115,7 @@ if (!doNotTrack) {
 <li>Application Services on Azure Stack HCI</li>
 <li>Use cases and more&hellip;</li>
 </ul>
+<p>Or and one more subject that may be in this series or it&rsquo;s own. My learning of how to automate as much of this as possible using Terraform. Which I have never used but now need to learn.</p>
 <p>To start this series I will give you a bit of history about my experience with this product, what Azure Stack HCI is and is not, when you should or need to use Azure Stack HCI, and more.</p>
 <h2 id="my-history-with-azure-stack-hci">My History with Azure Stack HCI</h2>
 <p>My history with Azure Stack HCI is farley short and uneventful. In 2017 time period I was working for Dell Services which was then purchased by NTT Data and we became NTT Data Services. Just like my current role at TierPoint, I was hired to help build Microsoft solutions for customers primary around Microsoft&rsquo;s Private cloud offerings. For more information about what Azure Stack HCI is now, please see the next section below.  But what was Azure Stack HCI then? Well, Server 2016 was being well adopted in a lot of corporations. Hyper-V Server had by this point proven itself to those that would listen to be a direct competitor for VMWare&rsquo;s ESXi. (Prove me wrong) A new technology was introduced in Server 2016 called Storage Spaces Direct or better referred to as S2D. Software defined network (SDN) was introduced within Windows server 2012 but still needed maturing. I will be honest, it still needed maturing in Server 2016 as well. So, with Server 2016, Microsoft entered into the HyperConverged world of server compute. (Is that a word?)</p>
@@ -165,10 +166,13 @@ if (!doNotTrack) {
 <ul>
 <li><strong>Purpose</strong>: Azure Stack Edge is a cloud-managed appliance that brings Azure&rsquo;s compute, storage, and machine learning capabilities to the edge.</li>
 <li><strong>When to Use</strong>:
--For scenarios where you need to process data locally due to latency, connectivity, or regulatory requirements.
-If you need to analyze, transform, and filter data at the edge before sending it to Azure.
-When you want to deploy and run containerized applications at the edge.
-If you require built-in AI capabilities at the edge, such as models for anomaly detection, image recognition, etc.</li>
+<ul>
+<li>For scenarios where you need to process data locally due to latency, connectivity, or regulatory requirements.</li>
+<li>If you need to analyze, transform, and filter data at the edge before sending it to Azure.</li>
+<li>When you want to deploy and run containerized applications at the edge.</li>
+<li>If you require built-in AI capabilities at the edge, such as models for anomaly detection, image recognition, etc.</li>
+</ul>
+</li>
 </ul>
 <p>In summary, the choice between these three options boils down to your specific needs:</p>
 <p><strong>Azure Stack Hub</strong> is suitable for a full hybrid cloud experience with app consistency.</p>
@@ -260,6 +264,12 @@ If you require built-in AI capabilities at the edge, such as models for anomaly 
 			<p class="pager__title">My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</p>
 		</a>
 	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/azure-stack-hci-part-ii-deploying-single-node-cluster/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Azure Stack HCI - Part II - Deploying A Single Node Cluster</p>
+		</a>
+	</div>
 </nav>
 
 <section class="comments">
@@ -300,11 +310,11 @@ If you require built-in AI capabilities at the edge, such as models for anomaly 
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-part-ii-deploying-single-node-cluster/">Azure Stack HCI - Part II - Deploying A Single Node Cluster</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-series/">Azure Stack HCI - Everything I know Series</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-cluster-manged-azure-part-ii-monitoring/">My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-cluster-manged-azure/">My MicroK8s Cluster Is Now Manged by Azure. What is next?</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</a></li>
 		</ul>
 	</div>
 </div>
@@ -392,6 +402,8 @@ If you require built-in AI capabilities at the edge, such as models for anomaly 
 		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>
