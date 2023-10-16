@@ -9,16 +9,16 @@
 	<meta name="description" content="">
 		<meta property="og:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster" />
 <meta property="og:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-Part II is going to be about deploying a single node Azure Stack HCI cluster." />
+Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-10-13T17:42:45+00:00" />
-<meta property="article:modified_time" content="2023-10-13T20:09:57+00:00" />
+<meta property="article:modified_time" content="2023-10-16T14:59:33+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster"/>
 <meta name="twitter:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-Part II is going to be about deploying a single node Azure Stack HCI cluster."/>
+Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog."/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -84,7 +84,7 @@ if (!doNotTrack) {
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-13T17:42:45Z">October 13, 2023</time>
-	<time class="meta__text" datetime="2023-10-13T20:09:57Z">(Last Modified: October 13, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2023-10-16T14:59:33Z">(Last Modified: October 16, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -95,7 +95,10 @@ if (!doNotTrack) {
 		
 	</figure><div class="content post__content clearfix">
 			<p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p>
-<p>Part II is going to be about deploying a single node Azure Stack HCI cluster.</p>
+<p><strong>Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog. More details into how to get hardware setup for a single node with either physical hardware or even an Azure VM.  More information on how to configure storage and more. I figure the more advanced one would be better to follow when moving into scaling out the single node cluster to two or more nodes in my future blogs.</strong></p>
+<p>So Part III will be a continuation of this blog with more advanced and in-depth topics.</p>
+<p>Part VI is going to be about scaling out a single node cluster.</p>
+<hr>
 <p>In most cases when deploying Azure Stack HCI you can deploy clusters various ways. One of the easiest is to deploy a cluster using the Windows Admin Center (WAC). However, in the case of deploying a single node cluster, we will need to use our trusted friend PowerShell.</p>
 <p>Why a one node cluster and what do I need to consider because I am only running a single node cluster?  I will talk a little about that at the end of my blog in the section &ldquo;Why a one node cluster?  First, lets get into it by talking about my infrastructure, configuring the environment and deploying the cluster, and then getting this cluster registered with Azure. ($$$ for Microsoft)</p>
 <h2 id="deploying-my-infrastructure">Deploying My Infrastructure</h2>

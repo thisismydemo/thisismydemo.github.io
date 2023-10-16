@@ -1,9 +1,9 @@
 ---
-title: Azure Stack HCI - Part II - Deploying A Single Node Cluster
+title: Azure Stack HCI - Part III - Advanced Deployment - A Single Node Cluster
 description: ""
 date: 2023-10-13T17:42:45.167Z
 preview: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
-draft: false
+draft: true
 tags:
     - Azure Stack HCI
     - WAC
@@ -11,10 +11,10 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-16T14:59:33.047Z
+lastmod: 2023-10-16T14:57:12.357Z
 thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
-slug: azure-stack-hci-part-ii-deploying-single-node-cluster
+slug: azure-stack-hci-part-iii-advanced-deployment-single-node-cluster
 keywords:
     - Azure Stack Edge
     - Azure Stack HCI
@@ -23,13 +23,7 @@ keywords:
 ---
 In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 
-**Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog. More details into how to get hardware setup for a single node with either physical hardware or even an Azure VM.  More information on how to configure storage and more. I figure the more advanced one would be better to follow when moving into scaling out the single node cluster to two or more nodes in my future blogs.**
-
-So Part III will be a continuation of this blog with more advanced and in-depth topics.
-
-Part VI is going to be about scaling out a single node cluster.
-
---------
+Part II is going to be about deploying a single node Azure Stack HCI cluster.
 
 In most cases when deploying Azure Stack HCI you can deploy clusters various ways. One of the easiest is to deploy a cluster using the Windows Admin Center (WAC). However, in the case of deploying a single node cluster, we will need to use our trusted friend PowerShell.
 
