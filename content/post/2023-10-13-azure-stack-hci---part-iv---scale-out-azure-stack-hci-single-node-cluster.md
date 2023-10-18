@@ -6,7 +6,7 @@ preview: ""
 draft: true
 tags: []
 categories: []
-lastmod: 2023-10-16T14:27:53.992Z
+lastmod: 2023-10-17T00:26:30.111Z
 thumbnail: ""
 lead: ""
 slug: azure-stack-hci-part-ii-scale-azure-stack-hci-single-node-cluster
