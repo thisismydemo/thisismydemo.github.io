@@ -11,7 +11,7 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-18T17:15:21.922Z
+lastmod: 2023-10-19T01:57:04.271Z
 thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-iii-advanced-deployment-single-node-cluster
@@ -61,7 +61,7 @@ So let the cluster fun begin!!!
 
 ## Shout Out!!!
 
-The first thing I would like to do before I start is give credit to Dell's own **[Matt McSpirit](https://twitter.com/mattmcspirit)** and **[Jaromir Kaspar](https://twitter.com/jaromirkaspar)**. Jaromir is the creator of [MSLab](https://github.com/microsoft/MSLab/tree/master). MSLab is the base for the [Hybrid Jump Start](https://github.com/DellGEOS/HybridJumpstart/tree/main) I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen.  Then of course, a lot of my references will come from [Microsoft Learn documentation on Azure Stack HCI](https://learn.microsoft.com/en-us/azure-stack/hci/). There is also a [Slack Channel dedicated to Azure Stack HCI](azurestackhci.slack.com) that I pull some information from as well.
+The first thing I would like to do before I start is give credit to Dell's own **[Matt McSpirit](https://twitter.com/mattmcspirit)** and **[Jaromir Kaspar](https://twitter.com/jaromirkaspar)**. Jaromir is the creator of [MSLab](https://github.com/microsoft/MSLab/tree/master). MSLab is the base for the [Hybrid Jump Start](https://github.com/DellGEOS/HybridJumpstart/tree/main) I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen.  Then of course, a lot of my references will come from [Microsoft Learn documentation on Azure Stack HCI](https://learn.microsoft.com/en-us/azure-stack/hci/). There is also a [Slack Channel dedicated to Azure Stack HCI](https://azurestackhci.slack.com) that I pull some information from as well.
 
 ----
 
@@ -75,14 +75,20 @@ First thing that we should note in a single-node cluster is the resiliency to so
 
 Now let's take a look at some of the advantages of a single-node cluster.
 
-- **Smaller Solutions**: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices1.
-- **Reduced Costs**: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency4.
-- **Scalability**: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster3.
-- **Azure Integration**: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS)2.
-- **Supports Same Workloads**: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI3.
+- **Smaller Solutions**: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices.
+- **Reduced Costs**: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency.
+- **Scalability**: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster.
+- **Azure Integration**: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS).
+- **Supports Same Workloads**: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI.
 - **Proof of Concept (PoC) and Testing**:  Organizations considering a transition to Azure Stack HCI might deploy a single node initially to test functionalities, performance, and integration with existing systems before committing to a full-scale deployment.
 - **Specific Workloads**: Some workloads or applications might not require the high availability offered by multi-node clusters but can benefit from the other features of HCI, such as integrated storage and compute capabilities.
 - **Training and Development**: For training purposes or for development and testing environments, a single-node deployment can provide a controlled environment without the need for more extensive infrastructure.
+
+Thanks to Karl Wester-Ebbinghaus for some more suggestions:
+
+- Edge AVD for stores/running cash terminals etc.
+- Dev/Test VM's even with Dev/Test Licensing regarding teh OS Workloads
+- Outsourcing old/legacy workloads that require ESU savings on hardware and ESU cost.
 
 It's essential to understand that while a single-node Azure Stack HCI deployment offers specific benefits, it does come with the trade-off of not having the high availability and failover capabilities inherent in multi-node clusters. Thus, it's crucial to assess the importance of these features based on the intended use case.
 
@@ -644,7 +650,7 @@ Once we have logged on to our Windows Admin Center, if we go to our cluster usin
 - Under Resiliency, since this is a single node, we will only have the availability to select two-way mirror.
 - Size I added 1 TB
 
-Under more options I made sure I selected Then provision.
+Under more options I made sure I selected Then provisioning.
 
 ![](/img/azshci-series/part-iii/Screenshot%202023-10-16%20140836.png)
 

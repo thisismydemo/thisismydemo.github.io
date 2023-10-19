@@ -13,7 +13,7 @@ I had planned to have a Part III that would have focused on scaling out a single
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-10-17T00:30:45+00:00" />
-<meta property="article:modified_time" content="2023-10-18T17:15:21+00:00" />
+<meta property="article:modified_time" content="2023-10-19T01:57:04+00:00" />
 
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster"/>
@@ -84,7 +84,7 @@ if (!doNotTrack) {
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-17T00:30:45Z">October 17, 2023</time>
-	<time class="meta__text" datetime="2023-10-18T17:15:21Z">(Last Modified: October 18, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2023-10-19T01:57:04Z">(Last Modified: October 19, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -142,7 +142,7 @@ if (!doNotTrack) {
 <p>Remember, I am building this solution on a Single Node cluster and I will try to explain how to do it not only on an AzureVM but try to explain how it would be done on physical hardware if that process is different.  Since I do have plans to scale out this cluster, I will keep that in mind as I deploy this first node as well.  Knowing that I will add a second and a third and a fourth node in the future.</p>
 <p>So let the cluster fun begin!!!</p>
 <h2 id="shout-out">Shout Out!!!</h2>
-<p>The first thing I would like to do before I start is give credit to Dell&rsquo;s own <strong><a href="https://twitter.com/mattmcspirit">Matt McSpirit</a></strong> and <strong><a href="https://twitter.com/jaromirkaspar">Jaromir Kaspar</a></strong>. Jaromir is the creator of <a href="https://github.com/microsoft/MSLab/tree/master">MSLab</a>. MSLab is the base for the <a href="https://github.com/DellGEOS/HybridJumpstart/tree/main">Hybrid Jump Start</a> I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen.  Then of course, a lot of my references will come from <a href="https://learn.microsoft.com/en-us/azure-stack/hci/">Microsoft Learn documentation on Azure Stack HCI</a>. There is also a <a href="azurestackhci.slack.com">Slack Channel dedicated to Azure Stack HCI</a> that I pull some information from as well.</p>
+<p>The first thing I would like to do before I start is give credit to Dell&rsquo;s own <strong><a href="https://twitter.com/mattmcspirit">Matt McSpirit</a></strong> and <strong><a href="https://twitter.com/jaromirkaspar">Jaromir Kaspar</a></strong>. Jaromir is the creator of <a href="https://github.com/microsoft/MSLab/tree/master">MSLab</a>. MSLab is the base for the <a href="https://github.com/DellGEOS/HybridJumpstart/tree/main">Hybrid Jump Start</a> I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen.  Then of course, a lot of my references will come from <a href="https://learn.microsoft.com/en-us/azure-stack/hci/">Microsoft Learn documentation on Azure Stack HCI</a>. There is also a <a href="https://azurestackhci.slack.com">Slack Channel dedicated to Azure Stack HCI</a> that I pull some information from as well.</p>
 <hr>
 <h2 id="overview---single-node-cluster">Overview - Single Node Cluster</h2>
 <p>So why a single node Azure Stack HCI Cluster? There are some get advantages of running a single node cluster and of course with that there are things you should take into account when running a single node cluster.</p>
@@ -150,14 +150,20 @@ if (!doNotTrack) {
 <p>First thing that we should note in a single-node cluster is the resiliency to some failures such as a hard disk failure. Single node devices are also limited a single drive type (either NVMe or SSD).  Along with storage, there is no High Availability for the workloads that run on a single-node cluster. This means if the device fails, your workloads fail.  Something to think about as well, when you do updates, this will require a reboot of the OS, which in turn will bring down your workloads.  So moral to the story, critical applications shouldn&rsquo;t run on a single-node cluster unless you can afford some down time.</p>
 <p>Now let&rsquo;s take a look at some of the advantages of a single-node cluster.</p>
 <ul>
-<li><strong>Smaller Solutions</strong>: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices1.</li>
-<li><strong>Reduced Costs</strong>: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency4.</li>
-<li><strong>Scalability</strong>: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster3.</li>
-<li><strong>Azure Integration</strong>: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS)2.</li>
-<li><strong>Supports Same Workloads</strong>: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI3.</li>
+<li><strong>Smaller Solutions</strong>: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices.</li>
+<li><strong>Reduced Costs</strong>: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency.</li>
+<li><strong>Scalability</strong>: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster.</li>
+<li><strong>Azure Integration</strong>: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS).</li>
+<li><strong>Supports Same Workloads</strong>: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI.</li>
 <li><strong>Proof of Concept (PoC) and Testing</strong>:  Organizations considering a transition to Azure Stack HCI might deploy a single node initially to test functionalities, performance, and integration with existing systems before committing to a full-scale deployment.</li>
 <li><strong>Specific Workloads</strong>: Some workloads or applications might not require the high availability offered by multi-node clusters but can benefit from the other features of HCI, such as integrated storage and compute capabilities.</li>
 <li><strong>Training and Development</strong>: For training purposes or for development and testing environments, a single-node deployment can provide a controlled environment without the need for more extensive infrastructure.</li>
+</ul>
+<p>Thanks to Karl Wester-Ebbinghaus for some more suggestions:</p>
+<ul>
+<li>Edge AVD for stores/running cash terminals etc.</li>
+<li>Dev/Test VM&rsquo;s even with Dev/Test Licensing regarding teh OS Workloads</li>
+<li>Outsourcing old/legacy workloads that require ESU savings on hardware and ESU cost.</li>
 </ul>
 <p>It&rsquo;s essential to understand that while a single-node Azure Stack HCI deployment offers specific benefits, it does come with the trade-off of not having the high availability and failover capabilities inherent in multi-node clusters. Thus, it&rsquo;s crucial to assess the importance of these features based on the intended use case.</p>
 <hr>
@@ -569,7 +575,7 @@ if (-not (Get-AzResourceGroup -Name $ResourceGroupName -ErrorAction Ignore)) {
 <li>Under Resiliency, since this is a single node, we will only have the availability to select two-way mirror.</li>
 <li>Size I added 1 TB</li>
 </ul>
-<p>Under more options I made sure I selected Then provision.</p>
+<p>Under more options I made sure I selected Then provisioning.</p>
 <p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140836.png" alt=""></p>
 <h3 id="create-volume-using-powershell">Create Volume using PowerShell</h3>
 <p>Now while we wait for the Volume to be created from the WAC. I am going to use PowerShell to create a second volume called Volume02. The following script will produce the same type and sized volume as we created in the WAC earlier.</p>
