@@ -11,7 +11,7 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-19T01:57:04.271Z
+lastmod: 2023-10-20T13:07:47.647Z
 thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-iii-advanced-deployment-single-node-cluster
@@ -42,6 +42,9 @@ So this blog will cover the following:
   - [OS Configuration](#os-configuration)
   - [Install Features](#install-features)
 - [Cluster Networking](#cluster-networking)
+  - [The Manual Way](#the-manual-way)
+  - [The "Micheal Godfrey Why The Heck Didn't You Use Network ATC" Way.](#the-micheal-godfrey-why-the-heck-didnt-you-use-network-atc-way)
+  - [Other Network Settings](#other-network-settings)
 - [Create the Cluster](#create-the-cluster)
 - [Storage Spaces Direct](#storage-spaces-direct)
 - [Register The Cluster](#register-the-cluster)
@@ -57,7 +60,7 @@ So this blog will cover the following:
 
 Remember, I am building this solution on a Single Node cluster and I will try to explain how to do it not only on an AzureVM but try to explain how it would be done on physical hardware if that process is different.  Since I do have plans to scale out this cluster, I will keep that in mind as I deploy this first node as well.  Knowing that I will add a second and a third and a fourth node in the future.
 
-So let the cluster fun begin!!!
+***Note: So once again I learned something after this blog was created. Instead of re-writing a third blog on this subject I just edited this blog. I was unaware that you could still use Network ATC with virtual machines. Even thought the Microsoft Learn documentation calls out that it is only supported on Physical machines. The changes I made in this blog are in that area. From manually configuring the network to using Network AT***C.
 
 ## Shout Out!!!
 
@@ -193,25 +196,35 @@ Invoke-Command -ComputerName $Servers -ScriptBlock { Set-ItemProperty -Path 'HKL
 Invoke-Command -ComputerName $Servers -ScriptBlock { Enable-NetFirewallRule -DisplayGroup "Remote Desktop" }
 ```
 
+I also will rename my machines network adapters at this point which will help me better identify them later.
+
+```
+$Servers = "AzSHCI1"
+## Rename Network Adapters
+Invoke-Command ($Servers) {
+    Rename-NetAdapter -Name "Ethernet" -NewName "vmNic01"
+    Rename-NetAdapter -Name "Ethernet 2" -NewName "vmNic02"
+    Rename-NetAdapter -Name "Ethernet 3" -NewName "vmNic03"
+    Rename-NetAdapter -Name "Ethernet 4" -NewName "vmNic04"
+    }
+    Invoke-Command -ComputerName $Servers -ScriptBlock {
+    Get-NetAdapter
+    }
+```
+
 ### Install Features
 Next I will install all the features needed for my node AZSHCI1.  Since this blog is about a single node sever with continuation into how to join the other nodes, I will just need to do the following on a single node:
 
 ```
-# Define servers as variable
 $Servers = "AzSHCI1"
+## Install Roles & Features
+$FeatureList = "BitLocker", "Data-Center-Bridging", "Failover-Clustering", "FS-FileServer", "FS-Data-Deduplication", "Hyper-V", "Hyper-V-PowerShell", "RSAT-AD-Powershell", "RSAT-Clustering-PowerShell", "NetworkATC", "NetworkHUD", "FS-SMBBW", "Storage-Replica"
 
-# Install Hyper-V using DISM if Install-WindowsFeature fails
-# If nested virtualization is not enabled, Install-WindowsFeature fails
-Invoke-Command -ComputerName $servers -ScriptBlock {
-    $Result = Install-WindowsFeature -Name "Hyper-V" -ErrorAction SilentlyContinue
-    if ($result.ExitCode -eq "failed") {
-        Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online -NoRestart 
-    }
+# This part runs the Install-WindowsFeature cmdlet on all servers in $ServerList, passing the list of features in $FeatureList.
+Invoke-Command ($Servers) {
+    Install-WindowsFeature -Name $Using:Featurelist -IncludeAllSubFeature -IncludeManagementTools
 }
 
-# Define and install features
-$features = "Failover-Clustering", "Hyper-V-PowerShell", "Bitlocker", "RSAT-Feature-Tools-BitLocker", "Storage-Replica", "RSAT-Storage-Replica", "FS-Data-Deduplication", "System-Insights", "RSAT-System-Insights"
-Invoke-Command -ComputerName $servers -ScriptBlock { Install-WindowsFeature -Name $using:features }
 
 # Restart and wait for computers
 Restart-Computer $servers -Protocol WSMan -Wait -For PowerShell -Force
@@ -220,8 +233,14 @@ Foreach ($Server in $Servers) {
     do { $Test = Test-NetConnection -ComputerName $Server -CommonTCPPort WINRM }while ($test.TcpTestSucceeded -eq $False)
 }
 ```
+
 ----
+
 ## Cluster Networking
+
+Now, this is the section that changed drastically since I wrote the blog. I am leaving the old way or what we would call the manual way just for reference but I am adding how to do this using Network ATC as well.
+
+### The Manual Way
 If we were deploying this solution on Physical nodes we would be able to take advantage of [Network ATC](https://learn.microsoft.com/en-us/azure-stack/hci/deploy/network-atc?tabs=22H2).  However, ***Network ATC is not supported on a virtual environments*** so we will configure our networks manually and using PowerShell.  I guess in theory you could do a lot of this in the Windows Admin Center but PowerShell is a lot easier, when it comes to multi-node systems you are trying to configure for a cluster.
 
 The following image shows how I am going to configure my host today. Each of my nodes have 4 virtual nics that represent 4 physical nics in this case.
@@ -401,6 +420,73 @@ Get-VMNetworkAdapterTeamMapping -CimSession $servers -ManagementOS | `
     Format-Table ComputerName, NetAdapterName, ParentAdapter
 ```
 
+### The "Micheal Godfrey Why The Heck Didn't You Use Network ATC" Way.
+
+Just as I did above in the manual way, I am going to build out my solution using two intents. What is an intent you ask? Well, the Microsoft Learn Docs has that answer for you under the Definitions section of their [Network ATC overview page](https://learn.microsoft.com/en-us/azure-stack/hci/concepts/network-atc-overview#definitions). However, I am nice and will copy and paste that definition here:
+
+**Intent**: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.
+
+Intent: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.
+
+There are a few different types of intents. There are many different ways to configure these intents as well. The configuration I will be using today will include will include a single intent for now. 
+
+![](/img/azshci-series/part-iii/network-atc-6-disaggregated-management-compute.png)
+
+Here I will create a single intent that will use my vmNic01 and vmNic02 for Compute and Management. Since this is a single node, we do not need to worry about storage. However, we do have plans to scale out this cluster at one point, which is why we will one day create a second intent for storage using vmnic03 and vmnic04. This would look a lot like what I created above in the manual steps.
+
+![](/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png)
+
+So, unlike the manual configuration of our network, Network ATC is fast and very easy to configure. If I where deploying this on physical nodes the only command I would run at this point would look like this:
+
+```
+Add-NetIntent -Name ConvergedIntent -AdapterName vmNIC01, vmNIC02 -Management -Compute
+```
+
+For my environment, since these run on Virtual Machines, I do need to do an adapter override and disable Network Direct. So here is what I did to configure networking on my single node cluster:
+
+First, we want to verify the adapters:
+
+```
+# - Verify Adapters
+Invoke-Command -ComputerName $ClusterName -ScriptBlock {
+    Get-NetAdapter -Name vmnic01, vmnic02 -CimSession (Get-ClusterNode).Name | Select Name, PSComputerName
+    }
+```
+
+We should get a confirmation that these adapters are up and ready.
+
+Now, the simple code that will save us so much time when configuring our networks.
+
+```
+# Configure Intent
+#  Disable Network Direct Adapter Property - For Virtual Machines Only
+# Note: This is not required for physical servers and since this is a single-node cluster, we will not use the vmnics for SMB traffic at this time.
+Invoke-Command -ComputerName $servers -ScriptBlock {
+    if ((Get-ComputerInfo).CsSystemFamily -eq "Virtual Machine") {
+        $AdapterOverride = New-NetIntentAdapterPropertyOverrides
+        $AdapterOverride.NetworkDirect = 0
+        Add-NetIntent -Name ConvergedIntent -AdapterName vmNIC01, vmNIC02 -Management -Compute -AdapterPropertyOverrides $AdapterOverride
+    }
+}
+```
+Tada!!  Just like that. So now we monitor our intent to make sure if provisioned correctly.
+
+```
+# - Validate Intent Deployment - #
+Invoke-Command -ComputerName $servers -ScriptBlock {
+    Get-NetIntent
+    }
+```
+
+```
+Invoke-Command -ComputerName $servers -ScriptBlock {
+Get-NetIntentStatus -ClusterName $ClusterName -Name ConvergedIntent
+}
+```
+
+
+### Other Network Settings
+
 There are a few other things that we would want to discuss if moving forward on Physical hardware.  I would highly suggest looking at the Microsoft Learn Documentation and read up on the following:
 - Jumbo Frames Settings
 - RDMA
@@ -440,10 +526,10 @@ Invoke-Command ($Servers) {
         Get-VirtualDisk | Remove-VirtualDisk -Confirm:$false -ErrorAction SilentlyContinue
     Get-StoragePool | Where-Object IsPrimordial -eq $false | `
         Remove-StoragePool -Confirm:$false -ErrorAction SilentlyContinue
-    
+
     # Reset the disks
     Get-PhysicalDisk | Reset-PhysicalDisk -ErrorAction SilentlyContinue
-    
+
     # Prepare the disks
     Get-Disk | Where-Object Number -ne $null | Where-Object IsBoot -ne $true | `
         Where-Object IsSystem -ne $true | Where-Object PartitionStyle -ne RAW | `
@@ -546,7 +632,7 @@ Finally we can run the command to register our cluster:
 ```
 Register-AzStackHCI -SubscriptionId $subscriptionID -ComputerName $ClusterName -Region "eastus" -ResourceName $ClusterName -ResourceGroupName $ResourceGroupName
 ```
-We will be prompted to give our tenant creditials.
+We will be prompted to give our tenant credentials.
 
 ![](/img/azshci-series/part-iii/Screenshot%202023-10-16%20134201.png)
 
@@ -703,4 +789,3 @@ We are pretty much done with my first deployment of my first node. There are som
 So, I do want to stress. This deployment I just walked through is not production ready. It will be good for getting your feet wet with Azure Stack HCI. For most of use we don't have a lot of hardware that would be supported for HCI sitting around.  We may have an older server we can run as a single node, even deploy this same solution on that single physical server to have a multi-node solution, or use an AzureVM which can be very expensive. This blog I hope helped someone get an idea of that they would need to do to get started. Moving forward, I will blog about scaling out this single node cluster to a two node cluster and then to a three and four node cluster after that.
 
 Also, this blog just touches on the deployment of an Azure Stack HCI cluster. There is so much more and we can really go into depth of what Azure Stack HCI can do along with Azure Arc.  I will be blogging a lot on these subjects moving forward.
-
