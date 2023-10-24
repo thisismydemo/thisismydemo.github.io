@@ -6,7 +6,17 @@
     <description>Recent content in Azure Stack HCI on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 20 Oct 2023 21:38:07 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/azure-stack-hci/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Oct 2023 19:01:34 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/azure-stack-hci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Stack HCI - Part V - From one to Sixteen</title>
+      <link>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</link>
+      <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</guid>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description>
+    </item>
+    
     <item>
       <title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</link>

@@ -1,6 +1,6 @@
 ---
 title: Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster
-description: ""
+description: This is a series of blogs about my experiences with Azure Stack HCI
 date: 2023-10-17T00:30:45.108Z
 preview: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 draft: false
@@ -11,7 +11,7 @@ tags:
     - PowerShell
 categories:
     - Azure Stack HCI
-lastmod: 2023-10-20T13:07:47.647Z
+lastmod: 2023-10-24T19:00:21.743Z
 thumbnail: /img/azshci-series/singlecluster/Screenshot 2023-10-13 145905.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-iii-advanced-deployment-single-node-cluster

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Azure Stack HCI - Part V - From one to Sixteen - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
+		<meta property="og:title" content="Azure Stack HCI - Part V - From one to Sixteen" />
+<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-10-24T19:01:34+00:00" />
+<meta property="article:modified_time" content="2023-10-24T19:01:50+00:00" />
+
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Azure Stack HCI - Part V - From one to Sixteen"/>
+<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Azure Stack HCI - Part V - From one to Sixteen</h1>
+			<p class="post__lead">This is a series of blogs about my experiences with Azure Stack HCI</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-24T19:01:34Z">October 24, 2023</time>
+	<time class="meta__text" datetime="2023-10-24T19:01:50Z">(Last Modified: October 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/azshci-series/part-v/single-node-scale-out.png" alt="Azure Stack HCI - Part V - From one to Sixteen">
+		
+	</figure><div class="content post__content clearfix">
+			<p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p>
+<p>The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster. This blog I want to share my experience about scaling my Azure Stack HCI cluster to a three-node cluster and more. The over all process is fairly the same as scaling out a one-node to a two-node cluster. However, there are some differences that I wanted to call out.  So instead of actually walking through the scale out process, I will discuss the differences between scaling out to a two-node cluster to three-nodes or more.</p>
+<p>I think I will discuss the primary topics to scale out to a third node and stay only focused on what is different than scaling out to a two-node cluster. I will try and cover some of the following:</p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#networking-changes">Networking Changes</a>
+<ul>
+<li><a href="#physical-networking-changes">Physical Networking Changes</a>
+<ul>
+<li><a href="#switch-requirements">Switch Requirements</a></li>
+<li><a href="#host-networking-requirements">Host Networking Requirements</a></li>
+<li><a href="#firewall-requirements">Firewall Requirements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#storage-changes">Storage Changes</a>
+<ul>
+<li><a href="#store-mirroring-changes">Store Mirroring Changes</a></li>
+<li><a href="#recreate-cluster-performance-history-volumes">Recreate Cluster Performance History Volumes</a></li>
+<li><a href="#create-new-three-way-volumes">Create New Three-Way Volumes</a></li>
+<li><a href="#move-vms">Move VMs</a></li>
+</ul>
+</li>
+<li><a href="#bonus-content">Bonus Content</a></li>
+<li><a href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>So we have deployed a single-node cluster in the previous blog <a href="https://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/">Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</a>and then I followed that blog up with how to scale out that single-node cluster to a two-node cluster in my blog, <a href="https://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/">Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</a>. This blog as I mentioned already will focus just on the differences between scaling out from a one-node cluster to a two-node cluster and what we need to think about when scaling out to a three-node or higher Azure Stack HCI cluster.</p>
+<p>To be honest, at this point if I were going to need a three node cluster I would just redeploy the entire cluster. In some cases this would be possible and not effect any production workloads, or critical workloads that might be running at a remote office or manufacture plant, etc. However, if you do need to keep those workloads up, scaling out would be the way to go. If you can manage to create a new multi-node cluster then that would be the route I would take. You do need to think again about the workloads running for that decision to be made. First, do you have extra servers that can be used in order to keep the old cluster up and then migrate those workloads over once the new cluster is running. Second, if you do not, do you have a CI/CD solution in place that will assist in getting those workloads redeployed quickly?  In most cases, if you do and are taking advantage of AKS on your Azure Stack HCI solution you should already have deployment pipelines in place to assist with deploying those same containerized workloads to HCI.</p>
+<p>So what are we doing in this blog again? The image below is a decent high level road map of the last few blogs. We went from a single-node cluster to a two-node cluster. The major changes there would have been changes in our Storage Fault domain, which here we changed it from Physical Disk to StorageScaleUnit. Basically enabling that virtual disk to move across nodes. We also added our witness to the cluster when we scaled out to a two-node cluster. We provisioned a new Network ATC intent for SMB Traffic. We also enabled cluster aware updates for the cluster.</p>
+<p>For the scale out to a three-node or higher cluster there will be two main areas I will cover here in this blog. The first is storage, and changing from a two-way mirror to a three-way mirror. There is also the physical cabling we will talk about as well as migrating our existing workloads from our old volumes on to newly created three-way mirror enabled volumes.</p>
+<p><img src="/img/azshci-series/part-v/single-node-scale-out.png" alt=""></p>
+<hr>
+<h2 id="networking-changes">Networking Changes</h2>
+<p>Compared to the scaling out from a one-node to a two-node, this process to scale out to a three-node or larger Azure Stack HCI cluster shouldn&rsquo;t be much different when it comes to configuring Network ATC and Network HUD and other networking topics such as DBX. The only thing I would call out here is how you have your physical network configured as in the top of the rack switches, etc.</p>
+<h3 id="physical-networking-changes">Physical Networking Changes</h3>
+<p>When it comes to the physical network and configuring our switches there are a number of configurations that are required now that we are going past a two-node cluster. With our two-node cluster, we could have gone switchless for storage. Management and compute could have been plugged into any our of customer switches at that point. Now, that being said, you could still go switchless even on clusters larger than two-nodes. The only requirements would be having enough redundant connections to each and every node in the cluster. So for East-West traffic on a three-node cluster, you would need to be able to connect every node to each other which means a lot of network cards if you have larger clusters.</p>
+<p>Here is an example of a Switchless or a Direct configuration for a three-node cluster. Here the management and compute traffic still will traverse the top of the rack switches.  However, our SMB traffic will still be interconnected to all our host without going through a switch.  I for one have not seen this deployed this way, at least with anything with more than two-nodes in the cluster.  You can read more information about this on the Microsoft Learn Documentation called  <a href="https://learn.microsoft.com/en-us/azure-stack/hci/concepts/physical-network-requirements?tabs=Dell%2C22H2reqs#using-switchless">Physical network requirements for Azure Stack HCI</a> under the &ldquo;Using Swtichless&rdquo; section.</p>
+<p><img src="/img/azshci-series/part-v/switchless-connectivity.png" alt=""></p>
+<h4 id="switch-requirements">Switch Requirements</h4>
+<p>So at a high level, here are some areas that we should plan in order to get all our requirements ready at the top of the rack switches.</p>
+<ul>
+<li>VLANS:  Make sure that our physical switches are configured to allow traffic on any VLANs we will be using.</li>
+<li>Make sure the physical switches meet all the Azure STack HCI requirements.</li>
+<li>Switches must comply with IEEE 802.1Q standards.</li>
+<li>Ethernet switches used for Azure Stack HCI storage traffic must comply with the IEEE 802.1Qbb specification that defines Priority Flow Control (PFC). PFC is required where Data Center Bridging (DCB) is used. Since DCB can be used in both RoCE and iWARP RDMA scenarios, 802.1Qbb is required in all scenarios.</li>
+<li>Ethernet switches used for Azure Stack HCI storage traffic must comply with the IEEE 802.1Qaz specification that defines Enhanced Transmission Select (ETS). ETS is required where DCB is used. Since DCB can be used in both RoCE and iWARP RDMA scenarios, 802.1Qaz is required in all scenarios.</li>
+<li>Ethernet switches must comply with the IEEE 802.1AB specification that defines the Link Layer Discovery Protocol (LLDP). LLDP is required for Azure Stack HCI</li>
+<li>The maximum transmission unit (MTU) is the largest size frame or packet that can be transmitted across a data link. A range of 1514 - 9174 is required for SDN encapsulation</li>
+<li>Ethernet switches used for Azure Stack HCI SDN compute traffic must support Border Gateway Protocol (BGP)</li>
+<li>Ethernet switches used for Azure Stack HCI management traffic must support DHCP relay agent</li>
+</ul>
+<h4 id="host-networking-requirements">Host Networking Requirements</h4>
+<p>Important network adapter capabilities used by Azure Stack HCI include:</p>
+<ul>
+<li>Dynamic Virtual Machine Multi-Queue (Dynamic VMMQ or d.VMMQ)</li>
+<li>Remote Direct Memory Access (RDMA)</li>
+<li>Guest RDMA</li>
+<li>Switch Embedded Teaming (SET)</li>
+</ul>
+<h4 id="firewall-requirements">Firewall Requirements</h4>
+<p><em><strong>Note:  Azure Stack HCI doesn’t support HTTPS inspection. Make sure that HTTPS inspection is disabled along your networking path for Azure Stack HCI to prevent any connectivity errors.</strong></em></p>
+<p>For more details on Firewall requirements for Azure Stack HCI please read the following documentation:  <a href="https://learn.microsoft.com/en-us/azure-stack/hci/concepts/firewall-requirements">https://learn.microsoft.com/en-us/azure-stack/hci/concepts/firewall-requirements</a></p>
+<hr>
+<h2 id="storage-changes">Storage Changes</h2>
+<p>In my previous blogs I discussed how to configure our Storage Fault Domains for a scale out to a two-node cluster. Since this was already done we do not need to change our storage fault domain configuration. It should be configured for StorageScaleUnit now and not PhysicalDisk.  However, there is one change we didn&rsquo;t need to implement because it wasn&rsquo;t supported in a two-node or a single-node deployment and that is the resiliency configurations, in turn, changing from a two-way mirror to a three-way mirror.</p>
+<h3 id="store-mirroring-changes">Store Mirroring Changes</h3>
+<p>If you want existing volumes to remain as a two-way mirror nothing else needs to be done.  To convert our volumes from two-way to three-way we will following the procedure below:</p>
+<p>First we will check our configuration of mirror resiliency setting.</p>
+<pre tabindex="0"><code>Get-StoragePool -CimSession $ClusterName -FriendlyName &#34;S2D on $ClusterName&#34; | get-resiliencysetting
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20131832.png" alt=""></p>
+<p>Next we will configure our Mirror ResiliencySetting</p>
+<pre tabindex="0"><code>Get-StoragePool -CimSession $ClusterName -FriendlyName &#34;S2D on $ClusterName&#34; | get-resiliencysetting -Name Mirror | Set-ResiliencySetting -NumberOfDataCopiesDefault 3
+</code></pre><p>Now lets check on our configuration. We will see that NumberOfDatacopies should be 3 with FaultDomainRedundancy</p>
+<pre tabindex="0"><code>Get-StoragePool -CimSession $ClusterName -FriendlyName &#34;S2D on $ClusterName&#34; | get-resiliencysetting -Name Mirror
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20132114.png" alt=""></p>
+<h3 id="recreate-cluster-performance-history-volumes">Recreate Cluster Performance History Volumes</h3>
+<p>First we need to delete the performance history including the volume.</p>
+<pre tabindex="0"><code>Invoke-Command -ComputerName $CLusterName -ScriptBlock {Stop-ClusterPerformanceHistory -DeleteHistory}
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20132328.png" alt=""></p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20132527.png" alt=""></p>
+<p>Here we will recreate the performance history</p>
+<pre tabindex="0"><code>Start-ClusterPerformanceHistory -CimSession $ClusterName
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20132454.png" alt=""></p>
+<p>Next we will validate volume resiliency</p>
+<pre tabindex="0"><code>Get-VirtualDisk -CimSession $ClusterName | Select-Object FriendlyName,NumberOfDataCopies
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20132716.png" alt=""></p>
+<h3 id="create-new-three-way-volumes">Create New Three-Way Volumes</h3>
+<p>I will create new volume that will be configured to use three-way mirroring and thin provisioning.</p>
+<pre tabindex="0"><code>New-Volume -CimSession $ClusterName -StoragePoolFriendlyName &#34;S2D on $ClusterName&#34; -FriendlyName $VolumeFriendlyName -Size $VolumeSize -ProvisioningType Thin
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20133018.png" alt=""></p>
+<p>Verify</p>
+<pre tabindex="0"><code>Get-VirtualDisk -CimSession $ClusterName | Select-Object FriendlyName,NumberOfDataCopies
+</code></pre><p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20133041.png" alt=""></p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20133559.png" alt=""></p>
+<h3 id="move-vms">Move VMs</h3>
+<p>Here we will move our vm&rsquo;s off our old volumes on to the newly created volumes with three-way mirroring configured. You can also move each VM to the new three-mirror volume using the Windows Admin Center. However, I will use PowerShell.</p>
+<pre tabindex="0"><code>$ClusterName=&#34;AzSHCI-Cluster&#34;
+$VolumeFriendlyName=&#34;Three+NodesMirror&#34;
+$DestinationStoragePath=&#34;c:\ClusterStorage\$VolumeFriendlyName&#34;
+
+$VMs=Get-VM -CimSession (Get-ClusterNode -Cluster $ClusterName).Name
+foreach ($VM in $VMs){
+    $VM | Move-VMStorage -DestinationStoragePath &#34;$DestinationStoragePath\$($VM.Name)&#34;
+}
+</code></pre><hr>
+<h2 id="bonus-content">Bonus Content</h2>
+<p>Well, surprise! I wasn&rsquo;t going to demo how to add the third node but I will go as far as showing how to add the node to the cluster using the Windows Admin Center. Everything that I did to node-two up until the add node to the cluster section I still did in PowerShell. At this point I am ready to add the third-node to my cluster.</p>
+<p>We will start in the our cluster dashboard, then go to servers in teh Cluster Resources menu. Then click on inventory.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20123139.png" alt=""></p>
+<p>After we click on Add on the inventory screen we can then start typing the name of our server. Once it is found, click add.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20125056.png" alt=""></p>
+<p>Once the server is found, we can then click Add at the bottom.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20125442.png" alt=""></p>
+<p>We will than see a few notification alerts that the node is being added.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20125519.png" alt=""></p>
+<p>Once the server has been added we will see that it was successful. (Hopefully!)</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20130030.png" alt=""></p>
+<p>So now we can verify. First with the Failover Cluster Manager.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20130040.png" alt=""></p>
+<p>Then we can pop back over to the Servers section of our cluster.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20130058.png" alt=""></p>
+<p>Don&rsquo;t worry about the error for Azure Arc. The server will take some time before it is added.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20130450.png" alt=""></p>
+<p>Another view of all three servers in our cluster and their Arc status.</p>
+<p><img src="/img/azshci-series/part-v/Screenshot%202023-10-24%20130650.png" alt=""></p>
+<hr>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>So, I do want to stress. This deployment I just walked through is not production ready. It will be good for getting your feet wet with Azure Stack HCI. For most of use we don’t have a lot of hardware that would be supported for HCI sitting around. We may have a few older servers that we can use, even deploy this same solution on that single physical server to have a multi-node solution, or use an AzureVM which can be very expensive. This blog I hope helped someone get an idea of that they would need to do to get started.</p>
+<p>Moving forward, I will blog more on the Azure Services that can be run on the Azure Stack HCI platform. How to manage the cluster and more. However, I think I will do one more Azure Stack HCI deployment blog. This time using the Windows Admin Center to deploy a four-node Azure Stack HCI Cluster.</p>
+<p>Also, this blog just touches on the deployment of an Azure Stack HCI cluster. There is so much more and we can really go into depth of what Azure Stack HCI can do along with Azure Arc. I will be blogging a lot on these subjects moving forward.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-stack-hci/" rel="tag">Azure Stack HCI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/wac/" rel="tag">WAC</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/windows-admin-center/" rel="tag">Windows Admin Center</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/powershell/" rel="tag">PowerShell</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Microsoft MVP currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thisismydemo-cloud" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-part-sixteen/">Azure Stack HCI - Part V - From one to Sixteen</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/">Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/">Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-part-ii-deploying-single-node-cluster/">Azure Stack HCI - Part II - Deploying A Single Node Cluster</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/azure-stack-hci-series/">Azure Stack HCI - Everything I know Series</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+<div class="widget-languages widget">
+	<h4 class="widget__title">Languages</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/">
+					<span class="widget-languages__link-btn widget__link-btn btn">EN</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/de/">
+					<span class="widget-languages__link-btn widget__link-btn btn">DE</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/es/">
+					<span class="widget-languages__link-btn widget__link-btn btn">ES</span>
+				</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget-languages__link widget__link" href="/fr/">
+					<span class="widget-languages__link-btn widget__link-btn btn">FR</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
