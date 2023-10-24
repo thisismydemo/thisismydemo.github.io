@@ -3,13 +3,13 @@ title: Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster
 description: This is a series of blogs about my experiences with Azure Stack HCI
 date: 2023-10-20T21:38:07.095Z
 preview: /img/azshci-series/azure-stack-hci.png
-draft: true
+draft: false
 tags:
-    - Azure Stack HCI
-    - PowerShell
-    - WIndows Admin Center
+  - Azure Stack HCI
+  - PowerShell
+  - WIndows Admin Center
 categories:
-    - Azure Stack HCI
+  - Azure Stack HCI
 lastmod: 2023-10-23T21:34:49.203Z
 thumbnail: /img/azshci-series/azure-stack-hci.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI

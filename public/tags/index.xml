@@ -6,11 +6,11 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Oct 2023 00:30:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 20 Oct 2023 21:38:07 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Stack HCI</title>
       <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
-      <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
+      <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
       <description></description>
@@ -19,9 +19,18 @@
     <item>
       <title>PowerShell</title>
       <link>http://thisismydemo.cloud/tags/powershell/</link>
-      <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
+      <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/powershell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows Admin Center</title>
+      <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
+      <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/windows-admin-center/</guid>
       <description></description>
     </item>
     
@@ -31,15 +40,6 @@
       <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/wac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Windows Admin Center</title>
-      <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
-      <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/windows-admin-center/</guid>
       <description></description>
     </item>
     
