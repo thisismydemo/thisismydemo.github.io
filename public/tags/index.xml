@@ -6,7 +6,61 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Oct 2023 19:11:10 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Nov 2023 21:18:11 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Arc</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Arc-enabled Data Services</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Arc-enabled Kubernetes</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure Arc-enabled servers</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloud Family</title>
+      <link>http://thisismydemo.cloud/tags/cloud-family/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/cloud-family/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Festive Tech Calendar</title>
+      <link>http://thisismydemo.cloud/tags/the-festive-tech-calendar/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      
+      <guid>http://thisismydemo.cloud/tags/the-festive-tech-calendar/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Azure Stack HCI</title>
       <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
@@ -40,24 +94,6 @@
       <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
       
       <guid>http://thisismydemo.cloud/tags/wac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Azure Arc</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
-      <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Azure Arc-enabled Kubernetes</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</link>
-      <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      
-      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</guid>
       <description></description>
     </item>
     

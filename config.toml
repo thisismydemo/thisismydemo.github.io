@@ -13,7 +13,7 @@ bio = "I am a Microsoft MVP currently living in Texas. My interests range from t
 avatar = "img/me.jpg"
 
 [Params]
-description = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Description of your site
+description = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?" # Description of your site
 opengraph = true
 twitter_cards = true
 readmore = false                                 # Show "Read more" button in list if true
@@ -24,7 +24,7 @@ mainSections = ["post", "docs"]
 
 
 [Params.logo]
-subtitle = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty littel fluffy clouds?" # Logo subtitle
+subtitle = "Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?" # Logo subtitle
 
 [Params.sidebar]
 home = "right"    # Configure layout for home page
@@ -52,15 +52,3 @@ unsafe = true
 [Languages]
 [Languages.en]
 weight = 1
-[Languages.de]
-weight = 2
-title = "Dies ist meine Demo"
-subtitle = "Nur ein weiterer Blog über die Cloud?"
-[Languages.es]
-weight = 3
-title = "Esta es mi demo"
-subtitle = "¿Otro blog sobre la nube?"
-[Languages.fr]
-weight = 4
-title = "Ceci est ma démo"
-subtitle = "Juste un autre blog sur le cloud ?"
