@@ -6,16 +6,15 @@
     <description>Recent content in Iot Edge on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/iot-edge/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 01:32:43 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/tags/iot-edge/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Getting my Vision AI DevKit Back Up And Running</title>
       <link>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</link>
       <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</guid>
       <description>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&amp;rsquo;t used this in a while, now I need to reset it and set it up again.
 The process The first thing I did was install the Android Debug Bridge (ADB).</description>
     </item>
-    
   </channel>
 </rss>

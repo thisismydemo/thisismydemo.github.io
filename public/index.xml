@@ -6,349 +6,290 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Nov 2023 21:18:11 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 20:39:04 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access</title>
+      <link>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</link>
+      <pubDate>Mon, 06 Nov 2023 20:39:04 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</guid>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas!</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</guid>
       <description>For those that are not aware there is a very awesome resource provided by the Cloud Family called the Festive Tech Calendar. The Festive Tech Calendar is a free, month-long, fun tech event that takes place throughout December. The event features new content from different communities and people around the globe. The event is organized by Cloud Family and is aimed at people from all communities who want to participate in a fun and engaging session that is a bit different from a normal conference.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</link>
       <pubDate>Tue, 24 Oct 2023 19:11:10 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Part V - From one to Sixteen</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</link>
       <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</link>
       <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</link>
       <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 I had planned to have a Part III that would have focused on scaling out a single node cluster.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</link>
       <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.</description>
     </item>
-    
     <item>
       <title>Azure Stack HCI - Everything I know Series</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-series/</link>
       <pubDate>Fri, 13 Oct 2023 16:15:49 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-series/</guid>
       <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
 In this series I plan to touch on the following topics:
 My Azure Stack HCI Infrastructure Deploying a Single Node HCI Cluster Single server scale-out of my Azure Stack HCI cluster to a two node cluster then on to a three node cluster and beyond.</description>
     </item>
-    
     <item>
       <title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</title>
       <link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</guid>
       <description>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
 At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.</description>
     </item>
-    
     <item>
       <title>My MicroK8s Cluster Is Now Manged by Azure. What is next?</title>
       <link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</link>
       <pubDate>Thu, 28 Sep 2023 17:20:35 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</guid>
       <description>In a previous blog series MicroK8S and WSL Managed by Azure Arc - A blog series about my experiences with MicroK8S, WSL, and Azure Arc I had a curiosity to see if I could deploy MicroK8s on my WIndows 10 WSL instance and then manage the WSL instance with Azure Arc and then manage the MicroK8s cluster using Arc-enabled Kubernetes.
 So let&amp;rsquo;s refresh here a little. I was able to get a MicroK8s cluster deployed on WSL running on my Windows 10 laptop.</description>
     </item>
-    
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</link>
       <pubDate>Thu, 28 Sep 2023 17:01:35 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</guid>
       <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
 The blog will be broken up into the following three sections:
 Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.</description>
     </item>
-    
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</link>
       <pubDate>Wed, 27 Sep 2023 14:00:00 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</guid>
       <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
 The blog will be broken up into the following three sections:
 Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent) In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.</description>
     </item>
-    
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</link>
       <pubDate>Tue, 26 Sep 2023 19:00:00 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</guid>
       <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
 The blog will be broken up into the following three sections:
 Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Installing MicroK8s on WSL In this blog I will discuss my experience with installing Microk8s on Windows Subsystem for Linux (WSL).</description>
     </item>
-    
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</link>
       <pubDate>Mon, 25 Sep 2023 16:00:00 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</guid>
       <description>I recently started a new job with a company that isn&amp;rsquo;t a 100% Microsoft shop. It has been many years since I have worked in a environment that everyone wasn&amp;rsquo;t drinking the Microsoft Kool-Aid. Not a bad thing if you do, I did and I loved that flavor. However, new job means new challenges and new way of doing things.
 In this blog series I am going to discuss my experiences with MicroK8S.</description>
     </item>
-    
     <item>
       <title>Deploy Home Assistant and My Home Automation Adventure.</title>
       <link>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</link>
       <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</guid>
       <description>At MMS this year one of the sessions, in fact the very last session I attended was about Home Automation using Home Assistant. I have been itching to get started playing with Home Assistant but just haven&amp;rsquo;t had the time. However, I have a need now to do some home automation and now it has become important.
 My Use case I have a T9 Honeywell Thermostat at home that is connected to the Resideo app to control my A/C.</description>
     </item>
-    
     <item>
       <title>How to Integrate Microsoft Sentinel and Freshservice</title>
       <link>http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/</link>
       <pubDate>Mon, 22 May 2023 23:13:05 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/</guid>
       <description>There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don&amp;rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system.</description>
     </item>
-    
     <item>
       <title>Deploying Microsoft Sentinel Content From A Repository - Introduction</title>
       <link>http://thisismydemo.cloud/post/deploying-microsoft-sentinel-content-repository-introduction/</link>
       <pubDate>Wed, 17 May 2023 15:11:44 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/deploying-microsoft-sentinel-content-repository-introduction/</guid>
       <description>So recently I have been dragged kicking and screaming into the security world. Well, not really dragged, if you know me I am a large guy and it would be more like fork lifting me kicking and screaming? Anyway, I actually love working with security products like Microsoft Sentinel, Defender for Cloud and the many other Defender for.. Products Microsoft offers, along with Identify solutions like Entra Permissions Management and more.</description>
     </item>
-    
     <item>
       <title>Dipping My Big Toe Into Cross-Tenant Synchronization Part I</title>
       <link>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</link>
       <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</guid>
       <description>So, I am very interested in What cross-tenant synchronization is and what it could do for me and maybe for customers? Since I have a number of tenants I thought it would be good to at least try this preview feature and blog about my experience.
 Also, this blog originally started out as a single blog but as I started to write it it grew and grew and grew. I wanted to refocus myself and break it up into smaller parts.</description>
     </item>
-    
     <item>
       <title>Applying The Final Firmware Update for the Azure Percept DK</title>
       <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
       <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
     </item>
-    
     <item>
       <title>Getting my Vision AI DevKit Back Up And Running</title>
       <link>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</link>
       <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</guid>
       <description>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&amp;rsquo;t used this in a while, now I need to reset it and set it up again.
 The process The first thing I did was install the Android Debug Bridge (ADB).</description>
     </item>
-    
     <item>
       <title>Is my Azure Sphere a rock now?</title>
       <link>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</link>
       <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</guid>
       <description>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
 However&amp;hellip;&amp;hellip;&amp;hellip;.
 According to Microsoft&amp;rsquo;s documentation on how to claim the device there is a call out:
 Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.</description>
     </item>
-    
     <item>
       <title>What! My Azure Percept DK Devices Are Being Retired???</title>
       <link>http://thisismydemo.cloud/post/what-my-azure-percept-dk-devices-are-being-retired/</link>
       <pubDate>Thu, 23 Mar 2023 22:58:14 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/what-my-azure-percept-dk-devices-are-being-retired/</guid>
       <description>So recently I started working on another IoT project which lead me to breaking out all my old development kits. I previously wrote a blog called My Azure Sphere Needs Reset where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn&amp;rsquo;t really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don&amp;rsquo;t exist anymore.</description>
     </item>
-    
     <item>
       <title>My Azure Sphere Needs Reset?</title>
       <link>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</link>
       <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</guid>
       <description>So I needed to break out my Azure SPhere Development kit again that I haven&amp;rsquo;t touched in a very long time. Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn&amp;rsquo;t remember for the life of me how to access the kit.
 So this blog is mainly for me so in 6 months when I need to use my Azure Sphere development kit again I will have a quick and easy reminder.</description>
     </item>
-    
     <item>
       <title>How To Grant Users Access To Entra Permissions Management Portal</title>
       <link>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</link>
       <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</guid>
       <description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.
 I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description>
     </item>
-    
     <item>
       <title>Customize My WIndows Terminal Please? </title>
       <link>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</guid>
       <description>Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
 The three areas I always change are:
 Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?
 Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</description>
     </item>
-    
     <item>
       <title>My Intune Proactive Remediation Scripts</title>
       <link>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</guid>
       <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.
 Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.
 Intune Proactive Remediation - Check if KB5007253 is installed.
 The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
     </item>
-    
     <item>
       <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
       <link>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</link>
       <pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</guid>
       <description>I want to start this blog out by saying I am not an Intune expert. In fact I don&amp;rsquo;t really spend much time with Intune. However, once in a while there are projects that require certain tools like InTune so once in a while I do get my hands on Intune. So I want to share what I have learned about Intune Proactive Remediation and how to create and apply them in your Endpoint environment.</description>
     </item>
-    
     <item>
       <title>Enable Windows Terminal on Windows Servers</title>
       <link>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</link>
       <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</guid>
       <description>Early this year I had written a blog talking about how to enable Windows Terminal on Windows Server. However, I deleted that blog and all content and can&amp;rsquo;t find my backups so I am re-writing it once again. I wanted to share my experience with installing Windows Terminal on Windows Server and what I had to do to get around the blockers I ran into. As I mentioned in the last blog I had ran into issues that other bloggers never seemed to run into when installing Windows Terminal.</description>
     </item>
-    
     <item>
       <title>Onboard a Google Cloud Platform project to Entra Permissions Management</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link>
       <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</guid>
       <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.
 First let&amp;rsquo;s login to the Entra Permissions Management dashboard.
 Click on the gear in the top right corner to open up the Data Collectors dashboard.
 Click the GCP under the Data Collectors tab then click Create Configuration.</description>
     </item>
-    
     <item>
       <title>Entra Permissions Management Podcast</title>
       <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid>
       <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.
 You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
     </item>
-    
     <item>
       <title>Setting Up Entra Permissions Management</title>
       <link>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</link>
       <pubDate>Wed, 18 Jan 2023 17:59:11 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</guid>
       <description>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in. The Identity product group has a nice little user guide out there on Microsoft Learn Trial user guide: Microsoft Entra Permissions Management. There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk.</description>
     </item>
-    
     <item>
       <title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
       <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
 There are three methods that can accomplish this on your client computers.
 Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
     </item>
-    
     <item>
       <title>Festive Tech Calendar 2022</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</link>
       <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</guid>
       <description>This last year I was able to submit a session for the Festive Tech Calender. If you never have heard about the Festive Tech Calendar I suggest you head over to the web site and check out all the different on demand sessions that are available. The Festive Tech Calendar is a community supported and all sessions are created by members of the tech community.
 Use Azure Site Recovery to save your bacon&amp;hellip; Christmas ham&amp;hellip; or maybe your job?</description>
     </item>
-    
     <item>
       <title>Creating this blog using Hugo and GitHub Pages</title>
       <link>http://thisismydemo.cloud/post/creating-blog-hugo-github-pages/</link>
       <pubDate>Sun, 01 Jan 2023 07:52:45 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/creating-blog-hugo-github-pages/</guid>
       <description>I am teaching myself as I create this new blog, new technology like Hugo, Front Matter, and Github pages. This post will be updated as I go and become more comfortable with markdown language and everything else that having a static blog in Github requires.</description>
     </item>
-    
     <item>
       <title>About</title>
       <link>http://thisismydemo.cloud/about/</link>
       <pubDate>Tue, 25 Jan 2022 14:00:00 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/about/</guid>
       <description>What is This Is A Demo? This blog started as a way to play with the idea of moving my old blogs from sources like WordPress, Blogger, etc to something I could control myself. Also something that was free. :) So this blog was born out of the need to learn how to use Hugo, GitHub Pages, and a front end like Front Matter. I have a way to go because everything is all new to me.</description>
     </item>
-    
   </channel>
 </rss>

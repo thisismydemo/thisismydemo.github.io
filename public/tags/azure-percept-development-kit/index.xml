@@ -6,24 +6,21 @@
     <description>Recent content in Azure Percept Development Kit on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-percept-development-kit/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Mar 2023 23:15:49 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/tags/azure-percept-development-kit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Applying The Final Firmware Update for the Azure Percept DK</title>
       <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
       <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
     </item>
-    
     <item>
       <title>What! My Azure Percept DK Devices Are Being Retired???</title>
       <link>http://thisismydemo.cloud/post/what-my-azure-percept-dk-devices-are-being-retired/</link>
       <pubDate>Thu, 23 Mar 2023 22:58:14 +0000</pubDate>
-      
       <guid>http://thisismydemo.cloud/post/what-my-azure-percept-dk-devices-are-being-retired/</guid>
       <description>So recently I started working on another IoT project which lead me to breaking out all my old development kits. I previously wrote a blog called My Azure Sphere Needs Reset where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn&amp;rsquo;t really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don&amp;rsquo;t exist anymore.</description>
     </item>
-    
   </channel>
 </rss>
