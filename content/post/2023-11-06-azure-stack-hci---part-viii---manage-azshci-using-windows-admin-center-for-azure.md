@@ -1,15 +1,15 @@
 ---
 title: Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure
 description: This is a series of blogs about my experiences with Azure Stack HCI
-date: 2023-11-06T23:32:45.865Z
+date: 2023-11-07T14:07:49.528Z
 preview: /img/azshci-series/part-vi/windows-admin-center.png
-draft: true
+draft: false
 tags:
     - Azure Stack HCI
     - Windows Admin Center
 categories:
     - Azure Stack HCI
-lastmod: 2023-11-07T00:07:14.705Z
+lastmod: 2023-11-07T14:08:08.009Z
 thumbnail: /img/azshci-series/part-vi/windows-admin-center.png
 lead: This is a series of blogs about my experiences with Azure Stack HCI
 slug: azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure
