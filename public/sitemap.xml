@@ -2,31 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://thisismydemo.cloud/tags/azure-stack-hci/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/azure-stack-hci/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/azure-stack-hci-series-ended/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/</loc>
+    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-kubernetes-service/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-stack-hci/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-stack-hci/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
     <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/windows-admin-center/</loc>
