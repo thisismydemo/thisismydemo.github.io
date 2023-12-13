@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/cloud-family/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/dfwsmug/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/dfwsmug/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/festive-tech-calendar/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/festive-tech-calendar/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/2023-12-13-the-12-days-of-azure-arc-mas/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/</loc>
+    <lastmod>2023-12-13T22:55:21+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-stack-hci/</loc>
     <lastmod>2023-11-29T14:39:28+00:00</lastmod>
   </url><url>
@@ -10,21 +43,6 @@
   </url><url>
     <loc>http://thisismydemo.cloud/post/azure-stack-hci-series-ended/</loc>
     <lastmod>2023-11-29T14:39:28+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2023-11-29T14:39:28+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
-    <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-kubernetes-service/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
@@ -51,12 +69,6 @@
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</loc>
-    <lastmod>2023-11-01T21:59:39+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/cloud-family/</loc>
-    <lastmod>2023-11-01T21:59:39+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/festive-tech-calendar/</loc>
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</loc>
@@ -309,9 +321,6 @@
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/categories/azure-site-recovery/</loc>
-    <lastmod>2023-01-20T16:15:38+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/festive-tech-calendar/</loc>
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</loc>

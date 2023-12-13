@@ -6,20 +6,41 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Nov 2023 21:01:59 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Dec 2023 21:20:30 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Arc</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+      <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cloud Family</title>
+      <link>http://thisismydemo.cloud/tags/cloud-family/</link>
+      <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/cloud-family/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>DFWSMUG</title>
+      <link>http://thisismydemo.cloud/tags/dfwsmug/</link>
+      <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/dfwsmug/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Festive Tech Calendar</title>
+      <link>http://thisismydemo.cloud/tags/festive-tech-calendar/</link>
+      <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/festive-tech-calendar/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Azure Stack HCI</title>
       <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
       <pubDate>Tue, 28 Nov 2023 21:01:59 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Arc</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
-      <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
       <description></description>
     </item>
     <item>
@@ -55,13 +76,6 @@
       <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cloud Family</title>
-      <link>http://thisismydemo.cloud/tags/cloud-family/</link>
-      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cloud-family/</guid>
       <description></description>
     </item>
     <item>
@@ -321,13 +335,6 @@
       <link>http://thisismydemo.cloud/tags/azure-site-recovery/</link>
       <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-site-recovery/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Festive Tech Calendar</title>
-      <link>http://thisismydemo.cloud/tags/festive-tech-calendar/</link>
-      <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/festive-tech-calendar/</guid>
       <description></description>
     </item>
     <item>
