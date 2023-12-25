@@ -6,13 +6,20 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 13 Dec 2023 21:20:30 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Dec 2023 22:55:18 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Arc</title>
       <link>http://thisismydemo.cloud/tags/azure-arc/</link>
-      <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
+      <pubDate>Mon, 25 Dec 2023 22:55:18 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Arc-Mas</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc-mas/</link>
+      <pubDate>Mon, 25 Dec 2023 22:55:18 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-arc-mas/</guid>
       <description></description>
     </item>
     <item>
