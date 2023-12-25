@@ -6,8 +6,16 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 25 Dec 2023 22:55:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Dec 2023 22:56:20 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
+      <pubDate>Mon, 25 Dec 2023 22:56:20 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.
+Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure ArcMas - Introduction</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-introduction/</link>
