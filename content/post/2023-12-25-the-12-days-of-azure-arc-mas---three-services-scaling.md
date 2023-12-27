@@ -1,14 +1,18 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Three Services Scaling
 description: "On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling."
-date: 2023-12-26T00:07:16.855Z
-preview: ""
-draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T00:07:20.984Z
+date: 2023-12-27T19:49:59.112Z
+preview: /img/12daysofarcmas/daythree.png
+draft: false
+tags:
+   - Azure Arc
+   - Azure Arc-Mas
+categories:
+   - Azure Arc
+lastmod: 2023-12-27T19:50:05.865Z
 thumbnail: ""
 lead: "On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling."
+slug: 12-days-azure-arc-mas-services-scaling
 ---
 
 # The 12 Days of Azure Arc-Mas: Day 3 - Three Services Scaling

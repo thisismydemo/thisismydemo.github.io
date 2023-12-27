@@ -2,13 +2,17 @@
 title: The 12 Days of Azure Arc-Mas - Four Nodes Connecting
 description: ""
 date: 2023-12-26T00:08:08.909Z
-preview: ""
+preview: /img/12daysofarcmas/dayfour.png
 draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T00:08:25.358Z
-thumbnail: ""
-lead: ""
+tags:
+    - Azure Arc
+    - Azure Arc-Mas
+categories:
+    - Azure Arc
+lastmod: 2023-12-26T14:57:21.443Z
+thumbnail: /img/12daysofarcmas/dayfour.png
+lead: "On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting."
+slug: 12-days-azure-arc-mas-nodes-connecting
 ---
 # The 12 Days of Azure Arc-Mas: Day 4 - Four Nodes Connecting
 

@@ -6,8 +6,16 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 26 Dec 2023 00:07:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Dec 2023 19:49:59 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Three Services Scaling</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</link>
+      <pubDate>Wed, 27 Dec 2023 19:49:59 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 3 - Three Services Scaling On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling.
+Day 3: Data Insights - Azure Arc for Data Services Azure Arc celebrates the season by bringing the robustness of Azure data services directly to Kubernetes clusters, regardless of their location. Imagine Azure SQL Managed Instance and Azure Database for PostgreSQL, not just housed within Azure but anywhere you require – without missing a beat.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Two Clusters Flexing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</link>
