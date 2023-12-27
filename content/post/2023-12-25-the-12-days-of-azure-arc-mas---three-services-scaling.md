@@ -9,8 +9,8 @@ tags:
    - Azure Arc-Mas
 categories:
    - Azure Arc
-lastmod: 2023-12-27T19:50:05.865Z
-thumbnail: ""
+lastmod: 2023-12-27T19:52:32.110Z
+thumbnail: /img/12daysofarcmas/daythree.png
 lead: "On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling."
 slug: 12-days-azure-arc-mas-services-scaling
 ---
