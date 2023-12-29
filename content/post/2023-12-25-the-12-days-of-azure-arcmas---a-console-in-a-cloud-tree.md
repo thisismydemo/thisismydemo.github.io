@@ -9,7 +9,7 @@ tags:
   - Azure
 categories:
   - Azure Arc
-lastmod: 2023-12-29T19:33:00.899Z
+lastmod: 2023-12-29T19:37:04.731Z
 thumbnail: /img/12daysofarcmas/dayone.png
 lead: "On the first day of Arc-mas, Azure granted me: A Console in a Cloud Tree. Where management's centralized for all to see"
 slug: 12-days-azure-arcmas-console-cloud-tree
@@ -42,5 +42,3 @@ Stay tuned for Day 2, where we'll unwrap another gift that Azure Arc brings to t
 ---
 
 *This post is part of the "12 Days of Azure Arc-Mas" series, where we explore how Azure Arc can be the gift that keeps on giving for your organization's cloud and on-premises environments.*
-
-
