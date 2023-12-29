@@ -1,14 +1,18 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Six Apps Deploying
-description: ""
+description: "On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing."
 date: 2023-12-26T00:11:55.007Z
-preview: ""
+preview: /img/12daysofarcmas/daysix.png
 draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T00:13:14.759Z
-thumbnail: ""
-lead: ""
+tags:
+    - Azure Arc
+    - Azure Arc-Mas
+categories:
+    - Azure Arc
+lastmod: 2023-12-29T19:31:38.242Z
+thumbnail: /img/12daysofarcmas/daysix.png
+lead: "On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing."
+slug: 12-days-azure-arc-mas-apps-deploying
 ---
 # The 12 Days of Azure Arc-Mas: Day 6 - Six Apps Deploying
 

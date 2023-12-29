@@ -1,15 +1,15 @@
 ---
 title: The 12 Days of Azure ArcMas - Introduction
 description: Unwrapping the Magic of Azure Arc
-date: 2023-12-25T22:55:18.051Z
-preview: null
+date: 2023-12-25T22:55:18.000Z
+preview: /img/12daysofarcmas/12dayslogo.jpg
 draft: false
 tags:
   - Azure Arc
   - Azure Arc-Mas
 categories:
   - Azure Arc
-lastmod: 2023-12-25T23:18:09.875Z
+lastmod: 2023-12-29T19:33:47.525Z
 thumbnail: /img/12daysofarcmas/12dayslogo.jpg
 lead: Unwrapping the Magic of Azure Arc
 slug: 12-days-azure-arcmas-introduction
