@@ -1,7 +1,7 @@
 ---
 title: The 12 Days of Azure ArcMas - A Console In A Cloud Tree
 description: ""
-date: 2023-12-25T22:56:20.400Z
+date: 2023-12-29T19:10:08.119Z
 preview: /img/12daysofarcmas/dayone.png
 draft: false
 tags:
@@ -9,7 +9,7 @@ tags:
   - Azure
 categories:
   - Azure Arc
-lastmod: 2023-12-29T19:03:16.256Z
+lastmod: 2023-12-29T19:10:09.483Z
 thumbnail: /img/12daysofarcmas/dayone.png
 lead: "On the first day of Arc-mas, Azure granted me: A Console in a Cloud Tree. Where management's centralized for all to see"
 slug: 12-days-azure-arcmas-console-cloud-tree

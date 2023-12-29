@@ -80,6 +80,32 @@ if (!doNotTrack) {
 	</header><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">
+		<img class="thumbnail__image" src="/img/microk8s_arc/azure-kubernetes.png" alt="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" rel="bookmark">
+			MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes
+			</a>
+		</h2>
+		<p class="list__lead post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-28T17:01:35Z">September 28, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:09:09Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
+The blog will be broken up into the following three sections:
+Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
 		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
 		</a>
@@ -300,33 +326,6 @@ Also, this blog originally started out as a single blog but as I started to writ
 		Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&rsquo;t used this in a while, now I need to reset it and set it up again.
 The process The first thing I did was install the Android Debug Bridge (ADB).
 	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/is-my-azure-sphere-a-rock-now/">
-		<img class="thumbnail__image" src="/img/azsphereregister/register_004.png" alt="Is my Azure Sphere a rock now?">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/is-my-azure-sphere-a-rock-now/" rel="bookmark">
-			Is my Azure Sphere a rock now?
-			</a>
-		</h2>
-		<p class="list__lead post__lead">Yet another piece of Microsoft Hardware that is going into the rock draw</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T01:06:44Z">March 24, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T01:19:29Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-sphere-development-kit/" rel="category">Azure Sphere Development Kit</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
-However&hellip;&hellip;&hellip;.
-According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
-Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.
-	</div>
 </article>
 </main>
 
@@ -351,11 +350,11 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arcmas-console-cloud-tree/">The 12 Days of Azure ArcMas - A Console In A Cloud Tree</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-nodes-connecting/">The 12 Days of Azure Arc-Mas - Four Nodes Connecting</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-services-scaling/">The 12 Days of Azure Arc-Mas - Three Services Scaling</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-golden-savings/">The 12 Days of Azure Arc-Mas - Five Golden Savings</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-clusters-flexing/">The 12 Days of Azure Arc-Mas - Two Clusters Flexing</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arcmas-console-cloud-tree/">The 12 Days of Azure ArcMas - A Console In A Cloud Tree</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arcmas-introduction/">The 12 Days of Azure ArcMas - Introduction</a></li>
 		</ul>
 	</div>
 </div>
