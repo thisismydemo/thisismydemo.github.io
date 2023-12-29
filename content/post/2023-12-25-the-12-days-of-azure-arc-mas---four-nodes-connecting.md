@@ -1,15 +1,15 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Four Nodes Connecting
 description: ""
-date: 2023-12-26T00:08:08.909Z
+date: 2023-12-28T19:02:55.000Z
 preview: /img/12daysofarcmas/dayfour.png
-draft: true
+draft: false
 tags:
     - Azure Arc
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-26T14:57:21.443Z
+lastmod: 2023-12-29T19:05:22.878Z
 thumbnail: /img/12daysofarcmas/dayfour.png
 lead: "On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting."
 slug: 12-days-azure-arc-mas-nodes-connecting
@@ -30,7 +30,7 @@ Azure Arc's fourth gift to us is the power of connection — linking diverse inf
 ### Connectivity That Binds:
 - **Direct Internet Connection**: Ideal for environments with direct internet access, providing straightforward Azure Arc integration.
 - **VPN & ExpressRoute**: Secure and reliable connections for more sensitive or performance-intensive operations.
-- **Offline Mode**: Azure Arc's flexibility even extends to environments with intermittent or no direct internet connectivity.
+
 
 ## Key Messages for Day 4:
 Azure Arc unites disparate infrastructures under a single, cohesive management umbrella. It's not just about connecting nodes; it's about connecting environments, platforms, and operational models.

@@ -6,8 +6,16 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 27 Dec 2023 19:49:59 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Dec 2023 19:02:55 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Four Nodes Connecting</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</link>
+      <pubDate>Thu, 28 Dec 2023 19:02:55 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 4 - Four Nodes Connecting On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting.
+Day 4: Flexible Infrastructure and Connectivity Azure Arc&amp;rsquo;s fourth gift to us is the power of connection — linking diverse infrastructures from the conventional to the cutting-edge, and ensuring that whether it&amp;rsquo;s Windows Server, Linux, VMware vSphere, or Azure Stack HCI, your nodes are all part of the same, seamlessly managed ecosystem.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Three Services Scaling</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</link>
