@@ -1,7 +1,7 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Two Clusters Flexing
 description: "On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free"
-date: 2023-12-26T00:07:02.493Z
+date: 2023-12-27T00:07:02.000Z
 preview: /img/12daysofarcmas/daytwo.png
 draft: false
 tags:
@@ -9,7 +9,7 @@ tags:
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-26T14:41:48.430Z
+lastmod: 2023-12-29T19:40:58.399Z
 thumbnail: /img/12daysofarcmas/daytwo.png
 lead: "On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free"
 slug: 12-days-azure-arc-mas-clusters-flexing
