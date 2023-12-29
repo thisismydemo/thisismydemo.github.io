@@ -1,14 +1,14 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Five Golden Savings
 description: "On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving."
-date: 2023-12-26T00:11:04.203Z
+date: 2023-12-29T19:28:34.390Z
 preview: /img/12daysofarcmas/dayfive.png
 draft: false
 tags:
     - Azure Arc
 categories:
     - Azure Arc
-lastmod: 2023-12-29T19:25:54.776Z
+lastmod: 2023-12-29T19:28:39.988Z
 thumbnail: /img/12daysofarcmas/dayfive.png
 lead: "On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving."
 slug: 12-days-azure-arc-mas-golden-savings

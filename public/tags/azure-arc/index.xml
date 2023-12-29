@@ -6,15 +6,15 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Dec 2023 19:10:08 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Dec 2023 19:28:34 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/azure-arc/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
-      <pubDate>Fri, 29 Dec 2023 19:10:08 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.
-Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
+      <title>The 12 Days of Azure Arc-Mas - Five Golden Savings</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</link>
+      <pubDate>Fri, 29 Dec 2023 19:28:34 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 5 - Five Golden Savings On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving.
+The Fifth Day of Arc-mas: Embracing Azure Arc&amp;rsquo;s &amp;ldquo;Five Golden Savings&amp;rdquo; Azure Hybrid Benefit: A Beacon of Cost Optimization Azure Arc&amp;rsquo;s Hybrid Benefit transforms existing Windows Server and SQL Server licenses with Software Assurance or qualifying subscription licenses into a cost-saving strategy within Azure Arc-enabled services.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Four Nodes Connecting</title>
@@ -33,14 +33,6 @@ Day 4: Flexible Infrastructure and Connectivity Azure Arc&amp;rsquo;s fourth gif
 Day 3: Data Insights - Azure Arc for Data Services Azure Arc celebrates the season by bringing the robustness of Azure data services directly to Kubernetes clusters, regardless of their location. Imagine Azure SQL Managed Instance and Azure Database for PostgreSQL, not just housed within Azure but anywhere you require – without missing a beat.</description>
     </item>
     <item>
-      <title>The 12 Days of Azure Arc-Mas - Five Golden Savings</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</link>
-      <pubDate>Tue, 26 Dec 2023 00:11:04 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 5 - Five Golden Savings On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving.
-The Fifth Day of Arc-mas: Embracing Azure Arc&amp;rsquo;s &amp;ldquo;Five Golden Savings&amp;rdquo; Azure Hybrid Benefit: A Beacon of Cost Optimization Azure Arc&amp;rsquo;s Hybrid Benefit transforms existing Windows Server and SQL Server licenses with Software Assurance or qualifying subscription licenses into a cost-saving strategy within Azure Arc-enabled services.</description>
-    </item>
-    <item>
       <title>The 12 Days of Azure Arc-Mas - Two Clusters Flexing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</link>
       <pubDate>Tue, 26 Dec 2023 00:07:02 +0000</pubDate>
@@ -55,6 +47,14 @@ Azure Arc&amp;rsquo;s Key Messages: Consistent Development and Operations: Azure
       <pubDate>Mon, 25 Dec 2023 22:55:18 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-introduction/</guid>
       <description>Introducing The 12 Days of Azure Arc-Mas: A Festive Journey Through Cloud Management Happy Holidays, tech enthusiasts! 🎄 As we count down to the end of the year, I&amp;rsquo;m excited to bring you a special gift: &amp;ldquo;The 12 Days of Azure Arc-Mas.&amp;rdquo; This series is inspired by the classic carol &amp;ldquo;The Twelve Days of Christmas,&amp;rdquo; with a tech twist that celebrates the gifts Azure Arc delivers to IT professionals each day.</description>
+    </item>
+    <item>
+      <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
+      <pubDate>Mon, 25 Dec 2023 19:10:08 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.
+Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas</title>
