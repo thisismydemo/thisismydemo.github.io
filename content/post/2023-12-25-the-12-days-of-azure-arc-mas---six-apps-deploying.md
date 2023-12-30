@@ -1,15 +1,15 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Six Apps Deploying
 description: "On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing."
-date: 2023-12-26T00:11:55.007Z
+date: 2023-12-30T19:27:58.489Z
 preview: /img/12daysofarcmas/daysix.png
-draft: true
+draft: false
 tags:
     - Azure Arc
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-29T19:31:38.242Z
+lastmod: 2023-12-30T19:28:05.069Z
 thumbnail: /img/12daysofarcmas/daysix.png
 lead: "On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing."
 slug: 12-days-azure-arc-mas-apps-deploying
@@ -25,7 +25,6 @@ Azure Arc brings six geese a-laying, each laying the foundation for innovative a
 ### Powering Agile Application Development:
 - **End-to-End Solutions**: From local data collection to cloud-based analytics, Azure Arc provides a comprehensive platform for app development.
 - **Efficiency with Data and AI Tools**: Streamline operations with consistent data management and advanced analytics tools.
-- **Access to Latest Cloud Technologies**: Utilize cutting-edge tools like GitHub, Terraform, and Visual Studio, integrated seamlessly with Azure Arc.
 
 ### Azure Arc’s Role in Innovation:
 
@@ -38,6 +37,14 @@ Azure Arc brings six geese a-laying, each laying the foundation for innovative a
 - **Support for Data-Intensive Apps**: Handle data-heavy workloads efficiently, even in edge computing or IoT scenarios.
 
 #### Leveraging Azure Machine Learning and AI:
+
+Azure Arc-Enabled Machine Learning allows organizations to train machine learning models on Kubernetes clusters, wherever they are located.
+This capability is especially beneficial for scenarios where data cannot be easily moved to the cloud due to size, privacy, or compliance reasons.
+
+- **Local Data Processing and AI**: By enabling machine learning close to where data is generated (especially in edge scenarios), Azure Arc helps in reducing latency and improving response times for AI-driven applications. This local processing is crucial for real-time decision-making applications, such as in manufacturing, retail, and healthcare sectors.
+
+- **Scalability and Flexibility**: Organizations can scale their AI and machine learning operations up or down based on their needs, leveraging Azure Arc’s elastic scalability. This flexibility allows for cost-effective use of resources, as you pay only for what you use, and when you use it.
+
 - **AI and Machine Learning Everywhere**: Bring powerful AI capabilities to hybrid setups with Azure Machine Learning.
 - **Optimized Workflows**: Train and manage machine learning models close to your data sources, enhancing performance and reducing latency.
 

@@ -6,8 +6,17 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 29 Dec 2023 19:28:34 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 Dec 2023 19:27:58 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Six Apps Deploying</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</link>
+      <pubDate>Sat, 30 Dec 2023 19:27:58 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 6 - Six Apps Deploying On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing.
+Day 6: Fostering Innovation with Azure Arc Azure Arc brings six geese a-laying, each laying the foundation for innovative app deployment, orchestrating the birth of new solutions with cloud-native development across any environment.
+Powering Agile Application Development: End-to-End Solutions: From local data collection to cloud-based analytics, Azure Arc provides a comprehensive platform for app development.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Five Golden Savings</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</link>
