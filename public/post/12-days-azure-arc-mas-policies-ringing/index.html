@@ -4,20 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure - This Is My Demo</title>
+	<title>The 12 Days of Azure Arc-Mas - Seven Policies Ringing - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure" />
-<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
+	<meta name="description" content="On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.">
+		<meta property="og:title" content="The 12 Days of Azure Arc-Mas - Seven Policies Ringing" />
+<meta property="og:description" content="On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-11-07T14:07:49+00:00" />
-<meta property="article:modified_time" content="2023-11-07T14:08:08+00:00" />
+<meta property="og:url" content="http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-12-31T15:07:12+00:00" />
+<meta property="article:modified_time" content="2023-12-31T15:09:22+00:00" />
 
 
 		<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure"/>
-<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+<meta name="twitter:title" content="The 12 Days of Azure Arc-Mas - Seven Policies Ringing"/>
+<meta name="twitter:description" content="On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity."/>
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -78,58 +78,53 @@ if (!doNotTrack) {
 <main class="main" role="main">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</h1>
-			<p class="post__lead">This is a series of blogs about my experiences with Azure Stack HCI</p>
+			<h1 class="post__title">The 12 Days of Azure Arc-Mas - Seven Policies Ringing</h1>
+			<p class="post__lead">On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-11-07T14:07:49Z">November 07, 2023</time>
-	<time class="meta__text" datetime="2023-11-07T14:08:08Z">(Last Modified: November 07, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-12-31T15:07:12Z">December 31, 2023</time>
+	<time class="meta__text" datetime="2023-12-31T15:09:22Z">(Last Modified: December 31, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc/" rel="category">Azure Arc</a>
 	</span>
 </div></div>
 		</header>
 		
 	<figure class="post__thumbnail thumbnail">
 		
-		<img class="thumbnail__image" src="/img/azshci-series/part-vi/windows-admin-center.png" alt="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure">
+		<img class="thumbnail__image" src="/img/12daysofarcmas/dayseven.png" alt="The 12 Days of Azure Arc-Mas - Seven Policies Ringing">
 		
 	</figure><div class="content post__content clearfix">
-			<p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p>
-<p>My last blog <a href="https://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/">Azure Stack HCI - Part VII - Configure Windows Admin Center Access</a>, was actually all about Windows Admin Center and nothing really about Azure Stack HCI. However, this blog is going to be focused on using Windows Admin Center for Azure (Preview) to manage our Azure Stack HCI clusters from anywhere without a VPN or a direct connection. So go get some coffee so I don&rsquo;t put you to sleep.</p>
-<h2 id="configuring-windows-admin-center-azure-preview">Configuring Windows Admin Center Azure (Preview)</h2>
-<p>What better way to be able to manage your cluster than from the same portal you manage most your Azure environment from, right? Now, this is still a (Preview) services and things could change or not.  There are some limitations that I will call out later when managing your Azure Stack HCI cluster using Windows Admin Center for Azure vs using Windows Admin Center Gateway. They are small and if all you are looking for is to manage the cluster for day to day activities then this is a good tool.</p>
-<p>We start by going to our Azure Arc and going to infrastructure, and Azure Stack HCI.  From there we will click on the cluster we want to enable WAC management on. When we get to the cluster blade, the next step is to click on Windows Admin Center (Preview).</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164709.png" alt=""></p>
-<p>Here we will see our option to click on Setup.  So, we click on setup.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164806.png" alt=""></p>
-<p>The first thing to happen is to the right a new blade will open for our listening port. I will use the default port of 6516. This will need to be open on your firewalls.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164909.png" alt=""></p>
-<p>Next we will see to task running.  This will install the AdminCenter extension and configure connectivity to WAC.  What this is actually doing, by installing the extension, is it is installing a version of WAC on each cluster node.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164955.png" alt=""></p>
-<p>Here we can see the status of that extension being installed.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165120.png" alt=""></p>
-<p>If we go back to the Windows Admin Center window we will get the message that this is being configured and could take about 5 minutes. Which means coffee time!</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165237.png" alt=""></p>
-<p>Once the extension are successfully installed we should be able to verify from the Extension blade on our cluster.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171044.png" alt=""></p>
-<p>When we go back to our Windows Admin Center blade we will see that now we need to configure who can access this WAC instance. We can click the section that says Click to manage access and it will take us to the Access Control for this resource.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171018.png" alt=""></p>
-<p>From here we will click add and select role assignment.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171122.png" alt=""></p>
-<p>This next window we will search for Windows admin and it should filter it down to the exact role that we are looking for. Click on Windows Admin Center Administrator Logon. Then we click on Next.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171243.png" alt=""></p>
-<p>On the next window we will click on + Select Members to add out members to this role assignment.  The pop up to the right, we will select our users or our groups we want to add.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171351.png" alt=""></p>
-<p>The next window we can review the users we are adding to the role assignment. We can then click Review and Assign. It should take just a minute or two.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171438.png" alt=""></p>
-<p>Now if we go back to the Windows Admin Center we will see a connect button. All we need to do is click Connect.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171522.png" alt=""></p>
-<p>This will take a few minute for it to initialize for the first time.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171608.png" alt=""></p>
-<p>Once it loads, it should look almost exactly the same as if we where logged on to the Windows Admin Center Gateway.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171724.png" alt=""></p>
-<p>As you can see and compare, the options that we have available to manage from Azure are very similar to the options we have locally.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20172046.png" alt=""></p>
-<p>There are a few differences. On the Azure version of WAC we don&rsquo;t have the capabilities to manage Azure Kubernetes Service. We also don&rsquo;t have the ability to configure Storage Replicas and Azure Arc settings.  Those are not the things that you will need to worry about, except maybe the management of AKS. This cluster doesn&rsquo;t have AKS installed yet so it may be available after AKS is installed. I will update this blog if that is the case.</p>
+			<h1 id="the-12-days-of-azure-arc-mas-day-7---seven-policies-ringing">The 12 Days of Azure Arc-Mas: Day 7 - Seven Policies Ringing</h1>
+<p>On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.</p>
+<h2 id="day-7-securing-multicloud-governance-with-azure-arc">Day 7: Securing Multicloud Governance with Azure Arc</h2>
+<p>Azure Arc brings to us seven swans a-swimming, gracefully navigating the waters of multicloud governance, representing the beauty and elegance of a well-orchestrated security strategy.</p>
+<h3 id="harnessing-the-power-of-policy-driven-management">Harnessing the Power of Policy-Driven Management:</h3>
+<ul>
+<li><strong>Azure Policy</strong>: Extend governance across Azure and non-Azure environments, applying consistent policies everywhere.</li>
+<li><strong>Microsoft Defender for Cloud</strong>: Integrate Azure&rsquo;s advanced security intelligence to protect and manage your workloads.</li>
+<li><strong>Microsoft Sentinel</strong>: Employ a scalable, cloud-native SIEM to detect, investigate, and respond to threats across your entire digital estate.</li>
+</ul>
+<h3 id="azure-arcs-role-in-security-and-governance">Azure Arc’s Role in Security and Governance:</h3>
+<h4 id="multicloud-security-and-governance">Multicloud Security and Governance:</h4>
+<ul>
+<li><strong>Unified Compliance</strong>: Ensure all your resources adhere to regulatory and organization-specific policies with Azure Arc&rsquo;s governance capabilities.</li>
+<li><strong>Policy-Driven Control</strong>: Automate and enforce compliance and governance at scale, irrespective of where your resources are located.</li>
+</ul>
+<h4 id="integrated-security-tools">Integrated Security Tools:</h4>
+<ul>
+<li><strong>Comprehensive Protection</strong>: Leverage integrated tools like Microsoft Defender for Cloud and Microsoft Sentinel to provide a complete view of your security posture.</li>
+<li><strong>Proactive Threat Management</strong>: Detect and mitigate risks promptly, with advanced threat protection across your hybrid and multicloud environments.</li>
+</ul>
+<h2 id="key-messages-for-day-seven">Key Messages for Day Seven:</h2>
+<p>Azure Arc&rsquo;s seven policies are ringing, symbolizing a harmonious approach to governance and compliance that resonates across every layer of your IT environment.</p>
+<h3 id="practical-implications-and-benefits">Practical Implications and Benefits:</h3>
+<ul>
+<li><strong>Simplified Multicloud Management</strong>: With Azure Arc, manage security and governance across diverse infrastructures from a single pane of glass.</li>
+<li><strong>Streamlined Compliance</strong>: Achieve and maintain compliance with less effort, thanks to policy-driven governance and automated controls.</li>
+<li><strong>Enhanced Security Posture</strong>: Improve your security strategy with integrated tools, gaining visibility and control over potential vulnerabilities.</li>
+</ul>
+<p>Stay tuned for the eighth day of Azure Arc-Mas, where we will explore the capabilities of Azure Arc in creating custom locations for service-specific governance and more.</p>
+<hr>
+<p><em>Continue with the &ldquo;12 Days of Azure Arc-Mas&rdquo; series to discover how Azure Arc&rsquo;s security and governance features can ring true for your organization&rsquo;s needs.</em></p>
 
 		</div>
 		<footer class="post__footer">
@@ -138,10 +133,7 @@ if (!doNotTrack) {
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-stack-hci/" rel="tag">Azure Stack HCI</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/windows-admin-center/" rel="tag">Windows Admin Center</a>
+			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
 		</li>
 	</ul>
 </div>
@@ -163,15 +155,9 @@ if (!doNotTrack) {
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/" rel="prev">
+		<a class="pager__link" href="/post/12-days-azure-arc-mas-apps-deploying/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;Previous</span>
-			<p class="pager__title">Azure Stack HCI - Part VII - Configure Windows Admin Center Access</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/" rel="next">
-			<span class="pager__subtitle">Next&thinsp;»</span>
-			<p class="pager__title">Azure Stack HCI - Part IX - Azure Kubernetes Service Deployment</p>
+			<p class="pager__title">The 12 Days of Azure Arc-Mas - Six Apps Deploying</p>
 		</a>
 	</div>
 </nav>

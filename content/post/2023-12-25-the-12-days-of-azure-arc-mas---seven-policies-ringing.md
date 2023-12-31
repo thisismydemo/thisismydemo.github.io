@@ -1,14 +1,17 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Seven Policies Ringing
-description: ""
-date: 2023-12-26T00:13:47.889Z
-preview: ""
-draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T00:15:13.082Z
-thumbnail: ""
-lead: ""
+description: "On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity."
+date: 2023-12-31T15:07:12.592Z
+preview: /img/12daysofarcmas/dayseven.png
+draft: false
+tags:
+    - Azure Arc
+categories:
+    - Azure Arc
+lastmod: 2023-12-31T15:09:22.966Z
+thumbnail: /img/12daysofarcmas/dayseven.png
+lead: "On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity."
+slug: 12-days-azure-arc-mas-policies-ringing
 ---
 
 # The 12 Days of Azure Arc-Mas: Day 7 - Seven Policies Ringing
@@ -31,7 +34,7 @@ Azure Arc brings to us seven swans a-swimming, gracefully navigating the waters 
 - **Policy-Driven Control**: Automate and enforce compliance and governance at scale, irrespective of where your resources are located.
 
 #### Integrated Security Tools:
-- **Comprehensive Protection**: Leverage integrated tools like Microsoft Defender for Cloud and Azure Sentinel to provide a complete view of your security posture.
+- **Comprehensive Protection**: Leverage integrated tools like Microsoft Defender for Cloud and Microsoft Sentinel to provide a complete view of your security posture.
 - **Proactive Threat Management**: Detect and mitigate risks promptly, with advanced threat protection across your hybrid and multicloud environments.
 
 ## Key Messages for Day Seven:
