@@ -6,8 +6,16 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 31 Dec 2023 15:07:12 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 2024 14:47:13 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Eight Custom Locations</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</link>
+      <pubDate>Mon, 01 Jan 2024 14:47:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 8 - Eight Custom Locations On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations.
+Day 8: Expanding Horizons with Azure Arc Custom Locations Azure Arc brings us eight maids a-milking, each nurturing the growth of Azure services in the fertile fields of our own environments, no matter how unique or specific they may be.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Seven Policies Ringing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</link>

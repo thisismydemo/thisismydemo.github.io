@@ -1,14 +1,18 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Eight Custom Locations
-description: ""
-date: 2023-12-26T00:16:21.632Z
-preview: ""
-draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T00:17:14.862Z
-thumbnail: ""
-lead: ""
+description: "On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations"
+date: 2024-01-01T14:47:13.912Z
+preview: /img/12daysofarcmas/dayeight.png
+draft: false
+tags:
+    - Azure Arc
+    - Azure Arc-Mas
+categories:
+    - Azure Arc
+lastmod: 2024-01-01T14:49:09.307Z
+thumbnail: /img/12daysofarcmas/dayeight.png
+lead: "On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations"
+slug: 12-days-azure-arc-mas-custom-locations
 ---
 
 # The 12 Days of Azure Arc-Mas: Day 8 - Eight Custom Locations
