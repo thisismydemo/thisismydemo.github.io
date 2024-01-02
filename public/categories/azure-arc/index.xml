@@ -6,8 +6,16 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jan 2024 14:47:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jan 2024 14:33:31 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Nine Devs a Dancing</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</link>
+      <pubDate>Tue, 02 Jan 2024 14:33:31 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 9 - Nine Devs a-Dancing On the ninth day of Azure Arc-Mas, Azure eased for me: Nine Devs a-Dancing, with one-click deployments enhancing their crafting.
+Day 9: Simplifying Deployment for Developers with Azure Arc Azure Arc orchestrates a developer&amp;rsquo;s dance, a ballet of bits and bytes where every step is synchronized, every leap is automated, and every twirl is streamlined. Day Nine centered around &amp;ldquo;User Experience,&amp;rdquo; highlighting how Azure Arc enhances the experience for developers, operators, and IT professionals managing hybrid and multi-cloud environments.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Eight Custom Locations</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</link>
