@@ -6,8 +6,17 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 02 Jan 2024 14:33:31 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jan 2024 14:42:45 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Ten Clouds Connecting</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</link>
+      <pubDate>Wed, 03 Jan 2024 14:42:45 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</guid>
+      <description>The 12 Days of Azure Arc-Mas: Day 10 - Ten Clouds Connecting On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration.
+Day 10: Crafting a Seamless Multi-Cloud Strategy with Azure Arc As ten lords leap across disparate clouds, Azure Arc weaves them into a single, harmonious domain, bridging gaps and aligning silos.
+Uniting Diverse Cloud Landscapes: Consistent Management: Azure Arc&amp;rsquo;s orchestration extends across AWS, GCP, and Azure, bringing a cohesive governance experience.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Nine Devs a Dancing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</link>

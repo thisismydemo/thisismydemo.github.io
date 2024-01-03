@@ -1,14 +1,18 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Ten Clouds Connecting
-description: ""
-date: 2023-12-26T02:50:56.794Z
-preview: ""
-draft: true
-tags: []
-categories: []
-lastmod: 2023-12-26T02:52:38.701Z
-thumbnail: ""
-lead: ""
+description: "On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration"
+date: 2024-01-03T14:42:45.482Z
+preview: /img/12daysofarcmas/dayten.png
+draft: false
+tags:
+  - Azure Arc
+  - Azure Arc-Mas
+categories:
+  - Azure Arc
+lastmod: 2024-01-03T14:42:48.822Z
+thumbnail: /img/12daysofarcmas/dayten.png
+lead: "On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration"
+slug: 12-days-azure-arc-mas-ten-clouds-connecting
 ---
 
 # The 12 Days of Azure Arc-Mas: Day 10 - Ten Clouds Connecting
