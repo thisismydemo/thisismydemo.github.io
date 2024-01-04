@@ -1,15 +1,15 @@
 ---
-title: THe 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming
+title: The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming
 description: On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications' health and performance.
-date: 2024-01-04T02:52:15.000Z
+date: 2024-01-04T14:10:03.948Z
 preview: /img/12daysofarcmas/dayeleven.png
-draft: true
+draft: false
 tags:
     - Azure Arc
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2024-01-02T15:05:42.500Z
+lastmod: 2024-01-04T14:10:15.402Z
 thumbnail: /img/12daysofarcmas/dayeleven.png
 lead: On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications' health and performance.
 slug: 12-days-azure-arc-mas-eleven-logs-streaming

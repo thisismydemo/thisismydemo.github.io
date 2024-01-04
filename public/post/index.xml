@@ -6,8 +6,16 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jan 2024 14:42:45 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jan 2024 14:10:03 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</link>
+      <pubDate>Thu, 04 Jan 2024 14:10:03 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</guid>
+      <description>Day 11: Eleven Logs a-Streaming - Azure Arc&amp;rsquo;s Unified Monitoring and Insights Azure Monitored Me: Eleven Logs a-Streaming On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications&amp;rsquo; health and performance.
+Insights Across All Environments Azure Arc shines its beacon across containerized applications, virtual machines, and hyper-converged infrastructure (HCI), illuminating the landscape with Container Insights, VM Insights, and HCI Insights.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Ten Clouds Connecting</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</link>
