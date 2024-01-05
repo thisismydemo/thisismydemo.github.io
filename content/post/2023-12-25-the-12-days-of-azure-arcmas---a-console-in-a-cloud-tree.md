@@ -5,11 +5,12 @@ date: 2023-12-26T03:10:00.000Z
 preview: /img/12daysofarcmas/dayone.png
 draft: false
 tags:
-  - Azure Arc
   - Azure
+  - Azure Arc
+  - Azure Arc-Mas
 categories:
   - Azure Arc
-lastmod: 2023-12-29T19:37:04.731Z
+lastmod: 2024-01-05T14:41:18.746Z
 thumbnail: /img/12daysofarcmas/dayone.png
 lead: "On the first day of Arc-mas, Azure granted me: A Console in a Cloud Tree. Where management's centralized for all to see"
 slug: 12-days-azure-arcmas-console-cloud-tree

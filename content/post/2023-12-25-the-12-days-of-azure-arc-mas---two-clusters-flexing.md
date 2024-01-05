@@ -9,7 +9,7 @@ tags:
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-29T19:40:58.399Z
+lastmod: 2024-01-05T14:40:39.056Z
 thumbnail: /img/12daysofarcmas/daytwo.png
 lead: "On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free"
 slug: 12-days-azure-arc-mas-clusters-flexing

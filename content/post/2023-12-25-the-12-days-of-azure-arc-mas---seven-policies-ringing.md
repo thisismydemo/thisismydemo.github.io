@@ -6,9 +6,10 @@ preview: /img/12daysofarcmas/dayseven.png
 draft: false
 tags:
     - Azure Arc
+    - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-31T15:09:22.966Z
+lastmod: 2024-01-05T14:39:57.072Z
 thumbnail: /img/12daysofarcmas/dayseven.png
 lead: "On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity."
 slug: 12-days-azure-arc-mas-policies-ringing
