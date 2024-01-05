@@ -6,9 +6,10 @@ preview: /img/12daysofarcmas/dayfive.png
 draft: false
 tags:
     - Azure Arc
+    - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2023-12-29T19:28:39.988Z
+lastmod: 2024-01-05T14:21:30.436Z
 thumbnail: /img/12daysofarcmas/dayfive.png
 lead: "On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving."
 slug: 12-days-azure-arc-mas-golden-savings
