@@ -6,8 +6,15 @@
     <description>Recent content in Azure Arc on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jan 2024 14:10:37 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jan 2024 14:35:37 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/azure-arc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure-ArcMas - Summary</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</link>
+      <pubDate>Fri, 05 Jan 2024 14:35:37 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</guid>
+      <description>The 12 Days of Azure Arc-Mas: A Festive Journey Through Azure&amp;rsquo;s Hybrid and Multi-Cloud Capabilities I counted down to the end of the year, and was excited to bring you a special gift: “The 12 Days of Azure Arc-Mas.” This series was inspired by the classic carol “The Twelve Days of Christmas,” with a tech twist that celebrates the gifts Azure Arc delivers to IT professionals each day. This was a fun series that was very high level.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</link>
