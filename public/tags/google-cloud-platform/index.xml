@@ -13,10 +13,7 @@
       <link>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link>
       <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</guid>
-      <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.
-First let&amp;rsquo;s login to the Entra Permissions Management dashboard.
-Click on the gear in the top right corner to open up the Data Collectors dashboard.
-Click the GCP under the Data Collectors tab then click Create Configuration.</description>
+      <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.&#xA;First let&amp;rsquo;s login to the Entra Permissions Management dashboard.&#xA;Click on the gear in the top right corner to open up the Data Collectors dashboard.&#xA;Click the GCP under the Data Collectors tab then click Create Configuration.</description>
     </item>
   </channel>
 </rss>

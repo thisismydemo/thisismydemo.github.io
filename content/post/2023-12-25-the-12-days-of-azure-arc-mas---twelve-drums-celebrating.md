@@ -1,15 +1,15 @@
 ---
 title: The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating
 description: ""
-date: 2024-01-06T02:54:58.000Z
+date: 2024-01-05T14:10:37.862Z
 preview: /img/12daysofarcmas/daytwelve.png
-draft: true
+draft: false
 tags:
     - Azure Arc
     - Azure Arc-Mas
 categories:
     - Azure Arc
-lastmod: 2024-01-02T15:10:32.447Z
+lastmod: 2024-01-05T14:10:44.670Z
 thumbnail: /img/12daysofarcmas/daytwelve.png
 lead: On the twelfth day of Arc-mas, our Azure journey culminates in a grand celebration of achievements. Azure Arc has played a pivotal role in transforming how organizations manage their hybrid and multi-cloud environments, and today, we share these triumphs.
 slug: 12-days-azure-arc-mas-twelve-drums-celebrating

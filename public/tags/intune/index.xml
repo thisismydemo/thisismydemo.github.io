@@ -13,10 +13,7 @@
       <link>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</guid>
-      <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.
-Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.
-Intune Proactive Remediation - Check if KB5007253 is installed.
-The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
+      <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.&#xA;Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.&#xA;Intune Proactive Remediation - Check if KB5007253 is installed.&#xA;The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
     </item>
     <item>
       <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
@@ -30,9 +27,7 @@ The following scripts are currently in my GitHub repo called ProactiveRemediatio
       <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
-      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
-There are three methods that can accomplish this on your client computers.
-Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
+      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.&#xA;There are three methods that can accomplish this on your client computers.&#xA;Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
     </item>
   </channel>
 </rss>

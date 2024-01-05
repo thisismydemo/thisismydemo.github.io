@@ -6,99 +6,91 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Jan 2024 14:10:03 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jan 2024 14:10:37 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating</title>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</link>
+      <pubDate>Fri, 05 Jan 2024 14:10:37 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</guid>
+      <description>Celebrating Success: The 12th Day of Azure Arc-Mas On the twelfth day of Arc-mas, our Azure journey culminates in a grand celebration of achievements. Azure Arc has played a pivotal role in transforming how organizations manage their hybrid and multi-cloud environments, and today, we share these triumphs.&#xA;The Beat of Progress: Twelve Drums Celebrating 🥁 Azure Arc&amp;rsquo;s story is one of innovation, efficiency, and operational excellence. As we celebrate the victories of the past, we are excited to share the real-world impacts and success stories that have been made possible through this powerful tool.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</link>
       <pubDate>Thu, 04 Jan 2024 14:10:03 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</guid>
-      <description>Day 11: Eleven Logs a-Streaming - Azure Arc&amp;rsquo;s Unified Monitoring and Insights Azure Monitored Me: Eleven Logs a-Streaming On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications&amp;rsquo; health and performance.
-Insights Across All Environments Azure Arc shines its beacon across containerized applications, virtual machines, and hyper-converged infrastructure (HCI), illuminating the landscape with Container Insights, VM Insights, and HCI Insights.</description>
+      <description>Day 11: Eleven Logs a-Streaming - Azure Arc&amp;rsquo;s Unified Monitoring and Insights Azure Monitored Me: Eleven Logs a-Streaming On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications&amp;rsquo; health and performance.&#xA;Insights Across All Environments Azure Arc shines its beacon across containerized applications, virtual machines, and hyper-converged infrastructure (HCI), illuminating the landscape with Container Insights, VM Insights, and HCI Insights.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Ten Clouds Connecting</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</link>
       <pubDate>Wed, 03 Jan 2024 14:42:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 10 - Ten Clouds Connecting On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration.
-Day 10: Crafting a Seamless Multi-Cloud Strategy with Azure Arc As ten lords leap across disparate clouds, Azure Arc weaves them into a single, harmonious domain, bridging gaps and aligning silos.
-Uniting Diverse Cloud Landscapes: Consistent Management: Azure Arc&amp;rsquo;s orchestration extends across AWS, GCP, and Azure, bringing a cohesive governance experience.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 10 - Ten Clouds Connecting On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration.&#xA;Day 10: Crafting a Seamless Multi-Cloud Strategy with Azure Arc As ten lords leap across disparate clouds, Azure Arc weaves them into a single, harmonious domain, bridging gaps and aligning silos.&#xA;Uniting Diverse Cloud Landscapes: Consistent Management: Azure Arc&amp;rsquo;s orchestration extends across AWS, GCP, and Azure, bringing a cohesive governance experience.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Nine Devs a Dancing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</link>
       <pubDate>Tue, 02 Jan 2024 14:33:31 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 9 - Nine Devs a-Dancing On the ninth day of Azure Arc-Mas, Azure eased for me: Nine Devs a-Dancing, with one-click deployments enhancing their crafting.
-Day 9: Simplifying Deployment for Developers with Azure Arc Azure Arc orchestrates a developer&amp;rsquo;s dance, a ballet of bits and bytes where every step is synchronized, every leap is automated, and every twirl is streamlined. Day Nine centered around &amp;ldquo;User Experience,&amp;rdquo; highlighting how Azure Arc enhances the experience for developers, operators, and IT professionals managing hybrid and multi-cloud environments.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 9 - Nine Devs a-Dancing On the ninth day of Azure Arc-Mas, Azure eased for me: Nine Devs a-Dancing, with one-click deployments enhancing their crafting.&#xA;Day 9: Simplifying Deployment for Developers with Azure Arc Azure Arc orchestrates a developer&amp;rsquo;s dance, a ballet of bits and bytes where every step is synchronized, every leap is automated, and every twirl is streamlined. Day Nine centered around &amp;ldquo;User Experience,&amp;rdquo; highlighting how Azure Arc enhances the experience for developers, operators, and IT professionals managing hybrid and multi-cloud environments.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Eight Custom Locations</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</link>
       <pubDate>Mon, 01 Jan 2024 14:47:13 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 8 - Eight Custom Locations On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations.
-Day 8: Expanding Horizons with Azure Arc Custom Locations Azure Arc brings us eight maids a-milking, each nurturing the growth of Azure services in the fertile fields of our own environments, no matter how unique or specific they may be.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 8 - Eight Custom Locations On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations.&#xA;Day 8: Expanding Horizons with Azure Arc Custom Locations Azure Arc brings us eight maids a-milking, each nurturing the growth of Azure services in the fertile fields of our own environments, no matter how unique or specific they may be.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Seven Policies Ringing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</link>
       <pubDate>Sun, 31 Dec 2023 15:07:12 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 7 - Seven Policies Ringing On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.
-Day 7: Securing Multicloud Governance with Azure Arc Azure Arc brings to us seven swans a-swimming, gracefully navigating the waters of multicloud governance, representing the beauty and elegance of a well-orchestrated security strategy.
-Harnessing the Power of Policy-Driven Management: Azure Policy: Extend governance across Azure and non-Azure environments, applying consistent policies everywhere.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 7 - Seven Policies Ringing On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.&#xA;Day 7: Securing Multicloud Governance with Azure Arc Azure Arc brings to us seven swans a-swimming, gracefully navigating the waters of multicloud governance, representing the beauty and elegance of a well-orchestrated security strategy.&#xA;Harnessing the Power of Policy-Driven Management: Azure Policy: Extend governance across Azure and non-Azure environments, applying consistent policies everywhere.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Six Apps Deploying</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</link>
       <pubDate>Sat, 30 Dec 2023 19:27:58 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 6 - Six Apps Deploying On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing.
-Day 6: Fostering Innovation with Azure Arc Azure Arc brings six geese a-laying, each laying the foundation for innovative app deployment, orchestrating the birth of new solutions with cloud-native development across any environment.
-Powering Agile Application Development: End-to-End Solutions: From local data collection to cloud-based analytics, Azure Arc provides a comprehensive platform for app development.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 6 - Six Apps Deploying On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing.&#xA;Day 6: Fostering Innovation with Azure Arc Azure Arc brings six geese a-laying, each laying the foundation for innovative app deployment, orchestrating the birth of new solutions with cloud-native development across any environment.&#xA;Powering Agile Application Development: End-to-End Solutions: From local data collection to cloud-based analytics, Azure Arc provides a comprehensive platform for app development.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Five Golden Savings</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</link>
       <pubDate>Fri, 29 Dec 2023 19:28:34 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 5 - Five Golden Savings On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving.
-The Fifth Day of Arc-mas: Embracing Azure Arc&amp;rsquo;s &amp;ldquo;Five Golden Savings&amp;rdquo; Azure Hybrid Benefit: A Beacon of Cost Optimization Azure Arc&amp;rsquo;s Hybrid Benefit transforms existing Windows Server and SQL Server licenses with Software Assurance or qualifying subscription licenses into a cost-saving strategy within Azure Arc-enabled services.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 5 - Five Golden Savings On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving.&#xA;The Fifth Day of Arc-mas: Embracing Azure Arc&amp;rsquo;s &amp;ldquo;Five Golden Savings&amp;rdquo; Azure Hybrid Benefit: A Beacon of Cost Optimization Azure Arc&amp;rsquo;s Hybrid Benefit transforms existing Windows Server and SQL Server licenses with Software Assurance or qualifying subscription licenses into a cost-saving strategy within Azure Arc-enabled services.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Four Nodes Connecting</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</link>
       <pubDate>Thu, 28 Dec 2023 19:02:55 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 4 - Four Nodes Connecting On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting.
-Day 4: Flexible Infrastructure and Connectivity Azure Arc&amp;rsquo;s fourth gift to us is the power of connection — linking diverse infrastructures from the conventional to the cutting-edge, and ensuring that whether it&amp;rsquo;s Windows Server, Linux, VMware vSphere, or Azure Stack HCI, your nodes are all part of the same, seamlessly managed ecosystem.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 4 - Four Nodes Connecting On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting.&#xA;Day 4: Flexible Infrastructure and Connectivity Azure Arc&amp;rsquo;s fourth gift to us is the power of connection — linking diverse infrastructures from the conventional to the cutting-edge, and ensuring that whether it&amp;rsquo;s Windows Server, Linux, VMware vSphere, or Azure Stack HCI, your nodes are all part of the same, seamlessly managed ecosystem.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Three Services Scaling</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</link>
       <pubDate>Wed, 27 Dec 2023 19:49:59 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 3 - Three Services Scaling On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling.
-Day 3: Data Insights - Azure Arc for Data Services Azure Arc celebrates the season by bringing the robustness of Azure data services directly to Kubernetes clusters, regardless of their location. Imagine Azure SQL Managed Instance and Azure Database for PostgreSQL, not just housed within Azure but anywhere you require – without missing a beat.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 3 - Three Services Scaling On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling.&#xA;Day 3: Data Insights - Azure Arc for Data Services Azure Arc celebrates the season by bringing the robustness of Azure data services directly to Kubernetes clusters, regardless of their location. Imagine Azure SQL Managed Instance and Azure Database for PostgreSQL, not just housed within Azure but anywhere you require – without missing a beat.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Two Clusters Flexing</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</link>
       <pubDate>Wed, 27 Dec 2023 00:07:02 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 2 - Two Cluster Flexing On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free.
-Embracing Duality: Kubernetes Clusters and Azure Data Services Azure Arc brings duality and harmony between Kubernetes clusters and Azure data services, offering a seamless operational experience that&amp;rsquo;s both managed from Azure and capable of running anywhere.
-Azure Arc&amp;rsquo;s Key Messages: Consistent Development and Operations: Azure Arc fosters uniform development and operations of cloud-native applications across any Kubernetes environment.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 2 - Two Cluster Flexing On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free.&#xA;Embracing Duality: Kubernetes Clusters and Azure Data Services Azure Arc brings duality and harmony between Kubernetes clusters and Azure data services, offering a seamless operational experience that&amp;rsquo;s both managed from Azure and capable of running anywhere.&#xA;Azure Arc&amp;rsquo;s Key Messages: Consistent Development and Operations: Azure Arc fosters uniform development and operations of cloud-native applications across any Kubernetes environment.</description>
     </item>
     <item>
       <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
       <pubDate>Tue, 26 Dec 2023 03:10:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
-      <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.
-Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
+      <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.&#xA;Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
     </item>
     <item>
       <title>The 12 Days of Azure ArcMas - Introduction</title>
@@ -119,32 +111,28 @@ Single Control Plane Across Environments Azure Arc is like the partridge in a pe
       <link>http://thisismydemo.cloud/post/azure-stack-hci-series-ended/</link>
       <pubDate>Tue, 28 Nov 2023 21:01:59 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-series-ended/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-I have decided to end this blog series but not end blogging about Azure Stack HCI.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;I have decided to end this blog series but not end blogging about Azure Stack HCI.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part IX - Azure Kubernetes Service Deployment</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</link>
       <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-I now have Azure Stack HCI cluster deployed. We can manage it using Windows Admin Center or PowerShell.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;I now have Azure Stack HCI cluster deployed. We can manage it using Windows Admin Center or PowerShell.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</link>
       <pubDate>Tue, 07 Nov 2023 14:07:49 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-My last blog Azure Stack HCI - Part VII - Configure Windows Admin Center Access, was actually all about Windows Admin Center and nothing really about Azure Stack HCI.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;My last blog Azure Stack HCI - Part VII - Configure Windows Admin Center Access, was actually all about Windows Admin Center and nothing really about Azure Stack HCI.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</link>
       <pubDate>Mon, 06 Nov 2023 20:39:04 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas!</title>
@@ -158,108 +146,91 @@ So this blog, which I hope will be short, will be about how to secure your acces
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</link>
       <pubDate>Tue, 24 Oct 2023 19:11:10 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part V - From one to Sixteen</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</link>
       <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</link>
       <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</link>
       <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-I had planned to have a Part III that would have focused on scaling out a single node cluster.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;I had planned to have a Part III that would have focused on scaling out a single node cluster.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</link>
       <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.</description>
     </item>
     <item>
       <title>Azure Stack HCI - Everything I know Series</title>
       <link>http://thisismydemo.cloud/post/azure-stack-hci-series/</link>
       <pubDate>Fri, 13 Oct 2023 16:15:49 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/azure-stack-hci-series/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-In this series I plan to touch on the following topics:
-My Azure Stack HCI Infrastructure Deploying a Single Node HCI Cluster Single server scale-out of my Azure Stack HCI cluster to a two node cluster then on to a three node cluster and beyond.</description>
+      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;In this series I plan to touch on the following topics:&#xA;My Azure Stack HCI Infrastructure Deploying a Single Node HCI Cluster Single server scale-out of my Azure Stack HCI cluster to a two node cluster then on to a three node cluster and beyond.</description>
     </item>
     <item>
       <title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</title>
       <link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</guid>
-      <description>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
-At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.</description>
+      <description>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.&#xA;At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.</description>
     </item>
     <item>
       <title>My MicroK8s Cluster Is Now Manged by Azure. What is next?</title>
       <link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</link>
       <pubDate>Thu, 28 Sep 2023 17:20:35 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</guid>
-      <description>In a previous blog series MicroK8S and WSL Managed by Azure Arc - A blog series about my experiences with MicroK8S, WSL, and Azure Arc I had a curiosity to see if I could deploy MicroK8s on my WIndows 10 WSL instance and then manage the WSL instance with Azure Arc and then manage the MicroK8s cluster using Arc-enabled Kubernetes.
-So let&amp;rsquo;s refresh here a little. I was able to get a MicroK8s cluster deployed on WSL running on my Windows 10 laptop.</description>
+      <description>In a previous blog series MicroK8S and WSL Managed by Azure Arc - A blog series about my experiences with MicroK8S, WSL, and Azure Arc I had a curiosity to see if I could deploy MicroK8s on my WIndows 10 WSL instance and then manage the WSL instance with Azure Arc and then manage the MicroK8s cluster using Arc-enabled Kubernetes.&#xA;So let&amp;rsquo;s refresh here a little. I was able to get a MicroK8s cluster deployed on WSL running on my Windows 10 laptop.</description>
     </item>
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</link>
       <pubDate>Thu, 28 Sep 2023 17:01:35 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</guid>
-      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
-The blog will be broken up into the following three sections:
-Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.</description>
+      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.&#xA;The blog will be broken up into the following three sections:&#xA;Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.</description>
     </item>
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</link>
       <pubDate>Wed, 27 Sep 2023 14:00:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</guid>
-      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
-The blog will be broken up into the following three sections:
-Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent) In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.</description>
+      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.&#xA;The blog will be broken up into the following three sections:&#xA;Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent) In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.</description>
     </item>
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</link>
       <pubDate>Tue, 26 Sep 2023 19:00:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</guid>
-      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
-The blog will be broken up into the following three sections:
-Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Installing MicroK8s on WSL In this blog I will discuss my experience with installing Microk8s on Windows Subsystem for Linux (WSL).</description>
+      <description>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.&#xA;The blog will be broken up into the following three sections:&#xA;Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Installing MicroK8s on WSL In this blog I will discuss my experience with installing Microk8s on Windows Subsystem for Linux (WSL).</description>
     </item>
     <item>
       <title>MicroK8S and WSL Managed by Azure Arc</title>
       <link>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</link>
       <pubDate>Mon, 25 Sep 2023 16:00:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</guid>
-      <description>I recently started a new job with a company that isn&amp;rsquo;t a 100% Microsoft shop. It has been many years since I have worked in a environment that everyone wasn&amp;rsquo;t drinking the Microsoft Kool-Aid. Not a bad thing if you do, I did and I loved that flavor. However, new job means new challenges and new way of doing things.
-In this blog series I am going to discuss my experiences with MicroK8S.</description>
+      <description>I recently started a new job with a company that isn&amp;rsquo;t a 100% Microsoft shop. It has been many years since I have worked in a environment that everyone wasn&amp;rsquo;t drinking the Microsoft Kool-Aid. Not a bad thing if you do, I did and I loved that flavor. However, new job means new challenges and new way of doing things.&#xA;In this blog series I am going to discuss my experiences with MicroK8S.</description>
     </item>
     <item>
       <title>Deploy Home Assistant and My Home Automation Adventure.</title>
       <link>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</link>
       <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</guid>
-      <description>At MMS this year one of the sessions, in fact the very last session I attended was about Home Automation using Home Assistant. I have been itching to get started playing with Home Assistant but just haven&amp;rsquo;t had the time. However, I have a need now to do some home automation and now it has become important.
-My Use case I have a T9 Honeywell Thermostat at home that is connected to the Resideo app to control my A/C.</description>
+      <description>At MMS this year one of the sessions, in fact the very last session I attended was about Home Automation using Home Assistant. I have been itching to get started playing with Home Assistant but just haven&amp;rsquo;t had the time. However, I have a need now to do some home automation and now it has become important.&#xA;My Use case I have a T9 Honeywell Thermostat at home that is connected to the Resideo app to control my A/C.</description>
     </item>
     <item>
       <title>How to Integrate Microsoft Sentinel and Freshservice</title>
@@ -280,8 +251,7 @@ My Use case I have a T9 Honeywell Thermostat at home that is connected to the Re
       <link>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</link>
       <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</guid>
-      <description>So, I am very interested in What cross-tenant synchronization is and what it could do for me and maybe for customers? Since I have a number of tenants I thought it would be good to at least try this preview feature and blog about my experience.
-Also, this blog originally started out as a single blog but as I started to write it it grew and grew and grew. I wanted to refocus myself and break it up into smaller parts.</description>
+      <description>So, I am very interested in What cross-tenant synchronization is and what it could do for me and maybe for customers? Since I have a number of tenants I thought it would be good to at least try this preview feature and blog about my experience.&#xA;Also, this blog originally started out as a single blog but as I started to write it it grew and grew and grew. I wanted to refocus myself and break it up into smaller parts.</description>
     </item>
     <item>
       <title>Applying The Final Firmware Update for the Azure Percept DK</title>
@@ -295,18 +265,14 @@ Also, this blog originally started out as a single blog but as I started to writ
       <link>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</link>
       <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</guid>
-      <description>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&amp;rsquo;t used this in a while, now I need to reset it and set it up again.
-The process The first thing I did was install the Android Debug Bridge (ADB).</description>
+      <description>Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&amp;rsquo;t used this in a while, now I need to reset it and set it up again.&#xA;The process The first thing I did was install the Android Debug Bridge (ADB).</description>
     </item>
     <item>
       <title>Is my Azure Sphere a rock now?</title>
       <link>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</link>
       <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</guid>
-      <description>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
-However&amp;hellip;&amp;hellip;&amp;hellip;.
-According to Microsoft&amp;rsquo;s documentation on how to claim the device there is a call out:
-Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.</description>
+      <description>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?&#xA;However&amp;hellip;&amp;hellip;&amp;hellip;.&#xA;According to Microsoft&amp;rsquo;s documentation on how to claim the device there is a call out:&#xA;Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.</description>
     </item>
     <item>
       <title>What! My Azure Percept DK Devices Are Being Retired???</title>
@@ -320,36 +286,28 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
       <link>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</link>
       <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</guid>
-      <description>So I needed to break out my Azure SPhere Development kit again that I haven&amp;rsquo;t touched in a very long time. Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn&amp;rsquo;t remember for the life of me how to access the kit.
-So this blog is mainly for me so in 6 months when I need to use my Azure Sphere development kit again I will have a quick and easy reminder.</description>
+      <description>So I needed to break out my Azure SPhere Development kit again that I haven&amp;rsquo;t touched in a very long time. Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn&amp;rsquo;t remember for the life of me how to access the kit.&#xA;So this blog is mainly for me so in 6 months when I need to use my Azure Sphere development kit again I will have a quick and easy reminder.</description>
     </item>
     <item>
       <title>How To Grant Users Access To Entra Permissions Management Portal</title>
       <link>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</link>
       <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</guid>
-      <description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.
-I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description>
+      <description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.&#xA;I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description>
     </item>
     <item>
       <title>Customize My WIndows Terminal Please? </title>
       <link>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</guid>
-      <description>Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
-The three areas I always change are:
-Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?
-Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</description>
+      <description>Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.&#xA;The three areas I always change are:&#xA;Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?&#xA;Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</description>
     </item>
     <item>
       <title>My Intune Proactive Remediation Scripts</title>
       <link>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</guid>
-      <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.
-Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.
-Intune Proactive Remediation - Check if KB5007253 is installed.
-The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
+      <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.&#xA;Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.&#xA;Intune Proactive Remediation - Check if KB5007253 is installed.&#xA;The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
     </item>
     <item>
       <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
@@ -370,18 +328,14 @@ The following scripts are currently in my GitHub repo called ProactiveRemediatio
       <link>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link>
       <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</guid>
-      <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.
-First let&amp;rsquo;s login to the Entra Permissions Management dashboard.
-Click on the gear in the top right corner to open up the Data Collectors dashboard.
-Click the GCP under the Data Collectors tab then click Create Configuration.</description>
+      <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.&#xA;First let&amp;rsquo;s login to the Entra Permissions Management dashboard.&#xA;Click on the gear in the top right corner to open up the Data Collectors dashboard.&#xA;Click the GCP under the Data Collectors tab then click Create Configuration.</description>
     </item>
     <item>
       <title>Entra Permissions Management Podcast</title>
       <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid>
-      <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.
-You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
+      <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.&#xA;You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
     </item>
     <item>
       <title>Setting Up Entra Permissions Management</title>
@@ -395,17 +349,14 @@ You can access the show podcast from this link Entra Permissions Management: Par
       <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
-      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.
-There are three methods that can accomplish this on your client computers.
-Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
+      <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.&#xA;There are three methods that can accomplish this on your client computers.&#xA;Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
     </item>
     <item>
       <title>Festive Tech Calendar 2022</title>
       <link>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</link>
       <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</guid>
-      <description>This last year I was able to submit a session for the Festive Tech Calender. If you never have heard about the Festive Tech Calendar I suggest you head over to the web site and check out all the different on demand sessions that are available. The Festive Tech Calendar is a community supported and all sessions are created by members of the tech community.
-Use Azure Site Recovery to save your bacon&amp;hellip; Christmas ham&amp;hellip; or maybe your job?</description>
+      <description>This last year I was able to submit a session for the Festive Tech Calender. If you never have heard about the Festive Tech Calendar I suggest you head over to the web site and check out all the different on demand sessions that are available. The Festive Tech Calendar is a community supported and all sessions are created by members of the tech community.&#xA;Use Azure Site Recovery to save your bacon&amp;hellip; Christmas ham&amp;hellip; or maybe your job?</description>
     </item>
     <item>
       <title>Creating this blog using Hugo and GitHub Pages</title>
