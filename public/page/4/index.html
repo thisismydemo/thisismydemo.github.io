@@ -78,6 +78,32 @@ if (!doNotTrack) {
 	<article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
+		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" rel="bookmark">
+			MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc
+			</a>
+		</h2>
+		<p class="list__lead post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T14:00:00Z">September 27, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:08:55Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
+The blog will be broken up into the following three sections:
+Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent) In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">
 		<img class="thumbnail__image" src="/img/microk8s_arc/OIP.png" alt="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL">
 		</a>
@@ -299,29 +325,6 @@ However&hellip;&hellip;&hellip;.
 According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
 Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.
 	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/what-my-azure-percept-dk-devices-are-being-retired/">
-		<img class="thumbnail__image" src="/img/perceptdkreset/Screenshot%202023-03-24%20090855.png" alt="What! My Azure Percept DK Devices Are Being Retired???">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/what-my-azure-percept-dk-devices-are-being-retired/" rel="bookmark">
-			What! My Azure Percept DK Devices Are Being Retired???
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-23T22:58:14Z">March 23, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T14:14:23Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-percept-development-kit/" rel="category">Azure Percept Development Kit</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		So recently I started working on another IoT project which lead me to breaking out all my old development kits. I previously wrote a blog called My Azure Sphere Needs Reset where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn&rsquo;t really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don&rsquo;t exist anymore.
-	</div>
 </article>
 </main>
 
@@ -345,11 +348,11 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/azure-arc-vmware-yeah/">Azure Arc and VMWare Oh Yeah</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arcmas-summary/">The 12 Days of Azure-ArcMas - Summary</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-twelve-drums-celebrating/">The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-eleven-logs-streaming/">The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-ten-clouds-connecting/">The 12 Days of Azure Arc-Mas - Ten Clouds Connecting</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-devs-dancing/">The 12 Days of Azure Arc-Mas - Nine Devs a Dancing</a></li>
 		</ul>
 	</div>
 </div>
@@ -451,6 +454,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>

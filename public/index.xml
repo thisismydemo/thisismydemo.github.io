@@ -6,8 +6,15 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Jan 2024 14:35:37 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jan 2024 17:13:54 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Arc and VMWare Oh Yeah</title>
+      <link>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</link>
+      <pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</guid>
+      <description>I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn&amp;rsquo;t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.</description>
+    </item>
     <item>
       <title>The 12 Days of Azure-ArcMas - Summary</title>
       <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</link>
