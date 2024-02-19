@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://thisismydemo.cloud/categories/azure/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/azure-bastion/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/categories/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/linux/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/post/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/tags/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
+    <loc>http://thisismydemo.cloud/</loc>
+    <lastmod>2024-02-19T19:11:57+00:00</lastmod>
+  </url><url>
     <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
     <lastmod>2024-01-12T07:26:47+00:00</lastmod>
   </url><url>
@@ -9,18 +33,6 @@
     <lastmod>2024-01-12T07:26:47+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</loc>
-    <lastmod>2024-01-12T07:26:47+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/categories/</loc>
-    <lastmod>2024-01-12T07:26:47+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/post/</loc>
-    <lastmod>2024-01-12T07:26:47+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2024-01-12T07:26:47+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/</loc>
     <lastmod>2024-01-12T07:26:47+00:00</lastmod>
   </url><url>
     <loc>http://thisismydemo.cloud/tags/vmware-vsphere/</loc>
