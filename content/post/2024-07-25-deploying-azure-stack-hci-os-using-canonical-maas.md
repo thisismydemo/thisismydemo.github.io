@@ -11,10 +11,9 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-25T22:17:29.156Z
+lastmod: 2024-07-25T22:25:03.373Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
-type: default
 slug: deploying-azure-stack-hci-os-canonical-maas
 ---
 
