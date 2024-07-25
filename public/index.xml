@@ -6,8 +6,15 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Feb 2024 19:11:57 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jul 2024 22:09:44 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Azure Stack HCI OS using Canonical MAAS</title>
+      <link>http://thisismydemo.cloud/post/deploying-azure-stack-hci-os-canonical-maas/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/deploying-azure-stack-hci-os-canonical-maas/</guid>
+      <description>There are several methods to deploy an Azure Stack HCI OS Image. You can use solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), or other Infrastructure as Code (IaC) tools like Terraform and Ansible, with the appropriate configurations. Additionally, Canonical offers a solution called MAAS (Metal-As-A-Service).&#xA;Throughout my career, I&amp;rsquo;ve generally preferred Microsoft solutions for deploying Microsoft Operating Systems, favoring tools like MDT and WDS.</description>
+    </item>
     <item>
       <title>Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</title>
       <link>http://thisismydemo.cloud/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</link>

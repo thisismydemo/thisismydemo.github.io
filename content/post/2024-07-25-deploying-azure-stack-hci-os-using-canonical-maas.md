@@ -3,7 +3,7 @@ title: Deploying Azure Stack HCI OS using Canonical MAAS
 description: ""
 date: 2024-07-25T15:00:13.695Z
 preview: /img/azshci-maas/maas_banners_leaderboard.png
-draft: true
+draft: false
 tags:
     - Ansible
     - Azure Stack HCI
@@ -11,14 +11,18 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-25T21:39:40.575Z
+lastmod: 2024-07-25T22:09:44.088Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 type: default
 slug: deploying-azure-stack-hci-os-canonical-maas
 ---
 
-There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), and other IaC solutions like Terraform and Ansible with the proper configurations that is. We also have a solution from Canonical called MAAS or Metal-As-A-Service. In my career I have always leaned toward Microsoft solutions to deploy Microsoft Operating Systems, so I would say I am a little biased and would prefer to use tools like MDT along with WDS.  However, in my current position, the company I work for isn't a Microsoft shop. At least when it comes to tools and such.  They use Terraform and Ansible for IaC (Infrastructure As Code), which I have no problem with, I never really used these tools. So, these next few blogs of mine will focus on my journey into automation of Azure Stack HCI OS using tools like Terraform to kick off a MAAS deployment and Ansible to configure the Azure Stack HCI OS to prepare it to deploy an Azure STack HCI cluster using Microsoft's Cloud Deployment.
+There are several methods to deploy an Azure Stack HCI OS Image. You can use solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), or other Infrastructure as Code (IaC) tools like Terraform and Ansible, with the appropriate configurations. Additionally, Canonical offers a solution called MAAS (Metal-As-A-Service).
+
+Throughout my career, I've generally preferred Microsoft solutions for deploying Microsoft Operating Systems, favoring tools like MDT and WDS. However, my current company isn't a Microsoft-centric environment. Instead, they use Terraform and Ansible for IaC, which I’m not very experienced with, but I’m open to learning.
+
+In the upcoming series of blog posts, I'll document my journey in automating the deployment of Azure Stack HCI OS. I'll be using Terraform to initiate a MAAS deployment and Ansible to configure the Azure Stack HCI OS, ultimately preparing it for deploying an Azure Stack HCI cluster using Microsoft's Cloud Deployment.
 
 - [What Are The Tools](#what-are-the-tools)
 - [The Resources](#the-resources)
@@ -51,11 +55,11 @@ There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions lik
 
 ## What Are The Tools
 
-To start, what is MAAS? MAAS is Metal-AS-A-Service. A tool by Canonical that provides server provisioning, a self-service, remote installation of WIndows, CentOS, ESXi and Ubuntu on physical machines (as well as virtual). Taken from their website, it enables you to turn your datacenter into a bare metal cloud.
+To start, what is MAAS? MAAS, which stands for Metal-As-A-Service, is a tool developed by Canonical that provides server provisioning and self-service, remote installation of operating systems like Windows, CentOS, ESXi, and Ubuntu on both physical and virtual machines. According to their website, MAAS enables you to transform your datacenter into a bare metal cloud.
 
-In this blog I am not focusing on how to deploy or setup MAAS.  I am assuming that MAAS has already been installed and that the environment and all the tools are already in place.  Maybe one day when I understand MAAS more I will write a blog about how to deploy the solution?
+In this blog, I won't be focusing on how to deploy or set up MAAS. I assume that MAAS has already been installed and that the environment and necessary tools are in place. Perhaps in the future, when I have a deeper understanding of MAAS, I will write a blog about deploying the solution.
 
-However, overview of my environment, I have a MAAS server, I have another Ubuntu box configured with the MAAS Cli, and I have a Windows 2022 Image server running Hyper-V. The MAAS server and the Ubuntu server running the MAAS Cli will not be discussed in detail, but I will start focusing on building the image server later in this blog.
+Regarding my environment, I have a MAAS server, another Ubuntu machine configured with the MAAS CLI, and a Windows 2022 Image server running Hyper-V. While I won't delve into the details of the MAAS server and the Ubuntu server running the MAAS CLI, I will start by focusing on building the image server later in this blog.
 
 ## The Resources
 
@@ -65,7 +69,10 @@ The following are the resources I used to document this process:
 - https://github.com/cloudbase/windows-imaging-tools
 
 ## The Image Server
-My image server that I am using is a virtual machine running on a VMWare cluster somewhere within one of our datacenters. I don't really know to be honest, I just requested it, it was built, and now I have it.  The requirements for the image server are simple, a Windows host, with Hyper-V enabled, Powershell, and the Windows Assessment and Deployment Kit (ADK) installed. The Windows host could be a Windows Server or even Windows 11, as long as the correct tools are installed and you can enable Hyper-V. This host can be an Azure VM running in Azure, an Azure Arc VM running on an Azure Stack HCI cluster, a VMWare VM like I am using, or even just a Windows host deployed to bare metal. Just remember, if you are going to use an Azure VM, make sure you deploy an Azure VM that supports nested virtualization.
+
+The image server is a virtual machine running on a VMWare cluster located somewhere within one of our datacenters. To be honest, I don't know the exact location; I simply requested it, it was built, and now I have access to it.
+
+The requirements for the image server are straightforward: a Windows host with Hyper-V enabled, PowerShell, and the Windows Assessment and Deployment Kit (ADK) installed. The Windows host can be either a Windows Server or Windows 11, as long as the necessary tools are installed and Hyper-V can be enabled. This host could be an Azure VM running in Azure, an Azure Arc VM on an Azure Stack HCI cluster, a VMWare VM like the one I'm using, or even a Windows host deployed to bare metal. Just keep in mind that if you are using an Azure VM, ensure it supports nested virtualization.
 
 ### Configure Image Server
 
@@ -186,19 +193,21 @@ New-WindowsImageConfig -ConfigFilePath $ConfigFilePath
 
 ### Download Azure Stack HCI ISO
 
-You will need to have an Azure Subscription and an Account that has access to that subscription in order to download the most recent Azure Stack HCI ISO. The following Microsoft Learn documentation will assist with getting that ISO.
+You will need an Azure Subscription and an account with access to that subscription to download the most recent Azure Stack HCI ISO. The following Microsoft Learn documentation will guide you through obtaining the ISO:
 
-https://learn.microsoft.com/en-us/azure-stack/hci/deploy/download-azure-stack-hci-software
+[Download Azure Stack HCI Software](https://learn.microsoft.com/en-us/azure-stack/hci/deploy/download-azure-stack-hci-software)
 
-Download the current ISO and place the ISO in the ./maas/iso directory.
+Once downloaded, place the ISO in the ./maas/iso directory.
 
-As mentioned in the CryingCloud blog, if we want to customize the image using the "Windows System Image manager" to build custom unattended files, we will need to also extract that Azure Stack HCI ISO to our ./maas/source directory as well.  The easiest way is to mount the ISO, then copy and paste everything in the directory to a folder in the ./maas/source directory called hci or something.
+As mentioned in the CryingCloud blog, if you want to customize the image using the "Windows System Image Manager" to build custom unattended files, you will also need to extract the Azure Stack HCI ISO to your ./maas/source directory. The simplest method is to mount the ISO, then copy and paste all the contents into a folder within the ./maas/source directory, which you can name hci or something similar.
 
-At this point, we are ready to start customizing our configurations files, building our build scripts, and creating our image.
+At this point, you are ready to start customizing your configuration files, building your scripts, and creating your image.
 
 ## Create an Image
 
-I have not ran into this issue yet but CryingCloud blog addresses an issue with the Azure Stack HCI OS being generalized when you try to sysprep the image. We have taken some suggestions and instead of building out a single build solution to run builds for Windows Server OS's and also Azure Stack HCI OS builds we just customized our build to only focus on Azure Stack HCI OS builds. In other words, instead of doing all the extra steps in the CryingCloud blog, we just edited the one section in the Logon.ps1 script and removed the /generalize. We have tested the other way, and it also seems to work. However, this was easier and faster. To see how they have created their build solution to support both Windows Server OS and Azure Stack HCI OS builds, check out that blog at https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image.
+I haven't encountered this issue yet, but the CryingCloud blog addresses a problem with the Azure Stack HCI OS becoming generalized when you attempt to sysprep the image. Based on their suggestions, rather than building a single solution for both Windows Server OS and Azure Stack HCI OS builds, we customized our build to focus exclusively on Azure Stack HCI OS builds. Specifically, we edited the Logon.ps1 script and removed the /generalize option.
+
+I tested the alternative method described in the CryingCloud blog, and it works as well. However, our approach was simpler and faster. For details on how to create a build solution that supports both Windows Server OS and Azure Stack HCI OS builds, refer to the CryingCloud blog at [Creating Azure Stack HCI MAAS Image](https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image).
 
 ### Edit Config.ini File
 
@@ -291,13 +300,13 @@ cloudbase_init_use_local_system=False
 cloudbase_init_delayed_start=False
 ```
 
-Please note that some of these variables will need to be edited.
+Please note that some of these variables will need to be edited:
 
 - wim_file_path
 - image_path
 - custom_scripts_path
 
-One other area that I changed was under the [updates] section. In order to save time during the build process I have chosen not to have the image updated at this time. If at any time we want to include updates in this process we will just need to change the following section:
+Additionally, I made changes under the [updates] section. To save time during the build process, I chose not to update the image at this stage. If we decide to include updates in the future, we just need to modify the following section:
 
 ```powershell
 [updates]
@@ -307,15 +316,17 @@ clean_updates_offline=False
 clean_updates_online=True
 ```
 
+By making these adjustments, you can tailor the build process to your specific requirements and decide whether or not to include updates during the build.
+
 ### Edit UnattendedTemplateHCI.xml File
 
-I have not had a lot of experience working with unattended.xml files in my career outside of using some with ConfigMgr. I know you can do a lot with these. Here are a few resources for working with unattended.xml files:
+I haven't had extensive experience working with unattended.xml files, apart from using some with ConfigMgr. I understand they offer a lot of customization options. Here are a few resources for working with unattended.xml files:
 
-https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11
+[Update Windows Settings and Scripts to Create Your Own Answer File](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11)
 
-However, there is an UnattendedTEmplate2022.xml file located in the repo we have cloned that we will use for now. Copy this UnattendTemplate2022.xml and then rename it to UnattendTemplateHCI.xml.
+However, we have an UnattendTemplate2022.xml file located in the repository we've cloned, which we will use for now. Copy this UnattendTemplate2022.xml file and rename it to UnattendTemplateHCI.xml.
 
-The following is an example of the unattendedtemplatehci.xml file I am using:
+Here is an example of the UnattendTemplateHCI.xml file I am using:
 
 ```powershell
 <?xml version="1.0" encoding="utf-8"?>
@@ -508,9 +519,13 @@ The following is an example of the unattendedtemplatehci.xml file I am using:
 </unattend>
 ```
 
+This XML file is a basic template that can be customized further to suit specific deployment needs.
+
 ### Create Custom Scripts
 
-I am learning more about the custom scripts that can be ran before and after some of the build processes. Right now I don't include a custom script for my HCI builds. However, I am leaning into using custom scripts over using the unattended.xml files above very soon.
+I am currently learning more about custom scripts that can be run before and after some of the build processes. At this moment, I don't include a custom script for my HCI builds. However, I am considering shifting towards using custom scripts instead of relying solely on the unattended.xml files mentioned above.
+
+Custom scripts offer greater flexibility and control over the deployment process, allowing for more granular configuration and automation tailored to specific needs. By incorporating these scripts, I can enhance the efficiency and effectiveness of my HCI builds. As I gain more experience and understanding, I plan to transition to using custom scripts to optimize the build process further
 
 ### Edit Logon.ps1 Script
 
@@ -561,11 +576,11 @@ New-WindowsOnlineImage -ConfigFilePath $ConfigFilePath
 Dismount-DiskImage $ISOImage
 ```
 
-As you can see i have the $ISOImage linked to my downloaded Azure Stack HCI ISO.  I have the $ConfigFilePath linked to my config-server-hci-uefi.ini file, and then the $CloudBuildModules linked to the windows-openstack-imaging-tools directory.
+As you can see, I have the $ISOImage variable linked to my downloaded Azure Stack HCI ISO. The $ConfigFilePath is linked to my config-server-hci-uefi.ini file, and the $CloudBuildModules is linked to the windows-openstack-imaging-tools directory.
 
-If we go back to the config-server-hci-uefi.ini file, we can see that the image will be created in the ./maas/images/ directory. I have the file named hci.10.2405.0.24.tgz based off the most recent baseline that is available to download. This way I can keep track of my builds based off of Microsoft releases.
+Referring back to the config-server-hci-uefi.ini file, we can see that the image will be created in the ./maas/images/ directory. I have named the file hci.10.2405.0.24.tgz, based on the most recent baseline available for download. This naming convention helps me keep track of my builds based on Microsoft releases.
 
-Out of experience, I will check my image server, and make sure that nothing has been mounted to the wim_file_path I have declared in the config-server-hci-uefi.ini file. For my setup, I have used the F drive. The script will try and mount it to the F drive, I have been lucky in the past when I have forgotten to unmount previous attempts that it was still Azure Stack HCI OS ISO and not another OS ISO.
+From experience, I always check my image server to ensure nothing is mounted to the wim_file_path specified in the config-server-hci-uefi.ini file. For my setup, I have used the F drive. The script will try to mount it to the F drive, and I have been fortunate in the past when I forgot to unmount previous attempts that it was still the Azure Stack HCI OS ISO and not another OS ISO.
 
 ### Build The Image
 
@@ -605,7 +620,7 @@ Once we have our file compressed and in the tgz format, we are now ready to move
 
 ## Getting Images to MAAS
 
-Using a tool like WInSCP, we will need to copy our newly created image to a MaaS Build Server, this is what I call it, however, from my experience, this is just another Ubuntu Server running the MAAS CLI. Once the file has been successfully copied to our build server, we can now ssh into that server using either PowerShell or Putty or any other tool of choice.
+Using a tool like WinSCP, we will need to copy our newly created image to a MAAS Build Server, which is essentially another Ubuntu server running the MAAS CLI. Once the file has been successfully copied to our build server, we can SSH into that server using PowerShell, PuTTY, or any other preferred tool.
 
 ![](/img/azshci-maas/Screenshot%202024-07-25%20154938.png)
 
@@ -693,6 +708,32 @@ For this round, I will call this a success. I was able to build and deploy an Az
 
 ## Next Up
 
-My next attempts will be to figure out how to get the administrator account to be configured. I also do plan to start doing more customizations to these images, including configuring them for Ansible connectivity. I also want to look at automating the deployment of these image servers, and the build of the images whenever a new Azure Stack HCI baseline build has been released.
+My next steps will involve configuring the administrator account and exploring more customizations for these images, including setting them up for Ansible connectivity. I also plan to automate the deployment of these image servers and the build of the images whenever a new Azure Stack HCI baseline build is released.
 
-Other areas I am planning on is how to get Terraform to kick off this process, how to get WinRM configured for Ansible to do the OS customizations that are needed before we start a Cloud Deployment to deploy the Azure Stack HCI cluster.
+Here’s a roadmap of my plans:
+
+1. Configuring the Administrator Account:
+
+   - Determine the best method for configuring the administrator account during the image creation process. This might involve modifying the unattended.xml file or using custom scripts.
+
+2. Customizing Images for Ansible Connectivity:
+
+   - Ensure that the images are pre-configured for Ansible by setting up necessary services and configurations, such as SSH keys and WinRM.
+   - Create and test scripts to configure WinRM on the images to enable Ansible connectivity.
+
+3. Automating the Deployment and Build Processes:
+
+   - Develop scripts and workflows to automate the deployment of image servers.
+   - Automate the image build process to run whenever a new Azure Stack HCI baseline build is released. This might involve integrating with CI/CD tools like Jenkins, GitLab CI, or Azure DevOps.
+
+4. Integrating Terraform for Automation:
+
+   - Investigate how to use Terraform to kick off the entire process, including the creation of virtual machines, deployment of image servers, and triggering the image build process.
+   - Develop Terraform configurations and modules to support this automation.
+
+5. Automating OS Customizations with Ansible:
+
+   - Create Ansible playbooks to perform necessary OS customizations before starting a Cloud Deployment to deploy the Azure Stack HCI cluster.
+   - Ensure that these playbooks are idempotent and can be run multiple times without causing issues.
+
+By following this roadmap, I aim to streamline the deployment and customization processes for Azure Stack HCI, ensuring a more efficient and automated workflow.

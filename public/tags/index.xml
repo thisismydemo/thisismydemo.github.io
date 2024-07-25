@@ -6,8 +6,36 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Feb 2024 19:11:57 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jul 2024 22:09:44 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible</title>
+      <link>http://thisismydemo.cloud/tags/ansible/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/ansible/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Stack HCI</title>
+      <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MaaS</title>
+      <link>http://thisismydemo.cloud/tags/maas/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/maas/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Terraform</title>
+      <link>http://thisismydemo.cloud/tags/terraform/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/terraform/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Azure Bastion</title>
       <link>http://thisismydemo.cloud/tags/azure-bastion/</link>
@@ -69,13 +97,6 @@
       <link>http://thisismydemo.cloud/tags/festive-tech-calendar/</link>
       <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/festive-tech-calendar/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Stack HCI</title>
-      <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
-      <pubDate>Tue, 28 Nov 2023 21:01:59 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
       <description></description>
     </item>
     <item>
