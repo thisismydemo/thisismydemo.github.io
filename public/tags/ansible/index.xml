@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ansible on This Is My Demo</title>
+    <link>http://localhost:1313/tags/ansible/</link>
+    <description>Recent content in Ansible on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Jul 2024 21:16:29 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Azure Stack HCI OS using Canonical MAAS</title>
+      <link>http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/</link>
+      <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
+      <guid>http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/</guid>
+      <description>There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), and other IaC solutions like Terraform and Ansible with the proper configurations that is. We also have a solution from Canonical called MAAS or Metal-As-A-Service. In my career I have always leaned toward Microsoft solutions to deploy Microsoft Operating Systems, so I would say I am a little biased and would prefer to use tools like MDT along with WDS.</description>
+    </item>
+  </channel>
+</rss>

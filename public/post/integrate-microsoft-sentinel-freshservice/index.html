@@ -3,20 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>How to Integrate Microsoft Sentinel and Freshservice - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="How to Integrate Microsoft Sentinel and Freshservice" />
-<meta property="og:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don&rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-05-22T23:13:05+00:00" />
-<meta property="article:modified_time" content="2023-05-23T21:13:20+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="How to Integrate Microsoft Sentinel and Freshservice">
+  <meta property="og:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don’t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-05-22T23:13:05+00:00">
+    <meta property="article:modified_time" content="2023-05-23T21:13:20+00:00">
+    <meta property="article:tag" content="Microsoft Sentinel">
+    <meta property="article:tag" content="FreshService">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="How to Integrate Microsoft Sentinel and Freshservice"/>
-<meta name="twitter:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don&rsquo;t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system."/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to Integrate Microsoft Sentinel and Freshservice">
+  <meta name="twitter:description" content="There are times even your customers can teach you something. Recently while onboarding Microsoft Sentinel for a customer I ran into one of those times. I had been asked by the customer to integrate Microsoft Sentinel with Freshservice. Fresh service is one of many cloud based ITSM that I have run along my fun career. I personally don’t know much about Freshservice out side of the fact that my customer used it and had a use case where they wanted Sentinel to open a ticket in their system.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +33,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -101,21 +115,21 @@ if (!doNotTrack) {
 </ul>
 <h2 id="is-there-a-playbook-for-freshservice">Is there a playbook for Freshservice?</h2>
 <p>So when I started I did what we all do. I immediately went into the Content Hub to search for Freshservice. However, there isn&rsquo;t any Freshservice content available.  I couldn&rsquo;t find anything in any of the community repos I know about as well. Don&rsquo;t worry, there is hope.  I can dust off my logic app skills (the little I had) and try to create one.  Instead of creating one from scratch let&rsquo;s not re-invite the wheel.  From all the content solutions I have already installed I had two playbooks that I could use to copy. The first was the Create and Update Service Now Record provided and supported by the community.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-001.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-001.png"></p>
 <p>Then I also found a playbook from ZenDesk, <a href="https://github.com/Azure/Azure-Sentinel/tree/master/Playbooks/Create-Zendesk-Ticket">Create Zendesk Ticket</a>.  This was in the Content Hub and was created by Brian Delaney.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-002.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-002.png"></p>
 <p>Out of the two, the ZenDesk Logic App looked like the easiest for me to edit and use.  So  I went with the Create Zendesk Ticket playbook. More information below on how I created and configured the playbook for Freshservice.</p>
 <h2 id="freshservice-account">Freshservice Account</h2>
 <p>So, how do I even test this playbook to make sure it works. I never used <a href="https://www.freshworks.com/freshservice/">freshservice</a>, and I wasn&rsquo;t going to ask the customer for access to Freshservice. So I went to their website, and clicked Free Trial.  Why not?  Make sure when you click Free Trial that you select the correct product.  You will need to scroll down  to their IT Services PRoducts and click on Free Trial under Freshservice.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-003.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-003.png"></p>
 <p>It took maybe 5 minutes at the most before I had my account setup.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-004.png" alt=""></p>
-<p><img src="/img/sentinel-freshservice/freshservice-005.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-004.png"></p>
+<p><img src="/img/sentinel-freshservice/freshservice-005.png"></p>
 <p>So now I have my account.  The next thing was to do some research on how to continue. I knew there was a logic app connector in preview for Freshservice. So the next step was to create the playbook.</p>
 <h2 id="create-playbook-and-logic-app">Create Playbook and Logic App</h2>
 <p>So at this point, I now have a Freshservice account that I can test with. I know the plan that I have, which is to create a playbook from the Create Zendesk Ticket template.</p>
 <p>So step one was to go to my Microsoft Sentinel workspace.  From there I went to Automation under Configuration.  Under the Playbook Templates (Preview) I searched for Zendesk and then clicked on Create Playbook.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-006.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-006.png"></p>
 <p>The following steps I took to create the playbook:</p>
 <ol>
 <li>On Create Playbook, on the Basics blade, I renamed the default playbook from Create-ZenDesk-Ticket to Create-FreshServiceITSM-Ticket.</li>
@@ -123,51 +137,51 @@ if (!doNotTrack) {
 <li>The next two blades, Connections and Review &amp; Create I just left defaults.</li>
 <li>Last I clicked, Create and continue to designer.</li>
 </ol>
-<p><img src="/img/sentinel-freshservice/freshservice-007.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-007.png"></p>
 <p>Here I edited the Connections step:</p>
-<p><img src="/img/sentinel-freshservice/freshservice-008.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-008.png"></p>
 <p>For this demo I just used my account to connect the logic apps to the proper Tenant.  However, you should really connect with a managed identity or at least a service principal account.  So don&rsquo;t do as I do, but do as I say?</p>
 <p>The next step was to remove the Zendesk Connector and then add the Freshservice Connector. This part is fairly straight forward.  You click on the three dots to the right on the Zendesk connector then click Delete. To add the Freshservice connector, just click on the + New Step button.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-009.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-009.png"></p>
 <p>When you first click on the connector to add it, the next screen will prompt you to select an action.  Here I picked Create a Ticket (Preview). The other options is to update a ticket or and a note to a ticket.</p>
 <p>Now it is time to edit the Freshservice connector. This is where things got really interesting.  Doing a Bing search, there is limited to no information out there on how to configure the Freshservice logic app connector.  I played with it for a while and found a few links that took me to the Freshservice community site.  There was a post that was over a year old with someone asking about authenticating and no one had responded.  Playing around more I did find a link that directed me to Freshservice and and article on how to create an API Key. However, still no clear documentation on how to actually configure the fields needed.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-010.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-010.png"></p>
 <p>I tried my username but then I was like, I never got a password. How do I log on to Freshservice anyway?  That is when I went back to the dashboard and saw I never verified my email account.  For some reason, all my Freshservice email went directly to spam. I found the email to verify my account, and verified it.  From there it ask me to create a password which I did. So my account is verified.</p>
 <p>So from this point I was on my own.  So I tried just my username and password for the user name and password field. The one thing I need to call out, when you put your Site URL, don&rsquo;t add the / at the end. It doesn&rsquo;t like that.</p>
 <p>At this point I clicked Create.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-013.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-013.png"></p>
 <p>So it looked like it worked!!!  (Hint, this is sarcasm)</p>
-<p><img src="/img/sentinel-freshservice/freshservice-014.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-014.png"></p>
 <p>So once again, I am at a section that I can&rsquo;t find any documentation for. What is the Requester ID?  It is asking for an integer and an email address that I tried associated with my account wouldn&rsquo;t work. I tried a few different combos.</p>
 <p>I did what anyone would do. I just started filling out stuff. I assumed I could find that ID in the Freshservice dashboard for my user profile. I couldn&rsquo;t find anything. So i made up a number and put it there.  The rest was pretty simple to follow.  The rest is just like any other logic app in Sentinel. I went simple for this one.  For subject, I selected some dynamic content for a Microsoft Sentinel incident.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-015.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-015.png"></p>
 <p>I clicked Save. The logic app save was completed and I thought, hey, this was easy.  Let&rsquo;s test!</p>
 <p>Note, I did find that if I selected any Dynamic content based off &ldquo;alerts&rdquo; that it would change the logic app and this step to For Each.  Maybe someone with more Logic App experience can explain that to me. I am assuming something because it was an Alert and not an Incident but you know what assume means?</p>
 <p>The easiest way to test a playbook is to go back to Microsoft Sentinel, click on incidents, select an incident. Then in then in the Incident information blade to the right, at the bottom there is a dropdown called Actions.  Select Actions and then select Run Playbook (Preview).</p>
-<p><img src="/img/sentinel-freshservice/freshservice-016.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-016.png"></p>
 <p>At the Run Playbook on incident blade, click on Run next to the playbook that was just created.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-017.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-017.png"></p>
 <p>Now, again. Great, the playbook ran and looked to be successful. But was it????  Let&rsquo;s go back to the playbook and open it to see what the logic apps status is.  I still haven&rsquo;t received a ticket yet in Freshservice so something didn&rsquo;t work. To get back to the logic apps, click on automation under configuration. Click on active playbooks at the top, and then select the playbook just created which my case is the Create-FreshServiceITSM-Ticket. To my surprise, the logic app ran successful.  Yet still no ticket???</p>
-<p><img src="/img/sentinel-freshservice/freshservice-018.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-018.png"></p>
 <p>So something is wrong. Going back to the Logic App Designer I was interested in what my Requester Id was? How do I get that from Freshservice and did I really connect successfully to the Freshservice API? I didn&rsquo;t even enter an API key or username for that API key. I went back to the community forums and posted a question.  I wasn&rsquo;t expecting an answer right away. Which I don&rsquo;t think I even have one now. I sent a message via chat on the Freshservice support page but sat there for a long time with no response.  I was stuck and now I had to get back on a call with my customer to do more work on this project.</p>
 <p>Luckily, the customer actually had experience the logic app connector for Freshservice in the past.  Which, now I was about to learn something from my customer instead of the other way around.  He explained how to get the Freshservice connector first connected and authenticated. Again, there is no documentation out there that I could find so I went with what the customer said.</p>
 <p>So let&rsquo;s go back to the connector and change the connection. To do so, from the designer, just click on the Change connection on the Create Ticket step. For this purpose, I created a new connection.  Named it FreshServiceAPIConnection.  Now get this, the password is just any character. My customer told me to just put an X or something in that field. The site URL is the same I used before, <a href="https://thisismydemo.freshservice.com">https://thisismydemo.freshservice.com</a> without a / at the end. The user name is the API Key.</p>
 <p>The API key can be generated from the profile screen.  Now the question is, and I don&rsquo;t know, can you create a service account or some kind of managed identity in FreshService for this? Using an API key from a standard user account seems a bit unsecure and questionable for this?</p>
-<p><img src="/img/sentinel-freshservice/freshservice-012.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-012.png"></p>
 <p>So now I have my information on the Connection screen for the Freshservice connector.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-019.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-019.png"></p>
 <p>Just like before the connection was made. However, now when I go to Requester ID, if I click the dropdown I do get user accounts.  The problem is, these are user accounts.  These are not service accounts, or even my admin account.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-020.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-020.png"></p>
 <p>So my customer once again gave me some knowledge. He showed me how to get the Requester Id from my account.  The easiest way was to go to your profile and within the URL the number show is the requester id.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-021.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-021.png"></p>
 <p>So now I have my requester Id correctly.  Let&rsquo;s see what happens when I click save and try to run the playbook again?</p>
-<p><img src="/img/sentinel-freshservice/freshservice-022.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-022.png"></p>
 <p>The playbook saved just fine. Now let&rsquo;s go test the playbook again. To do this, we go back to Sentinel, under Threat Management click on Incidents.  Select an incident, then on the incident information blade to the right, click on the Actions drop down menu at the bottom, then click on Run Playbook (Preview). Then on the Run playbook on incident blade, select the playbook we want to run and click run.</p>
 <p>Again, the playbook ran successfully. However, within seconds I got an notification in my Freshservice dashboard that a new ticket was created.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-023.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-023.png"></p>
 <p>Now it is time to go back to the Logic App and start to customize the information that will be sent with the ticket.  We also want to crate an automation rule that will run this playbook automatically based off specific criteria.</p>
 <p>The one thing I did notice is on the ticket in Freshservice it came in as a low priority. However, that incident in Sentinel was a Medium incident.  I will need to dig deeper in how to map the severity in Freshservice.</p>
-<p><img src="/img/sentinel-freshservice/freshservice-024.png" alt=""></p>
+<p><img src="/img/sentinel-freshservice/freshservice-024.png"></p>
 <p>However, over all it was a success.  I was able to create a ticket in Freshservice from incidents triggered in Microsoft Sentinel.  There are things I would like to find out and maybe Freshservice can email me some things like documentation and explain some of my issues above? But overall, the job is done and what the customer needed and expected has been accomplished. I will keep playing and seeing what else can be done. There doesn&rsquo;t look to be away to have two way communication, so closing a ticket in Freshservice doesn&rsquo;t trigger a playbook in Sentinel to close the incident. I will be interested in seeing how a ticket can be updated from other playbooks that I will create. However, I don&rsquo;t think I will spend too much more time on this.</p>
 
 		</div>
@@ -243,7 +257,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -316,9 +330,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -363,9 +377,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

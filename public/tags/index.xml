@@ -4,9 +4,9 @@
     <title>Tags on This Is My Demo</title>
     <link>http://thisismydemo.cloud/tags/</link>
     <description>Recent content in Tags on This Is My Demo</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 Feb 2024 18:14:07 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2024 19:11:57 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Bastion</title>
@@ -30,7 +30,7 @@
       <description></description>
     </item>
     <item>
-      <title>VMWare vSphere</title>
+      <title>VMWare VSphere</title>
       <link>http://thisismydemo.cloud/tags/vmware-vsphere/</link>
       <pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/vmware-vsphere/</guid>
@@ -86,28 +86,28 @@
       <description></description>
     </item>
     <item>
-      <title>Windows Admin Center</title>
+      <title>WIndows Admin Center</title>
       <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
       <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/windows-admin-center/</guid>
       <description></description>
     </item>
     <item>
-      <title>Azure Arc-enabled Data Services</title>
+      <title>Azure Arc-Enabled Data Services</title>
       <link>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</guid>
       <description></description>
     </item>
     <item>
-      <title>Azure Arc-enabled Kubernetes</title>
+      <title>Azure Arc-Enabled Kubernetes</title>
       <link>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</guid>
       <description></description>
     </item>
     <item>
-      <title>Azure Arc-enabled servers</title>
+      <title>Azure Arc-Enabled Servers</title>
       <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>

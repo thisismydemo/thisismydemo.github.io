@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Windows Admin Center on This Is My Demo</title>
+    <title>WIndows Admin Center on This Is My Demo</title>
     <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
-    <description>Recent content in Windows Admin Center on This Is My Demo</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in WIndows Admin Center on This Is My Demo</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Nov 2023 19:23:51 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Nov 2023 19:27:45 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/windows-admin-center/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Stack HCI - Part IX - Azure Kubernetes Service Deployment</title>

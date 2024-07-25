@@ -4,9 +4,9 @@
     <title>Windows Server on This Is My Demo</title>
     <link>http://thisismydemo.cloud/tags/windows-server/</link>
     <description>Recent content in Windows Server on This Is My Demo</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 31 Jan 2023 15:04:33 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Jan 2023 17:39:48 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/windows-server/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Enable Windows Terminal on Windows Servers</title>

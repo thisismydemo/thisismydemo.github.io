@@ -3,20 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
-		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc" />
-<meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-09-27T14:00:00+00:00" />
-<meta property="article:modified_time" content="2023-09-28T17:08:55+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+  <meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-09-27T14:00:00+00:00">
+    <meta property="article:modified_time" content="2023-09-28T17:08:55+00:00">
+    <meta property="article:tag" content="Azure Arc">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="MicrosK8S">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"/>
-<meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+  <meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +34,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -113,11 +128,11 @@ if (!doNotTrack) {
 <li>Role Assignments</li>
 </ul>
 <p>For the name, I selected something that I would know what this service principal is.  For my scope assignment, I am going to assign this at the subscription level. We could just assign this SPN at the resource group level if needed for more granular control.  The subscription, is selected for the current subscription.  Last but not least, the Role Assignments.  Here we have three choices:  Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator.  I selected all three but in a production environment to have more control over access we should create separate service principles for each.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093706.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093706.png"></p>
 <p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret.  Make sure we record these and place them in a safe area for future use.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093749.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093749.png"></p>
 <p>Now that the Service Principal has been created we can go back into the Arc Blade under Service Principals and we will see our newly created SP.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093922.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093922.png"></p>
 <p>Now we are ready to move forward with the creation of the Azure Arc Agent onboarding script.</p>
 <h2 id="register-azure-resource-providers">Register Azure Resource Providers</h2>
 <p>We already have registered all the needed resource providers in the past. However, if this is the first time we are deploying any Arc related resources the following commands will register these resource providers for us.</p>
@@ -137,21 +152,21 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 <li>Connectivity Method</li>
 </ul>
 <p>The subscription and Resource group fields should be selected where we would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources.  In production or a none demo environment, I would have many resource groups all based off of criteria like environments, or locations, etc.  This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward.  The next important area I will call out is the Operating system section.  Since this is a Linux box we need to make sure we change that to Linux.  We will leave Connectivity method default for Public Endpoint.  Moving forward, I highly suggest we start using Private Endpoints to help secure our environment.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094047.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094047.png"></p>
 <p>This section is important for many reasons.  Tagging Azure resources has many benefit and in any environment should be mandatory to have tagging. Here we will tag these resources based off of physical location.  I will also add a custom tags to allow others to know this is a demo environment, and who owns this resource, etc.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094127.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094127.png"></p>
 <p>We now have our onboarding script ready. We can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094314.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094314.png"></p>
 <p>So now we are ready to install the agent.  This will happen in our next few steps.</p>
 <h2 id="install-the-azure-arc-agent">Install the Azure Arc Agent</h2>
 <p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution I would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094417.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094417.png"></p>
 <p>After about 2 or 3 minutes the Arc agent will have been deployed.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094702.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094702.png"></p>
 <p>We now can go to the Azure Portal, back to the Azure Arc blade and select Machines under Infrastructure.  Give it some time, maybe 5 to 15 minutes and our newly manged Linux server will now show up and should have a status of Connected.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094749.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094749.png"></p>
 <p>If I click on the resource we can see more information about this Azure connected machine.  From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow us to have one management tool to manage all our on premises and multi-cloud resources.  From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20095536.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20095536.png"></p>
 <p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much we can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc.  We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p>
 
 		</div>
@@ -230,7 +245,7 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -303,9 +318,9 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -350,9 +365,9 @@ az provider register --namespace &#39;Microsoft.AzureArcData&#39;
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

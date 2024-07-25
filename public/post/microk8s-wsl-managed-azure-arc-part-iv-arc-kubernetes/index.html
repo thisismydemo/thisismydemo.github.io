@@ -3,20 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
-		<meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes" />
-<meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-09-28T17:01:35+00:00" />
-<meta property="article:modified_time" content="2023-09-28T17:09:09+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes">
+  <meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-09-28T17:01:35+00:00">
+    <meta property="article:modified_time" content="2023-09-28T17:09:09+00:00">
+    <meta property="article:tag" content="Azure Arc">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="MicrosK8S">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes"/>
-<meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes">
+  <meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +34,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -143,7 +158,7 @@ kubectl config use-context microk8s
 </code></pre><h2 id="connect-microk8s-cluster-to-azure">Connect MicroK8s Cluster to Azure</h2>
 <p>Now we will add our MicroK8s cluster to Azure starting within the portal. The first thing we need to do is go into the Azure Arc blade in the Azure Portal. On the left under Infrastructure, we will click on Kubernetes clusters.  In the window to the right, click on add in the menu at the top, and select Add a Kubernetes cluster with Azure Arc.</p>
 <p>Some items to call out on this next window is making sure we have Azure CLI installed which we do. That our Kubeconfig file and the user that accesses has cluster admin permissions, and that we already have our Kubernetes cluster deployed.  Which all of the above has been done to this point.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20160848.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20160848.png"></p>
 <p>This next window is where we will add the cluster details. The following is the information we will need to provide:</p>
 <ul>
 <li>Subscription</li>
@@ -153,27 +168,27 @@ kubectl config use-context microk8s
 <li>NEtwork Connectivity</li>
 </ul>
 <p>The subscription and Resource group we used is the same that we used for the Azure Arc agent in my previous blog. As mentioned in that blog, this is just a demo so all my Azure Arc resources will be in the same resource group. This I would not do in a real world situation.  For the Cluster name, this will be the name of the Azure Cluster resource that we will see in the portal, etc.  It does not need to make the actual Kubernetes cluster name but to make it easier for management, I would in a real world situation try to keep some sort of naming schema that matches our actual cluster names, or at least have the actual cluster name in the name along with something else.  In this demo, I just called my cluster name MicroK8s-WSL-Cluster01.  Since it will be removed soon it doesn&rsquo;t matter to me.  For our network connectivity, I went with public endpoint.  However, I highly recommend moving forward if at all possible to start using Private endpoints for all our Azure resources if they are capable of doing so.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161037.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161037.png"></p>
 <p>As with the Azure Arc Agent deployment, we have the capability of customizing Physical location tags as well as custom resource tags. I highly recommend using tags for all our Azure resources.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161211.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161211.png"></p>
 <p>This next section is where we can download or just copy the shell script. I copied it myself to a note pad to use later. At this point we are ready to start running the script on our WSL instance.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161302.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-26%20161302.png"></p>
 <p>First we need to logon to our subscription via Azure CLI.  To do so we ran the following commands from our WSL instance:</p>
 <pre tabindex="0"><code>az login --use-device-code
 </code></pre><p>Next I needed to set my Azure Subscription since my account has access to many subscriptions within this tenant. We can do this by running the following Azure CLI command:</p>
 <pre tabindex="0"><code>az account set --subscription [Subscription]
 </code></pre><p>I am now logged in via Azure CLI and ready to run the next part of my script that I just copied from the portal. Here is the script I ran:</p>
 <pre tabindex="0"><code>az connectedk8s connect --name &#34;MicroK8s-WSL-Cluster01&#34; --resource-group &#34;Arc-Management-SouthCentral-Demo-RG&#34; --location &#34;southcentralus&#34; --correlation-id &#34;c18ab9d0-685e-48e7-ab55-12588447b0ed&#34; --tags &#34;Datacenter=Office City=Waco StateOrDistrict=TX CountryOrRegion=US&#34;
-</code></pre><p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130001.png" alt=""></p>
+</code></pre><p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130001.png"></p>
 <p>The next process should take a few minutes or more. I went and got some cream and sugar and a little bit of hot coffee to go along with it at this point.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130410.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130410.png"></p>
 <p>Once the script runs and is completed the cluster information will be displayed and it should have a provisiongState of Succeeded.  We can go back to the Azure Portal and click next on the screen we left open. This will verify that the cluster is connected and give us a message with a green check that our cluster was successfully connected to Azure.  Even though there is a &ldquo;create&rdquo; button , but it doesn&rsquo;t really seem to do anything.  We can click the Go to Cluster button below the Green check toward the top.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130827.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20130827.png"></p>
 <p>The next window we see is the Azure Arc blade for the newly created connected Kubernetes cluster. Here we will see the overview of our Azure managed Kubernetes cluster. We can also see all the resources available and configuration, include monitoring and automation that we can do with this cluster on the left.  There is so much more that we can do at this point.  Out of the box the two that I would do is enable Container Insights to monitor the cluster, and to enable Windows Defender and Microsoft Sentinel for this cluster.</p>
 <p>In fact, I think there will be a Part V of this blog that will do some of the things we should be doing once we connect a Kubernetes cluster to Azure using Azure Arc.  That or an entire blog on its own.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131130.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131130.png"></p>
 <p>This view is just what we will now see in the Azure Arc blade under the Kubernetes section of Infrastructure.</p>
-<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131304.png" alt=""></p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20131304.png"></p>
 <p>So, at this point we now have our MicroK8s cluster that is running on an instance of WSL on my Windows 10 laptop, which is managed by Azure Arc-enabled servers, now connected fully to Azure.  This cluster can be fully managed by many Azure services now at this point.  We can deploy solutions via GitOps, apply configuration policies to meet compliance and regulations via Azure Policy, monitor this cluster using Container Insights via Azure Monitor, and more.</p>
 
 		</div>
@@ -252,7 +267,7 @@ kubectl config use-context microk8s
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -325,9 +340,9 @@ kubectl config use-context microk8s
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -372,9 +387,9 @@ kubectl config use-context microk8s
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

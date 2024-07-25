@@ -3,20 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure" />
-<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-11-07T14:07:49+00:00" />
-<meta property="article:modified_time" content="2023-11-07T14:08:08+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure">
+  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-11-07T14:07:49+00:00">
+    <meta property="article:modified_time" content="2023-11-07T14:08:08+00:00">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="WIndows Admin Center">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure"/>
-<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure">
+  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +33,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -97,37 +111,37 @@ if (!doNotTrack) {
 <h2 id="configuring-windows-admin-center-azure-preview">Configuring Windows Admin Center Azure (Preview)</h2>
 <p>What better way to be able to manage your cluster than from the same portal you manage most your Azure environment from, right? Now, this is still a (Preview) services and things could change or not.  There are some limitations that I will call out later when managing your Azure Stack HCI cluster using Windows Admin Center for Azure vs using Windows Admin Center Gateway. They are small and if all you are looking for is to manage the cluster for day to day activities then this is a good tool.</p>
 <p>We start by going to our Azure Arc and going to infrastructure, and Azure Stack HCI.  From there we will click on the cluster we want to enable WAC management on. When we get to the cluster blade, the next step is to click on Windows Admin Center (Preview).</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164709.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164709.png"></p>
 <p>Here we will see our option to click on Setup.  So, we click on setup.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164806.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164806.png"></p>
 <p>The first thing to happen is to the right a new blade will open for our listening port. I will use the default port of 6516. This will need to be open on your firewalls.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164909.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164909.png"></p>
 <p>Next we will see to task running.  This will install the AdminCenter extension and configure connectivity to WAC.  What this is actually doing, by installing the extension, is it is installing a version of WAC on each cluster node.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164955.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20164955.png"></p>
 <p>Here we can see the status of that extension being installed.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165120.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165120.png"></p>
 <p>If we go back to the Windows Admin Center window we will get the message that this is being configured and could take about 5 minutes. Which means coffee time!</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165237.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20165237.png"></p>
 <p>Once the extension are successfully installed we should be able to verify from the Extension blade on our cluster.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171044.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171044.png"></p>
 <p>When we go back to our Windows Admin Center blade we will see that now we need to configure who can access this WAC instance. We can click the section that says Click to manage access and it will take us to the Access Control for this resource.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171018.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171018.png"></p>
 <p>From here we will click add and select role assignment.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171122.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171122.png"></p>
 <p>This next window we will search for Windows admin and it should filter it down to the exact role that we are looking for. Click on Windows Admin Center Administrator Logon. Then we click on Next.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171243.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171243.png"></p>
 <p>On the next window we will click on + Select Members to add out members to this role assignment.  The pop up to the right, we will select our users or our groups we want to add.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171351.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171351.png"></p>
 <p>The next window we can review the users we are adding to the role assignment. We can then click Review and Assign. It should take just a minute or two.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171438.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171438.png"></p>
 <p>Now if we go back to the Windows Admin Center we will see a connect button. All we need to do is click Connect.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171522.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171522.png"></p>
 <p>This will take a few minute for it to initialize for the first time.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171608.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171608.png"></p>
 <p>Once it loads, it should look almost exactly the same as if we where logged on to the Windows Admin Center Gateway.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171724.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20171724.png"></p>
 <p>As you can see and compare, the options that we have available to manage from Azure are very similar to the options we have locally.</p>
-<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20172046.png" alt=""></p>
+<p><img src="/img/azshci-series/part-viii/Screenshot%202023-11-06%20172046.png"></p>
 <p>There are a few differences. On the Azure version of WAC we don&rsquo;t have the capabilities to manage Azure Kubernetes Service. We also don&rsquo;t have the ability to configure Storage Replicas and Azure Arc settings.  Those are not the things that you will need to worry about, except maybe the management of AKS. This cluster doesn&rsquo;t have AKS installed yet so it may be available after AKS is installed. I will update this blog if that is the case.</p>
 
 		</div>
@@ -203,7 +217,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -276,9 +290,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -323,9 +337,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

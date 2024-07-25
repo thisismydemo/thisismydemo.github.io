@@ -3,20 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Applying The Final Firmware Update for the Azure Percept DK - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="Applying The Final Firmware Update for the Azure Percept DK" />
-<meta property="og:description" content="I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &ldquo;retirement.&rdquo; The only way to keep using them for other things is to install the last &ldquo;Unsupported&rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-03-31T23:15:49+00:00" />
-<meta property="article:modified_time" content="2023-04-01T02:42:12+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Applying The Final Firmware Update for the Azure Percept DK">
+  <meta property="og:description" content="I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into “retirement.” The only way to keep using them for other things is to install the last “Unsupported” firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-03-31T23:15:49+00:00">
+    <meta property="article:modified_time" content="2023-04-01T02:42:12+00:00">
+    <meta property="article:tag" content="Azure IoT">
+    <meta property="article:tag" content="Azure Percept">
+    <meta property="article:tag" content="Azure Percept Development Kit">
+    <meta property="article:tag" content="Microsoft Entra">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Applying The Final Firmware Update for the Azure Percept DK"/>
-<meta name="twitter:description" content="I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &ldquo;retirement.&rdquo; The only way to keep using them for other things is to install the last &ldquo;Unsupported&rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time."/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Applying The Final Firmware Update for the Azure Percept DK">
+  <meta name="twitter:description" content="I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into “retirement.” The only way to keep using them for other things is to install the last “Unsupported” firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +35,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -110,7 +126,7 @@ if (!doNotTrack) {
 <p>C:\Azure Percept DK SoM Attestation Update Tool</p>
 <p>Now it is time to connect to my device via SSH. Simple command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>ssh username@192.168.100.136
-</span></span></code></pre></div><p><img src="/img/preceptdkupdate/perceptupdate_001.png" alt=""></p>
+</span></span></code></pre></div><p><img src="/img/preceptdkupdate/perceptupdate_001.png"></p>
 <p>I already knew the IP of this device since I had just used it.  If not I would have just used my UniFI network tool to look up the IP.</p>
 <p>We will run two commands to check the current firmware version of both the camera and the audio accessory.</p>
 <p>Audio Accessory</p>
@@ -118,7 +134,7 @@ if (!doNotTrack) {
 </span></span></code></pre></div><p>Camera</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>lsusb -d 045e:066f -v
 </span></span></code></pre></div><p>What we are looking for is that the bcdDevice is at 1.00.  If it is lower then this update is not supported.  If it is 3.00 then you already have it installed.</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_002.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_002.png"></p>
 <p>Next we need to copy the firmware install from our device to the Percept DK.  I used WinSCP but you can just use scp command within PowerShell or something.</p>
 <p>We need to apply the firmware to both the camera and the audio accessory.  So we need to navigate to the firmware installer application.  Mine is located at:</p>
 <p>/home/kristopherturner/Azure Percept DK SoM Attestation Update tool/input/</p>
@@ -127,25 +143,25 @@ if (!doNotTrack) {
 </span></span></code></pre></div><p>So this is where someone with Linux experience would all me out.  :) I forgot to do something, that is also not mentioned in the documentation. If I was a Linux user I would have known that I needed to run the following command on the AP_Perpheral_Intaller_v0.1 file.</p>
 <p>I got this error:</p>
 <p>sudo: AP_Peripheral_Installer_v0.1: command not found</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_004.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_004.png"></p>
 <p>Thanks to SatishBoddu-MSFT I was told to change the executable permissions by running:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>sudo chmod +x AP_Peripheral_Installer_v0.1
 </span></span></code></pre></div><p>Once I ran that command I then continued on to running the firmware update tool.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>sudo ./AP_Peripheral_Installer_v0.1
 </span></span></code></pre></div><p>The firmware tool worked and you can see below that both my &ldquo;ear&rdquo; and &ldquo;eye&rdquo; have been updated.</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_005.png" alt=""></p>
-<p><img src="/img/preceptdkupdate/perceptupdate_006.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_005.png"></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_006.png"></p>
 <h2 id="updating-the-azure-percepts-container-for-audio-and-vision">Updating the Azure Percepts Container for Audio and Vision</h2>
 <p>There are few ways we can update the software.  We can either use the Portal to deploy an IoT Edge Module or we can use VS Code.  I am going to make this easy and deploy to both devices using the portal.</p>
 <p>This process is fairly straight forward and the instructions can be found at the following Microsoft Doc,<a href="https://learn.microsoft.com/en-us/azure/iot-edge/how-to-deploy-modules-portal?view=iotedge-1.4"> Deploy Azure IoT Edge modules from the Azure portal</a>.</p>
 <p>First we start in the Azure Portal and go to IoT Hub.  Then look for Devices under the Device Management section.</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_012.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_012.png"></p>
 <p>We should see both the PerceptDK kit.  I have named mine PerceptDK.  Pretty original name huh?</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_012.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_012.png"></p>
 <p>Once we click on our device we should see a list of modules running.  We are going to update the azureearspeechclient module and the azureeye module. We continue by clicking on the Set Modules link on the top menu bar.</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_013.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_013.png"></p>
 <p>Next, we will update the first module by clicking on azureearspeechclient.</p>
-<p><img src="/img/preceptdkupdate/perceptupdate_014.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_014.png"></p>
 <p>We need to change the Image URI path from the old link to the new container path.</p>
 <p>For <strong>azure speech</strong></p>
 <blockquote>
@@ -155,8 +171,8 @@ if (!doNotTrack) {
 <blockquote>
 <p>mcr.microsoft.com/azureedgedevices/azureeyemodule:2301-1-noauth</p>
 </blockquote>
-<p><img src="/img/preceptdkupdate/perceptupdate_015.png" alt=""></p>
-<p><img src="/img/preceptdkupdate/perceptupdate_016.png" alt=""></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_015.png"></p>
+<p><img src="/img/preceptdkupdate/perceptupdate_016.png"></p>
 <p>I am still not happy that these devices where put to pasture so soon.  These devices as well as others are not cheap. At least there is a way around them completely going into my Microsoft brick draw and joining my Azure Sphere and other products like my Microsoft Band and more.</p>
 <p>I am also glad I was able to get these updates before the deadline which was tonight. I have been taking a 6 day Craftsmen Style Rocking Chair class and haven&rsquo;t turned my laptop on all week.  I may blog about that class.</p>
 
@@ -239,7 +255,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -312,9 +328,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -359,9 +375,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

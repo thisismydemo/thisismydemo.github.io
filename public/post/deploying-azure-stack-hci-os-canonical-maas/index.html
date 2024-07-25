@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Deploying Azure Stack HCI OS using Canonical MAAS - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Deploying Azure Stack HCI OS using Canonical MAAS">
+  <meta property="og:description" content="There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), and other IaC solutions like Terraform and Ansible with the proper configurations that is. We also have a solution from Canonical called MAAS or Metal-As-A-Service. In my career I have always leaned toward Microsoft solutions to deploy Microsoft Operating Systems, so I would say I am a little biased and would prefer to use tools like MDT along with WDS.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-07-25T15:00:13+00:00">
+    <meta property="article:modified_time" content="2024-07-25T21:39:40+00:00">
+    <meta property="article:tag" content="Ansible">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="MaaS">
+    <meta property="article:tag" content="Terraform">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Deploying Azure Stack HCI OS using Canonical MAAS">
+  <meta name="twitter:description" content="There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), and other IaC solutions like Terraform and Ansible with the proper configurations that is. We also have a solution from Canonical called MAAS or Metal-As-A-Service. In my career I have always leaned toward Microsoft solutions to deploy Microsoft Operating Systems, so I would say I am a little biased and would prefer to use tools like MDT along with WDS.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Deploying Azure Stack HCI OS using Canonical MAAS</h1>
+			<p class="post__lead">Automating the Deployment of Azure Stack HCI Series</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-07-25T15:00:13Z">July 25, 2024</time>
+	<time class="meta__text" datetime="2024-07-25T21:39:40Z">(Last Modified: July 25, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/azshci-maas/maas_banners_leaderboard.png" alt="Deploying Azure Stack HCI OS using Canonical MAAS">
+		
+	</figure><div class="content post__content clearfix">
+			<p>There are a handful of ways to deploy an Azure Stack HCI OS Image. Solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), and other IaC solutions like Terraform and Ansible with the proper configurations that is. We also have a solution from Canonical called MAAS or Metal-As-A-Service. In my career I have always leaned toward Microsoft solutions to deploy Microsoft Operating Systems, so I would say I am a little biased and would prefer to use tools like MDT along with WDS.  However, in my current position, the company I work for isn&rsquo;t a Microsoft shop. At least when it comes to tools and such.  They use Terraform and Ansible for IaC (Infrastructure As Code), which I have no problem with, I never really used these tools. So, these next few blogs of mine will focus on my journey into automation of Azure Stack HCI OS using tools like Terraform to kick off a MAAS deployment and Ansible to configure the Azure Stack HCI OS to prepare it to deploy an Azure STack HCI cluster using Microsoft&rsquo;s Cloud Deployment.</p>
+<ul>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#what-are-the-tools">What Are The Tools</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#the-resources">The Resources</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#the-image-server">The Image Server</a>
+<ul>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#configure-image-server">Configure Image Server</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#enable-remote-desktop">Enable Remote Desktop</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#install-windows-assessment-and-deployment-kit-adk">Install Windows Assessment and Deployment Kit (ADK)</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#set-powershell-execution-policy">Set PowerShell Execution Policy</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#install-chocolatey">Install Chocolatey</a>
+<ul>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#tools-installation">Tools Installation</a></li>
+</ul>
+</li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#install-hyper-v-and-management-tools">Install Hyper-V and Management Tools</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-external-vswitch">Create External vSwitch</a></li>
+</ul>
+</li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#setting-up">Setting Up</a>
+<ul>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-folder-structure">Create Folder Structure</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#clone-repo">Clone Repo</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#load-modules">Load Modules</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-configini-file">Create Config.ini file</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#download-azure-stack-hci-iso">Download Azure Stack HCI ISO</a></li>
+</ul>
+</li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-an-image">Create an Image</a>
+<ul>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-configini-file">Edit Config.ini File</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-unattendedtemplatehcixml-file">Edit UnattendedTemplateHCI.xml File</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-custom-scripts">Create Custom Scripts</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-logonps1-script">Edit Logon.ps1 Script</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-the-build-script">Create the Build Script</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#build-the-image">Build The Image</a></li>
+</ul>
+</li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#getting-images-to-maas">Getting Images to MAAS</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#deploying-the-image">Deploying The Image</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#next-up">Next Up</a></li>
+</ul>
+<h2 id="what-are-the-tools">What Are The Tools</h2>
+<p>To start, what is MAAS? MAAS is Metal-AS-A-Service. A tool by Canonical that provides server provisioning, a self-service, remote installation of WIndows, CentOS, ESXi and Ubuntu on physical machines (as well as virtual). Taken from their website, it enables you to turn your datacenter into a bare metal cloud.</p>
+<p>In this blog I am not focusing on how to deploy or setup MAAS.  I am assuming that MAAS has already been installed and that the environment and all the tools are already in place.  Maybe one day when I understand MAAS more I will write a blog about how to deploy the solution?</p>
+<p>However, overview of my environment, I have a MAAS server, I have another Ubuntu box configured with the MAAS Cli, and I have a Windows 2022 Image server running Hyper-V. The MAAS server and the Ubuntu server running the MAAS Cli will not be discussed in detail, but I will start focusing on building the image server later in this blog.</p>
+<h2 id="the-resources">The Resources</h2>
+<p>The following are the resources I used to document this process:</p>
+<ul>
+<li><a href="https://www.cryingcloud.com/blog/2022/10/19/create-azure-stack-hci-images-for-use-with-maas">https://www.cryingcloud.com/blog/2022/10/19/create-azure-stack-hci-images-for-use-with-maas</a></li>
+<li><a href="https://github.com/cloudbase/windows-imaging-tools">https://github.com/cloudbase/windows-imaging-tools</a></li>
+</ul>
+<h2 id="the-image-server">The Image Server</h2>
+<p>My image server that I am using is a virtual machine running on a VMWare cluster somewhere within one of our datacenters. I don&rsquo;t really know to be honest, I just requested it, it was built, and now I have it.  The requirements for the image server are simple, a Windows host, with Hyper-V enabled, Powershell, and the Windows Assessment and Deployment Kit (ADK) installed. The Windows host could be a Windows Server or even Windows 11, as long as the correct tools are installed and you can enable Hyper-V. This host can be an Azure VM running in Azure, an Azure Arc VM running on an Azure Stack HCI cluster, a VMWare VM like I am using, or even just a Windows host deployed to bare metal. Just remember, if you are going to use an Azure VM, make sure you deploy an Azure VM that supports nested virtualization.</p>
+<h3 id="configure-image-server">Configure Image Server</h3>
+<p>These are the tools and configuration that I use on my image server:</p>
+<ul>
+<li>Enabled Remote Desktop</li>
+<li>Install Windows Assessment and Deployment Kit (ADK)</li>
+<li>Set PowerShell Execution Policy to bypass (if your security team allows this)</li>
+<li>Install Chocolatey (If allowed by security)</li>
+<li>Use Choco to install:
+<ul>
+<li>VSCode</li>
+<li>Git</li>
+<li>Putty</li>
+<li>WinSCP</li>
+</ul>
+</li>
+<li>Install Hyper-V and Management Tools</li>
+<li>Create an external virtual switch (after reboot)</li>
+</ul>
+<h3 id="enable-remote-desktop">Enable Remote Desktop</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#39;HKLM:\System\CurrentControlSet\Control\Terminal Server&#39;</span> -name <span style="color:#e6db74">&#34;fDenyTSConnections&#34;</span> -value <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Enable-NetFirewallRule -DisplayGroup <span style="color:#e6db74">&#34;Remote Desktop&#34;</span>
+</span></span></code></pre></div><h3 id="install-windows-assessment-and-deployment-kit-adk">Install Windows Assessment and Deployment Kit (ADK)</h3>
+<p>For my first few attempts I didn&rsquo;t download and deploy the ADK.  This would come in handy when trying to create more advanced unattended.xml files. For more information on how to download and install the ADK you can check the following Microsoft Learn documentation:</p>
+<p><a href="https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install">https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install</a></p>
+<h3 id="set-powershell-execution-policy">Set PowerShell Execution Policy</h3>
+<p>Since this is a lab server I don&rsquo;t really have an issue to set the policy to bypass. In most cases, these image build servers shouldn&rsquo;t be in production anyway. If your security team has an issue, there is always an Azure VM just a few clicks away. (Shhhh, I didn&rsquo;t say that)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy -ExecutionPolicy bypass -Force:$true
+</span></span></code></pre></div><h3 id="install-chocolatey">Install Chocolatey</h3>
+<p>If you are using Windows Server I recommend Chocolatey, but if you are using Windows 11 for your image machine, WINGET is already installed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy Bypass -Scope <span style="color:#66d9ef">Process</span> -Force; [<span style="color:#66d9ef">System.Net.ServicePointManager</span>]::SecurityProtocol = [<span style="color:#66d9ef">System.Net.ServicePointManager</span>]::SecurityProtocol <span style="color:#f92672">-bor</span> <span style="color:#ae81ff">3072</span>; iex ((New-Object System.Net.WebClient).DownloadString(<span style="color:#e6db74">&#39;https://chocolatey.org/install.ps1&#39;</span>))
+</span></span></code></pre></div><h4 id="tools-installation">Tools Installation</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>choco install vscode -y
+</span></span><span style="display:flex;"><span>choco install git -y
+</span></span><span style="display:flex;"><span>choco install putty.install -y
+</span></span><span style="display:flex;"><span>choco install winscp -y
+</span></span></code></pre></div><h3 id="install-hyper-v-and-management-tools">Install Hyper-V and Management Tools</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
+</span></span></code></pre></div><h3 id="create-external-vswitch">Create External vSwitch</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$adapter = Get-NetAdapter | ?{$_.status <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;up&#34;</span>} | select -first <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>new-vmswitch <span style="color:#e6db74">&#34;External&#34;</span> -NetAdapterName $adapter.name
+</span></span></code></pre></div><h2 id="setting-up">Setting Up</h2>
+<p>I do want to shout out to <a href="https://www.cryingcloud.com/">https://www.cryingcloud.com/</a> and <a href="https://github.com/cloudbase/windows-imaging-tools">https://github.com/cloudbase/windows-imaging-tools</a>, because most of my success came from using these resources.</p>
+<h3 id="create-folder-structure">Create Folder Structure</h3>
+<p>Now we create our directory structure. The following PowerShell script will create a root folder called maas followed by subfolders called iso, scripts, source, and images.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>mkdir maas
+</span></span><span style="display:flex;"><span>cd maas
+</span></span><span style="display:flex;"><span>mkdir iso
+</span></span><span style="display:flex;"><span>mkdir scripts
+</span></span><span style="display:flex;"><span>mkdir source
+</span></span><span style="display:flex;"><span>mkdir images
+</span></span></code></pre></div><h3 id="clone-repo">Clone Repo</h3>
+<p>Now we need to clone the repo that we will use when running scripts. The following repo will be cloned, <a href="https://github.com/cloudbase/windows-imaging-tools">https://github.com/cloudbase/windows-imaging-tools</a>. From the root projectd directory, mine is called maas, run the following PowerShell script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>git clone https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/cloudbase/windows-openstack-imaging-tools.git
+</span></span><span style="display:flex;"><span>cd windows-openstack-imaging-tools
+</span></span><span style="display:flex;"><span>git submodule update --init
+</span></span></code></pre></div><h3 id="load-modules">Load Modules</h3>
+<p>Make sure you are in PowerShell as an Administrator session. Then run the following script to load the modules needed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>pushd windows-openstack-imaging-tools
+</span></span><span style="display:flex;"><span>Import-Module .\WinImageBuilder.psm1
+</span></span><span style="display:flex;"><span>Import-Module .\Config.psm1
+</span></span><span style="display:flex;"><span>Import-Module .\UnattendResources\ini.psm1
+</span></span></code></pre></div><h3 id="create-configini-file">Create Config.ini file</h3>
+<p>We are going to create an empty configuration file.  Run the following PowerShell command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$ConfigFilePath = <span style="color:#e6db74">&#34;.\config.ini&#34;</span>
+</span></span><span style="display:flex;"><span>New-WindowsImageConfig -ConfigFilePath $ConfigFilePath
+</span></span></code></pre></div><h3 id="download-azure-stack-hci-iso">Download Azure Stack HCI ISO</h3>
+<p>You will need to have an Azure Subscription and an Account that has access to that subscription in order to download the most recent Azure Stack HCI ISO. The following Microsoft Learn documentation will assist with getting that ISO.</p>
+<p><a href="https://learn.microsoft.com/en-us/azure-stack/hci/deploy/download-azure-stack-hci-software">https://learn.microsoft.com/en-us/azure-stack/hci/deploy/download-azure-stack-hci-software</a></p>
+<p>Download the current ISO and place the ISO in the ./maas/iso directory.</p>
+<p>As mentioned in the CryingCloud blog, if we want to customize the image using the &ldquo;Windows System Image manager&rdquo; to build custom unattended files, we will need to also extract that Azure Stack HCI ISO to our ./maas/source directory as well.  The easiest way is to mount the ISO, then copy and paste everything in the directory to a folder in the ./maas/source directory called hci or something.</p>
+<p>At this point, we are ready to start customizing our configurations files, building our build scripts, and creating our image.</p>
+<h2 id="create-an-image">Create an Image</h2>
+<p>I have not ran into this issue yet but CryingCloud blog addresses an issue with the Azure Stack HCI OS being generalized when you try to sysprep the image. We have taken some suggestions and instead of building out a single build solution to run builds for Windows Server OS&rsquo;s and also Azure Stack HCI OS builds we just customized our build to only focus on Azure Stack HCI OS builds. In other words, instead of doing all the extra steps in the CryingCloud blog, we just edited the one section in the Logon.ps1 script and removed the /generalize. We have tested the other way, and it also seems to work. However, this was easier and faster. To see how they have created their build solution to support both Windows Server OS and Azure Stack HCI OS builds, check out that blog at <a href="https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image">https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image</a>.</p>
+<h3 id="edit-configini-file">Edit Config.ini File</h3>
+<p>The config.ini file was created in the ./maas/windows-openstack-imaging-tools directory. Copy this file to the ./maas/scripts directory and rename it to config-server-hci-uefi.ini. The following PowerShell script will do the same as well:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Define source and destination paths</span>
+</span></span><span style="display:flex;"><span>$sourcePath = <span style="color:#e6db74">&#34;C:\maas\windows-openstack-imaging-tools\config.ini&#34;</span>
+</span></span><span style="display:flex;"><span>$destinationPath = <span style="color:#e6db74">&#34;C:\maas\script\cconfig-server-hci-uefi.ini&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if the source file exists</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (Test-Path -Path $sourcePath) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Copy the file to the destination and rename it</span>
+</span></span><span style="display:flex;"><span>    Copy-Item -Path $sourcePath -Destination $destinationPath
+</span></span><span style="display:flex;"><span>    Write-Host <span style="color:#e6db74">&#34;File copied and renamed successfully.&#34;</span>
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    Write-Host <span style="color:#e6db74">&#34;Source file does not exist.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The following settings is what I am currently using for my config-server-hci-uefi.ini file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">DEFAULT</span>]
+</span></span><span style="display:flex;"><span>wim_file_path=F:\Sources\install.wim
+</span></span><span style="display:flex;"><span>image_name=Azure Stack HCI SERVERAZURESTACKHCICORE
+</span></span><span style="display:flex;"><span>image_path=C:\maas\images\HCI.10.2405.0.24.tgz
+</span></span><span style="display:flex;"><span>virtual_disk_format=RAW
+</span></span><span style="display:flex;"><span>image_type=MAAS
+</span></span><span style="display:flex;"><span>disk_layout=UEFI
+</span></span><span style="display:flex;"><span>product_key=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>extra_features=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>extra_capabilities=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>force=False
+</span></span><span style="display:flex;"><span>install_maas_hooks=True
+</span></span><span style="display:flex;"><span>compression_format=<span style="color:#e6db74">&#34;tar.gz&#34;</span>
+</span></span><span style="display:flex;"><span>zip_password=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>gold_image=False
+</span></span><span style="display:flex;"><span>gold_image_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>vmware_tools_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>install_net_3_5=False
+</span></span><span style="display:flex;"><span>custom_resources_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>custom_scripts_path=<span style="color:#e6db74">&#34;C:\maas\Scripts\HCI&#34;</span>
+</span></span><span style="display:flex;"><span>enable_administrator_account=True
+</span></span><span style="display:flex;"><span>shrink_image_to_minimum_size=True
+</span></span><span style="display:flex;"><span>enable_custom_wallpaper=False
+</span></span><span style="display:flex;"><span>wallpaper_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>wallpaper_solid_color=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>disable_first_logon_animation=False
+</span></span><span style="display:flex;"><span>compress_qcow2=False
+</span></span><span style="display:flex;"><span>zero_unused_volume_sectors=False
+</span></span><span style="display:flex;"><span>extra_packages=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>extra_packages_ignore_errors=False
+</span></span><span style="display:flex;"><span>enable_shutdown_without_logon=False
+</span></span><span style="display:flex;"><span>enable_ping_requests=False
+</span></span><span style="display:flex;"><span>enable_ipv6_eui64=False
+</span></span><span style="display:flex;"><span>enable_active_mode=False
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">vm</span>]
+</span></span><span style="display:flex;"><span>administrator_password=<span style="color:#75715e">##############</span>
+</span></span><span style="display:flex;"><span>external_switch=external
+</span></span><span style="display:flex;"><span>cpu_count=<span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>ram_size=<span style="color:#ae81ff">2147483648</span>
+</span></span><span style="display:flex;"><span>disk_size=<span style="color:#ae81ff">42949672960</span>
+</span></span><span style="display:flex;"><span>disable_secure_boot=True
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">drivers</span>]
+</span></span><span style="display:flex;"><span>virtio_iso_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>virtio_base_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>drivers_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">custom</span>]
+</span></span><span style="display:flex;"><span>install_qemu_ga=False
+</span></span><span style="display:flex;"><span>time_zone=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>ntp_servers=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">updates</span>]
+</span></span><span style="display:flex;"><span>install_updates=False
+</span></span><span style="display:flex;"><span>purge_updates=False
+</span></span><span style="display:flex;"><span>clean_updates_offline=False
+</span></span><span style="display:flex;"><span>clean_updates_online=True
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">sysprep</span>]
+</span></span><span style="display:flex;"><span>run_sysprep=True
+</span></span><span style="display:flex;"><span>unattend_xml_path=UnattendTemplateHCI.xml
+</span></span><span style="display:flex;"><span>disable_swap=True
+</span></span><span style="display:flex;"><span>persist_drivers_install=True
+</span></span><span style="display:flex;"><span>[<span style="color:#66d9ef">cloudbase_init</span>]
+</span></span><span style="display:flex;"><span>beta_release=False
+</span></span><span style="display:flex;"><span>serial_logging_port=COM1
+</span></span><span style="display:flex;"><span>msi_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>cloudbase_init_config_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>cloudbase_init_unattended_config_path=<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>cloudbase_init_use_local_system=False
+</span></span><span style="display:flex;"><span>cloudbase_init_delayed_start=False
+</span></span></code></pre></div><p>Please note that some of these variables will need to be edited.</p>
+<ul>
+<li>wim_file_path</li>
+<li>image_path</li>
+<li>custom_scripts_path</li>
+</ul>
+<p>One other area that I changed was under the [updates] section. In order to save time during the build process I have chosen not to have the image updated at this time. If at any time we want to include updates in this process we will just need to change the following section:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>[<span style="color:#66d9ef">updates</span>]
+</span></span><span style="display:flex;"><span>install_updates=False
+</span></span><span style="display:flex;"><span>purge_updates=False
+</span></span><span style="display:flex;"><span>clean_updates_offline=False
+</span></span><span style="display:flex;"><span>clean_updates_online=True
+</span></span></code></pre></div><h3 id="edit-unattendedtemplatehcixml-file">Edit UnattendedTemplateHCI.xml File</h3>
+<p>I have not had a lot of experience working with unattended.xml files in my career outside of using some with ConfigMgr. I know you can do a lot with these. Here are a few resources for working with unattended.xml files:</p>
+<p><a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11">https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11</a></p>
+<p>However, there is an UnattendedTEmplate2022.xml file located in the repo we have cloned that we will use for now. Copy this UnattendTemplate2022.xml and then rename it to UnattendTemplateHCI.xml.</p>
+<p>The following is an example of the unattendedtemplatehci.xml file I am using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&lt;<span style="color:#66d9ef">?</span>xml version=<span style="color:#e6db74">&#34;1.0&#34;</span> encoding=<span style="color:#e6db74">&#34;utf-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;unattend xmlns=<span style="color:#e6db74">&#34;urn:schemas-microsoft-com:unattend&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;settings pass=<span style="color:#e6db74">&#34;windowsPE&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-Setup&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;DiskConfiguration&gt;
+</span></span><span style="display:flex;"><span>                &lt;WillShowUI&gt;OnError&lt;/WillShowUI&gt;
+</span></span><span style="display:flex;"><span>                &lt;Disk wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;CreatePartitions&gt;
+</span></span><span style="display:flex;"><span>                        &lt;CreatePartition wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Order&gt;<span style="color:#ae81ff">1</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Size&gt;<span style="color:#ae81ff">100</span>&lt;/Size&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Type&gt;Primary&lt;/Type&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/CreatePartition&gt;
+</span></span><span style="display:flex;"><span>                        &lt;CreatePartition wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Order&gt;<span style="color:#ae81ff">2</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Extend&gt;true&lt;/Extend&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Type&gt;Primary&lt;/Type&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/CreatePartition&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/CreatePartitions&gt;
+</span></span><span style="display:flex;"><span>                    &lt;ModifyPartitions&gt;
+</span></span><span style="display:flex;"><span>                        &lt;ModifyPartition wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Active&gt;true&lt;/Active&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Label&gt;Boot&lt;/Label&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Format&gt;NTFS&lt;/Format&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Order&gt;<span style="color:#ae81ff">1</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                            &lt;PartitionID&gt;<span style="color:#ae81ff">1</span>&lt;/PartitionID&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/ModifyPartition&gt;
+</span></span><span style="display:flex;"><span>                        &lt;ModifyPartition wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Format&gt;NTFS&lt;/Format&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Order&gt;<span style="color:#ae81ff">2</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                            &lt;PartitionID&gt;<span style="color:#ae81ff">2</span>&lt;/PartitionID&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Label&gt;System&lt;/Label&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/ModifyPartition&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/ModifyPartitions&gt;
+</span></span><span style="display:flex;"><span>                    &lt;DiskID&gt;<span style="color:#ae81ff">0</span>&lt;/DiskID&gt;
+</span></span><span style="display:flex;"><span>                    &lt;WillWipeDisk&gt;true&lt;/WillWipeDisk&gt;
+</span></span><span style="display:flex;"><span>                &lt;/Disk&gt;
+</span></span><span style="display:flex;"><span>            &lt;/DiskConfiguration&gt;
+</span></span><span style="display:flex;"><span>            &lt;ImageInstall&gt;
+</span></span><span style="display:flex;"><span>                &lt;OSImage&gt;
+</span></span><span style="display:flex;"><span>                    &lt;InstallTo&gt;
+</span></span><span style="display:flex;"><span>                        &lt;PartitionID&gt;<span style="color:#ae81ff">2</span>&lt;/PartitionID&gt;
+</span></span><span style="display:flex;"><span>                        &lt;DiskID&gt;<span style="color:#ae81ff">0</span>&lt;/DiskID&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/InstallTo&gt;
+</span></span><span style="display:flex;"><span>                    &lt;InstallToAvailablePartition&gt;false&lt;/InstallToAvailablePartition&gt;
+</span></span><span style="display:flex;"><span>                    &lt;WillShowUI&gt;OnError&lt;/WillShowUI&gt;
+</span></span><span style="display:flex;"><span>                    &lt;InstallFrom&gt;
+</span></span><span style="display:flex;"><span>                        &lt;MetaData wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Key&gt;/IMAGE/NAME&lt;/Key&gt;
+</span></span><span style="display:flex;"><span>                            &lt;Value&gt;Azure Stack HCI SERVERAZURESTACKHCICORE&lt;/Value&gt;
+</span></span><span style="display:flex;"><span>                        &lt;/MetaData&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/InstallFrom&gt;
+</span></span><span style="display:flex;"><span>                &lt;/OSImage&gt;
+</span></span><span style="display:flex;"><span>            &lt;/ImageInstall&gt;
+</span></span><span style="display:flex;"><span>            &lt;UserData&gt;
+</span></span><span style="display:flex;"><span>                &lt;AcceptEula&gt;true&lt;/AcceptEula&gt;
+</span></span><span style="display:flex;"><span>                &lt;!--
+</span></span><span style="display:flex;"><span>                &lt;ProductKey&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Key&gt;XXXXX-XXXXX-XXXXX-XXXXX-XXXXX&lt;/Key&gt;
+</span></span><span style="display:flex;"><span>                    &lt;WillShowUI&gt;OnError&lt;/WillShowUI&gt;
+</span></span><span style="display:flex;"><span>                &lt;/ProductKey&gt;
+</span></span><span style="display:flex;"><span>                --&gt;
+</span></span><span style="display:flex;"><span>            &lt;/UserData&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-International-Core-WinPE&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;SetupUILanguage&gt;
+</span></span><span style="display:flex;"><span>                &lt;UILanguage&gt;en-US&lt;/UILanguage&gt;
+</span></span><span style="display:flex;"><span>            &lt;/SetupUILanguage&gt;
+</span></span><span style="display:flex;"><span>            &lt;InputLocale&gt;en-US&lt;/InputLocale&gt;
+</span></span><span style="display:flex;"><span>            &lt;UILanguage&gt;en-US&lt;/UILanguage&gt;
+</span></span><span style="display:flex;"><span>            &lt;SystemLocale&gt;en-US&lt;/SystemLocale&gt;
+</span></span><span style="display:flex;"><span>            &lt;UserLocale&gt;en-US&lt;/UserLocale&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>    &lt;/settings&gt;
+</span></span><span style="display:flex;"><span>    &lt;settings pass=<span style="color:#e6db74">&#34;oobeSystem&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-Shell-Setup&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;OOBE&gt;
+</span></span><span style="display:flex;"><span>                &lt;HideEULAPage&gt;true&lt;/HideEULAPage&gt;
+</span></span><span style="display:flex;"><span>                &lt;!--
+</span></span><span style="display:flex;"><span>                    ProtectYourPC<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">1</span> Specifies the recommended level of protection <span style="color:#66d9ef">for</span> your computer.
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">2</span> Specifies that only updates are installed.
+</span></span><span style="display:flex;"><span>                    <span style="color:#ae81ff">3</span> Specifies that automatic protection is disabled.
+</span></span><span style="display:flex;"><span>                --&gt;
+</span></span><span style="display:flex;"><span>                &lt;ProtectYourPC&gt;<span style="color:#ae81ff">3</span>&lt;/ProtectYourPC&gt;
+</span></span><span style="display:flex;"><span>                &lt;HideWirelessSetupInOOBE&gt;true&lt;/HideWirelessSetupInOOBE&gt;
+</span></span><span style="display:flex;"><span>                &lt;!-- Comment the following three options on Windows Vista / <span style="color:#ae81ff">7</span> and Windows Server <span style="color:#ae81ff">2008</span> / <span style="color:#ae81ff">2008</span> R2 --&gt;
+</span></span><span style="display:flex;"><span>                &lt;HideOnlineAccountScreens&gt;true&lt;/HideOnlineAccountScreens&gt;
+</span></span><span style="display:flex;"><span>                &lt;HideLocalAccountScreen&gt;true&lt;/HideLocalAccountScreen&gt;
+</span></span><span style="display:flex;"><span>                &lt;HideOEMRegistrationScreen&gt;true&lt;/HideOEMRegistrationScreen&gt;
+</span></span><span style="display:flex;"><span>                &lt;!--
+</span></span><span style="display:flex;"><span>                &lt;SkipMachineOOBE&gt;true&lt;/SkipMachineOOBE&gt;
+</span></span><span style="display:flex;"><span>                &lt;SkipUserOOBE&gt;true&lt;/SkipUserOOBE&gt;
+</span></span><span style="display:flex;"><span>                --&gt;
+</span></span><span style="display:flex;"><span>            &lt;/OOBE&gt;
+</span></span><span style="display:flex;"><span>            &lt;!-- Use FirstLogonCommands instead of LogonCommands <span style="color:#66d9ef">if</span> you don<span style="color:#960050;background-color:#1e0010">&#39;</span>t need to install Windows Updates --&gt;
+</span></span><span style="display:flex;"><span>            &lt;LogonCommands&gt;
+</span></span><span style="display:flex;"><span>                &lt;AsynchronousCommand wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;CommandLine&gt;<span style="color:#66d9ef">%</span>SystemRoot%\System32\WindowsPowerShell\v1.<span style="color:#ae81ff">0</span>\powershell -NoLogo -NonInteractive -ExecutionPolicy RemoteSigned <span style="color:#f92672">-File</span> <span style="color:#66d9ef">%</span>SystemDrive%\UnattendResources\Logon.ps1&lt;/CommandLine&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Order&gt;<span style="color:#ae81ff">1</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                &lt;/AsynchronousCommand&gt;
+</span></span><span style="display:flex;"><span>            &lt;/LogonCommands&gt;
+</span></span><span style="display:flex;"><span>            &lt;FirstLogonCommands&gt;
+</span></span><span style="display:flex;"><span>                &lt;SynchronousCommand wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;CommandLine&gt;<span style="color:#66d9ef">%</span>SystemRoot%\System32\WindowsPowerShell\v1.<span style="color:#ae81ff">0</span>\powershell -NoLogo -NonInteractive -ExecutionPolicy RemoteSigned <span style="color:#f92672">-File</span> <span style="color:#66d9ef">%</span>SystemDrive%\UnattendResources\FirstLogon.ps1&lt;/CommandLine&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Order&gt;<span style="color:#ae81ff">1</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                &lt;/SynchronousCommand&gt;
+</span></span><span style="display:flex;"><span>            &lt;/FirstLogonCommands&gt;
+</span></span><span style="display:flex;"><span>            &lt;UserAccounts&gt;
+</span></span><span style="display:flex;"><span>                &lt;!--
+</span></span><span style="display:flex;"><span>                    Password to be used only during initial provisioning.
+</span></span><span style="display:flex;"><span>                    Must be reset with final Sysprep.
+</span></span><span style="display:flex;"><span>                --&gt;
+</span></span><span style="display:flex;"><span>                &lt;AdministratorPassword&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Value&gt;<span style="color:#75715e">#########&lt;/Value&gt;</span>
+</span></span><span style="display:flex;"><span>                    &lt;PlainText&gt;true&lt;/PlainText&gt;
+</span></span><span style="display:flex;"><span>                &lt;/AdministratorPassword&gt;
+</span></span><span style="display:flex;"><span>                &lt;!-- The following is needed on a client OS --&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                &lt;LocalAccounts&gt;
+</span></span><span style="display:flex;"><span>                    &lt;LocalAccount wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;Description&gt;Admin user&lt;/Description&gt;
+</span></span><span style="display:flex;"><span>                        &lt;DisplayName&gt;Admin&lt;/DisplayName&gt;
+</span></span><span style="display:flex;"><span>                        &lt;Group&gt;Administrators&lt;/Group&gt;
+</span></span><span style="display:flex;"><span>                        &lt;Name&gt;Admin&lt;/Name&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/LocalAccount&gt;
+</span></span><span style="display:flex;"><span>                &lt;/LocalAccounts&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;/UserAccounts&gt;
+</span></span><span style="display:flex;"><span>            &lt;AutoLogon&gt;
+</span></span><span style="display:flex;"><span>                &lt;Password&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Value&gt;<span style="color:#75715e">###########&lt;/Value&gt;</span>
+</span></span><span style="display:flex;"><span>                    &lt;PlainText&gt;true&lt;/PlainText&gt;
+</span></span><span style="display:flex;"><span>                &lt;/Password&gt;
+</span></span><span style="display:flex;"><span>                &lt;Enabled&gt;true&lt;/Enabled&gt;
+</span></span><span style="display:flex;"><span>                &lt;LogonCount&gt;<span style="color:#ae81ff">5</span>&lt;/LogonCount&gt;
+</span></span><span style="display:flex;"><span>                &lt;Username&gt;Administrator&lt;/Username&gt;
+</span></span><span style="display:flex;"><span>            &lt;/AutoLogon&gt;
+</span></span><span style="display:flex;"><span>            &lt;ComputerName&gt;*&lt;/ComputerName&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-International-Core&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;InputLocale&gt;en-US&lt;/InputLocale&gt;
+</span></span><span style="display:flex;"><span>            &lt;UILanguage&gt;en-US&lt;/UILanguage&gt;
+</span></span><span style="display:flex;"><span>            &lt;UILanguageFallback&gt;en-us&lt;/UILanguageFallback&gt;
+</span></span><span style="display:flex;"><span>            &lt;SystemLocale&gt;en-US&lt;/SystemLocale&gt;
+</span></span><span style="display:flex;"><span>            &lt;UserLocale&gt;en-US&lt;/UserLocale&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>    &lt;/settings&gt;
+</span></span><span style="display:flex;"><span>    &lt;settings pass=<span style="color:#e6db74">&#34;specialize&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-TerminalServices-LocalSessionManager&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;fDenyTSConnections&gt;false&lt;/fDenyTSConnections&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-TerminalServices-RDP-WinStationExtensions&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;UserAuthentication&gt;<span style="color:#ae81ff">0</span>&lt;/UserAuthentication&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Networking-MPSSVC-Svc&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;FirewallGroups&gt;
+</span></span><span style="display:flex;"><span>                &lt;FirewallGroup wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span> wcm<span style="color:#960050;background-color:#1e0010">:</span>keyValue=<span style="color:#e6db74">&#34;RemoteDesktop&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Active&gt;true&lt;/Active&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Profile&gt;all&lt;/Profile&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Group&gt;@FirewallAPI.dll,<span style="color:#ae81ff">-28752</span>&lt;/Group&gt;
+</span></span><span style="display:flex;"><span>                &lt;/FirewallGroup&gt;
+</span></span><span style="display:flex;"><span>            &lt;/FirewallGroups&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-Shell-Setup&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;NonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;TimeZone&gt;UTC&lt;/TimeZone&gt;
+</span></span><span style="display:flex;"><span>            &lt;ComputerName&gt;*&lt;/ComputerName&gt;
+</span></span><span style="display:flex;"><span>            &lt;!--
+</span></span><span style="display:flex;"><span>            &lt;ProductKey&gt;XXXXX-XXXXX-XXXXX-XXXXX-XXXXX&lt;/ProductKey&gt;
+</span></span><span style="display:flex;"><span>            --&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-Deployment&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;nonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;RunSynchronous&gt;
+</span></span><span style="display:flex;"><span>                &lt;RunSynchronousCommand wcm<span style="color:#960050;background-color:#1e0010">:</span>action=<span style="color:#e6db74">&#34;add&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Order&gt;<span style="color:#ae81ff">1</span>&lt;/Order&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Path&gt;powershell -NoLogo -NonInteractive -ExecutionPolicy RemoteSigned <span style="color:#f92672">-File</span> <span style="color:#66d9ef">%</span>SystemDrive%\UnattendResources\Specialize.ps1&lt;/Path&gt;
+</span></span><span style="display:flex;"><span>                    &lt;Description&gt;Run Specialize script&lt;/Description&gt;
+</span></span><span style="display:flex;"><span>                &lt;/RunSynchronousCommand&gt;
+</span></span><span style="display:flex;"><span>            &lt;/RunSynchronous&gt;
+</span></span><span style="display:flex;"><span>            &lt;ExtendOSPartition&gt;
+</span></span><span style="display:flex;"><span>                &lt;Extend&gt;true&lt;/Extend&gt;
+</span></span><span style="display:flex;"><span>            &lt;/ExtendOSPartition&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>        &lt;component name=<span style="color:#e6db74">&#34;Microsoft-Windows-SQMApi&#34;</span> processorArchitecture=<span style="color:#e6db74">&#34;amd64&#34;</span> publicKeyToken=<span style="color:#e6db74">&#34;31bf3856ad364e35&#34;</span> language=<span style="color:#e6db74">&#34;neutral&#34;</span> versionScope=<span style="color:#e6db74">&#34;NonSxS&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>wcm=<span style="color:#e6db74">&#34;http://schemas.microsoft.com/WMIConfig/2002/State&#34;</span> xmlns<span style="color:#960050;background-color:#1e0010">:</span>xsi=<span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;CEIPEnabled&gt;<span style="color:#ae81ff">0</span>&lt;/CEIPEnabled&gt;
+</span></span><span style="display:flex;"><span>        &lt;/component&gt;
+</span></span><span style="display:flex;"><span>    &lt;/settings&gt;
+</span></span><span style="display:flex;"><span>&lt;/unattend&gt;
+</span></span></code></pre></div><h3 id="create-custom-scripts">Create Custom Scripts</h3>
+<p>I am learning more about the custom scripts that can be ran before and after some of the build processes. Right now I don&rsquo;t include a custom script for my HCI builds. However, I am leaning into using custom scripts over using the unattended.xml files above very soon.</p>
+<h3 id="edit-logonps1-script">Edit Logon.ps1 Script</h3>
+<p>We are going to edit the Logon.ps1 PowerShell script to remove the /generalize parameter in order to not generalize the HCI image during the sysprep process of the image build. This file is located in the ./maas/windows-openstack-imaging-tools/UnattendedResources directory.</p>
+<p>On line 720 the existing code should show:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/generalize `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>We will remove the `/generalize section and save the file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>As mentioned before, the CryingCloud blog does show another way in order to keep the same code for both Windows OS and HCI OS, but I am keeping it simple for now.</p>
+<h3 id="create-the-build-script">Create the Build Script</h3>
+<p>Now we will create the build script.  Here is a copy of my build script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">Param</span> ( 
+</span></span><span style="display:flex;"><span>    $VerbosePreference = <span style="color:#e6db74">&#34;Continue&#34;</span>,
+</span></span><span style="display:flex;"><span>    $ISOImage = <span style="color:#e6db74">&#34;C:\maas\iso\25398.469.231004-1141.zn_release_svc_refresh_SERVERAZURESTACKHCICOR_OEMRET_x64FRE_en-us.iso&#34;</span>,
+</span></span><span style="display:flex;"><span>    $ConfigFilePath = <span style="color:#e6db74">&#34;C:\maas\Scripts\config-Server-HCI-UEFI.ini&#34;</span>,
+</span></span><span style="display:flex;"><span>    $CloudBuildModules = <span style="color:#e6db74">&#34;C:\maas\windows-openstack-imaging-tools&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>Set-Location $CloudBuildModules 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Import-Module .\WinImageBuilder.psm1
+</span></span><span style="display:flex;"><span>Import-Module .\Config.psm1
+</span></span><span style="display:flex;"><span>Import-Module .\UnattendResources\ini.psm1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Mount-DiskImage -ImagePath $ISOImage
+</span></span><span style="display:flex;"><span>$MountLetter = (Get-DiskImage $ISOImage| Get-Volume).DriveLetter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a config.ini file using the built in function, then set them accordingly to your needs</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># New-WindowsImageConfig -ConfigFilePath $ConfigFilePath</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># To automate the config options setting:</span>
+</span></span><span style="display:flex;"><span>Set-IniFileValue -Path (Resolve-Path $ConfigFilePath) -Section <span style="color:#e6db74">&#34;DEFAULT&#34;</span> -Key <span style="color:#e6db74">&#34;wim_file_path&#34;</span> -Value (<span style="color:#e6db74">&#34;</span>$MountLetter<span style="color:#e6db74">&#34;</span> + <span style="color:#e6db74">&#34;:\Sources\install.wim&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#New Online image </span>
+</span></span><span style="display:flex;"><span>New-WindowsOnlineImage -ConfigFilePath $ConfigFilePath
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Dismount-DiskImage $ISOImage
+</span></span></code></pre></div><p>As you can see i have the $ISOImage linked to my downloaded Azure Stack HCI ISO.  I have the $ConfigFilePath linked to my config-server-hci-uefi.ini file, and then the $CloudBuildModules linked to the windows-openstack-imaging-tools directory.</p>
+<p>If we go back to the config-server-hci-uefi.ini file, we can see that the image will be created in the ./maas/images/ directory. I have the file named hci.10.2405.0.24.tgz based off the most recent baseline that is available to download. This way I can keep track of my builds based off of Microsoft releases.</p>
+<p>Out of experience, I will check my image server, and make sure that nothing has been mounted to the wim_file_path I have declared in the config-server-hci-uefi.ini file. For my setup, I have used the F drive. The script will try and mount it to the F drive, I have been lucky in the past when I have forgotten to unmount previous attempts that it was still Azure Stack HCI OS ISO and not another OS ISO.</p>
+<h3 id="build-the-image">Build The Image</h3>
+<p>Now we will run our build script. From the ./maas/scripts directory run the build-hci.ps1 script we just created.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20150533.png"></p>
+<p>The script will mount the Azure Stack HCI ISO, it will create the Virtual Disk image, generate an unattend xml file based off of the given unattended.xml that we created. It will then create the Hyper-V VM and  then also apply the ISO image to that Hyper-V VM and disk it just created.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20150630.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20150911.png"></p>
+<p>Once the VM is online, the script will start to customize the image running any of the custom scripts that we may have created. It will apply the settings from the unattended.xml file we created. IT will then start to download the Cloudbase-init files needed for maas deployments.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20150851.png"></p>
+<p>Last it will start to clean the image and prep it to run sysprep.  Once that is done, the image will be sysprepped and then the vm shutdown.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152032.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152045.png"></p>
+<p>Once the VM is shutdown, the script will shrink the VHD file.  It then converts the vhd to raw. Once it is converted to raw format, it is compressed into a tar.gz file.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152151.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152207.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152249.png"></p>
+<p>Once we have our file compressed and in the tgz format, we are now ready to move forward and send it to our MAAS server.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152515.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20152528.png"></p>
+<h2 id="getting-images-to-maas">Getting Images to MAAS</h2>
+<p>Using a tool like WInSCP, we will need to copy our newly created image to a MaaS Build Server, this is what I call it, however, from my experience, this is just another Ubuntu Server running the MAAS CLI. Once the file has been successfully copied to our build server, we can now ssh into that server using either PowerShell or Putty or any other tool of choice.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20154938.png"></p>
+<p>Once connected to the build machine via SSH, we will confirm we can see the newly uploaded image.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20160442.png"></p>
+<p>Next we need to connect our session to our MAAS server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>maas login &lt;targetname&gt; https://&lt;maas url&gt;/MAAS/  &lt;secret&gt;
+</span></span></code></pre></div><p>More detailed information on how to do this can be found here <a href="https://maas.io/docs/tutorial-try-the-maas-cli">https://maas.io/docs/tutorial-try-the-maas-cli</a>.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20155902.png"></p>
+<p>Once connected, we can now run the command to import the image into the MAAS Image directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>maas &lt;target name&gt; boot-resources create name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;windows/AzSHCI-10.2405-03&#39;</span> title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;AzSHCI-2405-03&#39;</span> architecture<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;amd64/generic&#39;</span> filetype<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ddtgz&#39;</span> content@<span style="color:#f92672">=</span>HCI.10.2405.0.24-03.tgz
+</span></span></code></pre></div><p><img src="/img/azshci-maas/Screenshot%202024-07-25%20160442.png"></p>
+<p>Now, we can go over to our MAAS server, and if we go to Images, and scroll down to Custom Images, we can now see that our image is being downloaded. In a few minutes, we should be able to test deploy this newly created Azure Stack HCI image to a test machine.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20160528.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20162349.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20162552.png"></p>
+<h2 id="deploying-the-image">Deploying The Image</h2>
+<p>Now it is time to test deploy this image. I use a Dell R650 vSAN Ready Node as a test image box. We could also use a Hyper-V VM if needed. From the MAAS Portal, we will select the machine we want to deploy the Azure Stack HCI Image to.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20163202.png"></p>
+<p>Next to Ready, click the drop down and click allocate.  Once it has been allocated, click the drop down next to Allocated, select Deploy.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20163403.png"></p>
+<p>The blade to the right will pop up.  Under OS, select Windows, under Release select the Azure Stack HCI OS release that we just added.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20163947.png"></p>
+<p>Then click Start Deployment for machine.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164111.png"></p>
+<p>MaaS is configured to interact with the iDrac and will Power On the server and boot into PXE Boot.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164230.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164308.png"></p>
+<p>The bootstrap OS will load and soon start the process of downloading the image.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164344.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164414.png"></p>
+<p>After about 10 minutes or so, the server will boot and soon be available to login to.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164745.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20164804.png"></p>
+<p>Once it has finished deploying, we will test our deployment. First thing we can check is the  IP the server was assigned. This way we can check to see if RDP has been enabled like it should have been. We can get the IP of the server from the server information within MaaS. Just click on the Servers name and the information blade will come up.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20165441.png"></p>
+<p>I will try the administrator account that should have been setup doing the deployment of the image.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20165531.png"></p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20165811.png"></p>
+<p>From my test, RDP works, but the administrator account isn&rsquo;t set yet.</p>
+<p><img src="/img/azshci-maas/Screenshot%202024-07-25%20165824.png"></p>
+<p>For this round, I will call this a success. I was able to build and deploy an Azure Stack HCI image using MAAS.</p>
+<h2 id="next-up">Next Up</h2>
+<p>My next attempts will be to figure out how to get the administrator account to be configured. I also do plan to start doing more customizations to these images, including configuring them for Ansible connectivity. I also want to look at automating the deployment of these image servers, and the build of the images whenever a new Azure Stack HCI baseline build has been released.</p>
+<p>Other areas I am planning on is how to get Terraform to kick off this process, how to get WinRM configured for Ansible to do the OS customizations that are needed before we start a Cloud Deployment to deploy the Azure Stack HCI cluster.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/ansible/" rel="tag">Ansible</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-stack-hci/" rel="tag">Azure Stack HCI</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/maas/" rel="tag">MaaS</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/terraform/" rel="tag">Terraform</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		I am a Microsoft MVP currently living in Texas. My interests range from technology to homesteading. I also love spending time in the woodshop, making things out of wood with my hands.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/">Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/azure-arc-vmware-yeah/">Azure Arc and VMWare Oh Yeah</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arcmas-summary/">The 12 Days of Azure-ArcMas - Summary</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-twelve-drums-celebrating/">The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/12-days-azure-arc-mas-eleven-logs-streaming/">The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2024 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

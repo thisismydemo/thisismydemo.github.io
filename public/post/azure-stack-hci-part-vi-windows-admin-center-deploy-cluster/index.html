@@ -3,20 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:title" content="Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster" />
-<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-10-24T19:11:10+00:00" />
-<meta property="article:modified_time" content="2023-10-25T13:54:17+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster">
+  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-10-24T19:11:10+00:00">
+    <meta property="article:modified_time" content="2023-10-25T13:54:17+00:00">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="WIndows Admin Center">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster"/>
-<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster">
+  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +33,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -96,36 +110,36 @@ if (!doNotTrack) {
 <p>The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster. We also did everything in PowerShell. This blog will be my last blog on how to deploy an Azure Stack HCI cluster but I wanted to show how to do it using Windows Admin Center.</p>
 <p>So, this is what I will cover in this blog. I hope you enjoy!</p>
 <ul>
-<li><a href="#overview">Overview</a>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#overview">Overview</a>
 <ul>
-<li><a href="#thanks-and-praise">Thanks and Praise</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#thanks-and-praise">Thanks and Praise</a></li>
 </ul>
 </li>
-<li><a href="#windows-admin-center">Windows Admin Center</a>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#windows-admin-center">Windows Admin Center</a>
 <ul>
-<li><a href="#configure-kerberos-constrained-delegation">Configure Kerberos Constrained Delegation</a></li>
-<li><a href="#verify-connection-to-wac">Verify Connection to WAC</a></li>
-<li><a href="#register-wac-with-azure">Register WAC with Azure</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#configure-kerberos-constrained-delegation">Configure Kerberos Constrained Delegation</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#verify-connection-to-wac">Verify Connection to WAC</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#register-wac-with-azure">Register WAC with Azure</a></li>
 </ul>
 </li>
-<li><a href="#create-cluster">Create Cluster</a>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#create-cluster">Create Cluster</a>
 <ul>
-<li><a href="#get-started-node-configuration">Get Started (Node Configuration)</a></li>
-<li><a href="#networking">Networking</a></li>
-<li><a href="#clustering">Clustering</a></li>
-<li><a href="#storage">Storage</a></li>
-<li><a href="#sdn">SDN</a></li>
-<li><a href="#register-hci-cluster-with-azure">Register HCI Cluster with Azure</a></li>
-<li><a href="#witness">Witness</a>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#get-started-node-configuration">Get Started (Node Configuration)</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#networking">Networking</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#clustering">Clustering</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#storage">Storage</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#sdn">SDN</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#register-hci-cluster-with-azure">Register HCI Cluster with Azure</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#witness">Witness</a>
 <ul>
-<li><a href="#create-directory-on-file-server">Create directory on File Server.</a></li>
-<li><a href="#create-witness-in-wac">Create Witness in WAC</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#create-directory-on-file-server">Create directory on File Server.</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#create-witness-in-wac">Create Witness in WAC</a></li>
 </ul>
 </li>
-<li><a href="#cluster-aware-updating">Cluster Aware Updating</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#cluster-aware-updating">Cluster Aware Updating</a></li>
 </ul>
 </li>
-<li><a href="#final-thoughts">Final Thoughts</a></li>
+<li><a href="/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/#final-thoughts">Final Thoughts</a></li>
 </ul>
 <hr>
 <h2 id="overview">Overview</h2>
@@ -184,7 +198,7 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>$cert | Export-Certificate -FilePath $env:TEMP\WACCert.cer
 </span></span><span style="display:flex;"><span>Import-Certificate -FilePath $env:TEMP\WACCert.cer -CertStoreLocation Cert<span style="color:#960050;background-color:#1e0010">:</span>\LocalMachine\Root\
 </span></span></code></pre></div><p>Installed and ready for some configurations.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20155209.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20155209.png"></p>
 <h3 id="configure-kerberos-constrained-delegation">Configure Kerberos Constrained Delegation</h3>
 <p>Next that we have Windows Admin Center install we will configure Kerberos Constrained Delegation for our Windows Admin Center Gateway.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>$GatewayServerName=<span style="color:#e6db74">&#34;WACGW&#34;</span>
@@ -196,124 +210,124 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    $computerObject = Get-ADComputer -Identity $computer
 </span></span><span style="display:flex;"><span>    Set-ADComputer -Identity $computerObject -PrincipalsAllowedToDelegateToAccount $gatewayObject
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20155403.png" alt=""></p>
+</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20155403.png"></p>
 <h3 id="verify-connection-to-wac">Verify Connection to WAC</h3>
 <p>Now we are ready to actually connect to our Windows Admin Center. Just navigate in Edge to <a href="https://wacgw">https://wacgw</a></p>
 <h3 id="register-wac-with-azure">Register WAC with Azure</h3>
 <p>Before we begin, we need to register our Windows Admin Center with Azure.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20131637.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20131637.png"></p>
 <p>On the settings blade, if we go down to Register under the Gateway section we will see the prompt to register this instance of the Windows Admin Center.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135140.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135140.png"></p>
 <p>At this point, it will authenticate us and sign us into our Azure Tenant.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135559.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135559.png"></p>
 <p>Once that is done, on the far right, a new blade will pop up asking for some information. Here we will select which Azure Cloud, for myself I will select Azure Global. It will provide a Code, once you click on copy, an Edge browser will start directing you to microsoft.com/devicelogin where you will enter the code provided, then sign on into your tenant.  Here we have a choice, I could either use an existing Azure Active Directory Application or have one created. In this case, I just had it create a new  one for me. In a production environment, we should be using a pre-created application that also has specific roles assign to it.  Finally we click connect.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135626.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135626.png"></p>
 <p>The next prompt is to allow permissions to our tenant for this application.  Click on Consent and click accept.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135912.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135912.png"></p>
 <p>Once we have signed on, it takes a few seconds. We can go back to our portal and we can now see that we are registered with Azure and connected.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135943.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135943.png"></p>
 <p>So now our WAC instance is registered with Azure.</p>
 <hr>
 <h2 id="create-cluster">Create Cluster</h2>
 <p>Now, it is time to create our cluster. Let&rsquo;s start by logging into our Windows Admin Center again. We should land on the All Connections screen. If not, in the upper left hand corner next to Windows Admin Center, click the down arrow and select All Connections.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160409.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160409.png"></p>
 <p>In the upper left of the window, we should see +Add. Click to add a new connection. From here, we will click &ldquo;Create New&rdquo; under the Server Clusters section.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160520.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160520.png"></p>
 <p>On the following Cluster Creation page, we have a choice between Windows Server or Azure Stack HCI. Of course we will select Azure Stack HCI and at this point make sure that the option for All servers in one site is selected as well. We can go into stretch clusters another day. We will click on Create at this time.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160756.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20160756.png"></p>
 <h3 id="get-started-node-configuration">Get Started (Node Configuration)</h3>
 <p>This next screen talks about the prerequisites that are needed.  The fist, Register with Azure we just did on the previous step. This is an optional setup but it was good to get it out of the way. At this time we will click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161008.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161008.png"></p>
 <p>On the add servers section, we will need to enter our credentials that have access to these servers. Then we will need to enter the fully qualified domain name for each of the four nodes we will be adding to this cluster. Once all four nodes have been validated and are in Ready status we can continue by clicking Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161452.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161452.png"></p>
 <p>The next screen is going to join these nodes to our domain. However, these are already domain joined and we will just click Next to continue.</p>
 <p>Our next window is where we will install all the required features needed. We had done this in the past with PowerShell, but this time we will allow Windows Admin Center to do it for us. Here we will click Instal features.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161919.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20161919.png"></p>
 <p>This is where I go out to pet my Lab, get some coffee, hug my wife, and watch the much needed rain come down&hellip;..  Just a note, we could have done a lot of these updates and feature installs via PowerShell to get the nodes ready as well.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162013.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162013.png"></p>
 <p>Once these features are installed we can click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162401.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162401.png"></p>
 <p>Now we get to install Updates.  Which again, depending on how these images are, may mean another coffee run, more pets for my Labrador, and even more hugs for my wife and kids. The rain has stopped a little but it is still nice to site outside and enjoy the cooler evening. We can click Install Updates here.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162557.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162557.png"></p>
 <p>To give us an idea of how long it may take, we can drop down the arrow next to each node and see which updates are going to be applied.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162816.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20162816.png"></p>
 <p>Our updates are done and now I can click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163211.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163211.png"></p>
 <p>The next section is for hardware updates.  Since these are all virtual machines I won&rsquo;t have any. However, if this was a physical system like a Dell APEX Microsoft Azure Cloud, then most likely we could have some updates that would need to be install. We will see an error like mine if installing on a virtual machines as well.  Just click Next now.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163441.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163441.png"></p>
 <p>Our next step is to restart all our nodes. I will click Restart Servers and wait for them to reboot. Since these are virtual, it should not take a long time.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163527.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163527.png"></p>
 <p>The reboot is done and I am ready to click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163830.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20163830.png"></p>
 <p>This last section of Getting Started will let us decided what method we will use to configure our cluster networking. We have the choice between automatic which is Network ATC, or manual which we will have a lot more work ahead of us if we go that route.  I am going to select Automatic and click Next:Networking.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20164513.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20164513.png"></p>
 <h3 id="networking">Networking</h3>
 <p>The first step in configuring networking is for Network ATC to discover our network adapters.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165246.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165246.png"></p>
 <p>Once our network adapters have been identified we will have a list of all the adapters available on all our nodes. Here we can also rename our network adapters if we need. There are reasons to do so for better identification. For this blog I will leave the default names.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165711.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165711.png"></p>
 <p>When we click on Show hidden adapters this will give us a full view of all adapters on all our nodes.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165832.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20165832.png"></p>
 <p>The next screen is where we will define our intents. I will be creating two intent configurations. The first will be for Compute and Management, the 2nd will be for Storage traffic.</p>
 <p>On this screen the first intent will be named Compute_Management and will include the first two vNics on each node.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181019.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181019.png"></p>
 <p>On this same page under the intent 1 box, there are some network customizable settings we can click on. Here we will have the option to configure our vSwitch settings and the type of load balancing algorithm, which I will keep at Hyper-V Port for now.  Also, we can configure adapter properties like the Jumbo Frames size, RDMA configurations, etc.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181422.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181422.png"></p>
 <p>The storage network settings will have the ability to configure data center bridging for storage as well.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181637.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181637.png"></p>
 <p>Once I have added both my Compute/Management and Storage Intents I will be able to click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181725.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181725.png"></p>
 <p>The final screen in our Networking configuration will allow us to provide storage network details. Here we can allow Network ATC to manage teh assignment of IP&rsquo;s automatically. Or we can do it ourselves.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181927.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20181927.png"></p>
 <p>If this wasn&rsquo;t a lab I would not allow Network ATC to assign IP&rsquo;s. I would manually configure our network adapters using the manual the following interface.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182011.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182011.png"></p>
 <p>However, since this is a lab environment I am going to allow Network ATC to do all the work. So I will click Next:Clustering to continue.</p>
 <h3 id="clustering">Clustering</h3>
 <p>Now we are almost ready to build this cluster. On the first screen under clustering section, we will name our cluster. Again, this is a lab environment, so I will allow my cluster IP to be assigned with DHCP, also keeping the defaults we see on this screen. We then can click Create Cluster.
-<img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182334.png" alt=""></p>
+<img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182334.png"></p>
 <p>This should take a few minutes. Again, time for coffee and to watch the rain that has started up again. I do smell dinner so that is almost ready.  Hoping to get this blog done before the roast is served.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182559.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182559.png"></p>
 <p>Once the cluster has been created. We will see that we need to create a cluster witness, that will come here shortly. For now, we will hit Next to continue on.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182742.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182742.png"></p>
 <p>At this point the wizard will deploy host networking settings. We can review those settings after we hit deploy.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182948.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20182948.png"></p>
 <p>Yet, another chance to get more coffee. Wow will I be caffeinated greatly tonight!</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20183029.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20183029.png"></p>
 <p>All done with the network setting deployment to our host. Now it is time to click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184418.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184418.png"></p>
 <p>Now it is time to validate our cluster. When the prompt is ready, click on Validate. This will take a few minutes.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184546.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184546.png"></p>
 <p>So we are ready to move on. No errors just one warning around QoS configurations. Clicking on Next:Storage is what we should do now.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184953.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20184953.png"></p>
 <h3 id="storage">Storage</h3>
 <p>The first option under Storage configuration is the ability to erase all existing data. This is good for servers or old clusters we maybe redeploying to. Since this is a virtual environment and never used, I will just click next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185154.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185154.png"></p>
 <p>We now can see all the disk assigned to each node and get a report that everything looks good. At this point we click Next.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185245.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185245.png"></p>
 <p>Next, we will validate the storage and get ready to provision storage spaces direct.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185331.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185331.png"></p>
 <p>We got the green check. Our storage looks good and it is time to click Continue.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185429.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185429.png"></p>
 <p>Now it is time to provision the Storage Spaces Direct storage pool and create default storage tier templates. Here we will click enable and watch the magic happen while drinking a nice cup of coffee.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185624.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185624.png"></p>
 <p>Yet again, another great time for coffee or a nap while we wait for storage spaces direct to be enabled and configured.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185707.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20185707.png"></p>
 <p>Storage spaces direct was enabled successfully and we have our storage pool deployed. Time for us to click on Next:SDN.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190010.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190010.png"></p>
 <h3 id="sdn">SDN</h3>
 <p>The next and last step that we wil come across is the configuration of Software Define Networking (SDN). At this time I will skip this configuration but we can come back and setup SDN anytime once we are ready to do so.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190257.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190257.png"></p>
 <p>Just like the sign says.. we are done&hellip; well almost. We still ned to create that witness and configure a few other items like Cluster-aware-updates, etc.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190410.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20190410.png"></p>
 <h3 id="register-hci-cluster-with-azure">Register HCI Cluster with Azure</h3>
 <p>Once we have gotten to the cluster dashboard we will see that our HCI cluster isn&rsquo;t registered yet.  We will need to do that now by clicking on Register.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191145.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191145.png"></p>
 <p>On the blade that pops up to the right we will enter the subscription, the region, and create a new resource group to place these resources.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191304.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191304.png"></p>
 <p>Then we wait for the registration to complete.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191353.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20191353.png"></p>
 <p>Once completed we should see that our cluster is now registered with Azure and also our nodes are managed by Azure Arc-enabled servers.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20192455.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20192455.png"></p>
 <h3 id="witness">Witness</h3>
 <p>We have a choice to do a file based witness located locally on another server, or choose to create a cloud witness. For this demo I will create a file witness on my domain controller using PowerShell and the Windows Admin Center.</p>
 <h4 id="create-directory-on-file-server">Create directory on File Server.</h4>
@@ -329,17 +343,17 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    New-SmbShare -Name $WitnessName -Path <span style="color:#e6db74">&#34;c:\Shares\</span>$WitnessName<span style="color:#e6db74">&#34;</span> -FullAccess $accounts -CimSession $WitnessServer
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">#Set NTFS permissions</span>
 </span></span><span style="display:flex;"><span>    Invoke-Command -ComputerName $WitnessServer -ScriptBlock { (Get-SmbShare $using<span style="color:#960050;background-color:#1e0010">:</span>WitnessName).PresetPathAcl | Set-Acl }
-</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20192717.png" alt=""></p>
+</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20192717.png"></p>
 <p>If I where to include the next line in the script above we would have our witness created 100% with PowerShell. I left that off so I can show you how to do it from Windows Admin Center.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>    Set-ClusterQuorum -Cluster $ClusterName -FileShareWitness <span style="color:#e6db74">&#34;\\</span>$WitnessServer<span style="color:#e6db74">\</span>$WitnessName<span style="color:#e6db74">&#34;</span>
 </span></span></code></pre></div><h4 id="create-witness-in-wac">Create Witness in WAC</h4>
 <p>Now that we have created our file share we can create the Witness within Windows Admin Center. On the cluster dashboard, go to settings, then look for Witness under Cluster. For Witness type select File share Witness.  We then enter the File share path and click save. If successful we should see Witness resource status is Online.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20193028.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20193028.png"></p>
 <h3 id="cluster-aware-updating">Cluster Aware Updating</h3>
 <p>To enable cluster aware updates we will go back to the cluster dashboard and click on Updates under Operations. Here we have an option to click Add Cluster-Aware-Updating role. We will click that button to continue.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20193648.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-24%20193648.png"></p>
 <p>However, I got this error and I really don&rsquo;t have time to troubleshoot this tonight.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20081613.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20081613.png"></p>
 <p>So I went the easy route and just ran a PowerShell Script to configure Cluster-Aware-Updating on my cluster.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Powershell" data-lang="Powershell"><span style="display:flex;"><span>$Servers=<span style="color:#e6db74">&#34;AzSHCI1&#34;</span>,<span style="color:#e6db74">&#34;AzSHCI2&#34;</span>,<span style="color:#e6db74">&#34;AzSHCI3&#34;</span>,<span style="color:#e6db74">&#34;AzSHCI4&#34;</span>
 </span></span><span style="display:flex;"><span>$ClusterName=<span style="color:#e6db74">&#34;AzSHCI-Cluster&#34;</span>
@@ -353,9 +367,9 @@ if (!doNotTrack) {
 </span></span><span style="display:flex;"><span>    Add-CauClusterRole -ClusterName $ClusterName -MaxFailedNodes <span style="color:#ae81ff">0</span> -RequireAllNodesOnline -EnableFirewallRules -GroupName $CAURoleName -VirtualComputerObjectName $CAURoleName -Force -CauPluginName Microsoft.WindowsUpdatePlugin -MaxRetriesPerNode <span style="color:#ae81ff">3</span> -CauPluginArguments @{ <span style="color:#e6db74">&#39;IncludeRecommendedUpdates&#39;</span> = <span style="color:#e6db74">&#39;False&#39;</span> } -StartDate <span style="color:#e6db74">&#34;3/2/2017 3:00:00 AM&#34;</span> -DaysOfWeek <span style="color:#ae81ff">4</span> -WeeksOfMonth @(<span style="color:#ae81ff">3</span>) -verbose
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#disable self-updating</span>
 </span></span><span style="display:flex;"><span>    Disable-CauClusterRole -ClusterName $ClusterName -Force
-</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20083514.png" alt=""></p>
+</span></span></code></pre></div><p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20083514.png"></p>
 <p>And now we can go back to Windows Admin Center and bingo. We have Cluster-Aware-Updates enabled.</p>
-<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20084044.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vi/Screenshot%202023-10-25%20084044.png"></p>
 <hr>
 <h2 id="final-thoughts">Final Thoughts</h2>
 <p>So, my last blog for a while on how to deploy an Azure Stack HCI cluster. Again, as I have mentioned in the past, there is so much more that we can do to these clusters to get them production ready. There is so much more we can do with HCI as well.  Which is why I will continue to blog about it for a while.</p>
@@ -433,7 +447,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -506,9 +520,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -553,9 +567,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

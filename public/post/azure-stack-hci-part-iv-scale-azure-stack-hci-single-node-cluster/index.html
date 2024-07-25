@@ -3,20 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:title" content="Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster" />
-<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-10-20T21:38:07+00:00" />
-<meta property="article:modified_time" content="2023-10-23T21:34:49+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster">
+  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-10-20T21:38:07+00:00">
+    <meta property="article:modified_time" content="2023-10-23T21:34:49+00:00">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="PowerShell">
+    <meta property="article:tag" content="WIndows Admin Center">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster"/>
-<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster">
+  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +34,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -96,61 +111,61 @@ if (!doNotTrack) {
 <p>This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.  My previous blog, <a href="https://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/">Azure Stack HCI - Part III - Advance Deployment of A Single Node Cluster</a> discussed my experiences deploying a single-node cluster.  There is a lot of information about my environment, how I setup my lab, and more that would be good to know before continuing with this blog. However, I will try and include as much as I can within this blog to make sense of everything.</p>
 <p>So this blog will cover the following:</p>
 <ul>
-<li><a href="#review-of-previous-blog">Review Of Previous Blog</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#review-of-previous-blog">Review Of Previous Blog</a>
 <ul>
-<li><a href="#what-it-looks-like-now">What it looks like now</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#what-it-looks-like-now">What it looks like now</a></li>
 </ul>
 </li>
-<li><a href="#the-variables">The Variables</a></li>
-<li><a href="#configuring-the-second-node">Configuring the second node</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#the-variables">The Variables</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configuring-the-second-node">Configuring the second node</a>
 <ul>
-<li><a href="#run-azure-stack-hci-environment-checker">Run Azure Stack HCI Environment Checker</a></li>
-<li><a href="#update-server">Update Server</a></li>
-<li><a href="#install-windows-features">Install Windows Features</a></li>
-<li><a href="#restart-servers">Restart Servers</a></li>
-<li><a href="#configure-os-settings">Configure OS Settings</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#run-azure-stack-hci-environment-checker">Run Azure Stack HCI Environment Checker</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#update-server">Update Server</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#install-windows-features">Install Windows Features</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#restart-servers">Restart Servers</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-os-settings">Configure OS Settings</a>
 <ul>
-<li><a href="#configure-active-memory">Configure Active Memory</a></li>
-<li><a href="#configure-high-performance-plan">Configure High Performance Plan</a></li>
-<li><a href="#delete-storage-pool">Delete Storage Pool</a></li>
-<li><a href="#configure-max-envelope-size">Configure Max Envelope Size</a></li>
-<li><a href="#configure-maxtimeout">Configure MaxTimeOut</a></li>
-<li><a href="#rename-network-adapters">Rename Network Adapters</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-active-memory">Configure Active Memory</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-high-performance-plan">Configure High Performance Plan</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#delete-storage-pool">Delete Storage Pool</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-max-envelope-size">Configure Max Envelope Size</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-maxtimeout">Configure MaxTimeOut</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#rename-network-adapters">Rename Network Adapters</a></li>
 </ul>
 </li>
-<li><a href="#configure-os-security">Configure OS Security</a></li>
-<li><a href="#restart-computer">Restart Computer</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-os-security">Configure OS Security</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#restart-computer">Restart Computer</a></li>
 </ul>
 </li>
-<li><a href="#configure-networking-with-network-atc">Configure Networking with Network ATC</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-networking-with-network-atc">Configure Networking with Network ATC</a>
 <ul>
-<li><a href="#install-features-if-needed">Install Features (If Needed)</a></li>
-<li><a href="#configure-management-server-for-atc-management">Configure Management Server for ATC Management</a></li>
-<li><a href="#deploy-new-intent-configurations">Deploy new Intent Configurations</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#install-features-if-needed">Install Features (If Needed)</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-management-server-for-atc-management">Configure Management Server for ATC Management</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#deploy-new-intent-configurations">Deploy new Intent Configurations</a></li>
 </ul>
 </li>
-<li><a href="#configure-cluster">Configure Cluster</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-cluster">Configure Cluster</a>
 <ul>
-<li><a href="#configure-witness">Configure Witness</a></li>
-<li><a href="#add-node-to-cluster">Add Node To Cluster</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-witness">Configure Witness</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#add-node-to-cluster">Add Node To Cluster</a></li>
 </ul>
 </li>
-<li><a href="#install-network-hud-netatc">Install Network HUD (NetATC)</a></li>
-<li><a href="#complete-netatc-configurations">Complete NetATC Configurations</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#install-network-hud-netatc">Install Network HUD (NetATC)</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#complete-netatc-configurations">Complete NetATC Configurations</a>
 <ul>
-<li><a href="#check-netatc-configurations">Check NetATC Configurations</a></li>
-<li><a href="#enable-cluster-aware-updating">Enable Cluster-Aware-Updating</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#check-netatc-configurations">Check NetATC Configurations</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#enable-cluster-aware-updating">Enable Cluster-Aware-Updating</a></li>
 </ul>
 </li>
-<li><a href="#configure-cluster-storage">Configure Cluster Storage</a>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#configure-cluster-storage">Configure Cluster Storage</a>
 <ul>
-<li><a href="#storage-fault-domain-changes">Storage Fault Domain Changes</a></li>
-<li><a href="#create-volumes">Create Volumes</a></li>
-<li><a href="#align-volumes">Align Volumes</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#storage-fault-domain-changes">Storage Fault Domain Changes</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#create-volumes">Create Volumes</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#align-volumes">Align Volumes</a></li>
 </ul>
 </li>
-<li><a href="#verify-and-testify">Verify and Testify?</a></li>
-<li><a href="#final-thoughts">Final Thoughts</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#verify-and-testify">Verify and Testify?</a></li>
+<li><a href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/#final-thoughts">Final Thoughts</a></li>
 </ul>
 <p>Remember, I am building this solution on a Single Node cluster and I will try to explain how to do it not only on an AzureVM but try to explain how it would be done on physical hardware if that process is different.  Since I do have plans to scale out this cluster, I will keep that in mind as I deploy this first node as well.  Knowing that I will add a second and a third and a fourth node in the future.</p>
 <h2 id="review-of-previous-blog">Review Of Previous Blog</h2>
@@ -159,17 +174,17 @@ if (!doNotTrack) {
 <p>So this blog will continue where we left off. We have a working single-node Azure Stack HCI cluster. However, we now want to scale that cluster from one-node to a two-node cluster.</p>
 <h3 id="what-it-looks-like-now">What it looks like now</h3>
 <p>The existing environment currently looks like this. From within the Failover Cluster Manager we can see that our cluster is running with our single-node, and a single cluster network for management and compute.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122735.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122735.png"></p>
 <p>Here we can see that our cluster has been registered to Azure and is being managed by Azure Arc.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122806.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122806.png"></p>
 <p>Our single node is showing up from within the Windows Admin Center.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122848.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122848.png"></p>
 <p>Our two volumes are up and healthy.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122924.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122924.png"></p>
 <p>If I go into Azure Arc, I can see that my cluster is registered and connected.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122951.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20122951.png"></p>
 <p>As well as my single-node, is registered and connected.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20123010.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-21%20123010.png"></p>
 <p>So now that we are finished with my environment. It is time to scale our this single-node Azure Stack HCI cluster and add a second node.</p>
 <hr>
 <h2 id="the-variables">The Variables</h2>
@@ -216,7 +231,7 @@ Install-Module -Name AzStackHci.EnvironmentChecker -Force -AllowClobber
 
 $PSSessions = New-PSSession $ClusterNode
 Invoke-AzStackHciConnectivityValidation -PsSession $PSSessions
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20074415.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20074415.png"></p>
 <h3 id="update-server">Update Server</h3>
 <p>Now we will run Windows Update to make sure we have the most recent updates installed.</p>
 <pre tabindex="0"><code>$RegistryPath = &#39;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\&#39;
@@ -293,12 +308,12 @@ elseif ($WindowsUpdate -eq &#34;All&#34;) {
         Remove-Item -Path $env:TEMP\VirtualAccount.pssc
     }
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20080735.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20080735.png"></p>
 <h3 id="install-windows-features">Install Windows Features</h3>
 <p>Here we will install the Windows Features needed on our second node getting it ready to join the cluster. We will also run a script to make sure our management server has all the tools installed as well.</p>
 <p>The first step is to make sure our management server is ready. I will install the needed Windows Features that will come into play during our deployment and management of Azure Stack HCI.</p>
 <pre tabindex="0"><code>Install-WindowsFeature -Name RSAT-Clustering, RSAT-Clustering-Mgmt, RSAT-Clustering-PowerShell, RSAT-Hyper-V-Tools, RSAT-Feature-Tools-BitLocker-BdeAducExt, RSAT-Storage-Replica
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081037.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081037.png"></p>
 <p>Next we will install the Hyper-V role on our future nodes.  Since I am using a virtual machine, I needed to enabled nested virtulization on my VM. The good thing is, the Hybird Jump Start solution does that for me.</p>
 <pre tabindex="0"><code>#install roles and features on servers
 #install Hyper-V using DISM if Install-WindowsFeature fails (if nested virtualization is not enabled install-windowsfeature fails)
@@ -308,14 +323,14 @@ Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online -NoRestart 
     }
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081054.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081054.png"></p>
 <p>Now we need to install all the required Windows features on the node that I will be using.</p>
 <pre tabindex="0"><code>#define and install other features
 $features = &#34;Failover-Clustering&#34;, &#34;RSAT-Clustering-PowerShell&#34;, &#34;Hyper-V-PowerShell&#34;, &#34;NetworkATC&#34;, &#34;NetworkHUD&#34;, &#34;Data-Center-Bridging&#34;, &#34;RSAT-DataCenterBridging-LLDP-Tools&#34;, &#34;FS-SMBBW&#34;, &#34;System-Insights&#34;, &#34;RSAT-System-Insights&#34;
 #optional - affects perf even if not enabled on volumes as filter driver is attached (SR,Dedup) and also Bitlocker, that affects a little bit
 #$features+=&#34;Storage-Replica&#34;,&#34;RSAT-Storage-Replica&#34;,&#34;FS-Data-Deduplication&#34;,&#34;BitLocker&#34;,&#34;RSAT-Feature-Tools-BitLocker&#34;
 Invoke-Command -ComputerName $ClusterNode -ScriptBlock { Install-WindowsFeature -Name $using:features }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081252.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081252.png"></p>
 <h3 id="restart-servers">Restart Servers</h3>
 <p>I added a restart here. We will be restarting the servers again shortly but since this is a VM it boots fast. If this was a physical box I would wait to reboot until after the Security configurations are done.</p>
 <pre tabindex="0"><code>Restart-Computer $ClusterNode -Protocol WSMan -Wait -For PowerShell -Force
@@ -323,7 +338,7 @@ Start-Sleep 20 # Allow time for reboots to complete fully
 Foreach ($Server in $ClusterNode) {
     do { $Test = Test-NetConnection -ComputerName $Server -CommonTCPPort WINRM }while ($test.TcpTestSucceeded -eq $False)
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081642.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081642.png"></p>
 <h3 id="configure-os-settings">Configure OS Settings</h3>
 <p>There are a few configurations that I will do along the way for the OS.</p>
 <h4 id="configure-active-memory">Configure Active Memory</h4>
@@ -341,7 +356,7 @@ Foreach ($Server in $ClusterNode) {
 }
 </code></pre><p>Let&rsquo;s check the settings now:</p>
 <pre tabindex="0"><code>Invoke-Command -ComputerName $ClusterNode -ScriptBlock { powercfg /list }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081909.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20081909.png"></p>
 <h4 id="delete-storage-pool">Delete Storage Pool</h4>
 <p>So in my previous blog I discussed a little about how dangerous a script like this can be. So be careful.</p>
 <pre tabindex="0"><code>if ($DeletePool) {
@@ -356,11 +371,11 @@ Foreach ($Server in $ClusterNode) {
         Get-PhysicalDisk -CanPool $True | Reset-PhysicalDisk
     }
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082312.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082312.png"></p>
 <h4 id="configure-max-envelope-size">Configure Max Envelope Size</h4>
 <p>Now we will configure our Max Envelope size. This changes the max envelope size to be 8KB in order to copy files using PSSession.</p>
 <pre tabindex="0"><code>Invoke-Command -ComputerName $ClusterNode -ScriptBlock { Set-Item -Path WSMan:\localhost\MaxEnvelopeSizekb -Value 8192 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082428.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082428.png"></p>
 <h4 id="configure-maxtimeout">Configure MaxTimeOut</h4>
 <pre tabindex="0"><code>if ((Get-CimInstance -ClassName win32_computersystem -CimSession $ClusterNode).Manufacturer -like &#34;*Dell Inc.&#34;) {
     Invoke-Command -ComputerName $ClusterNode -ScriptBlock { Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\spaceport\Parameters -Name HwTimeout -Value 0x00002710 }
@@ -368,7 +383,7 @@ Foreach ($Server in $ClusterNode) {
 if ((Get-CimInstance -ClassName win32_computersystem -CimSession $ClusterNode).Model -eq &#34;Virtual Machine&#34;) {
     Invoke-Command -ComputerName $ClusterNode -ScriptBlock { Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\spaceport\Parameters -Name HwTimeout -Value 0x00007530 }
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082447.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082447.png"></p>
 <h4 id="rename-network-adapters">Rename Network Adapters</h4>
 <p>I did this for my systems. It isn&rsquo;t necessary but I do it.</p>
 <pre tabindex="0"><code>Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
@@ -384,7 +399,7 @@ if ((Get-CimInstance -ClassName win32_computersystem -CimSession $ClusterNode).M
 Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
     Get-NetAdapter
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082536.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20082536.png"></p>
 <h3 id="configure-os-security">Configure OS Security</h3>
 <p>Time to do some security configurations. In my lab environment running on a VM I wouldn&rsquo;t need to run these. Some of them I would if I knew I was keeping this environment up for training or other reasons.</p>
 <pre tabindex="0"><code> Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
@@ -412,7 +427,7 @@ Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
     #REG ADD &#34;HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity&#34; /v &#34;Locked&#34; /t REG_DWORD /d 1 /f
     REG ADD &#34;HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity&#34; /v &#34;HVCIMATRequired&#34; /t REG_DWORD /d 1 /f
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20083141.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20083141.png"></p>
 <h3 id="restart-computer">Restart Computer</h3>
 <p>Let us reboot to make sure all these changes will take and get our node ready to configure the cluster.</p>
 <pre tabindex="0"><code>Restart-Computer $ClusterNode -Protocol WSMan -Wait -For PowerShell -Force
@@ -435,7 +450,7 @@ Foreach ($Server in $ClusterNode) {
 <pre tabindex="0"><code>    Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Install-WindowsFeature -Name NetworkATC, Data-Center-Bridging, RSAT-Clustering-PowerShell, RSAT-Hyper-V-Tools, FS-SMBBW
     }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084058.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084058.png"></p>
 <h3 id="configure-management-server-for-atc-management">Configure Management Server for ATC Management</h3>
 <p>Next we will copy over the NetworkATC modules to our management machine in order to be able to manage Network ATC from our management server.</p>
 <pre tabindex="0"><code>    $session = New-PSSession -ComputerName $ClusterNode
@@ -443,13 +458,13 @@ Foreach ($Server in $ClusterNode) {
     foreach ($item in $items) {
         Copy-Item -FromSession $session -Path $item -Destination $item -Recurse -Force
     }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084231.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084231.png"></p>
 <h3 id="deploy-new-intent-configurations">Deploy new Intent Configurations</h3>
 <p>This section I will deploy my Storage Intent configuration. This will target the ClusterName so it will actually be running on AzsHCI01, my first node. This will get our cluster ready to have two network configurations. One for Compute/Management and then a separate switch for Storage traffic only.</p>
 <p>So here is an example of the configuration that was deployed in my first blog.  We have 4 virtual nics. We are using nic01 and nic02 for our Mgmt &amp; Compute Team that was configured with our ConvergedIntent configuration.</p>
-<p><img src="/img/azshci-series/part-iii/network-atc-6-disaggregated-management-compute.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/network-atc-6-disaggregated-management-compute.png"></p>
 <p>What we are about to do is deploy another Intent configuration that will add a Storage Intent. The only thing that is different between my deployment and the image below is my compute and management are on one Intent configuration, which in turn is a separate virtual switch from my storage intent and virtual switch.</p>
-<p><img src="/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png"></p>
 <p>Here is the PowerShell that will allow me to deploy our configurations.</p>
 <pre tabindex="0"><code>#if virtual environment, then skip RDMA config
     if ((Get-CimInstance -ClassName win32_computersystem -CimSession $ClusterNode).Model -eq &#34;Virtual Machine&#34;) {
@@ -469,7 +484,7 @@ Foreach ($Server in $ClusterNode) {
         Import-Module NetworkATC
         Add-NetIntent -ClusterName $ClusterName -Name StorageIntent -Storage -AdapterName &#34;SMB01&#34;, &#34;SMB02&#34; -AdapterPropertyOverrides $AdapterOverride -Verbose
     }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20151354.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20151354.png"></p>
 <p>We will add the default global intent manually since we are running this from the management server. I will be honest, I ony do this because I have seen it done with others.</p>
 <pre tabindex="0"><code>    Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Import-Module NetworkATC
@@ -486,10 +501,10 @@ Foreach ($Server in $ClusterNode) {
         Write-Host &#34;.&#34; -NoNewline
         Start-Sleep 5
     } while ($status.ConfigurationStatus -contains &#34;Provisioning&#34; -or $status.ConfigurationStatus -contains &#34;Retrying&#34;)
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084558.png" alt=""></p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085051.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20084558.png"></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085051.png"></p>
 <p>Now if we go to our Failover Cluster Manager we should be able to see the three switches now. The first is our converged management network for compute and management traffic The other two are our SMB traffic on two different vlans. This may take some time. Once this is complete then I will move forward with adding this node to the cluster.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20151817.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20151817.png"></p>
 <hr>
 <h2 id="configure-cluster">Configure Cluster</h2>
 <p>Nice, we are almost ready to join our second node to the cluster.  Networking is done and all the needed OS configurations are done. The next step can be completed after the cluster is joined but I do it right before.</p>
@@ -513,22 +528,22 @@ Foreach ($Server in $ClusterNode) {
 elseif ($WitnessType -eq $Cloud) {
     Set-ClusterQuorum -Cluster $ClusterName -CloudWitness -AccountName $CloudWitnessStorageAccountName -AccessKey $CloudWitnessStorageKey -Endpoint $CloudWitnessEndpoint
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085208.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085208.png"></p>
 <h3 id="add-node-to-cluster">Add Node To Cluster</h3>
 <p>Now we can add the second node to the cluster. Very simple, the following PowerShell command is below. We could also do this from the Windows Admin Center as well.</p>
 <pre tabindex="0"><code>Add-ClusterNode -Name $ClusterNode -Cluster $ClusterName
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085731.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085731.png"></p>
 <p>And after about 5 minutes we can start verifying that the cluster was added successfully. I am going to check first in the failover cluster manager. Here I can see my 2nd node is up and running.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085922.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20085922.png"></p>
 <p>Next I will go into the Windows Admin Center to check on my cluster settings and see that the node has joined successfully. As you can see below, I do have an issue but it is expected. It will take a few minutes for my newly added node to get registered with Azure Arc-enabled servers. This will go green within the next 15 minutes or so.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20090902.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20090902.png"></p>
 <p>Then from within the Cluster I can click on Servers and see that both servers are up and running.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20090949.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20090949.png"></p>
 <p>Here we can check that our Network intent configurations have been provisioned successfully across all our nodes.</p>
 <p>Check Network ATC settings</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20091812.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20091812.png"></p>
 <p>We can also check Failover Cluster manager to make sure that all our cluster networks are correctly configured. This make take some time so be patient.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20152941.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20152941.png"></p>
 <p>One of the last configurations for our cluster would be to disabled CSV cache if using SCM storage or if this is running on a virtual machine.</p>
 <pre tabindex="0"><code>if (Get-PhysicalDisk -cimsession $ClusterNode | Where-Object bustype -eq SCM) {
     #disable CSV cache if SCM storage is used
@@ -538,13 +553,13 @@ elseif ((Invoke-Command -ComputerName $ClusterNode -ScriptBlock { (get-wmiobject
     #disable CSV cache for virtual environments
         (Get-Cluster $ClusterName).BlockCacheSize = 0
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20091100.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20091100.png"></p>
 <p>We are not done yet. There are some more network settings that have to be configured, storage settings, and we also need to enabled cluster aware updating and a few other things.</p>
 <h2 id="install-network-hud-netatc">Install Network HUD (NetATC)</h2>
 <p>Here we will install Network HUd on the second node. This was already installed on the first node previously.</p>
 <pre tabindex="0"><code>Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Install-WindowsFeature -Name &#34;NetworkHUD&#34;, &#34;Hyper-V&#34;, &#34;Hyper-V-PowerShell&#34;, &#34;Data-Center-Bridging&#34;, &#34;RSAT-DataCenterBridging-LLDP-Tools&#34;, &#34;NetworkATC&#34;, &#34;Failover-Clustering&#34;
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092142.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092142.png"></p>
 <pre tabindex="0"><code>$Modules = &#34;Test-NetStack&#34;, &#34;az.stackhci.networkhud&#34;
     Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
     foreach ($Module in $Modules) {
@@ -555,13 +570,13 @@ elseif ((Invoke-Command -ComputerName $ClusterNode -ScriptBlock { (get-wmiobject
             Copy-Item -Path &#34;$env:Userprofile\downloads\$module&#34; -Destination &#34;\\$Server\C$\Program Files\WindowsPowerShell\Modules\&#34; -Recurse -Force
         }
     }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092333.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092333.png"></p>
 <pre tabindex="0"><code>    Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Restart-Service NetworkHUD
     }
     #wait a bit
     Start-Sleep 10
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092457.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092457.png"></p>
 <pre tabindex="0"><code>    #check event logs
     $events = Invoke-Command -ComputerName $ClusterNode -ScriptBlock {
         Get-WinEvent -FilterHashtable @{&#34;ProviderName&#34; = &#34;Microsoft-Windows-Networking-NetworkHUD&#34;; Id = 105 }
@@ -572,7 +587,7 @@ elseif ((Invoke-Command -ComputerName $ClusterNode -ScriptBlock { (get-wmiobject
 <p>The finally steps to finish our network configuration using Network ATC. Here we will install and configure Data Center Bridging if needed. Then go through all the settings to see if they are configured correctly.</p>
 <p>This step we will disable network adapters that we will not be using. Since this was a virtual environment and not physical I didn&rsquo;t have any network adapters that needed to be disabled.</p>
 <pre tabindex="0"><code> Get-Netadapter -CimSession $ClusterNode | Where-Object Status -ne &#34;Up&#34; | Disable-NetAdapter -Confirm:0
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092639.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092639.png"></p>
 <p>Here is where I will configure Data center bridging.</p>
 <pre tabindex="0"><code>    if ((Get-CimInstance -ClassName win32_computersystem -CimSession $ClusterNode).Manufacturer -like &#34;*Dell Inc.&#34;) {
         if (Get-NetAdapter -CimSession $ClusterNode -InterfaceDescription Mellanox*) {
@@ -585,13 +600,13 @@ elseif ((Invoke-Command -ComputerName $ClusterNode -ScriptBlock { (get-wmiobject
             Set-NetAdapterAdvancedProperty -CimSession $ClusterNode -InterfaceDescription Mellanox* -DisplayName &#39;Receive buffers&#39; -DisplayValue &#39;4096&#39;
         }
     }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092726.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20092726.png"></p>
 <h3 id="check-netatc-configurations">Check NetATC Configurations</h3>
 <p>Live Migration settings. This is where we would see what networks were exuded from Live Migration.</p>
 <pre tabindex="0"><code>    $Networks = (Get-ClusterResourceType -Cluster $clustername -Name &#34;Virtual Machine&#34; | Get-ClusterParameter -Name MigrationExcludeNetworks).Value -split &#34;;&#34;
     foreach ($Network in $Networks) { Get-ClusterNetwork -Cluster $ClusterName | Where-Object ID -Match $Network }
 </code></pre><p>I do want to call out something here that I noticed is happening.  For some reason my Cluster Network is being renamed during the process I am following. I am going to find out why or how or what is doing this.</p>
-<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20093052.png" alt=""></p>
+<p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20093052.png"></p>
 <p>Check Live Migration options. Make sure it is configured to SMB.</p>
 <pre tabindex="0"><code>Get-VMHost -CimSession $ClusterNode | Select-Object *Migration*
 </code></pre><p>Check SMB Bandwidth settings limit.</p>
@@ -629,7 +644,7 @@ if ($KSR) {
     #to delete it again you can run following command
     #Get-Cluster -Name $ClusterName | Set-ClusterParameter -Name CauEnableSoftReboot -Delete
 }
-</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20154049.png" alt=""></p>
+</code></pre><p><img src="/img/azshci-series/part-iv/Screenshot%202023-10-23%20154049.png"></p>
 <hr>
 <h2 id="configure-cluster-storage">Configure Cluster Storage</h2>
 <h3 id="storage-fault-domain-changes">Storage Fault Domain Changes</h3>
@@ -737,7 +752,7 @@ foreach ($Server in $ClusterNode) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -810,9 +825,9 @@ foreach ($Server in $ClusterNode) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -857,9 +872,9 @@ foreach ($Server in $ClusterNode) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

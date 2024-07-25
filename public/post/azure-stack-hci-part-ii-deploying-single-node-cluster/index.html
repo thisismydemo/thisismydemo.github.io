@@ -3,22 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Azure Stack HCI - Part II - Deploying A Single Node Cluster - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster" />
-<meta property="og:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-10-13T17:42:45+00:00" />
-<meta property="article:modified_time" content="2023-10-16T14:59:33+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster">
+  <meta property="og:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-10-13T17:42:45+00:00">
+    <meta property="article:modified_time" content="2023-10-16T14:59:33+00:00">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="WAC">
+    <meta property="article:tag" content="WIndows Admin Center">
+    <meta property="article:tag" content="PowerShell">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster"/>
-<meta name="twitter:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
-Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog."/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azure Stack HCI - Part II - Deploying A Single Node Cluster">
+  <meta name="twitter:description" content="In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -30,16 +37,25 @@ Note: After reading this blog a few times myself I have decided to write another
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -113,12 +129,12 @@ if (!doNotTrack) {
 <li>Data Disk Type: I changed to Premium_LRS</li>
 </ul>
 <p>I also changed the time the machine will shutdown each night from 22:00 to 20:00. (That is 8PM for my fellow Texans.) I also changed the time zone to the only time zone that matters, Central Time (Texas Time!)</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131037.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131037.png"></p>
 <p>Deployment kicked off and took about an hour overall for everything to deploy.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131204.png" alt=""></p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131237.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131204.png"></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131237.png"></p>
 <p>While I waited, I did go into the VM resource to configure an alert to be emailed to me before my VM auto shutsdown.  This comes in handy a lot.  In order to do this, we just go back to the Virtual Machine resource in the resource group created, click on that resource, and on the left blade under Operations, there is a option called Auto-shutdown.  We click on that and to the right, add an email address to the Email Address field.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131611.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131611.png"></p>
 <p>Click save and now, while we are working hard late at night, we will be reminded that our machine will shut down soon. I always forget adn in the middle of working it always shuts down.</p>
 <p>So now my infrastructure is deployed and I am now ready for the next step, to configure my environment and get ready to create my single node cluster.</p>
 <h2 id="setting-up-my-environment">Setting Up My Environment</h2>
@@ -141,25 +157,25 @@ if (!doNotTrack) {
 <p>This is where we go back if needed to Matt&rsquo;s GitHub site and start following it again.  From here we will add that cluster to WAC, then register that HCI cluster with Azure. First, we also need to sign in to Azure with the Windows Admin Center.</p>
 <p>Here we go back to our host that we deployed. On the desktop, there is a RDP link to the DC running on this box. Connect to this server using the Dell\LabAdmin creds that are provided in Matt&rsquo;s Repo.  Once connected, open up Edge and navigate to https://wacgw and ignore the certificate alert.</p>
 <p>The first step is to sign into our Azure Account from WAC.  This is where we create our Azure Active Directory application if we haven&rsquo;t done so yet. Just to note, in a production or real life scenario, you most likely would follow better security practices and have created specifics roles for this application before hand.  Matt&rsquo;s Hybrid Jumpstart does walk you through creating this application via PowerShell and create roles for it as well.  For this blog I went the fast and simple route had and the WAC registration create it for me. I also stole this next image from his site because I yet again forgot to get a screen shot.</p>
-<p><img src="/img/azshci-series/singlecluster/wac_azure_connect.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/wac_azure_connect.png"></p>
 <p>Once registered and signed on, under settings ywe should be able to see that we are now registered with Azure and connected.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20140833.png" alt=""></p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20140957.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20140833.png"></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20140957.png"></p>
 <p>Next we need to add our cluster to WAC and then we will register that HCI cluster using WAC.  First, go to all connections in the top left and click Add. Under Add or create resources I selected Add under Server clusters.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20133744.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20133744.png"></p>
 <p>Since we already create this single node cluster we do not need to click on Create New. We would only have done that if this was a two node or larger cluster we had planned.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20133952.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20133952.png"></p>
 <p>We are now ready to Register this cluster with Azure. Here we can pick up with Matt&rsquo;s Hybrid Jumpstart in module 2 section 3 about <a href="https://github.com/DellGEOS/HybridJumpstart/blob/main/modules/module_2/3_Register_Azure.md">registering with Azure</a>.</p>
 <p>I went the route of registering my cluster using the Windows Admin center. It is farley straight forward. However, in the world of automation it would be good to try this out a few times using PowerShell as well.</p>
 <p>When we first open the cluster up in WAC we should see that the cluster under Arc is not connected. I however forgot to grab a screen shot here so just assume you see  the image below but it says Not Connected.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20135530.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20135530.png"></p>
 <p>The next blade that pops up to the right is an Azure Stack HCI Registration.  Here you will select the subscription and Azure Region, then select the Resource group this cluster and it&rsquo;s resources will be registered to. Click register and wait for a few minutes.</p>
 <p>I can now go into my Azure Portal and see my resources.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141143.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141143.png"></p>
 <p>If we go to the Azure Arc blade we will be able to see our cluster resources..</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141311.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141311.png"></p>
 <p>Clicking on that resource will give us even more details about our HCI Cluster now managed by Azure Arc-enabled Vm&rsquo;s for Azure Stack HCI.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141408.png" alt=""></p>
+<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20141408.png"></p>
 <p>This is just the beginning of the journey for this cluster. There is so much more to do and so much more we can do but again, this blog was about deploying a single node cluster. Also, this was the easy button to get a cluster up and running.  If this was on physical hardware and something geared towards production there is a lot more planning involved.  Also, the deployment process to get the OS on the nodes as well as configure the networking etc is a lot different.</p>
 <h2 id="why-a-one-node-cluster">Why A One Node Cluster?</h2>
 <p>There are use cases for a single node cluster. Dell makes a nice little certified server for HCI and Edge related workloads. In fact, they are the only Microsoft Partner with the <strong>First and only Azure Stack HCI offering in the Premier Solution Category</strong>, their newly released <a href="https://www.dell.com/en-us/dt/apex/cloud-platforms/microsoft-azure.htm">Dell APEX CLoud Platform for Microsoft Azure</a> solution. However, this is a single node blog so let&rsquo;s stick with the smaller single nodes, which Dell does make. These single node solutions would be great for those remote locations, Edge solutions like in a back of a truck running AKS and some sort of AI solution to monitor and maintain  railway lines, pipelines, pipelines, etc.  Help assist with fire management for our forrest, etc.  Remember, there is no HA for any workloads running on this cluster. If the box dies, it dies. I hope we had a good backup? But for some use cases, this may be enough, to run that edge application remotely.  This bring up why we would want at least a two node cluster for HA, not just for the VM workloads, but also for storage resiliency. But to add to that high availability and storage resiliency we need to go even bigger, three or more nodes.</p>
@@ -248,7 +264,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -321,9 +337,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -368,9 +384,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

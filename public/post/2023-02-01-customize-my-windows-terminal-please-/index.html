@@ -3,26 +3,30 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Customize My WIndows Terminal Please?  - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:title" content="Customize My WIndows Terminal Please? " />
-<meta property="og:description" content="Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
+		<meta property="og:url" content="http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Customize My WIndows Terminal Please? ">
+  <meta property="og:description" content="Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
 The three areas I always change are:
 Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?
-Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-02-01T14:59:27+00:00" />
-<meta property="article:modified_time" content="2023-02-01T16:08:38+00:00" />
+Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-02-01T14:59:27+00:00">
+    <meta property="article:modified_time" content="2023-02-01T16:08:38+00:00">
+    <meta property="article:tag" content="Windows Terminal">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Customize My WIndows Terminal Please? "/>
-<meta name="twitter:description" content="Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Customize My WIndows Terminal Please? ">
+  <meta name="twitter:description" content="Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.
 The three areas I always change are:
 Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?
-Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?"/>
+Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -34,16 +38,25 @@ Well, a few clicks here and a few clicks there can have your Windows Terminal lo
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -106,43 +119,43 @@ if (!doNotTrack) {
 <li>Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc).</li>
 </ol>
 <p>So how exciting is it to look at this all day?</p>
-<p><img src="/img/wsterm_customize/wsterm_01.PNG" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_01.PNG"></p>
 <p>Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</p>
-<p><img src="/img/wsterm_customize/wsterm_02.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_02.png"></p>
 <p>Now, images are nice but when you are working a lot in Windows Terminal it is nice that it sits on top of other windows (if you have the screen space that is).  Also, most of use are running scripts and things that need elevated privileges to run.  It is always a pain to right click and open as Administrator all the time.  So why not setup Windows Terminal to always open as administrator, or at least Windows Powershell or Ubuntu.  You are not limited to just the entire application, you can specify which shell you want to open with elevated permissions as well.</p>
 <p>So let&rsquo;s get started?</p>
 <h3 id="always-on-top">Always On Top</h3>
 <p>For all three areas I will discuss in this blog we will be working out of settings from within Windows Terminal. To get to settings click on the down arrow to the right of the last tab and then click settings.</p>
-<p><img src="/img/wsterm_customize/wsterm_06.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_06.png"></p>
 <p>The Startup screen has some very nice options. For instance, what profile do you want to luanch at default?  I always keep Windows PowerShell but here you can change it to CMD, Ubuntu, PowerShell Core, etc.  Also when Terminal Starts, do you want to start the default tab or restart on the tab you left off?  The one option that I never looked at but is really interesting is the New instance behavior.  This allows Windows terminal to open in the most used window or the most recently used window.</p>
-<p><img src="/img/wsterm_customize/wsterm_07.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_07.png"></p>
 <p>Anyway, let&rsquo;s get back to what I am blogging about here.  How do I set Windows Terminal to stay always on top?</p>
 <p>In settings just click on Appearance and Always On Top is located half way down.  Just flip it over to On.</p>
-<p><img src="/img/wsterm_customize/wsterm_08.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_08.png"></p>
 <p>That was pretty simple and fast.</p>
 <h3 id="open-as-admin">Open As Admin</h3>
 <p>Now let&rsquo;s look how to set Windows Terminal to open as Administrator.</p>
 <p>Open settings and look for Defaults under Profiles.  Halfway down you will see the setting that needs to be turned on. This will launch Windows Terminal as administrator for all profiles.</p>
-<p><img src="/img/wsterm_customize/wsterm_09.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_09.png"></p>
 <p>If you wanted to just launch Windows PowerShell as Administrator just go to that profile and change it there and not in the Defaults profile.</p>
-<p><img src="/img/wsterm_customize/wsterm_10.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_10.png"></p>
 <h3 id="make-my-terminal-pretty">Make My Terminal Pretty?</h3>
 <p>Now lets go over how to change your Windows Terminal backgrounds from boring to fun?</p>
 <p>Open up settings, click on Appearance, then click on the profile you want to edit.  For this example I will use the Windows PowerShell profile.  Click on Appearance under Additional settings.</p>
-<p><img src="/img/wsterm_customize/wsterm_11.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_11.png"></p>
 <p>Scroll down to Background Image, click browse and search for your image you want to use. Click Save once you have changes this setting.</p>
-<p><img src="/img/wsterm_customize/wsterm_12.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_12.png"></p>
 <p>Next we want to look at a few things.  First I always set my images at 60% transparency. Scroll down and toward the bottom you should find the Transparency settings</p>
-<p><img src="/img/wsterm_customize/wsterm_14.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_14.png"></p>
 <p>Then scroll up and we need to adjust the color scheme of the font.  For me and most my backgrounds the Ubuntu-ColorScheme works well.</p>
-<p><img src="/img/wsterm_customize/wsterm_13.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_13.png"></p>
 <p>For each change you should be able to see what the shell should look like at the top of the screen.</p>
 <p>Now you have pretty little Windows terminal backgrounds to look at while you work.  Here are some of mine:</p>
-<p><img src="/img/wsterm_customize/wsterm_15.png" alt=""></p>
-<p><img src="/img/wsterm_customize/wsterm_02.png" alt=""></p>
-<p><img src="/img/wsterm_customize/wsterm_03.png" alt=""></p>
-<p><img src="/img/wsterm_customize/wsterm_04.png" alt=""></p>
-<p><img src="/img/wsterm_customize/wsterm_05.png" alt=""></p>
+<p><img src="/img/wsterm_customize/wsterm_15.png"></p>
+<p><img src="/img/wsterm_customize/wsterm_02.png"></p>
+<p><img src="/img/wsterm_customize/wsterm_03.png"></p>
+<p><img src="/img/wsterm_customize/wsterm_04.png"></p>
+<p><img src="/img/wsterm_customize/wsterm_05.png"></p>
 <p>Feel free to play around and customize your own Windows Terminal experience.</p>
 
 		</div>
@@ -215,7 +228,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -288,9 +301,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -335,9 +348,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>

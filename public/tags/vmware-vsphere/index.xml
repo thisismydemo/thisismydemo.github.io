@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>VMWare vSphere on This Is My Demo</title>
+    <title>VMWare VSphere on This Is My Demo</title>
     <link>http://thisismydemo.cloud/tags/vmware-vsphere/</link>
-    <description>Recent content in VMWare vSphere on This Is My Demo</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in VMWare VSphere on This Is My Demo</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jan 2024 17:13:54 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jan 2024 07:26:47 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/vmware-vsphere/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Arc and VMWare Oh Yeah</title>

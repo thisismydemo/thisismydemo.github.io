@@ -3,20 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access" />
-<meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2023-11-06T20:39:04+00:00" />
-<meta property="article:modified_time" content="2023-11-06T22:28:51+00:00" />
+		<meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access">
+  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-11-06T20:39:04+00:00">
+    <meta property="article:modified_time" content="2023-11-06T22:28:51+00:00">
+    <meta property="article:tag" content="Azure Stack HCI">
+    <meta property="article:tag" content="WIndows Admin Center">
 
-
-		<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access"/>
-<meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI"/>
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access">
+  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +33,25 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-C78KZ1DN40', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
 
 </head>
 <body class="body">
@@ -97,7 +111,7 @@ if (!doNotTrack) {
 <p>So, we have our Windows Admin Center deployed and we have it registered with Azure. That is great, right? Well, not so great if you are just using the default security settings out of the box. In this blog I will walk through two ways to give users access to our Windows Admin Centers, the first is using Active Directory and the second is using RBAC via Azure and Entra ID (Azure Active Directory)</p>
 <h2 id="default-security-settings">Default Security Settings</h2>
 <p>Let&rsquo;s look at what is default out of the box first. As you can see in the image below we are not currently using Azure Active Directory (Entra ID) at this point to manage authentication. Neither are we using Multi-factor authentication. It currently is setup to allow Builtin\users to login and manage devices, and it is configured for all Builtin\Administrators the Gateway administrator role which gives anyone in that group rights to control access as well</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20144644.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20144644.png"></p>
 <p>We want to secure our gateway and control access to Windows Admin Center. This will and should improve the security around management of this environment.</p>
 <h2 id="using-active-directory">Using Active Directory</h2>
 <p>By using Active Directory and/or local machine groups for identity we can secure access locally. This may be all we need depending on the environment. If I stayed with this configuration in a production non lab environment I would add some managed Active Directory groups that would be assigned to one of the two roles.</p>
@@ -107,32 +121,32 @@ if (!doNotTrack) {
 <li>WACGatewayAdministrators</li>
 </ul>
 <p>I will then add these two groups as Allowed groups on our Access settings page.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154316.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154316.png"></p>
 <p>As you can now see I have both groups added.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154747.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154747.png"></p>
 <p>My next step, i removed the BUILTIN\Users group. It will not let you via Windows Admin Center to remove the BUILTIN\Administrators group.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154946.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154946.png"></p>
 <p>So we are now a little more secure at this point and can control which users have access to Windows Admin Center by using Active Directory.</p>
 <h2 id="using-microsoft-entra-id-azure-active-directory">Using Microsoft Entra ID (Azure Active Directory)</h2>
 <p>The better of the two options in my opinion will be for me to enable authentication to Windows Admin Center using Entra ID, or what was called Azure Active Directory. From the same Gateway access settings blade, we will flip the switch next to &ldquo;Use Azure Active Directory to add a layer of security to the gateway&rdquo; from no to yes.</p>
 <p>Doing show will give us some instructions on how we need to configure our Azure AD Application we created earlier to give users access.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155451.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155451.png"></p>
 <p>By clicking on the link &ldquo;Go to your Gateway Azure AD app in the Azure portal, it will open up our Azure AD app for us to configure.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155635.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155635.png"></p>
 <p>Here we will change the setting Assignment Required from No to Yes. Then we click save. At this point only users who have been assigned under the Users and Groups section under Manage or our Azure AD Group.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160333.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160333.png"></p>
 <p>My demo tenant doesn&rsquo;t have the active directory plan (Entra ID) to add groups to Users and Groups. In most cases you would already have created an Entra ID group for the two roles, one for Gateway Administrators and the other for Gateway Users and manage memberships from Entra ID.  So here, I just had to manually assign users.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160623.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160623.png"></p>
 <p>On the next screen I will assign them a role of Gateway Users under select a role. Then click Assign. I will repeat this to add any Gateway Administrators that I may need.</p>
 <p>Now we should have all our users assigned either the Gateway User role or the Gateway Administrators role.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160836.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160836.png"></p>
 <p>We should now be able to log on to Windows Admin Center using our Entra ID credentials. So let&rsquo;s try it for Hagrid?</p>
 <p>Let&rsquo;s go to our account settings screen and make sure we are signed out.  Then I will click on Sign In.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161735.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161735.png"></p>
 <p>Here I will put Hagrid&rsquo;s login information and click sign Next.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161622.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161622.png"></p>
 <p>Within a few seconds and after verify via our Microsoft Authenticator app, Hagrid is now signed on. Your A Wizard Harry!</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161536.png" alt=""></p>
+<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161536.png"></p>
 <h2 id="final-thoughts">Final Thoughts</h2>
 <p>Well, I really have none.  Just use Azure Active Directory or I mean Entra ID from now on. It makes RBAC so much simpler!</p>
 
@@ -209,7 +223,7 @@ if (!doNotTrack) {
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
@@ -282,9 +296,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-enabled Data Services">Azure Arc-enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-enabled Kubernetes">Azure Arc-enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-enabled servers">Azure Arc-enabled servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
@@ -329,9 +343,9 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare vSphere">VMWare vSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
 	</div>
