@@ -11,7 +11,7 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-26T14:19:05.383Z
+lastmod: 2024-07-26T14:42:07.991Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: deploying-azure-stack-hci-os-canonical-maas
@@ -22,6 +22,8 @@ There are several methods to deploy an Azure Stack HCI OS Image. You can use sol
 Throughout my career, I've generally preferred Microsoft solutions for deploying Microsoft Operating Systems, favoring tools like MDT and WDS. However, my current company isn't a Microsoft-centric environment. Instead, they use Terraform and Ansible for IaC, which I’m not very experienced with, but I’m open to learning.
 
 In the upcoming series of blog posts, I'll document my journey in automating the deployment of Azure Stack HCI OS. I'll be using Terraform to initiate a MAAS deployment and Ansible to configure the Azure Stack HCI OS, ultimately preparing it for deploying an Azure Stack HCI cluster using Microsoft's Cloud Deployment.
+
+> ****NOTE:** *After writing this blog and doing more research around not currently being able to generalize an Azure Stack HCI Image during sysprep, I have put this project on hold. The section "[Edit Logon.ps1 Script](#edit-logonps1-script)" explains more about this issue with Azure Stack HCI OS and trying to build an image to deploy. I have left this blog up for now in hopes I will find a fix to this issue.***
 
 - [What Are The Tools](#what-are-the-tools)
 - [The Resources](#the-resources)
