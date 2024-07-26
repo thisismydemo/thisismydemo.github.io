@@ -11,7 +11,7 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-26T02:15:18.172Z
+lastmod: 2024-07-26T02:29:00.254Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: deploying-azure-stack-hci-os-canonical-maas
@@ -541,29 +541,38 @@ write-Log  "Allow All RDP clients"
 
 
 write-Log "avahcAdmin"
-$Password = ConvertTo-SecureString -String "***********" -AsPlainText -Force
-New-LocalUser -Name "avahcAdmin" -Password $Password -AccountNeverExpires
+$Password = ConvertTo-SecureString -String "password" -AsPlainText -Force
+New-LocalUser -Name "avahcAdmin" -Password $Password -AccountNeverExpires 
 Add-LocalGroupMember -Group "Administrators" -Member "avahcAdmin"
-& cmd.exe /c 'net.exe user "avahcAdmin" "**********"'
+& cmd.exe /c 'net.exe user "avahcAdmin" "password"'
 
-# Set-AdminAccount.ps1
+# Define the new password
+$newPassword = "password"
 
-# Parameters
-param (
-    [string]$AdminPassword = "**************"
-)
+# Function to set password for the local administrator account
+function Set-LocalAdminPassword {
+    param (
+        [string]$password
+    )
 
-# Create the administrator account and set the password
-$adminAccount = [ADSI]("WinNT://./Administrator,user")
-$adminAccount.SetPassword($AdminPassword)
+    try {
+        # Get the local administrator account
+        $adminAccount = Get-LocalUser -Name "Administrator"
 
-# Enable the account if it is disabled
-$adminAccount.UserFlags = 0x10000
-$adminAccount.SetInfo()
+        if ($adminAccount.Enabled) {
+            # Set the password for the local administrator account
+            $adminAccount | Set-LocalUser -Password (ConvertTo-SecureString $password -AsPlainText -Force)
+            Write-Host "Password for the local Administrator account has been set successfully."
+        } else {
+            Write-Host "The local Administrator account is disabled."
+        }
+    } catch {
+        Write-Error "Failed to set password for the local Administrator account: $_"
+    }
+}
 
-# Set password never expires
-$adminAccount.PasswordExpired = 0
-$adminAccount.SetInfo()
+# Set the password for the local administrator account
+Set-LocalAdminPassword -password $newPassword
 
 # Optionally, auto-logon settings
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "AutoAdminLogon" -Value "5"
