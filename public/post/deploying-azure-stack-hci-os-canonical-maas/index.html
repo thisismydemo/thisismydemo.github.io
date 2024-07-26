@@ -15,7 +15,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2024-07-25T15:00:13+00:00">
-    <meta property="article:modified_time" content="2024-07-26T02:29:00+00:00">
+    <meta property="article:modified_time" content="2024-07-26T14:19:05+00:00">
     <meta property="article:tag" content="Ansible">
     <meta property="article:tag" content="Azure Stack HCI">
     <meta property="article:tag" content="MaaS">
@@ -100,7 +100,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-07-25T15:00:13Z">July 25, 2024</time>
-	<time class="meta__text" datetime="2024-07-26T02:29:00Z">(Last Modified: July 26, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2024-07-26T14:19:05Z">(Last Modified: July 26, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -145,6 +145,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-configini-file">Edit Config.ini File</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-unattendedtemplatehcixml-file">Edit UnattendedTemplateHCI.xml File</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-custom-scripts">Create Custom Scripts</a></li>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-logonps1-script">Edit Logon.ps1 Script</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-the-build-script">Create the Build Script</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#build-the-image">Build The Image</a></li>
 </ul>
@@ -272,7 +273,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 </span></span><span style="display:flex;"><span>vmware_tools_path=<span style="color:#e6db74">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>install_net_3_5=False
 </span></span><span style="display:flex;"><span>custom_resources_path=<span style="color:#e6db74">&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>custom_scripts_path=<span style="color:#e6db74">&#34;C:\maas\Scripts\HCI&#34;</span>
+</span></span><span style="display:flex;"><span>custom_scripts_path=<span style="color:#e6db74">&#34;C:\maas\Scripts\HCICS&#34;</span>
 </span></span><span style="display:flex;"><span>enable_administrator_account=True
 </span></span><span style="display:flex;"><span>shrink_image_to_minimum_size=True
 </span></span><span style="display:flex;"><span>enable_custom_wallpaper=False
@@ -586,6 +587,15 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 </span></span><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&#34;</span> -Name <span style="color:#e6db74">&#34;DefaultPassword&#34;</span> -Value $AdminPassword
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Write-Log <span style="color:#e6db74">&#34;RunBeforeSysprep.ps1 Finished&#34;</span>
+</span></span></code></pre></div><h3 id="edit-logonps1-script">Edit Logon.ps1 Script</h3>
+<p>During the creation of this blog, I encountered issues discussed on the <a href="https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image">CryingCloud</a> blog regarding the image malfunctioning when the system is generalized during the sysprep process. To address this, we will edit the Logon.ps1 PowerShell script to remove the /generalize parameter, preventing the HCI image from being generalized during the sysprep process. This script is located in the ./maas/windows-openstack-imaging-tools/UnattendedResources directory.</p>
+<p>However, please be aware that not generalizing images can cause problems in the future, such as duplicate SIDs (Security Identifiers), which can lead to issues in domain environments. For more information on generalizing an image during sysprep, refer to the <a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11">Microsoft Learn documentation</a>.</p>
+<p><img src="/img/azshci-maas/image.png"></p>
+<p>The following is what we changed:</p>
+<p>On line 720 the existing code should show:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/generalize `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>We will remove the `/generalize section and save the file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
 </span></span></code></pre></div><h3 id="create-the-build-script">Create the Build Script</h3>
 <p>Now we will create the build script.  Here is a copy of my build script:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">Param</span> (

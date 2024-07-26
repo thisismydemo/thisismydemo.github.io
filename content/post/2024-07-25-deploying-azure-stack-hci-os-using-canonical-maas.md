@@ -11,7 +11,7 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-26T02:29:00.254Z
+lastmod: 2024-07-26T14:19:05.383Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: deploying-azure-stack-hci-os-canonical-maas
@@ -44,6 +44,7 @@ In the upcoming series of blog posts, I'll document my journey in automating the
   - [Edit Config.ini File](#edit-configini-file)
   - [Edit UnattendedTemplateHCI.xml File](#edit-unattendedtemplatehcixml-file)
   - [Create Custom Scripts](#create-custom-scripts)
+  - [Edit Logon.ps1 Script](#edit-logonps1-script)
   - [Create the Build Script](#create-the-build-script)
   - [Build The Image](#build-the-image)
 - [Getting Images to MAAS](#getting-images-to-maas)
@@ -245,7 +246,7 @@ gold_image_path=""
 vmware_tools_path=""
 install_net_3_5=False
 custom_resources_path=""
-custom_scripts_path="C:\maas\Scripts\HCI"
+custom_scripts_path="C:\maas\Scripts\HCICS"
 enable_administrator_account=True
 shrink_image_to_minimum_size=True
 enable_custom_wallpaper=False
@@ -580,6 +581,28 @@ Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "DefaultPassword" -Value $AdminPassword
 
 Write-Log "RunBeforeSysprep.ps1 Finished"
+```
+
+### Edit Logon.ps1 Script
+
+During the creation of this blog, I encountered issues discussed on the [CryingCloud](https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image) blog regarding the image malfunctioning when the system is generalized during the sysprep process. To address this, we will edit the Logon.ps1 PowerShell script to remove the /generalize parameter, preventing the HCI image from being generalized during the sysprep process. This script is located in the ./maas/windows-openstack-imaging-tools/UnattendedResources directory.
+
+However, please be aware that not generalizing images can cause problems in the future, such as duplicate SIDs (Security Identifiers), which can lead to issues in domain environments. For more information on generalizing an image during sysprep, refer to the [Microsoft Learn documentation](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation?view=windows-11).
+
+![](/img/azshci-maas/image.png)
+
+The following is what we changed:
+
+On line 720 the existing code should show:
+
+```powershell
+& "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath"
+```
+
+We will remove the `/generalize section and save the file.
+
+```powershell
+& "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/oobe `/shutdown `/unattend:"$unattendedXmlPath"
 ```
 
 ### Create the Build Script
