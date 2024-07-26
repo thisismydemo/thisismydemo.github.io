@@ -11,7 +11,7 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-26T02:05:33.112Z
+lastmod: 2024-07-26T02:15:18.172Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: deploying-azure-stack-hci-os-canonical-maas
@@ -308,7 +308,7 @@ Additionally, I made changes under the [updates] section. To save time during th
 install_updates=False
 purge_updates=False
 clean_updates_offline=False
-clean_updates_online=True
+clean_updates_online=False
 ```
 
 By making these adjustments, you can tailor the build process to your specific requirements and decide whether or not to include updates during the build.

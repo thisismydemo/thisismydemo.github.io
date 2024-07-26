@@ -15,7 +15,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2024-07-25T15:00:13+00:00">
-    <meta property="article:modified_time" content="2024-07-26T02:05:33+00:00">
+    <meta property="article:modified_time" content="2024-07-26T02:15:18+00:00">
     <meta property="article:tag" content="Ansible">
     <meta property="article:tag" content="Azure Stack HCI">
     <meta property="article:tag" content="MaaS">
@@ -100,7 +100,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-07-25T15:00:13Z">July 25, 2024</time>
-	<time class="meta__text" datetime="2024-07-26T02:05:33Z">(Last Modified: July 26, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2024-07-26T02:15:18Z">(Last Modified: July 26, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -331,7 +331,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 </span></span><span style="display:flex;"><span>install_updates=False
 </span></span><span style="display:flex;"><span>purge_updates=False
 </span></span><span style="display:flex;"><span>clean_updates_offline=False
-</span></span><span style="display:flex;"><span>clean_updates_online=True
+</span></span><span style="display:flex;"><span>clean_updates_online=False
 </span></span></code></pre></div><p>By making these adjustments, you can tailor the build process to your specific requirements and decide whether or not to include updates during the build.</p>
 <h3 id="edit-unattendedtemplatehcixml-file">Edit UnattendedTemplateHCI.xml File</h3>
 <p>I haven&rsquo;t had extensive experience working with unattended.xml files, apart from using some with ConfigMgr. I understand they offer a lot of customization options. Here are a few resources for working with unattended.xml files:</p>
