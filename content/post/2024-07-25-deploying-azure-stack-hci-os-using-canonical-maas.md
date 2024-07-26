@@ -11,7 +11,7 @@ tags:
     - Terraform
 categories:
     - Azure Stack HCI
-lastmod: 2024-07-25T22:25:03.373Z
+lastmod: 2024-07-26T02:05:33.112Z
 thumbnail: /img/azshci-maas/maas_banners_leaderboard.png
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: deploying-azure-stack-hci-os-canonical-maas
@@ -40,11 +40,10 @@ In the upcoming series of blog posts, I'll document my journey in automating the
   - [Load Modules](#load-modules)
   - [Create Config.ini file](#create-configini-file)
   - [Download Azure Stack HCI ISO](#download-azure-stack-hci-iso)
-- [Create an Image](#create-an-image)
+- [Create the Image](#create-the-image)
   - [Edit Config.ini File](#edit-configini-file)
   - [Edit UnattendedTemplateHCI.xml File](#edit-unattendedtemplatehcixml-file)
   - [Create Custom Scripts](#create-custom-scripts)
-  - [Edit Logon.ps1 Script](#edit-logonps1-script)
   - [Create the Build Script](#create-the-build-script)
   - [Build The Image](#build-the-image)
 - [Getting Images to MAAS](#getting-images-to-maas)
@@ -202,11 +201,8 @@ As mentioned in the CryingCloud blog, if you want to customize the image using t
 
 At this point, you are ready to start customizing your configuration files, building your scripts, and creating your image.
 
-## Create an Image
+## Create the Image
 
-I haven't encountered this issue yet, but the CryingCloud blog addresses a problem with the Azure Stack HCI OS becoming generalized when you attempt to sysprep the image. Based on their suggestions, rather than building a single solution for both Windows Server OS and Azure Stack HCI OS builds, we customized our build to focus exclusively on Azure Stack HCI OS builds. Specifically, we edited the Logon.ps1 script and removed the /generalize option.
-
-I tested the alternative method described in the CryingCloud blog, and it works as well. However, our approach was simpler and faster. For details on how to create a build solution that supports both Windows Server OS and Azure Stack HCI OS builds, refer to the CryingCloud blog at [Creating Azure Stack HCI MAAS Image](https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image).
 
 ### Edit Config.ini File
 
@@ -325,7 +321,7 @@ I haven't had extensive experience working with unattended.xml files, apart from
 
 However, we have an UnattendTemplate2022.xml file located in the repository we've cloned, which we will use for now. Copy this UnattendTemplate2022.xml file and rename it to UnattendTemplateHCI.xml.
 
-Here is an example of the UnattendTemplateHCI.xml file I am using:
+Here is an example of the UnattendTemplateHCI.xml file that can be used.  However, I have recently switched to using customer PowerShell scripts:
 
 ```powershell
 <?xml version="1.0" encoding="utf-8"?>
@@ -526,36 +522,69 @@ I am currently learning more about custom scripts that can be run before and aft
 
 Custom scripts offer greater flexibility and control over the deployment process, allowing for more granular configuration and automation tailored to specific needs. By incorporating these scripts, I can enhance the efficiency and effectiveness of my HCI builds. As I gain more experience and understanding, I plan to transition to using custom scripts to optimize the build process further
 
-### Edit Logon.ps1 Script
-
-We are going to edit the Logon.ps1 PowerShell script to remove the /generalize parameter in order to not generalize the HCI image during the sysprep process of the image build. This file is located in the ./maas/windows-openstack-imaging-tools/UnattendedResources directory.
-
-On line 720 the existing code should show:
+Here is an example of the custom script that I have started to use. I have named it RunBeforeSysprep.ps1 and have placed it in the ./maas/scripts/hcics directory.
 
 ```powershell
-& "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/generalize `/oobe `/shutdown `/unattend:"$unattendedXmlPath"
+function Write-Log {
+    Param($messageToOut)
+    add-content -path "c:\build.log" ("{0} - {1}" -f @((Get-Date), $messageToOut))
+}
+
+Write-Log "RunBeforeSysprep.ps1 starting"
+
+write-Log "Allow RDP"
+Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name 'fDenyTSConnections' -value 0
+Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
+
+write-Log  "Allow All RDP clients"
+(Get-WmiObject -class 'Win32_TSGeneralSetting' -Namespace root\cimv2\terminalservices -ComputerName $env:COMPUTERNAME -Filter 'TerminalName="RDP-tcp"').SetUserAuthenticationRequired(0)
+
+
+write-Log "avahcAdmin"
+$Password = ConvertTo-SecureString -String "***********" -AsPlainText -Force
+New-LocalUser -Name "avahcAdmin" -Password $Password -AccountNeverExpires
+Add-LocalGroupMember -Group "Administrators" -Member "avahcAdmin"
+& cmd.exe /c 'net.exe user "avahcAdmin" "**********"'
+
+# Set-AdminAccount.ps1
+
+# Parameters
+param (
+    [string]$AdminPassword = "**************"
+)
+
+# Create the administrator account and set the password
+$adminAccount = [ADSI]("WinNT://./Administrator,user")
+$adminAccount.SetPassword($AdminPassword)
+
+# Enable the account if it is disabled
+$adminAccount.UserFlags = 0x10000
+$adminAccount.SetInfo()
+
+# Set password never expires
+$adminAccount.PasswordExpired = 0
+$adminAccount.SetInfo()
+
+# Optionally, auto-logon settings
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "AutoAdminLogon" -Value "5"
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "DefaultUsername" -Value "Administrator"
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "DefaultPassword" -Value $AdminPassword
+
+Write-Log "RunBeforeSysprep.ps1 Finished"
 ```
-
-We will remove the `/generalize section and save the file.
-
-```powershell
-& "$ENV:SystemRoot\System32\Sysprep\Sysprep.exe" `/oobe `/shutdown `/unattend:"$unattendedXmlPath"
-```
-
-As mentioned before, the CryingCloud blog does show another way in order to keep the same code for both Windows OS and HCI OS, but I am keeping it simple for now.
 
 ### Create the Build Script
 
 Now we will create the build script.  Here is a copy of my build script:
 
 ```powershell
-Param ( 
+Param (
     $VerbosePreference = "Continue",
     $ISOImage = "C:\maas\iso\25398.469.231004-1141.zn_release_svc_refresh_SERVERAZURESTACKHCICOR_OEMRET_x64FRE_en-us.iso",
     $ConfigFilePath = "C:\maas\Scripts\config-Server-HCI-UEFI.ini",
     $CloudBuildModules = "C:\maas\windows-openstack-imaging-tools"
 )
-Set-Location $CloudBuildModules 
+Set-Location $CloudBuildModules
 
 Import-Module .\WinImageBuilder.psm1
 Import-Module .\Config.psm1
@@ -569,7 +598,7 @@ $MountLetter = (Get-DiskImage $ISOImage| Get-Volume).DriveLetter
 # To automate the config options setting:
 Set-IniFileValue -Path (Resolve-Path $ConfigFilePath) -Section "DEFAULT" -Key "wim_file_path" -Value ("$MountLetter" + ":\Sources\install.wim")
 
-#New Online image 
+#New Online image
 New-WindowsOnlineImage -ConfigFilePath $ConfigFilePath
 
 Dismount-DiskImage $ISOImage

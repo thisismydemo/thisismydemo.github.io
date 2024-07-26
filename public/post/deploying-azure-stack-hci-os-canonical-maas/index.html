@@ -15,7 +15,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2024-07-25T15:00:13+00:00">
-    <meta property="article:modified_time" content="2024-07-25T22:25:03+00:00">
+    <meta property="article:modified_time" content="2024-07-26T02:05:33+00:00">
     <meta property="article:tag" content="Ansible">
     <meta property="article:tag" content="Azure Stack HCI">
     <meta property="article:tag" content="MaaS">
@@ -100,7 +100,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-07-25T15:00:13Z">July 25, 2024</time>
-	<time class="meta__text" datetime="2024-07-25T22:25:03Z">(Last Modified: July 25, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
+	<time class="meta__text" datetime="2024-07-26T02:05:33Z">(Last Modified: July 26, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
 	</span>
 </div></div>
 		</header>
@@ -140,12 +140,11 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#download-azure-stack-hci-iso">Download Azure Stack HCI ISO</a></li>
 </ul>
 </li>
-<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-an-image">Create an Image</a>
+<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-the-image">Create the Image</a>
 <ul>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-configini-file">Edit Config.ini File</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-unattendedtemplatehcixml-file">Edit UnattendedTemplateHCI.xml File</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-custom-scripts">Create Custom Scripts</a></li>
-<li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#edit-logonps1-script">Edit Logon.ps1 Script</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#create-the-build-script">Create the Build Script</a></li>
 <li><a href="/post/deploying-azure-stack-hci-os-canonical-maas/#build-the-image">Build The Image</a></li>
 </ul>
@@ -238,9 +237,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 <p>Once downloaded, place the ISO in the ./maas/iso directory.</p>
 <p>As mentioned in the CryingCloud blog, if you want to customize the image using the &ldquo;Windows System Image Manager&rdquo; to build custom unattended files, you will also need to extract the Azure Stack HCI ISO to your ./maas/source directory. The simplest method is to mount the ISO, then copy and paste all the contents into a folder within the ./maas/source directory, which you can name hci or something similar.</p>
 <p>At this point, you are ready to start customizing your configuration files, building your scripts, and creating your image.</p>
-<h2 id="create-an-image">Create an Image</h2>
-<p>I haven&rsquo;t encountered this issue yet, but the CryingCloud blog addresses a problem with the Azure Stack HCI OS becoming generalized when you attempt to sysprep the image. Based on their suggestions, rather than building a single solution for both Windows Server OS and Azure Stack HCI OS builds, we customized our build to focus exclusively on Azure Stack HCI OS builds. Specifically, we edited the Logon.ps1 script and removed the /generalize option.</p>
-<p>I tested the alternative method described in the CryingCloud blog, and it works as well. However, our approach was simpler and faster. For details on how to create a build solution that supports both Windows Server OS and Azure Stack HCI OS builds, refer to the CryingCloud blog at <a href="https://www.cryingcloud.com/blog/2022/10/20/creating-azure-stack-hci-maas-image">Creating Azure Stack HCI MAAS Image</a>.</p>
+<h2 id="create-the-image">Create the Image</h2>
 <h3 id="edit-configini-file">Edit Config.ini File</h3>
 <p>The config.ini file was created in the ./maas/windows-openstack-imaging-tools directory. Copy this file to the ./maas/scripts directory and rename it to config-server-hci-uefi.ini. The following PowerShell script will do the same as well:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Define source and destination paths</span>
@@ -340,7 +337,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 <p>I haven&rsquo;t had extensive experience working with unattended.xml files, apart from using some with ConfigMgr. I understand they offer a lot of customization options. Here are a few resources for working with unattended.xml files:</p>
 <p><a href="https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/update-windows-settings-and-scripts-create-your-own-answer-file-sxs?view=windows-11">Update Windows Settings and Scripts to Create Your Own Answer File</a></p>
 <p>However, we have an UnattendTemplate2022.xml file located in the repository we&rsquo;ve cloned, which we will use for now. Copy this UnattendTemplate2022.xml file and rename it to UnattendTemplateHCI.xml.</p>
-<p>Here is an example of the UnattendTemplateHCI.xml file I am using:</p>
+<p>Here is an example of the UnattendTemplateHCI.xml file that can be used.  However, I have recently switched to using customer PowerShell scripts:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&lt;<span style="color:#66d9ef">?</span>xml version=<span style="color:#e6db74">&#34;1.0&#34;</span> encoding=<span style="color:#e6db74">&#34;utf-8&#34;</span>?&gt;
 </span></span><span style="display:flex;"><span>&lt;unattend xmlns=<span style="color:#e6db74">&#34;urn:schemas-microsoft-com:unattend&#34;</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;settings pass=<span style="color:#e6db74">&#34;windowsPE&#34;</span>&gt;
@@ -533,22 +530,62 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 <h3 id="create-custom-scripts">Create Custom Scripts</h3>
 <p>I am currently learning more about custom scripts that can be run before and after some of the build processes. At this moment, I don&rsquo;t include a custom script for my HCI builds. However, I am considering shifting towards using custom scripts instead of relying solely on the unattended.xml files mentioned above.</p>
 <p>Custom scripts offer greater flexibility and control over the deployment process, allowing for more granular configuration and automation tailored to specific needs. By incorporating these scripts, I can enhance the efficiency and effectiveness of my HCI builds. As I gain more experience and understanding, I plan to transition to using custom scripts to optimize the build process further</p>
-<h3 id="edit-logonps1-script">Edit Logon.ps1 Script</h3>
-<p>We are going to edit the Logon.ps1 PowerShell script to remove the /generalize parameter in order to not generalize the HCI image during the sysprep process of the image build. This file is located in the ./maas/windows-openstack-imaging-tools/UnattendedResources directory.</p>
-<p>On line 720 the existing code should show:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/generalize `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div><p>We will remove the `/generalize section and save the file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$ENV:SystemRoot<span style="color:#e6db74">\System32\Sysprep\Sysprep.exe&#34;</span> `/oobe `/shutdown `/unattend<span style="color:#960050;background-color:#1e0010">:</span><span style="color:#e6db74">&#34;</span>$unattendedXmlPath<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div><p>As mentioned before, the CryingCloud blog does show another way in order to keep the same code for both Windows OS and HCI OS, but I am keeping it simple for now.</p>
-<h3 id="create-the-build-script">Create the Build Script</h3>
+<p>Here is an example of the custom script that I have started to use. I have named it RunBeforeSysprep.ps1 and have placed it in the ./maas/scripts/hcics directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Write-Log {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">Param</span>($messageToOut)
+</span></span><span style="display:flex;"><span>    add-content -path <span style="color:#e6db74">&#34;c:\build.log&#34;</span> (<span style="color:#e6db74">&#34;{0} - {1}&#34;</span> <span style="color:#f92672">-f</span> @((Get-Date), $messageToOut))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Log <span style="color:#e6db74">&#34;RunBeforeSysprep.ps1 starting&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>write-Log <span style="color:#e6db74">&#34;Allow RDP&#34;</span>
+</span></span><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#39;HKLM:\System\CurrentControlSet\Control\Terminal Server&#39;</span> -name <span style="color:#e6db74">&#39;fDenyTSConnections&#39;</span> -value <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>Enable-NetFirewallRule -DisplayGroup <span style="color:#e6db74">&#39;Remote Desktop&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>write-Log  <span style="color:#e6db74">&#34;Allow All RDP clients&#34;</span>
+</span></span><span style="display:flex;"><span>(Get-WmiObject -class <span style="color:#e6db74">&#39;Win32_TSGeneralSetting&#39;</span> -Namespace root\cimv2\terminalservices -ComputerName $env:COMPUTERNAME -Filter <span style="color:#e6db74">&#39;TerminalName=&#34;RDP-tcp&#34;&#39;</span>).SetUserAuthenticationRequired(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>write-Log <span style="color:#e6db74">&#34;avahcAdmin&#34;</span>
+</span></span><span style="display:flex;"><span>$Password = ConvertTo-SecureString -String <span style="color:#e6db74">&#34;***********&#34;</span> -AsPlainText -Force
+</span></span><span style="display:flex;"><span>New-LocalUser -Name <span style="color:#e6db74">&#34;avahcAdmin&#34;</span> -Password $Password -AccountNeverExpires
+</span></span><span style="display:flex;"><span>Add-LocalGroupMember -Group <span style="color:#e6db74">&#34;Administrators&#34;</span> -Member <span style="color:#e6db74">&#34;avahcAdmin&#34;</span>
+</span></span><span style="display:flex;"><span>&amp; cmd.exe /c <span style="color:#e6db74">&#39;net.exe user &#34;avahcAdmin&#34; &#34;**********&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set-AdminAccount.ps1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameters</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">param</span> (
+</span></span><span style="display:flex;"><span>    [<span style="color:#66d9ef">string</span>]$AdminPassword = <span style="color:#e6db74">&#34;**************&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create the administrator account and set the password</span>
+</span></span><span style="display:flex;"><span>$adminAccount = [<span style="color:#66d9ef">ADSI</span>](<span style="color:#e6db74">&#34;WinNT://./Administrator,user&#34;</span>)
+</span></span><span style="display:flex;"><span>$adminAccount.SetPassword($AdminPassword)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable the account if it is disabled</span>
+</span></span><span style="display:flex;"><span>$adminAccount.UserFlags = 0x10000
+</span></span><span style="display:flex;"><span>$adminAccount.SetInfo()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set password never expires</span>
+</span></span><span style="display:flex;"><span>$adminAccount.PasswordExpired = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>$adminAccount.SetInfo()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optionally, auto-logon settings</span>
+</span></span><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&#34;</span> -Name <span style="color:#e6db74">&#34;AutoAdminLogon&#34;</span> -Value <span style="color:#e6db74">&#34;5&#34;</span>
+</span></span><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&#34;</span> -Name <span style="color:#e6db74">&#34;DefaultUsername&#34;</span> -Value <span style="color:#e6db74">&#34;Administrator&#34;</span>
+</span></span><span style="display:flex;"><span>Set-ItemProperty -Path <span style="color:#e6db74">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&#34;</span> -Name <span style="color:#e6db74">&#34;DefaultPassword&#34;</span> -Value $AdminPassword
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Log <span style="color:#e6db74">&#34;RunBeforeSysprep.ps1 Finished&#34;</span>
+</span></span></code></pre></div><h3 id="create-the-build-script">Create the Build Script</h3>
 <p>Now we will create the build script.  Here is a copy of my build script:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">Param</span> ( 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">Param</span> (
 </span></span><span style="display:flex;"><span>    $VerbosePreference = <span style="color:#e6db74">&#34;Continue&#34;</span>,
 </span></span><span style="display:flex;"><span>    $ISOImage = <span style="color:#e6db74">&#34;C:\maas\iso\25398.469.231004-1141.zn_release_svc_refresh_SERVERAZURESTACKHCICOR_OEMRET_x64FRE_en-us.iso&#34;</span>,
 </span></span><span style="display:flex;"><span>    $ConfigFilePath = <span style="color:#e6db74">&#34;C:\maas\Scripts\config-Server-HCI-UEFI.ini&#34;</span>,
 </span></span><span style="display:flex;"><span>    $CloudBuildModules = <span style="color:#e6db74">&#34;C:\maas\windows-openstack-imaging-tools&#34;</span>
 </span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>Set-Location $CloudBuildModules 
+</span></span><span style="display:flex;"><span>Set-Location $CloudBuildModules
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Import-Module .\WinImageBuilder.psm1
 </span></span><span style="display:flex;"><span>Import-Module .\Config.psm1
@@ -562,7 +599,7 @@ Throughout my career, I’ve generally preferred Microsoft solutions for deployi
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># To automate the config options setting:</span>
 </span></span><span style="display:flex;"><span>Set-IniFileValue -Path (Resolve-Path $ConfigFilePath) -Section <span style="color:#e6db74">&#34;DEFAULT&#34;</span> -Key <span style="color:#e6db74">&#34;wim_file_path&#34;</span> -Value (<span style="color:#e6db74">&#34;</span>$MountLetter<span style="color:#e6db74">&#34;</span> + <span style="color:#e6db74">&#34;:\Sources\install.wim&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#New Online image </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#New Online image</span>
 </span></span><span style="display:flex;"><span>New-WindowsOnlineImage -ConfigFilePath $ConfigFilePath
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Dismount-DiskImage $ISOImage
