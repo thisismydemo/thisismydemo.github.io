@@ -6,10 +6,10 @@
     <description>Recent content in Posts on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Aug 2024 15:14:29 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Aug 2024 16:02:50 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Dell APEX - Create Service Principle and Assign Roles via Azure CLI</title>
+      <title>Dell APEX - Create Service Principal and Assign Roles via Azure CLI</title>
       <link>http://thisismydemo.cloud/post/dell-apex-create-service-principle-assign-roles-azure-cli/</link>
       <pubDate>Mon, 05 Aug 2024 11:38:44 +0000</pubDate>
       <guid>http://thisismydemo.cloud/post/dell-apex-create-service-principle-assign-roles-azure-cli/</guid>

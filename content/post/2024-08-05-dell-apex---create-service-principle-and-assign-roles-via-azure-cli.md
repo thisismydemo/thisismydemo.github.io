@@ -1,5 +1,5 @@
 ---
-title: Dell APEX - Create Service Principle and Assign Roles via Azure CLI
+title: Dell APEX - Create Service Principal and Assign Roles via Azure CLI
 description: ""
 date: 2024-08-05T11:38:44.425Z
 preview: ""
@@ -9,7 +9,7 @@ tags:
     - Dell APEX
 categories:
     - Azure Stack HCI
-lastmod: 2024-08-05T15:14:29.873Z
+lastmod: 2024-08-05T16:02:50.460Z
 thumbnail: ""
 lead: Automating the Deployment of Azure Stack HCI Series
 slug: dell-apex-create-service-principle-assign-roles-azure-cli
