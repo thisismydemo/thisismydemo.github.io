@@ -6,8 +6,36 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 05 Aug 2024 16:02:50 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jan 2025 22:10:00 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS</title>
+      <link>http://thisismydemo.cloud/tags/aws/</link>
+      <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Arc</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+      <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Arc-Enabled Servers</title>
+      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
+      <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Multicloud Connector Enabled by Azure Arc</title>
+      <link>http://thisismydemo.cloud/tags/multicloud-connector-enabled-by-azure-arc/</link>
+      <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/multicloud-connector-enabled-by-azure-arc/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Azure Stack HCI</title>
       <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
@@ -55,13 +83,6 @@
       <link>http://thisismydemo.cloud/tags/linux/</link>
       <pubDate>Mon, 19 Feb 2024 18:14:07 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Arc</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
-      <pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
       <description></description>
     </item>
     <item>
@@ -132,13 +153,6 @@
       <link>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Arc-Enabled Servers</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
-      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>
       <description></description>
     </item>
     <item>
