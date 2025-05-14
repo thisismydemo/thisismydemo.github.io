@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure Percept on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/azure-percept/</link>
+    <link>http://localhost:1313/tags/azure-percept/</link>
     <description>Recent content in Azure Percept on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 01 Apr 2023 02:42:12 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/azure-percept/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/azure-percept/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Applying The Final Firmware Update for the Azure Percept DK</title>
-      <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
+      <link>http://localhost:1313/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
+      <guid>http://localhost:1313/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
       <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
     </item>
   </channel>

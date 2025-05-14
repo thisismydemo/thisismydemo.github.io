@@ -2,445 +2,448 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc/</loc>
+    <loc>http://localhost:1313/post/2025-05-14-choosing-a-windows-clustering-strategy-in-2025/</loc>
+    <lastmod>2025-05-14T17:48:35+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-05-14T17:48:35+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-05-14T17:48:35+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/azure-arc/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-arc/</loc>
+    <loc>http://localhost:1313/categories/azure-arc/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</loc>
+    <loc>http://localhost:1313/tags/azure-arc-enabled-servers/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/</loc>
+    <loc>http://localhost:1313/tags/rdp/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/rdp/</loc>
+    <loc>http://localhost:1313/post/secure-rdp-access-ssh-arc-vm/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/secure-rdp-access-ssh-arc-vm/</loc>
+    <loc>http://localhost:1313/tags/ssh/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/ssh/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-01-26T20:20:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/</loc>
-    <lastmod>2025-01-26T20:20:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/</loc>
-    <lastmod>2025-01-26T20:20:42+00:00</lastmod>
-  </url><url>
-    <loc>http://thisismydemo.cloud/tags/aws/</loc>
+    <loc>http://localhost:1313/tags/aws/</loc>
     <lastmod>2025-01-25T22:10:25+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/multicloud-connector-enabled-by-azure-arc/</loc>
+    <loc>http://localhost:1313/tags/multicloud-connector-enabled-by-azure-arc/</loc>
     <lastmod>2025-01-25T22:10:25+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/multicloud-connector-enabled-azure-arc-arc/</loc>
+    <loc>http://localhost:1313/post/multicloud-connector-enabled-azure-arc-arc/</loc>
     <lastmod>2025-01-25T22:10:25+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-stack-hci/</loc>
+    <loc>http://localhost:1313/tags/azure-stack-hci/</loc>
     <lastmod>2024-08-05T16:02:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-stack-hci/</loc>
+    <loc>http://localhost:1313/categories/azure-stack-hci/</loc>
     <lastmod>2024-08-05T16:02:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/dell-apex/</loc>
+    <loc>http://localhost:1313/tags/dell-apex/</loc>
     <lastmod>2024-08-05T16:02:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/dell-apex-create-service-principle-assign-roles-azure-cli/</loc>
+    <loc>http://localhost:1313/post/dell-apex-create-service-principle-assign-roles-azure-cli/</loc>
     <lastmod>2024-08-05T16:02:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/ansible/</loc>
+    <loc>http://localhost:1313/tags/ansible/</loc>
     <lastmod>2024-07-26T14:42:07+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/deploying-azure-stack-hci-os-canonical-maas/</loc>
+    <loc>http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/</loc>
     <lastmod>2024-07-26T14:42:07+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/maas/</loc>
+    <loc>http://localhost:1313/tags/maas/</loc>
     <lastmod>2024-07-26T14:42:07+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/terraform/</loc>
+    <loc>http://localhost:1313/tags/terraform/</loc>
     <lastmod>2024-07-26T14:42:07+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure/</loc>
+    <loc>http://localhost:1313/categories/azure/</loc>
     <lastmod>2024-02-19T19:11:57+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-bastion/</loc>
+    <loc>http://localhost:1313/tags/azure-bastion/</loc>
     <lastmod>2024-02-19T19:11:57+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</loc>
+    <loc>http://localhost:1313/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</loc>
     <lastmod>2024-02-19T19:11:57+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/linux/</loc>
+    <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2024-02-19T19:11:57+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</loc>
+    <loc>http://localhost:1313/post/azure-arc-vmware-yeah/</loc>
     <lastmod>2024-01-12T07:26:47+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/vmware-vsphere/</loc>
+    <loc>http://localhost:1313/tags/vmware-vsphere/</loc>
     <lastmod>2024-01-12T07:26:47+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc-mas/</loc>
+    <loc>http://localhost:1313/tags/azure-arc-mas/</loc>
     <lastmod>2024-01-05T14:41:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arcmas-summary/</loc>
     <lastmod>2024-01-05T14:35:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-twelve-drums-celebrating/</loc>
     <lastmod>2024-01-05T14:10:44+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-eleven-logs-streaming/</loc>
     <lastmod>2024-01-04T14:10:15+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-ten-clouds-connecting/</loc>
     <lastmod>2024-01-03T14:42:48+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-devs-dancing/</loc>
     <lastmod>2024-01-02T14:50:22+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-custom-locations/</loc>
     <lastmod>2024-01-01T14:49:09+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-policies-ringing/</loc>
     <lastmod>2024-01-05T14:39:57+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-apps-deploying/</loc>
     <lastmod>2023-12-30T19:28:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-golden-savings/</loc>
     <lastmod>2024-01-05T14:21:30+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-nodes-connecting/</loc>
     <lastmod>2023-12-29T19:05:22+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-services-scaling/</loc>
     <lastmod>2023-12-27T19:52:32+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas-clusters-flexing/</loc>
     <lastmod>2024-01-05T14:40:39+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure/</loc>
+    <loc>http://localhost:1313/tags/azure/</loc>
     <lastmod>2024-01-05T14:41:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arcmas-console-cloud-tree/</loc>
     <lastmod>2024-01-05T14:41:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arcmas-introduction/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arcmas-introduction/</loc>
     <lastmod>2023-12-29T19:37:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/cloud-family/</loc>
+    <loc>http://localhost:1313/tags/cloud-family/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/dfwsmug/</loc>
+    <loc>http://localhost:1313/tags/dfwsmug/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/dfwsmug/</loc>
+    <loc>http://localhost:1313/categories/dfwsmug/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/festive-tech-calendar/</loc>
+    <loc>http://localhost:1313/tags/festive-tech-calendar/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/festive-tech-calendar/</loc>
+    <loc>http://localhost:1313/categories/festive-tech-calendar/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-12-13-the-12-days-of-azure-arc-mas/</loc>
+    <loc>http://localhost:1313/post/2023-12-13-the-12-days-of-azure-arc-mas/</loc>
     <lastmod>2023-12-13T22:55:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-series-ended/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-series-ended/</loc>
     <lastmod>2023-11-29T14:39:28+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-kubernetes-service/</loc>
+    <loc>http://localhost:1313/tags/azure-kubernetes-service/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/windows-admin-center/</loc>
+    <loc>http://localhost:1313/tags/windows-admin-center/</loc>
     <lastmod>2023-11-07T19:27:45+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</loc>
     <lastmod>2023-11-07T14:08:08+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</loc>
     <lastmod>2023-11-06T22:28:51+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</loc>
+    <loc>http://localhost:1313/tags/azure-arc-enabled-data-services/</loc>
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</loc>
+    <loc>http://localhost:1313/tags/azure-arc-enabled-kubernetes/</loc>
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</loc>
+    <loc>http://localhost:1313/post/12-days-azure-arc-mas/</loc>
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/the-festive-tech-calendar/</loc>
+    <loc>http://localhost:1313/tags/the-festive-tech-calendar/</loc>
     <lastmod>2023-11-01T21:59:39+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</loc>
     <lastmod>2023-10-25T13:54:17+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-sixteen/</loc>
     <lastmod>2023-10-24T19:01:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/powershell/</loc>
+    <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2023-10-24T19:01:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/wac/</loc>
+    <loc>http://localhost:1313/tags/wac/</loc>
     <lastmod>2023-10-24T19:01:50+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</loc>
     <lastmod>2023-10-23T21:34:49+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</loc>
     <lastmod>2023-10-24T19:00:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</loc>
     <lastmod>2023-10-16T14:59:33+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/azure-stack-hci-series/</loc>
+    <loc>http://localhost:1313/post/azure-stack-hci-series/</loc>
     <lastmod>2023-10-13T17:30:24+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-arc-enabled-kubernetes/</loc>
+    <loc>http://localhost:1313/categories/azure-arc-enabled-kubernetes/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-managed-grafana/</loc>
+    <loc>http://localhost:1313/tags/azure-managed-grafana/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-managed-prometheus/</loc>
+    <loc>http://localhost:1313/tags/azure-managed-prometheus/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-monitor/</loc>
+    <loc>http://localhost:1313/tags/azure-monitor/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/containers-insights/</loc>
+    <loc>http://localhost:1313/tags/containers-insights/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/kubernetes/</loc>
+    <loc>http://localhost:1313/tags/kubernetes/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/microk8s/</loc>
+    <loc>http://localhost:1313/categories/microk8s/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/microsk8s/</loc>
+    <loc>http://localhost:1313/tags/microsk8s/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</loc>
+    <loc>http://localhost:1313/post/microk8s-cluster-manged-azure-part-ii-monitoring/</loc>
     <lastmod>2023-09-29T20:26:05+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure/</loc>
+    <loc>http://localhost:1313/post/microk8s-cluster-manged-azure/</loc>
     <lastmod>2023-09-29T16:53:29+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-arc-enabled-servers/</loc>
+    <loc>http://localhost:1313/categories/azure-arc-enabled-servers/</loc>
     <lastmod>2023-09-28T17:09:09+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</loc>
+    <loc>http://localhost:1313/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/</loc>
     <lastmod>2023-09-28T17:09:09+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</loc>
+    <loc>http://localhost:1313/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/</loc>
     <lastmod>2023-09-28T17:08:55+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</loc>
+    <loc>http://localhost:1313/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/</loc>
     <lastmod>2023-09-28T17:08:44+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/</loc>
+    <loc>http://localhost:1313/post/microk8s-wsl-managed-azure-arc/</loc>
     <lastmod>2023-09-28T17:08:24+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</loc>
+    <loc>http://localhost:1313/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</loc>
     <lastmod>2023-06-16T01:43:16+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/home-assistant/</loc>
+    <loc>http://localhost:1313/tags/home-assistant/</loc>
     <lastmod>2023-06-16T01:43:16+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/home-assistant/</loc>
+    <loc>http://localhost:1313/categories/home-assistant/</loc>
     <lastmod>2023-06-16T01:43:16+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/home-automation/</loc>
+    <loc>http://localhost:1313/tags/home-automation/</loc>
     <lastmod>2023-06-16T01:43:16+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/freshservice/</loc>
+    <loc>http://localhost:1313/tags/freshservice/</loc>
     <lastmod>2023-05-23T21:13:20+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/integrate-microsoft-sentinel-freshservice/</loc>
+    <loc>http://localhost:1313/post/integrate-microsoft-sentinel-freshservice/</loc>
     <lastmod>2023-05-23T21:13:20+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/microsoft-sentinel/</loc>
+    <loc>http://localhost:1313/tags/microsoft-sentinel/</loc>
     <lastmod>2023-05-23T21:13:20+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/microsoft-sentinel/</loc>
+    <loc>http://localhost:1313/categories/microsoft-sentinel/</loc>
     <lastmod>2023-05-23T21:13:20+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-devops/</loc>
+    <loc>http://localhost:1313/tags/azure-devops/</loc>
     <lastmod>2023-05-17T15:42:49+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/deploying-microsoft-sentinel-content-repository-introduction/</loc>
+    <loc>http://localhost:1313/post/deploying-microsoft-sentinel-content-repository-introduction/</loc>
     <lastmod>2023-05-17T15:42:49+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/github/</loc>
+    <loc>http://localhost:1313/tags/github/</loc>
     <lastmod>2023-05-17T15:42:49+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-active-directory/</loc>
+    <loc>http://localhost:1313/categories/azure-active-directory/</loc>
     <lastmod>2023-04-10T15:43:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-ad/</loc>
+    <loc>http://localhost:1313/tags/azure-ad/</loc>
     <lastmod>2023-04-10T15:43:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/cross-tenant-synchronization/</loc>
+    <loc>http://localhost:1313/tags/cross-tenant-synchronization/</loc>
     <lastmod>2023-04-10T15:43:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/cross-tenant-synchronization/</loc>
+    <loc>http://localhost:1313/categories/cross-tenant-synchronization/</loc>
     <lastmod>2023-04-10T15:43:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</loc>
+    <loc>http://localhost:1313/post/dipping-big-toe-cross-tenant-synchronization-part/</loc>
     <lastmod>2023-04-10T15:43:18+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</loc>
+    <loc>http://localhost:1313/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-iot/</loc>
+    <loc>http://localhost:1313/tags/azure-iot/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-percept/</loc>
+    <loc>http://localhost:1313/tags/azure-percept/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-percept-development-kit/</loc>
+    <loc>http://localhost:1313/tags/azure-percept-development-kit/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-percept-development-kit/</loc>
+    <loc>http://localhost:1313/categories/azure-percept-development-kit/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/microsoft-entra/</loc>
+    <loc>http://localhost:1313/tags/microsoft-entra/</loc>
     <lastmod>2023-04-01T02:42:12+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/getting-my-vision-ai-devkit-back-up-and-running/</loc>
+    <loc>http://localhost:1313/post/getting-my-vision-ai-devkit-back-up-and-running/</loc>
     <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/iot-edge/</loc>
+    <loc>http://localhost:1313/tags/iot-edge/</loc>
     <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</loc>
+    <loc>http://localhost:1313/tags/vision-ai-developer-kit/</loc>
     <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/vision-ai-developer-kit/</loc>
+    <loc>http://localhost:1313/categories/vision-ai-developer-kit/</loc>
     <lastmod>2023-03-24T02:29:35+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-sphere/</loc>
+    <loc>http://localhost:1313/tags/azure-sphere/</loc>
     <lastmod>2023-03-24T01:19:29+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-sphere-development-kit/</loc>
+    <loc>http://localhost:1313/categories/azure-sphere-development-kit/</loc>
     <lastmod>2023-03-24T01:19:29+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</loc>
+    <loc>http://localhost:1313/post/is-my-azure-sphere-a-rock-now/</loc>
     <lastmod>2023-03-24T01:19:29+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/what-my-azure-percept-dk-devices-are-being-retired/</loc>
+    <loc>http://localhost:1313/post/what-my-azure-percept-dk-devices-are-being-retired/</loc>
     <lastmod>2023-03-24T14:14:23+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</loc>
+    <loc>http://localhost:1313/tags/azure-sphere-development-kit/</loc>
     <lastmod>2023-03-23T20:16:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</loc>
+    <loc>http://localhost:1313/post/my-azure-sphere-needs-reset/</loc>
     <lastmod>2023-03-23T20:16:21+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/entra-permissions-management/</loc>
+    <loc>http://localhost:1313/tags/entra-permissions-management/</loc>
     <lastmod>2023-02-08T20:34:40+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/entra-permissions-management/</loc>
+    <loc>http://localhost:1313/categories/entra-permissions-management/</loc>
     <lastmod>2023-02-08T20:34:40+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</loc>
+    <loc>http://localhost:1313/post/grant-users-access-entra-permissions-management-portal/</loc>
     <lastmod>2023-02-08T20:34:40+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</loc>
+    <loc>http://localhost:1313/post/2023-02-01-customize-my-windows-terminal-please-/</loc>
     <lastmod>2023-02-01T16:08:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/windows-terminal/</loc>
+    <loc>http://localhost:1313/tags/windows-terminal/</loc>
     <lastmod>2023-02-01T16:08:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/windows-terminal/</loc>
+    <loc>http://localhost:1313/categories/windows-terminal/</loc>
     <lastmod>2023-02-01T16:08:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/intune/</loc>
+    <loc>http://localhost:1313/tags/intune/</loc>
     <lastmod>2023-02-01T17:34:46+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/intune-proactive-remediation/</loc>
+    <loc>http://localhost:1313/categories/intune-proactive-remediation/</loc>
     <lastmod>2023-02-01T17:34:46+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</loc>
+    <loc>http://localhost:1313/post/intune-proactive-remediation-scripts/</loc>
     <lastmod>2023-02-01T17:34:46+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/proactive-remediation/</loc>
+    <loc>http://localhost:1313/tags/proactive-remediation/</loc>
     <lastmod>2023-02-01T17:34:46+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</loc>
+    <loc>http://localhost:1313/post/2023-01-31-intunes-proactive-remediations/</loc>
     <lastmod>2023-01-31T19:33:52+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</loc>
+    <loc>http://localhost:1313/post/2023-01-31-enable-windows-terminal-on-windows-servers/</loc>
     <lastmod>2023-01-31T17:39:48+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/windows-server/</loc>
+    <loc>http://localhost:1313/tags/windows-server/</loc>
     <lastmod>2023-01-31T17:39:48+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/google-cloud-platform/</loc>
+    <loc>http://localhost:1313/tags/google-cloud-platform/</loc>
     <lastmod>2023-01-21T00:32:55+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</loc>
+    <loc>http://localhost:1313/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</loc>
     <lastmod>2023-01-21T00:32:55+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</loc>
+    <loc>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</loc>
     <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/permissions-management/</loc>
+    <loc>http://localhost:1313/tags/permissions-management/</loc>
     <lastmod>2023-01-20T20:13:58+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/the-microsoft-425show/</loc>
+    <loc>http://localhost:1313/tags/the-microsoft-425show/</loc>
     <lastmod>2023-01-20T15:30:42+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</loc>
+    <loc>http://localhost:1313/post/2023-01-18-setting-up-entra-permissions-management/</loc>
     <lastmod>2023-01-20T20:13:58+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-files/</loc>
+    <loc>http://localhost:1313/tags/azure-files/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-files/</loc>
+    <loc>http://localhost:1313/categories/azure-files/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/endpoint-management/</loc>
+    <loc>http://localhost:1313/tags/endpoint-management/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/intune/</loc>
+    <loc>http://localhost:1313/categories/intune/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/poractive-remediation/</loc>
+    <loc>http://localhost:1313/tags/poractive-remediation/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</loc>
+    <loc>http://localhost:1313/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</loc>
     <lastmod>2023-01-20T18:25:53+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/azure-site-recovery/</loc>
+    <loc>http://localhost:1313/tags/azure-site-recovery/</loc>
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/categories/azure-site-recovery/</loc>
+    <loc>http://localhost:1313/categories/azure-site-recovery/</loc>
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/2023-01-20-festive-tech-calendar-2022/</loc>
+    <loc>http://localhost:1313/post/2023-01-20-festive-tech-calendar-2022/</loc>
     <lastmod>2023-01-20T16:15:38+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/post/creating-blog-hugo-github-pages/</loc>
+    <loc>http://localhost:1313/post/creating-blog-hugo-github-pages/</loc>
     <lastmod>2023-01-20T15:57:32+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/front-matter/</loc>
+    <loc>http://localhost:1313/tags/front-matter/</loc>
     <lastmod>2023-01-20T15:57:32+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/github-pages/</loc>
+    <loc>http://localhost:1313/tags/github-pages/</loc>
     <lastmod>2023-01-20T15:57:32+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/tags/hugo/</loc>
+    <loc>http://localhost:1313/tags/hugo/</loc>
     <lastmod>2023-01-20T15:57:32+00:00</lastmod>
   </url><url>
-    <loc>http://thisismydemo.cloud/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2022-01-25T14:00:00+00:00</lastmod>
   </url>
 </urlset>
