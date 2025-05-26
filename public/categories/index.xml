@@ -6,13 +6,20 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 May 2025 23:15:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 26 May 2025 22:43:24 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Local</title>
       <link>http://localhost:1313/categories/azure-local/</link>
-      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
+      <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
       <guid>http://localhost:1313/categories/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>WIndows Server Failover Cluster</title>
+      <link>http://localhost:1313/categories/windows-server-failover-cluster/</link>
+      <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
+      <guid>http://localhost:1313/categories/windows-server-failover-cluster/</guid>
       <description></description>
     </item>
     <item>

@@ -433,7 +433,7 @@
       <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 25 Jan 2022 14:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description>What is This Is A Demo? This blog started as a way to play with the idea of moving my old blogs from sources like WordPress, Blogger, etc to something I could control myself. Also something that was free. :) So this blog was born out of the need to learn how to use Hugo, GitHub Pages, and a front end like Front Matter. I have a way to go because everything is all new to me.</description>
+      <description>About Welcome to This Is My Demo Who Am I? I&amp;rsquo;m a passionate IT professional with years of experience in Microsoft technologies, VMware, and hybrid cloud solutions. From my early days with SMS 2003 and VMware vSphere to mastering Azure Arc and Windows Server clustering, I’ve been immersed in Microsoft and VMware ecosystems for decades. My journey spans on-premises infrastructure, multicloud environments, and cutting-edge Azure Stack HCI deployments.&#xA;What is This Is My Demo?</description>
     </item>
   </channel>
 </rss>
