@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VMware on This Is My Demo</title>
+    <link>http://localhost:1313/tags/vmware/</link>
+    <description>Recent content in VMware on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 26 May 2025 22:01:12 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Life After VMware: How Windows Server Failover Clusters on Hyper-V Stay Relevant in an Azure-First Era</title>
+      <link>http://localhost:1313/post/2025-05-26-life-after-vmware-how-windows-server-failover-clusters-on-hyper-v-stay-relevant-in-an-azure-first-era/</link>
+      <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-05-26-life-after-vmware-how-windows-server-failover-clusters-on-hyper-v-stay-relevant-in-an-azure-first-era/</guid>
+      <description>From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid &amp;amp; HCI I write this blog as a longtime Microsoft advocate. In this blog series I’ll draw on two decades of hands on experience—from early HyperV in 2008 to today’s Azure Local—to explore where Windows Server Failover Clustering still shines, where Azure’s hybrid offerings excel, and how decisionmakers can strike the right balance.&#xA;I’m not coming at this topic as a Microsoft sceptic—in fact, my professional journey has been tightly interwoven with every generation of Microsoft’s hybrid and hyperconverged story:</description>
+    </item>
+  </channel>
+</rss>

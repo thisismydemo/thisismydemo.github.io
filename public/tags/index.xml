@@ -6,13 +6,34 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 26 Jan 2025 20:20:42 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 23:15:28 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Arc</title>
       <link>http://localhost:1313/tags/azure-arc/</link>
-      <pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate>
+      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
       <guid>http://localhost:1313/tags/azure-arc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Local</title>
+      <link>http://localhost:1313/tags/azure-local/</link>
+      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
+      <guid>http://localhost:1313/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SCVMM</title>
+      <link>http://localhost:1313/tags/scvmm/</link>
+      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
+      <guid>http://localhost:1313/tags/scvmm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Server Failover Cluster</title>
+      <link>http://localhost:1313/tags/windows-server-failover-cluster/</link>
+      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
+      <guid>http://localhost:1313/tags/windows-server-failover-cluster/</guid>
       <description></description>
     </item>
     <item>
