@@ -52,3 +52,11 @@ unsafe = true
 [Languages]
 [Languages.en]
 weight = 1
+
+[outputs]
+  home = ["HTML", "RSS", "SITEMAP"]
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
