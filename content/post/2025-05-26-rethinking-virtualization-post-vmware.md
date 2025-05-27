@@ -15,7 +15,7 @@ tags:
 categories:
   - Azure Local
   - Windows Server Failover Cluster
-lastmod: 2025-05-27T17:50:50.032Z
+lastmod: 2025-05-27T18:31:05.362Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware
@@ -29,7 +29,7 @@ I'm not approaching this topic as a Microsoft skeptic—in fact, my professional
 
 My journey through Microsoft's evolving landscape of hybrid and hyperconverged solutions has been extensive and hands-on. Over the past two decades, I've engaged deeply with various technologies and initiatives, including:
 
-* **2008–2015 — HyperV foundations**. When HyperV first shipped with Windows Server 2008 (and matured through 2008 R2, 2012, and 2012 R2), I architected and deployed highly available, resilient HyperV clusters—pioneering best practices around Cluster Shared Volumes, Live Migration, and multi-site replication long before “HCI” became a buzzword.
+* **2008–2015 — Hyper-V foundations**. When Hyper-V first shipped with Windows Server 2008 (and matured through 2008 R2, 2012, and 2012 R2), I architected and deployed highly available, resilient Hyper-V clusters—pioneering best practices around Cluster Shared Volumes, Live Migration, and multi-site replication long before “HCI” became a buzzword.
 
 * **2016 — Windows Server 2016 & WSSD launch**. As soon as Windows Server 2016 went to GA, I built some of the first production Storage Spaces Direct clusters certified under the original Windows Server Software-Defined (WSSD) solutions program, managing them with System Center VMM.
 
@@ -60,7 +60,10 @@ From that vantage point, I remain a strong advocate of Microsoft hybrid solution
 - [Legacy Hardware Support and Constraints](#legacy-hardware-support-and-constraints)
 - [Microsoft’s Missed Opportunities and How to Leverage WSFC as a VMware Alternative](#microsofts-missed-opportunities-and-how-to-leverage-wsfc-as-a-vmware-alternative)
 - [Quick Recap: What You Learned in This Post](#quick-recap-what-you-learned-in-this-post)
-- [Blog Series Roadmap: Modernizing OnPremises with Microsoft](#blog-series-roadmap-modernizing-onpremises-with-microsoft)
+- [Blog Series Roadmap: Beyond the Cloud: The Case for On-Premises Virtualization](#blog-series-roadmap-beyond-the-cloud-the-case-for-on-premises-virtualization)
+- [Acknowledgments](#acknowledgments)
+  - [Daniel Apps](#daniel-apps)
+  - [Philip Elder](#philip-elder)
 - [References \& Further Reading](#references--further-reading)
 
 ## Microsoft’s Positioning of WSFC and Hyper-V vs. Azure Local (Azure Stack HCI)
@@ -104,17 +107,17 @@ While this guidance exists, it may not be prominently featured in Microsoft's br
 
 * **Azure Local (Azure Stack HCI)** – for workloads that must stay on-prem due to latency, sovereignty, or edge requirements
 
-* **Windows Server Failover Clustering & HyperV** – a stay-put option that rarely gets headline airtime.
+* **Windows Server Failover Clustering & Hyper-V** – a stay-put option that rarely gets headline airtime.
 
-While each step has merit, this hierarchy can unintentionally overshadow the perfectly valid—and often most cost-effective—choice of modernizing in-place with WSFC + HyperV.
+While each step has merit, this hierarchy can unintentionally overshadow the perfectly valid—and often most cost-effective—choice of modernizing in-place with WSFC + Hyper-V.
 
-* **Event spotlight imbalance**. At Ignite, Build, and partner roadshows, Azure Local demonstrations share the main stage with Arc-enabled services, whereas classic WSFC/HyperV success stories are seldom featured. AVS, meanwhile, enjoys dedicated sessions and splashy customer spotlights as Microsoft’s “fastest onramp” for VMware estates.
+* **Event spotlight imbalance**. At Ignite, Build, and partner roadshows, Azure Local demonstrations share the main stage with Arc-enabled services, whereas classic WSFC/Hyper-V success stories are seldom featured. AVS, meanwhile, enjoys dedicated sessions and splashy customer spotlights as Microsoft’s “fastest onramp” for VMware estates.
 
-* **Collateral firehose**. A quick scan of recent Microsoft solution playbooks reveals dozens of assets for Azure migrations, AVS ROI calculators, and Azure Local architecture guides—but virtually no new case studies centered on HyperV/WSFC alone. Customers who could benefit from using existing licenses and hardware often end up searching MVP blogs rather than Microsoft.com.
+* **Collateral firehose**. A quick scan of recent Microsoft solution playbooks reveals dozens of assets for Azure migrations, AVS ROI calculators, and Azure Local architecture guides—but virtually no new case studies centered on Hyper-V/WSFC alone. Customers who could benefit from using existing licenses and hardware often end up searching MVP blogs rather than Microsoft.com.
 
-The **rebranding to “Azure Local”** itself signals that Microsoft views Azure Local as an extension of Azure’s distributed cloud strategy. There is correspondingly less fanfare around Windows Server Failover Clusters. For instance, one IT professional on a forum asked, *‘I keep finding Azure Local case studies, but almost nothing new about Hyper-V clusters—does Microsoft even talk about WSFC anymore?’*  This highlights a gap in Microsoft’s outreach: organizations evaluating a move off VMware seldom find material that directly pitches “**HyperV on Windows Server**” as a standalone alternative.
+The **rebranding to “Azure Local”** itself signals that Microsoft views Azure Local as an extension of Azure’s distributed cloud strategy. There is correspondingly less fanfare around Windows Server Failover Clusters. For instance, one IT professional on a forum asked, *‘I keep finding Azure Local case studies, but almost nothing new about Hyper-V clusters—does Microsoft even talk about WSFC anymore?’*  This highlights a gap in Microsoft’s outreach: organizations evaluating a move off VMware seldom find material that directly pitches “**Hyper-V on Windows Server**” as a standalone alternative.
 
-Indeed, Microsoft has been actively encouraging VMware customers to consider Azure Local, especially after Broadcom’s VMware acquisition stirred uncertainty. (Witness webinars titled “What’s your VMware exit strategy? – Azure Stack HCI.”) Yet the singular focus on Azure Local can leave a void for firms who prefer a familiar, Capex-licensed option. Microsoft’s own compare docs stress that Azure Local is delivered as a subscription service, whereas Windows Server uses a traditional perpetual model—but there’s no equally loud campaign stating, *“If you don’t want an Azure-managed solution, HyperV on Windows Server 2025 remains a modern, secure platform.”*
+Indeed, Microsoft has been actively encouraging VMware customers to consider Azure Local, especially after Broadcom’s VMware acquisition stirred uncertainty. (Witness webinars titled “What’s your VMware exit strategy? – Azure Stack HCI.”) Yet the singular focus on Azure Local can leave a void for firms who prefer a familiar, Capex-licensed option. Microsoft’s own compare docs stress that Azure Local is delivered as a subscription service, whereas Windows Server uses a traditional perpetual model—but there’s no equally loud campaign stating, *“If you don’t want an Azure-managed solution, Hyper-V on Windows Server 2025 remains a modern, secure platform.”*
 
 **Migration guidance is limited**, if you currently operate a Windows Server Failover Cluster with Hyper-V, an in-place upgrade to Azure Local is not possible; typically, new hardware must be implemented, or existing hosts must be reconfigured before transferring the VMs. Microsoft’s official documentation outlines basic methods such as exporting VMs or copying VHD files with Robocopy, but this process involves more manual steps compared to VMware's rolling cluster upgrades. Tools or ROI calculators that assist administrators in evaluating whether to maintain their current Hyper-V cluster or transition to Azure Local are still scarce.
 
@@ -122,7 +125,7 @@ To Microsoft's credit, the company has begun addressing several long-standing bl
 
 From a platform stability perspective, Azure Local has steadily matured, particularly on the Azure-connected side. Extensions such as Azure Arc, Update Management, and Azure Monitor have become more reliable and performant, with improved integration across hybrid and edge scenarios. However, some users still report challenges with extension version mismatches, dependency delays, or limited rollback options when Azure services change unexpectedly. Microsoft continues to enhance update transparency and platform resilience, especially for disconnected and highly regulated environments.
 
-Still, the overarching narrative coming from Redmond is unmistakably cloud-centric. That creates a perfect opening for our blog series: **Make the balanced case for WSFC/Hyper-V**—highlighting cost, hardware reuse, and operational simplicity for IT leaders not yet ready (or able) to tether every workload to Azure.
+Still, the overarching narrative coming from Redmond is unmistakably cloud-centric. That creates a perfect opening for our blog series: **Beyond the Cloud: The Case for On-Premises Virtualization**—highlighting cost, hardware reuse, and operational simplicity for IT leaders not yet ready (or able) to tether every workload to Azure.
 
 ## Cost and Hardware Flexibility: WSFC vs. Azure Local vs. VMware & Others
 
@@ -160,7 +163,7 @@ It’s also worth mentioning **Nutanix** in features: Nutanix AHV (their Hyper-V
 
 Cost is a significant factor; a Windows Datacenter license covers a host and unlimited Windows VMs, making it very cost-effective for organizations primarily using Windows. Integration with Microsoft's ecosystem is another advantage. For instance, Azure Arc can manage on-premises VMs—Azure Local integrates natively, but even WSFC environments can be Arc-enabled with an agent, providing a unified management pane for both Azure and on-premises resources. Additionally, Azure Arc-enabled SCVMM allows organizations using System Center Virtual Machine Manager to connect their VMM environment to Azure, enabling VM lifecycle operations such as start, stop, pause, and delete directly from the Azure portal. This integration extends Azure's security, governance, and management capabilities to SCVMM-managed infrastructure, offering consistent management experience across hybrid environments
 
-Edge deployments also benefit from Hyper-V's capabilities; Windows Server now supports "workgroup clusters" without Active Directory, simplifying deployments at small remote sites compared to setting up a full vSphere cluster. Hyper-V's smaller footprint—especially when using the free Hyper-V Server 2019 or a core installation—allows it to run on less powerful hardware, which is advantageous for edge scenarios. Moreover, organizations that rely heavily on Microsoft technologies, such as Windows Admin Center or System Center for monitoring, backup, and orchestration, may find that staying with Hyper-V provides a more unified and streamlined experience.
+Edge deployments also benefit from Hyper-V’s capabilities; Windows Server now supports “workgroup clusters” without Active Directory, simplifying deployments at small remote sites compared to setting up a full vSphere cluster. Hyper-V’s smaller footprint—especially when using a Server Core installation—allows it to run on less powerful hardware, which is advantageous for edge scenarios. Moreover, organizations that rely heavily on Microsoft technologies, such as Windows Admin Center or System Center for monitoring, backup, and orchestration, may find that staying with Hyper-V provides a more unified and streamlined experience.
 
 ### Reliability and Performance
 
@@ -228,17 +231,17 @@ Before we jump into the roadmap, here’s a 30second refresher of the key takeaw
 
 * **The market moment**: Broadcom’s VMware shakeup is forcing IT leaders to reevaluate on-prem hypervisors.
 
-* **Why it still matters**: Windows Server Failover Clusters on HyperV remain a viable, cost effective, and fully supported alternative—even if Microsoft’s marketing puts Azure first.
+* **Why it still matters**: Windows Server Failover Clusters on Hyper-V remain a viable, cost effective, and fully supported alternative—even if Microsoft’s marketing puts Azure first.
 
-* **Author’s lens**: Two decades of HyperV and Azure Stack experience inform a balanced, insider view—not an antiAzure rant.
+* **Author’s lens**: Two decades of Hyper-V and Azure Stack experience inform a balanced, insider view—not an antiAzure rant.
 
-* **Messaging gap**: Microsoft’s goto hierarchy (Azure ➜ AVS ➜ Azure Local ➜ “oh, and Windows Server”) leaves traditional HyperV clusters underrepresented.
+* **Messaging gap**: Microsoft’s goto hierarchy (Azure ➜ AVS ➜ Azure Local ➜ “oh, and Windows Server”) leaves traditional Hyper-V clusters underrepresented.
 
 * **Decision triggers**: Hardware reuse, perpetual licensing, and edge/disconnected scenarios often tilt the scales back toward plain WSFC.
 
 Armed with those observations, the rest of this series will drill into the numbers, tooling and real-world stories you need to act.
 
-## Blog Series Roadmap: Modernizing OnPremises with Microsoft
+## Blog Series Roadmap: Beyond the Cloud: The Case for On-Premises Virtualization
 
 To guide decision makers from strategy to hands-on execution, upcoming posts will expand on each key decision point:
 
@@ -269,14 +272,29 @@ To guide decision makers from strategy to hands-on execution, upcoming posts wil
 * **Post 9 – What’s Next for Microsoft On-Prem? Windows Server & Azure Local**
   How upcoming releases will shape long-term hybrid strategy.
 
-Series Flow
+Stay tuned—and drop a comment on which topics you’d like prioritized or even if you have a topic you would like me to add!!!
 
-* Strategy & Cost (Posts 12)
-* Technology Reality (Posts 35)
-* Deployment & Edge (Posts 67)
-* Proof & Future (Posts 89)
+## Acknowledgments
 
-Stay tuned—and drop a comment on which topics you’d like prioritized!
+A heartfelt thank you to my good friends and fellow Microsoft MVPs:
+
+### [Daniel Apps](https://au.linkedin.com/in/daniel-apps)
+
+* **LinkedIn**: [Daniel Apps -- Hybrid Solutions Architect at ResetData](https://au.linkedin.com/in/daniel-apps)
+
+* **X (formerly Twitter)**: @daniel\_apps
+
+Daniel is a seasoned Hybrid Solutions Architect at ResetData and a Microsoft Azure MVP. With over two decades of experience in hyper-converged infrastructure and hybrid cloud solutions, he has been recognized for his contributions to the tech community. Daniel actively shares insights on hybrid cloud strategies and has been instrumental in designing tailored solutions that unlock AI capabilities for enterprise and government clients.
+
+### [Philip Elder](https://ca.linkedin.com/in/philipelder)
+
+* **LinkedIn**: [Philip Elder -- High Availability Solutions & Cloud Architect at MPECS Inc.](https://ca.linkedin.com/in/philipelder)
+
+* **X (formerly Twitter)**: @MPECSInc
+
+Philip is a High Availability Solutions & Cloud Architect at MPECS Inc. and a long-standing Microsoft MVP since 2009. His expertise spans Windows Server Failover Clustering and Hyper-V, and he has been a vocal advocate for high-availability solutions in the SMB market. Philip frequently shares his experiences and insights on deploying resilient infrastructure solutions.
+
+Their guidance and support have been instrumental in shaping the perspectives shared in this blog.
 
 ## References & Further Reading
 
@@ -311,3 +329,5 @@ Below is a consolidated list of primary sources, whitepapers, and community arti
 
 * **Microsoft Azure Arc Documentation – Enable Arc on Windows Server Hyper-V Host**
   [Azure Arc-enabled servers Overview](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview)
+
+
