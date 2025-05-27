@@ -12,7 +12,7 @@ tags:
 categories:
   - Azure Local
   - WIndows Server Failover Cluster
-lastmod: 2025-05-27T17:09:25.975Z
+lastmod: 2025-05-27T17:22:06.579Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware
@@ -20,9 +20,9 @@ slug: rethinking-virtualization-post-vmware
 
 ## From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid & HCI
 
-I write this blog as a longtime Microsoft advocate. In this blog series I’ll draw on two decades of hands on experience—from early HyperV in 2008 to today’s Azure Local.  To explore where Windows Server Failover Clustering still shines, where Azure’s hybrid offerings excel, and how decision makers can strike the right balance.
+I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today's Azure Local. This series aims to highlight the potential of Windows Server Failover Clustering (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom's acquisition. While I value Azure's Cloud and Hybrid offerings, I believe Microsoft's current messaging overlooks WSFC's capabilities in providing cost-effective, high-availability solutions. Through this blog, I intend to shed light on WSFC's strengths and advocate for its consideration in modern IT infrastructures.
 
-I’m not coming at this topic as a Microsoft sceptic—in fact, my professional journey has been tightly interwoven with every generation of Microsoft’s hybrid and hyperconverged story:
+I'm not approaching this topic as a Microsoft skeptic—in fact, my professional journey has been tightly interwoven with every generation of Microsoft's hybrid and hyperconverged story. However, the lack of emphasis on WSFC in Microsoft's current marketing strategy is a significant oversight, especially when organizations are seeking robust alternatives to VMware.:
 
 * **2008–2015 — HyperV foundations**. When HyperV first shipped with Windows Server 2008 (and matured through 2008 R2, 2012, and 2012 R2), I architected and deployed highly available, resilient HyperV clusters—pioneering best practices around Cluster Shared Volumes, Live Migration, and multi-site replication long before “HCI” became a buzzword.
 
