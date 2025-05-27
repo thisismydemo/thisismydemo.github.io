@@ -6,13 +6,16 @@ preview: /img/rethinkvmware/bloglogo.png
 draft: true
 tags:
   - Azure Local
+  - Hyper-V
+  - Microsoft
+  - VMware
   - Windows Server 2025
   - Windows Server Failover Cluster
-  - VMware
+  - WSFC
 categories:
   - Azure Local
-  - WIndows Server Failover Cluster
-lastmod: 2025-05-27T17:29:15.225Z
+  - Windows Server Failover Cluster
+lastmod: 2025-05-27T17:41:38.914Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware
@@ -20,7 +23,7 @@ slug: rethinking-virtualization-post-vmware
 
 ## From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid & HCI
 
-I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today's Azure Local. This series aims to highlight the potential of Windows Server Failover Clustering (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom's acquisition. While I value Azure's Cloud and Hybrid offerings, I believe Microsoft's current messaging overlooks WSFC's capabilities in providing cost-effective, high-availability solutions. Through this blog, I intend to shed light on WSFC's strengths and advocate for its consideration in modern IT infrastructures.
+I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today's Azure Local. This series aims to highlight the potential of **Windows Server Failover Clustering** (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom's acquisition. While I value Azure's Cloud and Hybrid offerings, I believe Microsoft's current messaging overlooks WSFC's capabilities in providing cost-effective, high-availability solutions. Through this blog, I intend to shed light on WSFC's strengths and advocate for its consideration in modern IT infrastructures.
 
 I'm not approaching this topic as a Microsoft skeptic—in fact, my professional journey has been tightly interwoven with every generation of Microsoft's hybrid and hyperconverged story. However, the lack of emphasis on WSFC in Microsoft's current marketing strategy is a significant oversight, especially when organizations are seeking robust alternatives to VMware.
 
@@ -66,7 +69,7 @@ Microsoft today maintains two parallel on-premises infrastructure paths: the tra
 
 From Microsoft’s messaging, Azure Local is designed to extend Azure services to customer-owned infrastructure, enabling the local execution of modern and traditional applications across distributed locations. While it can be deployed in datacenters, its primary focus is on edge and distributed environments. It offers industry-leading performance with low latency storage (via Storage Spaces Direct) and easy scaling for VM workloads. It also provides seamless hybrid cloud extensibility, plugging into Azure services like backup, monitoring, Azure Arc, and Azure Kubernetes Service (AKS) for modern apps. By contrast, Windows Server with WSFC/Hyper-V is framed as the right choice for scenarios needing a general-purpose server OS – for example, running traditional 3-tier apps, file servers, or domain controllers on bare metal, or hosting VMs that use external storage such as a Fiber Channel SAN. Microsoft explicitly notes that Windows Server remains ideal for “traditional infrastructure” setups like VMs connected to a SAN, which Azure Local does not support. In short, Microsoft positions Azure Local as the future-forward HCI/cloud-connected solution, while reassuring that Windows Server Hyper-V is still a strategic component for enterprises that need a flexible on-prem OS.
 
-Notably, Microsoft has been reassuring customers that Hyper-V and WSFC are here to stay. In a 2024 Microsoft blog, the Hyper-V team emphasized that “Hyper-V is a strategic technology at Microsoft”, used broadly across Azure, Windows Server, Azure Local, and even Windows 11 and Xbox. They highlighted that if you own Windows Server, Hyper-V is built-in at no extra cost, and that Windows Server Datacenter edition’s unlimited VM rights combined with Hyper-V, Storage Spaces Direct (S2D), and software-defined networking deliver “the best bang for your buck” for virtualization. This messaging is clearly aimed at enterprise decision-makers: Microsoft indicates that even as it pushes Azure Local, it continues to invest in Windows Server for on-premises virtualization. In fact, the next Windows Server 2025 is adding new WSFC/Hyper-V features like GPU partitioning for VMs and Workgroup Clusters (clusters that don’t require Active Directory) to simplify edge deployments – concrete proof that Hyper-V/WSFC is evolving alongside Azure Local. Microsoft’s current stance is that both Azure Local and traditional WSFC have roles to play, and many organizations may deploy both for different needs.
+Notably, Microsoft has been reassuring customers that Hyper-V and WSFC are here to stay. In a 2024 Microsoft blog, [The Future of Windows Server Hyper-V is Bright](https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/the-future-of-windows-server-hyper-v-is-bright/4074940/replies/4363506?utm_source=chatgpt.com), the Hyper-V team emphasized that “Hyper-V is a strategic technology at Microsoft”, used broadly across Azure, Windows Server, Azure Local, and even Windows 11 and Xbox. They highlighted that if you own Windows Server, Hyper-V is built-in at no extra cost, and that Windows Server Datacenter edition’s unlimited VM rights combined with Hyper-V, Storage Spaces Direct (S2D), and software-defined networking deliver “the best bang for your buck” for virtualization. This messaging is clearly aimed at enterprise decision-makers: Microsoft indicates that even as it pushes Azure Local, it continues to invest in Windows Server for on-premises virtualization. In fact, the next Windows Server 2025 is adding new WSFC/Hyper-V features like GPU partitioning for VMs and Workgroup Clusters (clusters that don’t require Active Directory) to simplify edge deployments – concrete proof that Hyper-V/WSFC is evolving alongside Azure Local. Microsoft’s current stance is that both Azure Local and traditional WSFC have roles to play, and many organizations may deploy both for different needs.
 
 ## Where WSFC/Hyper-V Still Shines: Workloads and Architectures
 
