@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Rethinking Virtualization Post-VMware - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="In a rapidly shifting virtualization landscape, many organizations are reevaluating their reliance on VMware. This blog series explores practical, cost-effective alternatives centered on Hyper-V, Windows Server Failover Clustering, and Azure Local. From licensing clarity to real-world migration playbooks, we examine how Microsoft’s hybrid ecosystem offers a stable, scalable, and secure path forward in a post-VMware era.">
-		<meta property="og:url" content="http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/">
+		<meta property="og:url" content="http://localhost:1313/post/rethinking-virtualization-post-vmware/">
   <meta property="og:site_name" content="This Is My Demo">
   <meta property="og:title" content="Rethinking Virtualization Post-VMware">
   <meta property="og:description" content="In a rapidly shifting virtualization landscape, many organizations are reevaluating their reliance on VMware. This blog series explores practical, cost-effective alternatives centered on Hyper-V, Windows Server Failover Clustering, and Azure Local. From licensing clarity to real-world migration playbooks, we examine how Microsoft’s hybrid ecosystem offers a stable, scalable, and secure path forward in a post-VMware era.">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2025-05-26T19:36:45+00:00">
-    <meta property="article:modified_time" content="2025-05-27T18:39:01+00:00">
+    <meta property="article:modified_time" content="2025-05-28T02:02:58+00:00">
     <meta property="article:tag" content="Azure Local">
     <meta property="article:tag" content="Hyper-V">
     <meta property="article:tag" content="Microsoft">
@@ -36,27 +36,6 @@
 	
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-C78KZ1DN40');
-        }
-      </script>
-    
-  
-
-
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -100,7 +79,7 @@
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-05-26T19:36:45Z">May 26, 2025</time>
-	<time class="meta__text" datetime="2025-05-27T18:39:01Z">(Last Modified: May 27, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/windows-server-failover-cluster/" rel="category">Windows Server Failover Cluster</a>
+	<time class="meta__text" datetime="2025-05-28T02:02:58Z">(Last Modified: May 28, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/windows-server-failover-cluster/" rel="category">Windows Server Failover Cluster</a>
 	</span>
 </div></div>
 		</header>
@@ -254,13 +233,13 @@
 <p><strong>Memory Overcommitment</strong>: VMware is known for robust memory overcommit technologies – including transparent page sharing, ballooning, compression – which allow the system to allocate more total RAM to VMs than physically installed, with clever techniques to reclaim unused memory. Hyper-V’s approach is simpler via Dynamic Memory, which also allows overcommit to an extent by adjusting VM RAM on the fly, but it’s not quite as advanced in fine-grained sharing of memory between VMs. In practice, memory overcommitment is less important nowadays (servers have ample RAM and VMware even dialed back some techniques like default TPS due to security concerns), but it’s historically been a VMware strength for maximizing density. Hyper-V Dynamic Memory does a similar job of optimizing RAM usage by ballooning within VMs and can achieve high density as well, but administrators may find VMware gives more transparency and control in this area.</p>
 </li>
 <li>
-<p><strong>Management Tools and Ecosystem</strong>: VMware’s vCenter is a single, unified management pane that many admins love for its completeness (performance charts, vMotion/DRS controls, update management, etc.). Hyper-V management is a bit more fragmented – you have Windows Admin Center (modern web UI, improving rapidly) and traditional tools like Failover Cluster Manager and Hyper-V Manager, or SCVMM for a centralized console. In recent years, WAC has provided a friendly dashboard for Hyper-V clusters (and even integrates into Azure Arc for cloud monitoring), but some users still perceive VMware’s management as more straightforward for large-scale environments. That said, organizations deeply invested in Microsoft System Center or Azure Arc may find Hyper-V management fits naturally into their existing toolchains (e.g. using System Center Operations Manager for monitoring, or Azure Arc + Log Analytics). It’s a matter of familiarity: VMware has a larger installed base in enterprises, so IT teams often have VMware expertise on staff. Microsoft’s ecosystem is equally rich (and many admins know PowerShell, which can automate Hyper-V extensively). But if a company has built a lot of operational process around vCenter and its APIs, switching to Hyper-V means retooling those processes.</p>
+<p><strong>Management Tools and Ecosystem</strong>: VMware’s vCenter is a single, unified management pane that many admins love for its completeness (performance charts, vMotion/DRS controls, update management, etc.). Hyper-V management is a bit more fragmented – you have Windows Admin Center (modern web UI, improving rapidly) and traditional tools like Failover Cluster Manager and Hyper-V Manager, or SCVMM for a centralized console. In recent years, WAC has provided a friendly dashboard for Hyper-V clusters (and even integrates into Azure Arc for cloud monitoring), but some users still perceive VMware’s management as more straightforward for large-scale environments. That said, organizations deeply invested in Microsoft System Center or Azure Arc may find Hyper-V management fits naturally into their existing tool chest (e.g. using System Center Operations Manager for monitoring, or Azure Arc + Log Analytics). It’s a matter of familiarity: VMware has a larger installed base in enterprises, so IT teams often have VMware expertise on staff. Microsoft’s ecosystem is equally rich (and many admins know PowerShell, which can automate Hyper-V extensively). But if a company has built a lot of operational process around vCenter and its APIs, switching to Hyper-V means retooling those processes.</p>
 </li>
 <li>
 <p><strong>Advanced Networking and Security Features</strong>: VMware’s NSX offers very advanced network virtualization and security (micro segmentation, virtual routers, etc.) which is a significant add-on. Microsoft’s analogous capability is Software-Defined Networking (SDN) in Windows Server Datacenter, but it’s arguably less commonly deployed outside of Azure Stack environments. Hyper-V does have strong network virtualization (Hyper-V Network Virtualization and the newer Azure-inspired SDN controllers) and features like Switch Embedded Teaming and virtual network encryption. However, VMware’s networking stack (with NSX) is often seen as more feature-rich for software-defined data centers. On security, both hypervisors offer virtual TPM support, shielded VMs/Encrypted VMs, etc. Microsoft’s Guarded Fabric and Shielded VMs were quite innovative, ensuring even admins can’t see VM data – a similar concept to VMware’s VM Encryption tied to vCenter. Both platforms leverage hardware-assisted security (VBS in Windows, which Hyper-V underpins, and VMware’s virtualization-based security features for Windows VMs). It’s mostly at parity here, with each vendor integrating security into their stack (e.g., Microsoft’s Defender for Cloud can integrate with Azure Local, while VMware has partnerships for endpoint security).</p>
 </li>
 <li>
-<p><strong>Storage Integration</strong>: If using external SAN/NAS, VMware’s ecosystem historically has tighter integrations (VAAI for offloaded SAN operations, a plethora of certified storage arrays, etc.). Hyper-V works with SANs via standard protocols (offering e.g. ODX for offload with some arrays, and SMB3 for NAS shares). Both support all-flash performance and modern storage protocols. VMware vSAN versus Windows S2D are analogous as software-defined storage: both can use NVMe/SSD and both offer compression, mirroring, etc. Some admins report that vSAN felt more stable in early days compared to early S2D, but S2D in Windows Server 2022/Azure Local 22H2 is quite mature now. Microsoft’s S2D does lack one feature compared to vSAN: true data deduplication for VMs (Windows has ReFS deduplication but only in Azure Local at present). VMware has had dedupe and compression in vSAN for a while. Depending on workload, this could tilt the efficiency.</p>
+<p><strong>Storage Integration</strong>: If using external SAN/NAS, VMware’s ecosystem historically has tighter integrations (VAAI for offloaded SAN operations, a plethora of certified storage arrays, etc.). Hyper-V works with SANs via standard protocols (offering e.g., ODX for offload with some arrays, and SMB3 for NAS shares). Both support all-flash performance and modern storage protocols. VMware vSAN versus Windows S2D are analogous as software-defined storage: both can use NVMe/SSD and both offer compression, mirroring, etc. While S2D in Windows Server 2025 and Azure Local 23H2 is mature and performant, deduplication support differs. In Windows Server S2D, deduplication is only available on NTFS volumes, which limits its applicability for VM workloads typically hosted on ReFS. Azure Local adds support for deduplication and compression on ReFS, bringing it closer to parity with vSAN’s inline dedup and compression. Depending on platform and workload, this can influence storage efficiency and overall TCO.</p>
 </li>
 </ul>
 <p>It’s also worth mentioning <strong>Nutanix</strong> in features: Nutanix AHV (their Hyper-V-like KVM hypervisor) and software stack have strong multi-cluster management, easy one-click upgrades, and built-in data services. Hyper-V with WSFC can achieve similar outcomes but might require multiple tools (WAC, PowerShell, etc.) rather than a single GUI workflow. <strong>OpenShift</strong> vs <strong>Hyper-V</strong> is a bit of apples-to-oranges: OpenShift is about container orchestration; it doesn’t provide live migration of containers in the same way (it reschedules containers, which is a different paradigm). If a company is considering OpenShift, it’s usually part of a digital transformation into cloud-native apps rather than a direct replacement of VMware for existing VMs. In some cases, though, OpenShift’s KubeVirt component allows running VMs on the OpenShift cluster (using KVM under the covers), which could replace a portion of VMware or Hyper-V usage, but this is typically for specific scenarios (like running a legacy VM alongside containers).</p>
@@ -293,7 +272,11 @@
 <p><strong>Feature Requirements</strong>: Organizations requiring features like VMware&rsquo;s FT may prefer vSphere for its advanced capabilities in certain high-availability scenarios.</p>
 </li>
 </ul>
-<p>In summary, VMware vSphere still has an edge in some enterprise features and ecosystem maturity (especially if a business runs diverse OSes and wants a proven multi-OS hypervisor – though Hyper-V supports Linux and FreeBSD well now). But Hyper-V is functionally very close for most use cases, often at a fraction of the licensing cost. If an organization’s strategy is strongly Microsoft-aligned (O365, Azure, Windows everywhere), Hyper-V fits naturally and avoids the “VMware tax.” Each platform has areas it shines: VMware in ultra-large multi-tenant environments and when you need that last 5% of features; Hyper-V in environments where simplicity, cost, and Microsoft integration are paramount.</p>
+<p>In summary, VMware vSphere still has an edge in some enterprise features and ecosystem maturity (especially if a business runs diverse OSes and wants a proven multi-OS hypervisor – though Hyper-V supports Linux and FreeBSD well now). But Hyper-V is functionally very close for most use cases, often at a fraction of the licensing cost. If an organization’s strategy is strongly Microsoft-aligned (O365, Azure, Windows everywhere), Hyper-V fits naturally and avoids the “VMware tax.” Each platform has areas it shines:</p>
+<ul>
+<li>VMware in ultra-large multi-tenant environments and when you need that last 5% of features.</li>
+<li>Hyper-V in environments where simplicity, cost, and Microsoft integration are paramount.</li>
+</ul>
 <h2 id="legacy-hardware-support-and-constraints">Legacy Hardware Support and Constraints</h2>
 <p>A practical consideration in choosing an on-prem platform is what hardware you can use – especially if you want to extend the life of existing investments. Windows Server Failover Clustering can breathe new life into older or non-standard hardware setups that Azure Local or other HCI stacks won’t accept:</p>
 <ul>
@@ -345,7 +328,7 @@
 <p><strong>Why it still matters</strong>: Windows Server Failover Clusters on Hyper-V remain a viable, cost effective, and fully supported alternative—even if Microsoft’s marketing puts Azure first.</p>
 </li>
 <li>
-<p><strong>Author’s lens</strong>: Two decades of Hyper-V and Azure Stack experience inform a balanced, insider view—not an antiAzure rant.</p>
+<p><strong>Author’s lens</strong>: Two decades of Hyper-V and Azure Stack experience inform a balanced, insider view—not an anti-Azure rant.</p>
 </li>
 <li>
 <p><strong>Messaging gap</strong>: Microsoft’s goto hierarchy (Azure ➜ AVS ➜ Azure Local ➜ “oh, and Windows Server”) leaves traditional Hyper-V clusters underrepresented.</p>
@@ -516,30 +499,13 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 			<p class="pager__title">Choosing A Windows Clustering Strategy in 2025</p>
 		</a>
 	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</p>
+		</a>
+	</div>
 </nav>
-
-<section class="comments">
-	<div id="disqus_thread"></div>
-<script>
-    window.disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "thisismydemo-cloud" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</section>
 
 
 			</div>
@@ -549,18 +515,18 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Rethinking Virtualization Post-VMware</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/choosing-windows-clustering-strategy-2025/">Choosing A Windows Clustering Strategy in 2025</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/secure-rdp-access-ssh-arc-vm/">Secure RDP Access via SSH for Arc VM</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/multicloud-connector-enabled-azure-arc-arc/">Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/dell-apex-create-service-principle-assign-roles-azure-cli/">Dell APEX - Create Service Principal and Assign Roles via Azure CLI</a></li>
 		</ul>
 	</div>
 </div>
@@ -601,6 +567,8 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/intune/">Intune</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
@@ -608,6 +576,8 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
 			<li class="widget__item">
@@ -648,6 +618,7 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
@@ -683,6 +654,7 @@ How upcoming releases will shape long-term hybrid strategy.</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>

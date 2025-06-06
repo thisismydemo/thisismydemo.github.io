@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Terminal on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/windows-terminal/</link>
+    <link>http://localhost:1313/tags/windows-terminal/</link>
     <description>Recent content in Windows Terminal on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 01 Feb 2023 16:08:38 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/windows-terminal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/windows-terminal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Customize My WIndows Terminal Please? </title>
-      <link>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</link>
+      <link>http://localhost:1313/post/2023-02-01-customize-my-windows-terminal-please-/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/2023-02-01-customize-my-windows-terminal-please-/</guid>
+      <guid>http://localhost:1313/post/2023-02-01-customize-my-windows-terminal-please-/</guid>
       <description>Since I recently re-did a blog about how to install Windows Terminal I wanted to write a quick blog on some of my favorite customizations that I do for my Windows Terminal.&#xA;The three areas I always change are:&#xA;Open As Admin Always on Top Backgrounds for each profile. (ie, PowerShell, Azure Cloud, Ubuntu, etc). So how exciting is it to look at this all day?&#xA;Well, a few clicks here and a few clicks there can have your Windows Terminal looking a little more like yourself or at least a little like your own taste?</description>
     </item>
     <item>
       <title>Enable Windows Terminal on Windows Servers</title>
-      <link>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</link>
+      <link>http://localhost:1313/post/2023-01-31-enable-windows-terminal-on-windows-servers/</link>
       <pubDate>Tue, 31 Jan 2023 15:04:33 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/2023-01-31-enable-windows-terminal-on-windows-servers/</guid>
+      <guid>http://localhost:1313/post/2023-01-31-enable-windows-terminal-on-windows-servers/</guid>
       <description>Early this year I had written a blog talking about how to enable Windows Terminal on Windows Server. However, I deleted that blog and all content and can&amp;rsquo;t find my backups so I am re-writing it once again. I wanted to share my experience with installing Windows Terminal on Windows Server and what I had to do to get around the blockers I ran into. As I mentioned in the last blog I had ran into issues that other bloggers never seemed to run into when installing Windows Terminal.</description>
     </item>
   </channel>
