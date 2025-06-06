@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Terraform on This Is My Demo</title>
-    <link>http://localhost:1313/tags/terraform/</link>
+    <link>http://thisismydemo.cloud/tags/terraform/</link>
     <description>Recent content in Terraform on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 26 Jul 2024 14:42:07 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deploying Azure Stack HCI OS using Canonical MAAS</title>
-      <link>http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/</link>
+      <link>http://thisismydemo.cloud/post/deploying-azure-stack-hci-os-canonical-maas/</link>
       <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
-      <guid>http://localhost:1313/post/deploying-azure-stack-hci-os-canonical-maas/</guid>
+      <guid>http://thisismydemo.cloud/post/deploying-azure-stack-hci-os-canonical-maas/</guid>
       <description>There are several methods to deploy an Azure Stack HCI OS Image. You can use solutions like System Center Configuration Manager (SCCM/ConfigMgr), Microsoft Deployment Toolkit (MDT), Windows Deployment Services (WDS), or other Infrastructure as Code (IaC) tools like Terraform and Ansible, with the appropriate configurations. Additionally, Canonical offers a solution called MAAS (Metal-As-A-Service).&#xA;Throughout my career, I&amp;rsquo;ve generally preferred Microsoft solutions for deploying Microsoft Operating Systems, favoring tools like MDT and WDS.</description>
     </item>
   </channel>
