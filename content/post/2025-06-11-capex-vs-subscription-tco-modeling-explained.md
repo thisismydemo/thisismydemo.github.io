@@ -1,5 +1,5 @@
 ---
-title: "CapEx vs Subscription: TCO Modeling for Hyper-V & Azure"
+title: "CapEx vs Subscription: TCO Modeling for Hyper-V & Azure Local vs AVS"
 description: Explore the TCO analysis of CapEx vs Subscription for Hyper-V, AVS, and Azure Local to determine the best virtualization strategy for your organization.
 date: 2025-06-11T12:45:00.428Z
 preview: /img/rethinkvmware/capex_banner.png
@@ -16,7 +16,7 @@ categories:
   - Cloud Computing
   - Infrastructure
   - Cost Analysis
-lastmod: 2025-06-11T14:55:26.432Z
+lastmod: 2025-06-11T14:58:13.817Z
 thumbnail: /img/rethinkvmware/capex_banner.png
 lead: Which stack is cheapest over five years for a 100 VM footprint? A detailed TCO analysis of Hyper-V, Azure VMware Solution, and Azure Local.
 slug: capex-subscription-tco-modeling-hyper-azure-local-avs
