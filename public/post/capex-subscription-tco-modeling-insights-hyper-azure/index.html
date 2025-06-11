@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Explore the TCO analysis of CapEx vs Subscription for Hyper-V, AVS, and Azure Local to determine the best virtualization strategy for your organization.">
+		<meta property="og:url" content="http://thisismydemo.cloud/post/capex-subscription-tco-modeling-insights-hyper-azure/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure">
+  <meta property="og:description" content="Explore the TCO analysis of CapEx vs Subscription for Hyper-V, AVS, and Azure Local to determine the best virtualization strategy for your organization.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-06-11T12:45:00+00:00">
+    <meta property="article:modified_time" content="2025-06-11T14:09:46+00:00">
+    <meta property="article:tag" content="Azure">
+    <meta property="article:tag" content="Hyper-V">
+    <meta property="article:tag" content="VMware">
+    <meta property="article:tag" content="TCO">
+    <meta property="article:tag" content="Cost Analysis">
+    <meta property="article:tag" content="Azure Local">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure">
+  <meta name="twitter:description" content="Explore the TCO analysis of CapEx vs Subscription for Hyper-V, AVS, and Azure Local to determine the best virtualization strategy for your organization.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-C78KZ1DN40');
+        }
+      </script>
+    
+  
+
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure</h1>
+			<p class="post__lead">Which stack is cheapest over five years for a 100 VM footprint? A detailed TCO analysis of Hyper-V, Azure VMware Solution, and Azure Local.</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-06-11T12:45:00Z">June 11, 2025</time>
+	<time class="meta__text" datetime="2025-06-11T14:09:46Z">(Last Modified: June 11, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cloud-computing/" rel="category">Cloud Computing</a>, <a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/cost-analysis/" rel="category">Cost Analysis</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/rethinkvmware/capex_banner.png" alt="CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure">
+		
+	</figure><div class="content post__content clearfix">
+			<h2 id="introduction">Introduction</h2>
+<p>In our previous blog post, we explored why organizations are reconsidering their virtualization strategy post-VMware and highlighted the often-overlooked value of Windows Server Failover Clustering with Hyper-V. Now, in this first follow-up post of the <em>&quot;<a href="https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/">Beyond the Cloud: The Case for On-Premises Virtualization</a>&quot;</em> series, we dive into the financial side of that decision. Specifically, we will compare the <strong>five-year Total Cost of Ownership (TCO)</strong> for three possible platforms to run a 100-Virtual Machine (VM) workload:</p>
+<ul>
+<li><strong>On-Premises Hyper-V (traditional Capital Expenditure (CapEx) model)</strong></li>
+<li><strong>Azure VMware Solution (AVS – cloud subscription model)</strong></li>
+<li><strong>Azure Local (formerly Azure Stack Hyper-Converged Infrastructure (HCI) – hybrid model)</strong></li>
+</ul>
+<p>Our goal is to determine which stack delivers the lowest TCO over a five-year span and <em>how</em> the cost structures differ between upfront capital expenses and ongoing subscription-based expenses. We&rsquo;ll base our comparison on a realistic small-to-midsize environment (around 100 VMs) and include all major cost components: hardware, software licenses, support contracts, and cloud service fees. Let&rsquo;s set the stage with our assumptions about the environment and then break down the costs for each option.</p>
+<ul>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#introduction">Introduction</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#scenario-assumptions-the-100-vm-environment">Scenario Assumptions: The 100-VM Environment</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#tco-cost-components">TCO Cost Components</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#option-1-on-premises-hyper-v-windows-server--capex-model">Option 1: On-Premises Hyper-V (Windows Server) – <strong>CapEx Model</strong></a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#option-2-azure-vmware-solution-avs--subscription-model">Option 2: Azure VMware Solution (AVS) – <strong>Subscription Model</strong></a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#option-3-azure-local-formerly-azure-stack-hci--hybrid-model">Option 3: Azure Local (formerly Azure Stack HCI) – <strong>Hybrid Model</strong></a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#five-year-cost-comparison">Five-Year Cost Comparison</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#other-considerations-beyond-raw-tco">Other Considerations (Beyond Raw TCO)</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#conclusion-capex-vs-subscription--which-wins">Conclusion: CapEx vs. Subscription – Which Wins?</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#references">References</a>
+<ul>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#microsoft-official-pricing-and-documentation">Microsoft Official Pricing and Documentation</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#industry-pricing-observations-and-regional-data">Industry Pricing Observations and Regional Data</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#previous-blog-post-reference">Previous Blog Post Reference</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#industry-studies-and-best-practices">Industry Studies and Best Practices</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#technical-specifications-and-architecture">Technical Specifications and Architecture</a></li>
+<li><a href="/post/capex-subscription-tco-modeling-insights-hyper-azure/#cost-analysis-methodologies">Cost Analysis Methodologies</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="scenario-assumptions-the-100-vm-environment">Scenario Assumptions: The 100-VM Environment</h2>
+<p>To make this comparison concrete, we&rsquo;ve modeled a representative Information Technology (IT) environment of <strong>100 virtual machines</strong>. This environment includes a mix of infrastructure and application workloads that a typical mid-sized organization might run:</p>
+<ul>
+<li><strong>Core infrastructure services (~10–15 VMs):</strong> Active Directory domain controllers, Domain Name System (DNS) and Dynamic Host Configuration Protocol (DHCP) servers, a file server, an Exchange or email relay server, and other necessary support services. These tend to be small-to-medium VMs (2–4 virtual Central Processing Units (vCPUs), 4–8 Gigabytes (GB) Random Access Memory (RAM) each).</li>
+<li><strong>Line-of-business application servers (~20–30 VMs):</strong> Application middle-tier servers and internal services (e.g. an Human Resources (HR) system, finance apps, intranet apps). These vary in size, with many around 4 vCPUs and 8–16 GB RAM, and a few heavier ones.</li>
+<li><strong>Web and front-end servers (~10–15 VMs):</strong> Front-end web servers or Application Programming Interface (API) endpoints, load-balanced for external or internal web applications. Typically lighter VMs (2–4 vCPUs, 4–8 GB RAM) but several instances for redundancy.</li>
+<li><strong>Database servers (~5–10 VMs):</strong> A handful of database servers (e.g. Structured Query Language (SQL) Server or similar) supporting the above apps. These are among the larger VMs (8+ vCPUs, 32+ GB RAM, with one or two high-memory instances).</li>
+<li><strong>Other miscellaneous servers (~10+ VMs):</strong> This includes dev/test servers, logging/monitoring systems, backup servers, and maybe a few virtual desktops or Virtual Desktop Infrastructure (VDI) session hosts. Sizes vary.</li>
+</ul>
+<p>Overall, the workload is predominantly Windows Server–based (typical in a Microsoft-centric shop), with perhaps a few Linux appliances or open-source tools. We assume moderate utilization – in aggregate, the 100 VMs might consume on the order of ~1 to 1.5 Terabytes (TB) of RAM and a proportional amount of Central Processing Unit (CPU) cores when consolidated. This assumption will drive how much physical infrastructure is needed (for on-premises scenarios) or how many cloud nodes are required (for AVS).</p>
+<p><strong>Physical Infrastructure Assumption:</strong> For on-premises deployments (Hyper-V or Azure Local), we assume a <strong>cluster of 3 host servers</strong> is used. Three hosts provide high availability for maintenance and failover, and can comfortably support ~100 VMs given the spec we assume (modern 2-socket servers). Each host server is assumed to have roughly <strong>2×16-core CPUs (32 cores total)</strong>, plenty of RAM (e.g. 512–768 GB per host), and fast Solid State Drive (SSD)/Non-Volatile Memory Express (NVMe) storage (sufficient to hold all VM data in a hyperconverged setup). This spec aligns with a mid-range 1U or 2U server that organizations commonly deploy. We&rsquo;ll include the cost of these servers (with storage included) as a capital expense in the on-prem models. We also assume enterprise support/warranty is purchased for the hardware for 5 years. Networking gear (switches) and data center facility costs (power, cooling, rack space) are <strong>not</strong> explicitly priced in our model, though we will discuss them qualitatively later on. Including those would increase on-prem costs slightly, but for simplicity we focus on the major cost drivers.</p>
+<p>With the stage set, let&rsquo;s break down the TCO for each option in detail.</p>
+<h2 id="tco-cost-components">TCO Cost Components</h2>
+<p>Before diving into each scenario, it&rsquo;s important to outline the <strong>cost components</strong> we&rsquo;ll be considering in our five-year TCO analysis:</p>
+<ul>
+<li><strong>Hardware Costs (CapEx):</strong> Upfront purchase of physical servers and storage. For on-premises Hyper-V or Azure Local, this is the purchase of host servers (in our case, 3 nodes) and associated storage devices. We assume an initial capital expense that covers the hardware and includes a support contract (typically, vendors offer 3-5 year support/warranty with hardware purchase or as an add-on). In the AVS scenario, there is <strong>no upfront hardware purchase</strong> – the hardware is provided as part of the service.</li>
+<li><strong>Software and Licensing Costs:</strong> This includes operating system licenses, hypervisor or virtualization software licenses, and any other required software for the virtualization stack. For Hyper-V, the key license is Windows Server (which includes Hyper-V at no additional cost). For Azure Local (formerly Azure Stack HCI), licensing can be handled in two ways: either via a <strong>monthly subscription fee per core</strong> to Microsoft, or by leveraging existing Windows Server licenses with Software Assurance (SA) (via Azure Hybrid Benefit (AHB)) to cover the host OS fees. We will examine both approaches. For AVS, the VMware software (vSphere, vSAN, NSX, etc.) licensing is included in the AVS service pricing, so you don&rsquo;t separately buy VMware licenses – however, you <em>may</em> still need Windows Server licenses for the guest VMs (unless you use AHB there as well, which we&rsquo;ll note).</li>
+<li><strong>Support and Maintenance Contracts:</strong> Ongoing support costs for software and hardware. In on-prem scenarios, this could include hardware support contract renewal (if not covered for the full 5 years upfront) or software support subscriptions. In our model, we&rsquo;ll assume the hardware support is prepaid upfront (common in enterprise purchases) and that software support for Windows is either included via Software Assurance or a portion of the license cost. AVS, being a fully managed service, includes support for the infrastructure in its monthly price.</li>
+<li><strong>Operational Expenses / Cloud Service Fees (Operational Expenditure (OpEx)):</strong> These are the recurring costs paid over time. For pure cloud (AVS), this is the monthly service charge for the AVS nodes. For Azure Local, if using the subscription model, this is the monthly fee per physical core for the cluster, and any additional Azure services used (the base fee covers the infrastructure software). For on-prem Hyper-V, there is no analogous monthly <strong>hypervisor fee</strong> – once you&rsquo;ve bought Windows Server licenses, you can run Hyper-V with no ongoing fee. (Of course, there are operational costs like electricity, cooling, and IT staff time, but those are generally outside the scope of a straightforward TCO <strong>financial</strong> model. We&rsquo;ll discuss them qualitatively later on, as they can tilt decisions in specific cases.)</li>
+</ul>
+<p>With these components in mind, let&rsquo;s analyze each option one by one.</p>
+<h2 id="option-1-on-premises-hyper-v-windows-server--capex-model">Option 1: On-Premises Hyper-V (Windows Server) – <strong>CapEx Model</strong></h2>
+<p><strong>What it is:</strong> This is the traditional deployment of a Windows Server Failover Clustering (WSFC) with Hyper-V on your own hardware. You buy servers, install Windows Server (with the Hyper-V role), and run your VMs on this cluster. This option is heavy on capital expenditure upfront but relatively light on ongoing costs. It exemplifies the <strong>CapEx</strong> model: invest in hardware and perpetual licenses now, then operate with minimal fees going forward.</p>
+<p><strong>Infrastructure &amp; Hardware:</strong> We assume a 3-node cluster of identical servers. Each server might cost on the order of <strong>$15,000</strong> (give or take) depending on configuration – for a total hardware investment of roughly <strong>$45,000</strong>. This would include high-performance local SSD/NVMe storage in each host (using Storage Spaces Direct for a shared-nothing, hyperconverged setup), and 10–25 Gigabit Ethernet (GbE) network interfaces for cluster communication. The cost also typically includes 3-5 years of vendor hardware support (parts replacement, firmware updates, etc.). By leveraging existing data center networking and facilities, these servers are all you need to stand up the Hyper-V environment.</p>
+<p><strong>Licensing Costs:</strong> One of Hyper-V&rsquo;s biggest advantages is that it comes <em>&ldquo;free&rdquo;</em> with Windows Server. In practice, that means if you have licensed your hosts with <strong>Windows Server Datacenter Edition</strong>, you have the rights to run <strong>unlimited Windows Server VMs</strong> on those hosts at no extra charge for the OS in each VM. Datacenter Edition is the logical choice for virtualization-heavy scenarios like 100 VMs on 3 hosts. We estimate you&rsquo;d need to license each host for its cores: e.g., 32 cores per host. Microsoft sells licenses in 16-core packs, so each host needs two packs (covering 32 cores). Roughly speaking, a 16-core Windows Server 2025 Datacenter license has a Manufacturer&rsquo;s Suggested Retail Price (MSRP) around $6,000-$6,600. So for 32 cores that&rsquo;s $12,000-$13,200 per host, times 3 hosts = <strong>$36,000-$39,600</strong> in Windows Server licensing. (Enterprise agreements or cloud solution provider pricing could be lower, but we&rsquo;ll use list prices for a fair comparison.) This $36K-$40K gives us the rights to run our 100 VMs (assuming they are Windows Server guests) without needing separate licenses for each VM – a huge cost win for Hyper-V on Windows. Hyper-V itself has no additional cost; it&rsquo;s simply a role of Windows Server. We are also implicitly covering the cost of Hyper-V management tools – many shops would use <strong>Failover Cluster Manager</strong> and <strong>Windows Admin Center</strong>, which are free, or possibly <strong>System Center Virtual Machine Manager (SCVMM)</strong> if they have it licensed as part of a System Center suite. To keep things simple, we won&rsquo;t add System Center licensing here, since it&rsquo;s optional.</p>
+<p><strong>Support &amp; Maintenance:</strong> With Windows Server Datacenter, you typically get rights to new versions and support if you have Software Assurance (SA) on the licenses. Some organizations purchase SA (which is an annual fee, ~25% of license cost) to ensure they can upgrade to the latest Windows Server release or get 24/7 support from Microsoft. Others might skip SA for cost savings if they don&rsquo;t plan to upgrade frequently. For our model, let&rsquo;s assume the $36K for Windows licensing is a one-time cost that includes at least the ability to use the licenses for 5 years. We&rsquo;ll not separately charge for SA, since not all will use it, but note that <strong>if</strong> you do pay SA, that might add roughly $7K–$9K per year across all 3 hosts. (However, in a purely cost-focused analysis, many would forego SA and stick with a stable version of Windows Server to avoid that recurring cost.)</p>
+<p>Hardware support is assumed to be included for 5 years from the server vendor (either as a standard package or an extended warranty purchased upfront). Thus, we don&rsquo;t add an extra annual support fee for hardware. The environment will incur some ongoing operational costs like power/cooling and administrator time, but those are outside our financial calculation here – though you should remember to factor them qualitatively when comparing to cloud (where power/cooling are baked into the price).</p>
+<p><strong>Five-Year TCO Summary (Hyper-V):</strong> Virtually all costs are upfront in year 0: about <strong>$45K</strong> in hardware and <strong>$36K-$40K</strong> in licenses, totaling roughly <strong>$80–$90K</strong> initial investment. Over the subsequent 5 years, the ongoing costs are minimal – primarily maintenance of what you bought. There are no cloud bills or monthly fees. At the end of five years, you may consider refreshing hardware or renewing support, but within that span no major new costs arise. This one-time investment approach is why Hyper-V/Windows Server Failover Clustering (WSFC) on existing licenses is often cited as the <strong>lowest TCO</strong> option for running VMs, assuming you can amortize the upfront spend. In short, <em>CapEx-heavy now means savings later</em>. Many Microsoft-aligned organizations find this especially attractive since they <strong>&ldquo;already paid for Windows&rdquo;</strong>, so to speak.</p>
+<h2 id="option-2-azure-vmware-solution-avs--subscription-model">Option 2: Azure VMware Solution (AVS) – <strong>Subscription Model</strong></h2>
+<p><strong>What it is:</strong> Azure VMware Solution is Microsoft&rsquo;s managed service that runs VMware vSphere environments in Azure data centers. Essentially, you rent a private cloud in Azure that is pre-loaded with VMware&rsquo;s software, and you deploy your VMs on it just as you would on-prem vSphere – except you&rsquo;re paying Microsoft a subscription fee for the infrastructure and VMware licenses. This option is pure <strong>OpEx</strong> (operational expense): you pay as you go, with no need to buy hardware or perpetual licenses upfront. It&rsquo;s designed to quickly &ldquo;lift and shift&rdquo; VMware workloads to the cloud with minimal changes.</p>
+<p><strong>Infrastructure &amp; Scaling:</strong> AVS is sold in units of <strong>hosts (nodes)</strong>. Each host is a physical server in Azure dedicated to you, with a fixed amount of vCPU, RAM, and storage. Azure offers several host size options (for example, an &ldquo;Azure VMware Solution 36-core (AV36)&rdquo; node has 36 cores, 576 GB RAM, ~15.2 TB usable storage; an &ldquo;Azure VMware Solution 36-core Plus (AV36P)&rdquo; offers more RAM (768 GB), an &ldquo;Azure VMware Solution 52-core (AV52)&rdquo; has 52 cores and 1.5 TB RAM, and the newer &ldquo;Azure VMware Solution 64-core (AV64)&rdquo; has 64 cores and 1 TB RAM, etc.). The service requires a <strong>minimum of 3 hosts</strong> to form a vSphere cluster with resiliency. For our 100 VM scenario, a 3-node AVS cluster is the starting point. According to Microsoft and partners, AVS becomes reasonably cost-effective at around <strong>100–150 VMs</strong> – basically, if you can fully utilize those 3 nodes with ~100+ VMs, the cost per VM is in a tolerable range. With fewer VMs, you&rsquo;d be under-utilizing an expensive 3-node minimum footprint. We&rsquo;ll assume our 100 VMs fit within 3 AVS hosts (likely the AV36 or AV36P specs should handle it).</p>
+<p><strong>Cost Structure:</strong> AVS pricing includes everything for the virtualization layer: the compute hardware, VMware Elastic Sky X Integrated (ESXi), VMware vCenter, VMware Virtual Storage Area Network (vSAN) storage, NSX Transformers (NSX-T) networking, and even VMware Hybrid Cloud Extension (HCX) for migration are all bundled. <strong>VMware licensing costs are included</strong> in the Azure price – meaning you&rsquo;re not separately paying VMware (Microsoft handles that relationship). However, <strong>Windows Server guest OS licenses are NOT included</strong> by default in AVS. If you run Windows VMs on AVS, you have two choices: bring your existing Windows licenses via Azure Hybrid Benefit (which most will, since they likely had Windows licenses on-prem), or pay Azure for Windows Server just like you would for an Azure VM (AVS allows you to tag VMs to have Windows licensing billed). In our comparison, we&rsquo;ll assume you utilize Azure Hybrid Benefit for Windows VMs on AVS, since our on-premises scenario already assumed we owned Windows licenses. That lets us focus on the core infrastructure costs.</p>
+<p>AVS is billed per host, per hour (or per month). It&rsquo;s not cheap. To give a ballpark, in the <strong>East United States (US)</strong> region, a typical AV36 host on pay-as-you-go costs on the order of <strong>$6–8 per hour</strong>, which is around <strong>$5,000–$6,000 per month <em>per host</em></strong>. Three hosts would be roughly $15,000–$18,000 per month at list price. This aligns with public figures: in the United Kingdom (UK), pay-go for 3 nodes is about £18,500/month (≈$23K), and one user reported in East US their 3-node estimate around $22K/month. Microsoft offers substantial discounts for committing to 1-year or 3-year reservations – on the order of 30-50% off. In fact, currently a 3-year reserved instance for AVS can slash the cost by ~60% compared to hourly rates. Using the UK example, 3 nodes dropped to ~£9K/month with a 3-year commit. In US terms, we can assume maybe around <strong>$10K–$12K per month</strong> for a 3-node AVS cluster on a multi-year reservation. We&rsquo;ll use <strong>$10K/month for 3 nodes</strong> as a nice round figure for our 5-year TCO, assuming the organization locks in a reserved term to optimize cost. (Microsoft even introduced a 5-year reservation option with similar ~60% savings, which would align with our 5-year analysis horizon.)</p>
+<p><strong>Five-Year TCO (AVS):</strong> At $10K per month for the AVS cluster, the <strong>5-year cost is $600,000</strong>. Importantly, there&rsquo;s <strong>no upfront CapEx</strong> – you start paying when you turn on the service, and if you ever turn it off, the billing stops (though if you reserved capacity, you&rsquo;ve committed to pay for the term whether you use it or not). Over 5 years, however, that adds up drastically: AVS is by far the most expensive option in terms of raw dollars outlay in our comparison. Even if we hadn&rsquo;t assumed a discount, pay-go rates would put it closer to $1M for 5 years; with reservations we got it to $600K. This cost includes support and all infrastructure, but it does <em>not</em> include certain things like backups or bandwidth charges (if you egress a lot of data out of Azure, that&rsquo;s extra) – those are beyond our scope here.</p>
+<p>To put it in perspective, when comparing cloud vs. on-premises, studies and anecdotes often find that steady-state workloads (like our 100 VMs running 24/7) are <strong>3–5× more expensive in the cloud</strong> than on-premises equivalents. Our model indeed shows roughly an order-of-magnitude difference: $80K vs. $600K in five years (that&rsquo;s ~7.5×). Even if our on-premises costs were higher or we included data center expenses, the cloud cost remains several times higher. Why would anyone pay this premium? The reasons usually cited are <strong>business agility, shifting to OpEx, and offloading maintenance overhead</strong>. With AVS, you avoid having to purchase or maintain hardware, deal with hardware failures, or perform lifecycle management of VMware software – Microsoft handles those under the hood. If your company is <em>&ldquo;CapEx sensitive&rdquo;</em> (i.e., has no stomach or budget for large upfront spends) but has monthly OpEx budget, AVS could be attractive despite the higher 5-year price. Additionally, AVS can simplify <strong>disaster recovery</strong> and scaling: you can add more hosts on demand (within a few hours) and even spin down hosts if not needed (billing is monthly granularity). Those capabilities might save money in certain scenarios (like temporary dev/test clusters or seasonal bursts), but for a steady 100-VM footprint we aren&rsquo;t factoring that in.</p>
+<p>In summary, AVS offers a <em>cloud-first, subscription</em> approach – convenient and fast to deploy, but you pay a hefty premium for that convenience. It is essentially the opposite end of the spectrum from the Hyper-V CapEx model in cost structure.</p>
+<h2 id="option-3-azure-local-formerly-azure-stack-hci--hybrid-model">Option 3: Azure Local (formerly Azure Stack HCI) – <strong>Hybrid Model</strong></h2>
+<p><strong>What it is:</strong> &ldquo;Azure Local&rdquo; is Microsoft&rsquo;s newer hybrid cloud infrastructure stack that you run on-premises (or at the edge) but pay for via an Azure subscription. Azure Local uses the same Hyper-V hypervisor and Windows-based clustering concepts, but it&rsquo;s delivered as an Azure service: you install the Azure Local operating system on your servers and register the cluster with Azure. It&rsquo;s a bit of a blend between the first two options – you <strong>do purchase your own hardware</strong> (like the Hyper-V scenario), but instead of a one-time Windows Server license, you typically <strong>pay a monthly fee per core</strong> to license the Azure Local operating system. This gives it a cloud-like subscription cost model, even though the hardware is your own (CapEx). Microsoft positions Azure Local as their &ldquo;premier&rdquo; on-premises solution with cloud integration, hence the Azure branding.</p>
+<p><strong>Note on Current Naming:</strong> Microsoft has rebranded Azure Stack HCI as &ldquo;Azure Local&rdquo; starting in late 2024, though both terms are still used interchangeably in documentation and pricing.</p>
+<p><strong>Infrastructure:</strong> The hardware for Azure Local would be very similar to the Hyper-V case – likely the <strong>same 3 servers</strong> could be used (just with a different OS installed). In practice, Azure Local requires <strong>validated hardware</strong> from an approved vendor list (approximately 200+ validated node configurations). These tend to be newer, high-end servers – you usually won&rsquo;t run Azure Local on decade-old hardware. This means an organization might need to purchase new servers to adopt Azure Local, rather than repurposing older ones (which they might have done if sticking to Windows Server 2019/2022). Microsoft also offers integrated systems or vendor appliances for Azure Local that come with Azure Local pre-installed, sometimes on a hardware-as-a-service financial model, but for apples-to-apples comparison we&rsquo;ll assume standard purchase of similar 3 nodes (<del>$45K hardware cost as before). So the **CapEx for hardware (</del>$45K)** is essentially the same as Option 1. Where things differ is in software licensing and ongoing fees.</p>
+<p><strong>Licensing Options:</strong> There are two ways to license the software for Azure Local:</p>
+<ol>
+<li>
+<p><strong>Pay-per-core Subscription (OpEx):</strong> By default, Azure Local clusters are billed at <strong>$10 per physical core per month</strong> (or roughly €10 in European Union (EU) as cited). This is the <strong>host fee</strong> for the Azure Local service. In addition, if you want to run Windows Server guest VMs and you <em>don&rsquo;t</em> have existing licenses, Azure offers an add-on subscription for those as well: about <strong>$23.30 per core per month</strong> for unlimited Windows guest licensing rights on the cluster. Essentially, $10 covers the host hypervisor and cluster features, and another $23 covers Windows Server Datacenter rights for the VMs – bringing it to roughly $33 per core per month to fully license everything via subscription. Importantly, these fees are charged only as long as the cluster is registered; if you retire the cluster, the billing stops. If you have Linux VMs or other workloads, you might not need the guest OS subscription for those cores, but typically in a mixed environment you&rsquo;d likely license all cores for simplicity so any VM can run anywhere. This pure subscription approach turns your on-prem infrastructure into an operational expense much like cloud. However, as we&rsquo;ll see, over 5 years it adds substantial cost.</p>
+</li>
+<li>
+<p><strong>Azure Hybrid Benefit (AHB – Bring Your Own License, CapEx):</strong> Microsoft recognizes many customers already have Windows Server Datacenter licenses with Software Assurance. With Azure Local, they provide an option to apply those licenses to cover the fees. If you have Windows Server Datacenter + SA for your host cores, you can activate Azure Hybrid Benefit for Azure Local, which <strong>waives the $10/core host fee</strong> <em>and</em> the Windows guest licensing fee. In other words, by &ldquo;bringing your license&rdquo; you don&rsquo;t pay Azure anything for the Azure Local OS or for Windows Server VMs – you&rsquo;ve effectively paid upfront by buying the Windows licenses. The trade-off is you must keep your Software Assurance active (which typically means renewing it every couple of years). SA is not free – it&rsquo;s an ongoing cost (roughly 20-25% of the license cost per year) – but even so, this route often comes out cheaper than paying the full Azure metered rate continuously. Microsoft has explicitly noted that for customers with SA, Azure Local&rsquo;s costs drop dramatically, making it &ldquo;even more competitive from a cost point of view&rdquo; compared to other platforms.</p>
+</li>
+</ol>
+<p>Let&rsquo;s quantify these: We have 3 hosts × 32 cores = <strong>96 cores</strong> total in the cluster. Under the <strong>pay-per-core model</strong>, host fees would be 96 × $10 = $960/month, and Windows guest subscription (if needed for all cores) 96 × $23.3 ≈ $2,237/month. Combined ~$3,197/month. Over 60 months (5 years), that&rsquo;s about <strong>$192K</strong> in fees. (If some VMs were Linux, one could save on the guest fee proportionally, but our scenario is predominantly Windows.) Add the $45K hardware, and the 5-year total is roughly <strong>$237K</strong>. This is the &ldquo;fully subscription&rdquo; cost scenario for Azure Local.</p>
+<p>By contrast, under <strong>Azure Hybrid Benefit model</strong>, we&rsquo;d reuse the same $36K-$40K of Windows Datacenter licenses from Option 1. As long as those licenses have active SA (which might cost say $7K-$8K/year), over 5 years that SA might total $35K-$40K. So effectively, you pay $36K-$40K (licenses) + $35K-$40K (SA maintenance) + $45K (hardware) = <strong>$116K-$125K</strong> total. However – and this is key – many organizations already count Windows licensing as a sunk cost or part of their enterprise agreement. If that&rsquo;s the case, enabling AHB could mean <em>no new spending at all</em> on software. For simplicity, one could say <strong>$80–$90K</strong> (hardware + licenses) covers 5 years when using AHB (very similar to the pure Hyper-V scenario). In fact, if the company already owned Datacenter licenses (perhaps repurposed from an older cluster), the incremental cost might be just hardware. Azure Local in this mode essentially becomes a <em>CapEx model</em> hiding behind Azure branding. You still benefit from the fact that the OS is updated frequently (as a service) and deeply integrated with Azure management, but you&rsquo;re not paying monthly for the privilege – you paid upfront.</p>
+<p>It&rsquo;s worth noting that there is now also an <strong>Azure Local &ldquo;Original Equipment Manufacturer (OEM) perpetual&rdquo; licensing option</strong> some hardware vendors offer, where you can buy a one-time license for the Azure Local host (much like buying Windows Server). This is essentially another way to pre-pay for the Azure Local software if you don&rsquo;t want any ongoing subscription. That option is new and offered through partners, but since it ultimately will price out similar to using AHB (capex licensing), we won&rsquo;t delve deeply into it here.</p>
+<p><strong>Five-Year TCO (Azure Local):</strong> We effectively have two sub-scenarios:</p>
+<ul>
+<li>
+<p><strong>Azure Local with Pay-Go Subscription:</strong> Approx. <strong>$240K</strong> over 5 years for 96 cores (plus hardware). This lands in between the Hyper-V and AVS costs. It&rsquo;s about 3× the cost of the pure Hyper-V approach, but still significantly less than AVS. Why is it cheaper than AVS? Because you&rsquo;re only paying Microsoft for software, not for hardware markup or data center electricity. $10/core/month is roughly $300/year per core, so for a 32-core host that&rsquo;s $9,600/year. Compare that to an AVS host which might be $60K/year – clearly running your own servers saves money. However, $240K is still a lot more than $80K; that difference is basically the price of having a &ldquo;cloud-like&rdquo; constantly updated platform. As some critics have pointed out, if you run Azure Local for many years without leveraging those continuous updates, you might be <em>over-paying</em> versus a one-time Windows license.</p>
+</li>
+<li>
+<p><strong>Azure Local with AHB (Bring License):</strong> Roughly <strong>$80–$130K</strong> over 5 years (depending on whether you count SA costs), which closely matches the on-premises Hyper-V TCO. In essence, using AHB turns Azure Local into just another usage of your Windows Server licenses – you&rsquo;ve converted the expense back into CapEx. In our case, if we re-use the same $36K-$40K of licenses from Option 1 and pay maybe $8K/year in SA, we&rsquo;d spend $36K-$40K + $40K + $45K hardware ≈ $121K-$125K. If the org already had an Enterprise Agreement (EA) covering Windows SA, the effective incremental might just be the hardware $45K. The bottom line: <strong>with AHB, Azure Local&rsquo;s cost model can be as low as traditional Hyper-V</strong>.</p>
+</li>
+</ul>
+<p>It&rsquo;s important to mention that with Azure Local you <em>do</em> get some additional capabilities for that cost: for example, integration with Azure Arc for management, eligibility to use Azure&rsquo;s hybrid services (like Azure Backup, Azure Monitor) more seamlessly, and the advantage of frequent feature updates (Azure Local gets new features every year, whereas Windows Server Hyper-V is now feature-stable with only periodic Long-Term Servicing Channel (LTSC) releases). However, those benefits need to justify the ongoing fees. If an organization is content with a &ldquo;stable and done&rdquo; infrastructure, the one-time license model is often cheaper. Microsoft essentially offers both choices: pay continuously for the latest-and-greatest, or use your existing license to opt out of the meter. Our analysis shows how each choice impacts TCO.</p>
+<h2 id="five-year-cost-comparison">Five-Year Cost Comparison</h2>
+<p>Bringing all three options together, let&rsquo;s compare their <strong>5-year TCO</strong> side by side. We&rsquo;ll consider Azure Local in its subscription mode for the main comparison (since Hyper-V covers the license-included mode already).</p>
+<figure><img src="/img/rethinkvmware/cost_graph.png"
+    alt="Five-year cumulative TCO comparison chart showing three different virtualization models"><figcaption>
+      <p>Five-year cumulative TCO for running 100 VMs under three different models. On-premises Hyper-V (yellow) has a high initial CapEx but minimal increase over time. Azure Local with pay-go subscription (orange) starts with some CapEx (hardware) and grows with monthly fees. Azure VMware Solution (red) has no upfront cost, but a steep ongoing cost that far exceeds the others over 5 years.</p>
+    </figcaption>
+</figure>
+
+<p>The chart illustrates the cumulative spending over five years. You can see that <strong>Hyper-V&rsquo;s line flattens out early</strong> – after the initial purchase in Year 1, there&rsquo;s little incremental cost. <strong>Azure Local (pay-go)</strong> rises steadily, ending around 3× higher cost by Year 5 than Hyper-V. <strong>AVS&rsquo;s cost line</strong> is the steepest by far – it ends up roughly 7× higher than the Hyper-V option by Year 5. Even if we assumed some savings or scaled down nodes in AVS, it would remain dramatically more expensive in this steady-state scenario. This aligns with real-world observations that running constant workloads in the cloud is typically multiple times costlier than owning your infrastructure.</p>
+<p>For another perspective, consider the breakdown in a tabular form:</p>
+<table>
+<thead>
+<tr>
+<th><strong>5-Year Cost Component</strong></th>
+<th><strong>Hyper-V On-Prem (CapEx)</strong></th>
+<th><strong>Azure Local (Subscription)</strong></th>
+<th><strong>Azure VMware (AVS)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hardware (3 hosts)</strong></td>
+<td>approx. $45,000 (one-time)</td>
+<td>approx. $45,000 (one-time)</td>
+<td>$0 (included in service)</td>
+</tr>
+<tr>
+<td><strong>Base virtualization software</strong></td>
+<td>$0 (Hyper-V is included in Windows Server)</td>
+<td>approx. $10/core/month = approx. $57,600 over 5 yrs (96 cores)</td>
+<td>$0 (VMware licenses included in AVS price)</td>
+</tr>
+<tr>
+<td><strong>Windows Server OS for VMs</strong></td>
+<td>approx. $36,000-$40,000 (one-time for Datacenter licenses covering unlimited VMs)</td>
+<td><strong>Option A:</strong> approx. $134,000 over 5 yrs via sub (96×$23.3/core/month); <strong>Option B:</strong> $0 (if using existing licenses via AHB)</td>
+<td>$0 (existing Windows licenses can be applied with AHB on AVS)</td>
+</tr>
+<tr>
+<td><strong>Support &amp; maintenance</strong></td>
+<td>Included in above (hardware warranty; Windows support via SA optional)</td>
+<td>Included in above (hardware warranty; Azure support in core fee)</td>
+<td>Included in service (Azure support covers infrastructure)</td>
+</tr>
+<tr>
+<td><strong>Total 5-Year TCO (approx.)</strong></td>
+<td><strong>approx. $80–$90K</strong></td>
+<td><strong>approx. $240K</strong> (if fully pay-go) <em>or</em> <strong>approx. $80–$130K</strong> (with AHB)</td>
+<td><strong>approx. $600K</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assumptions:</strong> The table assumes 96 cores total. Azure Local &ldquo;Option A&rdquo; reflects pure pay-as-you-go for all software; Option B reflects use of existing licenses (Azure Hybrid Benefit) to eliminate the ongoing software fees (making it analogous to Hyper-V&rsquo;s one-time licensing). Windows guest OS costs for AVS are assumed covered by AHB (since the organization could re-use the same licenses from the Hyper-V scenario – otherwise AVS would charge per VM, increasing its cost even more). Dollar figures are rounded. Note that Windows Server 2025 pricing reflects a modest increase over 2022 versions.</p>
+<p>Looking at the <strong>&ldquo;Total 5-Year TCO&rdquo;</strong> row, a clear ranking emerges: <strong>On-premises Hyper-V</strong> (and Azure Local with AHB) are the cheapest, on the order of &lt;$100K for 5 years. <strong>Azure Local with subscription</strong> comes next, roughly 2.5–3× higher. <strong>AVS</strong> is the most expensive, roughly 6–7× higher than the cheapest option in absolute dollars. In relative terms, Hyper-V/Windows Server Failover Clustering (WSFC) is the winner in cost-efficiency, assuming one is willing and able to make the upfront investment and has the skillset to manage it. Azure Local gives the flexibility to go either way: use it like a subscription service (incurring higher TCO) or leverage your existing licenses to keep costs low. Azure VMware Solution squarely targets convenience and speed over cost – it&rsquo;s for organizations that <strong>accept a higher ongoing cost</strong> in exchange for not retooling their operations or not spending capital upfront.</p>
+<h2 id="other-considerations-beyond-raw-tco">Other Considerations (Beyond Raw TCO)</h2>
+<p>While cost is the focus here, it&rsquo;s worth briefly noting other factors that might influence a choice between these options despite the stark TCO differences:</p>
+<ul>
+<li>
+<p><strong>Existing Investments &amp; Skills:</strong> If you already have heavily invested in VMware expertise and tooling, AVS allows you to retain that – your admins keep using vCenter, and your processes remain largely the same. Moving to Hyper-V or Azure Local might involve retraining staff or redeveloping automation for a new platform (though Hyper-V is similar enough for a Windows admin to learn, it&rsquo;s still a change). This &ldquo;skills transition&rdquo; factor often justifies AVS as a stop-gap even if it&rsquo;s more expensive. Conversely, if your team is already Microsoft-focused, staying on Hyper-V or Azure Local is not a burden at all – it plays to your strengths.</p>
+</li>
+<li>
+<p><strong>Feature and Integration Differences:</strong> Azure Local is continuously updated and tightly integrated with Azure services (Azure Arc management, Azure Backup, etc.) out of the box. It also supports Azure Kubernetes Service on-prem, etc. If those hybrid capabilities are valuable, an organization might lean towards Azure Local even if it costs more than plain Hyper-V, because it aligns with a cloud-first strategy (just on your own terms). On the other hand, plain Hyper-V on Windows gives you total flexibility with hardware and the lowest software cost, but it lacks some of the fancy cloud integration unless you configure Azure Arc manually.</p>
+</li>
+<li>
+<p><strong>Scaling and Right-Sizing:</strong> With your own hardware (Hyper-V or Azure Local), you have <strong>fixed capacity</strong> once you buy it. If you over-provision, money is wasted; if you under-provision and need more, you have to buy more hardware (which could take time and more CapEx). AVS offers more elastic scaling – you can add a host for a few months and then remove it (with some notice) if needed, turning a capital problem into a scheduling problem. For steady workloads, this isn&rsquo;t very advantageous, but for variable or unpredictable growth, AVS (or even Azure Local if financed monthly) could prevent overbuying. That said, adding one more on-prem Hyper-V node is not terribly difficult if growth is expected – you just need to plan for it.</p>
+</li>
+<li>
+<p><strong>Data Center Costs:</strong> As hinted earlier, on-premises solutions come with &ldquo;hidden&rdquo; costs like power, cooling, physical space, and on-site personnel. In a large enterprise these are often amortized or considered sunk costs (you already have a data center), but for a smaller shop they might matter. If you had to pay co-location fees for rack space or high electricity costs, the math could shift slightly. AVS&rsquo;s pricing includes all those infrastructure overheads of running in Azure&rsquo;s data center. If, for example, an organization is closing down its on-premises data center entirely, AVS could avoid the need to maintain any server room – an intangible savings (or avoidance of a cost) that might justify its price.</p>
+</li>
+<li>
+<p><strong>Opportunity Cost of CapEx:</strong> Spending $80K on infrastructure now versus spreading it over 5 years could be a decision of financial strategy. Some companies simply prefer predictable monthly expenses to large depreciating assets. In such cases, even if the sum of monthly payments is higher, the model might fit their accounting or cash flow needs better. That&rsquo;s a business decision beyond pure TCO.</p>
+</li>
+</ul>
+<p>In this post, we focused on <strong>pure cost efficiency</strong> in hard dollars, and by that measure, the classic on-premises approach clearly wins for a 100 VM steady-state workload. The more you can leverage existing investments (reusing licenses, repurposing hardware, etc.), the bigger the cost gap in favor of CapEx models. Microsoft&rsquo;s own messaging acknowledges this: if you already own Windows Server Datacenter, you essentially have a full virtualization stack at no extra cost – a compelling story for Hyper-V. Azure Local introduces ongoing fees for added benefits, so it needs to earn its keep; with AHB you can mitigate those fees and still enjoy the newer tech, which is an attractive middle ground. Azure VMware Solution, while expensive, targets scenarios where speed and continuity trump cost – such as an urgent data center exit or avoiding a massive VMware relicensing due to price hikes (the so-called &ldquo;VMware tax&rdquo; many are trying to escape).</p>
+<h2 id="conclusion-capex-vs-subscription--which-wins">Conclusion: CapEx vs. Subscription – Which Wins?</h2>
+<p>For the specific question posed – <em>&ldquo;Which stack is cheapest over five years for a 100 VM footprint?&rdquo;</em> – the answer is straightforward: <strong>the traditional CapEx model of on-premises Hyper-V (or Azure Local using existing licenses) offers the lowest TCO</strong> in our analysis. You&rsquo;re looking at on the order of <strong>$80K-$90K</strong> spent, versus several hundred thousand with the cloud-based options. If pure cost minimization is your goal and you have the up-front budget, it&rsquo;s hard to beat running your own infrastructure with Windows Server and Hyper-V.</p>
+<p>However, it&rsquo;s important to frame this finding in context. The allure of subscription-based models (be it Azure Local&rsquo;s pay-as-you-go or AVS or other clouds) lies in what they provide beyond raw compute: easier management, fast deployment, eliminating big upfront purchases, and access to additional services. An organization must weigh those factors against the budget impact. Many find that for stable, long-term workloads, <strong>CapEx-heavy investments pay off</strong> financially, whereas <strong>cloud makes sense for variable or strategic workloads</strong> despite the premium. In fact, as one IT professional noted, if your servers are on 24/7 doing the same thing, cloud is usually <em>not</em> the cheaper route. Our 100 VM scenario is exactly that kind of steady state – hence on-premises wins.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Hyper-V on Windows Server (with Datacenter licensing) remains extremely cost-effective – essentially a one-and-done cost for five years of virtualization. This is a big reason why many organizations <em>&ldquo;avoid the VMware tax&rdquo;</em> by sticking with Microsoft&rsquo;s stack.</li>
+<li>Azure VMware Solution, while offering a quick path and no retraining, comes at a very high ongoing cost. It can be <strong>3–5× more expensive</strong> in TCO vs. on-premises solutions. It&rsquo;s best justified for short-term migrations or specific use cases (e.g., disaster recovery, temporary capacity) rather than as a cost-saving measure.</li>
+<li>Azure Local occupies a middle ground. In pure pay-go form, it costs more than do-it-yourself Hyper-V, but much less than AVS. If you take advantage of Azure Hybrid Benefit, you can bring it nearly on par with Hyper-V cost-wise while gaining some cloud-like perks. Essentially, Azure Local lets you decide to go CapEx or OpEx with the software – giving financial flexibility.</li>
+</ul>
+<p>In the end, the &ldquo;cheapest stack&rdquo; for 100 VMs over 5 years is the one where you <strong>invest upfront in ownership</strong>: your hardware, your licenses, your control. That said, cheapest isn&rsquo;t always best for every scenario – but it sets a baseline. Organizations should crunch their own numbers with these models, insert their actual costs (including things like data center overhead or existing license inventory), and make an informed decision. The good news is Microsoft&rsquo;s ecosystem now offers a spectrum from pure CapEx (Hyper-V on Windows Server) to pure OpEx (AVS cloud), with Azure Local enabling a bit of both. You can choose the model that fits your financial strategy, while still leveraging Microsoft&rsquo;s virtualization technology underneath.</p>
+<p><em>In the next post in this series, we&rsquo;ll delve into licensing models in more detail – demystifying per-core vs per-socket vs per-subscription licensing and how those impact planning. So stay tuned for Post 2, where we make sense of the licensing maze and how it affects your modernization journey.</em></p>
+<h2 id="references">References</h2>
+<h3 id="microsoft-official-pricing-and-documentation">Microsoft Official Pricing and Documentation</h3>
+<ol>
+<li>
+<p><strong><a href="https://azure.microsoft.com/en-us/pricing/details/azure-vmware/">Microsoft Azure VMware Solution Pricing</a></strong> - Azure official pricing calculator and documentation. East US region pricing estimates for AV36 hosts at approximately $6-8 per hour pay-as-you-go rates.</p>
+</li>
+<li>
+<p><strong><a href="https://www.microsoft.com/en-us/licensing/product-licensing/windows-server">Windows Server 2025 Datacenter Edition Licensing</a></strong> - Microsoft Volume Licensing Reference Guide. 16-core license packs with MSRP approximately $6,000-$6,600 per pack.</p>
+</li>
+<li>
+<p><strong><a href="https://azure.microsoft.com/en-us/pricing/details/azure-stack/hci/">Azure Local Pricing</a></strong> - Microsoft Azure pricing documentation. Host fee of $10 per physical core per month, Windows Server guest licensing at $23.30 per core per month.</p>
+</li>
+<li>
+<p><strong><a href="https://azure.microsoft.com/en-us/pricing/hybrid-benefit/">Azure Hybrid Benefit Program</a></strong> - Microsoft licensing documentation detailing how existing Windows Server Datacenter licenses with Software Assurance can be applied to Azure Local and Azure VMware Solution.</p>
+</li>
+</ol>
+<h3 id="industry-pricing-observations-and-regional-data">Industry Pricing Observations and Regional Data</h3>
+<ol>
+<li>
+<p><strong>UK Azure VMware Solution Pricing</strong> - Public pricing estimates showing £18,500/month for 3-node pay-as-you-go configuration, reducing to approximately £9,000/month with 3-year reservations. Source: Microsoft partner pricing observations.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/azure/azure-vmware/reserved-instance">Azure VMware Solution Reserved Instance Discounts</a></strong> - Microsoft reservation pricing showing approximately 60% savings with 3-year commitments compared to pay-as-you-go rates.</p>
+</li>
+<li>
+<p><strong>Enterprise Server Hardware Pricing</strong> - Industry standard pricing estimates for mid-range 2-socket servers (2×16-core CPUs, 512-768 GB RAM, NVMe storage) at approximately $15,000 per server including 5-year support contracts. Based on Dell, HPE, and Lenovo enterprise server configurations.</p>
+</li>
+</ol>
+<h3 id="previous-blog-post-reference">Previous Blog Post Reference</h3>
+<ol>
+<li><strong>&ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo;</strong> - Previous post in this series exploring post-VMware virtualization strategies. Available at: <a href="https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/">https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</a></li>
+</ol>
+<h3 id="industry-studies-and-best-practices">Industry Studies and Best Practices</h3>
+<ol>
+<li>
+<p><strong>Cloud vs On-Premises Cost Studies</strong> - Multiple industry reports and anecdotes consistently showing 3-5× higher costs for steady-state workloads in cloud environments compared to on-premises equivalents. Sources include Gartner, Forrester, and various enterprise case studies.</p>
+</li>
+<li>
+<p><strong><a href="https://www.microsoft.com/en-us/licensing/licensing-programs/software-assurance-default">Software Assurance Pricing</a></strong> - Microsoft Volume Licensing estimates showing Software Assurance at approximately 20-25% of license cost annually.</p>
+</li>
+<li>
+<p><strong><a href="https://www.microsoft.com/en-us/windows-server/azure-stack-hci/catalog">Azure Local Validated Hardware Program</a></strong> - Microsoft&rsquo;s catalog of 200+ validated node configurations from approved hardware vendors.</p>
+</li>
+</ol>
+<h3 id="technical-specifications-and-architecture">Technical Specifications and Architecture</h3>
+<ol>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/azure/azure-vmware/concepts-private-clouds-clusters">Azure VMware Solution Node Specifications</a></strong> - Microsoft documentation for Azure VMware Solution 36-core (AV36) (36 cores, 576 GB RAM, ~18 TB storage), Azure VMware Solution 36-core Plus (AV36P) (enhanced memory), and Azure VMware Solution 52-core (AV52) (52 cores, 1.5 TB RAM) node types.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview">Storage Spaces Direct Documentation</a></strong> - Microsoft technical documentation for hyperconverged storage architecture used in Windows Server Failover Clustering.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/windows-server/failover-clustering/failover-clustering-overview">Windows Server Failover Clustering</a></strong> - Microsoft documentation for Windows Server Failover Clustering (WSFC) technology and Hyper-V integration.</p>
+</li>
+</ol>
+<h3 id="cost-analysis-methodologies">Cost Analysis Methodologies</h3>
+<ol>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/business-outcomes/fiscal-outcomes">Total Cost of Ownership (TCO) Framework</a></strong> - Standard IT cost analysis methodology including CapEx (Capital Expenditure) and OpEx (Operational Expenditure) components. Referenced from Microsoft Cloud Adoption Framework.</p>
+</li>
+<li>
+<p><strong><a href="https://docs.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices">Azure Cost Management Best Practices</a></strong> - Microsoft recommendations for cost optimization in hybrid and cloud scenarios.</p>
+</li>
+</ol>
+<hr>
+<p><em>Note: Pricing figures and estimates cited in this analysis are based on publicly available information as of June 2025 and may vary by region, volume licensing agreements, and current market conditions. Organizations should consult current Microsoft pricing and their specific licensing agreements for accurate cost planning. Windows Server 2025 pricing reflects modest increases over previous versions, and Azure service pricing is subject to change.</em></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure/" rel="tag">Azure</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hyper-v/" rel="tag">Hyper-V</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vmware/" rel="tag">VMware</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/tco/" rel="tag">TCO</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/cost-analysis/" rel="tag">Cost Analysis</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-local/" rel="tag">Azure Local</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/avs/" rel="tag">AVS</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Kristopher J Turner</span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</p>
+		</a>
+	</div>
+</nav>
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "thisismydemo-cloud" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-insights-hyper-azure/">CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Rethinking Virtualization Post-VMware</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/choosing-windows-clustering-strategy-2025/">Choosing A Windows Clustering Strategy in 2025</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/secure-rdp-access-ssh-arc-vm/">Secure RDP Access via SSH for Arc VM</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 This Is My Demo.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

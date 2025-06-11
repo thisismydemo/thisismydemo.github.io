@@ -89,6 +89,32 @@
 	<article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">
+		<img class="thumbnail__image" src="/img/microk8s_arc/OIP.png" alt="MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" rel="bookmark">
+			MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL
+			</a>
+		</h2>
+		<p class="list__lead post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-26T19:00:00Z">September 26, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:08:44Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
+The blog will be broken up into the following three sections:
+Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Installing MicroK8s on WSL In this blog I will discuss my experience with installing Microk8s on Windows Subsystem for Linux (WSL).
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc/">
 		<img class="thumbnail__image" src="/img/microk8s_arc/wsl2.png" alt="MicroK8S and WSL Managed by Azure Arc">
 		</a>
@@ -307,31 +333,6 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 	<div class="content list__excerpt post__content clearfix">
 		So recently I started working on another IoT project which lead me to breaking out all my old development kits. I previously wrote a blog called My Azure Sphere Needs Reset where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn&rsquo;t really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don&rsquo;t exist anymore.
 	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/my-azure-sphere-needs-reset/">
-		<img class="thumbnail__image" src="/img/azspherereset/Screenshot%202023-03-23%20150752.png" alt="My Azure Sphere Needs Reset?">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/my-azure-sphere-needs-reset/" rel="bookmark">
-			My Azure Sphere Needs Reset?
-			</a>
-		</h2>
-		<p class="list__lead post__lead">How do you recover an Azure Sphere Development kit?</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-23T19:51:12Z">March 23, 2023</time>
-	<time class="meta__text" datetime="2023-03-23T20:16:21Z">(Last Modified: March 23, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-sphere-development-kit/" rel="category">Azure Sphere Development Kit</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		So I needed to break out my Azure SPhere Development kit again that I haven&rsquo;t touched in a very long time. Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn&rsquo;t remember for the life of me how to access the kit.
-So this blog is mainly for me so in 6 months when I need to use my Azure Sphere development kit again I will have a quick and easy reminder.
-	</div>
 </article>
 </main>
 
@@ -355,11 +356,11 @@ So this blog is mainly for me so in 6 months when I need to use my Azure Sphere 
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-insights-hyper-azure/">CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Rethinking Virtualization Post-VMware</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/choosing-windows-clustering-strategy-2025/">Choosing A Windows Clustering Strategy in 2025</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/secure-rdp-access-ssh-arc-vm/">Secure RDP Access via SSH for Arc VM</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/multicloud-connector-enabled-azure-arc-arc/">Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</a></li>
 		</ul>
 	</div>
 </div>
@@ -389,6 +390,10 @@ So this blog is mainly for me so in 6 months when I need to use my Azure Sphere 
 				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
 			<li class="widget__item">
@@ -426,6 +431,7 @@ So this blog is mainly for me so in 6 months when I need to use my Azure Sphere 
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
@@ -451,6 +457,7 @@ So this blog is mainly for me so in 6 months when I need to use my Azure Sphere 
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
@@ -484,6 +491,7 @@ So this blog is mainly for me so in 6 months when I need to use my Azure Sphere 
 		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>

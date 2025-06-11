@@ -6,8 +6,57 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Jun 2025 14:09:17 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Jun 2025 14:09:46 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AVS</title>
+      <link>http://thisismydemo.cloud/tags/avs/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/avs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>http://thisismydemo.cloud/tags/azure/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Local</title>
+      <link>http://thisismydemo.cloud/tags/azure-local/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost Analysis</title>
+      <link>http://thisismydemo.cloud/tags/cost-analysis/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/cost-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hyper-V</title>
+      <link>http://thisismydemo.cloud/tags/hyper-v/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TCO</title>
+      <link>http://thisismydemo.cloud/tags/tco/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/tco/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VMware</title>
+      <link>http://thisismydemo.cloud/tags/vmware/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/vmware/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cost Optimization</title>
       <link>http://thisismydemo.cloud/tags/cost-optimization/</link>
@@ -16,24 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>Hyper-V</title>
-      <link>http://thisismydemo.cloud/tags/hyper-v/</link>
-      <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Virtualization</title>
       <link>http://thisismydemo.cloud/tags/virtualization/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/virtualization/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VMware</title>
-      <link>http://thisismydemo.cloud/tags/vmware/</link>
-      <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/vmware/</guid>
       <description></description>
     </item>
     <item>
@@ -48,13 +83,6 @@
       <link>http://thisismydemo.cloud/tags/wsfc/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/wsfc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Local</title>
-      <link>http://thisismydemo.cloud/tags/azure-local/</link>
-      <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
       <description></description>
     </item>
     <item>
@@ -188,13 +216,6 @@
       <link>http://thisismydemo.cloud/tags/azure-arc-mas/</link>
       <pubDate>Fri, 05 Jan 2024 14:35:37 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-arc-mas/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure</title>
-      <link>http://thisismydemo.cloud/tags/azure/</link>
-      <pubDate>Tue, 26 Dec 2023 03:10:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure/</guid>
       <description></description>
     </item>
     <item>
