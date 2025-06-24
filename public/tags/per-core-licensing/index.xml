@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Per Core Licensing on This Is My Demo</title>
+    <link>http://localhost:1313/tags/per-core-licensing/</link>
+    <description>Recent content in Per Core Licensing on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 13 Jun 2025 19:18:28 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/per-core-licensing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>License Models Demystified: Per Core vs. Per Socket vs. Subscription</title>
+      <link>http://localhost:1313/post/2025-06-13-license-models-demystified-complete-guide/</link>
+      <pubDate>Fri, 13 Jun 2025 19:30:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025-06-13-license-models-demystified-complete-guide/</guid>
+      <description>The Licensing Revolution: Why This Matters More Than Ever The days of simple &amp;ldquo;per-server&amp;rdquo; licensing are long gone. In today&amp;rsquo;s hybrid cloud world, understanding Microsoft&amp;rsquo;s licensing models isn&amp;rsquo;t just about compliance—it&amp;rsquo;s about strategic advantage. The difference between per-core, per-socket, and subscription licensing can mean hundreds of thousands of dollars in your infrastructure budget, and the hidden costs can turn a approved project into a budget disaster.&#xA;I&amp;rsquo;ve seen organizations discover they&amp;rsquo;re paying 40% more than necessary because they didn&amp;rsquo;t understand Azure Hybrid Benefit.</description>
+    </item>
+  </channel>
+</rss>

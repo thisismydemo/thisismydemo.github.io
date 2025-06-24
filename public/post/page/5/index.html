@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Posts - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:url" content="http://thisismydemo.cloud/post/">
+		<meta property="og:url" content="http://localhost:1313/post/">
   <meta property="og:site_name" content="This Is My Demo">
   <meta property="og:title" content="Posts">
   <meta property="og:description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?">
@@ -28,27 +28,6 @@
 	<link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="This Is My Demo">
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-C78KZ1DN40');
-        }
-      </script>
-    
-  
-
-
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -88,6 +67,32 @@
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
+		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/" rel="bookmark">
+			MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc
+			</a>
+		</h2>
+		<p class="list__lead post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T14:00:00Z">September 27, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:08:55Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
+The blog will be broken up into the following three sections:
+Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent) In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.
+	</div>
+</article><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">
@@ -311,29 +316,6 @@ However&hellip;&hellip;&hellip;.
 According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
 Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.
 	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/what-my-azure-percept-dk-devices-are-being-retired/">
-		<img class="thumbnail__image" src="/img/perceptdkreset/Screenshot%202023-03-24%20090855.png" alt="What! My Azure Percept DK Devices Are Being Retired???">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/what-my-azure-percept-dk-devices-are-being-retired/" rel="bookmark">
-			What! My Azure Percept DK Devices Are Being Retired???
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-23T22:58:14Z">March 23, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T14:14:23Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-percept-development-kit/" rel="category">Azure Percept Development Kit</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		So recently I started working on another IoT project which lead me to breaking out all my old development kits. I previously wrote a blog called My Azure Sphere Needs Reset where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn&rsquo;t really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don&rsquo;t exist anymore.
-	</div>
 </article>
 </main>
 
@@ -351,18 +333,18 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
 	</form>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-insights-hyper-azure/">CapEx vs Subscription: TCO Modeling Insights for Hyper-V &amp; Azure</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Choosing Your Virtualization Platform: A 2025 Licensing Analysis</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-hyper-azure-local-avs/">CapEx vs Subscription: TCO Modeling for Hyper-V &amp; Azure Local &amp; AVS</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Rethinking Virtualization Post-VMware</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/choosing-windows-clustering-strategy-2025/">Choosing A Windows Clustering Strategy in 2025</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/secure-rdp-access-ssh-arc-vm/">Secure RDP Access via SSH for Arc VM</a></li>
 		</ul>
 	</div>
 </div>
@@ -413,6 +395,8 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
@@ -457,6 +441,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
@@ -479,6 +464,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
@@ -500,6 +486,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
