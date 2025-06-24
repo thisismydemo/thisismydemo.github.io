@@ -6,8 +6,29 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Jun 2025 14:58:48 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 18:28:52 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Infrastructure</title>
+      <link>http://thisismydemo.cloud/categories/infrastructure/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/categories/infrastructure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Licensing</title>
+      <link>http://thisismydemo.cloud/categories/licensing/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/categories/licensing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Virtualization</title>
+      <link>http://thisismydemo.cloud/categories/virtualization/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/categories/virtualization/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Cloud Computing</title>
       <link>http://thisismydemo.cloud/categories/cloud-computing/</link>
@@ -20,20 +41,6 @@
       <link>http://thisismydemo.cloud/categories/cost-analysis/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/categories/cost-analysis/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Infrastructure</title>
-      <link>http://thisismydemo.cloud/categories/infrastructure/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/categories/infrastructure/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Virtualization</title>
-      <link>http://thisismydemo.cloud/categories/virtualization/</link>
-      <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/categories/virtualization/</guid>
       <description></description>
     </item>
     <item>

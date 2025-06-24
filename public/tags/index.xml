@@ -6,8 +6,57 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Jun 2025 14:58:48 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 18:28:52 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Local</title>
+      <link>http://thisismydemo.cloud/tags/azure-local/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure VMware Solution</title>
+      <link>http://thisismydemo.cloud/tags/azure-vmware-solution/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/azure-vmware-solution/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost Analysis</title>
+      <link>http://thisismydemo.cloud/tags/cost-analysis/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/cost-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Licensing</title>
+      <link>http://thisismydemo.cloud/tags/licensing/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/licensing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TCO</title>
+      <link>http://thisismydemo.cloud/tags/tco/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/tco/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VMware Cloud Foundation</title>
+      <link>http://thisismydemo.cloud/tags/vmware-cloud-foundation/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/vmware-cloud-foundation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Server 2025</title>
+      <link>http://thisismydemo.cloud/tags/windows-server-2025/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/windows-server-2025/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AVS</title>
       <link>http://thisismydemo.cloud/tags/avs/</link>
@@ -23,31 +72,10 @@
       <description></description>
     </item>
     <item>
-      <title>Azure Local</title>
-      <link>http://thisismydemo.cloud/tags/azure-local/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cost Analysis</title>
-      <link>http://thisismydemo.cloud/tags/cost-analysis/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cost-analysis/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Hyper-V</title>
       <link>http://thisismydemo.cloud/tags/hyper-v/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TCO</title>
-      <link>http://thisismydemo.cloud/tags/tco/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/tco/</guid>
       <description></description>
     </item>
     <item>
@@ -90,13 +118,6 @@
       <link>http://thisismydemo.cloud/tags/microsoft/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/microsoft/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows Server 2025</title>
-      <link>http://thisismydemo.cloud/tags/windows-server-2025/</link>
-      <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-server-2025/</guid>
       <description></description>
     </item>
     <item>
