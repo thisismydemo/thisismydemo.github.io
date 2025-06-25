@@ -1,5 +1,5 @@
 ---
-title: Rethinking Virtualization Post-VMware
+title: "Beyond the Cloud: Rethinking Virtualization Post-VMware"
 description: In a rapidly shifting virtualization landscape, many organizations are reevaluating their reliance on VMware. This blog series explores practical, cost-effective alternatives centered on Hyper-V, Windows Server Failover Clustering, and Azure Local. From licensing clarity to real-world migration playbooks, we examine how Microsoft’s hybrid ecosystem offers a stable, scalable, and secure path forward in a post-VMware era.
 date: 2025-05-26T19:36:45.162Z
 preview: /img/rethinkvmware/bloglogo.png
@@ -15,7 +15,7 @@ tags:
 categories:
   - Azure Local
   - Windows Server Failover Cluster
-lastmod: 2025-05-28T02:02:58.758Z
+lastmod: 2025-06-25T17:35:23.861Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware

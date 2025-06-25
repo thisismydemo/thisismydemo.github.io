@@ -1,22 +1,22 @@
 ---
-title: "Choosing Your Virtualization Platform: A 2025 Licensing Analysis"
+title: "Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II"
 description: Make informed virtualization decisions with our comprehensive 2025 licensing analysis. Compare Windows Server 2025, Azure Local, VMware Cloud Foundation, and Azure VMware Solution to find the best fit for your IT strategy and budget.
 date: 2025-06-24T14:02:32.120Z
 preview: /img/rethinkvmware/part2banner.png
 draft: false
 tags:
-    - Windows Server 2025
-    - Azure Local
-    - Azure VMware Solution
-    - VMware Cloud Foundation
-    - Licensing
-    - Cost Analysis
-    - TCO
+  - Windows Server 2025
+  - Azure Local
+  - Azure VMware Solution
+  - VMware Cloud Foundation
+  - Licensing
+  - Cost Analysis
+  - TCO
 categories:
-    - Infrastructure
-    - Licensing
-    - Virtualization
-lastmod: 2025-06-24T18:28:52.181Z
+  - Infrastructure
+  - Licensing
+  - Virtualization
+lastmod: 2025-06-25T17:35:23.866Z
 thumbnail: /img/rethinkvmware/part2banner.png
 lead: Virtualization licensing just got complicated. With VMware's Broadcom acquisition driving 3x cost increases and Microsoft introducing new subscription models, IT leaders need a clear roadmap. This blog provides the analysis and insights you need to make informed decisions that align with your budget and strategy.
 slug: choosing-your-virtualization-platform-2025-licensing-analysis
