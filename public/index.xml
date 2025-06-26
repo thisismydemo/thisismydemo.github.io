@@ -6,14 +6,14 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 16:35:53 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Jun 2025 17:21:43 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Hardware Considerations - Part III</title>
       <link>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</link>
       <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
       <guid>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</guid>
-      <description>Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs. subscription models across on-premises Hyper-V, Azure &amp;ldquo;Local&amp;rdquo; (Azure Stack HCI), and Azure VMware Solution (AVS). In Part 2, we dove into licensing – analyzing how VMware vSphere licensing stacks up against Microsoft&amp;rsquo;s offerings (Windows Server and Azure Stack HCI) in 2025, and what those licensing differences mean for choosing a virtualization platform.</description>
+      <description>Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs. subscription models across on-premises Hyper-V, Azure Local (formerly Azure Stack HCI), and Azure VMware Solution (AVS). In Part 2, we dove into licensing – analyzing how VMware vSphere licensing stacks up against Microsoft&amp;rsquo;s offerings (Windows Server and Azure Local) in 2025, and what those licensing differences mean for choosing a virtualization platform.</description>
     </item>
     <item>
       <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
