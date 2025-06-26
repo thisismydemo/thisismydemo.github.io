@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Server 2025 on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/windows-server-2025/</link>
+    <link>http://localhost:1313/tags/windows-server-2025/</link>
     <description>Recent content in Windows Server 2025 on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Jun 2025 18:28:52 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/windows-server-2025/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows-server-2025/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Choosing Your Virtualization Platform: A 2025 Licensing Analysis</title>
-      <link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
+      <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
+      <link>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
       <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
+      <guid>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
       <description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.&#xA;A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description>
     </item>
     <item>
-      <title>Rethinking Virtualization Post-VMware</title>
-      <link>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</link>
+      <title>Beyond the Cloud: Rethinking Virtualization Post-VMware</title>
+      <link>http://localhost:1313/post/rethinking-virtualization-post-vmware/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</guid>
+      <guid>http://localhost:1313/post/rethinking-virtualization-post-vmware/</guid>
       <description>From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid &amp;amp; HCI I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today&amp;rsquo;s Azure Local. This series aims to highlight the potential of Windows Server Failover Clustering (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom&amp;rsquo;s acquisition. While I value Azure&amp;rsquo;s Cloud and Hybrid offerings, I believe Microsoft&amp;rsquo;s current messaging overlooks WSFC&amp;rsquo;s capabilities in providing cost-effective, high-availability solutions.</description>
     </item>
   </channel>

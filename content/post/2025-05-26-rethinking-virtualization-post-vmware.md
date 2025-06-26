@@ -15,7 +15,7 @@ tags:
 categories:
   - Azure Local
   - Windows Server Failover Cluster
-lastmod: 2025-06-25T17:35:23.861Z
+lastmod: 2025-06-26T16:33:25.702Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware
@@ -44,9 +44,17 @@ From that vantage point, I remain a strong advocate of Microsoft hybrid solution
 > **Disclaimer — Views Are My Own**
 > *The opinions expressed in this blog are solely my own and do not necessarily reflect those of my current employer, TierPoint LLC, its subsidiaries, partners, or clients. References to any TierPoint services or positions are incidental; no endorsement or approval by TierPoint should be inferred.*
 
+## Series Navigation
+
+- **Introduction**: Beyond the Cloud: Rethinking Virtualization Post-VMware *(This Post)*
+- **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
+- **Part II**: [Beyond the Cloud: 2025 Virtualization Licensing Guide](https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/)
+- **Part III**: Beyond the Cloud: Hardware Considerations *(Coming Soon)*
+
 ## Things in the blog
 
 - [From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid \& HCI](#from-my-perspective-as-a-microsoftazure-hybridmvp-twodecades-in-microsoft-hybridhci)
+- [Series Navigation](#series-navigation)
 - [Things in the blog](#things-in-the-blog)
 - [Microsoft’s Positioning of WSFC and Hyper-V vs. Azure Local (Azure Stack HCI)](#microsofts-positioning-of-wsfc-and-hyper-v-vs-azure-local-azure-stack-hci)
 - [Where WSFC/Hyper-V Still Shines: Workloads and Architectures](#where-wsfchyper-v-still-shines-workloads-and-architectures)

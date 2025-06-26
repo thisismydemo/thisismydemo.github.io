@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SAN on This Is My Demo</title>
+    <link>http://localhost:1313/tags/san/</link>
+    <description>Recent content in SAN on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 26 Jun 2025 12:52:43 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/san/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: Hardware Considerations - Part III</title>
+      <link>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</guid>
+      <description>Coming Soon This blog post is part of the &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series and will cover:&#xA;Hardware Compatibility Assessment: Evaluating your existing infrastructure SAN Reuse Strategies: Making the most of current storage investments Mixed Server Environments: Working with heterogeneous hardware Validated Node Requirements: When standardization is worth the cost Storage Architecture Decisions: Direct-attached vs. shared storage Network Infrastructure: Planning for virtualization traffic Performance Considerations: Right-sizing your hardware foundation Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Hardware Considerations - Build Your Cloud on Your Terms (This Post - Coming Soon) This post is currently in development.</description>
+    </item>
+  </channel>
+</rss>

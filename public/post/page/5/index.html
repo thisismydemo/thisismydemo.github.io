@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Posts - This Is My Demo</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
-		<meta property="og:url" content="http://thisismydemo.cloud/post/">
+		<meta property="og:url" content="http://localhost:1313/post/">
   <meta property="og:site_name" content="This Is My Demo">
   <meta property="og:title" content="Posts">
   <meta property="og:description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?">
@@ -28,27 +28,6 @@
 	<link rel="alternate" type="application/rss+xml" href="/post/index.xml" title="This Is My Demo">
 
 	<link rel="shortcut icon" href="/favicon.ico">
-		
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-C78KZ1DN40');
-        }
-      </script>
-    
-  
-
-
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -66,7 +45,7 @@
 		
 <nav class="menu">
 	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
+		<span class="menu__btn-title" tabindex="-1"></span>
 	</button>
 	<ul class="menu__list">
 		<li class="menu__item">
@@ -90,6 +69,32 @@
 	</header><article class="list__item post">
 	
 	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">
+		<img class="thumbnail__image" src="/img/microk8s_arc/azure-kubernetes.png" alt="MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" rel="bookmark">
+			MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes
+			</a>
+		</h2>
+		<p class="list__lead post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-28T17:01:35Z">September 28, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:09:09Z">(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.
+The blog will be broken up into the following three sections:
+Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled servers: Installing Azure Connected Machine Agent Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure Managing MicroK8s Cluster with Azure Arc-Enabled Kubernetes In this blog I will discuss my experience connecting my newly deploy MicroK8s cluster to Azure using Azure Arc-enabled Kubernetes.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
 		<a class="thumbnail__link" href="/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
 		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
 		</a>
@@ -104,7 +109,7 @@
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T14:00:00Z">September 27, 2023</time>
-	<time class="meta__text" datetime="2023-09-28T17:08:55Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	<time class="meta__text" datetime="2023-09-28T17:08:55Z">(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 	</header>
@@ -130,7 +135,7 @@ Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled serve
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-26T19:00:00Z">September 26, 2023</time>
-	<time class="meta__text" datetime="2023-09-28T17:08:44Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	<time class="meta__text" datetime="2023-09-28T17:08:44Z">(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 	</header>
@@ -156,7 +161,7 @@ Installing MicroK8s on Windows Subsystem for Linux (WSL) Azure Arc-enabled serve
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-25T16:00:00Z">September 25, 2023</time>
-	<time class="meta__text" datetime="2023-09-28T17:08:24Z">(Last Modified: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	<time class="meta__text" datetime="2023-09-28T17:08:24Z">(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
 	</span>
 </div></div>
 	</header>
@@ -181,7 +186,7 @@ In this blog series I am going to discuss my experiences with MicroK8S.
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-06-16T00:18:45Z">June 16, 2023</time>
-	<time class="meta__text" datetime="2023-06-16T01:43:16Z">(Last Modified: June 16, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/home-assistant/" rel="category">Home Assistant</a>
+	<time class="meta__text" datetime="2023-06-16T01:43:16Z">(: June 16, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/home-assistant/" rel="category">Home Assistant</a>
 	</span>
 </div></div>
 	</header>
@@ -206,7 +211,7 @@ My Use case I have a T9 Honeywell Thermostat at home that is connected to the Re
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-22T23:13:05Z">May 22, 2023</time>
-	<time class="meta__text" datetime="2023-05-23T21:13:20Z">(Last Modified: May 23, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/microsoft-sentinel/" rel="category">Microsoft Sentinel</a>
+	<time class="meta__text" datetime="2023-05-23T21:13:20Z">(: May 23, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/microsoft-sentinel/" rel="category">Microsoft Sentinel</a>
 	</span>
 </div></div>
 	</header>
@@ -230,7 +235,7 @@ My Use case I have a T9 Honeywell Thermostat at home that is connected to the Re
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-05-17T15:11:44Z">May 17, 2023</time>
-	<time class="meta__text" datetime="2023-05-17T15:42:49Z">(Last Modified: May 17, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/microsoft-sentinel/" rel="category">Microsoft Sentinel</a>
+	<time class="meta__text" datetime="2023-05-17T15:42:49Z">(: May 17, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/microsoft-sentinel/" rel="category">Microsoft Sentinel</a>
 	</span>
 </div></div>
 	</header>
@@ -254,7 +259,7 @@ My Use case I have a T9 Honeywell Thermostat at home that is connected to the Re
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-04-10T15:41:45Z">April 10, 2023</time>
-	<time class="meta__text" datetime="2023-04-10T15:43:18Z">(Last Modified: April 10, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cross-tenant-synchronization/" rel="category">Cross-Tenant Synchronization</a>, <a class="meta__link" href="/categories/azure-active-directory/" rel="category">Azure Active Directory</a>
+	<time class="meta__text" datetime="2023-04-10T15:43:18Z">(: April 10, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/cross-tenant-synchronization/" rel="category">Cross-Tenant Synchronization</a>, <a class="meta__link" href="/categories/azure-active-directory/" rel="category">Azure Active Directory</a>
 	</span>
 </div></div>
 	</header>
@@ -279,7 +284,7 @@ Also, this blog originally started out as a single blog but as I started to writ
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-31T23:15:49Z">March 31, 2023</time>
-	<time class="meta__text" datetime="2023-04-01T02:42:12Z">(Last Modified: April 01, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-percept-development-kit/" rel="category">Azure Percept Development Kit</a>
+	<time class="meta__text" datetime="2023-04-01T02:42:12Z">(: April 01, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-percept-development-kit/" rel="category">Azure Percept Development Kit</a>
 	</span>
 </div></div>
 	</header>
@@ -302,40 +307,13 @@ Also, this blog originally started out as a single blog but as I started to writ
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T01:32:43Z">March 24, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T02:29:35Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/vision-ai-developer-kit/" rel="category">Vision AI Developer Kit</a>
+	<time class="meta__text" datetime="2023-03-24T02:29:35Z">(: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/vision-ai-developer-kit/" rel="category">Vision AI Developer Kit</a>
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my Vision AI DevKit. This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven&rsquo;t used this in a while, now I need to reset it and set it up again.
 The process The first thing I did was install the Android Debug Bridge (ADB).
-	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/is-my-azure-sphere-a-rock-now/">
-		<img class="thumbnail__image" src="/img/azsphereregister/register_004.png" alt="Is my Azure Sphere a rock now?">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/is-my-azure-sphere-a-rock-now/" rel="bookmark">
-			Is my Azure Sphere a rock now?
-			</a>
-		</h2>
-		<p class="list__lead post__lead">Yet another piece of Microsoft Hardware that is going into the rock draw</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-03-24T01:06:44Z">March 24, 2023</time>
-	<time class="meta__text" datetime="2023-03-24T01:19:29Z">(Last Modified: March 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-sphere-development-kit/" rel="category">Azure Sphere Development Kit</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?
-However&hellip;&hellip;&hellip;.
-According to Microsoft&rsquo;s documentation on how to claim the device there is a call out:
-Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.
 	</div>
 </article>
 </main>
@@ -351,26 +329,26 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 <aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="Search…" value="" name="q" aria-label="Search…">
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://thisismydemo.cloud/">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
 	</form>
 </div>
 <div class="widget-recent widget">
-	<h4 class="widget__title">Recent Posts</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Choosing Your Virtualization Platform: A 2025 Licensing Analysis</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-hyper-azure-local-avs/">CapEx vs Subscription: TCO Modeling for Hyper-V &amp; Azure Local &amp; AVS</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/capex-subscription-tco-modeling-hyper-azure-local-avs/">Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/">Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Rethinking Virtualization Post-VMware</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-windows-clustering-strategy-2025/">Choosing A Windows Clustering Strategy in 2025</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/rethinking-virtualization-post-vmware/">Beyond the Cloud: Rethinking Virtualization Post-VMware</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-categories widget">
-	<h4 class="widget__title">Categories</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
@@ -408,6 +386,8 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
 			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
 				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
@@ -435,7 +415,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 	</div>
 </div>
 <div class="widget-taglist widget">
-	<h4 class="widget__title">Tags</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
@@ -478,10 +458,12 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
@@ -498,12 +480,15 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
@@ -519,7 +504,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 	</div>
 </div>
 <div class="widget-social widget">
-	<h4 class="widget-social__title widget__title">Social</h4>
+	<h4 class="widget-social__title widget__title"></h4>
 	<div class="widget-social__content widget__content">
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
@@ -544,7 +529,7 @@ Claiming a device is a one-time operation that you cannot undo even if the devic
 		
 		<div class="footer__copyright">
 			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+			<span class="footer__copyright-credits"></span>
 		</div>
 	</div>
 </footer>

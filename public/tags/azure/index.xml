@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/azure/</link>
+    <link>http://localhost:1313/tags/azure/</link>
     <description>Recent content in Azure on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 11 Jun 2025 14:58:48 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CapEx vs Subscription: TCO Modeling for Hyper-V &amp; Azure Local &amp; AVS</title>
-      <link>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
+      <title>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</title>
+      <link>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
+      <guid>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
       <description>Introduction In our previous blog post, we explored why organizations are reconsidering their virtualization strategy post-VMware and highlighted the often-overlooked value of Windows Server Failover Clustering with Hyper-V. Now, in this first follow-up post of the &amp;quot;Beyond the Cloud: The Case for On-Premises Virtualization&amp;quot; series, we dive into the financial side of that decision. Specifically, we will compare the five-year Total Cost of Ownership (TCO) for three possible platforms to run a 100-Virtual Machine (VM) workload:</description>
     </item>
     <item>
       <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
+      <link>http://localhost:1313/post/12-days-azure-arcmas-console-cloud-tree/</link>
       <pubDate>Tue, 26 Dec 2023 03:10:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arcmas-console-cloud-tree/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.&#xA;Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
     </item>
   </channel>

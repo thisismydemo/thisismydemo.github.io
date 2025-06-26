@@ -16,7 +16,7 @@ categories:
   - Cloud Computing
   - Infrastructure
   - Cost Analysis
-lastmod: 2025-06-25T17:35:23.864Z
+lastmod: 2025-06-26T16:35:53.469Z
 thumbnail: /img/rethinkvmware/capex_banner.png
 lead: Which stack is cheapest over five years for a 100 VM footprint? A detailed TCO analysis of Hyper-V, Azure VMware Solution, and Azure Local.
 slug: capex-subscription-tco-modeling-hyper-azure-local-avs
@@ -32,7 +32,18 @@ In our previous blog post, we explored why organizations are reconsidering their
 
 Our goal is to determine which stack delivers the lowest TCO over a five-year span and *how* the cost structures differ between upfront capital expenses and ongoing subscription-based expenses. We'll base our comparison on a realistic small-to-midsize environment (around 100 VMs) and include all major cost components: hardware, software licenses, support contracts, and cloud service fees. Let's set the stage with our assumptions about the environment and then break down the costs for each option.
 
+## Series Navigation
+
+- **Introduction**: [Beyond the Cloud: Rethinking Virtualization Post-VMware](https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/)
+- **Part I**: Beyond the Cloud: CapEx vs Subscription TCO Analysis *(This Post)*
+- **Part II**: [Beyond the Cloud: 2025 Virtualization Licensing Guide](https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/)
+- **Part III**: Beyond the Cloud: Hardware Considerations *(Coming Soon)*
+
+## Table of Contents
+
 - [Introduction](#introduction)
+- [Series Navigation](#series-navigation)
+- [Table of Contents](#table-of-contents)
 - [Scenario Assumptions: The 100-VM Environment](#scenario-assumptions-the-100-vm-environment)
 - [TCO Cost Components](#tco-cost-components)
 - [Option 1: On-Premises Hyper-V (Windows Server) – **CapEx Model**](#option-1-on-premises-hyper-v-windows-server--capex-model)

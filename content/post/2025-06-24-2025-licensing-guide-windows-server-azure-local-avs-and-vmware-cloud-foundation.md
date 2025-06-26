@@ -16,7 +16,7 @@ categories:
   - Infrastructure
   - Licensing
   - Virtualization
-lastmod: 2025-06-25T17:35:23.866Z
+lastmod: 2025-06-26T16:33:25.718Z
 thumbnail: /img/rethinkvmware/part2banner.png
 lead: Virtualization licensing just got complicated. With VMware's Broadcom acquisition driving 3x cost increases and Microsoft introducing new subscription models, IT leaders need a clear roadmap. This blog provides the analysis and insights you need to make informed decisions that align with your budget and strategy.
 slug: choosing-your-virtualization-platform-2025-licensing-analysis
@@ -26,8 +26,16 @@ Welcome to **Part 2** of our *"Beyond the Cloud: The Case for On-Premises Virtua
 
 A key factor driving those cost differences was how each platform's licensing model works. In this follow-up, we will demystify the various licensing models – **per core, per socket, and per subscription** – and compare how Windows Server 2025 (which reached General Availability in November 2024), Azure Local (formerly "Azure Stack HCI"), and VMware (both on-premises and via Azure VMware Solution) handle licensing. Our goal is to highlight not just the pricing structures, but also where **hidden costs** can lurk beyond the base license. The tone remains practical and evaluative: this isn't about picking winners as much as helping IT directors and solution architects understand the financial and operational implications of each model.
 
+## Series Navigation
+
+- **Introduction**: [Beyond the Cloud: Rethinking Virtualization Post-VMware](https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/)
+- **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
+- **Part II**: Beyond the Cloud: 2025 Virtualization Licensing Guide *(This Post)*
+- **Part III**: Beyond the Cloud: Hardware Considerations *(Coming Soon)*
+
 ## Table of Contents
 
+- [Series Navigation](#series-navigation)
 - [Table of Contents](#table-of-contents)
 - [Key Industry Changes Timeline](#key-industry-changes-timeline)
   - [November 2023](#november-2023)

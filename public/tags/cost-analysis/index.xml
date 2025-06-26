@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cost Analysis on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/cost-analysis/</link>
+    <link>http://localhost:1313/tags/cost-analysis/</link>
     <description>Recent content in Cost Analysis on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Jun 2025 18:28:52 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/cost-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/cost-analysis/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Choosing Your Virtualization Platform: A 2025 Licensing Analysis</title>
-      <link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
+      <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
+      <link>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
       <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
+      <guid>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
       <description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.&#xA;A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description>
     </item>
     <item>
-      <title>CapEx vs Subscription: TCO Modeling for Hyper-V &amp; Azure Local &amp; AVS</title>
-      <link>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
+      <title>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</title>
+      <link>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
+      <guid>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
       <description>Introduction In our previous blog post, we explored why organizations are reconsidering their virtualization strategy post-VMware and highlighted the often-overlooked value of Windows Server Failover Clustering with Hyper-V. Now, in this first follow-up post of the &amp;quot;Beyond the Cloud: The Case for On-Premises Virtualization&amp;quot; series, we dive into the financial side of that decision. Specifically, we will compare the five-year Total Cost of Ownership (TCO) for three possible platforms to run a 100-Virtual Machine (VM) workload:</description>
     </item>
   </channel>
