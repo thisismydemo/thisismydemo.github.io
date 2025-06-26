@@ -6,14 +6,14 @@
     <description>Recent content in Azure Local on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 18:22:15 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Jun 2025 20:47:26 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/azure-local/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Hardware Considerations - Part III</title>
       <link>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</link>
       <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
       <guid>http://localhost:1313/post/beyond-cloud-hardware-considerations-part-iii/</guid>
-      <description>Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs. subscription models across on-premises Hyper-V, Azure Local (formerly Azure Stack HCI), and Azure VMware Solution (AVS). In Part 2, we dove into licensing – analyzing how VMware vSphere licensing stacks up against Microsoft&amp;rsquo;s offerings (Windows Server and Azure Local) in 2025, and what those licensing differences mean for choosing a virtualization platform.</description>
+      <description>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&amp;rsquo;s essentially outsourcing VMware onto Azure&amp;rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&amp;rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)&#xA;Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs.</description>
     </item>
     <item>
       <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
