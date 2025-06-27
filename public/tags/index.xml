@@ -6,13 +6,55 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 21:22:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Jun 2025 12:55:59 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Azure Local</title>
       <link>http://thisismydemo.cloud/tags/azure-local/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hardware</title>
+      <link>http://thisismydemo.cloud/tags/hardware/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hyper-V</title>
+      <link>http://thisismydemo.cloud/tags/hyper-v/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Infrastructure</title>
+      <link>http://thisismydemo.cloud/tags/infrastructure/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/infrastructure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SAN</title>
+      <link>http://thisismydemo.cloud/tags/san/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/san/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Storage</title>
+      <link>http://thisismydemo.cloud/tags/storage/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/storage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Validated Nodes</title>
+      <link>http://thisismydemo.cloud/tags/validated-nodes/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/tags/validated-nodes/</guid>
       <description></description>
     </item>
     <item>
@@ -69,13 +111,6 @@
       <link>http://thisismydemo.cloud/tags/azure/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
       <guid>http://thisismydemo.cloud/tags/azure/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hyper-V</title>
-      <link>http://thisismydemo.cloud/tags/hyper-v/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
       <description></description>
     </item>
     <item>

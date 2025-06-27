@@ -6,8 +6,15 @@
     <description>Recent content in Virtualization on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 21:22:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Jun 2025 12:55:59 +0000</lastBuildDate>
     <atom:link href="http://thisismydemo.cloud/categories/virtualization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: Hardware Considerations - Part III</title>
+      <link>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</guid>
+      <description>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&amp;rsquo;s essentially outsourcing VMware onto Azure&amp;rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&amp;rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)&#xA;Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs.</description>
+    </item>
     <item>
       <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
       <link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
