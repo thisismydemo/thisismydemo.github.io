@@ -16,7 +16,7 @@ categories:
   - Infrastructure
   - Licensing
   - Virtualization
-lastmod: 2025-06-26T16:33:25.718Z
+lastmod: 2025-06-26T21:22:17.496Z
 thumbnail: /img/rethinkvmware/part2banner.png
 lead: Virtualization licensing just got complicated. With VMware's Broadcom acquisition driving 3x cost increases and Microsoft introducing new subscription models, IT leaders need a clear roadmap. This blog provides the analysis and insights you need to make informed decisions that align with your budget and strategy.
 slug: choosing-your-virtualization-platform-2025-licensing-analysis
@@ -31,7 +31,7 @@ A key factor driving those cost differences was how each platform's licensing mo
 - **Introduction**: [Beyond the Cloud: Rethinking Virtualization Post-VMware](https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/)
 - **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
 - **Part II**: Beyond the Cloud: 2025 Virtualization Licensing Guide *(This Post)*
-- **Part III**: Beyond the Cloud: Hardware Considerations *(Coming Soon)*
+- **Part III**: [Beyond the Cloud: Hardware Considerations](https://thisismydemo.cloud/post/2025-07-15-beyond-the-cloud-hardware-considerations-part-iii/)
 
 ## Table of Contents
 

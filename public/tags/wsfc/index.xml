@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WSFC on This Is My Demo</title>
-    <link>http://localhost:1313/tags/wsfc/</link>
+    <link>http://thisismydemo.cloud/tags/wsfc/</link>
     <description>Recent content in WSFC on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 16:33:25 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/wsfc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Jun 2025 21:22:17 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/tags/wsfc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</title>
-      <link>http://localhost:1313/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</link>
+      <link>http://thisismydemo.cloud/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</guid>
+      <guid>http://thisismydemo.cloud/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</guid>
       <description>Why Choose Windows Server Failover Clustering (WSFC) with Hyper‑V Over VMware Virtualization is a cornerstone of modern IT infrastructure, and VMware vSphere has long been a leader in this space. However, Microsoft&amp;rsquo;s Windows Server Failover Clustering (WSFC) with Hyper‑V offers a compelling alternative for organizations seeking a cost-effective, high-performance virtualization platform. In this post, targeted at IT professionals, we&amp;rsquo;ll explore why WSFC with Hyper‑V is a strong alternative to VMware – emphasizing the ability to leverage existing hardware (reducing new hardware costs), the performance benefits of Hyper‑V, available management tools, feature comparisons with VMware, and a look at licensing and cost differences.</description>
     </item>
     <item>
       <title>Beyond the Cloud: Rethinking Virtualization Post-VMware</title>
-      <link>http://localhost:1313/post/rethinking-virtualization-post-vmware/</link>
+      <link>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/rethinking-virtualization-post-vmware/</guid>
+      <guid>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</guid>
       <description>From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid &amp;amp; HCI I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today&amp;rsquo;s Azure Local. This series aims to highlight the potential of Windows Server Failover Clustering (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom&amp;rsquo;s acquisition. While I value Azure&amp;rsquo;s Cloud and Hybrid offerings, I believe Microsoft&amp;rsquo;s current messaging overlooks WSFC&amp;rsquo;s capabilities in providing cost-effective, high-availability solutions.</description>
     </item>
   </channel>

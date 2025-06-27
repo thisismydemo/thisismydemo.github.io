@@ -18,8 +18,8 @@ categories:
   - Virtualization
 thumbnail: /img/rethinkvmware/hardware-part3-banner.png
 lead: Can you reuse existing SANs and mixed servers, or do you need validated nodes? Build your cloud on your terms.
-slug: beyond-cloud-hardware-considerations-part-iii
-lastmod: 2025-06-26T21:14:51.993Z
+slug: cloud-hardware-considerations-part-iii
+lastmod: 2025-06-27T12:52:20.811Z
 ---
 
 *(Note: AVS – Azure VMware Solution – is not covered in detail here since it's essentially outsourcing VMware onto Azure's hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure's instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)*

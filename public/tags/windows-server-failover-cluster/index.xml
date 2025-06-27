@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Server Failover Cluster on This Is My Demo</title>
-    <link>http://localhost:1313/tags/windows-server-failover-cluster/</link>
+    <link>http://thisismydemo.cloud/tags/windows-server-failover-cluster/</link>
     <description>Recent content in Windows Server Failover Cluster on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Jun 2025 16:33:25 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/windows-server-failover-cluster/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Jun 2025 21:22:17 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/tags/windows-server-failover-cluster/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Rethinking Virtualization Post-VMware</title>
-      <link>http://localhost:1313/post/rethinking-virtualization-post-vmware/</link>
+      <link>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/rethinking-virtualization-post-vmware/</guid>
+      <guid>http://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/</guid>
       <description>From My Perspective as a Microsoft Azure Hybrid MVP – Two Decades in Microsoft Hybrid &amp;amp; HCI I write this blog as a longtime Microsoft advocate with two decades of hands-on experience—from early Hyper-V in 2008 to today&amp;rsquo;s Azure Local. This series aims to highlight the potential of Windows Server Failover Clustering (WSFC) as a viable alternative for organizations transitioning away from VMware, especially in light of Broadcom&amp;rsquo;s acquisition. While I value Azure&amp;rsquo;s Cloud and Hybrid offerings, I believe Microsoft&amp;rsquo;s current messaging overlooks WSFC&amp;rsquo;s capabilities in providing cost-effective, high-availability solutions.</description>
     </item>
     <item>
       <title>Choosing A Windows Clustering Strategy in 2025</title>
-      <link>http://localhost:1313/post/choosing-windows-clustering-strategy-2025/</link>
+      <link>http://thisismydemo.cloud/post/choosing-windows-clustering-strategy-2025/</link>
       <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
-      <guid>http://localhost:1313/post/choosing-windows-clustering-strategy-2025/</guid>
+      <guid>http://thisismydemo.cloud/post/choosing-windows-clustering-strategy-2025/</guid>
       <description>Introduction Azure Local (formerly Azure Stack HCI) Key characteristics and features Azure Local Use cases Traditional WSFC with External SAN/NAS Storage Key characteristics and features Traditional WSFC Use cases Windows Server Failover Clustering with Storage Spaces Direct (S2D) Key characteristics and features WSFC with S2D Use cases Comparative Analysis of the Three Solutions Comparison Matrix Azure Local – Pros and Cons Traditional WSFC + SAN – Pros and Cons WSFC + Storage Spaces Direct – Pros and Cons Industry and Workload Considerations Industry Examples Workload Examples Optional Azure Integration for WSFC (SAN or S2D) Clusters Decision Framework – Choosing the Right Approach Conclusion Introduction In modern Windows infrastructure, there are multiple strategies for building highly available clusters.</description>
     </item>
   </channel>

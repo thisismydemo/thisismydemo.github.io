@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Microsoft 425Show on This Is My Demo</title>
-    <link>http://localhost:1313/tags/the-microsoft-425show/</link>
+    <link>http://thisismydemo.cloud/tags/the-microsoft-425show/</link>
     <description>Recent content in The Microsoft 425Show on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 20 Jan 2023 15:30:42 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/the-microsoft-425show/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/tags/the-microsoft-425show/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Entra Permissions Management Podcast</title>
-      <link>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</link>
+      <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</guid>
+      <guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid>
       <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.&#xA;You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
     </item>
   </channel>
