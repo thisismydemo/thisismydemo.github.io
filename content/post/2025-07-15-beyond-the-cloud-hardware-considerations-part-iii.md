@@ -17,9 +17,9 @@ categories:
   - Hardware
   - Virtualization
 thumbnail: /img/rethinkvmware/hardware-part3-banner.png
-lead: Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K+, and VMware VCF 9.0 deprecates older hardware anyway. This analysis helps you navigate the real costs, delivery constraints, and technical requirements behind each path.
+lead: Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K+, and VMware VCF 9.0 deprecates older hardware anyway. This analysis provides a framework for making hardware decisions that fit your organization's timeline and budget constraints.
 slug: cloud-hardware-considerations-part-iii
-lastmod: 2025-06-27T15:17:57.421Z
+lastmod: 2025-06-27T15:24:43.925Z
 ---
 
 *(Note: AVS – Azure VMware Solution – is not covered in detail here since it's essentially outsourcing VMware onto Azure's hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure's instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)*
