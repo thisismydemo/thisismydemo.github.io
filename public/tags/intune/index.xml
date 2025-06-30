@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intune on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/intune/</link>
+    <link>http://localhost:1313/tags/intune/</link>
     <description>Recent content in Intune on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 01 Feb 2023 17:34:46 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/intune/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/intune/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My Intune Proactive Remediation Scripts</title>
-      <link>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</link>
+      <link>http://localhost:1313/post/intune-proactive-remediation-scripts/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</guid>
+      <guid>http://localhost:1313/post/intune-proactive-remediation-scripts/</guid>
       <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.&#xA;Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.&#xA;Intune Proactive Remediation - Check if KB5007253 is installed.&#xA;The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
     </item>
     <item>
       <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
-      <link>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</link>
+      <link>http://localhost:1313/post/2023-01-31-intunes-proactive-remediations/</link>
       <pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</guid>
+      <guid>http://localhost:1313/post/2023-01-31-intunes-proactive-remediations/</guid>
       <description>I want to start this blog out by saying I am not an Intune expert. In fact I don&amp;rsquo;t really spend much time with Intune. However, once in a while there are projects that require certain tools like InTune so once in a while I do get my hands on Intune. So I want to share what I have learned about Intune Proactive Remediation and how to create and apply them in your Endpoint environment.</description>
     </item>
     <item>
       <title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</title>
-      <link>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
+      <link>http://localhost:1313/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
+      <guid>http://localhost:1313/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/</guid>
       <description>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.&#xA;There are three methods that can accomplish this on your client computers.&#xA;Configure an Intune Policy and apply it to the clients. Configure Group Policy on the clients Apply a registry value on the client. I am going to use the registry method, but I will also be using Microsoft&amp;rsquo;s Intune Proactive remediation.</description>
     </item>
   </channel>

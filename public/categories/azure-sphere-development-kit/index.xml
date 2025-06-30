@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure Sphere Development Kit on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/categories/azure-sphere-development-kit/</link>
+    <link>http://localhost:1313/categories/azure-sphere-development-kit/</link>
     <description>Recent content in Azure Sphere Development Kit on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 24 Mar 2023 01:19:29 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/categories/azure-sphere-development-kit/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/azure-sphere-development-kit/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is my Azure Sphere a rock now?</title>
-      <link>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</link>
+      <link>http://localhost:1313/post/is-my-azure-sphere-a-rock-now/</link>
       <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/is-my-azure-sphere-a-rock-now/</guid>
+      <guid>http://localhost:1313/post/is-my-azure-sphere-a-rock-now/</guid>
       <description>In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from My Azure Sphere Needs Reset?&#xA;However&amp;hellip;&amp;hellip;&amp;hellip;.&#xA;According to Microsoft&amp;rsquo;s documentation on how to claim the device there is a call out:&#xA;Claiming a device is a one-time operation that you cannot undo even if the device is sold or transferred to another person or organization.</description>
     </item>
     <item>
       <title>My Azure Sphere Needs Reset?</title>
-      <link>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</link>
+      <link>http://localhost:1313/post/my-azure-sphere-needs-reset/</link>
       <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/my-azure-sphere-needs-reset/</guid>
+      <guid>http://localhost:1313/post/my-azure-sphere-needs-reset/</guid>
       <description>So I needed to break out my Azure SPhere Development kit again that I haven&amp;rsquo;t touched in a very long time. Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn&amp;rsquo;t remember for the life of me how to access the kit.&#xA;So this blog is mainly for me so in 6 months when I need to use my Azure Sphere development kit again I will have a quick and easy reminder.</description>
     </item>
   </channel>
