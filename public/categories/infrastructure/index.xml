@@ -2,45 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Infrastructure on This Is My Demo</title>
-    <link>http://localhost:1313/categories/infrastructure/</link>
+    <link>http://thisismydemo.cloud/categories/infrastructure/</link>
     <description>Recent content in Infrastructure on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Jun 2025 18:29:10 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/infrastructure/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Beyond the Cloud: Feature Face-Off - Part IV</title>
-      <link>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</link>
-      <pubDate>Mon, 30 Jun 2025 16:42:12 +0000</pubDate>
-      <guid>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</guid>
-      <description>The Enterprise Reality Check As we&amp;rsquo;ve established in previous posts, the post-Broadcom VMware landscape has fundamentally shifted the conversation around enterprise virtualization. No longer can organizations simply renew their vSphere licenses and move on—pricing has increased dramatically, licensing models have changed, and many customers are being pushed toward VMware Cloud Foundation whether they need all its components or not.&#xA;But beyond cost considerations lies a critical question: Does Windows Server Failover Clustering with Hyper-V actually deliver the enterprise features that keep VMware entrenched in so many data centers?</description>
-    </item>
+    <lastBuildDate>Tue, 01 Jul 2025 13:49:51 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/categories/infrastructure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Hardware Considerations - Part III</title>
-      <link>http://localhost:1313/post/cloud-hardware-considerations-part-iii/</link>
+      <link>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</link>
       <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://localhost:1313/post/cloud-hardware-considerations-part-iii/</guid>
+      <guid>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</guid>
       <description>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&amp;rsquo;s essentially outsourcing VMware onto Azure&amp;rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&amp;rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)&#xA;Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs.</description>
     </item>
     <item>
       <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
-      <link>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
+      <link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
       <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
+      <guid>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
       <description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.&#xA;A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description>
     </item>
     <item>
       <title>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</title>
-      <link>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
+      <link>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
+      <guid>http://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</guid>
       <description>Introduction In our previous blog post, we explored why organizations are reconsidering their virtualization strategy post-VMware and highlighted the often-overlooked value of Windows Server Failover Clustering with Hyper-V. Now, in this first follow-up post of the &amp;quot;Beyond the Cloud: The Case for On-Premises Virtualization&amp;quot; series, we dive into the financial side of that decision. Specifically, we will compare the five-year Total Cost of Ownership (TCO) for three possible platforms to run a 100-Virtual Machine (VM) workload:</description>
     </item>
     <item>
       <title>Powerful, Practical, Proven: Why WSFC and Hyper‑V Deserve a Second Look</title>
-      <link>http://localhost:1313/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</link>
+      <link>http://thisismydemo.cloud/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</guid>
+      <guid>http://thisismydemo.cloud/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</guid>
       <description>Why Choose Windows Server Failover Clustering (WSFC) with Hyper‑V Over VMware Virtualization is a cornerstone of modern IT infrastructure, and VMware vSphere has long been a leader in this space. However, Microsoft&amp;rsquo;s Windows Server Failover Clustering (WSFC) with Hyper‑V offers a compelling alternative for organizations seeking a cost-effective, high-performance virtualization platform. In this post, targeted at IT professionals, we&amp;rsquo;ll explore why WSFC with Hyper‑V is a strong alternative to VMware – emphasizing the ability to leverage existing hardware (reducing new hardware costs), the performance benefits of Hyper‑V, available management tools, feature comparisons with VMware, and a look at licensing and cost differences.</description>
     </item>
   </channel>

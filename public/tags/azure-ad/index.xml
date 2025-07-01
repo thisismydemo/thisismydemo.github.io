@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure AD on This Is My Demo</title>
-    <link>http://localhost:1313/tags/azure-ad/</link>
+    <link>http://thisismydemo.cloud/tags/azure-ad/</link>
     <description>Recent content in Azure AD on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 10 Apr 2023 15:43:18 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/azure-ad/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/tags/azure-ad/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dipping My Big Toe Into Cross-Tenant Synchronization Part I</title>
-      <link>http://localhost:1313/post/dipping-big-toe-cross-tenant-synchronization-part/</link>
+      <link>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</link>
       <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/dipping-big-toe-cross-tenant-synchronization-part/</guid>
+      <guid>http://thisismydemo.cloud/post/dipping-big-toe-cross-tenant-synchronization-part/</guid>
       <description>So, I am very interested in What cross-tenant synchronization is and what it could do for me and maybe for customers? Since I have a number of tenants I thought it would be good to at least try this preview feature and blog about my experience.&#xA;Also, this blog originally started out as a single blog but as I started to write it it grew and grew and grew. I wanted to refocus myself and break it up into smaller parts.</description>
     </item>
   </channel>

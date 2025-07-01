@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Validated Nodes on This Is My Demo</title>
-    <link>http://localhost:1313/tags/validated-nodes/</link>
+    <link>http://thisismydemo.cloud/tags/validated-nodes/</link>
     <description>Recent content in Validated Nodes on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 27 Jun 2025 15:24:43 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/validated-nodes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jul 2025 13:49:51 +0000</lastBuildDate>
+    <atom:link href="http://thisismydemo.cloud/tags/validated-nodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Hardware Considerations - Part III</title>
-      <link>http://localhost:1313/post/cloud-hardware-considerations-part-iii/</link>
+      <link>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</link>
       <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://localhost:1313/post/cloud-hardware-considerations-part-iii/</guid>
+      <guid>http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/</guid>
       <description>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&amp;rsquo;s essentially outsourcing VMware onto Azure&amp;rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&amp;rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)&#xA;Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs.</description>
     </item>
   </channel>

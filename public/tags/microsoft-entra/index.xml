@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microsoft Entra on This Is My Demo</title>
-    <link>http://localhost:1313/tags/microsoft-entra/</link>
+    <link>http://thisismydemo.cloud/tags/microsoft-entra/</link>
     <description>Recent content in Microsoft Entra on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 01 Apr 2023 02:42:12 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/microsoft-entra/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/tags/microsoft-entra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Applying The Final Firmware Update for the Azure Percept DK</title>
-      <link>http://localhost:1313/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
+      <link>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://localhost:1313/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
+      <guid>http://thisismydemo.cloud/post/applying-the-final-firmware-update-for-the-azure-percept-dk/</guid>
       <description>I guess this will be part II of another blog I wrote called What! My Azure Percept DK Devices Are Being Retired???. In that blog I mentioned how the Percept devices that were not cheap are now going into &amp;ldquo;retirement.&amp;rdquo; The only way to keep using them for other things is to install the last &amp;ldquo;Unsupported&amp;rdquo; firmware update before March 30th. This is my blog about how to install this update since you can no longer do OTA updates on existing devices at this time.</description>
     </item>
     <item>
       <title>Entra Permissions Management Podcast</title>
-      <link>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</link>
+      <link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</guid>
+      <guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid>
       <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.&#xA;You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
     </item>
     <item>
       <title>Setting Up Entra Permissions Management</title>
-      <link>http://localhost:1313/post/2023-01-18-setting-up-entra-permissions-management/</link>
+      <link>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</link>
       <pubDate>Wed, 18 Jan 2023 17:59:11 +0000</pubDate>
-      <guid>http://localhost:1313/post/2023-01-18-setting-up-entra-permissions-management/</guid>
+      <guid>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</guid>
       <description>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in. The Identity product group has a nice little user guide out there on Microsoft Learn Trial user guide: Microsoft Entra Permissions Management. There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk.</description>
     </item>
   </channel>
