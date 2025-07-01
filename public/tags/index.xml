@@ -2,598 +2,605 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 01 Jul 2025 13:49:51 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Jul 2025 14:30:20 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Azure Local</title>
-      <link>http://thisismydemo.cloud/tags/azure-local/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-local/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hardware</title>
-      <link>http://thisismydemo.cloud/tags/hardware/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/hardware/</guid>
+      <title>Enterprise Features</title>
+      <link>http://localhost:1313/tags/enterprise-features/</link>
+      <pubDate>Mon, 30 Jun 2025 16:42:12 +0000</pubDate>
+      <guid>http://localhost:1313/tags/enterprise-features/</guid>
       <description></description>
     </item>
     <item>
       <title>Hyper-V</title>
-      <link>http://thisismydemo.cloud/tags/hyper-v/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/hyper-v/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Infrastructure</title>
-      <link>http://thisismydemo.cloud/tags/infrastructure/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/infrastructure/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>SAN</title>
-      <link>http://thisismydemo.cloud/tags/san/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/san/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Storage</title>
-      <link>http://thisismydemo.cloud/tags/storage/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/storage/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Validated Nodes</title>
-      <link>http://thisismydemo.cloud/tags/validated-nodes/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/validated-nodes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure VMware Solution</title>
-      <link>http://thisismydemo.cloud/tags/azure-vmware-solution/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-vmware-solution/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cost Analysis</title>
-      <link>http://thisismydemo.cloud/tags/cost-analysis/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cost-analysis/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Licensing</title>
-      <link>http://thisismydemo.cloud/tags/licensing/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/licensing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TCO</title>
-      <link>http://thisismydemo.cloud/tags/tco/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/tco/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VMware Cloud Foundation</title>
-      <link>http://thisismydemo.cloud/tags/vmware-cloud-foundation/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/vmware-cloud-foundation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows Server 2025</title>
-      <link>http://thisismydemo.cloud/tags/windows-server-2025/</link>
-      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-server-2025/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AVS</title>
-      <link>http://thisismydemo.cloud/tags/avs/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/avs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure</title>
-      <link>http://thisismydemo.cloud/tags/azure/</link>
-      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure/</guid>
+      <link>http://localhost:1313/tags/hyper-v/</link>
+      <pubDate>Mon, 30 Jun 2025 16:42:12 +0000</pubDate>
+      <guid>http://localhost:1313/tags/hyper-v/</guid>
       <description></description>
     </item>
     <item>
       <title>VMware</title>
-      <link>http://thisismydemo.cloud/tags/vmware/</link>
+      <link>http://localhost:1313/tags/vmware/</link>
+      <pubDate>Mon, 30 Jun 2025 16:42:12 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vmware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure Local</title>
+      <link>http://localhost:1313/tags/azure-local/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hardware</title>
+      <link>http://localhost:1313/tags/hardware/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Infrastructure</title>
+      <link>http://localhost:1313/tags/infrastructure/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/infrastructure/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SAN</title>
+      <link>http://localhost:1313/tags/san/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/san/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Storage</title>
+      <link>http://localhost:1313/tags/storage/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/storage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Validated Nodes</title>
+      <link>http://localhost:1313/tags/validated-nodes/</link>
+      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
+      <guid>http://localhost:1313/tags/validated-nodes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure VMware Solution</title>
+      <link>http://localhost:1313/tags/azure-vmware-solution/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/azure-vmware-solution/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cost Analysis</title>
+      <link>http://localhost:1313/tags/cost-analysis/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/cost-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Licensing</title>
+      <link>http://localhost:1313/tags/licensing/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/licensing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TCO</title>
+      <link>http://localhost:1313/tags/tco/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/tco/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VMware Cloud Foundation</title>
+      <link>http://localhost:1313/tags/vmware-cloud-foundation/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vmware-cloud-foundation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Server 2025</title>
+      <link>http://localhost:1313/tags/windows-server-2025/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/windows-server-2025/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AVS</title>
+      <link>http://localhost:1313/tags/avs/</link>
       <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/vmware/</guid>
+      <guid>http://localhost:1313/tags/avs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Azure</title>
+      <link>http://localhost:1313/tags/azure/</link>
+      <pubDate>Wed, 11 Jun 2025 12:45:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/azure/</guid>
       <description></description>
     </item>
     <item>
       <title>Cost Optimization</title>
-      <link>http://thisismydemo.cloud/tags/cost-optimization/</link>
+      <link>http://localhost:1313/tags/cost-optimization/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cost-optimization/</guid>
+      <guid>http://localhost:1313/tags/cost-optimization/</guid>
       <description></description>
     </item>
     <item>
       <title>Virtualization</title>
-      <link>http://thisismydemo.cloud/tags/virtualization/</link>
+      <link>http://localhost:1313/tags/virtualization/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/virtualization/</guid>
+      <guid>http://localhost:1313/tags/virtualization/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows Server</title>
-      <link>http://thisismydemo.cloud/tags/windows-server/</link>
+      <link>http://localhost:1313/tags/windows-server/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-server/</guid>
+      <guid>http://localhost:1313/tags/windows-server/</guid>
       <description></description>
     </item>
     <item>
       <title>WSFC</title>
-      <link>http://thisismydemo.cloud/tags/wsfc/</link>
+      <link>http://localhost:1313/tags/wsfc/</link>
       <pubDate>Fri, 06 Jun 2025 13:30:42 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/wsfc/</guid>
+      <guid>http://localhost:1313/tags/wsfc/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft</title>
-      <link>http://thisismydemo.cloud/tags/microsoft/</link>
+      <link>http://localhost:1313/tags/microsoft/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/microsoft/</guid>
+      <guid>http://localhost:1313/tags/microsoft/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows Server Failover Cluster</title>
-      <link>http://thisismydemo.cloud/tags/windows-server-failover-cluster/</link>
+      <link>http://localhost:1313/tags/windows-server-failover-cluster/</link>
       <pubDate>Mon, 26 May 2025 19:36:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-server-failover-cluster/</guid>
+      <guid>http://localhost:1313/tags/windows-server-failover-cluster/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Arc</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc/</link>
+      <link>http://localhost:1313/tags/azure-arc/</link>
       <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc/</guid>
+      <guid>http://localhost:1313/tags/azure-arc/</guid>
       <description></description>
     </item>
     <item>
       <title>SCVMM</title>
-      <link>http://thisismydemo.cloud/tags/scvmm/</link>
+      <link>http://localhost:1313/tags/scvmm/</link>
       <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/scvmm/</guid>
+      <guid>http://localhost:1313/tags/scvmm/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Arc-Enabled Servers</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link>
+      <link>http://localhost:1313/tags/azure-arc-enabled-servers/</link>
       <pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</guid>
+      <guid>http://localhost:1313/tags/azure-arc-enabled-servers/</guid>
       <description></description>
     </item>
     <item>
       <title>RDP</title>
-      <link>http://thisismydemo.cloud/tags/rdp/</link>
+      <link>http://localhost:1313/tags/rdp/</link>
       <pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/rdp/</guid>
+      <guid>http://localhost:1313/tags/rdp/</guid>
       <description></description>
     </item>
     <item>
       <title>SSH</title>
-      <link>http://thisismydemo.cloud/tags/ssh/</link>
+      <link>http://localhost:1313/tags/ssh/</link>
       <pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/ssh/</guid>
+      <guid>http://localhost:1313/tags/ssh/</guid>
       <description></description>
     </item>
     <item>
       <title>AWS</title>
-      <link>http://thisismydemo.cloud/tags/aws/</link>
+      <link>http://localhost:1313/tags/aws/</link>
       <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/aws/</guid>
+      <guid>http://localhost:1313/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>Multicloud Connector Enabled by Azure Arc</title>
-      <link>http://thisismydemo.cloud/tags/multicloud-connector-enabled-by-azure-arc/</link>
+      <link>http://localhost:1313/tags/multicloud-connector-enabled-by-azure-arc/</link>
       <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/multicloud-connector-enabled-by-azure-arc/</guid>
+      <guid>http://localhost:1313/tags/multicloud-connector-enabled-by-azure-arc/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Stack HCI</title>
-      <link>http://thisismydemo.cloud/tags/azure-stack-hci/</link>
+      <link>http://localhost:1313/tags/azure-stack-hci/</link>
       <pubDate>Mon, 05 Aug 2024 11:38:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-stack-hci/</guid>
+      <guid>http://localhost:1313/tags/azure-stack-hci/</guid>
       <description></description>
     </item>
     <item>
       <title>Dell APEX</title>
-      <link>http://thisismydemo.cloud/tags/dell-apex/</link>
+      <link>http://localhost:1313/tags/dell-apex/</link>
       <pubDate>Mon, 05 Aug 2024 11:38:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/dell-apex/</guid>
+      <guid>http://localhost:1313/tags/dell-apex/</guid>
       <description></description>
     </item>
     <item>
       <title>Ansible</title>
-      <link>http://thisismydemo.cloud/tags/ansible/</link>
+      <link>http://localhost:1313/tags/ansible/</link>
       <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/ansible/</guid>
+      <guid>http://localhost:1313/tags/ansible/</guid>
       <description></description>
     </item>
     <item>
       <title>MaaS</title>
-      <link>http://thisismydemo.cloud/tags/maas/</link>
+      <link>http://localhost:1313/tags/maas/</link>
       <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/maas/</guid>
+      <guid>http://localhost:1313/tags/maas/</guid>
       <description></description>
     </item>
     <item>
       <title>Terraform</title>
-      <link>http://thisismydemo.cloud/tags/terraform/</link>
+      <link>http://localhost:1313/tags/terraform/</link>
       <pubDate>Thu, 25 Jul 2024 15:00:13 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/terraform/</guid>
+      <guid>http://localhost:1313/tags/terraform/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Bastion</title>
-      <link>http://thisismydemo.cloud/tags/azure-bastion/</link>
+      <link>http://localhost:1313/tags/azure-bastion/</link>
       <pubDate>Mon, 19 Feb 2024 18:14:07 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-bastion/</guid>
+      <guid>http://localhost:1313/tags/azure-bastion/</guid>
       <description></description>
     </item>
     <item>
       <title>Linux</title>
-      <link>http://thisismydemo.cloud/tags/linux/</link>
+      <link>http://localhost:1313/tags/linux/</link>
       <pubDate>Mon, 19 Feb 2024 18:14:07 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/linux/</guid>
+      <guid>http://localhost:1313/tags/linux/</guid>
       <description></description>
     </item>
     <item>
       <title>VMWare VSphere</title>
-      <link>http://thisismydemo.cloud/tags/vmware-vsphere/</link>
+      <link>http://localhost:1313/tags/vmware-vsphere/</link>
       <pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/vmware-vsphere/</guid>
+      <guid>http://localhost:1313/tags/vmware-vsphere/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Arc-Mas</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-mas/</link>
+      <link>http://localhost:1313/tags/azure-arc-mas/</link>
       <pubDate>Fri, 05 Jan 2024 14:35:37 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc-mas/</guid>
+      <guid>http://localhost:1313/tags/azure-arc-mas/</guid>
       <description></description>
     </item>
     <item>
       <title>Cloud Family</title>
-      <link>http://thisismydemo.cloud/tags/cloud-family/</link>
+      <link>http://localhost:1313/tags/cloud-family/</link>
       <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cloud-family/</guid>
+      <guid>http://localhost:1313/tags/cloud-family/</guid>
       <description></description>
     </item>
     <item>
       <title>DFWSMUG</title>
-      <link>http://thisismydemo.cloud/tags/dfwsmug/</link>
+      <link>http://localhost:1313/tags/dfwsmug/</link>
       <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/dfwsmug/</guid>
+      <guid>http://localhost:1313/tags/dfwsmug/</guid>
       <description></description>
     </item>
     <item>
       <title>Festive Tech Calendar</title>
-      <link>http://thisismydemo.cloud/tags/festive-tech-calendar/</link>
+      <link>http://localhost:1313/tags/festive-tech-calendar/</link>
       <pubDate>Wed, 13 Dec 2023 21:20:30 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/festive-tech-calendar/</guid>
+      <guid>http://localhost:1313/tags/festive-tech-calendar/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Kubernetes Service</title>
-      <link>http://thisismydemo.cloud/tags/azure-kubernetes-service/</link>
+      <link>http://localhost:1313/tags/azure-kubernetes-service/</link>
       <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-kubernetes-service/</guid>
+      <guid>http://localhost:1313/tags/azure-kubernetes-service/</guid>
       <description></description>
     </item>
     <item>
       <title>WIndows Admin Center</title>
-      <link>http://thisismydemo.cloud/tags/windows-admin-center/</link>
+      <link>http://localhost:1313/tags/windows-admin-center/</link>
       <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-admin-center/</guid>
+      <guid>http://localhost:1313/tags/windows-admin-center/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Arc-Enabled Data Services</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</link>
+      <link>http://localhost:1313/tags/azure-arc-enabled-data-services/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</guid>
+      <guid>http://localhost:1313/tags/azure-arc-enabled-data-services/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Arc-Enabled Kubernetes</title>
-      <link>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</link>
+      <link>http://localhost:1313/tags/azure-arc-enabled-kubernetes/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-arc-enabled-kubernetes/</guid>
+      <guid>http://localhost:1313/tags/azure-arc-enabled-kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>The Festive Tech Calendar</title>
-      <link>http://thisismydemo.cloud/tags/the-festive-tech-calendar/</link>
+      <link>http://localhost:1313/tags/the-festive-tech-calendar/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/the-festive-tech-calendar/</guid>
+      <guid>http://localhost:1313/tags/the-festive-tech-calendar/</guid>
       <description></description>
     </item>
     <item>
       <title>PowerShell</title>
-      <link>http://thisismydemo.cloud/tags/powershell/</link>
+      <link>http://localhost:1313/tags/powershell/</link>
       <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/powershell/</guid>
+      <guid>http://localhost:1313/tags/powershell/</guid>
       <description></description>
     </item>
     <item>
       <title>WAC</title>
-      <link>http://thisismydemo.cloud/tags/wac/</link>
+      <link>http://localhost:1313/tags/wac/</link>
       <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/wac/</guid>
+      <guid>http://localhost:1313/tags/wac/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Managed Grafana</title>
-      <link>http://thisismydemo.cloud/tags/azure-managed-grafana/</link>
+      <link>http://localhost:1313/tags/azure-managed-grafana/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-managed-grafana/</guid>
+      <guid>http://localhost:1313/tags/azure-managed-grafana/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Managed Prometheus</title>
-      <link>http://thisismydemo.cloud/tags/azure-managed-prometheus/</link>
+      <link>http://localhost:1313/tags/azure-managed-prometheus/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-managed-prometheus/</guid>
+      <guid>http://localhost:1313/tags/azure-managed-prometheus/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Monitor</title>
-      <link>http://thisismydemo.cloud/tags/azure-monitor/</link>
+      <link>http://localhost:1313/tags/azure-monitor/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-monitor/</guid>
+      <guid>http://localhost:1313/tags/azure-monitor/</guid>
       <description></description>
     </item>
     <item>
       <title>Containers Insights</title>
-      <link>http://thisismydemo.cloud/tags/containers-insights/</link>
+      <link>http://localhost:1313/tags/containers-insights/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/containers-insights/</guid>
+      <guid>http://localhost:1313/tags/containers-insights/</guid>
       <description></description>
     </item>
     <item>
       <title>Kubernetes</title>
-      <link>http://thisismydemo.cloud/tags/kubernetes/</link>
+      <link>http://localhost:1313/tags/kubernetes/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/kubernetes/</guid>
+      <guid>http://localhost:1313/tags/kubernetes/</guid>
       <description></description>
     </item>
     <item>
       <title>MicrosK8S</title>
-      <link>http://thisismydemo.cloud/tags/microsk8s/</link>
+      <link>http://localhost:1313/tags/microsk8s/</link>
       <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/microsk8s/</guid>
+      <guid>http://localhost:1313/tags/microsk8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Home Assistant</title>
-      <link>http://thisismydemo.cloud/tags/home-assistant/</link>
+      <link>http://localhost:1313/tags/home-assistant/</link>
       <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/home-assistant/</guid>
+      <guid>http://localhost:1313/tags/home-assistant/</guid>
       <description></description>
     </item>
     <item>
       <title>Home Automation</title>
-      <link>http://thisismydemo.cloud/tags/home-automation/</link>
+      <link>http://localhost:1313/tags/home-automation/</link>
       <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/home-automation/</guid>
+      <guid>http://localhost:1313/tags/home-automation/</guid>
       <description></description>
     </item>
     <item>
       <title>FreshService</title>
-      <link>http://thisismydemo.cloud/tags/freshservice/</link>
+      <link>http://localhost:1313/tags/freshservice/</link>
       <pubDate>Mon, 22 May 2023 23:13:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/freshservice/</guid>
+      <guid>http://localhost:1313/tags/freshservice/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft Sentinel</title>
-      <link>http://thisismydemo.cloud/tags/microsoft-sentinel/</link>
+      <link>http://localhost:1313/tags/microsoft-sentinel/</link>
       <pubDate>Mon, 22 May 2023 23:13:05 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/microsoft-sentinel/</guid>
+      <guid>http://localhost:1313/tags/microsoft-sentinel/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure DevOps</title>
-      <link>http://thisismydemo.cloud/tags/azure-devops/</link>
+      <link>http://localhost:1313/tags/azure-devops/</link>
       <pubDate>Wed, 17 May 2023 15:11:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-devops/</guid>
+      <guid>http://localhost:1313/tags/azure-devops/</guid>
       <description></description>
     </item>
     <item>
       <title>GitHub</title>
-      <link>http://thisismydemo.cloud/tags/github/</link>
+      <link>http://localhost:1313/tags/github/</link>
       <pubDate>Wed, 17 May 2023 15:11:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/github/</guid>
+      <guid>http://localhost:1313/tags/github/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure AD</title>
-      <link>http://thisismydemo.cloud/tags/azure-ad/</link>
+      <link>http://localhost:1313/tags/azure-ad/</link>
       <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-ad/</guid>
+      <guid>http://localhost:1313/tags/azure-ad/</guid>
       <description></description>
     </item>
     <item>
       <title>Cross-Tenant Synchronization</title>
-      <link>http://thisismydemo.cloud/tags/cross-tenant-synchronization/</link>
+      <link>http://localhost:1313/tags/cross-tenant-synchronization/</link>
       <pubDate>Mon, 10 Apr 2023 15:41:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/cross-tenant-synchronization/</guid>
+      <guid>http://localhost:1313/tags/cross-tenant-synchronization/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure IoT</title>
-      <link>http://thisismydemo.cloud/tags/azure-iot/</link>
+      <link>http://localhost:1313/tags/azure-iot/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-iot/</guid>
+      <guid>http://localhost:1313/tags/azure-iot/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Percept</title>
-      <link>http://thisismydemo.cloud/tags/azure-percept/</link>
+      <link>http://localhost:1313/tags/azure-percept/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-percept/</guid>
+      <guid>http://localhost:1313/tags/azure-percept/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Percept Development Kit</title>
-      <link>http://thisismydemo.cloud/tags/azure-percept-development-kit/</link>
+      <link>http://localhost:1313/tags/azure-percept-development-kit/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-percept-development-kit/</guid>
+      <guid>http://localhost:1313/tags/azure-percept-development-kit/</guid>
       <description></description>
     </item>
     <item>
       <title>Microsoft Entra</title>
-      <link>http://thisismydemo.cloud/tags/microsoft-entra/</link>
+      <link>http://localhost:1313/tags/microsoft-entra/</link>
       <pubDate>Fri, 31 Mar 2023 23:15:49 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/microsoft-entra/</guid>
+      <guid>http://localhost:1313/tags/microsoft-entra/</guid>
       <description></description>
     </item>
     <item>
       <title>Iot Edge</title>
-      <link>http://thisismydemo.cloud/tags/iot-edge/</link>
+      <link>http://localhost:1313/tags/iot-edge/</link>
       <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/iot-edge/</guid>
+      <guid>http://localhost:1313/tags/iot-edge/</guid>
       <description></description>
     </item>
     <item>
       <title>Vision AI Developer Kit</title>
-      <link>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</link>
+      <link>http://localhost:1313/tags/vision-ai-developer-kit/</link>
       <pubDate>Fri, 24 Mar 2023 01:32:43 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/vision-ai-developer-kit/</guid>
+      <guid>http://localhost:1313/tags/vision-ai-developer-kit/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Sphere</title>
-      <link>http://thisismydemo.cloud/tags/azure-sphere/</link>
+      <link>http://localhost:1313/tags/azure-sphere/</link>
       <pubDate>Fri, 24 Mar 2023 01:06:44 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-sphere/</guid>
+      <guid>http://localhost:1313/tags/azure-sphere/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Sphere Development Kit</title>
-      <link>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</link>
+      <link>http://localhost:1313/tags/azure-sphere-development-kit/</link>
       <pubDate>Thu, 23 Mar 2023 19:51:12 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-sphere-development-kit/</guid>
+      <guid>http://localhost:1313/tags/azure-sphere-development-kit/</guid>
       <description></description>
     </item>
     <item>
       <title>Entra Permissions Management</title>
-      <link>http://thisismydemo.cloud/tags/entra-permissions-management/</link>
+      <link>http://localhost:1313/tags/entra-permissions-management/</link>
       <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/entra-permissions-management/</guid>
+      <guid>http://localhost:1313/tags/entra-permissions-management/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows Terminal</title>
-      <link>http://thisismydemo.cloud/tags/windows-terminal/</link>
+      <link>http://localhost:1313/tags/windows-terminal/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:27 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/windows-terminal/</guid>
+      <guid>http://localhost:1313/tags/windows-terminal/</guid>
       <description></description>
     </item>
     <item>
       <title>Intune</title>
-      <link>http://thisismydemo.cloud/tags/intune/</link>
+      <link>http://localhost:1313/tags/intune/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/intune/</guid>
+      <guid>http://localhost:1313/tags/intune/</guid>
       <description></description>
     </item>
     <item>
       <title>Proactive Remediation</title>
-      <link>http://thisismydemo.cloud/tags/proactive-remediation/</link>
+      <link>http://localhost:1313/tags/proactive-remediation/</link>
       <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/proactive-remediation/</guid>
+      <guid>http://localhost:1313/tags/proactive-remediation/</guid>
       <description></description>
     </item>
     <item>
       <title>Google Cloud Platform</title>
-      <link>http://thisismydemo.cloud/tags/google-cloud-platform/</link>
+      <link>http://localhost:1313/tags/google-cloud-platform/</link>
       <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/google-cloud-platform/</guid>
+      <guid>http://localhost:1313/tags/google-cloud-platform/</guid>
       <description></description>
     </item>
     <item>
       <title>Permissions Management</title>
-      <link>http://thisismydemo.cloud/tags/permissions-management/</link>
+      <link>http://localhost:1313/tags/permissions-management/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/permissions-management/</guid>
+      <guid>http://localhost:1313/tags/permissions-management/</guid>
       <description></description>
     </item>
     <item>
       <title>The Microsoft 425Show</title>
-      <link>http://thisismydemo.cloud/tags/the-microsoft-425show/</link>
+      <link>http://localhost:1313/tags/the-microsoft-425show/</link>
       <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/the-microsoft-425show/</guid>
+      <guid>http://localhost:1313/tags/the-microsoft-425show/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Files</title>
-      <link>http://thisismydemo.cloud/tags/azure-files/</link>
+      <link>http://localhost:1313/tags/azure-files/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-files/</guid>
+      <guid>http://localhost:1313/tags/azure-files/</guid>
       <description></description>
     </item>
     <item>
       <title>Endpoint Management</title>
-      <link>http://thisismydemo.cloud/tags/endpoint-management/</link>
+      <link>http://localhost:1313/tags/endpoint-management/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/endpoint-management/</guid>
+      <guid>http://localhost:1313/tags/endpoint-management/</guid>
       <description></description>
     </item>
     <item>
       <title>Poractive Remediation</title>
-      <link>http://thisismydemo.cloud/tags/poractive-remediation/</link>
+      <link>http://localhost:1313/tags/poractive-remediation/</link>
       <pubDate>Wed, 11 Jan 2023 18:22:25 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/poractive-remediation/</guid>
+      <guid>http://localhost:1313/tags/poractive-remediation/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure Site Recovery</title>
-      <link>http://thisismydemo.cloud/tags/azure-site-recovery/</link>
+      <link>http://localhost:1313/tags/azure-site-recovery/</link>
       <pubDate>Sun, 01 Jan 2023 15:58:24 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/azure-site-recovery/</guid>
+      <guid>http://localhost:1313/tags/azure-site-recovery/</guid>
       <description></description>
     </item>
     <item>
       <title>Front Matter</title>
-      <link>http://thisismydemo.cloud/tags/front-matter/</link>
+      <link>http://localhost:1313/tags/front-matter/</link>
       <pubDate>Sun, 01 Jan 2023 07:52:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/front-matter/</guid>
+      <guid>http://localhost:1313/tags/front-matter/</guid>
       <description></description>
     </item>
     <item>
       <title>GitHub Pages</title>
-      <link>http://thisismydemo.cloud/tags/github-pages/</link>
+      <link>http://localhost:1313/tags/github-pages/</link>
       <pubDate>Sun, 01 Jan 2023 07:52:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/github-pages/</guid>
+      <guid>http://localhost:1313/tags/github-pages/</guid>
       <description></description>
     </item>
     <item>
       <title>Hugo</title>
-      <link>http://thisismydemo.cloud/tags/hugo/</link>
+      <link>http://localhost:1313/tags/hugo/</link>
       <pubDate>Sun, 01 Jan 2023 07:52:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/tags/hugo/</guid>
+      <guid>http://localhost:1313/tags/hugo/</guid>
       <description></description>
     </item>
   </channel>

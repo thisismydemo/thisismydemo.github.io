@@ -2,108 +2,108 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure Arc-Mas on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/azure-arc-mas/</link>
+    <link>http://localhost:1313/tags/azure-arc-mas/</link>
     <description>Recent content in Azure Arc-Mas on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 05 Jan 2024 14:41:18 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/azure-arc-mas/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/azure-arc-mas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The 12 Days of Azure-ArcMas - Summary</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</link>
+      <link>http://localhost:1313/post/12-days-azure-arcmas-summary/</link>
       <pubDate>Fri, 05 Jan 2024 14:35:37 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-summary/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arcmas-summary/</guid>
       <description>The 12 Days of Azure Arc-Mas: A Festive Journey Through Azure&amp;rsquo;s Hybrid and Multi-Cloud Capabilities I counted down to the end of the year, and was excited to bring you a special gift: “The 12 Days of Azure Arc-Mas.” This series was inspired by the classic carol “The Twelve Days of Christmas,” with a tech twist that celebrates the gifts Azure Arc delivers to IT professionals each day. This was a fun series that was very high level.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Twelve Drums Celebrating</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-twelve-drums-celebrating/</link>
       <pubDate>Fri, 05 Jan 2024 14:10:37 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-twelve-drums-celebrating/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-twelve-drums-celebrating/</guid>
       <description>Celebrating Success: The 12th Day of Azure Arc-Mas On the twelfth day of Arc-mas, our Azure journey culminates in a grand celebration of achievements. Azure Arc has played a pivotal role in transforming how organizations manage their hybrid and multi-cloud environments, and today, we share these triumphs.&#xA;The Beat of Progress: Twelve Drums Celebrating 🥁 Azure Arc&amp;rsquo;s story is one of innovation, efficiency, and operational excellence. As we celebrate the victories of the past, we are excited to share the real-world impacts and success stories that have been made possible through this powerful tool.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Eleven Logs a-Streaming</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-eleven-logs-streaming/</link>
       <pubDate>Thu, 04 Jan 2024 14:10:03 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-eleven-logs-streaming/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-eleven-logs-streaming/</guid>
       <description>Day 11: Eleven Logs a-Streaming - Azure Arc&amp;rsquo;s Unified Monitoring and Insights Azure Monitored Me: Eleven Logs a-Streaming On the eleventh day of Arc-mas, we delve into the streams of logs and the symphony of insights that Azure Arc conducts across all environments. Like pipers piping a harmonious tune, Azure Arc orchestrates a continuous flow of telemetry data, ensuring a comprehensive view of your applications&amp;rsquo; health and performance.&#xA;Insights Across All Environments Azure Arc shines its beacon across containerized applications, virtual machines, and hyper-converged infrastructure (HCI), illuminating the landscape with Container Insights, VM Insights, and HCI Insights.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Ten Clouds Connecting</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-ten-clouds-connecting/</link>
       <pubDate>Wed, 03 Jan 2024 14:42:45 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-ten-clouds-connecting/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-ten-clouds-connecting/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 10 - Ten Clouds Connecting On the tenth day of Azure Arc-Mas, Azure bridged for me: Ten Clouds Connecting, crafting a tapestry of seamless cloud integration.&#xA;Day 10: Crafting a Seamless Multi-Cloud Strategy with Azure Arc As ten lords leap across disparate clouds, Azure Arc weaves them into a single, harmonious domain, bridging gaps and aligning silos.&#xA;Uniting Diverse Cloud Landscapes: Consistent Management: Azure Arc&amp;rsquo;s orchestration extends across AWS, GCP, and Azure, bringing a cohesive governance experience.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Nine Devs a Dancing</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-devs-dancing/</link>
       <pubDate>Tue, 02 Jan 2024 14:33:31 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-devs-dancing/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-devs-dancing/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 9 - Nine Devs a-Dancing On the ninth day of Azure Arc-Mas, Azure eased for me: Nine Devs a-Dancing, with one-click deployments enhancing their crafting.&#xA;Day 9: Simplifying Deployment for Developers with Azure Arc Azure Arc orchestrates a developer&amp;rsquo;s dance, a ballet of bits and bytes where every step is synchronized, every leap is automated, and every twirl is streamlined. Day Nine centered around &amp;ldquo;User Experience,&amp;rdquo; highlighting how Azure Arc enhances the experience for developers, operators, and IT professionals managing hybrid and multi-cloud environments.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Eight Custom Locations</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-custom-locations/</link>
       <pubDate>Mon, 01 Jan 2024 14:47:13 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-custom-locations/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-custom-locations/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 8 - Eight Custom Locations On the eighth day of Azure Arc-Mas, Azure carved for me: Eight Custom Locations, sculpting new possibilities for service migrations and innovations.&#xA;Day 8: Expanding Horizons with Azure Arc Custom Locations Azure Arc brings us eight maids a-milking, each nurturing the growth of Azure services in the fertile fields of our own environments, no matter how unique or specific they may be.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Seven Policies Ringing</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-policies-ringing/</link>
       <pubDate>Sun, 31 Dec 2023 15:07:12 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-policies-ringing/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-policies-ringing/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 7 - Seven Policies Ringing On the seventh day of Azure Arc-Mas, Azure secured me: Seven Policies Ringing, ensuring governance across clouds with precision and clarity.&#xA;Day 7: Securing Multicloud Governance with Azure Arc Azure Arc brings to us seven swans a-swimming, gracefully navigating the waters of multicloud governance, representing the beauty and elegance of a well-orchestrated security strategy.&#xA;Harnessing the Power of Policy-Driven Management: Azure Policy: Extend governance across Azure and non-Azure environments, applying consistent policies everywhere.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Six Apps Deploying</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-apps-deploying/</link>
       <pubDate>Sat, 30 Dec 2023 19:27:58 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-apps-deploying/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-apps-deploying/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 6 - Six Apps Deploying On the sixth day of Azure Arc-Mas, Azure showed to me: Six Apps Deploying, marking innovation at its finest for productivity employing.&#xA;Day 6: Fostering Innovation with Azure Arc Azure Arc brings six geese a-laying, each laying the foundation for innovative app deployment, orchestrating the birth of new solutions with cloud-native development across any environment.&#xA;Powering Agile Application Development: End-to-End Solutions: From local data collection to cloud-based analytics, Azure Arc provides a comprehensive platform for app development.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Five Golden Savings</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-golden-savings/</link>
       <pubDate>Fri, 29 Dec 2023 19:28:34 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-golden-savings/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-golden-savings/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 5 - Five Golden Savings On the fifth day of Azure Arc-Mas, Azure saved for me: Five Golden Savings, bringing hybrid benefits that make fiscal sense truly engraving.&#xA;The Fifth Day of Arc-mas: Embracing Azure Arc&amp;rsquo;s &amp;ldquo;Five Golden Savings&amp;rdquo; Azure Hybrid Benefit: A Beacon of Cost Optimization Azure Arc&amp;rsquo;s Hybrid Benefit transforms existing Windows Server and SQL Server licenses with Software Assurance or qualifying subscription licenses into a cost-saving strategy within Azure Arc-enabled services.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Four Nodes Connecting</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-nodes-connecting/</link>
       <pubDate>Thu, 28 Dec 2023 19:02:55 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-nodes-connecting/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-nodes-connecting/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 4 - Four Nodes Connecting On the fourth day of Azure Arc-Mas, Azure offered me: Four Nodes Connecting, bringing together a variety of choices for infrastructure selecting.&#xA;Day 4: Flexible Infrastructure and Connectivity Azure Arc&amp;rsquo;s fourth gift to us is the power of connection — linking diverse infrastructures from the conventional to the cutting-edge, and ensuring that whether it&amp;rsquo;s Windows Server, Linux, VMware vSphere, or Azure Stack HCI, your nodes are all part of the same, seamlessly managed ecosystem.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Three Services Scaling</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-services-scaling/</link>
       <pubDate>Wed, 27 Dec 2023 19:49:59 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-services-scaling/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-services-scaling/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 3 - Three Services Scaling On the third day of Azure Arc-Mas, Azure gifted me: Three Services Scaling, with Azure SQL and PostgreSQL providing no downtime feeling.&#xA;Day 3: Data Insights - Azure Arc for Data Services Azure Arc celebrates the season by bringing the robustness of Azure data services directly to Kubernetes clusters, regardless of their location. Imagine Azure SQL Managed Instance and Azure Database for PostgreSQL, not just housed within Azure but anywhere you require – without missing a beat.</description>
     </item>
     <item>
       <title>The 12 Days of Azure Arc-Mas - Two Clusters Flexing</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</link>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas-clusters-flexing/</link>
       <pubDate>Wed, 27 Dec 2023 00:07:02 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas-clusters-flexing/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas-clusters-flexing/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 2 - Two Cluster Flexing On the second day of Azure Arc-Mas, Azure sent to me: Two Clusters Flexing, managed from Azure, yet running so free.&#xA;Embracing Duality: Kubernetes Clusters and Azure Data Services Azure Arc brings duality and harmony between Kubernetes clusters and Azure data services, offering a seamless operational experience that&amp;rsquo;s both managed from Azure and capable of running anywhere.&#xA;Azure Arc&amp;rsquo;s Key Messages: Consistent Development and Operations: Azure Arc fosters uniform development and operations of cloud-native applications across any Kubernetes environment.</description>
     </item>
     <item>
       <title>The 12 Days of Azure ArcMas - A Console In A Cloud Tree</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</link>
+      <link>http://localhost:1313/post/12-days-azure-arcmas-console-cloud-tree/</link>
       <pubDate>Tue, 26 Dec 2023 03:10:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-console-cloud-tree/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arcmas-console-cloud-tree/</guid>
       <description>The 12 Days of Azure Arc-Mas: Day 1 - Centralized Management On the first day of Azure Arc-Mas, Azure granted me: A Console in a Cloud Tree.&#xA;Single Control Plane Across Environments Azure Arc is like the partridge in a pear tree at the heart of your environment&amp;rsquo;s management, extending the familiar Azure services to wherever your resources reside. It simplifies the complex, multi-faceted nature of modern IT landscapes by offering a unified management experience, enabling you to view and manage your resources irrespective of their physical or cloud location.</description>
     </item>
     <item>
       <title>The 12 Days of Azure ArcMas - Introduction</title>
-      <link>http://thisismydemo.cloud/post/12-days-azure-arcmas-introduction/</link>
+      <link>http://localhost:1313/post/12-days-azure-arcmas-introduction/</link>
       <pubDate>Sun, 24 Dec 2023 22:55:18 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/12-days-azure-arcmas-introduction/</guid>
+      <guid>http://localhost:1313/post/12-days-azure-arcmas-introduction/</guid>
       <description>Introducing The 12 Days of Azure Arc-Mas: A Festive Journey Through Cloud Management Happy Holidays, tech enthusiasts! 🎄 As we count down to the end of the year, I&amp;rsquo;m excited to bring you a special gift: &amp;ldquo;The 12 Days of Azure Arc-Mas.&amp;rdquo; This series is inspired by the classic carol &amp;ldquo;The Twelve Days of Christmas,&amp;rdquo; with a tech twist that celebrates the gifts Azure Arc delivers to IT professionals each day.</description>
     </item>
   </channel>
