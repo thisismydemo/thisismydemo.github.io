@@ -5,17 +5,17 @@ date: 2025-05-26T19:36:45.162Z
 preview: /img/rethinkvmware/bloglogo.png
 draft: false
 tags:
-  - Azure Local
-  - Hyper-V
-  - Microsoft
-  - VMware
-  - Windows Server 2025
-  - Windows Server Failover Cluster
-  - WSFC
+    - Azure Local
+    - Hyper-V
+    - Microsoft
+    - VMware
+    - Windows Server 2025
+    - Windows Server Failover Cluster
+    - WSFC
 categories:
-  - Azure Local
-  - Windows Server Failover Cluster
-lastmod: 2025-07-01T13:49:51.352Z
+    - Azure Local
+    - Windows Server Failover Cluster
+lastmod: 2025-07-02T00:01:40.806Z
 thumbnail: /img/rethinkvmware/bloglogo.png
 lead: How Hyper-V with Windows Server Clustering Stays Relevant in an Azure-First World
 slug: rethinking-virtualization-post-vmware
@@ -50,7 +50,7 @@ From that vantage point, I remain a strong advocate of Microsoft hybrid solution
 - **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
 - **Part II**: [Beyond the Cloud: 2025 Virtualization Licensing Guide](https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/)
 - **Part III**: [Beyond the Cloud: Hardware Considerations](https://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/)
-- **Part IV**: Beyond the Cloud: Feature Face-Off - Windows Server Hyper-V vs VMware *(Coming Soon)*
+- **Part IV**: [Beyond the Cloud: Feature Face-Off - Part IV](https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/)
 
 ## Things in the blog
 

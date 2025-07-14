@@ -5,18 +5,18 @@ date: 2025-06-11T12:45:00.428Z
 preview: /img/rethinkvmware/capex_banner.png
 draft: false
 tags:
-  - Azure
-  - Hyper-V
-  - VMware
-  - TCO
-  - Cost Analysis
-  - Azure Local
-  - AVS
+    - Azure
+    - Hyper-V
+    - VMware
+    - TCO
+    - Cost Analysis
+    - Azure Local
+    - AVS
 categories:
-  - Cloud Computing
-  - Infrastructure
-  - Cost Analysis
-lastmod: 2025-07-01T13:49:51.399Z
+    - Cloud Computing
+    - Infrastructure
+    - Cost Analysis
+lastmod: 2025-07-02T00:01:40.829Z
 thumbnail: /img/rethinkvmware/capex_banner.png
 lead: Which stack is cheapest over five years for a 100 VM footprint? A detailed TCO analysis of Hyper-V, Azure VMware Solution, and Azure Local.
 slug: capex-subscription-tco-modeling-hyper-azure-local-avs
@@ -38,7 +38,7 @@ Our goal is to determine which stack delivers the lowest TCO over a five-year sp
 - **Part I**: Beyond the Cloud: CapEx vs Subscription TCO Analysis *(This Post)*
 - **Part II**: [Beyond the Cloud: 2025 Virtualization Licensing Guide](https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/)
 - **Part III**: [Beyond the Cloud: Hardware Considerations](https://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/)
-- **Part IV**: Beyond the Cloud: Feature Face-Off - Windows Server Hyper-V vs VMware *(Coming Soon)*
+- **Part IV**: [Beyond the Cloud: Feature Face-Off - Part IV](https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/)
 
 ## Table of Contents
 

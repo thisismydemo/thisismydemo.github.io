@@ -5,18 +5,18 @@ date: 2025-06-24T14:02:32.120Z
 preview: /img/rethinkvmware/part2banner.png
 draft: false
 tags:
-  - Windows Server 2025
-  - Azure Local
-  - Azure VMware Solution
-  - VMware Cloud Foundation
-  - Licensing
-  - Cost Analysis
-  - TCO
+    - Windows Server 2025
+    - Azure Local
+    - Azure VMware Solution
+    - VMware Cloud Foundation
+    - Licensing
+    - Cost Analysis
+    - TCO
 categories:
-  - Infrastructure
-  - Licensing
-  - Virtualization
-lastmod: 2025-07-01T13:49:51.367Z
+    - Infrastructure
+    - Licensing
+    - Virtualization
+lastmod: 2025-07-02T00:01:40.856Z
 thumbnail: /img/rethinkvmware/part2banner.png
 lead: Virtualization licensing just got complicated. With VMware's Broadcom acquisition driving 3x cost increases and Microsoft introducing new subscription models, IT leaders need a clear roadmap. This blog provides the analysis and insights you need to make informed decisions that align with your budget and strategy.
 slug: choosing-your-virtualization-platform-2025-licensing-analysis
@@ -32,7 +32,7 @@ A key factor driving those cost differences was how each platform's licensing mo
 - **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
 - **Part II**: Beyond the Cloud: 2025 Virtualization Licensing Guide *(This Post)*
 - **Part III**: [Beyond the Cloud: Hardware Considerations](https://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/)
-- **Part IV**: Beyond the Cloud: Feature Face-Off - Windows Server Hyper-V vs VMware *(Coming Soon)*
+- **Part IV**: [Beyond the Cloud: Feature Face-Off - Part IV](https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/)
 
 ## Table of Contents
 

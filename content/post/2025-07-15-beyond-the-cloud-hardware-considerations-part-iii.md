@@ -5,21 +5,21 @@ date: 2025-06-26T12:52:40.687Z
 preview: /img/rethinkvmware/hardware-part3-banner.png
 draft: false
 tags:
-  - Hardware
-  - Storage
-  - SAN
-  - Validated Nodes
-  - Infrastructure
-  - Hyper-V
-  - Azure Local
+    - Hardware
+    - Storage
+    - SAN
+    - Validated Nodes
+    - Infrastructure
+    - Hyper-V
+    - Azure Local
 categories:
-  - Infrastructure
-  - Hardware
-  - Virtualization
+    - Infrastructure
+    - Hardware
+    - Virtualization
 thumbnail: /img/rethinkvmware/hardware-part3-banner.png
 lead: Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K+, and VMware VCF 9.0 deprecates older hardware anyway. This analysis provides a framework for making hardware decisions that fit your organization's timeline and budget constraints.
 slug: cloud-hardware-considerations-part-iii
-lastmod: 2025-07-01T13:49:51.378Z
+lastmod: 2025-07-02T00:01:40.875Z
 ---
 
 *(Note: AVS – Azure VMware Solution – is not covered in detail here since it's essentially outsourcing VMware onto Azure's hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure's instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)*
@@ -34,7 +34,7 @@ lastmod: 2025-07-01T13:49:51.378Z
 - **Part I**: [Beyond the Cloud: CapEx vs Subscription TCO Analysis](https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/)
 - **Part II**: [Beyond the Cloud: 2025 Virtualization Licensing Guide](https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/)
 - **Part III**: Hardware Considerations - Build Your Cloud on Your Terms *(This Post)*
-- **Part IV**: Beyond the Cloud: Feature Face-Off - Windows Server Hyper-V vs VMware *(Coming Soon)*
+- **Part IV**: [Beyond the Cloud: Feature Face-Off - Part IV](https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/)
 
 ---
 

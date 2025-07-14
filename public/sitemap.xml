@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -18,7 +18,7 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -33,132 +33,132 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/hyper-v/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/infrastructure/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/virtualization/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/vmware/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/azure-local/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/cloud-hardware-considerations-part-iii/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/hardware/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/hardware/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/infrastructure/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/san/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/storage/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/validated-nodes/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/azure-vmware-solution/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/cost-analysis/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/licensing/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/licensing/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/tco/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/vmware-cloud-foundation/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/windows-server-2025/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/avs/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/azure/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/capex-subscription-tco-modeling-hyper-azure-local-avs/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/cloud-computing/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/cost-analysis/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -183,32 +183,32 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/wsfc/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/azure-local/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/rethinking-virtualization-post-vmware/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/microsoft/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/windows-server-failover-cluster/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/windows-server-failover-cluster/</loc>
-    <lastmod>2025-07-01T13:49:51+00:00</lastmod>
+    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
