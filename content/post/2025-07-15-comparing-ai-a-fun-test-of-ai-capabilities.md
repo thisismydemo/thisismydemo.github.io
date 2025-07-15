@@ -1,9 +1,9 @@
 ---
 title: "Comparing AI: A fun test of AI capabilities"
 description: An entertaining comparison of 5 AI models (OpenAI GPT-4.5, Google Gemini, Claude Sonnet 4, Grok AI, Microsoft Copilot) tackling GitHub Copilot Chat configuration.
-date: 2025-07-15T14:43:34.525Z
+date: 2025-07-15T20:24:14.554Z
 preview: /img/ai/funwithai/blogbanner.png
-draft: true
+draft: false
 tags:
   - AI
   - OpenAI
@@ -24,7 +24,7 @@ categories:
   - AI
   - Comparison
   - GitHub Copilot
-lastmod: 2025-07-15T20:14:41.207Z
+lastmod: 2025-07-15T20:25:04.725Z
 thumbnail: /img/ai/funwithai/blogbanner.png
 lead: What happens when you throw the same chaotic brain dump at five different AI models? Join me for an entertaining battle royale between OpenAI GPT-4.5, Google Gemini 2.5 Pro, Claude Sonnet 4, Grok AI, and Microsoft Copilot as they attempt to decode my scattered thoughts about GitHub Copilot Chat configuration. It's like 'The Hunger Games' but for artificial intelligence!
 slug: comparing-ai-fun-test-ai-capabilities
