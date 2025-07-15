@@ -3,57 +3,117 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-15T19:06:26+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-15T19:06:26+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <loc>http://localhost:1313/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/</loc>
+    <lastmod>2025-07-15T19:06:26+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/arc-enabled-scvmm/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/arc-enabled-servers/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/azure-arc/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/azure-arc/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/beyond-cloud-arc-enable-everything-part-v/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/enterprise-features/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <loc>http://localhost:1313/tags/cost-optimization/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/feature-comparison/</loc>
-    <lastmod>2025-07-01T23:16:16+00:00</lastmod>
+    <loc>http://localhost:1313/tags/enterprise-management/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/hyper-v/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/infrastructure/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/policy-management/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/scvmm/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/unified-management/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/virtualization/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/vmware-alternative/</loc>
+    <lastmod>2025-07-14T15:52:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</loc>
+    <lastmod>2025-07-02T00:03:44+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/enterprise-features/</loc>
+    <lastmod>2025-07-02T00:03:44+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/feature-comparison/</loc>
+    <lastmod>2025-07-02T00:03:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/vmware/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
+    <lastmod>2025-07-02T00:03:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -162,11 +222,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/cost-optimization/</loc>
-    <lastmod>2025-06-06T14:09:17+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>http://localhost:1313/post/2025-06-06-powerful-practical-proven-why-wsfc-and-hyperv-deserve-a-second-look/</loc>
     <lastmod>2025-06-06T14:09:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -212,28 +267,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/azure-arc/</loc>
-    <lastmod>2025-05-14T23:15:28+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>http://localhost:1313/post/choosing-windows-clustering-strategy-2025/</loc>
-    <lastmod>2025-05-14T23:15:28+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/scvmm/</loc>
     <lastmod>2025-05-14T23:15:28+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/windows-clustering/</loc>
     <lastmod>2025-05-14T23:15:28+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/categories/azure-arc/</loc>
-    <lastmod>2025-01-26T20:20:42+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -932,7 +972,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/post/feature-face-off-part-iv-review-suggestions/</loc>
+    <loc>http://localhost:1313/post/2025-08-15-beyond-the-cloud-arc-enabled-blog-summary/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
