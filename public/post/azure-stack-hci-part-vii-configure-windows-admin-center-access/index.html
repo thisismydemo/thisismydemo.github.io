@@ -1,398 +1,106 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access - This Is My Demo</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:url" content="http://localhost:1313/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/">
-  <meta property="og:site_name" content="This Is My Demo">
-  <meta property="og:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access">
-  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2023-11-06T20:39:04+00:00">
-    <meta property="article:modified_time" content="2023-11-06T22:28:51+00:00">
-    <meta property="article:tag" content="Azure Stack HCI">
-    <meta property="article:tag" content="WIndows Admin Center">
-
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access">
-  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	
-
-	<link rel="shortcut icon" href="/favicon.ico">
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">This Is My Demo</div>
-					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1"></span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Azure Stack HCI - Part VII - Configure Windows Admin Center Access</h1>
-			<p class="post__lead">This is a series of blogs about my experiences with Azure Stack HCI</p>
-			<div class="post__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-11-06T20:39:04Z">November 06, 2023</time>
-	<time class="meta__text" datetime="2023-11-06T22:28:51Z">(: November 06, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
-	</span>
-</div></div>
-		</header>
-		
-	<figure class="post__thumbnail thumbnail">
-		
-		<img class="thumbnail__image" src="/img/azshci-series/part-vi/windows-admin-center.png" alt="Azure Stack HCI - Part VII - Configure Windows Admin Center Access">
-		
-	</figure><div class="content post__content clearfix">
-			<p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p>
-<p>So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.  I will be honest, up until right before I just created this blog, I never really gave any thought to this.  Well, maybe some thought but since I don&rsquo;t really use WAC a lot, I never saw it as a need in my environment. Plus, I am the only one who has access to my lab environment anyway. (That I am aware of!)</p>
-<p>So, we have our Windows Admin Center deployed and we have it registered with Azure. That is great, right? Well, not so great if you are just using the default security settings out of the box. In this blog I will walk through two ways to give users access to our Windows Admin Centers, the first is using Active Directory and the second is using RBAC via Azure and Entra ID (Azure Active Directory)</p>
-<h2 id="default-security-settings">Default Security Settings</h2>
-<p>Let&rsquo;s look at what is default out of the box first. As you can see in the image below we are not currently using Azure Active Directory (Entra ID) at this point to manage authentication. Neither are we using Multi-factor authentication. It currently is setup to allow Builtin\users to login and manage devices, and it is configured for all Builtin\Administrators the Gateway administrator role which gives anyone in that group rights to control access as well</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20144644.png"></p>
-<p>We want to secure our gateway and control access to Windows Admin Center. This will and should improve the security around management of this environment.</p>
-<h2 id="using-active-directory">Using Active Directory</h2>
-<p>By using Active Directory and/or local machine groups for identity we can secure access locally. This may be all we need depending on the environment. If I stayed with this configuration in a production non lab environment I would add some managed Active Directory groups that would be assigned to one of the two roles.</p>
-<p>I have created two new Active Directory security groups:</p>
-<ul>
-<li>WACGatewayUsers</li>
-<li>WACGatewayAdministrators</li>
-</ul>
-<p>I will then add these two groups as Allowed groups on our Access settings page.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154316.png"></p>
-<p>As you can now see I have both groups added.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154747.png"></p>
-<p>My next step, i removed the BUILTIN\Users group. It will not let you via Windows Admin Center to remove the BUILTIN\Administrators group.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20154946.png"></p>
-<p>So we are now a little more secure at this point and can control which users have access to Windows Admin Center by using Active Directory.</p>
-<h2 id="using-microsoft-entra-id-azure-active-directory">Using Microsoft Entra ID (Azure Active Directory)</h2>
-<p>The better of the two options in my opinion will be for me to enable authentication to Windows Admin Center using Entra ID, or what was called Azure Active Directory. From the same Gateway access settings blade, we will flip the switch next to &ldquo;Use Azure Active Directory to add a layer of security to the gateway&rdquo; from no to yes.</p>
-<p>Doing show will give us some instructions on how we need to configure our Azure AD Application we created earlier to give users access.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155451.png"></p>
-<p>By clicking on the link &ldquo;Go to your Gateway Azure AD app in the Azure portal, it will open up our Azure AD app for us to configure.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20155635.png"></p>
-<p>Here we will change the setting Assignment Required from No to Yes. Then we click save. At this point only users who have been assigned under the Users and Groups section under Manage or our Azure AD Group.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160333.png"></p>
-<p>My demo tenant doesn&rsquo;t have the active directory plan (Entra ID) to add groups to Users and Groups. In most cases you would already have created an Entra ID group for the two roles, one for Gateway Administrators and the other for Gateway Users and manage memberships from Entra ID.  So here, I just had to manually assign users.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160623.png"></p>
-<p>On the next screen I will assign them a role of Gateway Users under select a role. Then click Assign. I will repeat this to add any Gateway Administrators that I may need.</p>
-<p>Now we should have all our users assigned either the Gateway User role or the Gateway Administrators role.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20160836.png"></p>
-<p>We should now be able to log on to Windows Admin Center using our Entra ID credentials. So let&rsquo;s try it for Hagrid?</p>
-<p>Let&rsquo;s go to our account settings screen and make sure we are signed out.  Then I will click on Sign In.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161735.png"></p>
-<p>Here I will put Hagrid&rsquo;s login information and click sign Next.</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161622.png"></p>
-<p>Within a few seconds and after verify via our Microsoft Authenticator app, Hagrid is now signed on. Your A Wizard Harry!</p>
-<p><img src="/img/azshci-series/part-vii/Screenshot%202023-11-06%20161536.png"></p>
-<h2 id="final-thoughts">Final Thoughts</h2>
-<p>Well, I really have none.  Just use Azure Active Directory or I mean Entra ID from now on. It makes RBAC so much simpler!</p>
-
-		</div>
-		<footer class="post__footer">
-			
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-stack-hci/" rel="tag">Azure Stack HCI</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/windows-admin-center/" rel="tag">Windows Admin Center</a>
-		</li>
-	</ul>
-</div>
-		</footer>
-	</article>
-</main>
-
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
-	</div>
-	<div class="authorbox__description">
-		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
-	</div>
-</div>
-
-<nav class="pager flex">
-	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/12-days-azure-arc-mas/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">The 12 Days of Azure Arc-Mas!</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</p>
-		</a>
-	</div>
-</nav>
-
-
-			</div>
-			<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
-	</form>
-</div>
-<div class="widget-recent widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure/">Azure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune/">Intune</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
-	</div>
-</div>
-<div class="widget-social widget">
-	<h4 class="widget-social__title widget__title"></h4>
-	<div class="widget-social__content widget__content">
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
-				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
-				<span>LinkedIn</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
-				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
-			</a>
-		</div>
-
-		
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits"></span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access - This Is My Demo</title>
+<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="This is a series of blogs about my experiences with Azure Stack HCI"><meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access"><meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-11-06T20:39:04+00:00"><meta property="article:modified_time" content="2023-11-06T22:28:51+00:00"><meta property="article:tag" content="Azure Stack HCI"><meta property="article:tag" content="WIndows Admin Center"><meta name=twitter:card content="summary"><meta name=twitter:title content="Azure Stack HCI - Part VII - Configure Windows Admin Center Access"><meta name=twitter:description content="This is a series of blogs about my experiences with Azure Stack HCI"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access</h1><p class=post__lead>This is a series of blogs about my experiences with Azure Stack HCI</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-11-06T20:39:04Z>November 06, 2023</time>
+<time class=meta__text datetime=2023-11-06T22:28:51Z>(: November 06, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-stack-hci/ rel=category>Azure Stack HCI</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/azshci-series/part-vi/windows-admin-center.png alt="Azure Stack HCI - Part VII - Configure Windows Admin Center Access"></figure><div class="content post__content clearfix"><p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p><p>So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster. I will be honest, up until right before I just created this blog, I never really gave any thought to this. Well, maybe some thought but since I don&rsquo;t really use WAC a lot, I never saw it as a need in my environment. Plus, I am the only one who has access to my lab environment anyway. (That I am aware of!)</p><p>So, we have our Windows Admin Center deployed and we have it registered with Azure. That is great, right? Well, not so great if you are just using the default security settings out of the box. In this blog I will walk through two ways to give users access to our Windows Admin Centers, the first is using Active Directory and the second is using RBAC via Azure and Entra ID (Azure Active Directory)</p><h2 id=default-security-settings>Default Security Settings</h2><p>Let&rsquo;s look at what is default out of the box first. As you can see in the image below we are not currently using Azure Active Directory (Entra ID) at this point to manage authentication. Neither are we using Multi-factor authentication. It currently is setup to allow Builtin\users to login and manage devices, and it is configured for all Builtin\Administrators the Gateway administrator role which gives anyone in that group rights to control access as well</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20144644.png></p><p>We want to secure our gateway and control access to Windows Admin Center. This will and should improve the security around management of this environment.</p><h2 id=using-active-directory>Using Active Directory</h2><p>By using Active Directory and/or local machine groups for identity we can secure access locally. This may be all we need depending on the environment. If I stayed with this configuration in a production non lab environment I would add some managed Active Directory groups that would be assigned to one of the two roles.</p><p>I have created two new Active Directory security groups:</p><ul><li>WACGatewayUsers</li><li>WACGatewayAdministrators</li></ul><p>I will then add these two groups as Allowed groups on our Access settings page.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20154316.png></p><p>As you can now see I have both groups added.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20154747.png></p><p>My next step, i removed the BUILTIN\Users group. It will not let you via Windows Admin Center to remove the BUILTIN\Administrators group.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20154946.png></p><p>So we are now a little more secure at this point and can control which users have access to Windows Admin Center by using Active Directory.</p><h2 id=using-microsoft-entra-id-azure-active-directory>Using Microsoft Entra ID (Azure Active Directory)</h2><p>The better of the two options in my opinion will be for me to enable authentication to Windows Admin Center using Entra ID, or what was called Azure Active Directory. From the same Gateway access settings blade, we will flip the switch next to &ldquo;Use Azure Active Directory to add a layer of security to the gateway&rdquo; from no to yes.</p><p>Doing show will give us some instructions on how we need to configure our Azure AD Application we created earlier to give users access.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20155451.png></p><p>By clicking on the link &ldquo;Go to your Gateway Azure AD app in the Azure portal, it will open up our Azure AD app for us to configure.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20155635.png></p><p>Here we will change the setting Assignment Required from No to Yes. Then we click save. At this point only users who have been assigned under the Users and Groups section under Manage or our Azure AD Group.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20160333.png></p><p>My demo tenant doesn&rsquo;t have the active directory plan (Entra ID) to add groups to Users and Groups. In most cases you would already have created an Entra ID group for the two roles, one for Gateway Administrators and the other for Gateway Users and manage memberships from Entra ID. So here, I just had to manually assign users.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20160623.png></p><p>On the next screen I will assign them a role of Gateway Users under select a role. Then click Assign. I will repeat this to add any Gateway Administrators that I may need.</p><p>Now we should have all our users assigned either the Gateway User role or the Gateway Administrators role.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20160836.png></p><p>We should now be able to log on to Windows Admin Center using our Entra ID credentials. So let&rsquo;s try it for Hagrid?</p><p>Let&rsquo;s go to our account settings screen and make sure we are signed out. Then I will click on Sign In.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20161735.png></p><p>Here I will put Hagrid&rsquo;s login information and click sign Next.</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20161622.png></p><p>Within a few seconds and after verify via our Microsoft Authenticator app, Hagrid is now signed on. Your A Wizard Harry!</p><p><img src=/img/azshci-series/part-vii/Screenshot%202023-11-06%20161536.png></p><h2 id=final-thoughts>Final Thoughts</h2><p>Well, I really have none. Just use Azure Active Directory or I mean Entra ID from now on. It makes RBAC so much simpler!</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-stack-hci/ rel=tag>Azure Stack HCI</a></li><li class=tags__item><a class="tags__link btn" href=/tags/windows-admin-center/ rel=tag>Windows Admin Center</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/12-days-azure-arc-mas/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>The 12 Days of Azure Arc-Mas!</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
+</label><input class=widget-search__submit type=submit value=Search>
+<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li><li class=widget__item><a class=widget__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li><li class=widget__item><a class=widget__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMWare VSphere">VMWare VSphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
+<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
+<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2025 This Is My Demo.
+<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>

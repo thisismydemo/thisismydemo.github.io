@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Operations on This Is My Demo</title>
+    <link>http://localhost:1313/categories/operations/</link>
+    <description>Recent content in Operations on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Aug 2025 21:03:45 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/operations/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMware vSphere to Azure Local: Operator Feature Mapping</title>
+      <link>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</link>
+      <pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid>
+      <description>From VMware vSphere to Azure Local: What Changes and Where to Click If you run a large vSphere environment—90+ hosts and 2,500+ VMs—the platform change is already decided. This guide doesn’t argue pros and cons; it shows how your daily work translates to Azure Local (formerly Azure Stack HCI): what changes, what’s similar, and where to find things.&#xA;This is an operator-focused reference for VMware-native admins. It maps vSphere, NSX, and vCenter capabilities to Azure Local equivalents with clear, neutral language.</description>
+    </item>
+  </channel>
+</rss>

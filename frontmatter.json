@@ -2,9 +2,9 @@
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.taxonomy.contentTypes": [
     {
-      "name": "default",
+      "name": "post",
       "pageBundle": false,
-      "previewPath": null,
+      "previewPath": "/post",
       "fields": [
         {
           "title": "Title",
@@ -17,21 +17,14 @@
           "type": "string"
         },
         {
-          "title": "Publishing date",
+          "title": "Date",
           "name": "date",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
+          "type": "datetime"
         },
         {
-          "title": "Content preview",
-          "name": "preview",
-          "type": "image"
-        },
-        {
-          "title": "Is in draft",
-          "name": "draft",
-          "type": "draft"
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
         },
         {
           "title": "Tags",
@@ -39,9 +32,14 @@
           "type": "tags"
         },
         {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
+          "title": "Draft",
+          "name": "draft",
+          "type": "boolean"
+        },
+        {
+          "title": "preview",
+          "name": "preview",
+          "type": "string"
         },
         {
           "title": "lastmod",
@@ -56,6 +54,11 @@
         {
           "title": "lead",
           "name": "lead",
+          "type": "string"
+        },
+        {
+          "title": "fmContentType",
+          "name": "fmContentType",
           "type": "string"
         }
       ]

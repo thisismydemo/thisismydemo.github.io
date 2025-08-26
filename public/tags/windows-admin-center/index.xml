@@ -1,68 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>WIndows Admin Center on This Is My Demo</title>
-    <link>http://localhost:1313/tags/windows-admin-center/</link>
-    <description>Recent content in WIndows Admin Center on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 07 Nov 2023 19:27:45 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/windows-admin-center/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Azure Stack HCI - Part IX - Azure Kubernetes Service Deployment</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</link>
-      <pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;I now have Azure Stack HCI cluster deployed. We can manage it using Windows Admin Center or PowerShell.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</link>
-      <pubDate>Tue, 07 Nov 2023 14:07:49 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;My last blog Azure Stack HCI - Part VII - Configure Windows Admin Center Access, was actually all about Windows Admin Center and nothing really about Azure Stack HCI.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</link>
-      <pubDate>Mon, 06 Nov 2023 20:39:04 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</link>
-      <pubDate>Tue, 24 Oct 2023 19:11:10 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part V - From one to Sixteen</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-sixteen/</link>
-      <pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-sixteen/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</link>
-      <pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</link>
-      <pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;I had planned to have a Part III that would have focused on scaling out a single node cluster.</description>
-    </item>
-    <item>
-      <title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</title>
-      <link>http://localhost:1313/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</link>
-      <pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</guid>
-      <description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.&#xA;Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WIndows Admin Center on This Is My Demo</title><link>http://thisismydemo.cloud/tags/windows-admin-center/</link><description>Recent content in WIndows Admin Center on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 07 Nov 2023 19:27:45 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/windows-admin-center/index.xml" rel="self" type="application/rss+xml"/><item><title>Azure Stack HCI - Part IX - Azure Kubernetes Service Deployment</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</link><pubDate>Tue, 07 Nov 2023 19:23:51 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ix-azure-kubernetes-service-deployment/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+I now have Azure Stack HCI cluster deployed. We can manage it using Windows Admin Center or PowerShell.</description></item><item><title>Azure Stack HCI - Part VIII - Manage AzSHCI Using Windows Admin Center for Azure</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</link><pubDate>Tue, 07 Nov 2023 14:07:49 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-viii-manage-azshci-windows-admin-center-azure/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+My last blog Azure Stack HCI - Part VII - Configure Windows Admin Center Access, was actually all about Windows Admin Center and nothing really about Azure Stack HCI.</description></item><item><title>Azure Stack HCI - Part VII - Configure Windows Admin Center Access</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</link><pubDate>Mon, 06 Nov 2023 20:39:04 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vii-configure-windows-admin-center-access/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+So this blog, which I hope will be short, will be about how to secure your access to the Windows Admin Center that is being used to manage your Azure Stack HCI cluster.</description></item><item><title>Azure Stack HCI - Part VI - Using The Windows Admin Center To Deploy A Cluster</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</link><pubDate>Tue, 24 Oct 2023 19:11:10 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-vi-windows-admin-center-deploy-cluster/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+The last few blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster, then again on how to add a third-node and more to that existing cluster.</description></item><item><title>Azure Stack HCI - Part V - From one to Sixteen</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</link><pubDate>Tue, 24 Oct 2023 19:01:34 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-sixteen/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+The last three or so blogs I have talked about deploying a single-node cluster and then how to scale that single-node cluster to a two-node cluster.</description></item><item><title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</link><pubDate>Fri, 20 Oct 2023 21:38:07 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+This blog will be about scaling out a single-node Azure Stack HCI cluster up to a two-node cluster.</description></item><item><title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</link><pubDate>Tue, 17 Oct 2023 00:30:45 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+I had planned to have a Part III that would have focused on scaling out a single node cluster.</description></item><item><title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</title><link>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</link><pubDate>Fri, 13 Oct 2023 17:42:45 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/</guid><description>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.
+Note: After reading this blog a few times myself I have decided to write another blog but adding more details around areas I did not bring up in this current blog.</description></item></channel></rss>

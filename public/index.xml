@@ -6,13 +6,20 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Jul 2025 19:06:26 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Aug 2025 21:09:05 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VMware vSphere to Azure Local: Operator Feature Mapping</title>
+      <link>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</link>
+      <pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid>
+      <description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.&#xA;This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description>
+    </item>
+    <item>
       <title>Comparing AI: A fun test of AI capabilities</title>
-      <link>http://localhost:1313/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/</link>
-      <pubDate>Tue, 15 Jul 2025 14:43:34 +0000</pubDate>
-      <guid>http://localhost:1313/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/</guid>
+      <link>http://localhost:1313/post/comparing-ai-fun-test-ai-capabilities/</link>
+      <pubDate>Tue, 15 Jul 2025 20:24:14 +0000</pubDate>
+      <guid>http://localhost:1313/post/comparing-ai-fun-test-ai-capabilities/</guid>
       <description>Welcome to My AI Battle Royale! 🥊 Picture this: I&amp;rsquo;m sitting at my desk, drowning in my own scattered thoughts about GitHub Copilot Chat configurations, when I had what can only be described as a &amp;ldquo;brilliant&amp;rdquo; idea. Why not throw my messy brain dump at some of the world&amp;rsquo;s most advanced AI models and see who comes out on top?&#xA;So here we are – welcome to my completely unscientific, totally biased, but hopefully entertaining comparison of AI capabilities!</description>
     </item>
     <item>

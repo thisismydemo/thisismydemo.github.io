@@ -1,0 +1,156 @@
+{
+	"folders": [
+		{
+			"name": "Blog Root",
+			"path": "."
+		},
+		{
+			"name": "Content",
+			"path": "./content"
+		},
+		{
+			"name": "Themes",
+			"path": "./themes"
+		},
+		{
+			"name": "Layouts",
+			"path": "./layouts"
+		},
+		{
+			"name": "Static Assets",
+			"path": "./static"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.md": "markdown",
+			"*.toml": "toml",
+			"config.toml": "toml",
+			"frontmatter.json": "json"
+		},
+		"markdown.preview.breaks": true,
+		"markdown.preview.linkify": true,
+		"markdown.extension.toc.levels": "2..6",
+		"markdown.extension.preview.autoShowPreviewToSide": false,
+		"frontMatter.content.publicFolder": "static",
+		"frontMatter.content.pageFolders": [
+			{
+				"title": "Posts",
+				"path": "[[workspace]]/content/post"
+			},
+			{
+				"title": "Pages",
+				"path": "[[workspace]]/content"
+			}
+		],
+		"frontMatter.dashboard.openOnStart": false,
+		"frontMatter.preview.host": "http://localhost:1313",
+		"files.exclude": {
+			"**/public/**": true,
+			"**/resources/**": true,
+			"**/.hugo_build.lock": true
+		},
+		"search.exclude": {
+			"**/public/**": true,
+			"**/resources/**": true,
+			"**/themes/**/node_modules/**": true
+		},
+		"explorer.fileNesting.enabled": true,
+		"explorer.fileNesting.patterns": {
+			"*.md": "*.draft.md",
+			"config.toml": "frontmatter.json"
+		},
+		"editor.wordWrap": "on",
+		"editor.rulers": [72, 80],
+		"editor.minimap.enabled": false,
+		"workbench.colorCustomizations": {
+			"tab.activeBorder": "#ff6b6b",
+			"activityBar.activeBorder": "#ff6b6b"
+		},
+		"emmet.includeLanguages": {
+			"hugo": "html"
+		},
+		"hugo.server.renderToDisk": false
+	},
+	"extensions": {
+		"recommendations": [
+			"eliostruyf.vscode-front-matter",
+			"budparr.language-hugo-vscode",
+			"yzhang.markdown-all-in-one",
+			"shd101wyy.markdown-preview-enhanced",
+			"bierner.markdown-mermaid",
+			"hediet.vscode-drawio",
+			"jebbs.plantuml",
+			"eamodio.gitlens",
+			"mhutchie.git-graph",
+			"streetsidesoftware.code-spell-checker",
+			"esbenp.prettier-vscode",
+			"redhat.vscode-yaml",
+			"fivethree.vscode-hugo-snippets",
+			"ritwickdey.liveserver",
+			"wayou.vscode-todo-highlight",
+			"christian-kohler.path-intellisense"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Hugo: Serve",
+				"type": "shell",
+				"command": "hugo",
+				"args": ["server", "-D", "--bind", "0.0.0.0"],
+				"group": "build",
+				"presentation": {
+					"echo": true,
+					"reveal": "always",
+					"focus": false,
+					"panel": "new"
+				},
+				"problemMatcher": [],
+				"isBackground": true
+			},
+			{
+				"label": "Hugo: Build",
+				"type": "shell",
+				"command": "hugo",
+				"args": ["--minify"],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"presentation": {
+					"echo": true,
+					"reveal": "always",
+					"focus": false
+				},
+				"problemMatcher": []
+			},
+			{
+				"label": "Hugo: New Post",
+				"type": "shell",
+				"command": "hugo",
+				"args": ["new", "post/${input:postName}.md"],
+				"group": "build",
+				"presentation": {
+					"echo": true,
+					"reveal": "always",
+					"focus": false
+				},
+				"problemMatcher": []
+			}
+		],
+		"inputs": [
+			{
+				"id": "postName",
+				"description": "Post filename (without .md extension)",
+				"default": "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}-new-post",
+				"type": "promptString"
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": []
+	}
+}

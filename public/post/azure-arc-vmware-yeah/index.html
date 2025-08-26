@@ -1,516 +1,107 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Azure Arc and VMWare Oh Yeah - This Is My Demo</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:url" content="http://localhost:1313/post/azure-arc-vmware-yeah/">
-  <meta property="og:site_name" content="This Is My Demo">
-  <meta property="og:title" content="Azure Arc and VMWare Oh Yeah">
-  <meta property="og:description" content="I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn’t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2024-01-11T17:13:54+00:00">
-    <meta property="article:modified_time" content="2024-01-12T07:26:47+00:00">
-    <meta property="article:tag" content="Azure Arc">
-    <meta property="article:tag" content="VMWare VSphere">
-
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Azure Arc and VMWare Oh Yeah">
-  <meta name="twitter:description" content="I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn’t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	
-
-	<link rel="shortcut icon" href="/favicon.ico">
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">This Is My Demo</div>
-					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1"></span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Azure Arc and VMWare Oh Yeah</h1>
-			<p class="post__lead">Drinking the Microsoft and VMware Kool-aid with Azure Arc</p>
-			<div class="post__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2024-01-11T17:13:54Z">January 11, 2024</time>
-	<time class="meta__text" datetime="2024-01-12T07:26:47Z">(: January 12, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc/" rel="category">Azure Arc</a>
-	</span>
-</div></div>
-		</header>
-		
-	<figure class="post__thumbnail thumbnail">
-		
-		<img class="thumbnail__image" src="/img/arc_vcenter/OIG.jpg" alt="Azure Arc and VMWare Oh Yeah">
-		
-	</figure><div class="content post__content clearfix">
-			<p>I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn&rsquo;t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.  Yes, I am that old. This was pre-Symantec days of Altiris as well. However, Symantec bought them and I also got certified as something or something with Symantec. I forget, but I still have an awesome chess set from Symantec with all the piece being a server rack or something in a data center except for the pawns, they are old CRT monitors.</p>
-<p>Anyway, this blog is about VMware and Azure Arc.  Yes, I am writing a blog about something other than Microsoft products. I do that once in a while. This blog will follow my experience with <a href="https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/">Azure Arc-enabled VMware VSphere</a> and how to manage VMware vCenter resources with <a href="https://learn.microsoft.com/en-us/azure/azure-arc/">Azure Arc</a>.</p>
-<hr>
-<p>So here is the break down of this blog:</p>
-<ul>
-<li><a href="/post/azure-arc-vmware-yeah/#my-environment">My Environment</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#planning">Planning</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#deploy">Deploy</a>
-<ul>
-<li><a href="/post/azure-arc-vmware-yeah/#download-the-onboarding-script">Download the onboarding script</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#running-the-onboarding-script">Running the onboarding script</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#enable-vmware-resources">Enable VMware Resources</a>
-<ul>
-<li><a href="/post/azure-arc-vmware-yeah/#resource-pools-clusters-host-networks-datastores-and-templates">Resource Pools, Clusters, Host, Networks, Datastores and Templates</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#existing-virtual-machines">Existing Virtual Machines</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="/post/azure-arc-vmware-yeah/#next-steps">Next Steps</a></li>
-<li><a href="/post/azure-arc-vmware-yeah/#final-thoughts">Final Thoughts</a></li>
-</ul>
-<hr>
-<h2 id="my-environment">My Environment</h2>
-<p>For all my Azure Stack HCI labs I always turn to MSLAB which is a great way to spin up a working 1 to 4 node Azure Stack HCI cluster either in a nested Azure VM, on premises running on Hyper-V, even on VMware VM&rsquo;s if you have to do it that way as well. I didn&rsquo;t really know where to start so looking on Bing I really couldn&rsquo;t find something similar to what MSLAB had for AzSHCI. I went the route of trying to spin up a host VM in Azure were I could deploy a test VMware environment myself. However, after a few attempts at deploying VM sizes that supposed to support virtualization in East US region and failing to be able to install Hyper-V, I started to look more into it and saw that I was biting a small piece of elephant off and had a lot more to chew.  In other words, this was going to be a long process and I wanted something simple.  That is when I asked my boss if we had any vCenter&rsquo;s and a few ESXi servers in our lab that I could use. He mentioned to talk to a co-worker about it. I quickly found out that he had an entire cloud environment configured that could build out an entire VMware environment. From switches, to routers, to ESXi host, and vCenters.  It took less than 15 minutes to get my environment up and running at at a point where I could start documenting my journey with Azure Arc-enabled VMware vSphere.</p>
-<p>In a nut shell, this is my demo environment I will be working with.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20143248.png"></p>
-<h2 id="planning">Planning</h2>
-<p>Planning was straight forward and all of what needs to be considered can be found in the <a href="https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/support-matrix-for-arc-enabled-vmware-vsphere">Planning Documentation</a> found on Microsoft Learn.</p>
-<p>I will call out a few things:</p>
-<ul>
-<li>Require a vSphere account with privileges to read all inventory and to deploy and update VMs.</li>
-<li>Minimum virtual hardware requirements for the Resource bridge:
-<ul>
-<li>16 GB memory</li>
-<li>4 vCPUs</li>
-<li>External switch for internet access and firewalls configured with URLs needed.</li>
-</ul>
-</li>
-<li>Azure Subscription with either Owner, Contributor or Azure ARc VMware Private Clouds Onboarding role.</li>
-<li>vCenter 7 or 8</li>
-<li>3 Static IP addresses outside the DHCP scope if DHCP is used.</li>
-</ul>
-<p>I suggest reading the document shared for more information on what URL&rsquo;s need to be accessible and other items that may be important to a deployment.</p>
-<h2 id="deploy">Deploy</h2>
-<h3 id="download-the-onboarding-script">Download the onboarding script</h3>
-<p>The first thing we need to do is create and download the onboarding script. This is done in the Azure Portal and than go to Azure Arc, then clicking on the VMware vCenters section under Infrastructure.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-10%20173537.png"></p>
-<p>From here click on the Add button at the top menu and the next screen will present the option to create a new resource bridge or use an existing resource bridge.  In my case, I do not have a resource bridge already deployed to this location so I will choose Create a new resource bridge.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-10%20173656.png"></p>
-<p>On the next screen, we have the option to name our resource bridge, designate the subscription it will be assigned to and the resource group along with the Azure Region.  We also will have the same options for Custom location and vCenter resource as well if we wanted to separate these resources for various reasons.  For my purposes I will keep everything together at this time in the same resource group and same subscription.</p>
-<p>The naming can become important if we deploy a lot of these types of resources. For my resource bridge I named it after its purpose. Since its purpose was a demo for vcenter that is what I named it.  In reality, I would have at least included the location of the resource bridge.  The same with the custom location, this is to identify the location that can be used to deploy workloads to. So in my case, I live in Central Texas, I created the name texas-central for a custom location.  The name of the vcenter, I would keep it as close to the name of the vcenter that the resource bridge is going in.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20112954.png"></p>
-<p>Next is tagging. Here it gives us some prefilled physical locations and then the ability to add custom tags.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20113334.png"></p>
-<p>Next, if we haven&rsquo;t already registered the resource provider for the subscription, we will need to click on Register and wait for about 2 minutes or so.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20113355.png"></p>
-<p>Finally we are ready to download the deployment script.  Click on download script and we are now ready to run that script.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20113533.png"></p>
-<h3 id="running-the-onboarding-script">Running the onboarding script</h3>
-<p>From a machine that has access to your vCenter server we will want to verify that we have the rights to execute this script using PowerShell. Then we will want to run the following script:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>resource-bridge-onboarding-script.ps1
-</span></span></code></pre></div><p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20114647.png"></p>
-<p>When the script runs it will prompt us to login to our Azure Subscription, download the ova files needed, copy them to the datacenters that we select and then proceed to deploying the Resource bridge, and the other resources that are needed.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20114958.png"></p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20115526.png"></p>
-<p>In this section it will ask for several inputs.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20155015.png"></p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20120642.png"></p>
-<p>From here the rest is a waiting game. Time to get some coffee and hug my wife.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20120820.png"></p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20122147.png"></p>
-<p>And finally we have a successful connected vCenter to Azure!</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20134110.png"></p>
-<p>We now should see a new custom location resource in Azure.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20134154.png"></p>
-<p>We should also see a new resource bridge resource</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20134216.png"></p>
-<p>We will now have our vcenter resource available.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20134304.png"></p>
-<h3 id="enable-vmware-resources">Enable VMware Resources</h3>
-<p>The next step we will need to enable all the VMware vCenter resources in the Azure Portal.</p>
-<p>Navigate through your virtual machines (VMs), resource pools, templates, and networks within the vCenter resource inventory. In Azure, you have the option to choose and activate various vCenter resources. Activating a vCenter resource in Azure results in the creation of a corresponding Azure resource. This Azure resource can then be utilized to allocate permissions or perform various management tasks.</p>
-<p>We can do this by opening the vCenter blade on the Azure Arc center and selected our newly connected vCenter resource.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20234538.png"></p>
-<p>Once we have our vCenter resource open, we will go to vCenter inventory, here we will find our virtual machines, resource pools/clusters/host, Templates, Networks, and Datastores that are all managed by this vCenter.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20234821.png"></p>
-<h4 id="resource-pools-clusters-host-networks-datastores-and-templates">Resource Pools, Clusters, Host, Networks, Datastores and Templates</h4>
-<p>The first thing I did after following the Microsoft Learn Documentation on Enable VMware vCenter resources in Azure, is enable my resource pools, followed by my clusters and host, then datastores, networks and finally my templates.  One thing to note that is noted on the documentation is that your templates need to have the vmware tools installed otherwise they will be greyed out.</p>
-<p>I will enable everything since this is a demo lab by following the following steps:</p>
-<ol>
-<li>Open your web browser and access the vCenters section within Azure Arc Center. Proceed to the inventory resources section.</li>
-<li>Choose the resource or multiple resources you wish to activate and click on the &lsquo;Enable in Azure&rsquo; option.</li>
-<li>Pick your Azure Subscription and Resource Group, then click on &lsquo;Enable&rsquo;.</li>
-<li>This action initiates a deployment process in Azure, establishing Azure counterparts for your VMware vSphere resources. It enables fine-grained control over access permissions to these resources using Azure&rsquo;s role-based access control (RBAC).</li>
-<li>Follow these instructions again to enable additional network, resource pool, and VM template resources.</li>
-</ol>
-<p>So following the steps above, we will choose the resources we wanted to enabled.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-11%20235848.png"></p>
-<p>Then I assigned them the subscriptions and resource group these resource will be assigned to in Azure. For my demo I put everything in the same resource group.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20000035.png"></p>
-<p>To be honest and transparent, the first time I clicked enabled I got this error. After all this is a blog about my experiences so I need to add my goofs as well.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20000233.png"></p>
-<p>The error looked to say that there was resources defined multiple times in the template. When I went back to the screen that showed my resources, I did notice that only the first three resources needed to be selected since everything under them would be a child object.  If I just wanted resource pools or host, I would select them separately.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20000611.png"></p>
-<p>After clicking enabled the deployment kicked off.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20000727.png"></p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20000805.png"></p>
-<p>We go back into the Resource pools/clusters/host blade and now my Clusters show Azure enabled. I do have questions about why the other resources didn&rsquo;t get Azure enabled. I will look into that because I would have thought they would be.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20001227.png"></p>
-<p>Out of my curiosity, I went back to that blade, and select just the host and hit enabled. It worked. Then went back again and selected just the resource pools and enabled them. However, with the resource pools I had to do each one, one at a time. But only one would enable. So I actually decided just to enable the compute resource pool at this time. I keep getting errors that that resource pool already exist.  It worked that way.  Not sure why it didn&rsquo;t when all of them was selected.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20002145.png"></p>
-<p>I went back to Templates, Networks, and Datastores and enabled all those resources as well. I really don&rsquo;t think I needed to enable all my networks but I did.  I would assume all I needed to enable were the networks that my workloads would run on. The same with the templates, enabling only what template we will use for deployment but I enabled all of them.  Datastores as well, I did all of them, but in reality, I would only need the datastores that attached to my compute resources and not my mgmt resources.</p>
-<h4 id="existing-virtual-machines">Existing Virtual Machines</h4>
-<p>Enabling existing machines is the same process as above except there is a few more question that will be asked before we can hit enable.</p>
-<p>Just like before,</p>
-<ol>
-<li>Open up the vCenter blade on Azure Arc Center and open our vCenter.</li>
-<li>We will then click onn the VM inventory resource blade and then select any VM we want to enable.</li>
-<li>We will select our subscription and resource group.</li>
-<li>Now, this step is optional but we can install the guest agent now or later. If we do it now we will need the admin user and password for that machine.</li>
-<li>Then finally we will click Enable.</li>
-</ol>
-<p>So I followed those steps:</p>
-<p>The one thing I do want to call out. If you don&rsquo;t enable machines for guest management you will not be able to do the following on those VM&rsquo;s:</p>
-<ul>
-<li>Start, stop, and restart a VM</li>
-<li>Control access and add Azure tags</li>
-<li>Add, remove, and update network interfaces</li>
-<li>Add, remove, and update disks and update VM size (CPU cores, memory)</li>
-<li>Enable guest management</li>
-<li>Install extensions (enabling guest management is required). All the extensions that are available with Arc-enabled Servers are supported.</li>
-</ul>
-<p>In my environment I only have a few deployed VM&rsquo;s. I will enable 2 of them now and then later, enable guest management once these machines have been enabled for Azure.</p>
-<p>Just like before, I selected the resources I want to enable, click enable in Azure. I will then assign the subscription and resource group.  Here I will click the check box to enable guest management. Then I will assign it a connectivity method, as you can see only Public endpoint and Proxy is available.  I need to check if Private Endpoint will be available.  I will enter the user name and password then click enable.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20003831.png"></p>
-<p>So all my machines are now enabled for Azure however, the 2 that I told to enable guest management failed to enable guest management. From the errors, I can see that I must have fat fingered the password or the user.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20004128.png"></p>
-<p>So all are enabled as shown below. Not to go in and enable guest management here soon.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20004343.png"></p>
-<p>We can do this just as easy as we did when we tried to do it after enabling these resources for Azure. The following Microsoft Learn documentation, <a href="https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/perform-vm-ops-through-azure">Manage VMware VMs in Azure through Arc-enabled VMware vSphere</a>, also will show us how.</p>
-<p>The steps are pretty much the same as above except instead of clicking Enable in Azure, I will click Enable guest management. Then enter in the user and password.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20004811.png"></p>
-<p>Now we wait&hellip;</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20004948.png"></p>
-<p>And again I got a failure message.These are Linux boxes by the way. I need to do something special on the VM&rsquo;s before I enable them for guest management. The information is noted on the above shared MS Docs.</p>
-<blockquote>
-<p>If you&rsquo;re using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run sudo visudo and add <username> ALL=(ALL) NOPASSWD:ALL to the end of the file. Make sure to replace <username>. If your VM template has these changes incorporated, you won&rsquo;t need to do this for the VM created from that template.</p>
-</blockquote>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20005104.png"></p>
-<p>So I will do that since it is only three VM&rsquo;s and then continue on.</p>
-<p>Now my VM&rsquo;s are guest enabled and I can manage them from Azure.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20010715.png"></p>
-<p>From here, we can manage these VM&rsquo;s as if they were just another Azure resource. We can enable things like VM Insights, assign Azure Policies, install Azure Extensions, also include them in Azure Update Manager.  We can also include them in Defender for CLoud and Microsoft Sentinel and other Azure Services.</p>
-<p><img src="/img/arc_vcenter/Screenshot%202024-01-12%20010844.png"></p>
-<h2 id="next-steps">Next Steps</h2>
-<p>So what else can we do??? We can configure RBAC to provide self services in order for others to manage their own VM&rsquo;s and also deploy VM&rsquo;s from the portal.  We can deploy VM&rsquo;s to our vCenter from the Portal using built in templates that we enabled for Azure.</p>
-<p>There is also other Azure services that we can look at as well now. How about AKS running on vCenter?  That will open a lot of other Azure Services that we could run all using Arc services like Azure Arc-Enabled Kubernetes, Azure-Arc enabled data services, and more.</p>
-<h2 id="final-thoughts">Final Thoughts</h2>
-<p>My final thoughts are this. This is a great solution to provide management of your vCenter environment from the perspective of managing your VM&rsquo;s through the Azure Portal. The biggest difference between just using Azure Arc-enabled servers vs Azure Arc-enabled VMware for VSphere is with the later we can also deploy VM&rsquo;s to our vCenter from the portal as if it was another resources in Azure.  We can also do a little more by starting and stopping the VM&rsquo;s, adding network interfaces, updating disk, etc. That is a little more than what we could do just using Azure Arc-enabled servers.</p>
-<p>I know I will be blogging more about this soon. Not sure what about but I am thinking more in the lines of AKS on VMware and managing that using Azure Arc-enabled Kubernetes.  I think I may dig deeper into the Azure Update Manager along with configuring Defender for Cloud and Sentinel to secure these workloads running on our on prem vCenters. Digging into regulatory compliance and more that can all be done from the Azure portal.</p>
-
-		</div>
-		<footer class="post__footer">
-			
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/vmware-vsphere/" rel="tag">VMWare vSphere</a>
-		</li>
-	</ul>
-</div>
-		</footer>
-	</article>
-</main>
-
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
-	</div>
-	<div class="authorbox__description">
-		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
-	</div>
-</div>
-
-<nav class="pager flex">
-	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/12-days-azure-arcmas-summary/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">The 12 Days of Azure-ArcMas - Summary</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</p>
-		</a>
-	</div>
-</nav>
-
-
-			</div>
-			<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
-	</form>
-</div>
-<div class="widget-recent widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure/">Azure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune/">Intune</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
-	</div>
-</div>
-<div class="widget-social widget">
-	<h4 class="widget-social__title widget__title"></h4>
-	<div class="widget-social__content widget__content">
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
-				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
-				<span>LinkedIn</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
-				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
-			</a>
-		</div>
-
-		
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits"></span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Azure Arc and VMWare Oh Yeah - This Is My Demo</title>
+<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="http://thisismydemo.cloud/post/azure-arc-vmware-yeah/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Azure Arc and VMWare Oh Yeah"><meta property="og:description" content="I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn’t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2024-01-11T17:13:54+00:00"><meta property="article:modified_time" content="2024-01-12T07:26:47+00:00"><meta property="article:tag" content="Azure Arc"><meta property="article:tag" content="VMWare VSphere"><meta name=twitter:card content="summary"><meta name=twitter:title content="Azure Arc and VMWare Oh Yeah"><meta name=twitter:description content="I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn’t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Azure Arc and VMWare Oh Yeah</h1><p class=post__lead>Drinking the Microsoft and VMware Kool-aid with Azure Arc</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2024-01-11T17:13:54Z>January 11, 2024</time>
+<time class=meta__text datetime=2024-01-12T07:26:47Z>(: January 12, 2024)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-arc/ rel=category>Azure Arc</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/arc_vcenter/OIG.jpg alt="Azure Arc and VMWare Oh Yeah"></figure><div class="content post__content clearfix"><p>I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn&rsquo;t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server. Yes, I am that old. This was pre-Symantec days of Altiris as well. However, Symantec bought them and I also got certified as something or something with Symantec. I forget, but I still have an awesome chess set from Symantec with all the piece being a server rack or something in a data center except for the pawns, they are old CRT monitors.</p><p>Anyway, this blog is about VMware and Azure Arc. Yes, I am writing a blog about something other than Microsoft products. I do that once in a while. This blog will follow my experience with <a href=https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/>Azure Arc-enabled VMware VSphere</a> and how to manage VMware vCenter resources with <a href=https://learn.microsoft.com/en-us/azure/azure-arc/>Azure Arc</a>.</p><hr><p>So here is the break down of this blog:</p><ul><li><a href=/post/azure-arc-vmware-yeah/#my-environment>My Environment</a></li><li><a href=/post/azure-arc-vmware-yeah/#planning>Planning</a></li><li><a href=/post/azure-arc-vmware-yeah/#deploy>Deploy</a><ul><li><a href=/post/azure-arc-vmware-yeah/#download-the-onboarding-script>Download the onboarding script</a></li><li><a href=/post/azure-arc-vmware-yeah/#running-the-onboarding-script>Running the onboarding script</a></li><li><a href=/post/azure-arc-vmware-yeah/#enable-vmware-resources>Enable VMware Resources</a><ul><li><a href=/post/azure-arc-vmware-yeah/#resource-pools-clusters-host-networks-datastores-and-templates>Resource Pools, Clusters, Host, Networks, Datastores and Templates</a></li><li><a href=/post/azure-arc-vmware-yeah/#existing-virtual-machines>Existing Virtual Machines</a></li></ul></li></ul></li><li><a href=/post/azure-arc-vmware-yeah/#next-steps>Next Steps</a></li><li><a href=/post/azure-arc-vmware-yeah/#final-thoughts>Final Thoughts</a></li></ul><hr><h2 id=my-environment>My Environment</h2><p>For all my Azure Stack HCI labs I always turn to MSLAB which is a great way to spin up a working 1 to 4 node Azure Stack HCI cluster either in a nested Azure VM, on premises running on Hyper-V, even on VMware VM&rsquo;s if you have to do it that way as well. I didn&rsquo;t really know where to start so looking on Bing I really couldn&rsquo;t find something similar to what MSLAB had for AzSHCI. I went the route of trying to spin up a host VM in Azure were I could deploy a test VMware environment myself. However, after a few attempts at deploying VM sizes that supposed to support virtualization in East US region and failing to be able to install Hyper-V, I started to look more into it and saw that I was biting a small piece of elephant off and had a lot more to chew. In other words, this was going to be a long process and I wanted something simple. That is when I asked my boss if we had any vCenter&rsquo;s and a few ESXi servers in our lab that I could use. He mentioned to talk to a co-worker about it. I quickly found out that he had an entire cloud environment configured that could build out an entire VMware environment. From switches, to routers, to ESXi host, and vCenters. It took less than 15 minutes to get my environment up and running at at a point where I could start documenting my journey with Azure Arc-enabled VMware vSphere.</p><p>In a nut shell, this is my demo environment I will be working with.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20143248.png></p><h2 id=planning>Planning</h2><p>Planning was straight forward and all of what needs to be considered can be found in the <a href=https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/support-matrix-for-arc-enabled-vmware-vsphere>Planning Documentation</a> found on Microsoft Learn.</p><p>I will call out a few things:</p><ul><li>Require a vSphere account with privileges to read all inventory and to deploy and update VMs.</li><li>Minimum virtual hardware requirements for the Resource bridge:<ul><li>16 GB memory</li><li>4 vCPUs</li><li>External switch for internet access and firewalls configured with URLs needed.</li></ul></li><li>Azure Subscription with either Owner, Contributor or Azure ARc VMware Private Clouds Onboarding role.</li><li>vCenter 7 or 8</li><li>3 Static IP addresses outside the DHCP scope if DHCP is used.</li></ul><p>I suggest reading the document shared for more information on what URL&rsquo;s need to be accessible and other items that may be important to a deployment.</p><h2 id=deploy>Deploy</h2><h3 id=download-the-onboarding-script>Download the onboarding script</h3><p>The first thing we need to do is create and download the onboarding script. This is done in the Azure Portal and than go to Azure Arc, then clicking on the VMware vCenters section under Infrastructure.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-10%20173537.png></p><p>From here click on the Add button at the top menu and the next screen will present the option to create a new resource bridge or use an existing resource bridge. In my case, I do not have a resource bridge already deployed to this location so I will choose Create a new resource bridge.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-10%20173656.png></p><p>On the next screen, we have the option to name our resource bridge, designate the subscription it will be assigned to and the resource group along with the Azure Region. We also will have the same options for Custom location and vCenter resource as well if we wanted to separate these resources for various reasons. For my purposes I will keep everything together at this time in the same resource group and same subscription.</p><p>The naming can become important if we deploy a lot of these types of resources. For my resource bridge I named it after its purpose. Since its purpose was a demo for vcenter that is what I named it. In reality, I would have at least included the location of the resource bridge. The same with the custom location, this is to identify the location that can be used to deploy workloads to. So in my case, I live in Central Texas, I created the name texas-central for a custom location. The name of the vcenter, I would keep it as close to the name of the vcenter that the resource bridge is going in.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20112954.png></p><p>Next is tagging. Here it gives us some prefilled physical locations and then the ability to add custom tags.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20113334.png></p><p>Next, if we haven&rsquo;t already registered the resource provider for the subscription, we will need to click on Register and wait for about 2 minutes or so.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20113355.png></p><p>Finally we are ready to download the deployment script. Click on download script and we are now ready to run that script.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20113533.png></p><h3 id=running-the-onboarding-script>Running the onboarding script</h3><p>From a machine that has access to your vCenter server we will want to verify that we have the rights to execute this script using PowerShell. Then we will want to run the following script:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>resource-bridge-onboarding-script.ps1
+</span></span></code></pre></div><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20114647.png></p><p>When the script runs it will prompt us to login to our Azure Subscription, download the ova files needed, copy them to the datacenters that we select and then proceed to deploying the Resource bridge, and the other resources that are needed.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20114958.png></p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20115526.png></p><p>In this section it will ask for several inputs.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20155015.png></p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20120642.png></p><p>From here the rest is a waiting game. Time to get some coffee and hug my wife.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20120820.png></p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20122147.png></p><p>And finally we have a successful connected vCenter to Azure!</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20134110.png></p><p>We now should see a new custom location resource in Azure.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20134154.png></p><p>We should also see a new resource bridge resource</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20134216.png></p><p>We will now have our vcenter resource available.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20134304.png></p><h3 id=enable-vmware-resources>Enable VMware Resources</h3><p>The next step we will need to enable all the VMware vCenter resources in the Azure Portal.</p><p>Navigate through your virtual machines (VMs), resource pools, templates, and networks within the vCenter resource inventory. In Azure, you have the option to choose and activate various vCenter resources. Activating a vCenter resource in Azure results in the creation of a corresponding Azure resource. This Azure resource can then be utilized to allocate permissions or perform various management tasks.</p><p>We can do this by opening the vCenter blade on the Azure Arc center and selected our newly connected vCenter resource.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20234538.png></p><p>Once we have our vCenter resource open, we will go to vCenter inventory, here we will find our virtual machines, resource pools/clusters/host, Templates, Networks, and Datastores that are all managed by this vCenter.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20234821.png></p><h4 id=resource-pools-clusters-host-networks-datastores-and-templates>Resource Pools, Clusters, Host, Networks, Datastores and Templates</h4><p>The first thing I did after following the Microsoft Learn Documentation on Enable VMware vCenter resources in Azure, is enable my resource pools, followed by my clusters and host, then datastores, networks and finally my templates. One thing to note that is noted on the documentation is that your templates need to have the vmware tools installed otherwise they will be greyed out.</p><p>I will enable everything since this is a demo lab by following the following steps:</p><ol><li>Open your web browser and access the vCenters section within Azure Arc Center. Proceed to the inventory resources section.</li><li>Choose the resource or multiple resources you wish to activate and click on the &lsquo;Enable in Azure&rsquo; option.</li><li>Pick your Azure Subscription and Resource Group, then click on &lsquo;Enable&rsquo;.</li><li>This action initiates a deployment process in Azure, establishing Azure counterparts for your VMware vSphere resources. It enables fine-grained control over access permissions to these resources using Azure&rsquo;s role-based access control (RBAC).</li><li>Follow these instructions again to enable additional network, resource pool, and VM template resources.</li></ol><p>So following the steps above, we will choose the resources we wanted to enabled.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-11%20235848.png></p><p>Then I assigned them the subscriptions and resource group these resource will be assigned to in Azure. For my demo I put everything in the same resource group.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20000035.png></p><p>To be honest and transparent, the first time I clicked enabled I got this error. After all this is a blog about my experiences so I need to add my goofs as well.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20000233.png></p><p>The error looked to say that there was resources defined multiple times in the template. When I went back to the screen that showed my resources, I did notice that only the first three resources needed to be selected since everything under them would be a child object. If I just wanted resource pools or host, I would select them separately.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20000611.png></p><p>After clicking enabled the deployment kicked off.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20000727.png></p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20000805.png></p><p>We go back into the Resource pools/clusters/host blade and now my Clusters show Azure enabled. I do have questions about why the other resources didn&rsquo;t get Azure enabled. I will look into that because I would have thought they would be.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20001227.png></p><p>Out of my curiosity, I went back to that blade, and select just the host and hit enabled. It worked. Then went back again and selected just the resource pools and enabled them. However, with the resource pools I had to do each one, one at a time. But only one would enable. So I actually decided just to enable the compute resource pool at this time. I keep getting errors that that resource pool already exist. It worked that way. Not sure why it didn&rsquo;t when all of them was selected.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20002145.png></p><p>I went back to Templates, Networks, and Datastores and enabled all those resources as well. I really don&rsquo;t think I needed to enable all my networks but I did. I would assume all I needed to enable were the networks that my workloads would run on. The same with the templates, enabling only what template we will use for deployment but I enabled all of them. Datastores as well, I did all of them, but in reality, I would only need the datastores that attached to my compute resources and not my mgmt resources.</p><h4 id=existing-virtual-machines>Existing Virtual Machines</h4><p>Enabling existing machines is the same process as above except there is a few more question that will be asked before we can hit enable.</p><p>Just like before,</p><ol><li>Open up the vCenter blade on Azure Arc Center and open our vCenter.</li><li>We will then click onn the VM inventory resource blade and then select any VM we want to enable.</li><li>We will select our subscription and resource group.</li><li>Now, this step is optional but we can install the guest agent now or later. If we do it now we will need the admin user and password for that machine.</li><li>Then finally we will click Enable.</li></ol><p>So I followed those steps:</p><p>The one thing I do want to call out. If you don&rsquo;t enable machines for guest management you will not be able to do the following on those VM&rsquo;s:</p><ul><li>Start, stop, and restart a VM</li><li>Control access and add Azure tags</li><li>Add, remove, and update network interfaces</li><li>Add, remove, and update disks and update VM size (CPU cores, memory)</li><li>Enable guest management</li><li>Install extensions (enabling guest management is required). All the extensions that are available with Arc-enabled Servers are supported.</li></ul><p>In my environment I only have a few deployed VM&rsquo;s. I will enable 2 of them now and then later, enable guest management once these machines have been enabled for Azure.</p><p>Just like before, I selected the resources I want to enable, click enable in Azure. I will then assign the subscription and resource group. Here I will click the check box to enable guest management. Then I will assign it a connectivity method, as you can see only Public endpoint and Proxy is available. I need to check if Private Endpoint will be available. I will enter the user name and password then click enable.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20003831.png></p><p>So all my machines are now enabled for Azure however, the 2 that I told to enable guest management failed to enable guest management. From the errors, I can see that I must have fat fingered the password or the user.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20004128.png></p><p>So all are enabled as shown below. Not to go in and enable guest management here soon.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20004343.png></p><p>We can do this just as easy as we did when we tried to do it after enabling these resources for Azure. The following Microsoft Learn documentation, <a href=https://learn.microsoft.com/en-us/azure/azure-arc/vmware-vsphere/perform-vm-ops-through-azure>Manage VMware VMs in Azure through Arc-enabled VMware vSphere</a>, also will show us how.</p><p>The steps are pretty much the same as above except instead of clicking Enable in Azure, I will click Enable guest management. Then enter in the user and password.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20004811.png></p><p>Now we wait&mldr;</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20004948.png></p><p>And again I got a failure message.These are Linux boxes by the way. I need to do something special on the VM&rsquo;s before I enable them for guest management. The information is noted on the above shared MS Docs.</p><blockquote><p>If you&rsquo;re using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run sudo visudo and add <username>ALL=(ALL) NOPASSWD:ALL to the end of the file. Make sure to replace <username>. If your VM template has these changes incorporated, you won&rsquo;t need to do this for the VM created from that template.</p></blockquote><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20005104.png></p><p>So I will do that since it is only three VM&rsquo;s and then continue on.</p><p>Now my VM&rsquo;s are guest enabled and I can manage them from Azure.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20010715.png></p><p>From here, we can manage these VM&rsquo;s as if they were just another Azure resource. We can enable things like VM Insights, assign Azure Policies, install Azure Extensions, also include them in Azure Update Manager. We can also include them in Defender for CLoud and Microsoft Sentinel and other Azure Services.</p><p><img src=/img/arc_vcenter/Screenshot%202024-01-12%20010844.png></p><h2 id=next-steps>Next Steps</h2><p>So what else can we do??? We can configure RBAC to provide self services in order for others to manage their own VM&rsquo;s and also deploy VM&rsquo;s from the portal. We can deploy VM&rsquo;s to our vCenter from the Portal using built in templates that we enabled for Azure.</p><p>There is also other Azure services that we can look at as well now. How about AKS running on vCenter? That will open a lot of other Azure Services that we could run all using Arc services like Azure Arc-Enabled Kubernetes, Azure-Arc enabled data services, and more.</p><h2 id=final-thoughts>Final Thoughts</h2><p>My final thoughts are this. This is a great solution to provide management of your vCenter environment from the perspective of managing your VM&rsquo;s through the Azure Portal. The biggest difference between just using Azure Arc-enabled servers vs Azure Arc-enabled VMware for VSphere is with the later we can also deploy VM&rsquo;s to our vCenter from the portal as if it was another resources in Azure. We can also do a little more by starting and stopping the VM&rsquo;s, adding network interfaces, updating disk, etc. That is a little more than what we could do just using Azure Arc-enabled servers.</p><p>I know I will be blogging more about this soon. Not sure what about but I am thinking more in the lines of AKS on VMware and managing that using Azure Arc-enabled Kubernetes. I think I may dig deeper into the Azure Update Manager along with configuring Defender for Cloud and Sentinel to secure these workloads running on our on prem vCenters. Digging into regulatory compliance and more that can all be done from the Azure portal.</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc/ rel=tag>Azure Arc</a></li><li class=tags__item><a class="tags__link btn" href=/tags/vmware-vsphere/ rel=tag>VMWare vSphere</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/12-days-azure-arcmas-summary/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>The 12 Days of Azure-ArcMas - Summary</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
+</label><input class=widget-search__submit type=submit value=Search>
+<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li><li class=widget__item><a class=widget__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li><li class=widget__item><a class=widget__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMWare VSphere">VMWare VSphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
+<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
+<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2025 This Is My Demo.
+<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>

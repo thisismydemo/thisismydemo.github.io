@@ -1,218 +1,10 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster - This Is My Demo</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-		<meta property="og:url" content="http://localhost:1313/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/">
-  <meta property="og:site_name" content="This Is My Demo">
-  <meta property="og:title" content="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster">
-  <meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2023-10-17T00:30:45+00:00">
-    <meta property="article:modified_time" content="2023-10-24T19:00:21+00:00">
-    <meta property="article:tag" content="Azure Stack HCI">
-    <meta property="article:tag" content="WAC">
-    <meta property="article:tag" content="WIndows Admin Center">
-    <meta property="article:tag" content="PowerShell">
-
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster">
-  <meta name="twitter:description" content="This is a series of blogs about my experiences with Azure Stack HCI">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	
-
-	<link rel="shortcut icon" href="/favicon.ico">
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">This Is My Demo</div>
-					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1"></span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</h1>
-			<p class="post__lead">This is a series of blogs about my experiences with Azure Stack HCI</p>
-			<div class="post__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-10-17T00:30:45Z">October 17, 2023</time>
-	<time class="meta__text" datetime="2023-10-24T19:00:21Z">(: October 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-stack-hci/" rel="category">Azure Stack HCI</a>
-	</span>
-</div></div>
-		</header>
-		
-	<figure class="post__thumbnail thumbnail">
-		
-		<img class="thumbnail__image" src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20145905.png" alt="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster">
-		
-	</figure><div class="content post__content clearfix">
-			<p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p>
-<p>I had planned to have a Part III that would have focused on scaling out a single node cluster.  However, as I was writing that blog and going back to Part II, <a href="https://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/">Azure Stack HCI - Part II - Deploying A Single Node Cluster</a> I found myself wanting to add to that blog.  There where things that I didn&rsquo;t cover I felt would be important.  So instead of deleting that blog, because it did do a decent job at a high level overview, I am going to keep that blog and write another one that goes more in-depth. Which is the birth of this blog, Part III - Advance Deployment of A Single Node Cluster.</p>
-<p>In this blog I want to add some areas I left out of the last blog and go slightly deeper in some of the other areas of that last blog.  Hopefully this blog will be useful to those that are interested in Azure Stack HCI and want to get your toes wet enough to learn more.</p>
-<p>So this blog will cover the following:</p>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#shout-out">Shout Out!!!</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#overview---single-node-cluster">Overview - Single Node Cluster</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#hardware-deployment--configuration">Hardware Deployment &amp; Configuration</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#my-virtual-environment">My Virtual Environment</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#deploying-my-virtual-environment">Deploying my virtual environment</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#physical-hardware-deployment">Physical Hardware Deployment</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#pre-requisites-and-configurations">Pre-Requisites and Configurations</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#pre-requisites">Pre-requisites</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#management-tools">Management Tools</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#os-configuration">OS Configuration</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#install-features">Install Features</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#cluster-networking">Cluster Networking</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#the-manual-way">The Manual Way</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#the-micheal-godfrey-why-the-heck-didnt-you-use-network-atc-way">The &ldquo;Micheal Godfrey Why The Heck Didn&rsquo;t You Use Network ATC&rdquo; Way.</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#other-network-settings">Other Network Settings</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-the-cluster">Create the Cluster</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#storage-spaces-direct">Storage Spaces Direct</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#register-the-cluster">Register The Cluster</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#register-the-windows-admin-center-wac">Register the Windows Admin Center (WAC)</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#add-cluster-to-wac">Add Cluster To WAC</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#creating-volumes">Creating Volumes</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-volume-using-wac">Create Volume using WAC</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-volume-using-powershell">Create Volume using PowerShell</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#more-settings">More Settings</a>
-<ul>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#storage-settings">Storage Settings</a></li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#settings-to-think-about">Settings to think about</a></li>
-</ul>
-</li>
-<li><a href="/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#final-thoughts">Final Thoughts</a></li>
-</ul>
-<p>Remember, I am building this solution on a Single Node cluster and I will try to explain how to do it not only on an AzureVM but try to explain how it would be done on physical hardware if that process is different.  Since I do have plans to scale out this cluster, I will keep that in mind as I deploy this first node as well.  Knowing that I will add a second and a third and a fourth node in the future.</p>
-<p><em><strong>Note: So once again I learned something after this blog was created. Instead of re-writing a third blog on this subject I just edited this blog. I was unaware that you could still use Network ATC with virtual machines. Even thought the Microsoft Learn documentation calls out that it is only supported on Physical machines. The changes I made in this blog are in that area. From manually configuring the network to using Network AT</strong></em>C.</p>
-<h2 id="shout-out">Shout Out!!!</h2>
-<p>The first thing I would like to do before I start is give credit to Dell&rsquo;s own <strong><a href="https://twitter.com/mattmcspirit">Matt McSpirit</a></strong> and <strong><a href="https://twitter.com/jaromirkaspar">Jaromir Kaspar</a></strong>. Jaromir is the creator of <a href="https://github.com/microsoft/MSLab/tree/master">MSLab</a>. MSLab is the base for the <a href="https://github.com/DellGEOS/HybridJumpstart/tree/main">Hybrid Jump Start</a> I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen.  Then of course, a lot of my references will come from <a href="https://learn.microsoft.com/en-us/azure-stack/hci/">Microsoft Learn documentation on Azure Stack HCI</a>. There is also a <a href="https://azurestackhci.slack.com">Slack Channel dedicated to Azure Stack HCI</a> that I pull some information from as well.</p>
-<hr>
-<h2 id="overview---single-node-cluster">Overview - Single Node Cluster</h2>
-<p>So why a single node Azure Stack HCI Cluster? There are some get advantages of running a single node cluster and of course with that there are things you should take into account when running a single node cluster.</p>
-<p>Let&rsquo;s look at why you wouldn&rsquo;t first? Better get the bad stuff out of the way before we talk about why a single node cluster has some advantages.</p>
-<p>First thing that we should note in a single-node cluster is the resiliency to some failures such as a hard disk failure. Single node devices are also limited a single drive type (either NVMe or SSD).  Along with storage, there is no High Availability for the workloads that run on a single-node cluster. This means if the device fails, your workloads fail.  Something to think about as well, when you do updates, this will require a reboot of the OS, which in turn will bring down your workloads.  So moral to the story, critical applications shouldn&rsquo;t run on a single-node cluster unless you can afford some down time.</p>
-<p>Now let&rsquo;s take a look at some of the advantages of a single-node cluster.</p>
-<ul>
-<li><strong>Smaller Solutions</strong>: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices.</li>
-<li><strong>Reduced Costs</strong>: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency.</li>
-<li><strong>Scalability</strong>: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster.</li>
-<li><strong>Azure Integration</strong>: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS).</li>
-<li><strong>Supports Same Workloads</strong>: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI.</li>
-<li><strong>Proof of Concept (PoC) and Testing</strong>:  Organizations considering a transition to Azure Stack HCI might deploy a single node initially to test functionalities, performance, and integration with existing systems before committing to a full-scale deployment.</li>
-<li><strong>Specific Workloads</strong>: Some workloads or applications might not require the high availability offered by multi-node clusters but can benefit from the other features of HCI, such as integrated storage and compute capabilities.</li>
-<li><strong>Training and Development</strong>: For training purposes or for development and testing environments, a single-node deployment can provide a controlled environment without the need for more extensive infrastructure.</li>
-</ul>
-<p>Thanks to Karl Wester-Ebbinghaus for some more suggestions:</p>
-<ul>
-<li>Edge AVD for stores/running cash terminals etc.</li>
-<li>Dev/Test VM&rsquo;s even with Dev/Test Licensing regarding teh OS Workloads</li>
-<li>Outsourcing old/legacy workloads that require ESU savings on hardware and ESU cost.</li>
-</ul>
-<p>It&rsquo;s essential to understand that while a single-node Azure Stack HCI deployment offers specific benefits, it does come with the trade-off of not having the high availability and failover capabilities inherent in multi-node clusters. Thus, it&rsquo;s crucial to assess the importance of these features based on the intended use case.</p>
-<hr>
-<h2 id="hardware-deployment--configuration">Hardware Deployment &amp; Configuration</h2>
-<p>There are plenty of options when it comes to hardware for a single node solution.  I have had most of my experiences with Dell so I tend to lean towards Dell solutions. For transparency, I did work for Dell EMC for about 3 months back in 2016 as a contractor, then again for about a month as a full time employee for Dell Services before Dell Services became NTT Data Services.  However, that has just a little pull when it comes to talking about hardware vendors. I don&rsquo;t have any experience with Lenovo at the server level. I have some experience with HPE and their <a href="https://buy.hpe.com/us/en/compute/edgeline-systems/edgeline-systems/edgeline-converged-edge-systems/hpe-edgeline-el8000-converged-edge-system/p/1011622898">Edgeline EL8000 Converged Edge Systems</a>. I worked a few projects with that solution when I was on an Edge Team working with Microsoft Federal. At the time their were not certified to run Azure Stack HCI but we did have it running on that system and it was a good sturdy system to run on the edge. I am not sure if it now certified or not.</p>
-<p>So I will say, over all I favor Dell solutions and they have a very nice solution for Azure Stack HCI that was just announced  <a href="https://www.dell.com/en-us/dt/apex/cloud-platforms/microsoft-azure.htm">Dell&rsquo;s APEX Cloud Platform for Microsoft Azure</a> is currently the <strong>First and only Azure Stack HCI offering in the Premier Solution Category</strong>. The things I have seen this new product can do for lifecycle management and more look amazing. Plus, these are Dell Servers, which in my experience have many nice features including the iDrac. Now Dell also makes a very nice single node system for Azure Stack HCI, the <a href="https://www.dell.com/en-us/dt/hyperconverged-infrastructure/microsoft-azure-stack/microsoft-azure-stack-hci.htm#tab0=1">AX series</a>.</p>
-<p>However, if you are like me and have a budget of zero dollars than hardware is pretty much off the table. So for this blog and most my learning and training experience I will deploy a solution in Azure for a few days or so. As mentioned above, I have been using Matt McSpirit&rsquo;s Hybrid Jump Start to deploy my virtual environment.</p>
-<h3 id="my-virtual-environment">My Virtual Environment</h3>
-<p>the Hybrid Jump Start deploys a single Host in Azure. Within the host, it will configure Hyper-V and nested VM support for Hyper-V.  It will then deploying the following:</p>
-<ul>
-<li>An Active Directory Domain Controller</li>
-<li>A Windows Admin Center Gateway Server</li>
-<li>Depending on your choice, between 2 to 4 HCI Host.</li>
-</ul>
-<p>This will configure all HCI nodes with 3 NICS that are assigned to a vSwitch created called HybridJumpStart-xyz-vSwitch. The domain controller will have two NICS installed one assigned to the same vSwitch as the nodes and the 2nd is assigned to an InternalNat switch.</p>
-<p>Last it configures an Active Directory domain Dell.Hybrid, joins all the servers to that domain for you and then deploys the Windows Admin Center for you.</p>
-<p>The good thing about this jump start is you don&rsquo;t have to rack servers, rack switches, run power, and cables. A click and a few variables later you have a fully functional lab ready to move forward with Azure Stack HCI.</p>
-<h4 id="deploying-my-virtual-environment">Deploying my virtual environment</h4>
-<p>From the Hybrid Jump Start the Github repo I just clicked Deploy To Azure and filled in the necessary fields. I did keep some of the default settings but the following I did change:</p>
-<ul>
-<li>Virtual Machine Size: I changed to Standard_E32s_v4</li>
-<li>Azure Stack HCI Nodes: I changed from 2 to 4</li>
-<li>Azure Stack HCI Node Memory:  I changed to 48.</li>
-<li>Data Disk Size:  I changed to 128 GB</li>
-<li>Data Disk Type: I changed to Premium_LRS</li>
-</ul>
-<p>I also changed the time the machine will shutdown each night from 22:00 to 20:00. (That is 8PM for my fellow Texans.) I also changed the time zone to the only time zone that matters, Central Time (Texas Time!)</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131037.png"></p>
-<p>Deployment kicked off and took about an hour overall for everything to deploy.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131204.png"></p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131237.png"></p>
-<p>While I waited, I did go into the VM resource to configure an alert to be emailed to me before my VM auto shutsdown.  This comes in handy a lot.  In order to do this, we just go back to the Virtual Machine resource in the resource group created, click on that resource, and on the left blade under Operations, there is a option called Auto-shutdown.  We click on that and to the right, add an email address to the Email Address field.</p>
-<p><img src="/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131611.png"></p>
-<p>Click save and now, while we are working hard late at night, we will be reminded that our machine will shut down soon. I always forget adn in the middle of working it always shuts down.</p>
-<h3 id="physical-hardware-deployment">Physical Hardware Deployment</h3>
-<p>With Physical hardware there are some areas we need to discuss. If you are going to just use a single node than it is pretty straight forward. Rack the server, run your ethernet cables for network connection, and of course power. For a two node cluster, you could get by without having top of the rack switches. For management you just need to have one NIC connected to switches, for the storage and compute networks you can cross connect the two servers without a top of the rack switch.  Now, once we get into three nodes and above, this is where the hardware configuration, networking, etc get more important. When the servers are rack, the power is run, then we need to talk about networking. At a high level, you shouldn&rsquo;t have less than 4 physical NICS for anything larger than a three node cluster. In most cases, you would create a SET team across two physical NICS for management, and another SET team for both Compute and Storage.</p>
-<p>Once the servers have been racked we will need to deploy the OS, the Azure Stack HCI OS on those servers.  Either by Network Deployment, via some lifecycle management solution, or something like SCCM or WDS, or old fashion sneaker net to the box with a bootable USB drive.</p>
-<hr>
-<h2 id="pre-requisites-and-configurations">Pre-Requisites and Configurations</h2>
-<p>So at this point, if you have physical hardware or if you are using a virtualized environment like I am using the following steps will closely be related. There are some other settings around networking and OS configuration that would need to be done for physical host but for the most part, everything I will cover at this point will get your single node cluster up and running on physical hardware or an AzureVM or some other virtualized platform.</p>
-<h3 id="pre-requisites">Pre-requisites</h3>
-<p>So one of the biggest pre-requisites at this point is having an Active Directory Domain. The nodes will all have to be joined to the domain after the OS has been installed.</p>
-<h3 id="management-tools">Management Tools</h3>
-<p>In most environments, we would have a management server that we can install all our tools. For my environment, I only have the DC so I will use that as my management server for this lab.</p>
-<pre tabindex="0"><code>Install-WindowsFeature -Name RSAT-Clustering, RSAT-Clustering-Mgmt, `
+<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster - This Is My Demo</title>
+<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="This is a series of blogs about my experiences with Azure Stack HCI"><meta property="og:url" content="http://thisismydemo.cloud/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster"><meta property="og:description" content="This is a series of blogs about my experiences with Azure Stack HCI"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-10-17T00:30:45+00:00"><meta property="article:modified_time" content="2023-10-24T19:00:21+00:00"><meta property="article:tag" content="Azure Stack HCI"><meta property="article:tag" content="WAC"><meta property="article:tag" content="WIndows Admin Center"><meta property="article:tag" content="PowerShell"><meta name=twitter:card content="summary"><meta name=twitter:title content="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster"><meta name=twitter:description content="This is a series of blogs about my experiences with Azure Stack HCI"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster</h1><p class=post__lead>This is a series of blogs about my experiences with Azure Stack HCI</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-10-17T00:30:45Z>October 17, 2023</time>
+<time class=meta__text datetime=2023-10-24T19:00:21Z>(: October 24, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-stack-hci/ rel=category>Azure Stack HCI</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/azshci-series/singlecluster/Screenshot%202023-10-13%20145905.png alt="Azure Stack HCI - Part III - Advanced Deployment of A Single Node Cluster"></figure><div class="content post__content clearfix"><p>In this blog series I plan to blog about everything I know about Azure Stack HCI. So, it should be a very short blog series. Just kidding. Again, I tend to blog about subjects that I am currently working on or will be currently working on. So, Azure Stack HCI is fresh on my mind again these days.</p><p>I had planned to have a Part III that would have focused on scaling out a single node cluster. However, as I was writing that blog and going back to Part II, <a href=https://thisismydemo.cloud/post/azure-stack-hci-part-ii-deploying-single-node-cluster/>Azure Stack HCI - Part II - Deploying A Single Node Cluster</a> I found myself wanting to add to that blog. There where things that I didn&rsquo;t cover I felt would be important. So instead of deleting that blog, because it did do a decent job at a high level overview, I am going to keep that blog and write another one that goes more in-depth. Which is the birth of this blog, Part III - Advance Deployment of A Single Node Cluster.</p><p>In this blog I want to add some areas I left out of the last blog and go slightly deeper in some of the other areas of that last blog. Hopefully this blog will be useful to those that are interested in Azure Stack HCI and want to get your toes wet enough to learn more.</p><p>So this blog will cover the following:</p><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#shout-out>Shout Out!!!</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#overview---single-node-cluster>Overview - Single Node Cluster</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#hardware-deployment--configuration>Hardware Deployment & Configuration</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#my-virtual-environment>My Virtual Environment</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#deploying-my-virtual-environment>Deploying my virtual environment</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#physical-hardware-deployment>Physical Hardware Deployment</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#pre-requisites-and-configurations>Pre-Requisites and Configurations</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#pre-requisites>Pre-requisites</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#management-tools>Management Tools</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#os-configuration>OS Configuration</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#install-features>Install Features</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#cluster-networking>Cluster Networking</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#the-manual-way>The Manual Way</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#the-micheal-godfrey-why-the-heck-didnt-you-use-network-atc-way>The &ldquo;Micheal Godfrey Why The Heck Didn&rsquo;t You Use Network ATC&rdquo; Way.</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#other-network-settings>Other Network Settings</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-the-cluster>Create the Cluster</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#storage-spaces-direct>Storage Spaces Direct</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#register-the-cluster>Register The Cluster</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#register-the-windows-admin-center-wac>Register the Windows Admin Center (WAC)</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#add-cluster-to-wac>Add Cluster To WAC</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#creating-volumes>Creating Volumes</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-volume-using-wac>Create Volume using WAC</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#create-volume-using-powershell>Create Volume using PowerShell</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#more-settings>More Settings</a><ul><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#storage-settings>Storage Settings</a></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#settings-to-think-about>Settings to think about</a></li></ul></li><li><a href=/post/azure-stack-hci-part-iii-advanced-deployment-single-node-cluster/#final-thoughts>Final Thoughts</a></li></ul><p>Remember, I am building this solution on a Single Node cluster and I will try to explain how to do it not only on an AzureVM but try to explain how it would be done on physical hardware if that process is different. Since I do have plans to scale out this cluster, I will keep that in mind as I deploy this first node as well. Knowing that I will add a second and a third and a fourth node in the future.</p><p><em><strong>Note: So once again I learned something after this blog was created. Instead of re-writing a third blog on this subject I just edited this blog. I was unaware that you could still use Network ATC with virtual machines. Even thought the Microsoft Learn documentation calls out that it is only supported on Physical machines. The changes I made in this blog are in that area. From manually configuring the network to using Network AT</strong></em>C.</p><h2 id=shout-out>Shout Out!!!</h2><p>The first thing I would like to do before I start is give credit to Dell&rsquo;s own <strong><a href=https://twitter.com/mattmcspirit>Matt McSpirit</a></strong> and <strong><a href=https://twitter.com/jaromirkaspar>Jaromir Kaspar</a></strong>. Jaromir is the creator of <a href=https://github.com/microsoft/MSLab/tree/master>MSLab</a>. MSLab is the base for the <a href=https://github.com/DellGEOS/HybridJumpstart/tree/main>Hybrid Jump Start</a> I used to deploy my Azure environment. Hybrid Jump Start was created and being worked on by Matt McSpirit. A lot of my knowledge comes from there two gentlemen. Then of course, a lot of my references will come from <a href=https://learn.microsoft.com/en-us/azure-stack/hci/>Microsoft Learn documentation on Azure Stack HCI</a>. There is also a <a href=https://azurestackhci.slack.com>Slack Channel dedicated to Azure Stack HCI</a> that I pull some information from as well.</p><hr><h2 id=overview---single-node-cluster>Overview - Single Node Cluster</h2><p>So why a single node Azure Stack HCI Cluster? There are some get advantages of running a single node cluster and of course with that there are things you should take into account when running a single node cluster.</p><p>Let&rsquo;s look at why you wouldn&rsquo;t first? Better get the bad stuff out of the way before we talk about why a single node cluster has some advantages.</p><p>First thing that we should note in a single-node cluster is the resiliency to some failures such as a hard disk failure. Single node devices are also limited a single drive type (either NVMe or SSD). Along with storage, there is no High Availability for the workloads that run on a single-node cluster. This means if the device fails, your workloads fail. Something to think about as well, when you do updates, this will require a reboot of the OS, which in turn will bring down your workloads. So moral to the story, critical applications shouldn&rsquo;t run on a single-node cluster unless you can afford some down time.</p><p>Now let&rsquo;s take a look at some of the advantages of a single-node cluster.</p><ul><li><strong>Smaller Solutions</strong>: It’s suitable for environments with physical space constraints or that don’t require built-in resiliency, such as retail stores and branch offices.</li><li><strong>Reduced Costs</strong>: A smaller footprint reduces hardware and operational costs1. Using a single server minimizes hardware and software costs in locations that can tolerate lower resiliency.</li><li><strong>Scalability</strong>: Solutions can be built to scale, ranging from single-node up to 16 nodes if needed1. You can add servers to scale out the cluster.</li><li><strong>Azure Integration</strong>: It brings native Azure Arc integration3, allowing you to gain the capabilities afforded by being enabled by Azure, such as running Azure Kubernetes Service (AKS).</li><li><strong>Supports Same Workloads</strong>: It supports the same workloads as a multi-node cluster, such as Azure Virtual Desktop (AVD) and Azure Kubernetes Service (AKS) on Azure Stack HCI.</li><li><strong>Proof of Concept (PoC) and Testing</strong>: Organizations considering a transition to Azure Stack HCI might deploy a single node initially to test functionalities, performance, and integration with existing systems before committing to a full-scale deployment.</li><li><strong>Specific Workloads</strong>: Some workloads or applications might not require the high availability offered by multi-node clusters but can benefit from the other features of HCI, such as integrated storage and compute capabilities.</li><li><strong>Training and Development</strong>: For training purposes or for development and testing environments, a single-node deployment can provide a controlled environment without the need for more extensive infrastructure.</li></ul><p>Thanks to Karl Wester-Ebbinghaus for some more suggestions:</p><ul><li>Edge AVD for stores/running cash terminals etc.</li><li>Dev/Test VM&rsquo;s even with Dev/Test Licensing regarding teh OS Workloads</li><li>Outsourcing old/legacy workloads that require ESU savings on hardware and ESU cost.</li></ul><p>It&rsquo;s essential to understand that while a single-node Azure Stack HCI deployment offers specific benefits, it does come with the trade-off of not having the high availability and failover capabilities inherent in multi-node clusters. Thus, it&rsquo;s crucial to assess the importance of these features based on the intended use case.</p><hr><h2 id=hardware-deployment--configuration>Hardware Deployment & Configuration</h2><p>There are plenty of options when it comes to hardware for a single node solution. I have had most of my experiences with Dell so I tend to lean towards Dell solutions. For transparency, I did work for Dell EMC for about 3 months back in 2016 as a contractor, then again for about a month as a full time employee for Dell Services before Dell Services became NTT Data Services. However, that has just a little pull when it comes to talking about hardware vendors. I don&rsquo;t have any experience with Lenovo at the server level. I have some experience with HPE and their <a href=https://buy.hpe.com/us/en/compute/edgeline-systems/edgeline-systems/edgeline-converged-edge-systems/hpe-edgeline-el8000-converged-edge-system/p/1011622898>Edgeline EL8000 Converged Edge Systems</a>. I worked a few projects with that solution when I was on an Edge Team working with Microsoft Federal. At the time their were not certified to run Azure Stack HCI but we did have it running on that system and it was a good sturdy system to run on the edge. I am not sure if it now certified or not.</p><p>So I will say, over all I favor Dell solutions and they have a very nice solution for Azure Stack HCI that was just announced <a href=https://www.dell.com/en-us/dt/apex/cloud-platforms/microsoft-azure.htm>Dell&rsquo;s APEX Cloud Platform for Microsoft Azure</a> is currently the <strong>First and only Azure Stack HCI offering in the Premier Solution Category</strong>. The things I have seen this new product can do for lifecycle management and more look amazing. Plus, these are Dell Servers, which in my experience have many nice features including the iDrac. Now Dell also makes a very nice single node system for Azure Stack HCI, the <a href="https://www.dell.com/en-us/dt/hyperconverged-infrastructure/microsoft-azure-stack/microsoft-azure-stack-hci.htm#tab0=1">AX series</a>.</p><p>However, if you are like me and have a budget of zero dollars than hardware is pretty much off the table. So for this blog and most my learning and training experience I will deploy a solution in Azure for a few days or so. As mentioned above, I have been using Matt McSpirit&rsquo;s Hybrid Jump Start to deploy my virtual environment.</p><h3 id=my-virtual-environment>My Virtual Environment</h3><p>the Hybrid Jump Start deploys a single Host in Azure. Within the host, it will configure Hyper-V and nested VM support for Hyper-V. It will then deploying the following:</p><ul><li>An Active Directory Domain Controller</li><li>A Windows Admin Center Gateway Server</li><li>Depending on your choice, between 2 to 4 HCI Host.</li></ul><p>This will configure all HCI nodes with 3 NICS that are assigned to a vSwitch created called HybridJumpStart-xyz-vSwitch. The domain controller will have two NICS installed one assigned to the same vSwitch as the nodes and the 2nd is assigned to an InternalNat switch.</p><p>Last it configures an Active Directory domain Dell.Hybrid, joins all the servers to that domain for you and then deploys the Windows Admin Center for you.</p><p>The good thing about this jump start is you don&rsquo;t have to rack servers, rack switches, run power, and cables. A click and a few variables later you have a fully functional lab ready to move forward with Azure Stack HCI.</p><h4 id=deploying-my-virtual-environment>Deploying my virtual environment</h4><p>From the Hybrid Jump Start the Github repo I just clicked Deploy To Azure and filled in the necessary fields. I did keep some of the default settings but the following I did change:</p><ul><li>Virtual Machine Size: I changed to Standard_E32s_v4</li><li>Azure Stack HCI Nodes: I changed from 2 to 4</li><li>Azure Stack HCI Node Memory: I changed to 48.</li><li>Data Disk Size: I changed to 128 GB</li><li>Data Disk Type: I changed to Premium_LRS</li></ul><p>I also changed the time the machine will shutdown each night from 22:00 to 20:00. (That is 8PM for my fellow Texans.) I also changed the time zone to the only time zone that matters, Central Time (Texas Time!)</p><p><img src=/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131037.png></p><p>Deployment kicked off and took about an hour overall for everything to deploy.</p><p><img src=/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131204.png></p><p><img src=/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131237.png></p><p>While I waited, I did go into the VM resource to configure an alert to be emailed to me before my VM auto shutsdown. This comes in handy a lot. In order to do this, we just go back to the Virtual Machine resource in the resource group created, click on that resource, and on the left blade under Operations, there is a option called Auto-shutdown. We click on that and to the right, add an email address to the Email Address field.</p><p><img src=/img/azshci-series/singlecluster/Screenshot%202023-10-13%20131611.png></p><p>Click save and now, while we are working hard late at night, we will be reminded that our machine will shut down soon. I always forget adn in the middle of working it always shuts down.</p><h3 id=physical-hardware-deployment>Physical Hardware Deployment</h3><p>With Physical hardware there are some areas we need to discuss. If you are going to just use a single node than it is pretty straight forward. Rack the server, run your ethernet cables for network connection, and of course power. For a two node cluster, you could get by without having top of the rack switches. For management you just need to have one NIC connected to switches, for the storage and compute networks you can cross connect the two servers without a top of the rack switch. Now, once we get into three nodes and above, this is where the hardware configuration, networking, etc get more important. When the servers are rack, the power is run, then we need to talk about networking. At a high level, you shouldn&rsquo;t have less than 4 physical NICS for anything larger than a three node cluster. In most cases, you would create a SET team across two physical NICS for management, and another SET team for both Compute and Storage.</p><p>Once the servers have been racked we will need to deploy the OS, the Azure Stack HCI OS on those servers. Either by Network Deployment, via some lifecycle management solution, or something like SCCM or WDS, or old fashion sneaker net to the box with a bootable USB drive.</p><hr><h2 id=pre-requisites-and-configurations>Pre-Requisites and Configurations</h2><p>So at this point, if you have physical hardware or if you are using a virtualized environment like I am using the following steps will closely be related. There are some other settings around networking and OS configuration that would need to be done for physical host but for the most part, everything I will cover at this point will get your single node cluster up and running on physical hardware or an AzureVM or some other virtualized platform.</p><h3 id=pre-requisites>Pre-requisites</h3><p>So one of the biggest pre-requisites at this point is having an Active Directory Domain. The nodes will all have to be joined to the domain after the OS has been installed.</p><h3 id=management-tools>Management Tools</h3><p>In most environments, we would have a management server that we can install all our tools. For my environment, I only have the DC so I will use that as my management server for this lab.</p><pre tabindex=0><code>Install-WindowsFeature -Name RSAT-Clustering, RSAT-Clustering-Mgmt, `
     RSAT-Clustering-PowerShell, RSAT-Hyper-V-Tools, `
     RSAT-Feature-Tools-BitLocker-BdeAducExt, RSAT-Storage-Replica
-</code></pre><h3 id="os-configuration">OS Configuration</h3>
-<p>There are three things that we should configure on all our host.  I like to enable remote desktop on my host in a lab environment, we also need to configure Active memory dump and if these where physical hardware we would need to configure high performance power plan on all our nodes.</p>
-<pre tabindex="0"><code># Define servers as variable
+</code></pre><h3 id=os-configuration>OS Configuration</h3><p>There are three things that we should configure on all our host. I like to enable remote desktop on my host in a lab environment, we also need to configure Active memory dump and if these where physical hardware we would need to configure high performance power plan on all our nodes.</p><pre tabindex=0><code># Define servers as variable
 $Servers = &#34;AzSHCI1&#34;, &#34;AzSHCI2&#34;, &#34;AzSHCI3&#34;, &#34;AzSHCI4&#34;
 
 # Configure Active memory dump
@@ -235,8 +27,7 @@ Invoke-Command -ComputerName $servers -ScriptBlock { powercfg /list }
 Invoke-Command -ComputerName $Servers -ScriptBlock { Set-ItemProperty -Path &#39;HKLM:\System\CurrentControlSet\Control\Terminal Server&#39;-name &#34;fDenyTSConnections&#34; -Value 0 }
 
 Invoke-Command -ComputerName $Servers -ScriptBlock { Enable-NetFirewallRule -DisplayGroup &#34;Remote Desktop&#34; }
-</code></pre><p>I also will rename my machines network adapters at this point which will help me better identify them later.</p>
-<pre tabindex="0"><code>$Servers = &#34;AzSHCI1&#34;
+</code></pre><p>I also will rename my machines network adapters at this point which will help me better identify them later.</p><pre tabindex=0><code>$Servers = &#34;AzSHCI1&#34;
 ## Rename Network Adapters
 Invoke-Command ($Servers) {
     Rename-NetAdapter -Name &#34;Ethernet&#34; -NewName &#34;vmNic01&#34;
@@ -247,9 +38,7 @@ Invoke-Command ($Servers) {
     Invoke-Command -ComputerName $Servers -ScriptBlock {
     Get-NetAdapter
     }
-</code></pre><h3 id="install-features">Install Features</h3>
-<p>Next I will install all the features needed for my node AZSHCI1.  Since this blog is about a single node sever with continuation into how to join the other nodes, I will just need to do the following on a single node:</p>
-<pre tabindex="0"><code>$Servers = &#34;AzSHCI1&#34;
+</code></pre><h3 id=install-features>Install Features</h3><p>Next I will install all the features needed for my node AZSHCI1. Since this blog is about a single node sever with continuation into how to join the other nodes, I will just need to do the following on a single node:</p><pre tabindex=0><code>$Servers = &#34;AzSHCI1&#34;
 ## Install Roles &amp; Features
 $FeatureList = &#34;BitLocker&#34;, &#34;Data-Center-Bridging&#34;, &#34;Failover-Clustering&#34;, &#34;FS-FileServer&#34;, &#34;FS-Data-Deduplication&#34;, &#34;Hyper-V&#34;, &#34;Hyper-V-PowerShell&#34;, &#34;RSAT-AD-Powershell&#34;, &#34;RSAT-Clustering-PowerShell&#34;, &#34;NetworkATC&#34;, &#34;NetworkHUD&#34;, &#34;FS-SMBBW&#34;, &#34;Storage-Replica&#34;
 
@@ -265,21 +54,9 @@ Start-Sleep 20 # Allow time for reboots to complete fully
 Foreach ($Server in $Servers) {
     do { $Test = Test-NetConnection -ComputerName $Server -CommonTCPPort WINRM }while ($test.TcpTestSucceeded -eq $False)
 }
-</code></pre><hr>
-<h2 id="cluster-networking">Cluster Networking</h2>
-<p>Now, this is the section that changed drastically since I wrote the blog. I am leaving the old way or what we would call the manual way just for reference but I am adding how to do this using Network ATC as well.</p>
-<h3 id="the-manual-way">The Manual Way</h3>
-<p>If we were deploying this solution on Physical nodes we would be able to take advantage of <a href="https://learn.microsoft.com/en-us/azure-stack/hci/deploy/network-atc?tabs=22H2">Network ATC</a>.  However, <em><strong>Network ATC is not supported on a virtual environments</strong></em> so we will configure our networks manually and using PowerShell.  I guess in theory you could do a lot of this in the Windows Admin Center but PowerShell is a lot easier, when it comes to multi-node systems you are trying to configure for a cluster.</p>
-<p>The following image shows how I am going to configure my host today. Each of my nodes have 4 virtual nics that represent 4 physical nics in this case.
-I will be creating two Switch Embedded Teams (SET), one for a Management Team and another for my Compute and Storage Team or what we will call ConvergedSwitch. During the process we will create a vNIC for  the Management interface, and then two more vNICS for our SMB traffic.</p>
-<p><img src="/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png"></p>
-<p>For this virtual environment the PowerShell command I am going to use will just grab the first available physical nics and add them to the SET Team. Then the next two available will be added to the Compute and Storage Team. In a physical configuration you will want to make sure you have identified which physical nic maps to what interface, etc in each Node. Since in a physical deployment you will have network cables running from each to different switch ports with different subnets assigned to each network.</p>
-<p>For an example, you can run the following PowerShell command on your host to see these mappings.</p>
-<pre tabindex="0"><code>Invoke-Command -ComputerName Azshci1 -ScriptBlock { Get-NetAdapter }
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20122456.png"></p>
-<p>For my environment I don&rsquo;t need to worry about this since all the vnics on each node are connected to the same vSwitch on my hyper-v server.  Moving forward I will continue as they are physical nics.</p>
-<p>We are going to create the Management Team at this point.  The script below will run on my first node, it will create the Management Team SET switch and it will add the first two physical NICs located on my node.</p>
-<pre tabindex="0"><code># Define servers as variable
+</code></pre><hr><h2 id=cluster-networking>Cluster Networking</h2><p>Now, this is the section that changed drastically since I wrote the blog. I am leaving the old way or what we would call the manual way just for reference but I am adding how to do this using Network ATC as well.</p><h3 id=the-manual-way>The Manual Way</h3><p>If we were deploying this solution on Physical nodes we would be able to take advantage of <a href="https://learn.microsoft.com/en-us/azure-stack/hci/deploy/network-atc?tabs=22H2">Network ATC</a>. However, <em><strong>Network ATC is not supported on a virtual environments</strong></em> so we will configure our networks manually and using PowerShell. I guess in theory you could do a lot of this in the Windows Admin Center but PowerShell is a lot easier, when it comes to multi-node systems you are trying to configure for a cluster.</p><p>The following image shows how I am going to configure my host today. Each of my nodes have 4 virtual nics that represent 4 physical nics in this case.
+I will be creating two Switch Embedded Teams (SET), one for a Management Team and another for my Compute and Storage Team or what we will call ConvergedSwitch. During the process we will create a vNIC for the Management interface, and then two more vNICS for our SMB traffic.</p><p><img src=/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png></p><p>For this virtual environment the PowerShell command I am going to use will just grab the first available physical nics and add them to the SET Team. Then the next two available will be added to the Compute and Storage Team. In a physical configuration you will want to make sure you have identified which physical nic maps to what interface, etc in each Node. Since in a physical deployment you will have network cables running from each to different switch ports with different subnets assigned to each network.</p><p>For an example, you can run the following PowerShell command on your host to see these mappings.</p><pre tabindex=0><code>Invoke-Command -ComputerName Azshci1 -ScriptBlock { Get-NetAdapter }
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20122456.png></p><p>For my environment I don&rsquo;t need to worry about this since all the vnics on each node are connected to the same vSwitch on my hyper-v server. Moving forward I will continue as they are physical nics.</p><p>We are going to create the Management Team at this point. The script below will run on my first node, it will create the Management Team SET switch and it will add the first two physical NICs located on my node.</p><pre tabindex=0><code># Define servers as variable
 $Servers=&#34;AzSHCI1&#34;
 
 # Define the vSwitch Name
@@ -290,8 +67,7 @@ Invoke-Command -ComputerName $servers -ScriptBlock {
     # Create the VM Switch from those 2 adapters
     New-VMSwitch -Name $using:vSwitchName -EnableEmbeddedTeaming $TRUE -NetAdapterName $NetAdapters.Name
 }
-</code></pre><p>Next I will create the ConvergedSwitch running the following command. In this command we have included -AllowManagementOS = $False so it will not create our vNics. These we will create later for our SMB traffic.</p>
-<pre tabindex="0"><code># Define servers as variable
+</code></pre><p>Next I will create the ConvergedSwitch running the following command. In this command we have included -AllowManagementOS = $False so it will not create our vNics. These we will create later for our SMB traffic.</p><pre tabindex=0><code># Define servers as variable
 $Servers = &#34;AzSHCI1&#34;
 
 # Define the vSwitch Name
@@ -304,12 +80,10 @@ Invoke-Command -ComputerName $servers -ScriptBlock {
     New-VMSwitch -Name $using:vSwitchName -EnableEmbeddedTeaming $TRUE -NetAdapterName `
     $NetAdapters.Name -AllowManagementOS $FALSE
 }
-</code></pre><p>Not necessary but very useful we will rename our management virtual adapter that was created previously to Management Team.</p>
-<pre tabindex="0"><code>$vSwitchName = &#34;Management Team&#34;
+</code></pre><p>Not necessary but very useful we will rename our management virtual adapter that was created previously to Management Team.</p><pre tabindex=0><code>$vSwitchName = &#34;Management Team&#34;
 Rename-VMNetworkAdapter -ManagementOS -Name $vSwitchName `
     -NewName Management -CimSession $Servers
-</code></pre><p>Now we will create our host virtual nics for storage.  These will be called SMB01 and SMB02. These will be assigned to the ConvergedSwitch SET Team created earlier.</p>
-<pre tabindex="0"><code>$vSwitchName = &#34;ConvergedSwitch&#34;
+</code></pre><p>Now we will create our host virtual nics for storage. These will be called SMB01 and SMB02. These will be assigned to the ConvergedSwitch SET Team created earlier.</p><pre tabindex=0><code>$vSwitchName = &#34;ConvergedSwitch&#34;
 foreach ($Server in $Servers) {
     # Add SMB vNICs (number depends on how many pNICs are connected to vSwitch)
     $SMBvNICsCount = (Get-VMSwitch -CimSession $Server `
@@ -320,38 +94,8 @@ foreach ($Server in $Servers) {
             -SwitchName $vSwitchName -CimSession $Server
     }
 }
-</code></pre><p>Now let&rsquo;s look at the virtual network adapters I just created. This can be done by running the following PowerShell script:</p>
-<pre tabindex="0"><code>Get-VMNetworkAdapter -CimSession $Servers -ManagementOS
-</code></pre><p>The next step is to configure IP addresses for our storage networks. I want to replicate my environment as much as I can like a physical network so I will be using two separate storage subnets.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Node</th>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">IP Address</th>
-<th style="text-align:left">Subnet Mask</th>
-<th style="text-align:left">VLAN</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">AZSHCI1</td>
-<td style="text-align:left">SMB01</td>
-<td style="text-align:left">172.16.1.1</td>
-<td style="text-align:left">24</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">AZSHCI1</td>
-<td style="text-align:left">SMB02</td>
-<td style="text-align:left">172.16.2.1</td>
-<td style="text-align:left">24</td>
-<td style="text-align:left">1</td>
-</tr>
-</tbody>
-</table>
-<p>The following PowerShell script was used:</p>
-<pre tabindex="0"><code>$StorNet1 = &#34;172.16.1.&#34;
+</code></pre><p>Now let&rsquo;s look at the virtual network adapters I just created. This can be done by running the following PowerShell script:</p><pre tabindex=0><code>Get-VMNetworkAdapter -CimSession $Servers -ManagementOS
+</code></pre><p>The next step is to configure IP addresses for our storage networks. I want to replicate my environment as much as I can like a physical network so I will be using two separate storage subnets.</p><table><thead><tr><th style=text-align:left>Node</th><th style=text-align:left>Name</th><th style=text-align:left>IP Address</th><th style=text-align:left>Subnet Mask</th><th style=text-align:left>VLAN</th></tr></thead><tbody><tr><td style=text-align:left>AZSHCI1</td><td style=text-align:left>SMB01</td><td style=text-align:left>172.16.1.1</td><td style=text-align:left>24</td><td style=text-align:left>1</td></tr><tr><td style=text-align:left>AZSHCI1</td><td style=text-align:left>SMB02</td><td style=text-align:left>172.16.2.1</td><td style=text-align:left>24</td><td style=text-align:left>1</td></tr></tbody></table><p>The following PowerShell script was used:</p><pre tabindex=0><code>$StorNet1 = &#34;172.16.1.&#34;
 $StorNet2 = &#34;172.16.2.&#34;
 $IP = 1 # Starting IP
 foreach ($Server in $Servers) {
@@ -371,13 +115,10 @@ foreach ($Server in $Servers) {
         }
     }
 }
-</code></pre><p>Now let&rsquo;s validate these network configurations.  I did so by running the following PowerShell command:</p>
-<pre tabindex="0"><code>Get-NetIPAddress -CimSession $Servers -InterfaceAlias vEthernet* `
+</code></pre><p>Now let&rsquo;s validate these network configurations. I did so by running the following PowerShell command:</p><pre tabindex=0><code>Get-NetIPAddress -CimSession $Servers -InterfaceAlias vEthernet* `
     -AddressFamily IPv4 | Sort-Object IPAddress |  `
     Select-Object IPAddress, InterfaceAlias, PSComputerName
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20124521.png"></p>
-<p>I went ahead and assigned VLANS to my storage network adapters. In my environment it isn&rsquo;t necessary but it wouldn&rsquo;t hurt.  This is something that QoS will require if you are using QoS on physical host. This was don&rsquo;t using the following code:</p>
-<pre tabindex="0"><code>$StorVLAN1 = 1
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20124521.png></p><p>I went ahead and assigned VLANS to my storage network adapters. In my environment it isn&rsquo;t necessary but it wouldn&rsquo;t hurt. This is something that QoS will require if you are using QoS on physical host. This was don&rsquo;t using the following code:</p><pre tabindex=0><code>$StorVLAN1 = 1
 $StorVLAN2 = 2
 
 # Configure Odds and Evens for VLAN1 and VLAN2
@@ -399,11 +140,8 @@ foreach ($Server in $Servers) {
 }
 # Restart each host vNIC adapter so that the Vlan is active.
 Get-NetAdapter -CimSession $Servers -Name &#34;vEthernet (SMB*)&#34; | Restart-NetAdapter
-</code></pre><p>Let&rsquo;s check out what we just did.  I will run the following code:</p>
-<pre tabindex="0"><code>Get-VMNetworkAdapterVlan -CimSession $Servers -ManagementOS
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20124845.png"></p>
-<p>Now we need to map our storage vnics to use our physical nics within or ConvergedSwitch SET team. This was done running the following command:</p>
-<pre tabindex="0"><code>Invoke-Command -ComputerName $servers -ScriptBlock {
+</code></pre><p>Let&rsquo;s check out what we just did. I will run the following code:</p><pre tabindex=0><code>Get-VMNetworkAdapterVlan -CimSession $Servers -ManagementOS
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20124845.png></p><p>Now we need to map our storage vnics to use our physical nics within or ConvergedSwitch SET team. This was done running the following command:</p><pre tabindex=0><code>Invoke-Command -ComputerName $servers -ScriptBlock {
     # Retrieve adapter names
     $physicaladapternames = (get-vmswitch $using:vSwitchName).NetAdapterInterfaceDescriptions
     # Map pNIC and vNICs
@@ -416,29 +154,15 @@ Get-NetAdapter -CimSession $Servers -Name &#34;vEthernet (SMB*)&#34; | Restart-N
         $i++
     }
 }
-</code></pre><p>We can now confirm that this was completed by running the following command:</p>
-<pre tabindex="0"><code># Confirm it&#39;s completed
+</code></pre><p>We can now confirm that this was completed by running the following command:</p><pre tabindex=0><code># Confirm it&#39;s completed
 Get-VMNetworkAdapterTeamMapping -CimSession $servers -ManagementOS | `
     Format-Table ComputerName, NetAdapterName, ParentAdapter
-</code></pre><h3 id="the-micheal-godfrey-why-the-heck-didnt-you-use-network-atc-way">The &ldquo;Micheal Godfrey Why The Heck Didn&rsquo;t You Use Network ATC&rdquo; Way.</h3>
-<p>Just as I did above in the manual way, I am going to build out my solution using two intents. What is an intent you ask? Well, the Microsoft Learn Docs has that answer for you under the Definitions section of their <a href="https://learn.microsoft.com/en-us/azure-stack/hci/concepts/network-atc-overview#definitions">Network ATC overview page</a>. However, I am nice and will copy and paste that definition here:</p>
-<p><strong>Intent</strong>: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.</p>
-<p>Intent: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.</p>
-<p>There are a few different types of intents. There are many different ways to configure these intents as well. The configuration I will be using today will include will include a single intent for now.</p>
-<p><img src="/img/azshci-series/part-iii/network-atc-6-disaggregated-management-compute.png"></p>
-<p>Here I will create a single intent that will use my vmNic01 and vmNic02 for Compute and Management. Since this is a single node, we do not need to worry about storage. However, we do have plans to scale out this cluster at one point, which is why we will one day create a second intent for storage using vmnic03 and vmnic04. This would look a lot like what I created above in the manual steps.</p>
-<p><img src="/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png"></p>
-<p>So, unlike the manual configuration of our network, Network ATC is fast and very easy to configure. If I where deploying this on physical nodes the only command I would run at this point would look like this:</p>
-<pre tabindex="0"><code>Add-NetIntent -Name ConvergedIntent -AdapterName vmNIC01, vmNIC02 -Management -Compute
-</code></pre><p>For my environment, since these run on Virtual Machines, I do need to do an adapter override and disable Network Direct. So here is what I did to configure networking on my single node cluster:</p>
-<p>First, we want to verify the adapters:</p>
-<pre tabindex="0"><code># - Verify Adapters
+</code></pre><h3 id=the-micheal-godfrey-why-the-heck-didnt-you-use-network-atc-way>The &ldquo;Micheal Godfrey Why The Heck Didn&rsquo;t You Use Network ATC&rdquo; Way.</h3><p>Just as I did above in the manual way, I am going to build out my solution using two intents. What is an intent you ask? Well, the Microsoft Learn Docs has that answer for you under the Definitions section of their <a href=https://learn.microsoft.com/en-us/azure-stack/hci/concepts/network-atc-overview#definitions>Network ATC overview page</a>. However, I am nice and will copy and paste that definition here:</p><p><strong>Intent</strong>: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.</p><p>Intent: An intent is a definition of how you intend to use the physical adapters in your system. An intent has a friendly name, identifies one or more physical adapters, and includes one or more intent types.</p><p>There are a few different types of intents. There are many different ways to configure these intents as well. The configuration I will be using today will include will include a single intent for now.</p><p><img src=/img/azshci-series/part-iii/network-atc-6-disaggregated-management-compute.png></p><p>Here I will create a single intent that will use my vmNic01 and vmNic02 for Compute and Management. Since this is a single node, we do not need to worry about storage. However, we do have plans to scale out this cluster at one point, which is why we will one day create a second intent for storage using vmnic03 and vmnic04. This would look a lot like what I created above in the manual steps.</p><p><img src=/img/azshci-series/part-iii/network-atc-3-separate-management-compute-storage.png></p><p>So, unlike the manual configuration of our network, Network ATC is fast and very easy to configure. If I where deploying this on physical nodes the only command I would run at this point would look like this:</p><pre tabindex=0><code>Add-NetIntent -Name ConvergedIntent -AdapterName vmNIC01, vmNIC02 -Management -Compute
+</code></pre><p>For my environment, since these run on Virtual Machines, I do need to do an adapter override and disable Network Direct. So here is what I did to configure networking on my single node cluster:</p><p>First, we want to verify the adapters:</p><pre tabindex=0><code># - Verify Adapters
 Invoke-Command -ComputerName $ClusterName -ScriptBlock {
     Get-NetAdapter -Name vmnic01, vmnic02 -CimSession (Get-ClusterNode).Name | Select Name, PSComputerName
     }
-</code></pre><p>We should get a confirmation that these adapters are up and ready.</p>
-<p>Now, the simple code that will save us so much time when configuring our networks.</p>
-<pre tabindex="0"><code># Configure Intent
+</code></pre><p>We should get a confirmation that these adapters are up and ready.</p><p>Now, the simple code that will save us so much time when configuring our networks.</p><pre tabindex=0><code># Configure Intent
 #  Disable Network Direct Adapter Property - For Virtual Machines Only
 # Note: This is not required for physical servers and since this is a single-node cluster, we will not use the vmnics for SMB traffic at this time.
 Invoke-Command -ComputerName $servers -ScriptBlock {
@@ -448,27 +172,14 @@ Invoke-Command -ComputerName $servers -ScriptBlock {
         Add-NetIntent -Name ConvergedIntent -AdapterName vmNIC01, vmNIC02 -Management -Compute -AdapterPropertyOverrides $AdapterOverride
     }
 }
-</code></pre><p>Tada!!  Just like that. So now we monitor our intent to make sure if provisioned correctly.</p>
-<pre tabindex="0"><code># - Validate Intent Deployment - #
+</code></pre><p>Tada!! Just like that. So now we monitor our intent to make sure if provisioned correctly.</p><pre tabindex=0><code># - Validate Intent Deployment - #
 Invoke-Command -ComputerName $servers -ScriptBlock {
     Get-NetIntent
     }
-</code></pre><pre tabindex="0"><code>Invoke-Command -ComputerName $servers -ScriptBlock {
+</code></pre><pre tabindex=0><code>Invoke-Command -ComputerName $servers -ScriptBlock {
 Get-NetIntentStatus -ClusterName $ClusterName -Name ConvergedIntent
 }
-</code></pre><h3 id="other-network-settings">Other Network Settings</h3>
-<p>There are a few other things that we would want to discuss if moving forward on Physical hardware.  I would highly suggest looking at the Microsoft Learn Documentation and read up on the following:</p>
-<ul>
-<li>Jumbo Frames Settings</li>
-<li>RDMA</li>
-<li>Network QoS</li>
-<li>Datacenter Bridging (DCBX)</li>
-</ul>
-<hr>
-<h2 id="create-the-cluster">Create the Cluster</h2>
-<p>Now it is time to create out cluster. Again, if this was a two node or larger clusters we could do this via the Windows Admin Center. However, if you are deploying these and need more automation, PowerShell is the way to go.  Since I am only deploying a single node at this time, PowerShell is the only way to go.</p>
-<p>Creating the cluster if actually fairly simple. The following PowerShell script will create the cluster for me.</p>
-<pre tabindex="0"><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
+</code></pre><h3 id=other-network-settings>Other Network Settings</h3><p>There are a few other things that we would want to discuss if moving forward on Physical hardware. I would highly suggest looking at the Microsoft Learn Documentation and read up on the following:</p><ul><li>Jumbo Frames Settings</li><li>RDMA</li><li>Network QoS</li><li>Datacenter Bridging (DCBX)</li></ul><hr><h2 id=create-the-cluster>Create the Cluster</h2><p>Now it is time to create out cluster. Again, if this was a two node or larger clusters we could do this via the Windows Admin Center. However, if you are deploying these and need more automation, PowerShell is the way to go. Since I am only deploying a single node at this time, PowerShell is the only way to go.</p><p>Creating the cluster if actually fairly simple. The following PowerShell script will create the cluster for me.</p><pre tabindex=0><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
 $Servers = &#34;AzSHCI1&#34;
 
 # Test Cluster first
@@ -476,11 +187,7 @@ Test-Cluster -Node $servers -Include &#34;Storage Spaces Direct&#34;, &#34;Inven
 
 # Cluster with Distributed Domain Name
 New-Cluster -Name $ClusterName -Node $servers -ManagementPointNetworkType &#34;Distributed&#34;
-</code></pre><hr>
-<h2 id="storage-spaces-direct">Storage Spaces Direct</h2>
-<p>Now it is time to get our storage ready.  If this was a physical cluster the following script would be necessary to help get us started in a clean state. This script is similar to one that I would run when I was building out S2D clusters before Azure Stack HCI. I do have to warn you. Do not do what I did with this script!!! Let&rsquo;s just say, if it is 2:30 AM and you are burning the midnight oil to meet some deadlines. Make sure, please make sure that the variable for $Servers is set correctly. It would be very easy to wipe an entire HCI cluster, as in my case an entire S2D cluster running all my management tools in less than a few minutes.</p>
-<p>It won&rsquo;t hurt to run this on our virtual environment so here is the PowerShell script:</p>
-<pre tabindex="0"><code>$Servers = &#34;AzSHCI1&#34;
+</code></pre><hr><h2 id=storage-spaces-direct>Storage Spaces Direct</h2><p>Now it is time to get our storage ready. If this was a physical cluster the following script would be necessary to help get us started in a clean state. This script is similar to one that I would run when I was building out S2D clusters before Azure Stack HCI. I do have to warn you. Do not do what I did with this script!!! Let&rsquo;s just say, if it is 2:30 AM and you are burning the midnight oil to meet some deadlines. Make sure, please make sure that the variable for $Servers is set correctly. It would be very easy to wipe an entire HCI cluster, as in my case an entire S2D cluster running all my management tools in less than a few minutes.</p><p>It won&rsquo;t hurt to run this on our virtual environment so here is the PowerShell script:</p><pre tabindex=0><code>$Servers = &#34;AzSHCI1&#34;
 
 Invoke-Command ($Servers) {
     # Retrieve any existing virtual disks and storage pools and remove
@@ -509,31 +216,22 @@ Invoke-Command ($Servers) {
         Where-Object IsSystem -ne $True | Where-Object PartitionStyle -eq RAW | `
         Group-Object -NoElement -Property FriendlyName
 } | Sort-Object -Property PsComputerName, Count
-</code></pre><p>So the next step I will take is to enable Storage Spaces Direct on our cluster  running the following PowerShell command:</p>
-<pre tabindex="0"><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
+</code></pre><p>So the next step I will take is to enable Storage Spaces Direct on our cluster running the following PowerShell command:</p><pre tabindex=0><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
 Enable-ClusterStorageSpacesDirect -PoolFriendlyName &#34;S2D on $ClusterName&#34; -CimSession $ClusterName
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132156.png"></p>
-<hr>
-<h2 id="register-the-cluster">Register The Cluster</h2>
-<p>In my previous blog I walked through registering an HCI cluster with Azure using the Windows Admin Center. In the blog I will walk through doing the same via PowerShell.</p>
-<p>I started by downloading and installing the required Azure Stack HCI PowerShell module and it&rsquo;s dependencies. Then I logged into my Azure tenant:</p>
-<pre tabindex="0"><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132156.png></p><hr><h2 id=register-the-cluster>Register The Cluster</h2><p>In my previous blog I walked through registering an HCI cluster with Azure using the Windows Admin Center. In the blog I will walk through doing the same via PowerShell.</p><p>I started by downloading and installing the required Azure Stack HCI PowerShell module and it&rsquo;s dependencies. Then I logged into my Azure tenant:</p><pre tabindex=0><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
 
 # Install NuGet and download the Azure Module
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 if (!(Get-InstalledModule -Name Az.StackHCI -ErrorAction Ignore)) {
     Install-Module -Name Az.StackHCI -Force
 }
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132212.png"></p>
-<pre tabindex="0"><code># Download Azure Accounts module
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132212.png></p><pre tabindex=0><code># Download Azure Accounts module
 if (!(Get-InstalledModule -Name az.accounts -ErrorAction Ignore)) {
     Install-Module -Name Az.Accounts -Force
 }
 # Login to Azure
 Login-AzAccount -UseDeviceAuthentication
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132313.png"></p>
-<p>We then need to get our preferred subscription. I only have one with this account but like my work account I may have access to many subscriptions. We can do this by running the following PowerShell:</p>
-<pre tabindex="0"><code># Select context if more available
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132313.png></p><p>We then need to get our preferred subscription. I only have one with this account but like my work account I may have access to many subscriptions. We can do this by running the following PowerShell:</p><pre tabindex=0><code># Select context if more available
 $context = Get-AzContext -ListAvailable
 
 # Check if multiple subscriptions are available and choose preferred subscription
@@ -543,9 +241,7 @@ if (($context).count -gt 1) {
 }
 # Load subscription ID into variable
 $subscriptionID = $context.subscription.id
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132418.png"></p>
-<p>Here we will define the resource group where our cluster resources are going to be located.  We will also install the Az.Resources module in order to create the resource group in Azure.</p>
-<pre tabindex="0"><code># Define the Azure resource group name (Customizable)
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132418.png></p><p>Here we will define the resource group where our cluster resources are going to be located. We will also install the Az.Resources module in order to create the resource group in Azure.</p><pre tabindex=0><code># Define the Azure resource group name (Customizable)
 $ResourceGroupName = $ClusterName + &#34;_Rg&#34;
 
 # Install the Az.Resources module to create resource groups
@@ -561,367 +257,115 @@ $region = (Get-AzLocation | Where-Object Providers -Contains &#34;Microsoft.Azur
 if (-not (Get-AzResourceGroup -Name $ResourceGroupName -ErrorAction Ignore)) {
     New-AzResourceGroup -Name $ResourceGroupName -Location $region
 }
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132849.png"></p>
-<p>Once the script runs it will prompt us for our location. Select the location.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20132808.png"></p>
-<p>Finally we can run the command to register our cluster:</p>
-<pre tabindex="0"><code>Register-AzStackHCI -SubscriptionId $subscriptionID -ComputerName $ClusterName -Region &#34;eastus&#34; -ResourceName $ClusterName -ResourceGroupName $ResourceGroupName
-</code></pre><p>We will be prompted to give our tenant credentials.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20134201.png"></p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20134353.png"></p>
-<p>Once the registration process has ended we should the following screen:</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20134841.png"></p>
-<p>To check that the system has been registered we can also run the following command:</p>
-<pre tabindex="0"><code>Invoke-Command -ComputerName azshci1 -ScriptBlock {
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132849.png></p><p>Once the script runs it will prompt us for our location. Select the location.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20132808.png></p><p>Finally we can run the command to register our cluster:</p><pre tabindex=0><code>Register-AzStackHCI -SubscriptionId $subscriptionID -ComputerName $ClusterName -Region &#34;eastus&#34; -ResourceName $ClusterName -ResourceGroupName $ResourceGroupName
+</code></pre><p>We will be prompted to give our tenant credentials.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20134201.png></p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20134353.png></p><p>Once the registration process has ended we should the following screen:</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20134841.png></p><p>To check that the system has been registered we can also run the following command:</p><pre tabindex=0><code>Invoke-Command -ComputerName azshci1 -ScriptBlock {
     Get-AzureStackHCI
 }
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20134933.png"></p>
-<p>We can also go into our Windows Admin Center (Once we have the WAC registered and our Cluster added to the WAC) and see within the dashboard for the cluster that the cluster is connected as an Azure Stack HCI resource and that Arc enabled servers will be enabled. If following this blog, we will register the WAC and add the cluster to the WAC later in this blog.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140409.png"></p>
-<p>Within about 15 minutes our resources should also show up in the Azure portal.  The single node itself will show up as an Azure Arc-enabled managed server and our cluster should show up as an managed cluster under Azure Stack HCI section under Infrastructure.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140434.png">
-<img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140507.png"></p>
-<p>From here we can manage both our cluster and our nodes from the Azure Portal.  This will be covered in a future blog.</p>
-<hr>
-<h2 id="register-the-windows-admin-center-wac">Register the Windows Admin Center (WAC)</h2>
-<p>So we still need to register out Windows Admin Center if we haven&rsquo;t done so yet.  don&rsquo;t get this confused with the registration of our Azure Stack HCI Cluster. These are two different processes. For this we will go into our Windows Admin Center portal and register it from there.</p>
-<p>If this had been a multi-node cluster this is where I would have created my cluster witness.  Since this is just a single node cluster I will not create the cluster witness. However, once I add that second node I will need to create a cluster witness. When we first log on to our WAC portal and go to settings we should see that we are signed in under our local domain account but not signed into an Azure Account.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20131637.png"></p>
-<p>On the settings blade, if we go down to Register under the Gateway section we will see the prompt to register this instance of the Windows Admin Center.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135140.png"></p>
-<p>At this point, it will authenticate us and sign us into our Azure Tenant.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135559.png"></p>
-<p>Once that is done, on the far right, a new blade will pop up asking for some information. Here we will select which Azure Cloud, for myself I will select Azure Global. It will provide a Code, once you click on copy, an Edge browser will start directing you to microsoft.com/devicelogin where you will enter the code provided, then sign on into your tenant.  Here we have a choice, I could either use an existing Azure Active Directory Application or have one created. In this case, I just had it create a new  one for me. In a production environment, we should be using a pre-created application that also has specific roles assign to it.  Finally we click connect.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135626.png"></p>
-<p>The next prompt is to allow permissions to our tenant for this application.  Click on Consent and click accept.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135912.png"></p>
-<p>Once we have signed on, it takes a few seconds. We can go back to our portal and we can now see that we are registered with Azure and connected.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20135943.png"></p>
-<p>So now our WAC instance is registered and our cluster is also registered with Azure. We can move forward with some other configurations as well as creating some volumes for our VM storage.</p>
-<hr>
-<h2 id="add-cluster-to-wac">Add Cluster To WAC</h2>
-<p>One thing I will need to do is add this cluster and the nodes to my Windows Admin Center so I can do some work that needs to be done. Like creating volumes and configuration some setting from within a GUI interface.</p>
-<p>We need to click on  the downward error next to Windows Admin Center and select All Connections.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-18%20083350.png"></p>
-<p>Then click Add. From here we will select Add under server clusters.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-18%20083416.png"></p>
-<p>The blade to the far right will pop up.  Here I will enter my newly created custer name.  It should find the cluster.  I will tag the connections with the cluster name and I will also add the nodes that are part of this cluster to WAC as well.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140206.png"></p>
-<p>Now we should be able to see our newly added cluster and our first node in our WAC instance. We are now ready to start configuing this cluster either in PowerShell or the Windows Admin Center.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-18%20083636.png"></p>
-<hr>
-<h2 id="creating-volumes">Creating Volumes</h2>
-<p>So now we have our cluster running with a single node. We can manage it via the Azure Portal, via Windows Admin Center, or PowerShell at this time.  We have storage spaces direct enabled but we don&rsquo;t have any volumes created. We can easily create volumes in the WAC or in Powershell. I will be creating two 1TB volumes, one from PowerShell and the other from the WAC.</p>
-<h3 id="create-volume-using-wac">Create Volume using WAC</h3>
-<p>Once we have logged on to our Windows Admin Center, if we go to our cluster using the drop down at the top left, then select All connections. We will see our newly added custer AZSHCI-Cluster. Click on the cluster and it will bring up the dashboard for that cluster. On the left menu, under cluster resources, we will see a volumes. I will click on that and we will first see the summary of our volumes.  Currently there should only be one volume, which we can see under the Inventory tab. From here, click on Create on the top menu.</p>
-<ul>
-<li>For Name I will name my first volume Volume01.</li>
-<li>Under Resiliency, since this is a single node, we will only have the availability to select two-way mirror.</li>
-<li>Size I added 1 TB</li>
-</ul>
-<p>Under more options I made sure I selected Then provisioning.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140836.png"></p>
-<h3 id="create-volume-using-powershell">Create Volume using PowerShell</h3>
-<p>Now while we wait for the Volume to be created from the WAC. I am going to use PowerShell to create a second volume called Volume02. The following script will produce the same type and sized volume as we created in the WAC earlier.</p>
-<pre tabindex="0"><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20134933.png></p><p>We can also go into our Windows Admin Center (Once we have the WAC registered and our Cluster added to the WAC) and see within the dashboard for the cluster that the cluster is connected as an Azure Stack HCI resource and that Arc enabled servers will be enabled. If following this blog, we will register the WAC and add the cluster to the WAC later in this blog.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140409.png></p><p>Within about 15 minutes our resources should also show up in the Azure portal. The single node itself will show up as an Azure Arc-enabled managed server and our cluster should show up as an managed cluster under Azure Stack HCI section under Infrastructure.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140434.png>
+<img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140507.png></p><p>From here we can manage both our cluster and our nodes from the Azure Portal. This will be covered in a future blog.</p><hr><h2 id=register-the-windows-admin-center-wac>Register the Windows Admin Center (WAC)</h2><p>So we still need to register out Windows Admin Center if we haven&rsquo;t done so yet. don&rsquo;t get this confused with the registration of our Azure Stack HCI Cluster. These are two different processes. For this we will go into our Windows Admin Center portal and register it from there.</p><p>If this had been a multi-node cluster this is where I would have created my cluster witness. Since this is just a single node cluster I will not create the cluster witness. However, once I add that second node I will need to create a cluster witness. When we first log on to our WAC portal and go to settings we should see that we are signed in under our local domain account but not signed into an Azure Account.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20131637.png></p><p>On the settings blade, if we go down to Register under the Gateway section we will see the prompt to register this instance of the Windows Admin Center.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20135140.png></p><p>At this point, it will authenticate us and sign us into our Azure Tenant.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20135559.png></p><p>Once that is done, on the far right, a new blade will pop up asking for some information. Here we will select which Azure Cloud, for myself I will select Azure Global. It will provide a Code, once you click on copy, an Edge browser will start directing you to microsoft.com/devicelogin where you will enter the code provided, then sign on into your tenant. Here we have a choice, I could either use an existing Azure Active Directory Application or have one created. In this case, I just had it create a new one for me. In a production environment, we should be using a pre-created application that also has specific roles assign to it. Finally we click connect.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20135626.png></p><p>The next prompt is to allow permissions to our tenant for this application. Click on Consent and click accept.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20135912.png></p><p>Once we have signed on, it takes a few seconds. We can go back to our portal and we can now see that we are registered with Azure and connected.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20135943.png></p><p>So now our WAC instance is registered and our cluster is also registered with Azure. We can move forward with some other configurations as well as creating some volumes for our VM storage.</p><hr><h2 id=add-cluster-to-wac>Add Cluster To WAC</h2><p>One thing I will need to do is add this cluster and the nodes to my Windows Admin Center so I can do some work that needs to be done. Like creating volumes and configuration some setting from within a GUI interface.</p><p>We need to click on the downward error next to Windows Admin Center and select All Connections.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-18%20083350.png></p><p>Then click Add. From here we will select Add under server clusters.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-18%20083416.png></p><p>The blade to the far right will pop up. Here I will enter my newly created custer name. It should find the cluster. I will tag the connections with the cluster name and I will also add the nodes that are part of this cluster to WAC as well.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140206.png></p><p>Now we should be able to see our newly added cluster and our first node in our WAC instance. We are now ready to start configuing this cluster either in PowerShell or the Windows Admin Center.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-18%20083636.png></p><hr><h2 id=creating-volumes>Creating Volumes</h2><p>So now we have our cluster running with a single node. We can manage it via the Azure Portal, via Windows Admin Center, or PowerShell at this time. We have storage spaces direct enabled but we don&rsquo;t have any volumes created. We can easily create volumes in the WAC or in Powershell. I will be creating two 1TB volumes, one from PowerShell and the other from the WAC.</p><h3 id=create-volume-using-wac>Create Volume using WAC</h3><p>Once we have logged on to our Windows Admin Center, if we go to our cluster using the drop down at the top left, then select All connections. We will see our newly added custer AZSHCI-Cluster. Click on the cluster and it will bring up the dashboard for that cluster. On the left menu, under cluster resources, we will see a volumes. I will click on that and we will first see the summary of our volumes. Currently there should only be one volume, which we can see under the Inventory tab. From here, click on Create on the top menu.</p><ul><li>For Name I will name my first volume Volume01.</li><li>Under Resiliency, since this is a single node, we will only have the availability to select two-way mirror.</li><li>Size I added 1 TB</li></ul><p>Under more options I made sure I selected Then provisioning.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140836.png></p><h3 id=create-volume-using-powershell>Create Volume using PowerShell</h3><p>Now while we wait for the Volume to be created from the WAC. I am going to use PowerShell to create a second volume called Volume02. The following script will produce the same type and sized volume as we created in the WAC earlier.</p><pre tabindex=0><code>$ClusterName = &#34;AzSHCI-Cluster&#34;
 New-Volume -CimSession $ClusterName -FileSystem CSVFS_ReFS `
     -StoragePoolFriendlyName S2D* -Size 1TB -FriendlyName &#34;Volume02&#34; `
     -ResiliencySettingName Mirror -ProvisioningType Thin
-</code></pre><p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20141605.png"></p>
-<p>Once the script has ran we can return to our WAC instance and see the two newly created volumes.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20141631.png"></p>
-<p>We now have our volumes created and we are ready to configure a few settings for our cluster.</p>
-<hr>
-<h2 id="more-settings">More Settings</h2>
-<h3 id="storage-settings">Storage Settings</h3>
-<p>So let&rsquo;s look at some storage settings that we can configure.  The first section that may be of interested is the <a href="https://learn.microsoft.com/en-us/azure-stack/hci/manage/use-csv-cache">In-Memory cache</a> section. This can be found under Settings within our Cluster Dashboard.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-16%20140746.png"></p>
-<p>We also have settings for storage spaces and pools. Here we can configure things like the storage pool friendly name. We can change the mean name. (kidding) We can set default provisioning type for all volumes created. The version of storage pools, and configure the capacity alert threshold.  For my demo environment I will not change anything here.</p>
-<p><img src="/img/azshci-series/part-iii/Screenshot%202023-10-18%20112333.png"></p>
-<h3 id="settings-to-think-about">Settings to think about</h3>
-<p>We are pretty much done with my first deployment of my first node. There are some more settings I would call out to at least look at for your deployments.</p>
-<ul>
-<li>Deduplication and Compression</li>
-<li>Cluster traffic encryption</li>
-<li>Affinity Rules</li>
-<li>Live Migration settings</li>
-<li>Hyper-V VM and Data locations</li>
-</ul>
-<hr>
-<h2 id="final-thoughts">Final Thoughts</h2>
-<p>So, I do want to stress. This deployment I just walked through is not production ready. It will be good for getting your feet wet with Azure Stack HCI. For most of use we don&rsquo;t have a lot of hardware that would be supported for HCI sitting around.  We may have an older server we can run as a single node, even deploy this same solution on that single physical server to have a multi-node solution, or use an AzureVM which can be very expensive. This blog I hope helped someone get an idea of that they would need to do to get started. Moving forward, I will blog about scaling out this single node cluster to a two node cluster and then to a three and four node cluster after that.</p>
-<p>Also, this blog just touches on the deployment of an Azure Stack HCI cluster. There is so much more and we can really go into depth of what Azure Stack HCI can do along with Azure Arc.  I will be blogging a lot on these subjects moving forward.</p>
-
-		</div>
-		<footer class="post__footer">
-			
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-stack-hci/" rel="tag">Azure Stack HCI</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/wac/" rel="tag">WAC</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/windows-admin-center/" rel="tag">Windows Admin Center</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/powershell/" rel="tag">PowerShell</a>
-		</li>
-	</ul>
-</div>
-		</footer>
-	</article>
-</main>
-
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
-	</div>
-	<div class="authorbox__description">
-		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
-	</div>
-</div>
-
-<nav class="pager flex">
-	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/azure-stack-hci-part-ii-deploying-single-node-cluster/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">Azure Stack HCI - Part II - Deploying A Single Node Cluster</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</p>
-		</a>
-	</div>
-</nav>
-
-
-			</div>
-			<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
-	</form>
-</div>
-<div class="widget-recent widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure/">Azure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune/">Intune</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
-	</div>
-</div>
-<div class="widget-social widget">
-	<h4 class="widget-social__title widget__title"></h4>
-	<div class="widget-social__content widget__content">
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
-				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
-				<span>LinkedIn</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
-				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
-			</a>
-		</div>
-
-		
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits"></span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+</code></pre><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20141605.png></p><p>Once the script has ran we can return to our WAC instance and see the two newly created volumes.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20141631.png></p><p>We now have our volumes created and we are ready to configure a few settings for our cluster.</p><hr><h2 id=more-settings>More Settings</h2><h3 id=storage-settings>Storage Settings</h3><p>So let&rsquo;s look at some storage settings that we can configure. The first section that may be of interested is the <a href=https://learn.microsoft.com/en-us/azure-stack/hci/manage/use-csv-cache>In-Memory cache</a> section. This can be found under Settings within our Cluster Dashboard.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-16%20140746.png></p><p>We also have settings for storage spaces and pools. Here we can configure things like the storage pool friendly name. We can change the mean name. (kidding) We can set default provisioning type for all volumes created. The version of storage pools, and configure the capacity alert threshold. For my demo environment I will not change anything here.</p><p><img src=/img/azshci-series/part-iii/Screenshot%202023-10-18%20112333.png></p><h3 id=settings-to-think-about>Settings to think about</h3><p>We are pretty much done with my first deployment of my first node. There are some more settings I would call out to at least look at for your deployments.</p><ul><li>Deduplication and Compression</li><li>Cluster traffic encryption</li><li>Affinity Rules</li><li>Live Migration settings</li><li>Hyper-V VM and Data locations</li></ul><hr><h2 id=final-thoughts>Final Thoughts</h2><p>So, I do want to stress. This deployment I just walked through is not production ready. It will be good for getting your feet wet with Azure Stack HCI. For most of use we don&rsquo;t have a lot of hardware that would be supported for HCI sitting around. We may have an older server we can run as a single node, even deploy this same solution on that single physical server to have a multi-node solution, or use an AzureVM which can be very expensive. This blog I hope helped someone get an idea of that they would need to do to get started. Moving forward, I will blog about scaling out this single node cluster to a two node cluster and then to a three and four node cluster after that.</p><p>Also, this blog just touches on the deployment of an Azure Stack HCI cluster. There is so much more and we can really go into depth of what Azure Stack HCI can do along with Azure Arc. I will be blogging a lot on these subjects moving forward.</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-stack-hci/ rel=tag>Azure Stack HCI</a></li><li class=tags__item><a class="tags__link btn" href=/tags/wac/ rel=tag>WAC</a></li><li class=tags__item><a class="tags__link btn" href=/tags/windows-admin-center/ rel=tag>Windows Admin Center</a></li><li class=tags__item><a class="tags__link btn" href=/tags/powershell/ rel=tag>PowerShell</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/azure-stack-hci-part-ii-deploying-single-node-cluster/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>Azure Stack HCI - Part II - Deploying A Single Node Cluster</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/azure-stack-hci-part-iv-scale-azure-stack-hci-single-node-cluster/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Azure Stack HCI - Part IV - Scale-out Azure Stack HCI Single Node Cluster</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
+</label><input class=widget-search__submit type=submit value=Search>
+<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li><li class=widget__item><a class=widget__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li><li class=widget__item><a class=widget__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMWare VSphere">VMWare VSphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
+<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
+<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2025 This Is My Demo.
+<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>

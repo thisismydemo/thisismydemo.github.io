@@ -1,110 +1,7 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files. - This Is My Demo</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files.">
-		<meta property="og:url" content="http://localhost:1313/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/">
-  <meta property="og:site_name" content="This Is My Demo">
-  <meta property="og:title" content="Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.">
-  <meta property="og:description" content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2023-01-11T18:22:25+00:00">
-    <meta property="article:modified_time" content="2023-01-20T18:25:53+00:00">
-    <meta property="article:tag" content="Azure Files">
-    <meta property="article:tag" content="Intune">
-    <meta property="article:tag" content="Poractive Remediation">
-    <meta property="article:tag" content="PowerShell">
-    <meta property="article:tag" content="Endpoint Management">
-
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.">
-  <meta name="twitter:description" content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files.">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	
-
-	<link rel="shortcut icon" href="/favicon.ico">
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">This Is My Demo</div>
-					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1"></span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</h1>
-			<p class="post__lead">Intune and Azure FIles</p>
-			<div class="post__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-01-11T18:22:25Z">January 11, 2023</time>
-	<time class="meta__text" datetime="2023-01-20T18:25:53Z">(: January 20, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-files/" rel="category">Azure Files</a>, <a class="meta__link" href="/categories/intune/" rel="category">Intune</a>
-	</span>
-</div></div>
-		</header>
-		
-	<figure class="post__thumbnail thumbnail">
-		
-		<img class="thumbnail__image" src="/img/intune_header.png" alt="Using Intune&#39;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.">
-		
-	</figure><div class="content post__content clearfix">
-			<p>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.</p>
-<p>There are three methods that can accomplish this on your client computers.</p>
-<ol>
-<li>Configure an Intune Policy and apply it to the clients.</li>
-<li>Configure Group Policy on the clients</li>
-<li>Apply a registry value on the client.</li>
-</ol>
-<p>I am going to use the registry method, but I will also be using Microsoft&rsquo;s Intune Proactive remediation. Proactive remediation is part of Endpoint Analytics. The devices must be enrolled into Endpoint analytics in order for this to work.</p>
-<p><a href="https://learn.microsoft.com/en-us/mem/analytics/enroll-intune">Quickstart - Enroll Intune devices - Microsoft Endpoint Manager</a></p>
-<p>Proactive remediations are package that consist of a detect and remediate script. These packages run on the client machine and according to Microsoft can detect and fix common support issues before they even realize there&rsquo;s a problem. For this case, I am going to use proactive remediations to detect if a registry key exists and has a certain value and remediate it if it doesn&rsquo;t exist or the wrong value is configured.</p>
-<hr>
-<h2 id="the-proactive-remediation-package">The Proactive Remediation Package</h2>
-<p>For more details on proactive remediation packages you can check out the following Microsoft Learn site, <a href="https://learn.microsoft.com/en-us/mem/analytics/proactive-remediations">Tutorial - Proactive remediations - Microsoft Endpoint Manager | Microsoft Learn</a></p>
-<p>Let&rsquo;s talk about the Detect and Remediate PowerShell scripts we will use for this proactive remediation package.</p>
-<h3 id="detect-script">Detect Script</h3>
-<p>The detection script will look to see first if the path for the registry value exists. If it doesn&rsquo;t it will exit with a code 1 and write an error &ldquo;Registry key doesn&rsquo;t exist&rdquo; If the path does exist, it will check to see if the registry key exists and if the value of that key is 1. If it isn&rsquo;t a value of 1 the script will exit with a code 1. If any code 1&rsquo;s is returned, the script will exit, and the client machine will be marked as noncompliant within Intune&rsquo;s Proactive Remediation package section. The proactive remediation package will then run the remediate script. If it returns a code of 0, Intune will show that it is compliant and do nothing else.</p>
-<pre tabindex="0"><code>&lt;
+<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Using Intune's Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files. - This Is My Demo</title>
+<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files."><meta property="og:url" content="http://thisismydemo.cloud/post/2023-01-20-using-intunes-proactive-remediation-script-packages-to-configure-clients-to-retrieve-kerberos-tickets-for-azure-files/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Using Intune's Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files."><meta property="og:description" content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-01-11T18:22:25+00:00"><meta property="article:modified_time" content="2023-01-20T18:25:53+00:00"><meta property="article:tag" content="Azure Files"><meta property="article:tag" content="Intune"><meta property="article:tag" content="Poractive Remediation"><meta property="article:tag" content="PowerShell"><meta property="article:tag" content="Endpoint Management"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using Intune's Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files."><meta name=twitter:description content="Useing Inttunes Proactive Remediatons to allow clients to retrieve Kerberos tickets for Azure Files."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Using Intune's Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.</h1><p class=post__lead>Intune and Azure FIles</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-01-11T18:22:25Z>January 11, 2023</time>
+<time class=meta__text datetime=2023-01-20T18:25:53Z>(: January 20, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-files/ rel=category>Azure Files</a>, <a class=meta__link href=/categories/intune/ rel=category>Intune</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/intune_header.png alt="Using Intune's Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files."></figure><div class="content post__content clearfix"><p>In order to map an Azure File share with Azure AD Kerberos authentication for hybrid user accounts enabled you need to make sure that you configure the clients to retrieve Kerberos tickets.</p><p>There are three methods that can accomplish this on your client computers.</p><ol><li>Configure an Intune Policy and apply it to the clients.</li><li>Configure Group Policy on the clients</li><li>Apply a registry value on the client.</li></ol><p>I am going to use the registry method, but I will also be using Microsoft&rsquo;s Intune Proactive remediation. Proactive remediation is part of Endpoint Analytics. The devices must be enrolled into Endpoint analytics in order for this to work.</p><p><a href=https://learn.microsoft.com/en-us/mem/analytics/enroll-intune>Quickstart - Enroll Intune devices - Microsoft Endpoint Manager</a></p><p>Proactive remediations are package that consist of a detect and remediate script. These packages run on the client machine and according to Microsoft can detect and fix common support issues before they even realize there&rsquo;s a problem. For this case, I am going to use proactive remediations to detect if a registry key exists and has a certain value and remediate it if it doesn&rsquo;t exist or the wrong value is configured.</p><hr><h2 id=the-proactive-remediation-package>The Proactive Remediation Package</h2><p>For more details on proactive remediation packages you can check out the following Microsoft Learn site, <a href=https://learn.microsoft.com/en-us/mem/analytics/proactive-remediations>Tutorial - Proactive remediations - Microsoft Endpoint Manager | Microsoft Learn</a></p><p>Let&rsquo;s talk about the Detect and Remediate PowerShell scripts we will use for this proactive remediation package.</p><h3 id=detect-script>Detect Script</h3><p>The detection script will look to see first if the path for the registry value exists. If it doesn&rsquo;t it will exit with a code 1 and write an error &ldquo;Registry key doesn&rsquo;t exist&rdquo; If the path does exist, it will check to see if the registry key exists and if the value of that key is 1. If it isn&rsquo;t a value of 1 the script will exit with a code 1. If any code 1&rsquo;s is returned, the script will exit, and the client machine will be marked as noncompliant within Intune&rsquo;s Proactive Remediation package section. The proactive remediation package will then run the remediate script. If it returns a code of 0, Intune will show that it is compliant and do nothing else.</p><pre tabindex=0><code>&lt;
 .DESCRIPTION
     Detects if the registry key CloudKerberosTicketRetrievalEnabled exist and it is enabled.
     If the value set on it is correct and be marked as compliant.  If it is it doesn&#39;t exist  or the value is incorrect
@@ -141,9 +38,7 @@ catch {
 }
 
 Stop-Transcript#
-</code></pre><h3 id="remediate-script">Remediate Script</h3>
-<p>If the machine is noncompliant the remediate script will run within seconds. The script below will then add the registry path and registry key as well as assign the correct value to that key. One the script is done; Intune will now show that the machine has been remediated.</p>
-<pre tabindex="0"><code>&lt;
+</code></pre><h3 id=remediate-script>Remediate Script</h3><p>If the machine is noncompliant the remediate script will run within seconds. The script below will then add the registry path and registry key as well as assign the correct value to that key. One the script is done; Intune will now show that the machine has been remediated.</p><pre tabindex=0><code>&lt;
 .DESCRIPTION
         Remediates and creates the registry key CloudKerberosTicketRetrievalEnabled and
         assigns the correct value to enable it.
@@ -163,329 +58,106 @@ if((Test-Path -LiteralPath &#34;HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\Kerbe
 New-ItemProperty -LiteralPath &#39;HKLM:\SYSTEM\CurrentControlSet\Control\Lsa\Kerberos\Parameters&#39; -Name &#39;CloudKerberosTicketRetrievalEnabled&#39; -Value 1 -PropertyType DWord -Force -ea SilentlyContinue;
 
 Stop-Transcript#
-</code></pre><h3 id="the-proactive-remediation-package-1">The Proactive Remediation Package</h3>
-<p>To create a proactive remediation script package:</p>
-<ol>
-<li>Go to the Endpoint Manager Admin center.</li>
-<li>Click on Reports then on Endpoint analytics.</li>
-<li>Click on Proactive remediation</li>
-</ol>
-<p><img alt="Image" src="/img/1673471104826.png"></p>
-<ol start="4">
-<li>From the Proactive remediations blade, click on + Create script package.</li>
-<li>Under the basic tab on the Create custom script enter the desired information for:</li>
-</ol>
-<ul>
-<li><strong>Name</strong></li>
-<li><strong>Description</strong></li>
-<li><strong>Publisher</strong></li>
-</ul>
-<p><img alt="Image" src="/img/1673471441568.png"></p>
-<ol start="6">
-<li>Click Next</li>
-<li>Under the settings tab on the Create custom script page add the detect and remediate scripts.</li>
-<li>For <em><strong>Run this script using the logged-on credentials</strong></em> we will leave that as No. We want the system account which will have the permissions to add the registry key to run this script.</li>
-</ol>
-<p><img alt="Image" src="/img/1673471707209.png"></p>
-<ol start="9">
-<li>Click on Next.</li>
-<li>Click Next on the Scope Tags tab.</li>
-<li>On the assignment tab, we will assign this package to <strong>All Devices</strong>.</li>
-<li>Edit the schedule for All Devices. I will edit this schedule to run every morning at 9:00 AM. If a computer is offline at that time, the next time that computer comes back online even if it is after 9:00 AM the script will run and report back.</li>
-</ol>
-<p><img alt="Image" src="/img/1673471882456.png"></p>
-<ol start="13">
-<li>Click Apply to save the schedule. Then click Next.</li>
-<li>Review the configuration and if everything is correct click Create.</li>
-</ol>
-<p><img alt="Image" src="/img/1673471985809.png"></p>
-<p>Now that the package has been created, we will want to monitor that it was actually successfully deployed to our devices. We can view the status by returning to the proactive remediations blade. You will see the newly created proactive remediation script package exist and is Active. It will take some time for this package to be applied across your environment.</p>
-<p><img alt="Image" src="/img/1673472348863.png"></p>
-<h3 id="monitoring-the-proactive-remediation-package">Monitoring the Proactive Remediation Package</h3>
-<p>From the proactive remediation screen, you can see the overview, the current properties, and the device status.</p>
-<p>The <strong>overview</strong>blade will give you a dashboard with a nice overview of the status of your proactive remediation package</p>
-<p><img alt="Image" src="/img/1673472901465.png"></p>
-<p>From the <strong>Properties</strong> page you can see what configurations are set for the specific proactive remediation package.</p>
-<p><img alt="Image" src="/img/1673472941079.png"></p>
-<p>From the <strong>Device Status</strong> page, you can see the status of each device. Here you should see each device, the username assigned to that device. The detection status will either show a green Without Issues or an orange With Issues. Under Remediation status, if the detection status was without issues, this will show a dark blue Not Run. If if the detection status was orange and the remediation script ran successful it will be light blue and say issue fixed. If the remediation status showed Failed than the remediation didn&rsquo;t succeed, and it will try again on the next scheduled time.</p>
-<p><img alt="Image" src="/img/1673472975951.png"></p>
-<p>Once the Regkey for the CloudKerberosTicketRetrivalEnbaled has been set, you should now be set to continue the configuration of Azure Kerberos authentication for hybrid accounts on in order to create mapped drives from your clients to your Azure Files.</p>
-<h2 id="final-thoughts">Final Thoughts</h2>
-<p>I really like the idea of Proactive Remediation scripts in Intune. The only negative thing is how long these scripts can take to run on a client and how long it takes for that data to report back to Intune. There are a lot of good resources out there from others who have created many more script packages. I plan to blog a little more about this if I have time in the future.</p>
-
-		</div>
-		<footer class="post__footer">
-			
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-files/" rel="tag">Azure Files</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/intune/" rel="tag">Intune</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/poractive-remediation/" rel="tag">Poractive Remediation</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/powershell/" rel="tag">PowerShell</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/endpoint-management/" rel="tag">Endpoint Management</a>
-		</li>
-	</ul>
-</div>
-		</footer>
-	</article>
-</main>
-
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
-	</div>
-	<div class="authorbox__description">
-		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
-	</div>
-</div>
-
-<nav class="pager flex">
-	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/2023-01-20-festive-tech-calendar-2022/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">Festive Tech Calendar 2022</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/2023-01-18-setting-up-entra-permissions-management/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Setting Up Entra Permissions Management</p>
-		</a>
-	</div>
-</nav>
-
-
-			</div>
-			<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
-	</form>
-</div>
-<div class="widget-recent widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/2025-07-15-comparing-ai-a-fun-test-of-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure/">Azure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune/">Intune</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMWare VSphere">VMWare VSphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
-	</div>
-</div>
-<div class="widget-social widget">
-	<h4 class="widget-social__title widget__title"></h4>
-	<div class="widget-social__content widget__content">
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
-				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
-				<span>LinkedIn</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
-				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
-			</a>
-		</div>
-
-		
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits"></span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+</code></pre><h3 id=the-proactive-remediation-package-1>The Proactive Remediation Package</h3><p>To create a proactive remediation script package:</p><ol><li>Go to the Endpoint Manager Admin center.</li><li>Click on Reports then on Endpoint analytics.</li><li>Click on Proactive remediation</li></ol><p><img alt=Image src=/img/1673471104826.png></p><ol start=4><li>From the Proactive remediations blade, click on + Create script package.</li><li>Under the basic tab on the Create custom script enter the desired information for:</li></ol><ul><li><strong>Name</strong></li><li><strong>Description</strong></li><li><strong>Publisher</strong></li></ul><p><img alt=Image src=/img/1673471441568.png></p><ol start=6><li>Click Next</li><li>Under the settings tab on the Create custom script page add the detect and remediate scripts.</li><li>For <em><strong>Run this script using the logged-on credentials</strong></em> we will leave that as No. We want the system account which will have the permissions to add the registry key to run this script.</li></ol><p><img alt=Image src=/img/1673471707209.png></p><ol start=9><li>Click on Next.</li><li>Click Next on the Scope Tags tab.</li><li>On the assignment tab, we will assign this package to <strong>All Devices</strong>.</li><li>Edit the schedule for All Devices. I will edit this schedule to run every morning at 9:00 AM. If a computer is offline at that time, the next time that computer comes back online even if it is after 9:00 AM the script will run and report back.</li></ol><p><img alt=Image src=/img/1673471882456.png></p><ol start=13><li>Click Apply to save the schedule. Then click Next.</li><li>Review the configuration and if everything is correct click Create.</li></ol><p><img alt=Image src=/img/1673471985809.png></p><p>Now that the package has been created, we will want to monitor that it was actually successfully deployed to our devices. We can view the status by returning to the proactive remediations blade. You will see the newly created proactive remediation script package exist and is Active. It will take some time for this package to be applied across your environment.</p><p><img alt=Image src=/img/1673472348863.png></p><h3 id=monitoring-the-proactive-remediation-package>Monitoring the Proactive Remediation Package</h3><p>From the proactive remediation screen, you can see the overview, the current properties, and the device status.</p><p>The <strong>overview</strong>blade will give you a dashboard with a nice overview of the status of your proactive remediation package</p><p><img alt=Image src=/img/1673472901465.png></p><p>From the <strong>Properties</strong> page you can see what configurations are set for the specific proactive remediation package.</p><p><img alt=Image src=/img/1673472941079.png></p><p>From the <strong>Device Status</strong> page, you can see the status of each device. Here you should see each device, the username assigned to that device. The detection status will either show a green Without Issues or an orange With Issues. Under Remediation status, if the detection status was without issues, this will show a dark blue Not Run. If if the detection status was orange and the remediation script ran successful it will be light blue and say issue fixed. If the remediation status showed Failed than the remediation didn&rsquo;t succeed, and it will try again on the next scheduled time.</p><p><img alt=Image src=/img/1673472975951.png></p><p>Once the Regkey for the CloudKerberosTicketRetrivalEnbaled has been set, you should now be set to continue the configuration of Azure Kerberos authentication for hybrid accounts on in order to create mapped drives from your clients to your Azure Files.</p><h2 id=final-thoughts>Final Thoughts</h2><p>I really like the idea of Proactive Remediation scripts in Intune. The only negative thing is how long these scripts can take to run on a client and how long it takes for that data to report back to Intune. There are a lot of good resources out there from others who have created many more script packages. I plan to blog a little more about this if I have time in the future.</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-files/ rel=tag>Azure Files</a></li><li class=tags__item><a class="tags__link btn" href=/tags/intune/ rel=tag>Intune</a></li><li class=tags__item><a class="tags__link btn" href=/tags/poractive-remediation/ rel=tag>Poractive Remediation</a></li><li class=tags__item><a class="tags__link btn" href=/tags/powershell/ rel=tag>PowerShell</a></li><li class=tags__item><a class="tags__link btn" href=/tags/endpoint-management/ rel=tag>Endpoint Management</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/2023-01-20-festive-tech-calendar-2022/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>Festive Tech Calendar 2022</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/2023-01-18-setting-up-entra-permissions-management/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Setting Up Entra Permissions Management</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
+</label><input class=widget-search__submit type=submit value=Search>
+<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li><li class=widget__item><a class=widget__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li><li class=widget__item><a class=widget__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMWare VSphere">VMWare VSphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
+<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
+<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2025 This Is My Demo.
+<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
