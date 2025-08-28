@@ -70,7 +70,8 @@
 		"emmet.includeLanguages": {
 			"hugo": "html"
 		},
-		"hugo.server.renderToDisk": false
+		"hugo.server.renderToDisk": false,
+		"github.copilot.nextEditSuggestions.enabled": true
 	},
 	"extensions": {
 		"recommendations": [

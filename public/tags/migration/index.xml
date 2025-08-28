@@ -6,14 +6,14 @@
     <description>Recent content in Migration on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 25 Aug 2025 21:03:45 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Aug 2025 03:57:10 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/migration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VMware vSphere to Azure Local: Operator Feature Mapping</title>
       <link>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</link>
       <pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid>
-      <description>From VMware vSphere to Azure Local: What Changes and Where to Click If you run a large vSphere environment—90+ hosts and 2,500+ VMs—the platform change is already decided. This guide doesn’t argue pros and cons; it shows how your daily work translates to Azure Local (formerly Azure Stack HCI): what changes, what’s similar, and where to find things.&#xA;This is an operator-focused reference for VMware-native admins. It maps vSphere, NSX, and vCenter capabilities to Azure Local equivalents with clear, neutral language.</description>
+      <description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.&#xA;This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description>
     </item>
   </channel>
 </rss>

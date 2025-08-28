@@ -1,6 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Entra Permissions Management on This Is My Demo</title><link>http://thisismydemo.cloud/categories/entra-permissions-management/</link><description>Recent content in Entra Permissions Management on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 08 Feb 2023 20:34:40 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/categories/entra-permissions-management/index.xml" rel="self" type="application/rss+xml"/><item><title>How To Grant Users Access To Entra Permissions Management Portal</title><link>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</link><pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate><guid>http://thisismydemo.cloud/post/grant-users-access-entra-permissions-management-portal/</guid><description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.
-I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description></item><item><title>Onboard a Google Cloud Platform project to Entra Permissions Management</title><link>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link><pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate><guid>http://thisismydemo.cloud/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</guid><description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.
-First let&amp;rsquo;s login to the Entra Permissions Management dashboard.
-Click on the gear in the top right corner to open up the Data Collectors dashboard.
-Click the GCP under the Data Collectors tab then click Create Configuration.</description></item><item><title>Entra Permissions Management Podcast</title><link>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</link><pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate><guid>http://thisismydemo.cloud/post/2023-01-19-entra-permissions-management-podcast/</guid><description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.
-You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description></item><item><title>Setting Up Entra Permissions Management</title><link>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</link><pubDate>Wed, 18 Jan 2023 17:59:11 +0000</pubDate><guid>http://thisismydemo.cloud/post/2023-01-18-setting-up-entra-permissions-management/</guid><description>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in. The Identity product group has a nice little user guide out there on Microsoft Learn Trial user guide: Microsoft Entra Permissions Management. There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Entra Permissions Management on This Is My Demo</title>
+    <link>http://localhost:1313/categories/entra-permissions-management/</link>
+    <description>Recent content in Entra Permissions Management on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 08 Feb 2023 20:34:40 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/entra-permissions-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How To Grant Users Access To Entra Permissions Management Portal</title>
+      <link>http://localhost:1313/post/grant-users-access-entra-permissions-management-portal/</link>
+      <pubDate>Wed, 08 Feb 2023 20:34:11 +0000</pubDate>
+      <guid>http://localhost:1313/post/grant-users-access-entra-permissions-management-portal/</guid>
+      <description>This is going to be one of those blogs that I write based off of things I didn&amp;rsquo;t know but learned in the heat of the moment.&#xA;I want to be able to have a normal user get on to the Entra Permissions Management portal to request the needed permissions they need. (This in itself is can be a blog and how to videos) So turned to Bing/Google/Chat GPT/My Dog&amp;hellip; nothing.</description>
+    </item>
+    <item>
+      <title>Onboard a Google Cloud Platform project to Entra Permissions Management</title>
+      <link>http://localhost:1313/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</link>
+      <pubDate>Fri, 20 Jan 2023 22:46:04 +0000</pubDate>
+      <guid>http://localhost:1313/post/2023-01-20-onboard-a-google-cloud-platform-project-to-entra-permissions-management/</guid>
+      <description>In a previous post I blogged about how to setup Microsoft Entra Permissions Management and onboarding an Microsoft Azure Subscription. In this post I will show how to onboard a Google Cloud Platform project.&#xA;First let&amp;rsquo;s login to the Entra Permissions Management dashboard.&#xA;Click on the gear in the top right corner to open up the Data Collectors dashboard.&#xA;Click the GCP under the Data Collectors tab then click Create Configuration.</description>
+    </item>
+    <item>
+      <title>Entra Permissions Management Podcast</title>
+      <link>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</link>
+      <pubDate>Thu, 19 Jan 2023 22:12:45 +0000</pubDate>
+      <guid>http://localhost:1313/post/2023-01-19-entra-permissions-management-podcast/</guid>
+      <description>I recently had the privilege to be on The Microsoft 425Show, a Microsoft security chat show. The topic of the podcast was Entra Permissions Management: Partner Perspectives. I had a great time talking with co-workers and with Shannon Kuehn a Senior Product Manager in the Identity product group at Microsoft.&#xA;You can access the show podcast from this link Entra Permissions Management: Partner Perspectives or stick around and listen below.</description>
+    </item>
+    <item>
+      <title>Setting Up Entra Permissions Management</title>
+      <link>http://localhost:1313/post/2023-01-18-setting-up-entra-permissions-management/</link>
+      <pubDate>Wed, 18 Jan 2023 17:59:11 +0000</pubDate>
+      <guid>http://localhost:1313/post/2023-01-18-setting-up-entra-permissions-management/</guid>
+      <description>This post will be a walk through on how to quickly setup Entra Permissions Management for the first time. One of the best ways to try our Entra Permissions Management is to start a trial and just jump in. The Identity product group has a nice little user guide out there on Microsoft Learn Trial user guide: Microsoft Entra Permissions Management. There are also other ways to get your hands dirty with Entra, you can always reach out to my company and have us do an Entra PM multi-cloud risk assessment analyzes Azure and multi-cloud permissions risk.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Licensing on This Is My Demo</title><link>http://thisismydemo.cloud/tags/licensing/</link><description>Recent content in Licensing on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 02 Jul 2025 00:01:40 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/licensing/index.xml" rel="self" type="application/rss+xml"/><item><title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title><link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link><pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate><guid>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid><description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.
-A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Licensing on This Is My Demo</title>
+    <link>http://localhost:1313/tags/licensing/</link>
+    <description>Recent content in Licensing on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Jul 2025 00:01:40 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/licensing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
+      <link>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
+      <description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.&#xA;A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description>
+    </item>
+  </channel>
+</rss>

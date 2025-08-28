@@ -1,3 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Azure Arc-Enabled Servers on This Is My Demo</title><link>http://thisismydemo.cloud/tags/azure-arc-enabled-servers/</link><description>Recent content in Azure Arc-Enabled Servers on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sun, 26 Jan 2025 20:20:42 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-arc-enabled-servers/index.xml" rel="self" type="application/rss+xml"/><item><title>Secure RDP Access via SSH for Arc VM</title><link>http://thisismydemo.cloud/post/secure-rdp-access-ssh-arc-vm/</link><pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate><guid>http://thisismydemo.cloud/post/secure-rdp-access-ssh-arc-vm/</guid><description>With Azure Arc-enabled servers, many of us are already familiar with the ability to establish SSH connections to these machines. If this is news to you, here’s something exciting: you can SSH into Windows machines that have been onboarded to Azure Arc! Now, I can imagine security professionals having a moment of concern—yes, you read that right: SSH access to Windows machines onboarded with Azure Arc is possible.
-Here’s an even bigger revelation: this applies not only to on-premises machines but also to Azure Arc-enabled servers running on other cloud platforms like AWS and GCP.</description></item><item><title>Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</title><link>http://thisismydemo.cloud/post/multicloud-connector-enabled-azure-arc-arc/</link><pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate><guid>http://thisismydemo.cloud/post/multicloud-connector-enabled-azure-arc-arc/</guid><description>They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?
-Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc.</description></item><item><title>The 12 Days of Azure Arc-Mas!</title><link>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</link><pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate><guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</guid><description>For those that are not aware there is a very awesome resource provided by the Cloud Family called the Festive Tech Calendar. The Festive Tech Calendar is a free, month-long, fun tech event that takes place throughout December. The event features new content from different communities and people around the globe. The event is organized by Cloud Family and is aimed at people from all communities who want to participate in a fun and engaging session that is a bit different from a normal conference.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Arc-Enabled Servers on This Is My Demo</title>
+    <link>http://localhost:1313/tags/azure-arc-enabled-servers/</link>
+    <description>Recent content in Azure Arc-Enabled Servers on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 26 Jan 2025 20:20:42 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/azure-arc-enabled-servers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Secure RDP Access via SSH for Arc VM</title>
+      <link>http://localhost:1313/post/secure-rdp-access-ssh-arc-vm/</link>
+      <pubDate>Sat, 25 Jan 2025 22:14:57 +0000</pubDate>
+      <guid>http://localhost:1313/post/secure-rdp-access-ssh-arc-vm/</guid>
+      <description>With Azure Arc-enabled servers, many of us are already familiar with the ability to establish SSH connections to these machines. If this is news to you, here’s something exciting: you can SSH into Windows machines that have been onboarded to Azure Arc! Now, I can imagine security professionals having a moment of concern—yes, you read that right: SSH access to Windows machines onboarded with Azure Arc is possible.&#xA;Here’s an even bigger revelation: this applies not only to on-premises machines but also to Azure Arc-enabled servers running on other cloud platforms like AWS and GCP.</description>
+    </item>
+    <item>
+      <title>Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</title>
+      <link>http://localhost:1313/post/multicloud-connector-enabled-azure-arc-arc/</link>
+      <pubDate>Sat, 25 Jan 2025 18:37:26 +0000</pubDate>
+      <guid>http://localhost:1313/post/multicloud-connector-enabled-azure-arc-arc/</guid>
+      <description>They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?&#xA;Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc.</description>
+    </item>
+    <item>
+      <title>The 12 Days of Azure Arc-Mas!</title>
+      <link>http://localhost:1313/post/12-days-azure-arc-mas/</link>
+      <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
+      <guid>http://localhost:1313/post/12-days-azure-arc-mas/</guid>
+      <description>For those that are not aware there is a very awesome resource provided by the Cloud Family called the Festive Tech Calendar. The Festive Tech Calendar is a free, month-long, fun tech event that takes place throughout December. The event features new content from different communities and people around the globe. The event is organized by Cloud Family and is aimed at people from all communities who want to participate in a fun and engaging session that is a bit different from a normal conference.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,111 +1,444 @@
-<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc - This Is My Demo</title>
-<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"><meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"><meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-09-27T14:00:00+00:00"><meta property="article:modified_time" content="2023-09-28T17:08:55+00:00"><meta property="article:tag" content="Azure Arc"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="MicrosK8S"><meta name=twitter:card content="summary"><meta name=twitter:title content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"><meta name=twitter:description content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</h1><p class=post__lead>A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-09-27T14:00:00Z>September 27, 2023</time>
-<time class=meta__text datetime=2023-09-28T17:08:55Z>(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-arc-enabled-kubernetes/ rel=category>Azure Arc-Enabled Kubernetes</a>, <a class=meta__link href=/categories/azure-arc-enabled-servers/ rel=category>Azure Arc-Enabled Servers</a>, <a class=meta__link href=/categories/microk8s/ rel=category>MicroK8S</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/microk8s_arc/arc.png alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc"></figure><div class="content post__content clearfix"><p>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.</p><p>The blog will be broken up into the following three sections:</p><ol><li><a href=https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/>Installing MicroK8s on Windows Subsystem for Linux (WSL)</a></li><li><a href=https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/>Azure Arc-enabled servers: Installing Azure Connected Machine Agent</a></li><li><a href=https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/>Azure Arc-enabled Kubernetes: Connecting my MicroK8S cluster to Azure</a></li></ol><hr><h1 id=azure-arc-enabled-servers---installing-the-azure-connected-machine-agent-azure-arc-agent>Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent)</h1><p>In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure. In this blog I will go over creating the prerequisites needed to install the Arc Agent on Windows Subsystem for Linux (WSL)</p><h2 id=azure-arc-service-principal>Azure Arc Service Principal</h2><p>So I started with creating a new Azure Arc Service Principal that would be used to onboard my WSL instance. There are a few ways to do this but I am going to do it in the portal for this blog. From the Azure portal go to the Azure Arc blade and the under Management, select Service principals. From here we will create a new service principal.</p><p>Here in this section I will fille in the following fields:</p><ul><li>Name</li><li>Scope assignment level</li><li>Subscription Name</li><li>Client Secret Description</li><li>Role Assignments</li></ul><p>For the name, I selected something that I would know what this service principal is. For my scope assignment, I am going to assign this at the subscription level. We could just assign this SPN at the resource group level if needed for more granular control. The subscription, is selected for the current subscription. Last but not least, the Role Assignments. Here we have three choices: Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator. I selected all three but in a production environment to have more control over access we should create separate service principles for each.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20093706.png></p><p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret. Make sure we record these and place them in a safe area for future use.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20093749.png></p><p>Now that the Service Principal has been created we can go back into the Arc Blade under Service Principals and we will see our newly created SP.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20093922.png></p><p>Now we are ready to move forward with the creation of the Azure Arc Agent onboarding script.</p><h2 id=register-azure-resource-providers>Register Azure Resource Providers</h2><p>We already have registered all the needed resource providers in the past. However, if this is the first time we are deploying any Arc related resources the following commands will register these resource providers for us.</p><pre tabindex=0><code>az account set --subscription &#34;{Your Subscription Name}&#34;
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+		<meta property="og:url" content="http://localhost:1313/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+  <meta property="og:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-09-27T14:00:00+00:00">
+    <meta property="article:modified_time" content="2023-09-28T17:08:55+00:00">
+    <meta property="article:tag" content="Azure Arc">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="MicrosK8S">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+  <meta name="twitter:description" content="A blog series about my experiences with MicroK8S, WSL, and Azure Arc">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc</h1>
+			<p class="post__lead">A blog series about my experiences with MicroK8S, WSL, and Azure Arc</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-27T14:00:00Z">September 27, 2023</time>
+	<time class="meta__text" datetime="2023-09-28T17:08:55Z">(: September 28, 2023)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/azure-arc-enabled-servers/" rel="category">Azure Arc-Enabled Servers</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/microk8s_arc/arc.png" alt="MicroK8S and WSL Managed by Azure Arc -Part III - Azure Arc">
+		
+	</figure><div class="content post__content clearfix">
+			<p>In this blog series I am going to discuss my experiences with MicroK8S, installing it on Windows Subsystem for Linux, and how to connect the cluster to Azure using Azure Arc-Enabled Kubernetes.</p>
+<p>The blog will be broken up into the following three sections:</p>
+<ol>
+<li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/">Installing MicroK8s on Windows Subsystem for Linux (WSL)</a></li>
+<li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iii-azure-arc/">Azure Arc-enabled servers:  Installing Azure Connected Machine Agent</a></li>
+<li><a href="https://www.thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/">Azure Arc-enabled Kubernetes:  Connecting my MicroK8S cluster to Azure</a></li>
+</ol>
+<hr>
+<h1 id="azure-arc-enabled-servers---installing-the-azure-connected-machine-agent-azure-arc-agent">Azure Arc-Enabled Servers - Installing the Azure Connected Machine Agent (Azure Arc Agent)</h1>
+<p>In this blog I will discuss my experience installing the Azure Arc agent, also known as the Azure Connected Machine Agent in in order to manage this WSL instance within Azure.  In this blog I will go over creating the prerequisites needed to install the Arc Agent on Windows Subsystem for Linux (WSL)</p>
+<h2 id="azure-arc-service-principal">Azure Arc Service Principal</h2>
+<p>So I started with creating a new Azure Arc Service Principal that would be used to onboard my WSL instance. There are a few ways to do this but I am going to do it in the portal for this blog. From the Azure portal go to the Azure Arc blade and the under Management, select Service principals. From here we will create a new service principal.</p>
+<p>Here in this section I will fille in the following fields:</p>
+<ul>
+<li>Name</li>
+<li>Scope assignment level</li>
+<li>Subscription Name</li>
+<li>Client Secret Description</li>
+<li>Role Assignments</li>
+</ul>
+<p>For the name, I selected something that I would know what this service principal is.  For my scope assignment, I am going to assign this at the subscription level. We could just assign this SPN at the resource group level if needed for more granular control.  The subscription, is selected for the current subscription.  Last but not least, the Role Assignments.  Here we have three choices:  Azure Connected Machine Onboarding, Kubernetes Cluster - Azure Onboarding, and Azure Connected Machine Resource Administrator.  I selected all three but in a production environment to have more control over access we should create separate service principles for each.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093706.png"></p>
+<p>When we click Create the next window will give us the Client ID (AppID) and the Client Secret.  Make sure we record these and place them in a safe area for future use.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093749.png"></p>
+<p>Now that the Service Principal has been created we can go back into the Arc Blade under Service Principals and we will see our newly created SP.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20093922.png"></p>
+<p>Now we are ready to move forward with the creation of the Azure Arc Agent onboarding script.</p>
+<h2 id="register-azure-resource-providers">Register Azure Resource Providers</h2>
+<p>We already have registered all the needed resource providers in the past. However, if this is the first time we are deploying any Arc related resources the following commands will register these resource providers for us.</p>
+<pre tabindex="0"><code>az account set --subscription &#34;{Your Subscription Name}&#34;
 az provider register --namespace &#39;Microsoft.HybridCompute&#39;
 az provider register --namespace &#39;Microsoft.GuestConfiguration&#39;
 az provider register --namespace &#39;Microsoft.HybridConnectivity&#39;
 az provider register --namespace &#39;Microsoft.AzureArcData&#39;
-</code></pre><h2 id=create-the-azure-arc-agent-onboarding-script>Create the Azure Arc Agent Onboarding Script</h2><p>From the Arc Blade, under Infrastructure we will select Machines. To the right, we will than click on Add/Create at the top of the menu bar and select Add a machine. The next screen we will have three options. I have selected Add a single server at this time. For one offs and for demos this is acceptable. However, I wouldn&rsquo;t want to do this one at a time for 100&rsquo;s of machines. This is where I would select Add multiple servers, we would then use the onboarding service account, and a different script to onboard our machines using tools like COnfigMgr for Windows servers or Ansible or something like that for Linux.</p><p>Here we will fill in the following fields:</p><ul><li>Subscription</li><li>Resource Group</li><li>Region</li><li>Operating System</li><li>Connectivity Method</li></ul><p>The subscription and Resource group fields should be selected where we would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources. In production or a none demo environment, I would have many resource groups all based off of criteria like environments, or locations, etc. This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward. The next important area I will call out is the Operating system section. Since this is a Linux box we need to make sure we change that to Linux. We will leave Connectivity method default for Public Endpoint. Moving forward, I highly suggest we start using Private Endpoints to help secure our environment.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094047.png></p><p>This section is important for many reasons. Tagging Azure resources has many benefit and in any environment should be mandatory to have tagging. Here we will tag these resources based off of physical location. I will also add a custom tags to allow others to know this is a demo environment, and who owns this resource, etc.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094127.png></p><p>We now have our onboarding script ready. We can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094314.png></p><p>So now we are ready to install the agent. This will happen in our next few steps.</p><h2 id=install-the-azure-arc-agent>Install the Azure Arc Agent</h2><p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution I would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094417.png></p><p>After about 2 or 3 minutes the Arc agent will have been deployed.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094702.png></p><p>We now can go to the Azure Portal, back to the Azure Arc blade and select Machines under Infrastructure. Give it some time, maybe 5 to 15 minutes and our newly manged Linux server will now show up and should have a status of Connected.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20094749.png></p><p>If I click on the resource we can see more information about this Azure connected machine. From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow us to have one management tool to manage all our on premises and multi-cloud resources. From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p><p><img src=/img/microk8s_arc/Screenshot%202023-09-27%20095536.png></p><p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much we can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc. We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc/ rel=tag>Azure Arc</a></li><li class=tags__item><a class="tags__link btn" href=/tags/kubernetes/ rel=tag>Kubernetes</a></li><li class=tags__item><a class="tags__link btn" href=/tags/microsk8s/ rel=tag>MicrosK8S</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
-</label><input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li><li class=widget__item><a class=widget__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></li><li class=widget__item><a class=widget__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMWare VSphere">VMWare VSphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
-<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
-<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2025 This Is My Demo.
-<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
+</code></pre><h2 id="create-the-azure-arc-agent-onboarding-script">Create the Azure Arc Agent Onboarding Script</h2>
+<p>From the Arc Blade, under Infrastructure we will select Machines. To the right, we will than click on Add/Create at the top of the menu bar and select Add a machine. The next screen we will have three options. I have selected Add a single server at this time. For one offs and for demos this is acceptable. However, I wouldn&rsquo;t want to do this one at a time for 100&rsquo;s of machines.  This is where I would select Add multiple servers, we would then use the onboarding service account, and a different script to onboard our machines using tools like COnfigMgr for Windows servers or Ansible or something like that for Linux.</p>
+<p>Here we will fill in the following fields:</p>
+<ul>
+<li>Subscription</li>
+<li>Resource Group</li>
+<li>Region</li>
+<li>Operating System</li>
+<li>Connectivity Method</li>
+</ul>
+<p>The subscription and Resource group fields should be selected where we would want the Azure Connected Machine resource to reside. For this demo, I have only created a single resource group for all my Azure Arc Resources.  In production or a none demo environment, I would have many resource groups all based off of criteria like environments, or locations, etc.  This will help with assigned resources via RBAC and other Azure services like Azure Policies, etc moving forward.  The next important area I will call out is the Operating system section.  Since this is a Linux box we need to make sure we change that to Linux.  We will leave Connectivity method default for Public Endpoint.  Moving forward, I highly suggest we start using Private Endpoints to help secure our environment.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094047.png"></p>
+<p>This section is important for many reasons.  Tagging Azure resources has many benefit and in any environment should be mandatory to have tagging. Here we will tag these resources based off of physical location.  I will also add a custom tags to allow others to know this is a demo environment, and who owns this resource, etc.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094127.png"></p>
+<p>We now have our onboarding script ready. We can either download this script and run it on the Linux machine or as I will do in this demo, just copy and past each section as I go.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094314.png"></p>
+<p>So now we are ready to install the agent.  This will happen in our next few steps.</p>
+<h2 id="install-the-azure-arc-agent">Install the Azure Arc Agent</h2>
+<p>Since I am running my Linux environment on my Windows 10 laptop as WSL I can do this directly from my Windows Terminal when I launch my Ubuntu profile. In a real world solution I would use another tool to deploy to more than one server. I basically just copied and pasted the entire script into my bash terminal.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094417.png"></p>
+<p>After about 2 or 3 minutes the Arc agent will have been deployed.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094702.png"></p>
+<p>We now can go to the Azure Portal, back to the Azure Arc blade and select Machines under Infrastructure.  Give it some time, maybe 5 to 15 minutes and our newly manged Linux server will now show up and should have a status of Connected.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20094749.png"></p>
+<p>If I click on the resource we can see more information about this Azure connected machine.  From here we can do a lot more than I am going to do for this blog. Azure Arc-enabled servers is a power tool that will allow us to have one management tool to manage all our on premises and multi-cloud resources.  From Update management, to Azure Policy there is so much we can now do to manage this device as if it were an Azure VM itself. However, that is another blog series and also some content I have done at various users groups.</p>
+<p><img src="/img/microk8s_arc/Screenshot%202023-09-27%20095536.png"></p>
+<p>At this point we now have installed the Azure Arc agent and the WSL instance is now being managed by Azure as an Azure Resource. In my next blog I will explain how to connect this Kubernetes cluster to Azure using Azure Arc-enabled Kubernetes. I do want to stress, there is so much we can do with resources managed by Azure Arc that was never touched in this blog. So much more! We also have only talked about Azure Arc-enabled servers as well. There is so much more to Azure Arc.  We will see later the capabilities of Azure Arc-enabled Kubernetes, but I highly suggest looking at all the Azure Arc solutions.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">Kubernetes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/microsk8s/" rel="tag">MicrosK8S</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-ii-installing-microk8s-wsl/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc - Part II - Installing MicroK8S on WSL</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/microk8s-wsl-managed-azure-arc-part-iv-arc-kubernetes/" rel="next">
+			<span class="pager__subtitle">&thinsp;»</span>
+			<p class="pager__title">MicroK8S and WSL Managed by Azure Arc -Part IV - Arc Kubernetes</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/vmware-vsphere-vs-azure-local-feature-comparison/">VMware vSphere to Azure Local: Operator Feature Mapping</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/comparing-ai-fun-test-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2025 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
