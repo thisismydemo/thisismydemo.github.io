@@ -3,14 +3,14 @@ title: "VMware vSphere to Azure Local: Operator Feature Mapping"
 description: Operator-focused mapping from VMware vSphere to Azure Local for day-to-day tasks and features.
 date: 2025-07-29T14:00:00.000Z
 preview: /img/vsphere-vs-azure-local/comparison-banner.png
-draft: true
+draft: false
 tags:
-    - VMware vSphere
-    - Azure Local
-    - Migration
+  - VMware vSphere
+  - Azure Local
+  - Migration
 categories:
-    - Infrastructure
-    - Operations
+  - Infrastructure
+  - Operations
 lastmod: 2025-08-29T14:29:53.664Z
 thumbnail: /img/vsphere-vs-azure-local/comparison-banner.png
 lead: "This blog is for admins and operators: a practical, side‑by‑side mapping from what you did in vSphere (vMotion, DRS, snapshots, SRM, NSX, vCenter) to what you’ll use in Azure Local (Live Migration, Failover Clustering, checkpoints, ASR/Hyper‑V Replica, WAC/Azure Portal)."
