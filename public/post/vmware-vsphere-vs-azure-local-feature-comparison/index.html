@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2025-07-29T14:00:00+00:00">
-    <meta property="article:modified_time" content="2025-08-28T04:55:23+00:00">
+    <meta property="article:modified_time" content="2025-08-29T01:02:19+00:00">
     <meta property="article:tag" content="VMware VSphere">
     <meta property="article:tag" content="Azure Local">
     <meta property="article:tag" content="Migration">
@@ -76,7 +76,7 @@
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-07-29T14:00:00Z">July 29, 2025</time>
-	<time class="meta__text" datetime="2025-08-28T04:55:23Z">(: August 28, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/operations/" rel="category">Operations</a>
+	<time class="meta__text" datetime="2025-08-29T01:02:19Z">(: August 29, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/operations/" rel="category">Operations</a>
 	</span>
 </div></div>
 		</header>
@@ -158,7 +158,7 @@
 <tr>
 <td>Storage Architecture</td>
 <td>Storage Spaces Direct (S2D), hyperconverged, software-defined storage, CSV</td>
-<td>vSAN, traditional SAN/NAS, storage policies, distributed storage</td>
+<td>vSAN, traditional SAN/NAS, storage policies, distributed storag!e</td>
 </tr>
 <tr>
 <td>Backup &amp; Data Protection</td>
@@ -192,7 +192,7 @@
 </tr>
 <tr>
 <td>GPU and Hardware Acceleration</td>
-<td>GPU-P, DDA (live migration support depends on GPU/driver)</td>
+<td>GPU-P (live migration supported with prerequisites), DDA (no live migration support)</td>
 <td>vGPU, DirectPath I/O, vMotion with GPU</td>
 </tr>
 <tr>
@@ -202,12 +202,12 @@
 </tr>
 <tr>
 <td>Scalability and Limits</td>
-<td>16 hosts/cluster, 24TB VM RAM, 2048 vCPUs/VM</td>
+<td>16 hosts/cluster, 240TB VM RAM, 2048 vCPUs/VM</td>
 <td>64 hosts/cluster, 24TB VM RAM, 768 vCPUs/VM</td>
 </tr>
 <tr>
 <td>Cloud Integration and Hybrid Services</td>
-<td>Azure Arc, Azure AD integration, hybrid identity, native Azure service integration</td>
+<td>Azure Arc, Microsoft Entra ID integration, hybrid identity, native Azure service integration</td>
 <td>Limited cloud integration, third-party cloud connectors, hybrid solutions</td>
 </tr>
 <tr>
@@ -230,17 +230,16 @@
 <p>This table provides a roadmap for the deep-dive analysis ahead, ensuring you can quickly reference the areas most relevant to your environment and migration planning.</p>
 <p><a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/#table-of-contents">Back to Table of Contents</a></p>
 <hr>
-<h1 id="vmware-vsphere-vs-azure-local---comprehensive-comparison-guide">VMware vSphere vs Azure Local - Comprehensive Comparison Guide</h1>
 <h2 id="section-1----core-virtualization-platform-hypervisor--infrastructure">Section 1 -  Core Virtualization Platform (Hypervisor &amp; Infrastructure)</h2>
 <p>The foundation of your virtualization environment changes from ESXi to Azure Local (Hyper-V), maintaining enterprise-grade capabilities while integrating cloud services.</p>
-<p><strong>Hypervisor:</strong> VMware ESXi will be replaced by the <strong>Azure Local operating system</strong> (a specialized Hyper-V based OS). Both are bare-metal hypervisors with comparable performance and enterprise features. Hyper-V supports modern capabilities like virtual NUMA, nested virtualization, GPU acceleration, and memory management. For example, Azure Local supports GPU partitioning/pooling and even live migration of GPU-enabled VMs (similar to vMotion for VMs with GPUs). In practice, you should expect similar VM performance and stability from Hyper-V as with ESXi, as both are mature type-1 hypervisors.</p>
+<p><strong>Hypervisor:</strong> VMware ESXi will be replaced by the <strong>Azure Local operating system</strong> (a specialized Hyper-V based OS). Both are bare-metal hypervisors with comparable performance and enterprise features. Hyper-V supports modern capabilities like virtual NUMA, nested virtualization, GPU acceleration, and memory management. For example, Azure Local supports GPU partitioning/pooling and live migration of GPU-P enabled VMs when prerequisites are met: OS build 26100.xxxx+ (Windows Server 2025-based Azure Local solution version 12.25xx), NVIDIA vGPU Software v18.x+ drivers, and homogeneous GPUs across hosts. DDA (Discrete Device Assignment) provides full GPU access but doesn&rsquo;t support live migration. In practice, you should expect similar VM performance and stability from Hyper-V as with ESXi, as both are mature type-1 hypervisors.</p>
 <p><strong>Clusters and Hosts:</strong> In Azure Local, Hyper-V hosts are joined in a <strong>Windows Failover Cluster</strong> (managed by Azure Arc). This provides high availability akin to vSphere clusters. An Azure Local cluster can have 2–16 nodes; with 90 hosts, you would deploy multiple clusters (each cluster managed as a unit in Azure). Hosts in an Azure Local cluster use <strong>Storage Spaces Direct (S2D)</strong> for storage pooling – functionally similar to VMware vSAN in that each node&rsquo;s local disks form a shared, resilient storage pool across the cluster. If your VMware setup uses a SAN or NAS, Azure Local can accommodate that too (CSV volumes on external LUNs), but most deployments use S2D hyperconverged storage for best integration. Networking is provided by Hyper-V Virtual Switches; for advanced software-defined networking (comparable to NSX), Azure Local can integrate an <strong>SDN layer</strong> using VXLAN (optional), although many organizations simply use VLANs and the Hyper-V virtual switch.</p>
 <p><strong>Licensing Note:</strong> Azure Local uses a subscription-based licensing model (billed per physical core per month), unlike VMware&rsquo;s host licensing. Windows Server guest VMs still require licensing unless you use Azure Hybrid Benefits. It&rsquo;s important to factor this into planning, though the focus here is on technical features.</p>
 <p><a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/#table-of-contents">Back to Table of Contents</a></p>
 <hr>
 <h2 id="section-2---management-tools-and-interfaces">Section 2 - Management Tools and Interfaces</h2>
 <p>Your centralized vCenter management transitions to a cloud-first approach with a clear management hierarchy that prioritizes Azure integration while maintaining local tools for specific scenarios.</p>
-<p><strong>Primary: Azure Portal (Azure Arc Control Plane)</strong> - Microsoft&rsquo;s official recommendation for Azure Local VM management. Once your clusters are registered with Azure Arc, the <strong>Azure Portal</strong> becomes your primary management interface. VMs created through the Azure Portal are &ldquo;Arc VMs&rdquo; with full Azure integration: RBAC permissions, Azure Hybrid Benefits, cloud monitoring, and unified management alongside Azure resources. Each Azure Local cluster appears as an Azure resource, enabling consistent governance across your hybrid estate. This replaces vCenter&rsquo;s centralized approach with cloud-native management that scales globally. In the Azure Portal, each Azure Local cluster appears as an Azure resource, and VMs are represented as &ldquo;Arc VMs&rdquo; resources. You can create, start/stop, delete VMs, configure virtual networks, and monitor resources all from the portal. Azure applies Role-Based Access Control (RBAC) for these resources, allowing you to assign granular permissions. For your enterprise environment, you might give development teams access to manage their own VMs (self-service) in specific clusters without exposing the entire 6-cluster infrastructure – something vCenter also allowed with custom roles, now achieved via Azure RBAC on Arc-enabled VMs.</p>
+<p><strong>Primary: Azure Portal (Azure Arc Control Plane)</strong> - Microsoft&rsquo;s official recommendation for Azure Local VM management. Once your clusters are registered with Azure Arc, the <strong>Azure Portal</strong> becomes your primary management interface. VMs created through the Azure Portal are &ldquo;Azure Local VMs&rdquo; with full Azure integration: RBAC permissions, Azure Hybrid Benefits, cloud monitoring, and unified management alongside Azure resources. Each Azure Local cluster appears as an Azure resource, enabling consistent governance across your hybrid estate. This replaces vCenter&rsquo;s centralized approach with cloud-native management that scales globally. In the Azure Portal, each Azure Local cluster appears as an Azure resource, and VMs are represented as &ldquo;Azure Local VM&rdquo; resources. You can create, start/stop, delete VMs, and monitor resources all from the portal. Logical networks are created through the Azure Portal regardless of SDN deployment - with SDN enabled by Arc (preview), you get full software-defined networking capabilities; without SDN, logical networks represent your physical VLAN-based network infrastructure. Azure applies Role-Based Access Control (RBAC) for these resources, allowing you to assign granular permissions. For your enterprise environment, you might give development teams access to manage their own VMs (self-service) in specific clusters without exposing the entire 6-cluster infrastructure – something vCenter also allowed with custom roles, now achieved via Azure RBAC on Arc-enabled VMs.</p>
 <p><strong>Secondary: Azure CLI and PowerShell</strong> - For automation and advanced operations. <strong>Az PowerShell</strong> and <strong>Azure CLI</strong> manage Arc-enabled resources and provide Infrastructure-as-Code capabilities through ARM templates and Bicep. Traditional <strong>PowerShell modules</strong> (Hyper-V, Failover Clustering) handle underlying platform operations. This combination replaces PowerCLI for scripting and automation scenarios.</p>
 <p><strong>Third: Windows Admin Center (WAC)</strong> - Microsoft&rsquo;s direction is to manage Azure Local through the Azure Portal but it can be used for managing existing Azure Local clusters when cloud connectivity is unavailable (not in a fully disconnected scenario), managing traditional Hyper-V VMs, VM console access, and troubleshooting. WAC provides local cluster management with features like live migration, VM console access, performance charts, and cluster administration. Creates &ldquo;unmanaged VMs&rdquo; that cannot be managed through Azure Portal. Use primarily for troubleshooting and when disconnected from Azure. WAC provides local cluster management similar to vCenter&rsquo;s interface, but creates &ldquo;unmanaged VMs&rdquo; that lack Azure Arc benefits and cannot be managed through Azure Portal. Microsoft&rsquo;s direction is to manage Azure Local through the Azure Portal, but WAC is still an important tool for cluster administration <strong>when cloud connectivity is unavailable or for some advanced settings</strong>. WAC provides a UI to manage Hyper-V hosts and clusters (much like vCenter) and includes features like live migration, VM console access, performance charts, etc. You&rsquo;ll likely use WAC during for troubleshooting scenarios. Over time, expect more functionality to shift to Azure Portal, but WAC remains available (just as vSphere has both new HTML5 client and legacy vSphere client – WAC is analogous to a local client, while Azure Portal is the cloud-based UI).</p>
 <p><strong>Last Resort: Traditional Tools for Troubleshooting</strong> - <strong>Failover Cluster Manager</strong> and <strong>Hyper-V Manager</strong> are the &ldquo;old way&rdquo; of managing Windows clusters. Use these only for deep troubleshooting, diagnostics, or when you need to &ldquo;dig into the clusters&rdquo; for low-level investigation. These tools help with cluster status, shared volumes, VM console access, and host-specific configurations when other tools don&rsquo;t provide the needed visibility. In day-to-day operations, you won&rsquo;t use them often (WAC and Azure Portal cover most needs), but they are handy for low-level troubleshooting. <strong>Failover Cluster Manager</strong> lets you see cluster status, cluster shared volumes, and can be used to move roles (VMs) between hosts, configure cluster settings, etc., much like vCenter&rsquo;s cluster view. <strong>Hyper-V Manager</strong> allows direct management of VMs on a single host (e.g. to adjust VM settings or connect to a VM console). For your team, using these will feel different from vCenter, but they are occasionally useful for diagnostics or if GUI access is needed in a pinch on a specific host. Most routine tasks, however, will be done in the Azure Portal or WAC.</p>
@@ -261,10 +260,10 @@
 <tbody>
 <tr>
 <td><strong>VM Creation</strong></td>
-<td>Arc VM creation</td>
-<td>Create VM wizard</td>
-<td><code>New-VM</code></td>
-<td>Portal: Standard ops, WAC: Local/emergency</td>
+<td>Azure Local VM creation</td>
+<td>Creates unmanaged VMs</td>
+<td><code>az stack-hci-vm create</code></td>
+<td>Portal: Arc-enabled VMs, CLI: Automation</td>
 </tr>
 <tr>
 <td><strong>Performance Monitoring</strong></td>
@@ -289,10 +288,10 @@
 </tr>
 <tr>
 <td><strong>Network Configuration</strong></td>
-<td>Azure networking</td>
-<td>WAC network settings</td>
+<td>Logical networks (all scenarios)</td>
+<td>Local network troubleshooting</td>
 <td>Network cmdlets</td>
-<td>Portal: SDN, WAC: Traditional networking</td>
+<td>Portal: Logical networks, WAC: Local troubleshooting</td>
 </tr>
 </tbody>
 </table>
@@ -310,7 +309,7 @@
 <tr>
 <td><strong>Bulk VM Operations</strong></td>
 <td><code>Get-VM | ForEach-Object</code></td>
-<td><code>Get-AzConnectedMachine | ForEach-Object</code></td>
+<td><code>az stack-hci-vm list | ForEach-Object</code></td>
 </tr>
 <tr>
 <td><strong>Host Configuration</strong></td>
@@ -325,24 +324,43 @@
 <tr>
 <td><strong>Network Management</strong></td>
 <td><code>Get-VirtualSwitch | New-VirtualPortGroup</code></td>
-<td><code>New-NetAdapter | Add-VMNetworkAdapter</code></td>
+<td><code>az stack-hci-vm network lnet create</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="critical-management-method-considerations">Critical Management Method Considerations</h3>
+<p><strong>Azure Local VM Resource Type:</strong> When working with automation and ARM templates, Azure Local VMs use the resource type <code>Microsoft.AzureStackHCI/virtualMachines</code>. This is essential for:</p>
+<ul>
+<li>ARM template definitions</li>
+<li>Azure CLI automation scripts</li>
+<li>PowerShell resource management</li>
+<li>RBAC policy assignments</li>
+</ul>
+<p><strong>Example ARM Template Resource:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;Microsoft.AzureStackHCI/virtualMachines&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;apiVersion&#34;</span>: <span style="color:#e6db74">&#34;2023-09-01-preview&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;vmName&#39;)]&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;location&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;location&#39;)]&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;extendedLocation&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;CustomLocation&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;[parameters(&#39;customLocationId&#39;)]&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="critical-management-method-considerations">Critical Management Method Considerations</h3>
 <p><strong>Management Method Lock-in:</strong> You cannot mix VM management approaches without losing functionality:</p>
 <ul>
-<li><strong>Azure Local Arc VMs</strong> (created via Azure Portal): Managed through Azure Portal, CLI, PowerShell. <strong>Cannot</strong> be managed through Windows Admin Center.</li>
+<li><strong>Azure Local VMs</strong> (created via Azure Portal): Managed through Azure Portal, CLI, PowerShell. <strong>Cannot</strong> be managed through Windows Admin Center.</li>
 <li><strong>Traditional Hyper-V VMs</strong> (created via WAC/PowerShell): Managed through Windows Admin Center, Hyper-V Manager, PowerShell. <strong>Cannot</strong> be managed through Azure Portal.</li>
 <li><strong>Microsoft&rsquo;s recommendation:</strong> &ldquo;The recommended way to create and manage VMs on Azure Local is using the Azure Arc control plane.&rdquo;</li>
 </ul>
-<p><strong>VM Restoration Limitations:</strong> VMs restored from backup or Azure Site Recovery <strong>lose their Azure Arc identity</strong> and revert to traditional Hyper-V VMs:</p>
+<p><strong>VM Restoration Limitations:</strong> VMs restored from backup (MABS ALR), disaster recovery tools, or created outside the Azure portal (via WAC/PowerShell/external restore) <strong>lose their Azure Arc identity and resource bridge registration</strong>:</p>
 <ul>
-<li>Restored VMs can only be managed through Windows Admin Center, Hyper-V Manager, or PowerShell</li>
-<li>Loss of Azure Portal management, RBAC permissions, and Azure Hybrid Benefits</li>
-<li>Plan backup/DR procedures accounting for potential loss of Azure management capabilities</li>
+<li>Restored VMs revert to traditional Hyper-V VMs and cannot be converted back to Arc-enabled VMs through supported methods</li>
+<li>Only MABS Original Location Recovery (OLR) preserves Arc identity by restoring to the original instance via Hyper-V VSS</li>
+<li>Cross-instance restores (to different Azure Local systems) also lose Arc management capabilities</li>
+<li>Loss of Azure Portal management, RBAC permissions, and Azure Hybrid Benefits requires manual VM recreation</li>
 </ul>
-<p><strong>Feature Gaps:</strong> Arc VMs have limited Windows Admin Center support (marked with ❌ in Microsoft comparison tables), while WAC-created VMs have &ldquo;limited manageability from the Azure Arc control plane, and fewer Azure Hybrid Benefits.&rdquo;</p>
+<p><strong>Feature Gaps:</strong> According to Microsoft&rsquo;s official <a href="https://learn.microsoft.com/en-us/azure/azure-local/concepts/compare-vm-management-capabilities?view=azloc-2507#comparison-of-vm-management-capabilities">VM management capabilities comparison table</a>, Azure Local VMs have limited Windows Admin Center support (marked with ❌), while WAC-created VMs have &ldquo;limited manageability from the Azure Arc control plane, and fewer Azure Hybrid Benefits.&rdquo;</p>
 <blockquote>
 <p><strong>Key Takeaway:</strong> Azure Portal first, Azure CLI/PowerShell for automation, Windows Admin Center when cloud unavailable, traditional tools for troubleshooting only. Choose your VM management method carefully—it affects long-term manageability and disaster recovery.</p>
 </blockquote>
@@ -354,17 +372,17 @@
 <p>Daily VM operations in Azure Local will feel familiar, with analogous features to vSphere for creating, running, and modifying virtual machines:</p>
 <p><strong>VM Provisioning &amp; Templates:</strong> In vSphere, you might clone from templates. Azure Local doesn&rsquo;t use vCenter templates in the same way, but you have a few options:</p>
 <ul>
-<li>Through Azure Portal, you can create a new VM (Arc VM) and specify an image or existing VHD. Azure Local can integrate with Azure&rsquo;s image gallery, or you can keep a library of golden VHD(X) images (similar to templates) on a file share. While not as GUI-integrated as vCenter templates, using scripting or WAC&rsquo;s &ldquo;Create VM from existing disk&rdquo; achieves a similar result. Additionally, Azure Resource Manager templates can define a VM shape (vCPU, memory, OS image, etc.) for consistent deployment across clusters.</li>
+<li>Through Azure Portal, you can create a new VM (Azure Local VM) and specify an image or existing VHD. Azure Local can integrate with Azure&rsquo;s image gallery, or you can keep a library of golden VHD(X) images (similar to templates) on a file share. While not as GUI-integrated as vCenter templates, using scripting or WAC&rsquo;s &ldquo;Create VM from existing disk&rdquo; achieves a similar result. Additionally, Azure Resource Manager templates can define a VM shape (vCPU, memory, OS image, etc.) for consistent deployment across clusters.</li>
 <li><strong>Sysprep and clone:</strong> You can sysprep a VM, shut it down, and copy its VHDX to use as a master image. This is analogous to how many admins create VMware templates (which are essentially VMs marked as template).</li>
 <li>Azure Local also supports <strong>Cloud-Init</strong> for Linux and <strong>VM customization</strong> tasks via Azure Arc, which can inject configuration into new VMs similar to VMware guest customization.</li>
 </ul>
-<p><strong>Live Migration (vMotion):</strong> VMware&rsquo;s vMotion allows moving running VMs between hosts with no downtime. Hyper-V&rsquo;s equivalent is <strong>Live Migration</strong>, and it&rsquo;s a core feature of Azure Local clusters. You can initiate a live migration through WAC or Failover Cluster Manager (by moving the VM role to another node) – the VM continues running during the move, just like vMotion. Live Migration performance and limits are comparable to vMotion; it uses a dedicated network (or networks) to transfer memory and state. In practice, you&rsquo;ll put a host into &ldquo;<strong>pause/drain roles</strong>&rdquo; mode (maintenance mode) which automatically live-migrates its VMs to other hosts, allowing patching or hardware maintenance – similar to vSphere&rsquo;s maintenance mode + DRS.</p>
+<p><strong>Live Migration (vMotion):</strong> VMware&rsquo;s vMotion allows moving running VMs between hosts with no downtime. Hyper-V&rsquo;s equivalent is <strong>Live Migration</strong>, and it&rsquo;s a core feature of Azure Local clusters. You can initiate a live migration through WAC or Failover Cluster Manager (by moving the VM role to another node) – the VM continues running during the move, just like vMotion. Live migration is within the same cluster; cross-cluster LM isn&rsquo;t supported. Live Migration performance and limits are comparable to vMotion; it uses a dedicated network (or networks) to transfer memory and state. In practice, you&rsquo;ll put a host into &ldquo;<strong>pause/drain roles</strong>&rdquo; mode (maintenance mode) which automatically live-migrates its VMs to other hosts, allowing patching or hardware maintenance – similar to vSphere&rsquo;s maintenance mode + DRS.</p>
 <p><strong>VM Snapshots (Checkpoints):</strong> VMware &ldquo;snapshots&rdquo; have a parallel in Hyper-V called <strong>checkpoints</strong>. You can take a checkpoint of a VM&rsquo;s state, do changes or backups, and later apply or discard it. Standard checkpoints save the VM&rsquo;s disk and memory state. Azure Local supports both standard and &ldquo;production&rdquo; checkpoints (production checkpoints use VSS in the guest to create a disk-consistent point-in-time without saving memory, ideal for backups). The experience is similar: you can create a checkpoint in WAC or PowerShell, and if needed, revert (apply) that checkpoint to roll back a VM.</p>
 <p><strong>Cloning and VM Copies:</strong> If you need to duplicate a VM, the process isn&rsquo;t one-click clone as in vCenter, but it&rsquo;s straightforward: you can export a VM (which copies its VHDX and config) and import it as a new VM. WAC has an <strong>&ldquo;Export VM&rdquo;</strong> action, or you can use PowerShell cmdlets to accomplish a clone. Alternatively, as mentioned, keep a library of prepared images for quick deployment.</p>
 <p><strong>VM Tools and Integration Services:</strong> In vSphere, VMs run VMware Tools for optimized drivers and guest OS integration. Azure Local uses <strong>Hyper-V Integration Services</strong> – analogous tools providing driver optimization (for storage, network, etc.) and guest integration (for time sync, shutdown, heartbeat, VSS, etc.). The good news is that modern Windows and Linux OSs include Hyper-V integration components by default (Windows has them built-in, Linux distributions have Hyper-V drivers in the kernel).</p>
-<p><strong>Console Access:</strong> vSphere offers a web console or remote console to VMs. With Azure Local, if you&rsquo;re using the Azure Portal, there isn&rsquo;t a built-in VM console viewer for Arc VMs at this time – you would typically connect via RDP or SSH as you would for any server. However, using Windows Admin Center, you <em>do</em> have an HTML5 VM console for each VM (it uses VMConnect behind the scenes).</p>
+<p><strong>Console Access:</strong> vSphere offers a web console or remote console to VMs. With Azure Local, Portal provides Connect flows (RDP/SSH). Use WAC for web-based console.</p>
 <p><strong>Resource Allocation &amp; Performance Settings:</strong> All the VM hardware settings you&rsquo;re used to in VMware exist in Hyper-V, though sometimes under different names. For CPU and memory: you can set vCPUs, reserve or limit CPU capacity (via Hyper-V &ldquo;virtual machine reserve&rdquo; or setting processor weight, analogous to VMware shares/reservations). Memory can be fixed or &ldquo;Dynamic Memory&rdquo; – Hyper-V&rsquo;s form of memory overcommitment. Dynamic Memory can automatically adjust a VM&rsquo;s memory between a minimum and maximum, based on demand, which is somewhat comparable to VMware&rsquo;s ballooning/overcommit.</p>
-<p><strong>Bottom Line:</strong> Azure Local VM lifecycle operations provide equivalent functionality to vSphere with different management interfaces. While VMware consolidates most operations in vCenter, Azure Local splits between cloud-based Azure Portal for Arc VMs and local Windows Admin Center for direct management. Your team will need to adapt to PowerShell-centric automation and distributed management tools, but core VM operations remain familiar with similar performance settings and resource allocation options.</p>
+<p><strong>Bottom Line:</strong> Azure Local VM lifecycle operations provide equivalent functionality to vSphere with different management interfaces. While VMware consolidates most operations in vCenter, Azure Local splits between cloud-based Azure Portal for Azure Local VMs and local Windows Admin Center for direct management. Your team will need to adapt to PowerShell-centric automation and distributed management tools, but core VM operations remain familiar with similar performance settings and resource allocation options.</p>
 <p><a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/#table-of-contents">Back to Table of Contents</a></p>
 <hr>
 <h2 id="section-4---high-availability-clustering--application-protection">Section 4 - High Availability, Clustering &amp; Application Protection</h2>
@@ -803,7 +821,7 @@
 <li><strong>No additional licensing costs</strong> beyond Azure storage consumption</li>
 </ul>
 <h3 id="critical-restore-behavior-differences">CRITICAL RESTORE BEHAVIOR DIFFERENCES</h3>
-<p><strong>Azure Local Arc VM Restore Limitations:</strong> This is the most significant difference that affects operational procedures:</p>
+<p><strong>Azure Local VM Restore Limitations:</strong> This is the most significant difference that affects operational procedures:</p>
 <table>
 <thead>
 <tr>
@@ -815,50 +833,60 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Arc VM Host-Level Restore</strong></td>
+<td><strong>MABS Original Location Recovery (OLR)</strong></td>
+<td>Restore as Arc-enabled VM</td>
+<td><strong>Restores as Arc-enabled VM</strong></td>
+<td>Preserves Azure Arc integration via Hyper-V VSS</td>
+</tr>
+<tr>
+<td><strong>MABS Alternate Location Recovery (ALR)</strong></td>
 <td>Restore as Arc-enabled VM</td>
 <td><strong>Restores as standard Hyper-V VM</strong></td>
 <td>Loss of Azure Arc integration and cloud management</td>
 </tr>
 <tr>
-<td><strong>Arc VM Alternate Location Recovery</strong></td>
-<td>Arc VM on different host</td>
-<td><strong>Standard Hyper-V VM only</strong></td>
-<td>Manual Azure Arc re-enablement required</td>
-</tr>
-<tr>
-<td><strong>Cross-Cluster Restore</strong></td>
-<td>Arc VM on different cluster</td>
+<td><strong>Cross-Instance Restore</strong></td>
+<td>Azure Local VM on different cluster</td>
 <td><strong>Hyper-V VM without Arc integration</strong></td>
 <td>Complete loss of Azure portal management</td>
+</tr>
+<tr>
+<td><strong>External Backup/DR Tools</strong></td>
+<td>Varies by tool and method</td>
+<td><strong>Typically Hyper-V VM only</strong></td>
+<td>Arc identity depends on restoration method and target system</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Microsoft Documentation Quote:</strong></p>
 <blockquote>
-<p><em>&ldquo;There&rsquo;s limited support for Alternate location recovery (ALR) for Arc VMs. The VM is recovered as a Hyper-V VM, instead of an Arc VM. Currently, conversion of Hyper-V VMs to Arc VMs isn&rsquo;t supported once you create them.&rdquo;</em></p>
+<p><em>&ldquo;There&rsquo;s limited support for Alternate location recovery (ALR) for Azure Local VMs. The VM is recovered as a Hyper-V VM, instead of an Azure Local VM. Currently, conversion of Hyper-V VMs to Azure Local VMs isn&rsquo;t supported once you create them.&rdquo;</em></p>
+</blockquote>
+<blockquote>
+<p><em>&ldquo;When a Trusted launch VM is successfully restored to a different Azure Local instance, the VM can no longer be managed via the Azure Arc control plane, but it can be managed using local VM management tools.&rdquo;</em></p>
 </blockquote>
 <p><strong>Critical Operational Implications:</strong></p>
 <ol>
-<li><strong>Azure Portal Management Loss:</strong> Restored VMs lose Azure portal visibility and management capabilities</li>
+<li><strong>Azure Portal Management Loss:</strong> Restored VMs (except MABS OLR) lose Azure portal visibility and management capabilities</li>
+<li><strong>Resource Bridge Registration Loss:</strong> VMs restored outside the original instance or created via external tools lose connection to Azure Arc resource bridge</li>
 <li><strong>Azure Policy Compliance:</strong> Restored VMs fall out of Azure policy and governance frameworks</li>
 <li><strong>Azure Monitoring Integration:</strong> Loss of Azure Monitor integration and cloud-based logging</li>
 <li><strong>No Re-Arc Conversion:</strong> Cannot convert restored Hyper-V VMs back to Arc-enabled VMs after restore</li>
-<li><strong>Manual Recreation Required:</strong> Must create new Arc-enabled VMs and migrate data to restore full functionality</li>
+<li><strong>Manual Recreation Required:</strong> Must create new Arc-enabled VMs and migrate data to restore full cloud management functionality</li>
 </ol>
 <h3 id="backup-strategy-recommendations">Backup Strategy Recommendations</h3>
 <p><strong>Mixed VM Environment Planning:</strong></p>
 <ul>
 <li><strong>Standard Hyper-V VMs:</strong> Full backup/restore capability with no limitations</li>
 <li><strong>Arc-enabled VMs:</strong> Backup works normally, but plan for Hyper-V-only recovery</li>
-<li><strong>Critical Arc VMs:</strong> Consider application-level backup/recovery to maintain Arc integration</li>
+<li><strong>Critical Azure Local VMs:</strong> Consider application-level backup/recovery to maintain Arc integration</li>
 </ul>
 <p><strong>Operational Procedures:</strong></p>
 <ul>
-<li><strong>Document Arc VM Dependencies:</strong> Identify which VMs require Azure Arc integration</li>
-<li><strong>Test Restore Procedures:</strong> Validate recovery workflows and Arc VM recreation processes</li>
-<li><strong>Azure Resource Inventory:</strong> Maintain automation scripts to recreate Arc VM configurations</li>
-<li><strong>Hybrid Approach:</strong> Use guest-level backup for critical Arc VMs to avoid Arc integration loss</li>
+<li><strong>Document Azure Local VM Dependencies:</strong> Identify which VMs require Azure Arc integration</li>
+<li><strong>Test Restore Procedures:</strong> Validate recovery workflows and Azure Local VM recreation processes</li>
+<li><strong>Azure Resource Inventory:</strong> Maintain automation scripts to recreate Azure Local VM configurations</li>
+<li><strong>Hybrid Approach:</strong> Use guest-level backup for critical Azure Local VMs to avoid Arc integration loss</li>
 </ul>
 <h3 id="azure-integration-benefits">Azure Integration Benefits</h3>
 <p><strong>Hybrid Backup Capabilities:</strong> Azure Local provides enhanced cloud integration compared to traditional VMware environments:</p>
@@ -868,7 +896,7 @@
 <li><strong>Integrated monitoring</strong> through Azure Monitor for backup job visibility</li>
 <li><strong>Cost optimization</strong> through Azure storage tiers and lifecycle management</li>
 </ul>
-<p><strong>Bottom Line:</strong> While backup processes largely remain the same with equivalent vendor support, the critical difference is restore behavior for Arc-enabled VMs. Plan for Azure Local Arc VMs to restore as standard Hyper-V VMs and develop procedures to handle the loss of Azure Arc integration during recovery scenarios.</p>
+<p><strong>Bottom Line:</strong> While backup processes largely remain the same with equivalent vendor support, the critical difference is restore behavior for Arc-enabled VMs. Plan for Azure Local VMs to restore as standard Hyper-V VMs and develop procedures to handle the loss of Azure Arc integration during recovery scenarios.</p>
 <p><a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/#table-of-contents">Back to Table of Contents</a></p>
 <hr>
 <h2 id="section-7---disaster-recovery--site-failover">Section 7 - Disaster Recovery &amp; Site Failover</h2>
@@ -895,7 +923,7 @@
 </span></span><span style="display:flex;"><span>├─────────────────────┤  ├─────────────────────┤  ├─────────────────────┤
 </span></span><span style="display:flex;"><span>│ • Azure Site        │  │ • Storage Replica   │  │ • Veeam B&amp;R        │
 </span></span><span style="display:flex;"><span>│   Recovery (ASR)    │  │   (Sync/Async)      │  │ • Zerto (Hyper-V)   │
-</span></span><span style="display:flex;"><span>│ • Azure Arc VM      │  │ • Hyper-V Replica   │  │ • Commvault DR      │
+</span></span><span style="display:flex;"><span>│ • Azure Local VM    │  │ • Hyper-V Replica   │  │ • Commvault DR      │
 </span></span><span style="display:flex;"><span>│   Backup            │  │ • Cluster-aware     │  │ • Veritas DR        │
 </span></span><span style="display:flex;"><span>│ • MABS Integration  │  │   Updating          │  │ • Rubrik DR         │
 </span></span><span style="display:flex;"><span>└─────────────────────┘  └─────────────────────┘  └─────────────────────┘
@@ -1005,7 +1033,7 @@
 </span></span><span style="display:flex;"><span>│  ┌─────────────────────────────────┐│    │┌────────────────────────────────┐│
 </span></span><span style="display:flex;"><span>│  │       Hyper-V Cluster           ││    ││     Recovery Services Vault    ││
 </span></span><span style="display:flex;"><span>│  │  ┌─────────────────────────┐    ││    │└────────────────────────────────┘│
-</span></span><span style="display:flex;"><span>│  │  │     Azure Arc VMs       │    ││    │┌────────────────────────────────┐│
+</span></span><span style="display:flex;"><span>│  │  │   Azure Local VMs       │    ││    │┌────────────────────────────────┐│
 </span></span><span style="display:flex;"><span>│  │  │  ┌─────────────────┐    │    ││    ││      Azure Storage Account     ││
 </span></span><span style="display:flex;"><span>│  │  │  │ Production VMs  │    │    ││    ││    (Replication Target)        ││
 </span></span><span style="display:flex;"><span>│  │  │  └─────────────────┘    │    ││    │└────────────────────────────────┘│
@@ -2055,7 +2083,7 @@
 <tr>
 <td><strong>Blueprint Management</strong></td>
 <td>vRA blueprints with vSphere integration</td>
-<td>ARM templates + Bicep with Arc VM deployment</td>
+<td>ARM templates + Bicep with Azure Local VM deployment</td>
 <td>Version-controlled Infrastructure-as-Code</td>
 </tr>
 <tr>
@@ -2171,7 +2199,7 @@
 <tr>
 <td><strong>ARM Templates</strong></td>
 <td>Not applicable</td>
-<td>Native Azure Local support via Azure Arc VMs</td>
+<td>Native Azure Local support via Azure Local VMs</td>
 <td>Direct Azure integration, official Microsoft support</td>
 <td>Moderate - JSON-based declarative approach</td>
 </tr>
@@ -2402,7 +2430,7 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>Traditional Offline</strong></td>
 <td>Basic disconnected operations</td>
-<td>30 days licensing limit</td>
+<td>30 days sync requirement</td>
 <td>Windows Admin Center + PowerShell</td>
 </tr>
 </tbody>
@@ -2457,10 +2485,11 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <li>✅ VM live migration between cluster nodes</li>
 <li>✅ Virtual network and storage configuration changes</li>
 <li>✅ Performance monitoring and troubleshooting</li>
-<li>❌ New VM creation after 30-day licensing expiration</li>
+<li>❌ New VM creation if 30-day sync requirement exceeded (cluster shows &ldquo;Out of policy&rdquo;)</li>
 <li>❌ Azure portal management and monitoring</li>
 <li>❌ Azure Arc services and cloud extensions</li>
 </ul>
+<p><strong>Important:</strong> According to Microsoft documentation, Azure Local must sync successfully with Azure at least once every 30 consecutive days. If this requirement isn&rsquo;t met, the cluster shows &ldquo;Out of policy&rdquo; status and enters reduced functionality mode, blocking new VM creation until sync completes. All existing VMs continue running normally.</p>
 <h3 id="use-case-scenarios">Use Case Scenarios</h3>
 <p><strong>When to Choose Each Model</strong></p>
 <p><strong>Fully Disconnected Operations (Preview):</strong></p>
@@ -2832,13 +2861,13 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <p><a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/#table-of-contents">Back to Table of Contents</a></p>
 <hr>
 <h2 id="section-12---gpu-and-hardware-acceleration">Section 12 - GPU and Hardware Acceleration</h2>
-<p>Your VMware vGPU workloads migrate from NVIDIA GRID profiles to Azure Local&rsquo;s GPU-P partitioning with enhanced live migration support and simplified licensing.</p>
-<p>Understanding how vGPU profiles translate to GPU partitions helps you maintain GPU workload performance while gaining improved VM mobility.</p>
+<p>Your VMware vGPU workloads migrate from NVIDIA GRID profiles to Azure Local&rsquo;s GPU-P partitioning with live migration support when prerequisites are met, or DDA for maximum performance.</p>
+<p>Understanding how vGPU profiles translate to GPU partitions helps you maintain GPU workload performance while gaining improved VM mobility where supported.</p>
 <h2 id="gpu-technology-architecture-shift">GPU Technology Architecture Shift</h2>
 <p><strong>Core GPU Virtualization Philosophy:</strong></p>
 <ul>
 <li><strong>VMware vSphere:</strong> NVIDIA GRID vGPU profiles with fixed resource allocation</li>
-<li><strong>Azure Local:</strong> GPU-P partitioning with flexible resource allocation and live migration support</li>
+<li><strong>Azure Local:</strong> GPU-P partitioning with flexible resource allocation and live migration support (when prerequisites are met)</li>
 </ul>
 <table>
 <thead>
@@ -2865,8 +2894,8 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>Live Migration</strong></td>
 <td>Limited vGPU vMotion support</td>
-<td>Live Migration with GPU-P supported</td>
-<td>Enhanced VM mobility with GPU resources</td>
+<td>GPU-P: Live migration supported (prerequisites required); DDA: Not supported</td>
+<td>Enhanced VM mobility with GPU-P only</td>
 </tr>
 <tr>
 <td><strong>Management</strong></td>
@@ -2950,9 +2979,9 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>NVIDIA A10</strong></td>
 <td>vGPU supported</td>
-<td>❌ Unmanaged VMs only</td>
 <td>✅ Supported</td>
-<td>GPU-P recommended for managed VMs</td>
+<td>✅ Supported</td>
+<td>GPU-P recommended for live migration capability</td>
 </tr>
 <tr>
 <td><strong>NVIDIA A16</strong></td>
@@ -2964,21 +2993,28 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>NVIDIA A40</strong></td>
 <td>vGPU supported</td>
-<td>❌ Unmanaged VMs only</td>
 <td>✅ Supported</td>
-<td>GPU-P for managed Arc-enabled VMs</td>
+<td>✅ Supported</td>
+<td>GPU-P for managed Arc-enabled VMs with live migration</td>
+</tr>
+<tr>
+<td><strong>NVIDIA L2</strong></td>
+<td>vGPU supported</td>
+<td>✅ Supported</td>
+<td>✅ Supported</td>
+<td>Latest generation GPU-P capabilities</td>
 </tr>
 <tr>
 <td><strong>NVIDIA L4</strong></td>
 <td>vGPU supported</td>
-<td>❌ Unmanaged VMs only</td>
+<td>✅ Supported</td>
 <td>✅ Supported</td>
 <td>Latest generation GPU-P capabilities</td>
 </tr>
 <tr>
 <td><strong>NVIDIA L40/L40S</strong></td>
 <td>vGPU supported</td>
-<td>❌ Unmanaged VMs only</td>
+<td>✅ Supported</td>
 <td>✅ Supported</td>
 <td>Premium GPU-P performance</td>
 </tr>
@@ -3056,9 +3092,9 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>Live Migration</strong></td>
 <td>Limited vGPU vMotion support</td>
-<td><strong>Full live migration supported</strong></td>
+<td><strong>Live migration supported (prerequisites required)</strong></td>
 <td>❌ Not supported</td>
-<td>Major mobility improvement with GPU-P</td>
+<td>Mobility improvement with GPU-P when configured properly</td>
 </tr>
 <tr>
 <td><strong>Failover</strong></td>
@@ -3092,9 +3128,9 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>Planned Migration</strong></td>
 <td>Limited vGPU vMotion support</td>
-<td><strong>Live migration with zero downtime</strong></td>
+<td><strong>Live migration with zero downtime (when prerequisites met)</strong></td>
 <td>VM restart required</td>
-<td>Zero-downtime maintenance with GPU-P</td>
+<td>Zero-downtime maintenance with GPU-P when properly configured</td>
 </tr>
 <tr>
 <td><strong>Unplanned Failover</strong></td>
@@ -3121,10 +3157,11 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 </table>
 <p><strong>Live Migration Requirements for GPU-P:</strong></p>
 <ul>
-<li>Windows Server OS build 26100.xxxx or later required</li>
-<li>NVIDIA vGPU software version 18 or later on both host and VMs</li>
-<li>Homogeneous GPU configuration across cluster nodes</li>
-<li>Automatic TCP/IP compression fallback during migration</li>
+<li>OS build 26100.xxxx+ (Windows Server 2025-based Azure Local solution version 12.25xx) required</li>
+<li>NVIDIA vGPU Software v18.x+ drivers on both host and VMs</li>
+<li>Homogeneous GPU configuration across cluster nodes (same make/model/size)</li>
+<li>Automatic TCP/IP compression fallback during migration (may increase CPU utilization)</li>
+<li>Live migration is within same cluster only (cross-cluster not supported)</li>
 </ul>
 <h2 id="architecture-decision-framework">Architecture Decision Framework</h2>
 <p><strong>GPU Assignment Strategy:</strong></p>
@@ -3213,7 +3250,7 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <h2 id="section-13---software-defined-networking-sdn">Section 13 - Software-Defined Networking (SDN)</h2>
 <p>Your NSX-powered network virtualization translates to Azure Local&rsquo;s cloud-managed approach with significant architectural changes. This isn&rsquo;t a feature-equivalent migration—it&rsquo;s a shift from comprehensive on-premises SDN to essential networking with cloud service integration.</p>
 <blockquote>
-<p><strong>Critical Decision Alert:</strong> SDN enabled by Azure Arc requires Azure Local 2506 (OS version 26100.xxxx+) and is a permanent, irreversible choice that eliminates on-premises load balancing, VPN gateways, and advanced overlay networking capabilities you currently rely on with NSX. Once enabled, it cannot be disabled, and Network Controller runs as a Failover Cluster service instead of traditional VMs.</p>
+<p><strong>Critical Decision Alert:</strong> SDN enabled by Azure Arc requires Azure Local solution version 12.25xx (OS build 26100.xxxx+ - Windows Server 2025-based) and is a permanent, irreversible choice that eliminates on-premises load balancing, VPN gateways, and advanced overlay networking capabilities you currently rely on with NSX. Once enabled, it cannot be disabled, and Network Controller runs as a Failover Cluster service instead of traditional VMs.</p>
 </blockquote>
 <blockquote>
 <p><strong>Alternative SDN Approach Note:</strong> Azure Local also supports traditional on-premises SDN deployment using Windows Admin Center, documented in Microsoft&rsquo;s <a href="https://learn.microsoft.com/en-us/azure/azure-local/concepts/software-defined-networking-23h2?view=azloc-2507">Azure Local 23H2 SDN concepts</a>. This approach provides more comprehensive on-premises networking capabilities but contradicts the cloud-first architectural direction of this comparison. <strong>Important:</strong> These two SDN approaches are mutually exclusive—you must choose either Arc-enabled SDN or traditional on-premises SDN during initial deployment. This analysis focuses exclusively on SDN enabled by Azure Arc as Microsoft&rsquo;s strategic direction.</p>
@@ -3423,7 +3460,7 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 </ul>
 <h3 id="bottom-line-4">Bottom Line</h3>
 <p>Azure Local SDN enabled by Arc represents Microsoft&rsquo;s cloud-first approach to networking with essential features rather than comprehensive platform replacement. You gain Azure integration and simplified management model but lose advanced NSX capabilities like Layer 7 load balancing, dynamic security groups, and comprehensive on-premises networking services.</p>
-<p><strong>This is a permanent, irreversible architectural decision requiring OS version 26100+.</strong> Ensure your organization is prepared for cloud-managed networking and potential third-party solutions for advanced requirements before enabling SDN by Azure Arc.</p>
+<p><strong>This is a permanent, irreversible architectural decision requiring OS build 26100.xxxx+ (Windows Server 2025-based Azure Local solution version 12.25xx).</strong> Ensure your organization is prepared for cloud-managed networking and potential third-party solutions for advanced requirements before enabling SDN by Azure Arc.</p>
 <blockquote>
 <p><strong>Key Takeaway:</strong> Azure Local SDN provides essential micro-segmentation and basic load balancing through cloud management, but advanced NSX capabilities require Azure cloud services or third-party solutions.</p>
 </blockquote>
@@ -3438,7 +3475,15 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <p><strong>VMware vSphere Scale-Up vs Azure Local Scale-Out:</strong></p>
 <p>Your VMware environment likely benefits from large resource pools where DRS automatically balances workloads across many hosts within single clusters. Azure Local&rsquo;s 16-host limit requires rethinking this into multiple smaller resource pools, each managed independently but coordinated through Azure Arc.</p>
 <blockquote>
-<p><strong>Real-World Best Practice:</strong> While Azure Local supports up to 16 hosts per cluster, <strong>most production deployments use 6-8 nodes for optimal performance</strong>. Beyond 6-8 nodes, Storage Spaces Direct resiliency doesn&rsquo;t improve, and storage pool rebuilds/syncs can actually be negatively affected by larger cluster sizes.</p>
+<p><strong>Real-World Best Practice:</strong> While Azure Local supports up to 16 hosts per cluster, <strong>most production deployments use 6-8 nodes for optimal performance</strong> based on operational experience:</p>
+<p><strong>Why 6-8 nodes works best in practice:</strong></p>
+<ul>
+<li><strong>Fault tolerance doesn&rsquo;t improve</strong>: Three-way mirror tolerates 2 failures whether you have 6 or 16 nodes</li>
+<li><strong>Management overhead increases</strong>: Cluster updates take 4-6 hours on 6-node clusters vs 16-20 hours on 16-node clusters (even longer with OEM Solution Builder Extensions)</li>
+<li><strong>Rebuild complexity</strong>: Storage resync operations become more complex and slower with more nodes participating</li>
+<li><strong>Operational sweet spot</strong>: Beyond 6-8 nodes, you add complexity without meaningful resiliency gains</li>
+</ul>
+<p><strong>Microsoft&rsquo;s official position</strong>: Microsoft documents support for 16 servers with &ldquo;predictably improved performance and efficiency&rdquo; up to 4PB per cluster. However, this guidance comes from engineering teams optimizing for theoretical maximums, not operations teams managing production workloads with real maintenance windows and availability requirements.</p>
 </blockquote>
 <table>
 <thead>
@@ -3515,14 +3560,14 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <tr>
 <td><strong>vCPUs per VM</strong></td>
 <td>768 vCPUs maximum</td>
-<td><strong>240 vCPUs maximum</strong></td>
-<td><strong>Large VMs may need redesign</strong></td>
+<td><strong>2048 vCPUs maximum</strong></td>
+<td><strong>Large VMs supported with increased limits</strong></td>
 </tr>
 <tr>
 <td><strong>Memory per VM</strong></td>
 <td>24TB maximum</td>
-<td><strong>12TB maximum</strong></td>
-<td><strong>Very large VMs need scaling approach changes</strong></td>
+<td><strong>240TB maximum</strong></td>
+<td><strong>Enhanced VM memory capacity over VMware</strong></td>
 </tr>
 <tr>
 <td><strong>Virtual Disks per VM</strong></td>
@@ -3540,11 +3585,11 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 </table>
 <p><strong>Large VM Strategy Changes:</strong></p>
 <p><strong>Current Approach:</strong> Single monolithic VMs with 128+ vCPUs for database or ERP systems</p>
-<p><strong>Azure Local Options:</strong></p>
+<p><strong>Azure Local Advantages:</strong></p>
 <ol>
-<li><strong>Scale Within Limits:</strong> Use up to 240 vCPU VMs (covers most workloads)</li>
-<li><strong>Application Clustering:</strong> Split large workloads across multiple VMs with clustering</li>
-<li><strong>Hybrid Scaling:</strong> Maximize Azure Local VM sizes + application-level distribution</li>
+<li><strong>Enhanced Scaling:</strong> Use up to 2048 vCPU and 240TB memory VMs (exceeds VMware limits)</li>
+<li><strong>Simplified Architecture:</strong> Larger VM support reduces need for application clustering</li>
+<li><strong>Better Consolidation:</strong> Higher per-VM limits enable better resource utilization</li>
 </ol>
 <h2 id="storage-scalability-differences">Storage Scalability Differences</h2>
 <p><strong>Storage Architecture Scale Comparison:</strong></p>
@@ -3577,10 +3622,10 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <td>Different performance scaling</td>
 </tr>
 <tr>
-<td><strong>Drives per Host</strong></td>
-<td>35 drives maximum</td>
-<td><strong>400 drives maximum</strong></td>
-<td><strong>Much higher drive density possible</strong></td>
+<td><strong>Storage per Host</strong></td>
+<td>70TB maximum (vSAN datastore limit)</td>
+<td><strong>400TB maximum per server</strong></td>
+<td><strong>Higher capacity per host possible</strong></td>
 </tr>
 </tbody>
 </table>
@@ -3780,7 +3825,7 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <h3 id="native-azure-arc-integration">Native Azure Arc Integration</h3>
 <p><strong>Beyond Traditional VM Management:</strong></p>
 <p>Your VM management transforms from vCenter&rsquo;s isolated approach to Azure Arc&rsquo;s cloud-native capabilities:</p>
-<p><strong>Azure Arc VM Management Benefits:</strong></p>
+<p><strong>Azure Local VM Management Benefits:</strong></p>
 <ul>
 <li><strong>Azure Portal Management:</strong> Manage on-premises VMs through the same interface as Azure VMs</li>
 <li><strong>Azure RBAC:</strong> Apply cloud-native role-based access control to on-premises infrastructure</li>
@@ -5644,13 +5689,14 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/?view=azloc-2507">Azure Local documentation hub</a> - Primary resource for Azure Local capabilities and configuration</li>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/overview?view=azloc-2507">Azure Local solution overview</a> - Architecture and positioning overview</li>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/concepts/system-requirements-23h2?view=azloc-2507">System requirements for Azure Local</a> - Hardware and software requirements</li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations?view=azloc-2507#step-1-determine-cluster-size">Cloud deployment network considerations - Determine cluster size</a> - Azure Local cluster sizing guidance</li>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/azure-stack-hci-faq?view=azloc-2507">Azure Local FAQ</a> - Common questions and clarifications</li>
 </ul>
 <h4 id="virtual-machine-management">Virtual Machine Management</h4>
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/concepts/compare-vm-management-capabilities?view=azloc-2507">Compare VM management capabilities</a> - Critical comparison between Arc and WAC VM management</li>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/manage/azure-arc-vm-management-overview?view=azloc-2507">Azure Local VM management overview</a> - Comprehensive VM management guide</li>
-<li><a href="https://learn.microsoft.com/en-us/azure/azure-local/manage/virtual-machine-operations?view=azloc-2507">Supported operations for Azure Local VMs enabled by Azure Arc</a> - Arc VM capabilities and limitations</li>
+<li><a href="https://learn.microsoft.com/en-us/azure/azure-local/manage/virtual-machine-operations?view=azloc-2507">Supported operations for Azure Local VMs enabled by Azure Arc</a> - Azure Local VM capabilities and limitations</li>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-local/manage/vm?view=azloc-2507">Manage VMs with Windows Admin Center</a> - Traditional VM management approach</li>
 </ul>
 <h4 id="networking-and-sdn">Networking and SDN</h4>
@@ -5710,6 +5756,8 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 </ul>
 <h3 id="windows-server-and-hyper-v-documentation">Windows Server and Hyper-V Documentation</h3>
 <ul>
+<li><a href="https://learn.microsoft.com/windows-server/get-started/whats-new-windows-server-2025#hyper-v,-ai,-and-performance">What&rsquo;s new in Windows Server 2025 - Hyper-V, AI, and performance</a> - Latest hypervisor enhancements and scalability improvements</li>
+<li><a href="https://learn.microsoft.com/windows-server/virtualization/hyper-v/plan/plan-hyper-v-scalability-in-windows-server#maximums-for-virtual-machines">Plan for Hyper-V scalability in Windows Server</a> - Virtual machine and host scalability limits</li>
 <li><a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview">Hyper-V virtualization in Windows Server</a> - Core hypervisor documentation</li>
 <li><a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/hyper-v-dynamic-memory-overview">Hyper-V Dynamic Memory Overview</a> - Memory management</li>
 <li><a href="https://learn.microsoft.com/en-us/windows-server/administration/performance-tuning/role/hyper-v-server">Performance Tuning for Hyper-V Servers</a> - Optimization guidance</li>
@@ -5722,6 +5770,31 @@ Azure Local supports multiple connectivity scenarios with varying capabilities:<
 <li><a href="https://docs.vmware.com/en/VMware-vSphere/8.0/rn/vsphere-80u3-release-notes.html">VMware vSphere 8.0 Update 3 Release Notes</a> - Latest feature updates</li>
 <li><a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-resource-management.pdf">vSphere Resource Management Guide</a> - DRS and resource optimization</li>
 <li><a href="https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-availability.pdf">vSphere Availability Guide</a> - HA and FT features</li>
+</ul>
+<h3 id="automation-and-infrastructure-as-code">Automation and Infrastructure as Code</h3>
+<h4 id="terraform-support-for-azure-local">Terraform Support for Azure Local</h4>
+<ul>
+<li><a href="https://registry.terraform.io/modules/Azure/avm-res-azurestackhci-virtualmachineinstance/azurerm">Azure Verified Module for Azure Stack HCI Virtual Machine Instances</a> - Official Microsoft-supported Terraform module for Azure Local VM provisioning</li>
+<li><a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs">Azure Provider Documentation</a> - HashiCorp official Azure provider for Terraform</li>
+<li><a href="https://learn.microsoft.com/en-us/azure/templates/microsoft.azurestackhci/virtualmachineinstances">Microsoft.AzureStackHCI Resource Type Reference</a> - ARM template resource type documentation for Azure Local VMs</li>
+<li><a href="https://azure.github.io/Azure-Verified-Modules/">Azure Verified Modules (AVM) Program</a> - Microsoft&rsquo;s official library of validated infrastructure modules</li>
+</ul>
+<h4 id="ansible-support-for-azure-and-configuration-management">Ansible Support for Azure and Configuration Management</h4>
+<ul>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/azure/azcollection/index.html">Ansible Azure Collection (azure.azcollection)</a> - Official Red Hat Ansible collection for Azure resource management</li>
+<li><a href="https://galaxy.ansible.com/ui/namespaces/azure/">Ansible Collections for Cloud Automation</a> - Community-maintained Azure automation modules</li>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html">Ansible Windows Modules</a> - Platform-agnostic Windows configuration management modules</li>
+<li><a href="https://www.redhat.com/en/technologies/management/ansible">Ansible for Infrastructure as Code</a> - Red Hat official documentation for automation and configuration management</li>
+</ul>
+<h3 id="storage-spaces-direct-specifications-and-limits">Storage Spaces Direct Specifications and Limits</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-hardware-requirements#drives">Storage Spaces Direct Hardware Requirements</a> - Official Microsoft documentation for Storage Spaces Direct maximum capacity (4 PB per cluster, 400 TB per server)</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview#key-benefits">Storage Spaces Direct Overview - Scalability</a> - Microsoft technical specifications for cluster scalability (16 servers and over 400 drives cluster-wide)</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/choose-drives#sizing-considerations">Choose Drives for Azure Local and Windows Server</a> - Microsoft official guidelines for storage capacity planning and drive selection</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/fault-tolerance">Fault Tolerance and Storage Efficiency</a> - Microsoft documentation on resiliency types, failure tolerance limits, and storage efficiency across cluster sizes</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview#how-it-works">Storage Spaces Direct Overview - How it Works</a> - Official Microsoft technical architecture documentation for Storage Spaces Direct components and design</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/understand-storage-resync">Understand and Monitor Storage Resync</a> - Microsoft documentation on storage rebuild operations and performance monitoring</li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/upgrade-storage-spaces-direct">Upgrade a Storage Spaces Direct Cluster</a> - Official Microsoft procedures for cluster maintenance, rolling updates, and operational considerations</li>
 </ul>
 <h3 id="third-party-vendor-resources">Third-Party Vendor Resources</h3>
 <ul>

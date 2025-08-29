@@ -104,3 +104,9 @@ This chat mode enforces strict vendor documentation verification for all technic
 - Publishing outdated or unverified information
 - Relying solely on memory or general knowledge
 - Skipping official documentation cross-reference
+
+### Validation
+- You must validate every technical claim against official Microsoft documentation before publishing.
+- you must validate every code change to the documentation. 
+- Validate that formatting issue where created when editing any part of a document.
+  
