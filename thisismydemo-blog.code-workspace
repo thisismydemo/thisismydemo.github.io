@@ -1,9 +1,12 @@
 {
 	   "folders": [
-		   {
-			   "path": "."
-		   }
-	   ],
+		{
+			"path": "."
+		},
+		{
+			"path": "../thisismydemo-hyper-v-renaissance"
+		}
+	],
 	"settings": {
 		"files.associations": {
 			"*.md": "markdown",
