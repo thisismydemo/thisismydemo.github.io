@@ -1,26 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>VMware VSphere on This Is My Demo</title>
-    <link>http://localhost:1313/tags/vmware-vsphere/</link>
-    <description>Recent content in VMware VSphere on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 29 Aug 2025 12:00:46 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/vmware-vsphere/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>VMware vSphere to Azure Local: Operator Feature Mapping</title>
-      <link>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</link>
-      <pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid>
-      <description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.&#xA;This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description>
-    </item>
-    <item>
-      <title>Azure Arc and VMWare Oh Yeah</title>
-      <link>http://localhost:1313/post/azure-arc-vmware-yeah/</link>
-      <pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate>
-      <guid>http://localhost:1313/post/azure-arc-vmware-yeah/</guid>
-      <description>I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn&amp;rsquo;t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VMware VSphere on This Is My Demo</title><link>http://thisismydemo.cloud/tags/vmware-vsphere/</link><description>Recent content in VMware VSphere on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 29 Aug 2025 14:29:53 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/vmware-vsphere/index.xml" rel="self" type="application/rss+xml"/><item><title>VMware vSphere to Azure Local: Operator Feature Mapping</title><link>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</link><pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate><guid>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid><description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.
+This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description></item><item><title>Azure Arc and VMWare Oh Yeah</title><link>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</link><pubDate>Thu, 11 Jan 2024 17:13:54 +0000</pubDate><guid>http://thisismydemo.cloud/post/azure-arc-vmware-yeah/</guid><description>I drink the Microsoft Kool-aid and have for many years. What you may not know is years ago, many years ago, I use to drink the Vmware Kool-aid and would attend VMUGs and was certified for VMware. This was about the version 4 days when vSphere was fairly new and there wasn&amp;rsquo;t much more to Vmware than vCenter and ESXi servers. I jumped ship to the dark side, mainly because I started working with SMS 2003 and Configuration manager 2007 after a little bit of time working with Altiris Deployment Server and Notification Server.</description></item></channel></rss>

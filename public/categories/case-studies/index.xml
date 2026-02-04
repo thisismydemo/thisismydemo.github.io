@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Case Studies on This Is My Demo</title>
+    <link>http://localhost:1313/categories/case-studies/</link>
+    <description>Recent content in Case Studies on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/case-studies/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: Three Paths Off VMware - Part VIII</title>
+      <link>http://localhost:1313/post/beyond-cloud-three-paths-off-vmware-part-viii/</link>
+      <pubDate>Wed, 01 Oct 2025 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-three-paths-off-vmware-part-viii/</guid>
+      <description>Coming Soon This blog post is part of the &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series and will cover:&#xA;Case Study 1 - Hyper-V Migration: Manufacturing company&amp;rsquo;s on-premises transformation Case Study 2 - Azure VMware Solution: Financial services cloud-first approach Case Study 3 - Azure Local: Healthcare hybrid infrastructure modernization Cost Analysis: Actual savings and unexpected expenses from each path Performance Comparisons: Real-world benchmarks and user experience Operational Trade-offs: Day-to-day management differences Lessons Learned: What worked, what didn&amp;rsquo;t, and key recommendations Decision Framework: Choosing the right path for your organization Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp;amp; Rugged Part VII: Beyond the Cloud: ESXi to Hyper-V in 30 Days Part VIII: Three Paths Off VMware - Real World Journeys (This Post - Coming Soon) This post is currently in development.</description>
+    </item>
+  </channel>
+</rss>

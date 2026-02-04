@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pilot Project on This Is My Demo</title>
+    <link>http://localhost:1313/tags/pilot-project/</link>
+    <description>Recent content in Pilot Project on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pilot-project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: ESXi to Hyper-V in 30 Days - Part VII</title>
+      <link>http://localhost:1313/post/beyond-cloud-esxi-hyperv-30-days-part-vii/</link>
+      <pubDate>Mon, 15 Sep 2025 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-esxi-hyperv-30-days-part-vii/</guid>
+      <description>Coming Soon This blog post is part of the &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series and will cover:&#xA;30-Day Migration Timeline: Week-by-week project plan and milestones Pre-Migration Assessment: Inventory scripts and compatibility checking Storage Migration Strategies: Cut-over approaches and data protection VM Conversion Process: P2V and V2V migration techniques Network Configuration: VLAN and switch configuration migration Testing and Validation: Performance benchmarking and functionality testing User Impact Mitigation: Communication strategies and rollback procedures Automation Scripts: PowerShell and other tools for streamlined migration Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp;amp; Rugged Part VII: ESXi to Hyper-V in 30 Days - A Pilot Migration Playbook (This Post - Coming Soon) This post is currently in development.</description>
+    </item>
+  </channel>
+</rss>

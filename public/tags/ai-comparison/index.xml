@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>AI Comparison on This Is My Demo</title>
-    <link>http://localhost:1313/tags/ai-comparison/</link>
-    <description>Recent content in AI Comparison on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 15 Jul 2025 20:25:04 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ai-comparison/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Comparing AI: A fun test of AI capabilities</title>
-      <link>http://localhost:1313/post/comparing-ai-fun-test-ai-capabilities/</link>
-      <pubDate>Tue, 15 Jul 2025 20:24:14 +0000</pubDate>
-      <guid>http://localhost:1313/post/comparing-ai-fun-test-ai-capabilities/</guid>
-      <description>Welcome to My AI Battle Royale! 🥊 Picture this: I&amp;rsquo;m sitting at my desk, drowning in my own scattered thoughts about GitHub Copilot Chat configurations, when I had what can only be described as a &amp;ldquo;brilliant&amp;rdquo; idea. Why not throw my messy brain dump at some of the world&amp;rsquo;s most advanced AI models and see who comes out on top?&#xA;So here we are – welcome to my completely unscientific, totally biased, but hopefully entertaining comparison of AI capabilities!</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI Comparison on This Is My Demo</title><link>http://thisismydemo.cloud/tags/ai-comparison/</link><description>Recent content in AI Comparison on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 15 Jul 2025 20:25:04 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/ai-comparison/index.xml" rel="self" type="application/rss+xml"/><item><title>Comparing AI: A fun test of AI capabilities</title><link>http://thisismydemo.cloud/post/comparing-ai-fun-test-ai-capabilities/</link><pubDate>Tue, 15 Jul 2025 20:24:14 +0000</pubDate><guid>http://thisismydemo.cloud/post/comparing-ai-fun-test-ai-capabilities/</guid><description>Welcome to My AI Battle Royale! 🥊 Picture this: I&amp;rsquo;m sitting at my desk, drowning in my own scattered thoughts about GitHub Copilot Chat configurations, when I had what can only be described as a &amp;ldquo;brilliant&amp;rdquo; idea. Why not throw my messy brain dump at some of the world&amp;rsquo;s most advanced AI models and see who comes out on top?
+So here we are – welcome to my completely unscientific, totally biased, but hopefully entertaining comparison of AI capabilities!</description></item></channel></rss>

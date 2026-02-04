@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Azure Bastion on This Is My Demo</title>
-    <link>http://localhost:1313/tags/azure-bastion/</link>
-    <description>Recent content in Azure Bastion on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 19 Feb 2024 19:11:57 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/azure-bastion/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</title>
-      <link>http://localhost:1313/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</link>
-      <pubDate>Mon, 19 Feb 2024 18:14:07 +0000</pubDate>
-      <guid>http://localhost:1313/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</guid>
-      <description>With most my blogs, they all start with me trying to do something I have done in the past and have forgotten or with something I have never had to do and now need to do it. So, is the case with this blog. I have never had to worry about establishing an ssh connection to a Linux VM in Azure via Azure Bastion until today.&#xA;I want to start this blog by showing how to connect via Bastion using the Azure Portal first.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Azure Bastion on This Is My Demo</title><link>http://thisismydemo.cloud/tags/azure-bastion/</link><description>Recent content in Azure Bastion on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 19 Feb 2024 19:11:57 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-bastion/index.xml" rel="self" type="application/rss+xml"/><item><title>Establishing an SSH Connection to an Azure Linux VM via Azure Bastion</title><link>http://thisismydemo.cloud/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</link><pubDate>Mon, 19 Feb 2024 18:14:07 +0000</pubDate><guid>http://thisismydemo.cloud/post/establishing-ssh-connection-azure-linux-vm-azure-bastion/</guid><description>With most my blogs, they all start with me trying to do something I have done in the past and have forgotten or with something I have never had to do and now need to do it. So, is the case with this blog. I have never had to worry about establishing an ssh connection to a Linux VM in Azure via Azure Bastion until today.
+I want to start this blog by showing how to connect via Bastion using the Azure Portal first.</description></item></channel></rss>

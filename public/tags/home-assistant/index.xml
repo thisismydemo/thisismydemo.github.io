@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Home Assistant on This Is My Demo</title>
-    <link>http://localhost:1313/tags/home-assistant/</link>
-    <description>Recent content in Home Assistant on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 16 Jun 2023 01:43:16 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/home-assistant/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Deploy Home Assistant and My Home Automation Adventure.</title>
-      <link>http://localhost:1313/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</link>
-      <pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate>
-      <guid>http://localhost:1313/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</guid>
-      <description>At MMS this year one of the sessions, in fact the very last session I attended was about Home Automation using Home Assistant. I have been itching to get started playing with Home Assistant but just haven&amp;rsquo;t had the time. However, I have a need now to do some home automation and now it has become important.&#xA;My Use case I have a T9 Honeywell Thermostat at home that is connected to the Resideo app to control my A/C.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home Assistant on This Is My Demo</title><link>http://thisismydemo.cloud/tags/home-assistant/</link><description>Recent content in Home Assistant on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 16 Jun 2023 01:43:16 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/home-assistant/index.xml" rel="self" type="application/rss+xml"/><item><title>Deploy Home Assistant and My Home Automation Adventure.</title><link>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</link><pubDate>Fri, 16 Jun 2023 00:18:45 +0000</pubDate><guid>http://thisismydemo.cloud/post/2023-06-15-deploy-home-assistant-and-my-home-automation-adventure/</guid><description>At MMS this year one of the sessions, in fact the very last session I attended was about Home Automation using Home Assistant. I have been itching to get started playing with Home Assistant but just haven&amp;rsquo;t had the time. However, I have a need now to do some home automation and now it has become important.
+My Use case I have a T9 Honeywell Thermostat at home that is connected to the Resideo app to control my A/C.</description></item></channel></rss>

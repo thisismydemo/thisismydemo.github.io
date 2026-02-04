@@ -1,519 +1,111 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring - This Is My Demo</title>
-	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:url" content="http://localhost:1313/post/microk8s-cluster-manged-azure-part-ii-monitoring/">
-  <meta property="og:site_name" content="This Is My Demo">
-  <meta property="og:title" content="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring">
-  <meta property="og:description" content="This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
-At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2023-09-29T20:26:05+00:00">
-    <meta property="article:modified_time" content="2023-09-29T20:26:05+00:00">
-    <meta property="article:tag" content="Azure Arc">
-    <meta property="article:tag" content="Azure Arc-Enabled Kubernetes">
-    <meta property="article:tag" content="Azure Managed Prometheus">
-    <meta property="article:tag" content="Azure Monitor">
-    <meta property="article:tag" content="Containers Insights">
-    <meta property="article:tag" content="Kubernetes">
-
-		
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring">
-  <meta name="twitter:description" content="This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
-At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.">
-
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="dns-prefetch" href="//fonts.googleapis.com">
-	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-
-	<link rel="stylesheet" href="/css/style.css">
-	
-
-	<link rel="shortcut icon" href="/favicon.ico">
-</head>
-<body class="body">
-	<div class="container container--outer">
-		<header class="header">
-	<div class="container header__container">
-		
-	<div class="logo">
-		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
-			<div class="logo__item logo__text">
-					<div class="logo__title">This Is My Demo</div>
-					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
-				</div>
-		</a>
-	</div>
-		
-<nav class="menu">
-	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1"></span>
-	</button>
-	<ul class="menu__list">
-		<li class="menu__item">
-			<a class="menu__link" href="/about/">
-				
-				<span class="menu__text">About</span>
-				
-			</a>
-		</li>
-	</ul>
-</nav>
-
-	</div>
-</header>
-		<div class="wrapper flex">
-			<div class="primary">
-			
-<main class="main" role="main">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</h1>
-			<p class="post__lead">Using Azure Arc-enabled Kubernetes to Monitor, Secure, Regulate, Deploy and more</p>
-			<div class="post__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-09-29T20:26:05Z">September 29, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc-enabled-kubernetes/" rel="category">Azure Arc-Enabled Kubernetes</a>, <a class="meta__link" href="/categories/microk8s/" rel="category">MicroK8S</a>
-	</span>
-</div></div>
-		</header>
-		
-	<figure class="post__thumbnail thumbnail">
-		
-		<img class="thumbnail__image" src="/img/microsk8s_mgmt_arc/1_ZGA9YPjXDWukHAXhO2QDUQ.png" alt="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring">
-		
-	</figure><div class="content post__content clearfix">
-			<p>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called <a href="https://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/">MicroK8S and WSL Managed by Azure Arc</a>.</p>
-<p>At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS. As long as we can manage them using Azure Arc there is a good number of Azure tools and services we now have access to.  Here is a short list of things I will try to blog about here:</p>
-<ul>
-<li>Deploying Configurations using GitOps</li>
-<li>Azure Resource Graph Queries</li>
-<li>Identity and Access Management</li>
-<li>Installing Cluster Extensions</li>
-<li>Monitor our Cluster using Azure Monitor Container Insights (Prometheus, and Grafana)</li>
-<li>Access Secrets from an Azure Key Vault</li>
-<li>Policy Enforcements using Azure Policy</li>
-<li>Threat Protection using Microsoft Defender for Cloud</li>
-<li>Deploy Azure Arc-enabled Open Service Mesh</li>
-<li>Azure Machine Learning for Kubernetes</li>
-<li>Event Grid on Kubernetes</li>
-<li>Azure Arc-enabled Data Services</li>
-</ul>
-<p>These are some but not all of the things I would love to dig in and blog about here.  It may be multiple blogs. I do want to cover Monitoring our cluster using Azure Monitor Container Insights, Azure Policy, and Microsoft Defender for Cloud for sure in this series.  Some of the solutions I would not be able to deploy on my little single node cluster running on WSL. So I may end up blogging about those services with MicroK8s running on a VM running within Azure Stack HCI or something fun.</p>
-<p>So join me on this next adventure.</p>
-<hr>
-<h1 id="azure-monitor-container-insights-with-some-mention-about-prometheus-and-managed-grafana">Azure Monitor Container Insights with some mention about Prometheus and Managed Grafana.</h1>
-<p>So, lets begin this journey.  Now a lot of the things I will do with my small MicroK8s cluster we can do with larger clusters running anywhere at this point.  Since it is now an Azure Arc-enabled Kubernetes cluster the only thing that will be limiting for me is my WSL resources running on my Windows 10 laptop.</p>
-<p>For more in-depth information about monitoring a Kubernetes cluster using Container Insights you can read the Microsoft Learn Documentation, <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview">Container Insights Overview</a>. This blog may not dive deep enough into everything that can be done so please go back and read their documentation.</p>
-<p>So first I am going to verify that my Kubernetes cluster is still connected by going to the Arc Blade in the Azure portal, then clicking on the Kubernetes section under Infrastructure.  Here I can see my MicroK8s-WSL-Cluster01 resource.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123038.png"></p>
-<p>By clicking on the resource, it will open into the overview window.  Here I can see that under Status it is still in a Connected Status.  Underneath that status section there are some tabes  that allow us to get more information about this cluster, it&rsquo;s properties, a high level view of monitoring, and some of its capabilities.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123134.png"></p>
-<p>Under the Monitoring tab we can pull basic information from Key metrics.  However, these are simple metrics and we really want to dig deeper into monitoring our cluster. This same windows has some information about additional tools from Azure Monitor as well.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123625.png"></p>
-<p>The Capabilities tab shows some of the available capabilities that can be enabled from the portal, including Insights, which is what I am covering in this blog. Azure Policy which I will cover in another blog, and using GitOps to setup automatic deployments from a git repository, which again, I will cover in this series as well.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123713.png"></p>
-<p>The last tab list a number of good resources for tutorials.  I highly recommend if you are new to Azure Arc to take advantage of some of the free training mentioned in those links.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123831.png"></p>
-<p>So that was a quick overview of the Cluster and the Azure Portal. Let&rsquo;s get started with the fun.</p>
-<hr>
-<p>So to keep it simple, I followed a few different blogs to help fill in areas that my skill set was lacking, mainly because my memory in my head can&rsquo;t hold more than a days worth of memory so  I had slightly forgotten how to do a lot of this.  I did refer back to <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?tabs=create-cli%2Cverify-portal%2Cmigrate-cli">Azure Monitor Container Insights for Azure Arc enabled Kubernetes clusters</a> Microsoft Learn Documentation as well.</p>
-<p>So I started in the Azure Portal, within the Azure Arc blade, and opened up my cluster resource which could be found under Kubernetes section of the Infrastructure area. Here I went to Insights under the Monitoring section on the left menu.  This windows has a lot more information about Container Insights, Managed Prometheus, and Managed Grafana.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20125423.png"></p>
-<h2 id="enabling-container-insights-prometheus-and-grafana">Enabling Container Insights (Prometheus and Grafana)</h2>
-<p>Before we start there are some prerequisites that will need to be completed.</p>
-<ul>
-<li>A Log Analytics workspace is needed</li>
-<li>An Azure Monitor workspace is needed</li>
-<li>A Grafana Instance (Can be configured during configuration of Insights)</li>
-</ul>
-<p>In my case this is a demo environment, but in real world situation we would need to consider a few different things like Role assignments that are needed for the Log Analytics workspace, for those that want to view or monitor the data, and to make sure our endpoints have been enabled and have access.  For example, my cluster would need to have access to some of the Azure public cloud endpoints on port 443. So some firewall configurations would need to be made if I was running this in an environment that wasn&rsquo;t my Windows laptop running WSL.</p>
-<p>Also, I want to call out, that a majority of this that I am doing is going to be via the portal.  The Microsoft Learn Documentation has more details on how to do this all through Azure CLI or PowerShell or even via ARM Templates.</p>
-<p>I have created a Log Analytics workspace in the past for my Microsoft Sentinel demos. I am going to just reuse that for this blog. I probably wouldn&rsquo;t do this in a real lab, development or production environment because this will add data egress and ingestion cost to the workspace.  Unless you had signed up for a commitment tier this could start to get pricy at the end of the say.</p>
-<p>So, I clicked on Configure Azure Monitor, and the Configure Container insights window pops up.  Here I will expand Advanced settings so I can configure the Azure Monitor Workspace and Log Analytics Workspace I want to use.  Also, I want to make sure my cost presets are set correctly. I will also crate a new Grafana Instance from this window as well.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131620.png"></p>
-<p>Under cost presets we have a choice to select different levels of collection. There are some preset settings like Standard, Cost-optimized, custom, or none. I will select Standard for this demo.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131314.png"></p>
-<p>If I click on Edit collection settings we can see some of the extra configurations we can do to either collect more data or limit what we collect to help with cost optimization.He I can change the collection frequency, I can enabled namespace filtering.  So can include or exclude namespaces that I only want to collect data from.  I can enable ContainerLogV2, which by default that is enabled. I can also enable Syslog collection since this is a Linux machine as well.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131335.png"></p>
-<p>Digging deeper in the Collected Data drop down I can even get more granular on what kind of data I am collecting. For this blog I am leaving Default, All data is collected. I can limit to only collecting Performance data, logs and events, WWorkload data only, and Persistent volume metrics. I am leaving everything default and moving forward.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131826.png"></p>
-<p>So I have now selected to enable Container Logs, Prometheus metrics, and enable Grafana.  I have selected the  Log Analytics workspace I need and have created a new Azure monitor workspace and a new grafana instance.  So now I will click Configure at the bottom. And now we just monitor it.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20132807.png"></p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20132929.png"></p>
-<p><strong>Note:</strong> The one thing I do want to call out. Because we did this via the Portal and I didn&rsquo;t create the Azure Monitor Workspace separately and nor did I create the Grafana Instance manually both of these resources will now show up in the same Resource group where my Azure Arc-enabled Kubernetes cluster is located. This may be ok for the blog, but you may need these resources in different resource groups for various reasons. In that case, doing this via ARM Templates or via Azure CLI would allow us to be more granular.  Plus creating these resources before hand would have been more optimal. For my case, it makes it a lot easier to delete all these resources after I finish my blog.</p>
-<p>As this deploys and as we monitor the deployment we can also check to see if the extensions had been installed successfully.  There are two ways to do this, the first is the portal and the second is using Azure CLI.</p>
-<p>To check via Azure CLI we just need to open our Ubuntu WSL instance and login to the correct subscription and run the following Azure CLI command:</p>
-<pre tabindex="0"><code>az k8s-extension show --name azuremonitor-containers --cluster-name MicroK8s-WSL-Cluster01  --r
+<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring - This Is My Demo</title>
+<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring"><meta property="og:description" content="This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
+At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-09-29T20:26:05+00:00"><meta property="article:modified_time" content="2023-09-29T20:26:05+00:00"><meta property="article:tag" content="Azure Arc"><meta property="article:tag" content="Azure Arc-Enabled Kubernetes"><meta property="article:tag" content="Azure Managed Prometheus"><meta property="article:tag" content="Azure Monitor"><meta property="article:tag" content="Containers Insights"><meta property="article:tag" content="Kubernetes"><meta name=twitter:card content="summary"><meta name=twitter:title content="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring"><meta name=twitter:description content="This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
+At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</h1><p class=post__lead>Using Azure Arc-enabled Kubernetes to Monitor, Secure, Regulate, Deploy and more</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-09-29T20:26:05Z>September 29, 2023</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-arc-enabled-kubernetes/ rel=category>Azure Arc-Enabled Kubernetes</a>, <a class=meta__link href=/categories/microk8s/ rel=category>MicroK8S</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/microsk8s_mgmt_arc/1_ZGA9YPjXDWukHAXhO2QDUQ.png alt="My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring"></figure><div class="content post__content clearfix"><p>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called <a href=https://thisismydemo.cloud/post/microk8s-wsl-managed-azure-arc/>MicroK8S and WSL Managed by Azure Arc</a>.</p><p>At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS. As long as we can manage them using Azure Arc there is a good number of Azure tools and services we now have access to. Here is a short list of things I will try to blog about here:</p><ul><li>Deploying Configurations using GitOps</li><li>Azure Resource Graph Queries</li><li>Identity and Access Management</li><li>Installing Cluster Extensions</li><li>Monitor our Cluster using Azure Monitor Container Insights (Prometheus, and Grafana)</li><li>Access Secrets from an Azure Key Vault</li><li>Policy Enforcements using Azure Policy</li><li>Threat Protection using Microsoft Defender for Cloud</li><li>Deploy Azure Arc-enabled Open Service Mesh</li><li>Azure Machine Learning for Kubernetes</li><li>Event Grid on Kubernetes</li><li>Azure Arc-enabled Data Services</li></ul><p>These are some but not all of the things I would love to dig in and blog about here. It may be multiple blogs. I do want to cover Monitoring our cluster using Azure Monitor Container Insights, Azure Policy, and Microsoft Defender for Cloud for sure in this series. Some of the solutions I would not be able to deploy on my little single node cluster running on WSL. So I may end up blogging about those services with MicroK8s running on a VM running within Azure Stack HCI or something fun.</p><p>So join me on this next adventure.</p><hr><h1 id=azure-monitor-container-insights-with-some-mention-about-prometheus-and-managed-grafana>Azure Monitor Container Insights with some mention about Prometheus and Managed Grafana.</h1><p>So, lets begin this journey. Now a lot of the things I will do with my small MicroK8s cluster we can do with larger clusters running anywhere at this point. Since it is now an Azure Arc-enabled Kubernetes cluster the only thing that will be limiting for me is my WSL resources running on my Windows 10 laptop.</p><p>For more in-depth information about monitoring a Kubernetes cluster using Container Insights you can read the Microsoft Learn Documentation, <a href=https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview>Container Insights Overview</a>. This blog may not dive deep enough into everything that can be done so please go back and read their documentation.</p><p>So first I am going to verify that my Kubernetes cluster is still connected by going to the Arc Blade in the Azure portal, then clicking on the Kubernetes section under Infrastructure. Here I can see my MicroK8s-WSL-Cluster01 resource.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123038.png></p><p>By clicking on the resource, it will open into the overview window. Here I can see that under Status it is still in a Connected Status. Underneath that status section there are some tabes that allow us to get more information about this cluster, it&rsquo;s properties, a high level view of monitoring, and some of its capabilities.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123134.png></p><p>Under the Monitoring tab we can pull basic information from Key metrics. However, these are simple metrics and we really want to dig deeper into monitoring our cluster. This same windows has some information about additional tools from Azure Monitor as well.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123625.png></p><p>The Capabilities tab shows some of the available capabilities that can be enabled from the portal, including Insights, which is what I am covering in this blog. Azure Policy which I will cover in another blog, and using GitOps to setup automatic deployments from a git repository, which again, I will cover in this series as well.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123713.png></p><p>The last tab list a number of good resources for tutorials. I highly recommend if you are new to Azure Arc to take advantage of some of the free training mentioned in those links.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20123831.png></p><p>So that was a quick overview of the Cluster and the Azure Portal. Let&rsquo;s get started with the fun.</p><hr><p>So to keep it simple, I followed a few different blogs to help fill in areas that my skill set was lacking, mainly because my memory in my head can&rsquo;t hold more than a days worth of memory so I had slightly forgotten how to do a lot of this. I did refer back to <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?tabs=create-cli%2Cverify-portal%2Cmigrate-cli">Azure Monitor Container Insights for Azure Arc enabled Kubernetes clusters</a> Microsoft Learn Documentation as well.</p><p>So I started in the Azure Portal, within the Azure Arc blade, and opened up my cluster resource which could be found under Kubernetes section of the Infrastructure area. Here I went to Insights under the Monitoring section on the left menu. This windows has a lot more information about Container Insights, Managed Prometheus, and Managed Grafana.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20125423.png></p><h2 id=enabling-container-insights-prometheus-and-grafana>Enabling Container Insights (Prometheus and Grafana)</h2><p>Before we start there are some prerequisites that will need to be completed.</p><ul><li>A Log Analytics workspace is needed</li><li>An Azure Monitor workspace is needed</li><li>A Grafana Instance (Can be configured during configuration of Insights)</li></ul><p>In my case this is a demo environment, but in real world situation we would need to consider a few different things like Role assignments that are needed for the Log Analytics workspace, for those that want to view or monitor the data, and to make sure our endpoints have been enabled and have access. For example, my cluster would need to have access to some of the Azure public cloud endpoints on port 443. So some firewall configurations would need to be made if I was running this in an environment that wasn&rsquo;t my Windows laptop running WSL.</p><p>Also, I want to call out, that a majority of this that I am doing is going to be via the portal. The Microsoft Learn Documentation has more details on how to do this all through Azure CLI or PowerShell or even via ARM Templates.</p><p>I have created a Log Analytics workspace in the past for my Microsoft Sentinel demos. I am going to just reuse that for this blog. I probably wouldn&rsquo;t do this in a real lab, development or production environment because this will add data egress and ingestion cost to the workspace. Unless you had signed up for a commitment tier this could start to get pricy at the end of the say.</p><p>So, I clicked on Configure Azure Monitor, and the Configure Container insights window pops up. Here I will expand Advanced settings so I can configure the Azure Monitor Workspace and Log Analytics Workspace I want to use. Also, I want to make sure my cost presets are set correctly. I will also crate a new Grafana Instance from this window as well.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131620.png></p><p>Under cost presets we have a choice to select different levels of collection. There are some preset settings like Standard, Cost-optimized, custom, or none. I will select Standard for this demo.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131314.png></p><p>If I click on Edit collection settings we can see some of the extra configurations we can do to either collect more data or limit what we collect to help with cost optimization.He I can change the collection frequency, I can enabled namespace filtering. So can include or exclude namespaces that I only want to collect data from. I can enable ContainerLogV2, which by default that is enabled. I can also enable Syslog collection since this is a Linux machine as well.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131335.png></p><p>Digging deeper in the Collected Data drop down I can even get more granular on what kind of data I am collecting. For this blog I am leaving Default, All data is collected. I can limit to only collecting Performance data, logs and events, WWorkload data only, and Persistent volume metrics. I am leaving everything default and moving forward.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20131826.png></p><p>So I have now selected to enable Container Logs, Prometheus metrics, and enable Grafana. I have selected the Log Analytics workspace I need and have created a new Azure monitor workspace and a new grafana instance. So now I will click Configure at the bottom. And now we just monitor it.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20132807.png></p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20132929.png></p><p><strong>Note:</strong> The one thing I do want to call out. Because we did this via the Portal and I didn&rsquo;t create the Azure Monitor Workspace separately and nor did I create the Grafana Instance manually both of these resources will now show up in the same Resource group where my Azure Arc-enabled Kubernetes cluster is located. This may be ok for the blog, but you may need these resources in different resource groups for various reasons. In that case, doing this via ARM Templates or via Azure CLI would allow us to be more granular. Plus creating these resources before hand would have been more optimal. For my case, it makes it a lot easier to delete all these resources after I finish my blog.</p><p>As this deploys and as we monitor the deployment we can also check to see if the extensions had been installed successfully. There are two ways to do this, the first is the portal and the second is using Azure CLI.</p><p>To check via Azure CLI we just need to open our Ubuntu WSL instance and login to the correct subscription and run the following Azure CLI command:</p><pre tabindex=0><code>az k8s-extension show --name azuremonitor-containers --cluster-name MicroK8s-WSL-Cluster01  --r
 esource-group Arc-Management-SouthCentral-Demo-RG  --cluster-type connectedClusters -n azuremonitor-containers
-</code></pre><p>Note to self, in future demos, make the cluster name shorter and the resource group name shorter.  :)</p>
-<p>Here we can see the two extensions that have been installed, Azuremonitor-metrics and Azuremonitor-Containers.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134039.png"></p>
-<p>From within the Azure Portal, we can go back to our Azure Arc Resource and under Settings click on Extensions.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134151.png"></p>
-<p>Now all the resources have successfully been deployed.  We can check in with the Deployments to verify. Everything looks good when it is all green!</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134453.png"></p>
-<p>If I go back to my resource group, I will now see the Azure Monitor workspace resource, the Azure Managed Grafana Resource, and the data collection rule and endpoint for the managed prometheus instance.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134636.png"></p>
-<h2 id="now-what">Now What???</h2>
-<p>So now it looks like I have successfully enabled Container Insights, Prometheus, and Grafana. So let&rsquo;s do a high level overview of these services and the information we can get from them.</p>
-<h3 id="container-insights">Container Insights</h3>
-<p>So from our Azure Arc-enabled Kubernetes cluster resource in the portal we can click Insights under Monitoring again. Here we will see the main Insights window that defaults to a Cluster level view of our MicroK8s cluster. On this window we can click Monitor settings at the top to change some of the data collection settings and a few other things.  We can also click on Vew All Clusters and go back to a list of all monitored or unmonitored Kubernetes clusters.  This can be Azure Kubernetes Clusters (AKS), to Google Cloud clusters and Amazon EKS clusters, to Open Shift clusters, and more. Any supported Kubernetes clusters that is either AKS or a cluster that is managed by Azure Arc-enabled Kubernetes will show up in the unmonitored section if we don&rsquo;t have Insights enabled yet on them yet.  We have Time range which we can adjust the time range of the data from the last 6 hours to the last 24 hours, etc.  We can also add filters as well.</p>
-<p>Just above the graphs, we see our menu of items we can select to dig deeper into various parts of our cluster.  We have Reports, Nodes, COntrollers and Containers.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20140336.png"></p>
-<p>If I click Reports, this will bring me to a list of Azure Monitor Workbooks that are available.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141139.png"></p>
-<p>We can click one of those links, for instance the Disk Capacity report and the Azure Monitor Workbook will open.  Azure Monitor Workbooks are very powerful and very customizable. If you haven&rsquo;t used them or even heard of them I highly recommend you check them out.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141247.png"></p>
-<p>The Nodes menu gives us a deeper look into our Nodes. Here we can see processes that are running, the status of those processes, which controller those processes belong to, update information, and how many containers are associated with those processes.  There is a Metric drop down window that allows us to get metrics from CPU Usage, Memory and more.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141632.png"></p>
-<p>The Controllers menu will give you a deeper dive into your controllers running on the cluster. You can see the processes and the processes and the containers that run under each controller if you expand each controller.  You will also get quick access to information about uptime, which node these are running on, how many containers are running and how many restarts for each container.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20142102.png"></p>
-<p>The final menu is Containers. This gives us insights into each container and what pods are in these containers that are running on our cluster.  It will again give us uptime for each pod/container, which node these containers are on, etc.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20142438.png"></p>
-<p>If we click on one of the containers, an overview window will open giving us more information about that container, the container image, and more.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20143020.png"></p>
-<p>If we click on the View in Log Analytics button it will open Log Analytics and give us near real time data from that specific container.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20143252.png"></p>
-<p>Now that is pretty much it for now for Azure Monitor Container Insights. The one other thing I would enable are some of the Recommended alerts which are still in Preview but may come in handy. To do so, you can click on the Recommended Alerts (Preview) button at the top of the Insights blade.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20144109.png"></p>
-<h3 id="grafana-and-prometheus">Grafana and Prometheus</h3>
-<p>I will be honest here. I do not know much about Prometheus or Grafana. I have used Grafana for dashboards in the past and use it for a dashboard for my Home Assistant server. Outside of that I don&rsquo;t have really a clue. I know enough with Managed Prometheus where to find it, what Azure Monitor Workspace it is associated with, and some other basics like how to pull data from it that may come in handy for some other services.  I have just enough experience with Grafana that I will show a few dashboard views in this blog just to make sure that it was enabled and it is working correctly.</p>
-<p>I will start by going to the Managed Grafana blade on the Azure Portal. Here I was able to see my newly created Grafana instance that was created earlier.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145145.png"></p>
-<p>Once we click on our instance we will see the overview screen for that instance.  Here we can see the endpoint for the Grafana Desktop.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145238.png"></p>
-<p>The one thing I did need to do was give rights to another user so they could access the dashboards.  I did this by going to the Access Control (IAM) and giving one of my accounts rights. For my demo I just gave my demo users Grafana Admin roles.  Normally I wouldn&rsquo;t do this.  Don&rsquo;t do as I do.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145904.png"></p>
-<p>Next I selected a few users.  I decided Mr. T and Murdoch were the two that needed Grafana Admin roles assigned so they can work on creating dashboards.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150101.png"></p>
-<p>A quick confirmation that my users will be added to their new roles.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150141.png"></p>
-<p>Next I logged on to the dashboard using the endpoint URL from the Overview window.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150315.png"></p>
-<p>Here I can now see that my managed Grafana instance is running. As I mentioned, I am not a Grafana SME so I had to look around a bit.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150418.png"></p>
-<p>When I clicked on the Hamburger menu on the top left, I got a drop down, expanded Dashboards and saw a list of available dashboards pre-created. There were some for Azure Monitor plus some for monitoring Kubernetes.  I selected one just to see what it looked like.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150733.png"></p>
-<p>So far so good. There are a number of pre-made dashboards which can be nice for a NOC or something.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150834.png"></p>
-<p>Looking around I found a way to make a playlist of the important dashboards I needed. I created one just to check it out.</p>
-<p><img src="/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150743.png"></p>
-<p>We now have our MicroK8s cluster that is managed by Azure Arc-enabled Kubernetes that is running on a WSL instance managed by Azure Arc-enabled Servers running on my laptop being monitored by Azure Monitor Container Insights. Along with some pretty nice looking dashboards on Azure Managed Grafana from data collected by Azure Managed Prometheus. I went really high level on these topics in this blog. I have many more blogs coming out soon that are part of this series. The next one I will focus on Azure POlicy and how to assign those policies to my MicroK8s cluster running on WSL.</p>
-
-		</div>
-		<footer class="post__footer">
-			
-<div class="post__tags tags clearfix">
-	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
-	<ul class="tags__list">
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-arc-enabled-kubernetes/" rel="tag">Azure Arc-enabled Kubernetes</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-managed-prometheus/" rel="tag">Azure Managed Prometheus</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-monitor/" rel="tag">Azure Monitor</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/containers-insights/" rel="tag">Containers Insights</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/kubernetes/" rel="tag">Kubernetes</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/microsk8s/" rel="tag">MicrosK8S</a>
-		</li>
-		<li class="tags__item">
-			<a class="tags__link btn" href="/tags/azure-managed-grafana/" rel="tag">Azure Managed Grafana</a>
-		</li>
-	</ul>
-</div>
-		</footer>
-	</article>
-</main>
-
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
-	</div>
-	<div class="authorbox__description">
-		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
-	</div>
-</div>
-
-<nav class="pager flex">
-	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/microk8s-cluster-manged-azure/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">My MicroK8s Cluster Is Now Manged by Azure. What is next?</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/azure-stack-hci-series/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Azure Stack HCI - Everything I know Series</p>
-		</a>
-	</div>
-</nav>
-
-
-			</div>
-			<aside class="sidebar"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
-		<label>
-			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
-		</label>
-		<input class="widget-search__submit" type="submit" value="Search">
-		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
-	</form>
-</div>
-<div class="widget-recent widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/vmware-vsphere-vs-azure-local-feature-comparison/">VMware vSphere to Azure Local: Operator Feature Mapping</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/comparing-ai-fun-test-ai-capabilities/">Comparing AI: A fun test of AI capabilities</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-arc-enable-everything-part-v/">Beyond the Cloud: Arc Enable Everything - Part V</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/cloud-hardware-considerations-part-iii/">Beyond the Cloud: Hardware Considerations - Part III</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-categories widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<ul class="widget__list">
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/ai/">AI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure/">Azure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune/">Intune</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/operations/">Operations</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/technology/">Technology</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
-		</ul>
-	</div>
-</div>
-<div class="widget-taglist widget">
-	<h4 class="widget__title"></h4>
-	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
-	</div>
-</div>
-<div class="widget-social widget">
-	<h4 class="widget-social__title widget__title"></h4>
-	<div class="widget-social__content widget__content">
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
-				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
-				<span>LinkedIn</span>
-			</a>
-		</div>
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
-				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
-				<span>GitHub</span>
-			</a>
-		</div>
-
-		
-	</div>
-</div>
-</aside>
-		</div>
-		<footer class="footer">
-	<div class="container footer__container flex">
-		
-		<div class="footer__copyright">
-			&copy; 2025 This Is My Demo.
-			<span class="footer__copyright-credits"></span>
-		</div>
-	</div>
-</footer>
-	</div>
-<script async defer src="/js/menu.js"></script>
-</body>
-</html>
+</code></pre><p>Note to self, in future demos, make the cluster name shorter and the resource group name shorter. :)</p><p>Here we can see the two extensions that have been installed, Azuremonitor-metrics and Azuremonitor-Containers.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134039.png></p><p>From within the Azure Portal, we can go back to our Azure Arc Resource and under Settings click on Extensions.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134151.png></p><p>Now all the resources have successfully been deployed. We can check in with the Deployments to verify. Everything looks good when it is all green!</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134453.png></p><p>If I go back to my resource group, I will now see the Azure Monitor workspace resource, the Azure Managed Grafana Resource, and the data collection rule and endpoint for the managed prometheus instance.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20134636.png></p><h2 id=now-what>Now What???</h2><p>So now it looks like I have successfully enabled Container Insights, Prometheus, and Grafana. So let&rsquo;s do a high level overview of these services and the information we can get from them.</p><h3 id=container-insights>Container Insights</h3><p>So from our Azure Arc-enabled Kubernetes cluster resource in the portal we can click Insights under Monitoring again. Here we will see the main Insights window that defaults to a Cluster level view of our MicroK8s cluster. On this window we can click Monitor settings at the top to change some of the data collection settings and a few other things. We can also click on Vew All Clusters and go back to a list of all monitored or unmonitored Kubernetes clusters. This can be Azure Kubernetes Clusters (AKS), to Google Cloud clusters and Amazon EKS clusters, to Open Shift clusters, and more. Any supported Kubernetes clusters that is either AKS or a cluster that is managed by Azure Arc-enabled Kubernetes will show up in the unmonitored section if we don&rsquo;t have Insights enabled yet on them yet. We have Time range which we can adjust the time range of the data from the last 6 hours to the last 24 hours, etc. We can also add filters as well.</p><p>Just above the graphs, we see our menu of items we can select to dig deeper into various parts of our cluster. We have Reports, Nodes, COntrollers and Containers.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20140336.png></p><p>If I click Reports, this will bring me to a list of Azure Monitor Workbooks that are available.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141139.png></p><p>We can click one of those links, for instance the Disk Capacity report and the Azure Monitor Workbook will open. Azure Monitor Workbooks are very powerful and very customizable. If you haven&rsquo;t used them or even heard of them I highly recommend you check them out.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141247.png></p><p>The Nodes menu gives us a deeper look into our Nodes. Here we can see processes that are running, the status of those processes, which controller those processes belong to, update information, and how many containers are associated with those processes. There is a Metric drop down window that allows us to get metrics from CPU Usage, Memory and more.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20141632.png></p><p>The Controllers menu will give you a deeper dive into your controllers running on the cluster. You can see the processes and the processes and the containers that run under each controller if you expand each controller. You will also get quick access to information about uptime, which node these are running on, how many containers are running and how many restarts for each container.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20142102.png></p><p>The final menu is Containers. This gives us insights into each container and what pods are in these containers that are running on our cluster. It will again give us uptime for each pod/container, which node these containers are on, etc.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20142438.png></p><p>If we click on one of the containers, an overview window will open giving us more information about that container, the container image, and more.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20143020.png></p><p>If we click on the View in Log Analytics button it will open Log Analytics and give us near real time data from that specific container.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20143252.png></p><p>Now that is pretty much it for now for Azure Monitor Container Insights. The one other thing I would enable are some of the Recommended alerts which are still in Preview but may come in handy. To do so, you can click on the Recommended Alerts (Preview) button at the top of the Insights blade.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20144109.png></p><h3 id=grafana-and-prometheus>Grafana and Prometheus</h3><p>I will be honest here. I do not know much about Prometheus or Grafana. I have used Grafana for dashboards in the past and use it for a dashboard for my Home Assistant server. Outside of that I don&rsquo;t have really a clue. I know enough with Managed Prometheus where to find it, what Azure Monitor Workspace it is associated with, and some other basics like how to pull data from it that may come in handy for some other services. I have just enough experience with Grafana that I will show a few dashboard views in this blog just to make sure that it was enabled and it is working correctly.</p><p>I will start by going to the Managed Grafana blade on the Azure Portal. Here I was able to see my newly created Grafana instance that was created earlier.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145145.png></p><p>Once we click on our instance we will see the overview screen for that instance. Here we can see the endpoint for the Grafana Desktop.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145238.png></p><p>The one thing I did need to do was give rights to another user so they could access the dashboards. I did this by going to the Access Control (IAM) and giving one of my accounts rights. For my demo I just gave my demo users Grafana Admin roles. Normally I wouldn&rsquo;t do this. Don&rsquo;t do as I do.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20145904.png></p><p>Next I selected a few users. I decided Mr. T and Murdoch were the two that needed Grafana Admin roles assigned so they can work on creating dashboards.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150101.png></p><p>A quick confirmation that my users will be added to their new roles.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150141.png></p><p>Next I logged on to the dashboard using the endpoint URL from the Overview window.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150315.png></p><p>Here I can now see that my managed Grafana instance is running. As I mentioned, I am not a Grafana SME so I had to look around a bit.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150418.png></p><p>When I clicked on the Hamburger menu on the top left, I got a drop down, expanded Dashboards and saw a list of available dashboards pre-created. There were some for Azure Monitor plus some for monitoring Kubernetes. I selected one just to see what it looked like.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150733.png></p><p>So far so good. There are a number of pre-made dashboards which can be nice for a NOC or something.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150834.png></p><p>Looking around I found a way to make a playlist of the important dashboards I needed. I created one just to check it out.</p><p><img src=/img/microsk8s_mgmt_arc/Screenshot%202023-09-29%20150743.png></p><p>We now have our MicroK8s cluster that is managed by Azure Arc-enabled Kubernetes that is running on a WSL instance managed by Azure Arc-enabled Servers running on my laptop being monitored by Azure Monitor Container Insights. Along with some pretty nice looking dashboards on Azure Managed Grafana from data collected by Azure Managed Prometheus. I went really high level on these topics in this blog. I have many more blogs coming out soon that are part of this series. The next one I will focus on Azure POlicy and how to assign those policies to my MicroK8s cluster running on WSL.</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc/ rel=tag>Azure Arc</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc-enabled-kubernetes/ rel=tag>Azure Arc-enabled Kubernetes</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-managed-prometheus/ rel=tag>Azure Managed Prometheus</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-monitor/ rel=tag>Azure Monitor</a></li><li class=tags__item><a class="tags__link btn" href=/tags/containers-insights/ rel=tag>Containers Insights</a></li><li class=tags__item><a class="tags__link btn" href=/tags/kubernetes/ rel=tag>Kubernetes</a></li><li class=tags__item><a class="tags__link btn" href=/tags/microsk8s/ rel=tag>MicrosK8S</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-managed-grafana/ rel=tag>Azure Managed Grafana</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/microk8s-cluster-manged-azure/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>My MicroK8s Cluster Is Now Manged by Azure. What is next?</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/azure-stack-hci-series/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Azure Stack HCI - Everything I know Series</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
+</label><input class=widget-search__submit type=submit value=Search>
+<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/hyper-renaissance/>Welcome to the Hyper-V Renaissance</a></li><li class=widget__item><a class=widget__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/>VMware vSphere to Azure Local: Operator Feature Mapping</a></li><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/operations/>Operations</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server/>Windows Server</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-it/ title="Enterprise IT">Enterprise IT</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/migration/ title=Migration>Migration</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMware VSphere">VMware VSphere</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
+<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
+<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
+<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 This Is My Demo.
+<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Future Planning on This Is My Demo</title>
+    <link>http://localhost:1313/tags/future-planning/</link>
+    <description>Recent content in Future Planning on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/future-planning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</title>
+      <link>http://localhost:1313/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/</link>
+      <pubDate>Wed, 15 Oct 2025 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/</guid>
+      <description>Coming Soon This blog post is part of the &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series and will cover:&#xA;Windows Server Roadmap: Upcoming features and long-term vision Azure Local Evolution: Next-generation capabilities and integration Hybrid Strategy: Microsoft&amp;rsquo;s direction for on-premises and cloud integration Container Integration: Kubernetes and container platform roadmap AI and ML Integration: Edge AI capabilities in future releases Security Enhancements: Zero trust and advanced security features Management Tools: Future of System Center and Azure management Investment Guidance: Planning for long-term technology adoption Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp;amp; Rugged Part VII: Beyond the Cloud: ESXi to Hyper-V in 30 Days Part VIII: Beyond the Cloud: Three Paths Off VMware Part IX: What&amp;rsquo;s Next for Microsoft On-Prem - Windows Server &amp;amp; Azure Local (This Post - Coming Soon) This post is currently in development.</description>
+    </item>
+  </channel>
+</rss>

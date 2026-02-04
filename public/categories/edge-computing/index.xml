@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Edge Computing on This Is My Demo</title>
+    <link>http://localhost:1313/categories/edge-computing/</link>
+    <description>Recent content in Edge Computing on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 25 Jun 2025 17:35:23 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/edge-computing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: Disconnected &amp; Rugged - Part VI</title>
+      <link>http://localhost:1313/post/beyond-cloud-disconnected-rugged-part-vi/</link>
+      <pubDate>Mon, 01 Sep 2025 12:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-disconnected-rugged-part-vi/</guid>
+      <description>Coming Soon This blog post is part of the &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series and will cover:&#xA;Edge Computing Scenarios: When traditional connectivity isn&amp;rsquo;t available Azure Local at the Edge: Capabilities and limitations in disconnected scenarios Workgroup Cluster Architecture: Building resilient clusters without domain controllers Bandwidth Considerations: Optimizing for limited connectivity Local Authentication: Managing security without Active Directory Synchronization Strategies: Handling intermittent connectivity Use Case Analysis: Manufacturing, remote sites, and mobile deployments Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Disconnected &amp;amp; Rugged - Azure Local vs.</description>
+    </item>
+  </channel>
+</rss>

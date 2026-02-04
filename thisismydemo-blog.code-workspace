@@ -1,26 +1,9 @@
 {
-	"folders": [
-		{
-			"name": "Blog Root",
-			"path": "."
-		},
-		{
-			"name": "Content",
-			"path": "./content"
-		},
-		{
-			"name": "Themes",
-			"path": "./themes"
-		},
-		{
-			"name": "Layouts",
-			"path": "./layouts"
-		},
-		{
-			"name": "Static Assets",
-			"path": "./static"
-		}
-	],
+	   "folders": [
+		   {
+			   "path": "."
+		   }
+	   ],
 	"settings": {
 		"files.associations": {
 			"*.md": "markdown",

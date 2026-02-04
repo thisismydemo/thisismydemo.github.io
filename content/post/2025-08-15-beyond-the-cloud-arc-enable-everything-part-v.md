@@ -5,24 +5,25 @@ date: 2025-07-14T15:11:23.287Z
 preview: /img/rethinkvmware/part5banner.png
 draft: true
 tags:
-  - Azure Arc
-  - SCVMM
-  - Hyper-V
-  - Enterprise Management
-  - Arc-Enabled Servers
-  - Arc-Enabled SCVMM
-  - Policy Management
-  - Unified Management
-  - VMware Alternative
-  - Cost Optimization
+   - Azure Arc
+   - SCVMM
+   - Hyper-V
+   - Enterprise Management
+   - Arc-Enabled Servers
+   - Arc-Enabled SCVMM
+   - Policy Management
+   - Unified Management
+   - VMware Alternative
+   - Cost Optimization
 categories:
-  - Infrastructure
-  - Azure Arc
-  - Virtualization
+   - Infrastructure
+   - Azure Arc
+   - Virtualization
 thumbnail: /img/rethinkvmware/part5banner.png
 lead: Unlock enterprise-grade Hyper-V management with Azure Arc-enabled SCVMM - unified policy, monitoring, and VM lifecycle control through Azure Portal.
 slug: beyond-cloud-arc-enable-everything-part-v
-lastmod: 2025-07-14T15:52:21.871Z
+lastmod: 2026-02-04T01:59:57.302Z
+fmContentType: post
 ---
 
 ## Table of Contents
