@@ -1,122 +1,617 @@
-<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Multicloud Connector Enabled by Azure Arc - What The Arc Is it? - This Is My Demo</title>
-<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:url" content="http://thisismydemo.cloud/post/multicloud-connector-enabled-azure-arc-arc/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?"><meta property="og:description" content="They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?
-Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-01-25T18:37:26+00:00"><meta property="article:modified_time" content="2025-01-25T22:10:25+00:00"><meta property="article:tag" content="AWS"><meta property="article:tag" content="Azure Arc"><meta property="article:tag" content="Azure Arc-Enabled Servers"><meta property="article:tag" content="Multicloud Connector Enabled by Azure Arc"><meta name=twitter:card content="summary"><meta name=twitter:title content="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?"><meta name=twitter:description content="They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?
-Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</h1><p class=post__lead>Connecting AWS resources to Azure for centralized management and governance</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-01-25T18:37:26Z>January 25, 2025</time>
-<time class=meta__text datetime=2025-01-25T22:10:25Z>(: January 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-arc/ rel=category>Azure Arc</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/arc/mc_connector_aws_arc/aws-arc-connector.PNG alt="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?"></figure><div class="content post__content clearfix"><p>They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?</p><p>Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the <a href=https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/>Multicloud Connector enabled by Azure Arc</a>.</p><p>In this blog, I’ll share my first experiences configuring the connector, the mistakes I made along the way, and the improvements I’d love to see Microsoft implement. So sit back, grab your jar of peanut butter, your favorite chocolate bar, and read on!</p><h1 id=multicloud-connector-enabled-by-azure-arc>Multicloud Connector enabled by Azure Arc</h1><ul><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#multicloud-connector-enabled-by-azure-arc>Multicloud Connector enabled by Azure Arc</a><ul><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#what-is-it>What is it</a></li><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#connecting-to-aws>Connecting To AWS</a><ul><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#azure-configuration>Azure Configuration</a></li><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#aws-configuration>AWS Configuration</a></li><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#finishing-touches>Finishing Touches</a><ul><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#my-issue>My Issue</a></li></ul></li></ul></li><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#what-can-i-do-now>What Can I do Now?</a></li><li><a href=/post/multicloud-connector-enabled-azure-arc-arc/#final-thoughts>Final Thoughts</a></li></ul></li></ul><h2 id=what-is-it>What is it</h2><p>In a nut shell, actually not really, but what ChatGPT says about it because I am too lazy to type:</p><p>The Multicloud Connector, powered by Azure Arc, enables you to integrate non-Azure public cloud resources into Azure, providing a unified platform for management and governance. Currently, it supports AWS public cloud environments.</p><p>Key capabilities of the Multicloud Connector include:</p><ol><li><p><strong>Inventory Management:</strong>
-Gain a comprehensive, real-time view of your public cloud resources in Azure, offering a single pane of glass for all your cloud assets. Through Azure Resource Graph, you can query resources across Azure and other clouds. Metadata from the source cloud is included, allowing you to search for specific tags or attributes across both Azure and AWS environments. The Inventory solution periodically scans your source cloud to ensure Azure reflects a complete and accurate view. Additionally, you can apply Azure tags and policies to these external resources for consistent governance.</p></li><li><p><strong>Azure Arc Onboarding:</strong>
-Automatically discover EC2 instances in your AWS environment and streamline their onboarding to Azure Arc by installing the Azure Connected Machine agent. This allows you to use Azure management tools, such as Azure Monitor, for centralized management of both Azure and AWS resources, enhancing operational efficiency across multicloud environments.</p></li></ol><p>For more information, please check out <a href=https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/overview>What is Multicloud connector enabled by Azure Arc?</a> on Microsoft Learn.</p><h2 id=connecting-to-aws>Connecting To AWS</h2><p>My experience connecting AWS to Azure using the Multicloud Connector was generally positive. The guidance provided on Microsoft Learn is well-written and, at the time, was quite accurate. (Though, admittedly, there are times when the documentation on Microsoft Learn can be a bit outdated or unclear.) I primarily followed the instructions in <a href=https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/connect-to-aws>Connect to AWS with the Multicloud Connector in the Azure portal</a>. Despite my limited familiarity with AWS, the overall process went smoothly.</p><p>To be transparent, it didn&rsquo;t work perfectly on my first few attempts, but that was largely due to my lack of experience with AWS. Fortunately, I had a great call with some outstanding members of the product team for the connector. They were incredibly helpful, guiding me through the process and even teaching me a few things about AWS. Yes, you heard that right—they actually taught me a thing or two about AWS!</p><p>I’ll start by explaining my initial AWS environment—essentially, I didn’t have one. I don&rsquo;t typically work with AWS, and if I had to choose another cloud platform besides Azure, I&rsquo;d prefer GCP. To me, AWS feels clunky, resource navigation is cumbersome, and its identity management doesn&rsquo;t quite compare to Entra ID. But that&rsquo;s just my personal opinion, and I&rsquo;m sticking to it. 😊
-The main reason I needed an AWS environment was for demos I’ll be conducting over the next few months, focusing on managing multicloud and hybrid cloud environments from Azure using Azure Arc. To set this up, I had to create an AWS account and aimed to utilize only the free tier to avoid any out-of-pocket expenses.</p><p>I have to admit, from a developer&rsquo;s perspective, spinning up an EC2 instance on AWS offers a lot of flexibility. From a cloud administrator&rsquo;s viewpoint, I was particularly impressed with how quickly the Windows Server and Ubuntu Server instances deployed. I expected fast deployment from Ubuntu, but my five Windows Server 2025 instances spun up and were operational remarkably quickly, which was impressive.</p><p>The project team has put a lot of effort into making this connector relatively straightforward to set up, even for someone like me with little AWS experience. I&rsquo;ve broken down the configuration steps into two main parts: the Azure side and the AWS side.</p><h3 id=azure-configuration>Azure Configuration</h3><p>On the Azure side, there are several prerequisites that need to be met, along with ensuring you have the necessary permissions to deploy the connector. First, you must have at least Contributor access on the subscription you’ll be working in.</p><p>Next, make sure the following four resource providers are registered for the subscription:</p><ul><li>Microsoft.HybridCompute</li><li>Microsoft.HybridConnectivity</li><li>Microsoft.AwsConnector</li><li>Microsoft.Kubernetes</li></ul><p>You can use the following Azure CLI script to register these resource providers:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=display:flex><span>az provider register --namespace <span style=color:#e6db74>&#34;Microsoft.HybridCompute&#34;</span>
-</span></span><span style=display:flex><span>az provider register --namespace <span style=color:#e6db74>&#34;Microsoft.HybridConnectivity&#34;</span>
-</span></span><span style=display:flex><span>az provider register --namespace <span style=color:#e6db74>&#34;Microsoft.AwsConnector&#34;</span>
-</span></span><span style=display:flex><span>az provider register --namespace <span style=color:#e6db74>&#34;Microsoft.Kubernetes&#34;</span>
-</span></span></code></pre></div><p>Once the prerequisites were met, I jumped straight into the Azure Arc blade. From there, I navigated to the Management section and selected Multicloud Connectors to begin the setup process.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20150257.png></p><p>From here, I selected Create to set up my first connector. In the Add AWS Connector window, most of the fields were straightforward, except for the AWS Account section. Here’s what I did:</p><ul><li>Selected the Subscription</li><li>Created a Resource Group</li><li>Named my connector</li><li>Selected the Region</li></ul><p>All of the above felt pretty standard, as it’s consistent with deploying any resource in Azure.</p><p>However, when I got to the AWS Account section, I ran into some challenges. Since I’m not an AWS expert, I had to rely on ChatGPT (or, let’s call it CoPilot for anyone from Microsoft reading this 😉) to figure out where to find the required information. I opted to select Organization Account as the account type.</p><p>A little foreshadowing: I had no idea what Member Accounts are in AWS, and this lack of understanding would soon cause me some headaches. Stay tuned for that part!</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20150802.png></p><p>Next, I selected the solutions I wanted to include. There were two options: <strong>Inventory</strong> and <strong>Arc Onboarding</strong>. For this demo, I decided to choose both and configure them.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151127.png></p><p>I then clicked <strong>+Add</strong> under Actions to configure both solutions. For simplicity, I left everything set to the default settings.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151249.png></p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151315.png></p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151333.png></p><p>After clicking <strong>Next</strong>, you’re taken to a screen where you can download the <strong>AWS Cloud Foundations template</strong> and follow a few steps outlined for the AWS configuration. One important note: it’s crucial to use the stack set name <strong>AzureArcMultiCloudStackset</strong> during step 3 when creating the stack set.</p><p>At this point, I had my <code>template.json</code> file ready and was almost prepared to switch over to the AWS console to complete the configuration. However, there were still a few tasks I could finish on the Azure side before moving forward.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151818.png></p><p>At this point, I clicked Next on this screen, followed by Next again in the Tags section. Finally, on the Review + Create page, I went ahead and clicked Create. This step can be completed before starting the AWS side of the setup.</p><p>Once the resource finished deploying, I returned to the Azure Arc blade and navigated back to the Multicloud Connectors screen. My new connector had deployed successfully, and the process was relatively fast.</p><p>When I clicked on the connector, I noticed it was showing permissions issues with a prompt to follow the steps in the authentication template. Don’t worry—this is completely expected since I hadn’t configured the AWS side yet.</p><p>And with that, it’s time to dive into the AWS configuration section!</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152117.png></p><h3 id=aws-configuration>AWS Configuration</h3><p>On the AWS side, the following permissions are required to create the connector:</p><ul><li>AmazonS3FullAccess</li><li>AWSCloudFormationFullAccess</li><li>IAMFullAccess</li></ul><p>Additionally, to onboard EC2 instances, the following prerequisites must be met:</p><p>You must have AmazonEC2FullAccess permissions in your AWS account.</p><ul><li>EC2 instances must meet the general prerequisites for installing the Connected Machine agent.</li><li>EC2 instances must have the SSM agent installed. Most EC2 instances come preconfigured with this agent if you’re using a supported OS.</li><li>The ArcForServerSSMRole IAM role must be attached to each EC2 instance. Note that this role attachment must be done after you upload your CloudFormation template during the connector creation steps.</li></ul><p>To start, navigate to the CloudFormation window in your AWS console. A quick note for AWS newcomers: if you deploy a stack in one region and then try to deploy it again in another region, you might encounter issues with roles already being configured. This is just something to keep in mind—especially if, like me, you’re still figuring out how AWS works!</p><p>Here I clicked stacks, then clicked create stack.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152521.png></p><p>At this point, I chose to upload a template file—the same file I had previously saved from Azure. Once uploaded, I clicked Next to proceed.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152919.png></p><p>Here, I named the stack. At this point, the name can be anything. However, take note that in the upcoming steps to create the stack set, the stack set name will be important.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153006.png></p><p>On this page, the only required action was checking the acknowledgment box at the bottom. After that, I clicked Next, which led to a review of all my selections. Once I confirmed everything looked good, I clicked Submit.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153104.png></p><p>At this point, we watch as the template configures the required permissions. This process takes about five minutes to complete. Once finished, we can proceed to creating the stack set that is required.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153236.png></p><p>Once the stack has been deployed, the status will display <strong>CREATE_COMPLETE</strong> in green.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153353.png></p><p>Now we’re ready to create the stack set. The process is almost identical to the steps followed for creating the stack. Here, I clicked Create Stack Set and selected the same JSON template we just used for the stack. Then, I clicked Next to proceed.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153539.png></p><p>This first step is critical: the name of the stack set must be AzureArcMultiCloudStackset. If it’s not named this, things won’t work properly (and something bad might happen 😅). I was specifically told this name is mandatory, so don’t use any other name!</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153643.png></p><p>Again, on this screen, I simply had to check the acknowledgment box at the bottom and then click Next. This screen also provides the option to add AWS Tags, allowing you to include only AWS instances with specific tags for onboarding.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153717.png></p><p>On the next screen, under Specify Regions, I needed to select at least one region. I chose the region where most of my AWS instances are deployed. From what I understand, since we’re configuring it at the organizational level, all regions will still be scanned regardless of the selected region.</p><p>This screen also allows you to specify the Deployment Targets. Since I am deploying to an entire organization, I selected Deploy to organization. If we wanted to target specific organizational units (OUs) instead, we could have selected that option.</p><p>After clicking Next, the following screen is just review screen. I then clicked Submit.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153840.png></p><p>The stack set will take about 2 minutes or more to complete. Once finished, we should see the successful deployment of the stack set. At this point, we’re ready to move back to Azure and complete the final steps to get the connector working.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154041.png></p><h3 id=finishing-touches>Finishing Touches</h3><p>I am now back in my Azure portal, ready to finish configuring the connector. The first thing I did was click Test Permissions at the top of the currently deployed connector. This process takes about 30 seconds, after which I will see either a Failed or Connected status.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154158.png></p><p>Here, I finally got the green checks and my connector now shows connected. I was running into issues like I had mentioned but the product team was able to get me past these issues.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154345.png></p><p>Once I successfully connected the connector to AWS, it was time to start a scan. By default, the scanning process occurs hourly based on the settings I configured earlier. However, to perform an ad-hoc scan, simply click Scan Now at the top.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154415.png></p><p>The scan took about 5 minutes for me to complete. I would assume it might take longer if there were more resources to process.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154430.png></p><p>ONce connected and once the scan is complete we can see the status in the overview window of the connector.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154538.png></p><h4 id=my-issue>My Issue</h4><p>I ran into issues early on due to the way I had set up my AWS environment. Since I’m not very familiar with AWS, and my environment was created solely for demos, I had just set up the account on the same day I wanted to test the connector. As a result, I hadn’t created any member accounts in my organization.</p><p>It turns out one of the connectivity checks looks for these member accounts and will fail if none exist. Once I created a member account, the issue resolved itself.</p><p>This was a valuable learning experience for me about AWS, and I have to credit the Microsoft product team for this connector—they taught me something new about AWS. 😉</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154253.png></p><h2 id=what-can-i-do-now>What Can I do Now?</h2><p>Now that the connector is successfully connected, what’s next? What can you do now? Glad you asked!</p><p>From the Connector blade, under the Resources section, I can now view all the resources that the inventory has discovered within my AWS organization. This provides a centralized view of all the AWS resources identified during the scan.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154807.png></p><p>If we navigate back to the Azure Arc blade and look under Azure Arc Resources > Machines, I can now see the six AWS EC2 instances I have deployed. From this view, we can identify the type of Azure Arc resources they are. Since these instances are from AWS, their type will show as AWS. If I had Azure Arc VMs running on Azure Stack HCI, for example, they would display as HCI, and so on.</p><p>From this view, I can also see the status of the Arc Agent, which will (hopefully!) show Connected for all my resources. Additionally, I can view the Resource Group and Subscription the Arc resources are associated with, as well as details about the Operating System deployed on them.</p><p>Once I configure the Resource Group with the appropriate extensions, I should also see the status of the Defender extension and the Azure Monitor extension for each resource.</p><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20155249.png></p><p>If I want more information, I can click on one of the Azure Arc resources. From there, I can access additional details such as:</p><ul><li>The Subscription the resource is part of.</li><li>The Computer Name and its FQDN.</li><li>The Operating System installed, along with its version.</li><li>The Model, which in AWS corresponds to the instance type that was deployed.</li><li>And more.</li></ul><p>From this point, I can manage these resources just like I would with any other Arc-enabled server running in a public cloud, hybrid environment, or on-premises. This includes tasks like:</p><ul><li>Managing updates with Azure Update Manager.</li><li>Enabling Microsoft Defender for Cloud and Defender for Servers.</li><li>Using Windows Admin Center for further management.</li><li>Ensuring the VMs meet specific compliance and regulatory requirements.</li><li>Applying Azure Policies.</li><li>Even connecting to the server using RDP via SSH (stay tuned for my next blog on this!).</li></ul><p><img src=/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20155407.png></p><h2 id=final-thoughts>Final Thoughts</h2><p>Overall, I believe this connector will significantly simplify onboarding AWS resources into Azure Arc. However, there are a few enhancements I’d love to see implemented. For example:</p><ol><li><p><strong>Custom Resource Group Selection</strong>
-The ability to choose which resource group AWS resources are assigned to in Azure would be a valuable addition. Currently, the connector creates a resource group named <code>aws_OrgNumber</code>. For those of us who already have Azure Policies and other services automated for onboarding Azure Arc-enabled servers, this setup would require adjustments each time a new AWS organization is onboarded into Azure for the first time. That said, once the initial resource is onboarded, policies can be configured for the newly created resource group, and any subsequent AWS resources onboarded will inherit those configurations. Additionally, all resources within the same AWS organization are currently placed into a single resource group corresponding to that organization. I’m not an AWS expert, but if customers split their organizations by environments (e.g., Dev, Prod, UAT) or applications, it would be helpful to have more granular control, perhaps through AWS tagging, to map resources to appropriate Azure resource groups.</p></li><li><p><strong>Region Mapping Flexibility</strong>
-It would be great to have the ability to customize how AWS regions are mapped to Azure regions. For instance, AWS <code>us-east-1</code> currently maps to Azure <code>East US</code>. While this default mapping works well, offering the option to choose specific Azure regions for Azure Arc resources would be a nice-to-have feature. This isn’t a high priority, but it could provide added flexibility.</p></li><li><p><strong>Policy and Tagging Conflicts</strong>
-Currently, if your Azure environment enforces policies that require tags, this can cause resource group creation to fail. While this isn’t a significant issue, it could be addressed if we had the ability to map resources to pre-existing resource groups that are already properly configured with tags and policies.</p></li><li><p><strong>Resource Naming Behavior</strong>
-From my limited experience with the connector, I noticed that Azure Arc resources display the instance name along with the actual server name in parentheses. While this isn’t a major concern, I plan to test further to determine if this affects searches or how resources are displayed in Azure Workbooks and other tools.</p></li><li><p><strong>Support for Additional Services</strong>
-It would be fantastic to extend support to other AWS services that Azure Arc can manage, such as EKS resources. This would further enhance the connector’s usefulness.</p></li></ol><p>Despite these suggestions, I’m very pleased with what the product team has delivered so far and am excited to see future updates for this connector. I would also love to see a similar connector for GCP in the future!</p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/aws/ rel=tag>AWS</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc/ rel=tag>Azure Arc</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-arc-enabled-servers/ rel=tag>Azure Arc-enabled servers</a></li><li class=tags__item><a class="tags__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ rel=tag>Multicloud connector enabled by Azure Arc</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/dell-apex-create-service-principle-assign-roles-azure-cli/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>Dell APEX - Create Service Principal and Assign Roles via Azure CLI</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/secure-rdp-access-ssh-arc-vm/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Secure RDP Access via SSH for Arc VM</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
-</label><input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/hyper-renaissance/>Welcome to the Hyper-V Renaissance</a></li><li class=widget__item><a class=widget__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/>VMware vSphere to Azure Local: Operator Feature Mapping</a></li><li class=widget__item><a class=widget__link href=/post/comparing-ai-fun-test-ai-capabilities/>Comparing AI: A fun test of AI capabilities</a></li><li class=widget__item><a class=widget__link href=/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li><li class=widget__item><a class=widget__link href=/post/cloud-hardware-considerations-part-iii/>Beyond the Cloud: Hardware Considerations - Part III</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/operations/>Operations</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server/>Windows Server</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-it/ title="Enterprise IT">Enterprise IT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/migration/ title=Migration>Migration</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMware VSphere">VMware VSphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
-<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
-<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 This Is My Demo.
-<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multicloud Connector Enabled by Azure Arc - What The Arc Is it? - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:url" content="http://localhost:1313/post/multicloud-connector-enabled-azure-arc-arc/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?">
+  <meta property="og:description" content="They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?
+Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-01-25T18:37:26+00:00">
+    <meta property="article:modified_time" content="2025-01-25T22:10:25+00:00">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="Azure Arc">
+    <meta property="article:tag" content="Azure Arc-Enabled Servers">
+    <meta property="article:tag" content="Multicloud Connector Enabled by Azure Arc">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?">
+  <meta name="twitter:description" content="They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?
+Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the Multicloud Connector enabled by Azure Arc.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Multicloud Connector Enabled by Azure Arc - What The Arc Is it?</h1>
+			<p class="post__lead">Connecting AWS resources to Azure for centralized management and governance</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-01-25T18:37:26Z">January 25, 2025</time>
+	<time class="meta__text" datetime="2025-01-25T22:10:25Z">(: January 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-arc/" rel="category">Azure Arc</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/arc/mc_connector_aws_arc/aws-arc-connector.PNG" alt="Multicloud Connector Enabled by Azure Arc - What The Arc Is it?">
+		
+	</figure><div class="content post__content clearfix">
+			<p>They say peanut butter and chocolate are better together, but have you ever heard anyone say AWS and Azure are better together? How about having a centralized solution to manage both your AWS and Azure resources seamlessly?</p>
+<p>Well, I have something exciting to share. It’s not chocolate and peanut butter, but it will definitely make managing resources across a multicloud environment much easier. Let me introduce you to the <a href="https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/">Multicloud Connector enabled by Azure Arc</a>.</p>
+<p>In this blog, I’ll share my first experiences configuring the connector, the mistakes I made along the way, and the improvements I’d love to see Microsoft implement. So sit back, grab your jar of peanut butter, your favorite chocolate bar, and read on!</p>
+<h1 id="multicloud-connector-enabled-by-azure-arc">Multicloud Connector enabled by Azure Arc</h1>
+<ul>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#multicloud-connector-enabled-by-azure-arc">Multicloud Connector enabled by Azure Arc</a>
+<ul>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#what-is-it">What is it</a></li>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#connecting-to-aws">Connecting To AWS</a>
+<ul>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#azure-configuration">Azure Configuration</a></li>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#aws-configuration">AWS Configuration</a></li>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#finishing-touches">Finishing Touches</a>
+<ul>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#my-issue">My Issue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#what-can-i-do-now">What Can I do Now?</a></li>
+<li><a href="/post/multicloud-connector-enabled-azure-arc-arc/#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="what-is-it">What is it</h2>
+<p>In a nut shell, actually not really, but what ChatGPT says about it because I am too lazy to type:</p>
+<p>The Multicloud Connector, powered by Azure Arc, enables you to integrate non-Azure public cloud resources into Azure, providing a unified platform for management and governance. Currently, it supports AWS public cloud environments.</p>
+<p>Key capabilities of the Multicloud Connector include:</p>
+<ol>
+<li>
+<p><strong>Inventory Management:</strong>
+Gain a comprehensive, real-time view of your public cloud resources in Azure, offering a single pane of glass for all your cloud assets. Through Azure Resource Graph, you can query resources across Azure and other clouds. Metadata from the source cloud is included, allowing you to search for specific tags or attributes across both Azure and AWS environments. The Inventory solution periodically scans your source cloud to ensure Azure reflects a complete and accurate view. Additionally, you can apply Azure tags and policies to these external resources for consistent governance.</p>
+</li>
+<li>
+<p><strong>Azure Arc Onboarding:</strong>
+Automatically discover EC2 instances in your AWS environment and streamline their onboarding to Azure Arc by installing the Azure Connected Machine agent. This allows you to use Azure management tools, such as Azure Monitor, for centralized management of both Azure and AWS resources, enhancing operational efficiency across multicloud environments.</p>
+</li>
+</ol>
+<p>For more information, please check out <a href="https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/overview">What is Multicloud connector enabled by Azure Arc?</a> on Microsoft Learn.</p>
+<h2 id="connecting-to-aws">Connecting To AWS</h2>
+<p>My experience connecting AWS to Azure using the Multicloud Connector was generally positive. The guidance provided on Microsoft Learn is well-written and, at the time, was quite accurate. (Though, admittedly, there are times when the documentation on Microsoft Learn can be a bit outdated or unclear.) I primarily followed the instructions in <a href="https://learn.microsoft.com/en-us/azure/azure-arc/multicloud-connector/connect-to-aws">Connect to AWS with the Multicloud Connector in the Azure portal</a>. Despite my limited familiarity with AWS, the overall process went smoothly.</p>
+<p>To be transparent, it didn&rsquo;t work perfectly on my first few attempts, but that was largely due to my lack of experience with AWS. Fortunately, I had a great call with some outstanding members of the product team for the connector. They were incredibly helpful, guiding me through the process and even teaching me a few things about AWS. Yes, you heard that right—they actually taught me a thing or two about AWS!</p>
+<p>I’ll start by explaining my initial AWS environment—essentially, I didn’t have one. I don&rsquo;t typically work with AWS, and if I had to choose another cloud platform besides Azure, I&rsquo;d prefer GCP. To me, AWS feels clunky, resource navigation is cumbersome, and its identity management doesn&rsquo;t quite compare to Entra ID. But that&rsquo;s just my personal opinion, and I&rsquo;m sticking to it. 😊
+The main reason I needed an AWS environment was for demos I’ll be conducting over the next few months, focusing on managing multicloud and hybrid cloud environments from Azure using Azure Arc. To set this up, I had to create an AWS account and aimed to utilize only the free tier to avoid any out-of-pocket expenses.</p>
+<p>I have to admit, from a developer&rsquo;s perspective, spinning up an EC2 instance on AWS offers a lot of flexibility. From a cloud administrator&rsquo;s viewpoint, I was particularly impressed with how quickly the Windows Server and Ubuntu Server instances deployed. I expected fast deployment from Ubuntu, but my five Windows Server 2025 instances spun up and were operational remarkably quickly, which was impressive.</p>
+<p>The project team has put a lot of effort into making this connector relatively straightforward to set up, even for someone like me with little AWS experience. I&rsquo;ve broken down the configuration steps into two main parts: the Azure side and the AWS side.</p>
+<h3 id="azure-configuration">Azure Configuration</h3>
+<p>On the Azure side, there are several prerequisites that need to be met, along with ensuring you have the necessary permissions to deploy the connector. First, you must have at least Contributor access on the subscription you’ll be working in.</p>
+<p>Next, make sure the following four resource providers are registered for the subscription:</p>
+<ul>
+<li>Microsoft.HybridCompute</li>
+<li>Microsoft.HybridConnectivity</li>
+<li>Microsoft.AwsConnector</li>
+<li>Microsoft.Kubernetes</li>
+</ul>
+<p>You can use the following Azure CLI script to register these resource providers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>az provider register --namespace <span style="color:#e6db74">&#34;Microsoft.HybridCompute&#34;</span>
+</span></span><span style="display:flex;"><span>az provider register --namespace <span style="color:#e6db74">&#34;Microsoft.HybridConnectivity&#34;</span>
+</span></span><span style="display:flex;"><span>az provider register --namespace <span style="color:#e6db74">&#34;Microsoft.AwsConnector&#34;</span>
+</span></span><span style="display:flex;"><span>az provider register --namespace <span style="color:#e6db74">&#34;Microsoft.Kubernetes&#34;</span>
+</span></span></code></pre></div><p>Once the prerequisites were met, I jumped straight into the Azure Arc blade. From there, I navigated to the Management section and selected Multicloud Connectors to begin the setup process.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20150257.png"></p>
+<p>From here, I selected Create to set up my first connector. In the Add AWS Connector window, most of the fields were straightforward, except for the AWS Account section. Here’s what I did:</p>
+<ul>
+<li>Selected the Subscription</li>
+<li>Created a Resource Group</li>
+<li>Named my connector</li>
+<li>Selected the Region</li>
+</ul>
+<p>All of the above felt pretty standard, as it’s consistent with deploying any resource in Azure.</p>
+<p>However, when I got to the AWS Account section, I ran into some challenges. Since I’m not an AWS expert, I had to rely on ChatGPT (or, let’s call it CoPilot for anyone from Microsoft reading this 😉) to figure out where to find the required information. I opted to select Organization Account as the account type.</p>
+<p>A little foreshadowing: I had no idea what Member Accounts are in AWS, and this lack of understanding would soon cause me some headaches. Stay tuned for that part!</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20150802.png"></p>
+<p>Next, I selected the solutions I wanted to include. There were two options: <strong>Inventory</strong> and <strong>Arc Onboarding</strong>. For this demo, I decided to choose both and configure them.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151127.png"></p>
+<p>I then clicked <strong>+Add</strong> under Actions to configure both solutions. For simplicity, I left everything set to the default settings.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151249.png"></p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151315.png"></p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151333.png"></p>
+<p>After clicking <strong>Next</strong>, you’re taken to a screen where you can download the <strong>AWS Cloud Foundations template</strong> and follow a few steps outlined for the AWS configuration. One important note: it’s crucial to use the stack set name <strong>AzureArcMultiCloudStackset</strong> during step 3 when creating the stack set.</p>
+<p>At this point, I had my <code>template.json</code> file ready and was almost prepared to switch over to the AWS console to complete the configuration. However, there were still a few tasks I could finish on the Azure side before moving forward.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20151818.png"></p>
+<p>At this point, I clicked Next on this screen, followed by Next again in the Tags section. Finally, on the Review + Create page, I went ahead and clicked Create. This step can be completed before starting the AWS side of the setup.</p>
+<p>Once the resource finished deploying, I returned to the Azure Arc blade and navigated back to the Multicloud Connectors screen. My new connector had deployed successfully, and the process was relatively fast.</p>
+<p>When I clicked on the connector, I noticed it was showing permissions issues with a prompt to follow the steps in the authentication template. Don’t worry—this is completely expected since I hadn’t configured the AWS side yet.</p>
+<p>And with that, it’s time to dive into the AWS configuration section!</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152117.png"></p>
+<h3 id="aws-configuration">AWS Configuration</h3>
+<p>On the AWS side, the following permissions are required to create the connector:</p>
+<ul>
+<li>AmazonS3FullAccess</li>
+<li>AWSCloudFormationFullAccess</li>
+<li>IAMFullAccess</li>
+</ul>
+<p>Additionally, to onboard EC2 instances, the following prerequisites must be met:</p>
+<p>You must have AmazonEC2FullAccess permissions in your AWS account.</p>
+<ul>
+<li>EC2 instances must meet the general prerequisites for installing the Connected Machine agent.</li>
+<li>EC2 instances must have the SSM agent installed. Most EC2 instances come preconfigured with this agent if you’re using a supported OS.</li>
+<li>The ArcForServerSSMRole IAM role must be attached to each EC2 instance. Note that this role attachment must be done after you upload your CloudFormation template during the connector creation steps.</li>
+</ul>
+<p>To start, navigate to the CloudFormation window in your AWS console. A quick note for AWS newcomers: if you deploy a stack in one region and then try to deploy it again in another region, you might encounter issues with roles already being configured. This is just something to keep in mind—especially if, like me, you’re still figuring out how AWS works!</p>
+<p>Here I clicked stacks, then clicked create stack.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152521.png"></p>
+<p>At this point, I chose to upload a template file—the same file I had previously saved from Azure. Once uploaded, I clicked Next to proceed.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20152919.png"></p>
+<p>Here, I named the stack. At this point, the name can be anything. However, take note that in the upcoming steps to create the stack set, the stack set name will be important.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153006.png"></p>
+<p>On this page, the only required action was checking the acknowledgment box at the bottom. After that, I clicked Next, which led to a review of all my selections. Once I confirmed everything looked good, I clicked Submit.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153104.png"></p>
+<p>At this point, we watch as the template configures the required permissions. This process takes about five minutes to complete. Once finished, we can proceed to creating the stack set that is required.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153236.png"></p>
+<p>Once the stack has been deployed, the status will display <strong>CREATE_COMPLETE</strong> in green.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153353.png"></p>
+<p>Now we’re ready to create the stack set. The process is almost identical to the steps followed for creating the stack. Here, I clicked Create Stack Set and selected the same JSON template we just used for the stack. Then, I clicked Next to proceed.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153539.png"></p>
+<p>This first step is critical: the name of the stack set must be AzureArcMultiCloudStackset. If it’s not named this, things won’t work properly (and something bad might happen 😅). I was specifically told this name is mandatory, so don’t use any other name!</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153643.png"></p>
+<p>Again, on this screen, I simply had to check the acknowledgment box at the bottom and then click Next. This screen also provides the option to add AWS Tags, allowing you to include only AWS instances with specific tags for onboarding.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153717.png"></p>
+<p>On the next screen, under Specify Regions, I needed to select at least one region. I chose the region where most of my AWS instances are deployed. From what I understand, since we’re configuring it at the organizational level, all regions will still be scanned regardless of the selected region.</p>
+<p>This screen also allows you to specify the Deployment Targets. Since I am deploying to an entire organization, I selected Deploy to organization. If we wanted to target specific organizational units (OUs) instead, we could have selected that option.</p>
+<p>After clicking Next, the following screen is just review screen. I then clicked Submit.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20153840.png"></p>
+<p>The stack set will take about 2 minutes or more to complete. Once finished, we should see the successful deployment of the stack set. At this point, we’re ready to move back to Azure and complete the final steps to get the connector working.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154041.png"></p>
+<h3 id="finishing-touches">Finishing Touches</h3>
+<p>I am now back in my Azure portal, ready to finish configuring the connector. The first thing I did was click Test Permissions at the top of the currently deployed connector. This process takes about 30 seconds, after which I will see either a Failed or Connected status.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154158.png"></p>
+<p>Here, I finally got the green checks and my connector now shows connected. I was running into issues like I had mentioned but the product team was able to get me past these issues.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154345.png"></p>
+<p>Once I successfully connected the connector to AWS, it was time to start a scan. By default, the scanning process occurs hourly based on the settings I configured earlier. However, to perform an ad-hoc scan, simply click Scan Now at the top.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154415.png"></p>
+<p>The scan took about 5 minutes for me to complete. I would assume it might take longer if there were more resources to process.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154430.png"></p>
+<p>ONce connected and once the scan is complete we can see the status in the overview window of the connector.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154538.png"></p>
+<h4 id="my-issue">My Issue</h4>
+<p>I ran into issues early on due to the way I had set up my AWS environment. Since I’m not very familiar with AWS, and my environment was created solely for demos, I had just set up the account on the same day I wanted to test the connector. As a result, I hadn’t created any member accounts in my organization.</p>
+<p>It turns out one of the connectivity checks looks for these member accounts and will fail if none exist. Once I created a member account, the issue resolved itself.</p>
+<p>This was a valuable learning experience for me about AWS, and I have to credit the Microsoft product team for this connector—they taught me something new about AWS. 😉</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154253.png"></p>
+<h2 id="what-can-i-do-now">What Can I do Now?</h2>
+<p>Now that the connector is successfully connected, what’s next? What can you do now? Glad you asked!</p>
+<p>From the Connector blade, under the Resources section, I can now view all the resources that the inventory has discovered within my AWS organization. This provides a centralized view of all the AWS resources identified during the scan.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20154807.png"></p>
+<p>If we navigate back to the Azure Arc blade and look under Azure Arc Resources &gt; Machines, I can now see the six AWS EC2 instances I have deployed. From this view, we can identify the type of Azure Arc resources they are. Since these instances are from AWS, their type will show as AWS. If I had Azure Arc VMs running on Azure Stack HCI, for example, they would display as HCI, and so on.</p>
+<p>From this view, I can also see the status of the Arc Agent, which will (hopefully!) show Connected for all my resources. Additionally, I can view the Resource Group and Subscription the Arc resources are associated with, as well as details about the Operating System deployed on them.</p>
+<p>Once I configure the Resource Group with the appropriate extensions, I should also see the status of the Defender extension and the Azure Monitor extension for each resource.</p>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20155249.png"></p>
+<p>If I want more information, I can click on one of the Azure Arc resources. From there, I can access additional details such as:</p>
+<ul>
+<li>The Subscription the resource is part of.</li>
+<li>The Computer Name and its FQDN.</li>
+<li>The Operating System installed, along with its version.</li>
+<li>The Model, which in AWS corresponds to the instance type that was deployed.</li>
+<li>And more.</li>
+</ul>
+<p>From this point, I can manage these resources just like I would with any other Arc-enabled server running in a public cloud, hybrid environment, or on-premises. This includes tasks like:</p>
+<ul>
+<li>Managing updates with Azure Update Manager.</li>
+<li>Enabling Microsoft Defender for Cloud and Defender for Servers.</li>
+<li>Using Windows Admin Center for further management.</li>
+<li>Ensuring the VMs meet specific compliance and regulatory requirements.</li>
+<li>Applying Azure Policies.</li>
+<li>Even connecting to the server using RDP via SSH (stay tuned for my next blog on this!).</li>
+</ul>
+<p><img src="/img/arc/mc_connector_aws_arc/Screenshot%202025-01-25%20155407.png"></p>
+<h2 id="final-thoughts">Final Thoughts</h2>
+<p>Overall, I believe this connector will significantly simplify onboarding AWS resources into Azure Arc. However, there are a few enhancements I’d love to see implemented. For example:</p>
+<ol>
+<li>
+<p><strong>Custom Resource Group Selection</strong>
+The ability to choose which resource group AWS resources are assigned to in Azure would be a valuable addition. Currently, the connector creates a resource group named <code>aws_OrgNumber</code>. For those of us who already have Azure Policies and other services automated for onboarding Azure Arc-enabled servers, this setup would require adjustments each time a new AWS organization is onboarded into Azure for the first time. That said, once the initial resource is onboarded, policies can be configured for the newly created resource group, and any subsequent AWS resources onboarded will inherit those configurations. Additionally, all resources within the same AWS organization are currently placed into a single resource group corresponding to that organization. I’m not an AWS expert, but if customers split their organizations by environments (e.g., Dev, Prod, UAT) or applications, it would be helpful to have more granular control, perhaps through AWS tagging, to map resources to appropriate Azure resource groups.</p>
+</li>
+<li>
+<p><strong>Region Mapping Flexibility</strong>
+It would be great to have the ability to customize how AWS regions are mapped to Azure regions. For instance, AWS <code>us-east-1</code> currently maps to Azure <code>East US</code>. While this default mapping works well, offering the option to choose specific Azure regions for Azure Arc resources would be a nice-to-have feature. This isn’t a high priority, but it could provide added flexibility.</p>
+</li>
+<li>
+<p><strong>Policy and Tagging Conflicts</strong>
+Currently, if your Azure environment enforces policies that require tags, this can cause resource group creation to fail. While this isn’t a significant issue, it could be addressed if we had the ability to map resources to pre-existing resource groups that are already properly configured with tags and policies.</p>
+</li>
+<li>
+<p><strong>Resource Naming Behavior</strong>
+From my limited experience with the connector, I noticed that Azure Arc resources display the instance name along with the actual server name in parentheses. While this isn’t a major concern, I plan to test further to determine if this affects searches or how resources are displayed in Azure Workbooks and other tools.</p>
+</li>
+<li>
+<p><strong>Support for Additional Services</strong>
+It would be fantastic to extend support to other AWS services that Azure Arc can manage, such as EKS resources. This would further enhance the connector’s usefulness.</p>
+</li>
+</ol>
+<p>Despite these suggestions, I’m very pleased with what the product team has delivered so far and am excited to see future updates for this connector. I would also love to see a similar connector for GCP in the future!</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/aws/" rel="tag">AWS</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-arc/" rel="tag">Azure Arc</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-arc-enabled-servers/" rel="tag">Azure Arc-enabled servers</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" rel="tag">Multicloud connector enabled by Azure Arc</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dell-apex-create-service-principle-assign-roles-azure-cli/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">Dell APEX - Create Service Principal and Assign Roles via Azure CLI</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/secure-rdp-access-ssh-arc-vm/" rel="next">
+			<span class="pager__subtitle">&thinsp;»</span>
+			<p class="pager__title">Secure RDP Access via SSH for Arc VM</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-three-paths-off-vmware-part-viii/">Beyond the Cloud: Three Paths Off VMware - Part VIII</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/case-studies/">Case Studies</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/community-tools/">Community Tools</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/edge-computing/">Edge Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/future-planning/">Future Planning</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/migration/">Migration</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/strategy/">Strategy</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server/">Windows Server</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/active-directory/" title="Active Directory">Active Directory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm-templates/" title="ARM Templates">ARM Templates</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bandwidth-limitations/" title="Bandwidth Limitations">Bandwidth Limitations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/case-studies/" title="Case Studies">Case Studies</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/change-management/" title="Change Management">Change Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/disconnected-operations/" title="Disconnected Operations">Disconnected Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/edge-computing/" title="Edge Computing">Edge Computing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-it/" title="Enterprise IT">Enterprise IT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/future-planning/" title="Future Planning">Future Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hybrid-strategy/" title="Hybrid Strategy">Hybrid Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-strategy/" title="Microsoft Strategy">Microsoft Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/roadmap/" title="Roadmap">Roadmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scripts/" title="Scripts">Scripts</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="WIndows Admin Center">WIndows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/workgroup-clusters/" title="Workgroup Clusters">Workgroup Clusters</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

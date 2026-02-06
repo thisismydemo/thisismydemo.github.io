@@ -6,8 +6,22 @@
     <description>Recent content on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 Feb 2026 05:19:38 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Feb 2026 06:27:14 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Odin for Azure Local: A Community Tool Deep Dive</title>
+      <link>http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/</link>
+      <pubDate>Thu, 05 Feb 2026 05:44:32 +0000</pubDate>
+      <guid>http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/</guid>
+      <description>I&amp;rsquo;m in the middle of writing The Hyper-V Renaissance—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It&amp;rsquo;s been consuming most of my writing time, and I&amp;rsquo;ve been heads-down on TCO comparisons, cluster builds, and PowerShell automation.&#xA;But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.</description>
+    </item>
+    <item>
+      <title>The Real Cost of Virtualization</title>
+      <link>http://localhost:1313/post/real-cost-virtualization/</link>
+      <pubDate>Wed, 04 Feb 2026 13:52:26 +0000</pubDate>
+      <guid>http://localhost:1313/post/real-cost-virtualization/</guid>
+      <description>The invoice arrived, and the meeting quickly followed.&#xA;For nearly two decades, the &amp;ldquo;cost of virtualization&amp;rdquo; was a line item we grumbled about but accepted. It was the &amp;ldquo;VMware Tax,&amp;rdquo; the price of admission for a stable, feature-rich datacenter. But in the wake of the Broadcom acquisition and the subsequent licensing overhaul, that tax has, for many organizations, turned into a ransom.&#xA;This isn&amp;rsquo;t just about price hikes. It&amp;rsquo;s about a fundamental shift in how infrastructure is consumed.</description>
+    </item>
     <item>
       <title>Welcome to the Hyper-V Renaissance</title>
       <link>http://localhost:1313/post/hyper-renaissance/</link>
@@ -532,41 +546,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/2025-08-15-beyond-the-cloud-arc-enabled-blog-summary/</guid>
       <description>Based on your additional requirements, here&amp;rsquo;s an updated summary that incorporates the Arc management aspects you want to cover:&#xA;Enhanced Summary for Part V: Arc Enable Everything Expanded Focus Areas Your Part V blog will now comprehensively cover three distinct Arc enablement scenarios:&#xA;Arc-Enabled Servers (Basic)&#xA;Individual Hyper-V host management Basic monitoring and policy application Limited cluster visibility Arc-Enabled SCVMM (Advanced)&#xA;Full Hyper-V cluster management through Azure Advanced features unlocked: Unified VM lifecycle management Azure RBAC for on-premises resources Azure Policy at the cluster level Advanced monitoring with VM insights Azure Automation integration Update Management coordination Backup orchestration at scale Cost implications vs.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/2026-02-25-reusing-existing-vmware-hosts/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2026-02-25-reusing-existing-vmware-hosts/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/2026-03-25-poc-like-you-mean-it/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2026-03-25-poc-like-you-mean-it/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/2026-04-15-security-architecture/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2026-04-15-security-architecture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/2026-04-22-storage-architecture-deep-dive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2026-04-22-storage-architecture-deep-dive/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/post/2026-05-06-live-migration-internals/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2026-05-06-live-migration-internals/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

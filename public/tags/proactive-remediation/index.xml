@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proactive Remediation on This Is My Demo</title><link>http://thisismydemo.cloud/tags/proactive-remediation/</link><description>Recent content in Proactive Remediation on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 01 Feb 2023 17:34:46 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/proactive-remediation/index.xml" rel="self" type="application/rss+xml"/><item><title>My Intune Proactive Remediation Scripts</title><link>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</link><pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate><guid>http://thisismydemo.cloud/post/intune-proactive-remediation-scripts/</guid><description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.
-Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.
-Intune Proactive Remediation - Check if KB5007253 is installed.
-The following scripts are currently in my GitHub repo called ProactiveRemediations.</description></item><item><title>Intune Proactive Remediation - Check if KB5007253 is installed.</title><link>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</link><pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate><guid>http://thisismydemo.cloud/post/2023-01-31-intunes-proactive-remediations/</guid><description>I want to start this blog out by saying I am not an Intune expert. In fact I don&amp;rsquo;t really spend much time with Intune. However, once in a while there are projects that require certain tools like InTune so once in a while I do get my hands on Intune. So I want to share what I have learned about Intune Proactive Remediation and how to create and apply them in your Endpoint environment.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proactive Remediation on This Is My Demo</title>
+    <link>http://localhost:1313/tags/proactive-remediation/</link>
+    <description>Recent content in Proactive Remediation on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 Feb 2023 17:34:46 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/proactive-remediation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Intune Proactive Remediation Scripts</title>
+      <link>http://localhost:1313/post/intune-proactive-remediation-scripts/</link>
+      <pubDate>Wed, 01 Feb 2023 14:59:02 +0000</pubDate>
+      <guid>http://localhost:1313/post/intune-proactive-remediation-scripts/</guid>
+      <description>I have been working with Intune Proactive Remediation scripts I wanted to share a few that I am working on.If you want to know more about Intune Proactive Remediation you can check on past blogs of mine.&#xA;Using Intune&amp;rsquo;s Proactive Remediation Script Packages to configure clients to retrieve Kerberos tickets for Azure Files.&#xA;Intune Proactive Remediation - Check if KB5007253 is installed.&#xA;The following scripts are currently in my GitHub repo called ProactiveRemediations.</description>
+    </item>
+    <item>
+      <title>Intune Proactive Remediation - Check if KB5007253 is installed.</title>
+      <link>http://localhost:1313/post/2023-01-31-intunes-proactive-remediations/</link>
+      <pubDate>Tue, 31 Jan 2023 15:53:58 +0000</pubDate>
+      <guid>http://localhost:1313/post/2023-01-31-intunes-proactive-remediations/</guid>
+      <description>I want to start this blog out by saying I am not an Intune expert. In fact I don&amp;rsquo;t really spend much time with Intune. However, once in a while there are projects that require certain tools like InTune so once in a while I do get my hands on Intune. So I want to share what I have learned about Intune Proactive Remediation and how to create and apply them in your Endpoint environment.</description>
+    </item>
+  </channel>
+</rss>

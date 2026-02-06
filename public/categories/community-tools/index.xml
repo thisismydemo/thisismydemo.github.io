@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community Tools on This Is My Demo</title>
+    <link>http://localhost:1313/categories/community-tools/</link>
+    <description>Recent content in Community Tools on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/community-tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Odin for Azure Local: A Community Tool Deep Dive</title>
+      <link>http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/</link>
+      <pubDate>Wed, 04 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/</guid>
+      <description>Section 1: Introduction Key Points to Cover: What is Odin for Azure Local Who built it (Microsoft, hosted on GitHub) The disclaimer: &amp;ldquo;provided as-is, without Microsoft support&amp;rdquo; Why this tool matters for Azure Local practitioners Tool URL: https://azure.github.io/odinforazurelocal/ Current version: 0.12.5 Tone: Honest assessment Not a puff piece—genuine evaluation Useful for practitioners planning deployments Section 2: Tool Overview What Odin Does: Browser-based wizard/decision tree Walks through Azure Local deployment configuration Generates configuration documentation Generates ARM template parameters Includes a Sizer tool Includes Knowledge documentation The 19-Step Workflow: Step Section Purpose 01 Deployment Type Hyperconverged, Multi-Rack, Disconnected, M365 Local 02 Azure Cloud Commercial, Government, China 03 Azure Region Resource registration location 04 Cluster Configuration Standard, Low Capacity, Rack Aware 05 Cluster Size 1-16+ nodes 05.</description>
+    </item>
+  </channel>
+</rss>

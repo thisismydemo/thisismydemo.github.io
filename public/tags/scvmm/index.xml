@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SCVMM on This Is My Demo</title><link>http://thisismydemo.cloud/tags/scvmm/</link><description>Recent content in SCVMM on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 14 May 2025 23:15:28 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/scvmm/index.xml" rel="self" type="application/rss+xml"/><item><title>Choosing A Windows Clustering Strategy in 2025</title><link>http://thisismydemo.cloud/post/choosing-windows-clustering-strategy-2025/</link><pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate><guid>http://thisismydemo.cloud/post/choosing-windows-clustering-strategy-2025/</guid><description>Introduction Azure Local (formerly Azure Stack HCI) Key characteristics and features Azure Local Use cases Traditional WSFC with External SAN/NAS Storage Key characteristics and features Traditional WSFC Use cases Windows Server Failover Clustering with Storage Spaces Direct (S2D) Key characteristics and features WSFC with S2D Use cases Comparative Analysis of the Three Solutions Comparison Matrix Azure Local – Pros and Cons Traditional WSFC + SAN – Pros and Cons WSFC + Storage Spaces Direct – Pros and Cons Industry and Workload Considerations Industry Examples Workload Examples Optional Azure Integration for WSFC (SAN or S2D) Clusters Decision Framework – Choosing the Right Approach Conclusion Introduction In modern Windows infrastructure, there are multiple strategies for building highly available clusters.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SCVMM on This Is My Demo</title>
+    <link>http://localhost:1313/tags/scvmm/</link>
+    <description>Recent content in SCVMM on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Feb 2026 01:59:57 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/scvmm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond the Cloud: Arc Enable Everything - Part V</title>
+      <link>http://localhost:1313/post/beyond-cloud-arc-enable-everything-part-v/</link>
+      <pubDate>Mon, 14 Jul 2025 15:11:23 +0000</pubDate>
+      <guid>http://localhost:1313/post/beyond-cloud-arc-enable-everything-part-v/</guid>
+      <description>Table of Contents The Enterprise Reality Check Executive Summary Understanding Azure Arc: The Management Revolution Arc-Enabled Servers: The Foundation Arc-Enabled SCVMM: Enterprise-Grade Management Arc-Enabled SCVMM vs Azure Local: Feature Comparison VMware + Arc: The Fair Play Analysis Cost Analysis: Breaking Down Arc Licensing Arc Adoption Strategy: Planning Your Journey Real-World Scenarios: When to Use What The Verdict: Your Arc Strategy Decision Framework Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Arc Enable Everything - Monitoring Hyper-V Clusters Next to Azure Local (This Post) The Enterprise Reality Check After analyzing costs, licensing, hardware, and features in our previous posts, we arrive at the operational question that keeps IT leaders awake: &amp;ldquo;How do we actually manage this hybrid mess?</description>
+    </item>
+    <item>
+      <title>Choosing A Windows Clustering Strategy in 2025</title>
+      <link>http://localhost:1313/post/choosing-windows-clustering-strategy-2025/</link>
+      <pubDate>Wed, 14 May 2025 17:48:14 +0000</pubDate>
+      <guid>http://localhost:1313/post/choosing-windows-clustering-strategy-2025/</guid>
+      <description>Introduction Azure Local (formerly Azure Stack HCI) Key characteristics and features Azure Local Use cases Traditional WSFC with External SAN/NAS Storage Key characteristics and features Traditional WSFC Use cases Windows Server Failover Clustering with Storage Spaces Direct (S2D) Key characteristics and features WSFC with S2D Use cases Comparative Analysis of the Three Solutions Comparison Matrix Azure Local – Pros and Cons Traditional WSFC + SAN – Pros and Cons WSFC + Storage Spaces Direct – Pros and Cons Industry and Workload Considerations Industry Examples Workload Examples Optional Azure Integration for WSFC (SAN or S2D) Clusters Decision Framework – Choosing the Right Approach Conclusion Introduction In modern Windows infrastructure, there are multiple strategies for building highly available clusters.</description>
+    </item>
+  </channel>
+</rss>
