@@ -6,7 +6,7 @@ series: The Hyper-V Renaissance
 series_post: 1
 series_total: 19
 draft: false
-lastmod: 2026-02-06T00:05:55.575Z
+lastmod: 2026-02-06T22:43:48.620Z
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: hyper-renaissance
@@ -61,9 +61,9 @@ For small and medium businesses, for edge deployments, for remote offices with m
 
 ## The Bundle Consolidation
 
-Broadcom reduced VMware's extensive product catalog from approximately 8,000 SKUs to just four primary bundles: VMware Cloud Foundation (VCF), VMware vSphere Foundation (VVF), VMware vSphere Standard (VVS), and VMware vSphere Essential Plus (VVEP).
+Broadcom reduced VMware's extensive product catalog from approximately 8,000 SKUs to just a handful of bundles — but the strategic product is **VMware Cloud Foundation (VCF)**. vSphere Foundation (VVF) and vSphere Standard still exist on paper, but Broadcom's roadmap, pricing incentives, and partner enablement all point customers toward VCF as the only long-term path.
 
-While "simplification" sounds positive, the reality is different. Organizations must now purchase bundled products like NSX and vSAN even if they don't need them. The flexibility to buy exactly what you needed? That's gone. You're paying for capabilities you may never use.
+VCF bundles vSphere, vSAN, NSX, Aria Suite, and Tanzu into a single mandatory subscription. The flexibility to buy only the hypervisor? That's gone. You're paying for network virtualization, software-defined storage, operations automation, and Kubernetes — whether you use them or not.
 
 ## The Partner Ecosystem Collapse
 
@@ -269,13 +269,13 @@ The key word is *optional*. You adopt these services when they make sense for yo
 
 We'll dive deep into TCO analysis in Post 2, but here's the framework. Note that Broadcom licensing has been a moving target—verify current pricing at evaluation time.
 
-## VMware (Post-Broadcom)
+## VMware Cloud Foundation (VCF)
 
-- Subscription-only licensing (perpetual no longer available)
-- 72-core minimum purchase requirement
-- Bundled products you may not need
-- Per-core pricing on modern CPUs
-- Reported increases of 150% to 1,000%
+- Subscription-only licensing (perpetual eliminated for new purchases)
+- 72-core minimum per order line
+- Full stack bundle: vSphere, vSAN, NSX, Aria, Tanzu — mandatory, not optional
+- ~$350/core/year (3-year term; ranges $300–$500 depending on negotiation)
+- Reported increases of 150% to 1,000% vs. prior VMware pricing
 - Up to 25% late-renewal penalty
 
 ## Azure Local
@@ -410,7 +410,7 @@ This series will give you the technical depth and practical guidance to evaluate
 
 # What's Next
 
-**Post 2: The Real Cost of Virtualization** provides detailed TCO analysis across VMware (post-Broadcom), Azure Local, and Hyper-V with Windows Server Datacenter. I'll break down licensing models, hidden costs, and provide a spreadsheet template you can customize for your own comparisons.
+**Post 2: The Real Cost of Virtualization** provides detailed TCO analysis across VMware Cloud Foundation (VCF), Azure Local, and Hyper-V with Windows Server Datacenter. I'll break down licensing models, hidden costs, and provide a spreadsheet template you can customize for your own comparisons.
 
 ---
 

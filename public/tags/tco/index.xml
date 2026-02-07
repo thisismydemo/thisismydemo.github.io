@@ -6,15 +6,8 @@
     <description>Recent content in TCO on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 04 Feb 2026 14:10:01 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Feb 2026 00:05:55 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/tco/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Real Cost of Virtualization</title>
-      <link>http://localhost:1313/post/real-cost-virtualization/</link>
-      <pubDate>Wed, 04 Feb 2026 13:52:26 +0000</pubDate>
-      <guid>http://localhost:1313/post/real-cost-virtualization/</guid>
-      <description>The invoice arrived, and the meeting quickly followed.&#xA;For nearly two decades, the &amp;ldquo;cost of virtualization&amp;rdquo; was a line item we grumbled about but accepted. It was the &amp;ldquo;VMware Tax,&amp;rdquo; the price of admission for a stable, feature-rich datacenter. But in the wake of the Broadcom acquisition and the subsequent licensing overhaul, that tax has, for many organizations, turned into a ransom.&#xA;This isn&amp;rsquo;t just about price hikes. It&amp;rsquo;s about a fundamental shift in how infrastructure is consumed.</description>
-    </item>
     <item>
       <title>Welcome to the Hyper-V Renaissance</title>
       <link>http://localhost:1313/post/hyper-renaissance/</link>
