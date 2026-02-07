@@ -5,7 +5,7 @@ date: 2026-02-09T16:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 3
 series_total: 18
-draft: true
+draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: myth-tech
@@ -22,7 +22,7 @@ tags:
     - VCF
     - Feature Comparison
     - Enterprise Virtualization
-lastmod: 2026-02-07T16:17:45.239Z
+lastmod: 2026-02-07T16:19:38.931Z
 ---
 
 "Hyper-V? That's legacy tech. It can't compete with VMware."
