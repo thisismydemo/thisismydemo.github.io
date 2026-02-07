@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Feature Comparison on This Is My Demo</title>
-    <link>http://localhost:1313/categories/feature-comparison/</link>
+    <link>http://thisismydemo.cloud/categories/feature-comparison/</link>
     <description>Recent content in Feature Comparison on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 02 Jul 2025 00:03:44 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/feature-comparison/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/categories/feature-comparison/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Beyond the Cloud: Feature Face-Off - Part IV</title>
-      <link>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</link>
+      <link>http://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/</link>
       <pubDate>Wed, 02 Jul 2025 00:01:27 +0000</pubDate>
-      <guid>http://localhost:1313/post/beyond-cloud-feature-face-off-part-iv/</guid>
+      <guid>http://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/</guid>
       <description>The Enterprise Reality Check As we&amp;rsquo;ve established in previous posts, the post-Broadcom VMware landscape has fundamentally shifted the conversation around enterprise virtualization. No longer can organizations simply renew their vSphere licenses and move on—pricing has increased dramatically, licensing models have changed, and many customers are being pushed toward VMware Cloud Foundation whether they need all its components or not.&#xA;But beyond cost considerations lies a critical question: Does Windows Server Failover Clustering with Hyper-V actually deliver the enterprise features that keep VMware entrenched in so many data centers?</description>
     </item>
   </channel>

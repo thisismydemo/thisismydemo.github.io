@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure Arc-Enabled Data Services on This Is My Demo</title>
-    <link>http://localhost:1313/tags/azure-arc-enabled-data-services/</link>
+    <link>http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/</link>
     <description>Recent content in Azure Arc-Enabled Data Services on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Wed, 01 Nov 2023 21:59:39 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/azure-arc-enabled-data-services/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://thisismydemo.cloud/tags/azure-arc-enabled-data-services/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The 12 Days of Azure Arc-Mas!</title>
-      <link>http://localhost:1313/post/12-days-azure-arc-mas/</link>
+      <link>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</link>
       <pubDate>Wed, 01 Nov 2023 21:18:11 +0000</pubDate>
-      <guid>http://localhost:1313/post/12-days-azure-arc-mas/</guid>
+      <guid>http://thisismydemo.cloud/post/12-days-azure-arc-mas/</guid>
       <description>For those that are not aware there is a very awesome resource provided by the Cloud Family called the Festive Tech Calendar. The Festive Tech Calendar is a free, month-long, fun tech event that takes place throughout December. The event features new content from different communities and people around the globe. The event is organized by Cloud Family and is aimed at people from all communities who want to participate in a fun and engaging session that is a bit different from a normal conference.</description>
     </item>
   </channel>
