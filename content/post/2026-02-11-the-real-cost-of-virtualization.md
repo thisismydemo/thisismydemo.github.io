@@ -5,7 +5,7 @@ date: 2026-02-11T12:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 2
 series_total: 18
-draft: true
+draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: real-cost-virtualization
@@ -22,7 +22,7 @@ tags:
     - TCO
     - Licensing
     - Cost Analysis
-lastmod: 2026-02-07T00:00:02.108Z
+lastmod: 2026-02-07T00:06:24.680Z
 ---
 
 The invoice arrived, and the meeting quickly followed.
