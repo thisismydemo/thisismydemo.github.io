@@ -1,7 +1,7 @@
 ---
 title: The Real Cost of Virtualization
 description: A no-nonsense TCO comparison across VMware, Azure Local, and Hyper-V with Windows Server Datacenter licensing models and long-term projections.
-date: 2026-02-11T12:00:00.000Z
+date: 2026-02-07T00:09:59.022Z
 series: The Hyper-V Renaissance
 series_post: 2
 series_total: 18
@@ -22,7 +22,7 @@ tags:
     - TCO
     - Licensing
     - Cost Analysis
-lastmod: 2026-02-07T00:06:24.680Z
+lastmod: 2026-02-07T00:10:08.395Z
 ---
 
 The invoice arrived, and the meeting quickly followed.
