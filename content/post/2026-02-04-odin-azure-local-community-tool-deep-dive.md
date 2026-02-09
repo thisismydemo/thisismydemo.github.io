@@ -1,7 +1,7 @@
 ---
 title: "Odin for Azure Local: A Community Tool Deep Dive"
 description: An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about.
-date: 2026-02-09T16:56:18.598Z
+date: 2026-02-09T15:00:00.598Z
 draft: false
 preview: /img/azurelocal_odin/odin-logo.png
 fmContentType: post
@@ -18,7 +18,7 @@ tags:
   - Deployment Planning
   - Infrastructure as Code
   - ODIN
-lastmod: 2026-02-09T17:08:42.404Z
+lastmod: 2026-02-09T18:07:08.654Z
 ---
 
 I'm in the middle of writing [The Hyper-V Renaissance](/post/hyper-v-renaissance)—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It's been consuming most of my writing time, and I've been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
