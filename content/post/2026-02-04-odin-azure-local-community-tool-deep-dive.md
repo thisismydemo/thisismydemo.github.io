@@ -2,7 +2,7 @@
 title: "Odin for Azure Local: A Community Tool Deep Dive"
 description: An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about.
 date: 2026-02-09T18:00:00.000Z
-draft: true
+draft: false
 preview: /img/azurelocal_odin/odin-logo.png
 fmContentType: post
 slug: odin-azure-local-community-tool-deep-dive
