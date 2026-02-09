@@ -13,8 +13,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2026-02-05T05:44:32+00:00">
-    <meta property="article:modified_time" content="2026-02-09T03:10:22+00:00">
+    <meta property="article:published_time" content="2026-02-09T16:56:18+00:00">
+    <meta property="article:modified_time" content="2026-02-09T17:08:42+00:00">
     <meta property="article:tag" content="ARM Templates">
     <meta property="article:tag" content="Azure Local">
     <meta property="article:tag" content="Community Tools">
@@ -78,8 +78,8 @@
 			<p class="post__lead">The Optimal Deployment and Infrastructure Navigator</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-05T05:44:32Z">February 05, 2026</time>
-	<time class="meta__text" datetime="2026-02-09T03:10:22Z">(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-09T16:56:18Z">February 09, 2026</time>
+	<time class="meta__text" datetime="2026-02-09T17:08:42Z">(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
 	</span>
 </div></div>
 		</header>
@@ -173,7 +173,7 @@
 <li>Software Defined Networking options</li>
 </ul>
 <p>At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values).</p>
-<p>The current version is <strong>0.12.5</strong> when i first started to write this blog, but since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.  As of the time I will publish this blog, the version is now 0.14.52.</p>
+<p>The current version is <strong>0.14.52</strong>, but when when i first started to write this blog it was written for version 0.12.5.  Since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.</p>
 <p>Odin also includes:</p>
 <ul>
 <li>A <strong>Sizer tool</strong> for estimating cluster capacity based on workloads (Azure Local VMs, AKS Arc clusters, Azure Virtual Desktop)</li>
@@ -391,10 +391,12 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <p>In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I&rsquo;m selecting <strong>6 ports</strong>.</p>
 <p>Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.</p>
 <p>I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE.</p>
-<p>This is one of the areas that the ODIN team quickly updated after some recommendatoins.  Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct.  However since last week this has changeed.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png"></p>
-<p>Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments.  This is a very helpful update.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png"></p>
+<p>This is one of the areas that the ODIN team quickly updated after some recommendatoins.  Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct.  However since last week this has changeed.
+This is one of the areas that the ODIN team quickly updated after some recommendations. Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct. However, since last week this has changed.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png"></p>
+<p>Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments.  This is a very helpful update.
+Now we can actually name the network adapters, which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS, and also the same name that we will use for ARM template deployments or Portal Deployments. This is a very helpful update.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png"></p>
 <h3 id="section-08-network-traffic-intents">Section 08: Network Traffic Intents</h3>
 <p>I&rsquo;m picking <strong>Custom</strong> for my network traffic intents. <a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#step-3-determine-network-traffic-intents">More information on network intents</a>.</p>
 <p>Immediately I see a <strong>NOT SUPPORTED</strong> message pop up:</p>
@@ -409,12 +411,14 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <li><strong>Slot 3 Port 1 and Slot 6 Port 2</strong> → Compute intent (on different adapters for HA)</li>
 <li><strong>Slot 3 Port 2 and Port 6 Port 1</strong> → Storage intent (on different adapters for HA)</li>
 </ul>
-<p>For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png"></p>
+<p>For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.
+For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physical cabling, this is important to know.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png"></p>
 <p><strong>Why do I use three intents?</strong> In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We&rsquo;ve also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.</p>
 <p>Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.</p>
-<p>The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png"></p>
+<p>The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.
+The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always set my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png"></p>
 <p>For the storage intent, note the VLAN section. Since we&rsquo;re using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch—basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you&rsquo;d see 4 storage VLANs: 711, 712, 713, and 714.</p>
 <p>Last for Section 08 is <strong>Storage Auto IP</strong>. In most cases, leave this default to enabled. There isn&rsquo;t really a need to statically assign the storage port IPs. Microsoft uses 10.71.1.x for port 1 and 10.71.2.x for port 2. <a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#custom-ips-for-storage">More on custom storage IPs</a>.</p>
 <p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234546.png"></p>
@@ -587,8 +591,9 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <p><img src="/img/azurelocal_odin/azure-local-diagram-dark-20260208-2159.svg"></p>
 <p>The outbound connectivity diagram is very nice as well.</p>
 <p><img src="/img/azurelocal_odin/outbound-connectivity-dark-20260208-2202.svg"></p>
-<p>This is another section that the ODIN team took some suggestions and updated the tool.  Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png"></p>
+<p>This is another section that the ODIN team took some suggestions and updated the tool.  Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.
+This is another section that the ODIN team took some suggestions and updated the tool. Last week, all we could do with these reports was print them, download as Word, or download/print as PDF. As of the current release, we can now export to Markdown as well, which rocks for those of us who do nothing but Markdown for documentation these days.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png"></p>
 <p>Over on the side menu to the right, there&rsquo;s a way to export the configuration to .json files.</p>
 <p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20002856.png"></p>
 <p>Finally, the ability to <strong>Generate Cluster ARM Deployment Files</strong>.</p>
@@ -740,7 +745,7 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <td>HTML only</td>
 </tr>
 <tr>
-<td>Draw.IO Export</td>
+<td>Draw.io Export</td>
 <td>Missing</td>
 <td>SVG only</td>
 </tr>
@@ -783,8 +788,9 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Odin for Azure Local is a valuable community tool for planning and learning, but remember its experimental status. The Sizer, Knowledge Base, and Designer work together to provide a comprehensive planning experience—from capacity estimation to connectivity architecture to configuration generation.</p>
 <p>It&rsquo;s not perfect. Generic adapter naming is frustrating, SDN guidance needs clarity, and export capabilities are limited. But it&rsquo;s free, actively maintained (version 0.12.5), and provides a structured approach to Azure Local deployment planning.</p>
-<p>Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.</p>
-<p><strong>Tool URL</strong>: <a href="https://azure.github.io/odinforazurelocal/">azure.github.io/odinforazurelocal</a></p>
+<p>Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
+Use it as one tool in your planning toolkit—not as the sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
+<strong>Tool URL</strong>: <a href="https://azure.github.io/odinforazurelocal/">azure.github.io/odinforazurelocal</a></p>
 <hr>
 <h2 id="resources">Resources</h2>
 <h3 id="odin-links">Odin Links:</h3>
@@ -805,7 +811,8 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <li><a href="https://learn.microsoft.com/azure/azure-local/concepts/security-features">Security Features</a></li>
 </ul>
 <hr>
-<p><em>This review is based on Odin for Azure Local version 0.12.5. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em></p>
+<p><em>This review is based on Odin for Azure Local version 0.12.5. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em>
+<em>This review is based on Odin for Azure Local version 0.14.52. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em></p>
 <!-- 
 SCREENSHOT CHECKLIST - Capture these from the tool:
 
@@ -867,15 +874,9 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
-		<a class="pager__link" href="/post/hyper-renaissance/" rel="prev">
+		<a class="pager__link" href="/post/real-cost-virtualization/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;</span>
-			<p class="pager__title">Welcome to the Hyper-V Renaissance</p>
-		</a>
-	</div>
-	<div class="pager__item pager__item--next">
-		<a class="pager__link" href="/post/management-tools-hyperv/" rel="next">
-			<span class="pager__subtitle">&thinsp;»</span>
-			<p class="pager__title">Management Tools for Production Hyper-V—WAC, SCVMM, System Center</p>
+			<p class="pager__title">The Real Cost of Virtualization</p>
 		</a>
 	</div>
 </nav>
@@ -895,11 +896,11 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/management-tools-hyperv/">Management Tools for Production Hyper-V—WAC, SCVMM, System Center</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-three-paths-off-vmware-part-viii/">Beyond the Cloud: Three Paths Off VMware - Part VIII</a></li>
 		</ul>
 	</div>
 </div>
@@ -970,8 +971,6 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/management/">Management</a></li>
-			<li class="widget__item">
 				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
@@ -1040,13 +1039,11 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/configuration-manager/" title="Configuration Manager">Configuration Manager</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/day-2-operations/" title="Day-2 Operations">Day-2 Operations</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
@@ -1084,7 +1081,6 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/management/" title="Management">Management</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
@@ -1095,7 +1091,6 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/odin/" title="ODIN">ODIN</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/operations-manager/" title="Operations Manager">Operations Manager</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
@@ -1111,7 +1106,6 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/system-center/" title="System Center">System Center</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
