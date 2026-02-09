@@ -1,7 +1,7 @@
 ---
 title: The Myth of 'Old Tech'
 description: Directly confronting the perception that Hyper-V is outdated. Windows Server 2025 brings enterprise-grade capabilities that match or exceed VMware Cloud Foundation's hypervisor in key areas.
-date: 2026-02-09T16:00:00.000Z
+date: 2026-02-09T18:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 3
 series_total: 18
@@ -12,17 +12,17 @@ slug: myth-tech
 lead: Is Hyper-V Dead????
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Windows Server
+   - Virtualization
+   - Windows Server
 tags:
-    - Hyper-V
-    - Windows Server 2025
-    - VMware
-    - VMware Cloud Foundation
-    - VCF
-    - Feature Comparison
-    - Enterprise Virtualization
-lastmod: 2026-02-07T16:19:38.931Z
+   - Hyper-V
+   - Windows Server 2025
+   - VMware
+   - VMware Cloud Foundation
+   - VCF
+   - Feature Comparison
+   - Enterprise Virtualization
+lastmod: 2026-02-09T03:27:02.913Z
 ---
 
 "Hyper-V? That's legacy tech. It can't compete with VMware."

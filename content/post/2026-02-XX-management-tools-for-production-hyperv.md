@@ -1,7 +1,7 @@
 ---
 title: Management Tools for Production Hyper-V—WAC, SCVMM, System Center
 description: Practical guide to selecting and using management tools for Hyper-V at scale. Covers Windows Admin Center, SCVMM, and System Center for day-2 operations.
-date: 2026-02-XX
+date: 2026-02-11T05:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 11
 series_total: 19
@@ -26,7 +26,7 @@ tags:
     - Management
     - Day-2 Operations
     - Enterprise IT
-lastmod: 2026-02-06T00:03:19.991Z
+lastmod: 2026-02-09T03:28:50.494Z
 ---
 
 ## Introduction: Why Dedicated Management Tooling Matters in Production
