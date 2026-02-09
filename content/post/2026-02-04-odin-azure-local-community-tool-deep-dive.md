@@ -1,7 +1,7 @@
 ---
 title: "Odin for Azure Local: A Community Tool Deep Dive"
 description: An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about.
-date: 2026-02-05T05:44:32.161Z
+date: 2026-02-09T18:00:00.000Z
 draft: true
 preview: /img/azurelocal_odin/odin-logo.png
 fmContentType: post
@@ -9,16 +9,16 @@ slug: odin-azure-local-community-tool-deep-dive
 lead: The Optimal Deployment and Infrastructure Navigator
 thumbnail: /img/azurelocal_odin/odin-logo.png
 categories:
-    - Azure Local
-    - Community Tools
+  - Azure Local
+  - Community Tools
 tags:
-    - ARM Templates
-    - Azure Local
-    - Community Tools
-    - Deployment Planning
-    - Infrastructure as Code
-    - ODIN
-lastmod: 2026-02-05T06:27:14.022Z
+  - ARM Templates
+  - Azure Local
+  - Community Tools
+  - Deployment Planning
+  - Infrastructure as Code
+  - ODIN
+lastmod: 2026-02-09T03:17:31.917Z
 ---
 
 I'm in the middle of writing [The Hyper-V Renaissance](/post/hyper-v-renaissance)—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It's been consuming most of my writing time, and I've been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
@@ -103,7 +103,9 @@ The tool covers:
 - Security configuration
 - Software Defined Networking options
 
-At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values). The current version is **0.12.5**.
+At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values). 
+
+The current version is **0.14.52**, but when when i first started to write this blog it was written for version 0.12.5.  Since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.
 
 Odin also includes:
 - A **Sizer tool** for estimating cluster capacity based on workloads (Azure Local VMs, AKS Arc clusters, Azure Virtual Desktop)
@@ -292,6 +294,10 @@ I'd love to see Odin expand this approach to other complex topics (storage archi
 
 Last but not least—and what I think is the most important part of Odin—is the **Designer**!
 
+> ***The following section I have tried to keep up to date since I frist started to use Odin.  However the team updating this tool is fixing and updating recommenations very fast and things that we had recommened to change have already been changed.***
+
+
+
 The tool opens with a statement about what Odin is:
 
 > Odin, the Norse god embodying strategic thinking and architecture, is your guide for Azure Local deployments. This Optimal Deployment and Infrastructure Navigator provides a decision tree interface to select an Azure Local deployment type, and instance design using validated architecture and network configuration.
@@ -391,17 +397,20 @@ Normally, people order either Intel or Nvidia network adapters. For Dell, as an 
 
 In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I'm selecting **6 ports**.
 
-*Note: I wish at this point, this section would be split up by network adapter and ports for reasons I'll explain later. Being able to name the adapters would also be helpful.*
-
 Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.
 
-I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE.
+I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE. 
 
+This is one of the areas that the ODIN team quickly updated after some recommendatoins.  Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct.  However since last week this has changeed.
+This is one of the areas that the ODIN team quickly updated after some recommendations. Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct. However, since last week this has changed.
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png)
 
-### Section 08: Network Traffic Intents
+Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments.  This is a very helpful update.
+Now we can actually name the network adapters, which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS, and also the same name that we will use for ARM template deployments or Portal Deployments. This is a very helpful update.
+![](/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png)
 
-This may clear up why I configured 6 ports. Again, by this point whoever is filling this out should have this basic knowledge anyway.
+
+### Section 08: Network Traffic Intents
 
 I'm picking **Custom** for my network traffic intents. [More information on network intents](https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#step-3-determine-network-traffic-intents).
 
@@ -411,26 +420,24 @@ Immediately I see a **NOT SUPPORTED** message pop up:
 
 > At least 2 RDMA-enabled port(s) must be assigned to Storage traffic (SMB). Update Step 07 Port Configuration so RDMA is enabled on the ports used for Storage traffic.
 
-This is expected since I marked Port 1 and Port 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.
+This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.
 
 Next I play the match game of ports with intents:
 
-- **Port 1 and Port 2** → Management intent
-- **Port 3 and Port 5** → Compute intent (on different adapters for HA)
-- **Port 4 and Port 6** → Storage intent (on different adapters for HA)
+- **Embedded NIC 1 and Embedded NIC 2** → Management intent
+- **Slot 3 Port 1 and Slot 6 Port 2** → Compute intent (on different adapters for HA)
+- **Slot 3 Port 2 and Port 6 Port 1** → Storage intent (on different adapters for HA)
 
-This is where having ports aligned with network adapters would come in handy. I know Port 3 and Port 4 are on one network adapter, and Port 5 and Port 6 are on another.
-
-For HA and resiliency, I'll have cabled Port 3 and Port 5 to Switch 00, and Port 4 and Port 6 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch.
-
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20233517.png)
+For HA and resiliency, I'll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.
+For HA and resiliency, I'll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physical cabling, this is important to know.
+![](/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png)
 
 **Why do I use three intents?** In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We've also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.
 
 Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.
 
 The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I'm not sure why Microsoft defaults to 1514.
-
+The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always set my jumbo frames to 9014—I'm not sure why Microsoft defaults to 1514.
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png)
 
 For the storage intent, note the VLAN section. Since we're using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch—basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you'd see 4 storage VLANs: 711, 712, 713, and 714.
@@ -649,7 +656,18 @@ The report is broken into sections:
 - **R3**: Validation Summary
 - **R4**: Decision and Rationale
 
-The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. You can print it, download as Word, or download/print as PDF.
+The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. For example, the diagram for storage is nice.  You can see how the swtiches are mapped to each network intent and which ports below to each network intent.
+
+![](/img/azurelocal_odin/azure-local-diagram-dark-20260208-2159.svg)
+
+The outbound connectivity diagram is very nice as well.
+
+![](/img/azurelocal_odin/outbound-connectivity-dark-20260208-2202.svg)
+
+
+This is another section that the ODIN team took some suggestions and updated the tool.  Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.
+This is another section that the ODIN team took some suggestions and updated the tool. Last week, all we could do with these reports was print them, download as Word, or download/print as PDF. As of the current release, we can now export to Markdown as well, which rocks for those of us who do nothing but Markdown for documentation these days.
+![](/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png)
 
 Over on the side menu to the right, there's a way to export the configuration to .json files.
 
@@ -691,10 +709,11 @@ The generic port naming is frustrating (I really want to see adapters and their 
 
 **Things I'd like to see changed or added:**
 
-1. **Export as Markdown** — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.
-2. **Diagram export as Draw.io or Visio** — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation.
-3. **Network Adapters with port mapping** — Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.
-4. **Network Adapter names** — Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.
+1. **Export as Markdown** -  **Implemented In Recent Release** — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.
+
+2. **Diagram export as Draw.io or Visio** — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (**Coming Soon!**)
+3. **Network Adapters with port mapping** — **Implemented In Recent Release** -  Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.
+4. **Network Adapter names** — **Implemented In Recent Release**  - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.
 5. **ARM template needs more work** — The ARM template export is nice, but there's still a lot of manual work to do after export. More complete templates or better placeholders would help.
 
 ---
@@ -720,8 +739,8 @@ The generic port naming is frustrating (I really want to see adapters and their 
 | Private Endpoints | Limited | Arc Resource Bridge not supported |
 | SDN Features | Limited | Only 2 of 5 with Arc-managed SDN |
 | **Wishlist** |  |  |
-| Markdown Export | Missing | HTML only |
-| Draw.IO Export | Missing | SVG only |
+| Markdown Export | Completed | HTML only | 
+| Draw.io Export | Missing | SVG only |
 | Full ARM Templates | Missing | Parameters only, no CI/CD pipelines |
 | REST API | Missing | Not publicly documented |
 
@@ -756,7 +775,7 @@ Odin for Azure Local is a valuable community tool for planning and learning, but
 It's not perfect. Generic adapter naming is frustrating, SDN guidance needs clarity, and export capabilities are limited. But it's free, actively maintained (version 0.12.5), and provides a structured approach to Azure Local deployment planning.
 
 Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
-
+Use it as one tool in your planning toolkit—not as the sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
 **Tool URL**: [azure.github.io/odinforazurelocal](https://azure.github.io/odinforazurelocal/)
 
 ---
@@ -781,7 +800,7 @@ Use it as one tool in your planning toolkit—not as sole source of truth, but a
 ---
 
 *This review is based on Odin for Azure Local version 0.12.5. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.*
-
+*This review is based on Odin for Azure Local version 0.14.52. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.*
 <!-- 
 SCREENSHOT CHECKLIST - Capture these from the tool:
 

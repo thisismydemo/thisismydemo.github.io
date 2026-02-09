@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2026-02-05T05:44:32+00:00">
-    <meta property="article:modified_time" content="2026-02-05T06:27:14+00:00">
+    <meta property="article:modified_time" content="2026-02-09T03:10:22+00:00">
     <meta property="article:tag" content="ARM Templates">
     <meta property="article:tag" content="Azure Local">
     <meta property="article:tag" content="Community Tools">
@@ -79,7 +79,7 @@
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-05T05:44:32Z">February 05, 2026</time>
-	<time class="meta__text" datetime="2026-02-05T06:27:14Z">(: February 05, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
+	<time class="meta__text" datetime="2026-02-09T03:10:22Z">(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
 	</span>
 </div></div>
 		</header>
@@ -172,7 +172,8 @@
 <li>Security configuration</li>
 <li>Software Defined Networking options</li>
 </ul>
-<p>At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values). The current version is <strong>0.12.5</strong>.</p>
+<p>At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values).</p>
+<p>The current version is <strong>0.12.5</strong> when i first started to write this blog, but since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.  As of the time I will publish this blog, the version is now 0.14.52.</p>
 <p>Odin also includes:</p>
 <ul>
 <li>A <strong>Sizer tool</strong> for estimating cluster capacity based on workloads (Azure Local VMs, AKS Arc clusters, Azure Virtual Desktop)</li>
@@ -321,6 +322,9 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <hr>
 <h2 id="odin-designer-main-configuration-wizard">Odin Designer (Main Configuration Wizard)</h2>
 <p>Last but not least—and what I think is the most important part of Odin—is the <strong>Designer</strong>!</p>
+<blockquote>
+<p><em><strong>The following section I have tried to keep up to date since I frist started to use Odin.  However the team updating this tool is fixing and updating recommenations very fast and things that we had recommened to change have already been changed.</strong></em></p>
+</blockquote>
 <p>The tool opens with a statement about what Odin is:</p>
 <blockquote>
 <p>Odin, the Norse god embodying strategic thinking and architecture, is your guide for Azure Local deployments. This Optimal Deployment and Infrastructure Navigator provides a decision tree interface to select an Azure Local deployment type, and instance design using validated architecture and network configuration.</p>
@@ -385,28 +389,28 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <p>There&rsquo;s a lot to this decision that one should make before even ordering the hardware.</p>
 <p>Normally, people order either Intel or Nvidia network adapters. For Dell, as an example, all my nodes come with two Nvidia ConnectX-6 network adapters (the ones that support 100 Gb). Each network adapter has 2 ports. My Dells also come with a Broadcom network adapter with two ports at 1 Gb.</p>
 <p>In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I&rsquo;m selecting <strong>6 ports</strong>.</p>
-<p><em>Note: I wish at this point, this section would be split up by network adapter and ports for reasons I&rsquo;ll explain later. Being able to name the adapters would also be helpful.</em></p>
 <p>Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.</p>
 <p>I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE.</p>
+<p>This is one of the areas that the ODIN team quickly updated after some recommendatoins.  Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct.  However since last week this has changeed.</p>
 <p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png"></p>
+<p>Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments.  This is a very helpful update.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png"></p>
 <h3 id="section-08-network-traffic-intents">Section 08: Network Traffic Intents</h3>
-<p>This may clear up why I configured 6 ports. Again, by this point whoever is filling this out should have this basic knowledge anyway.</p>
 <p>I&rsquo;m picking <strong>Custom</strong> for my network traffic intents. <a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#step-3-determine-network-traffic-intents">More information on network intents</a>.</p>
 <p>Immediately I see a <strong>NOT SUPPORTED</strong> message pop up:</p>
 <p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20232945.png"></p>
 <blockquote>
 <p>At least 2 RDMA-enabled port(s) must be assigned to Storage traffic (SMB). Update Step 07 Port Configuration so RDMA is enabled on the ports used for Storage traffic.</p>
 </blockquote>
-<p>This is expected since I marked Port 1 and Port 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.</p>
+<p>This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.</p>
 <p>Next I play the match game of ports with intents:</p>
 <ul>
-<li><strong>Port 1 and Port 2</strong> → Management intent</li>
-<li><strong>Port 3 and Port 5</strong> → Compute intent (on different adapters for HA)</li>
-<li><strong>Port 4 and Port 6</strong> → Storage intent (on different adapters for HA)</li>
+<li><strong>Embedded NIC 1 and Embedded NIC 2</strong> → Management intent</li>
+<li><strong>Slot 3 Port 1 and Slot 6 Port 2</strong> → Compute intent (on different adapters for HA)</li>
+<li><strong>Slot 3 Port 2 and Port 6 Port 1</strong> → Storage intent (on different adapters for HA)</li>
 </ul>
-<p>This is where having ports aligned with network adapters would come in handy. I know Port 3 and Port 4 are on one network adapter, and Port 5 and Port 6 are on another.</p>
-<p>For HA and resiliency, I&rsquo;ll have cabled Port 3 and Port 5 to Switch 00, and Port 4 and Port 6 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch.</p>
-<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20233517.png"></p>
+<p>For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png"></p>
 <p><strong>Why do I use three intents?</strong> In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We&rsquo;ve also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.</p>
 <p>Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.</p>
 <p>The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.</p>
@@ -579,7 +583,12 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <li><strong>R3</strong>: Validation Summary</li>
 <li><strong>R4</strong>: Decision and Rationale</li>
 </ul>
-<p>The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. You can print it, download as Word, or download/print as PDF.</p>
+<p>The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. For example, the diagram for storage is nice.  You can see how the swtiches are mapped to each network intent and which ports below to each network intent.</p>
+<p><img src="/img/azurelocal_odin/azure-local-diagram-dark-20260208-2159.svg"></p>
+<p>The outbound connectivity diagram is very nice as well.</p>
+<p><img src="/img/azurelocal_odin/outbound-connectivity-dark-20260208-2202.svg"></p>
+<p>This is another section that the ODIN team took some suggestions and updated the tool.  Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png"></p>
 <p>Over on the side menu to the right, there&rsquo;s a way to export the configuration to .json files.</p>
 <p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20002856.png"></p>
 <p>Finally, the ability to <strong>Generate Cluster ARM Deployment Files</strong>.</p>
@@ -613,11 +622,21 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 <p>The generic port naming is frustrating (I really want to see adapters and their ports grouped together), and some features are still &ldquo;coming soon.&rdquo; But the structured approach, the helpful comparison buttons, and the quality of the generated documentation make this a tool worth using.</p>
 <p><strong>Things I&rsquo;d like to see changed or added:</strong></p>
 <ol>
-<li><strong>Export as Markdown</strong> — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.</li>
-<li><strong>Diagram export as Draw.io or Visio</strong> — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation.</li>
-<li><strong>Network Adapters with port mapping</strong> — Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.</li>
-<li><strong>Network Adapter names</strong> — Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.</li>
-<li><strong>ARM template needs more work</strong> — The ARM template export is nice, but there&rsquo;s still a lot of manual work to do after export. More complete templates or better placeholders would help.</li>
+<li>
+<p><strong>Export as Markdown</strong> -  <strong>Implemented In Recent Release</strong> — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.</p>
+</li>
+<li>
+<p><strong>Diagram export as Draw.io or Visio</strong> — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (<strong>Coming Soon!</strong>)</p>
+</li>
+<li>
+<p><strong>Network Adapters with port mapping</strong> — <strong>Implemented In Recent Release</strong> -  Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.</p>
+</li>
+<li>
+<p><strong>Network Adapter names</strong> — <strong>Implemented In Recent Release</strong>  - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.</p>
+</li>
+<li>
+<p><strong>ARM template needs more work</strong> — The ARM template export is nice, but there&rsquo;s still a lot of manual work to do after export. More complete templates or better placeholders would help.</p>
+</li>
 </ol>
 <hr>
 <h2 id="summary-strengths-gaps--wishlist">Summary: Strengths, Gaps &amp; Wishlist</h2>
@@ -717,7 +736,7 @@ Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
 </tr>
 <tr>
 <td>Markdown Export</td>
-<td>Missing</td>
+<td>Completed</td>
 <td>HTML only</td>
 </tr>
 <tr>
@@ -876,11 +895,11 @@ SCREENSHOT CHECKLIST - Capture these from the tool:
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/management-tools-hyperv/">Management Tools for Production Hyper-V—WAC, SCVMM, System Center</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-three-paths-off-vmware-part-viii/">Beyond the Cloud: Three Paths Off VMware - Part VIII</a></li>
 		</ul>
 	</div>
 </div>

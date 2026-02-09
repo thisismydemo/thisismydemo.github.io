@@ -1,26 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Migration on This Is My Demo</title>
-    <link>http://thisismydemo.cloud/tags/migration/</link>
-    <description>Recent content in Migration on This Is My Demo</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 06 Feb 2026 22:43:48 +0000</lastBuildDate>
-    <atom:link href="http://thisismydemo.cloud/tags/migration/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Welcome to the Hyper-V Renaissance</title>
-      <link>http://thisismydemo.cloud/post/hyper-renaissance/</link>
-      <pubDate>Wed, 04 Feb 2026 05:14:22 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/hyper-renaissance/</guid>
-      <description>Introduction A Perfect Storm Creates Opportunity If you&amp;rsquo;ve been watching the virtualization market over the past eighteen months, you&amp;rsquo;ve witnessed something extraordinary: a once-stable industry thrown into chaos by a single acquisition. When Broadcom completed its $69 billion purchase of VMware in November 2023, few anticipated how dramatically—and rapidly—the landscape would shift. What followed wasn&amp;rsquo;t just a pricing adjustment; it was a fundamental restructuring that has sent shockwaves through data centers worldwide.</description>
-    </item>
-    <item>
-      <title>VMware vSphere to Azure Local: Operator Feature Mapping</title>
-      <link>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</link>
-      <pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate>
-      <guid>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid>
-      <description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.&#xA;This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Migration on This Is My Demo</title><link>http://thisismydemo.cloud/tags/migration/</link><description>Recent content in Migration on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 06 Feb 2026 22:43:48 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/migration/index.xml" rel="self" type="application/rss+xml"/><item><title>Welcome to the Hyper-V Renaissance</title><link>http://thisismydemo.cloud/post/hyper-renaissance/</link><pubDate>Wed, 04 Feb 2026 05:14:22 +0000</pubDate><guid>http://thisismydemo.cloud/post/hyper-renaissance/</guid><description>Introduction A Perfect Storm Creates Opportunity If you&amp;rsquo;ve been watching the virtualization market over the past eighteen months, you&amp;rsquo;ve witnessed something extraordinary: a once-stable industry thrown into chaos by a single acquisition. When Broadcom completed its $69 billion purchase of VMware in November 2023, few anticipated how dramatically—and rapidly—the landscape would shift. What followed wasn&amp;rsquo;t just a pricing adjustment; it was a fundamental restructuring that has sent shockwaves through data centers worldwide.</description></item><item><title>VMware vSphere to Azure Local: Operator Feature Mapping</title><link>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</link><pubDate>Tue, 29 Jul 2025 14:00:00 +0000</pubDate><guid>http://thisismydemo.cloud/post/vmware-vsphere-vs-azure-local-feature-comparison/</guid><description>From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.
+This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</description></item></channel></rss>
