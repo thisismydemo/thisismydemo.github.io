@@ -1,131 +1,1174 @@
-<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Odin for Azure Local: A Community Tool Deep Dive - This Is My Demo</title>
-<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about."><meta property="og:url" content="http://thisismydemo.cloud/post/odin-azure-local-community-tool-deep-dive/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Odin for Azure Local: A Community Tool Deep Dive"><meta property="og:description" content="An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2026-02-09T15:00:00+00:00"><meta property="article:modified_time" content="2026-02-09T18:07:08+00:00"><meta property="article:tag" content="ARM Templates"><meta property="article:tag" content="Azure Local"><meta property="article:tag" content="Community Tools"><meta property="article:tag" content="Deployment Planning"><meta property="article:tag" content="Infrastructure as Code"><meta property="article:tag" content="ODIN"><meta name=twitter:card content="summary"><meta name=twitter:title content="Odin for Azure Local: A Community Tool Deep Dive"><meta name=twitter:description content="An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Odin for Azure Local: A Community Tool Deep Dive</h1><p class=post__lead>The Optimal Deployment and Infrastructure Navigator</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2026-02-09T15:00:00Z>February 09, 2026</time>
-<time class=meta__text datetime=2026-02-09T18:07:08Z>(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-local/ rel=category>Azure Local</a>, <a class=meta__link href=/categories/community-tools/ rel=category>Community Tools</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/azurelocal_odin/odin-logo.png alt="Odin for Azure Local: A Community Tool Deep Dive"></figure><div class="content post__content clearfix"><p>I&rsquo;m in the middle of writing <a href=/post/hyper-v-renaissance>The Hyper-V Renaissance</a>—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It&rsquo;s been consuming most of my writing time, and I&rsquo;ve been heads-down on TCO comparisons, cluster builds, and PowerShell automation.</p><p>But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.</p><p>There&rsquo;s a new community tool for Azure Local that&rsquo;s worth your attention. It&rsquo;s called <strong>Odin</strong>—the &ldquo;<strong>O</strong>ptimal <strong>D</strong>eployment and <strong>I</strong>nfrastructure <strong>N</strong>avigator&rdquo;—and it&rsquo;s hosted right on Microsoft&rsquo;s GitHub. Before you get too excited, let me set expectations: this tool comes with a clear disclaimer that it&rsquo;s provided &ldquo;as-is, without Microsoft support.&rdquo; It&rsquo;s experimental.</p><p>But it&rsquo;s also genuinely useful, and it reveals some interesting things about where Azure Local is headed.</p><p>I&rsquo;ve spent some time clicking through every option, and I want to share what I found—the good, the gaps, and the &ldquo;coming soon&rdquo; features that hint at Microsoft&rsquo;s roadmap. Then it&rsquo;s back to the Hyper-V series.</p><p><strong>Tool URL</strong>: <a href=https://azure.github.io/odinforazurelocal/>azure.github.io/odinforazurelocal</a></p><hr><h2 id=table-of-contents>Table of Contents</h2><ul><li><a href=/post/odin-azure-local-community-tool-deep-dive/#table-of-contents>Table of Contents</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#what-is-odin-for-azure-local>What Is Odin for Azure Local?</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#the-three-pillars-of-odin>The Three Pillars of Odin</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#odin-sizer-tool>Odin Sizer Tool</a><ul><li><a href=/post/odin-azure-local-community-tool-deep-dive/#first-impressions--inputs>First Impressions & Inputs</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#workload-scenario-section>Workload Scenario Section</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#sizing-notes--observations>Sizing Notes & Observations</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#room-for-growth--community-momentum>Room for Growth & Community Momentum</a></li></ul></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#odin-knowledge>Odin Knowledge</a><ul><li><a href=/post/odin-azure-local-community-tool-deep-dive/#what-youll-learn>What You&rsquo;ll Learn</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#sidebar-navigation>Sidebar Navigation</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#public-path-vs-private-path-the-core-decision>Public Path vs. Private Path: The Core Decision</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#arc-gateway-benefits>Arc Gateway Benefits</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#private-endpoints-deep-dive>Private Endpoints Deep Dive</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#configuration-scripts>Configuration Scripts</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#my-take>My Take</a></li></ul></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#odin-designer-main-configuration-wizard>Odin Designer (Main Configuration Wizard)</a><ul><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-01-deployment-type>Section 01: Deployment Type</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-02-azure-cloud>Section 02: Azure Cloud</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-03-region>Section 03: Region</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-04-cluster-configuration>Section 04: Cluster Configuration</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-05-cluster-size>Section 05: Cluster Size</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-055-cloud-witness>Section 05.5: Cloud Witness</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-06-storage-connectivity>Section 06: Storage Connectivity</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-07-network-adapter-ports>Section 07: Network Adapter Ports</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-08-network-traffic-intents>Section 08: Network Traffic Intents</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-09-outbound-connectivity>Section 09: Outbound Connectivity</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-10-arc-gateway>Section 10: Arc Gateway</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-11-proxy-configuration>Section 11: Proxy Configuration</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-12-private-endpoints>Section 12: Private Endpoints</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-13-management-connectivity>Section 13: Management Connectivity</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-14-management-vlan>Section 14: Management VLAN</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-15-infrastructure-network>Section 15: Infrastructure Network</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-16-storage-pool-configuration>Section 16: Storage Pool Configuration</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-17-active-directory>Section 17: Active Directory</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-18-security-configuration>Section 18: Security Configuration</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#section-19-software-defined-networking>Section 19: Software Defined Networking</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#generating-reports-and-arm-templates>Generating Reports and ARM Templates</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#designer-final-thoughts>Designer: Final Thoughts</a></li></ul></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#summary-strengths-gaps--wishlist>Summary: Strengths, Gaps & Wishlist</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#who-should-use-odin>Who Should Use Odin?</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#conclusion>Conclusion</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#resources>Resources</a><ul><li><a href=/post/odin-azure-local-community-tool-deep-dive/#odin-links>Odin Links:</a></li><li><a href=/post/odin-azure-local-community-tool-deep-dive/#microsoft-documentation>Microsoft Documentation:</a></li></ul></li></ul><hr><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20205904.png></p><h2 id=what-is-odin-for-azure-local>What Is Odin for Azure Local?</h2><p>Odin is a browser-based wizard that walks you through the decisions required to configure an Azure Local deployment. It&rsquo;s a decision tree—you make selections, and it guides you through the implications of those choices.</p><p>The tool covers:</p><ul><li>Deployment type (Hyperconverged, Multi-Rack, Disconnected, M365 Local)</li><li>Azure cloud and region selection</li><li>Cluster configuration and sizing</li><li>Storage connectivity options</li><li>Network adapter and traffic intent configuration</li><li>Outbound connectivity and proxy settings</li><li>Identity (Active Directory or Local Identity with Key Vault)</li><li>Security configuration</li><li>Software Defined Networking options</li></ul><p>At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values).</p><p>The current version is <strong>0.14.52</strong>, but when when i first started to write this blog it was written for version 0.12.5. Since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.</p><p>Odin also includes:</p><ul><li>A <strong>Sizer tool</strong> for estimating cluster capacity based on workloads (Azure Local VMs, AKS Arc clusters, Azure Virtual Desktop)</li><li>A <strong>Knowledge base</strong> with in-depth guidance on outbound connectivity, Arc Gateway, and private endpoints</li></ul><p>As an open-source, community-built tool hosted on GitHub (<code>https://github.com/azure/odinforazurelocal</code>), Odin comes with a clear disclaimer: it&rsquo;s provided &ldquo;as-is, without Microsoft support&rdquo; and is experimental. However, it&rsquo;s actively maintained and helps IT architects validate cluster designs and accelerate Azure Local learning.</p><hr><h2 id=the-three-pillars-of-odin>The Three Pillars of Odin</h2><p>Odin is built around three interconnected tools that address different phases of Azure Local planning:</p><ol><li><strong>Designer</strong> — The main configuration wizard that generates deployment parameters and documentation</li><li><strong>Knowledge Base</strong> — Deep-dive documentation on connectivity, networking, and architecture decisions</li><li><strong>Sizer Tool</strong> — Capacity planning and workload estimation before you buy hardware</li></ol><p>Each tool can be used independently, but they work best together: use the Sizer to understand your capacity needs, reference the Knowledge Base when you hit complex networking decisions, and run through the Designer to generate your baseline configuration. Let&rsquo;s look at each one.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20210010.png></p><hr><h2 id=odin-sizer-tool>Odin Sizer Tool</h2><p><strong>Preview Release:</strong> This tool helps you estimate Azure Local cluster requirements based on workload scenarios. Results are estimates and should be validated with your hardware vendor.</p><p>I&rsquo;m genuinely excited to see a community-driven sizing tool for Azure Local! Odin&rsquo;s Sizer is a fresh step in the right direction—making it easier for architects and engineers to get a quick sense of what their clusters might need, even if it&rsquo;s still a work in progress.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20210102.png></p><h3 id=first-impressions--inputs>First Impressions & Inputs</h3><p>The Sizer starts with the basics, just like any good sizing tool:</p><ul><li>Number of nodes</li><li>Cluster type (Standard Cluster or Rack Aware Cluster—just hit GA in January!)</li><li>Storage resiliency (Two-way or Three-way mirror)</li></ul><p>One thing I immediately noticed: there&rsquo;s no way to specify the number of disks per node, disk type (NVMe, SSD, etc.), or disk size. Maybe those options appear later, but as of now, storage input is pretty limited. This isn&rsquo;t a full Storage Spaces Direct sizing tool—it&rsquo;s focused on workload sizing, not hardware detail.</p><h3 id=workload-scenario-section>Workload Scenario Section</h3><p>Next up is the workload scenario section, where you add the workloads you want to run. This is where Odin Sizer really shines for quick planning:</p><ul><li><strong>Azure Local VMs</strong>: Inputs for workload name, vCPUs per VM, memory per VM (GB), storage per VM (GB), and number of VMs.</li><li><strong>Azure Virtual Desktop (AVD)</strong>: Choose a user profile (Light, Medium, Power), number of users, and see the per-profile specs (vCPUs, memory, storage).</li><li><strong>AKS Arc Clusters</strong>: Name your workload, set the number of clusters, control plane node count/vCPUs/memory, and work node count/vCPUs/memory/storage.</li></ul><p>Here&rsquo;s how I tested it:</p><p><strong>Scenario 1: 2-node Standard Cluster, Two-way Mirror</strong></p><ul><li>Nodes: 2</li><li>Cluster type: Standard</li><li>Storage resiliency: Two-way mirror</li></ul><p><strong>Azure Local VMs</strong></p><ul><li>4 vCPUs per VM</li><li>16 GB memory per VM</li><li>100 GB storage per VM</li><li>10 VMs</li></ul><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20223647.png></p><p><strong>Azure Virtual Desktop</strong></p><ul><li>Workload: Azure Virtual Desktop</li><li>User profile: Power Users</li><li>Number of users: 50</li><li>(Profile specs: 2 vCPUs/user, 8 GB RAM/user, 80 GB storage/user)</li></ul><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20223706.png></p><p><strong>AKS Arc Clusters</strong></p><ul><li>Workload: AKS Arc Cluster</li><li>Number of clusters: 5</li><li>Control plane: 3 nodes, 4 vCPUs, 8 GB RAM per node</li><li>Work nodes: 3 per cluster, 8 vCPUs, 16 GB RAM, 200 GB storage per node</li></ul><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20223512.png></p><p>As you add each scenario, the requirements summary and graphs update in real time—very handy for visualizing the impact of your choices.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20223534.png></p><h3 id=sizing-notes--observations>Sizing Notes & Observations</h3><p>The tool provides some helpful notes at the bottom:</p><blockquote><p>N+1 capacity: Requirements calculated assuming 1 node is available during maintenance
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Odin for Azure Local: A Community Tool Deep Dive - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="An in-depth review of Microsoft&#39;s community-built Azure Local configuration wizard—what works, what&#39;s coming, and the gaps you need to know about.">
+		<meta property="og:url" content="http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Odin for Azure Local: A Community Tool Deep Dive">
+  <meta property="og:description" content="An in-depth review of Microsoft&#39;s community-built Azure Local configuration wizard—what works, what&#39;s coming, and the gaps you need to know about.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-02-09T15:00:00+00:00">
+    <meta property="article:modified_time" content="2026-02-09T18:07:08+00:00">
+    <meta property="article:tag" content="ARM Templates">
+    <meta property="article:tag" content="Azure Local">
+    <meta property="article:tag" content="Community Tools">
+    <meta property="article:tag" content="Deployment Planning">
+    <meta property="article:tag" content="Infrastructure as Code">
+    <meta property="article:tag" content="ODIN">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Odin for Azure Local: A Community Tool Deep Dive">
+  <meta name="twitter:description" content="An in-depth review of Microsoft&#39;s community-built Azure Local configuration wizard—what works, what&#39;s coming, and the gaps you need to know about.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Odin for Azure Local: A Community Tool Deep Dive</h1>
+			<p class="post__lead">The Optimal Deployment and Infrastructure Navigator</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-09T15:00:00Z">February 09, 2026</time>
+	<time class="meta__text" datetime="2026-02-09T18:07:08Z">(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/azurelocal_odin/odin-logo.png" alt="Odin for Azure Local: A Community Tool Deep Dive">
+		
+	</figure><div class="content post__content clearfix">
+			<p>I&rsquo;m in the middle of writing <a href="/post/hyper-v-renaissance">The Hyper-V Renaissance</a>—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It&rsquo;s been consuming most of my writing time, and I&rsquo;ve been heads-down on TCO comparisons, cluster builds, and PowerShell automation.</p>
+<p>But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.</p>
+<p>There&rsquo;s a new community tool for Azure Local that&rsquo;s worth your attention. It&rsquo;s called <strong>Odin</strong>—the &ldquo;<strong>O</strong>ptimal <strong>D</strong>eployment and <strong>I</strong>nfrastructure <strong>N</strong>avigator&rdquo;—and it&rsquo;s hosted right on Microsoft&rsquo;s GitHub. Before you get too excited, let me set expectations: this tool comes with a clear disclaimer that it&rsquo;s provided &ldquo;as-is, without Microsoft support.&rdquo; It&rsquo;s experimental.</p>
+<p>But it&rsquo;s also genuinely useful, and it reveals some interesting things about where Azure Local is headed.</p>
+<p>I&rsquo;ve spent some time clicking through every option, and I want to share what I found—the good, the gaps, and the &ldquo;coming soon&rdquo; features that hint at Microsoft&rsquo;s roadmap. Then it&rsquo;s back to the Hyper-V series.</p>
+<p><strong>Tool URL</strong>: <a href="https://azure.github.io/odinforazurelocal/">azure.github.io/odinforazurelocal</a></p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#table-of-contents">Table of Contents</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#what-is-odin-for-azure-local">What Is Odin for Azure Local?</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#the-three-pillars-of-odin">The Three Pillars of Odin</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#odin-sizer-tool">Odin Sizer Tool</a>
+<ul>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#first-impressions--inputs">First Impressions &amp; Inputs</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#workload-scenario-section">Workload Scenario Section</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#sizing-notes--observations">Sizing Notes &amp; Observations</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#room-for-growth--community-momentum">Room for Growth &amp; Community Momentum</a></li>
+</ul>
+</li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#odin-knowledge">Odin Knowledge</a>
+<ul>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#what-youll-learn">What You&rsquo;ll Learn</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#sidebar-navigation">Sidebar Navigation</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#public-path-vs-private-path-the-core-decision">Public Path vs. Private Path: The Core Decision</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#arc-gateway-benefits">Arc Gateway Benefits</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#private-endpoints-deep-dive">Private Endpoints Deep Dive</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#configuration-scripts">Configuration Scripts</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#my-take">My Take</a></li>
+</ul>
+</li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#odin-designer-main-configuration-wizard">Odin Designer (Main Configuration Wizard)</a>
+<ul>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-01-deployment-type">Section 01: Deployment Type</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-02-azure-cloud">Section 02: Azure Cloud</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-03-region">Section 03: Region</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-04-cluster-configuration">Section 04: Cluster Configuration</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-05-cluster-size">Section 05: Cluster Size</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-055-cloud-witness">Section 05.5: Cloud Witness</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-06-storage-connectivity">Section 06: Storage Connectivity</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-07-network-adapter-ports">Section 07: Network Adapter Ports</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-08-network-traffic-intents">Section 08: Network Traffic Intents</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-09-outbound-connectivity">Section 09: Outbound Connectivity</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-10-arc-gateway">Section 10: Arc Gateway</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-11-proxy-configuration">Section 11: Proxy Configuration</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-12-private-endpoints">Section 12: Private Endpoints</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-13-management-connectivity">Section 13: Management Connectivity</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-14-management-vlan">Section 14: Management VLAN</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-15-infrastructure-network">Section 15: Infrastructure Network</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-16-storage-pool-configuration">Section 16: Storage Pool Configuration</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-17-active-directory">Section 17: Active Directory</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-18-security-configuration">Section 18: Security Configuration</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#section-19-software-defined-networking">Section 19: Software Defined Networking</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#generating-reports-and-arm-templates">Generating Reports and ARM Templates</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#designer-final-thoughts">Designer: Final Thoughts</a></li>
+</ul>
+</li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#summary-strengths-gaps--wishlist">Summary: Strengths, Gaps &amp; Wishlist</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#who-should-use-odin">Who Should Use Odin?</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#conclusion">Conclusion</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#resources">Resources</a>
+<ul>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#odin-links">Odin Links:</a></li>
+<li><a href="/post/odin-azure-local-community-tool-deep-dive/#microsoft-documentation">Microsoft Documentation:</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20205904.png"></p>
+<h2 id="what-is-odin-for-azure-local">What Is Odin for Azure Local?</h2>
+<p>Odin is a browser-based wizard that walks you through the decisions required to configure an Azure Local deployment. It&rsquo;s a decision tree—you make selections, and it guides you through the implications of those choices.</p>
+<p>The tool covers:</p>
+<ul>
+<li>Deployment type (Hyperconverged, Multi-Rack, Disconnected, M365 Local)</li>
+<li>Azure cloud and region selection</li>
+<li>Cluster configuration and sizing</li>
+<li>Storage connectivity options</li>
+<li>Network adapter and traffic intent configuration</li>
+<li>Outbound connectivity and proxy settings</li>
+<li>Identity (Active Directory or Local Identity with Key Vault)</li>
+<li>Security configuration</li>
+<li>Software Defined Networking options</li>
+</ul>
+<p>At the end, you can preview your cluster configuration, generate a detailed design document explaining the decision logic behind your selections, and export ARM deployment parameters (with placeholders for uncollected values).</p>
+<p>The current version is <strong>0.14.52</strong>, but when when i first started to write this blog it was written for version 0.12.5.  Since then the group that maintains this tool has acatually been very responsive to feed back and even from my oringaial blog to what I will be publishing the Designer part of Odin for Azure Local has changed greatly.</p>
+<p>Odin also includes:</p>
+<ul>
+<li>A <strong>Sizer tool</strong> for estimating cluster capacity based on workloads (Azure Local VMs, AKS Arc clusters, Azure Virtual Desktop)</li>
+<li>A <strong>Knowledge base</strong> with in-depth guidance on outbound connectivity, Arc Gateway, and private endpoints</li>
+</ul>
+<p>As an open-source, community-built tool hosted on GitHub (<code>https://github.com/azure/odinforazurelocal</code>), Odin comes with a clear disclaimer: it&rsquo;s provided &ldquo;as-is, without Microsoft support&rdquo; and is experimental. However, it&rsquo;s actively maintained and helps IT architects validate cluster designs and accelerate Azure Local learning.</p>
+<hr>
+<h2 id="the-three-pillars-of-odin">The Three Pillars of Odin</h2>
+<p>Odin is built around three interconnected tools that address different phases of Azure Local planning:</p>
+<ol>
+<li><strong>Designer</strong> — The main configuration wizard that generates deployment parameters and documentation</li>
+<li><strong>Knowledge Base</strong> — Deep-dive documentation on connectivity, networking, and architecture decisions</li>
+<li><strong>Sizer Tool</strong> — Capacity planning and workload estimation before you buy hardware</li>
+</ol>
+<p>Each tool can be used independently, but they work best together: use the Sizer to understand your capacity needs, reference the Knowledge Base when you hit complex networking decisions, and run through the Designer to generate your baseline configuration. Let&rsquo;s look at each one.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20210010.png"></p>
+<hr>
+<h2 id="odin-sizer-tool">Odin Sizer Tool</h2>
+<p><strong>Preview Release:</strong> This tool helps you estimate Azure Local cluster requirements based on workload scenarios. Results are estimates and should be validated with your hardware vendor.</p>
+<p>I&rsquo;m genuinely excited to see a community-driven sizing tool for Azure Local! Odin&rsquo;s Sizer is a fresh step in the right direction—making it easier for architects and engineers to get a quick sense of what their clusters might need, even if it&rsquo;s still a work in progress.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20210102.png"></p>
+<h3 id="first-impressions--inputs">First Impressions &amp; Inputs</h3>
+<p>The Sizer starts with the basics, just like any good sizing tool:</p>
+<ul>
+<li>Number of nodes</li>
+<li>Cluster type (Standard Cluster or Rack Aware Cluster—just hit GA in January!)</li>
+<li>Storage resiliency (Two-way or Three-way mirror)</li>
+</ul>
+<p>One thing I immediately noticed: there&rsquo;s no way to specify the number of disks per node, disk type (NVMe, SSD, etc.), or disk size. Maybe those options appear later, but as of now, storage input is pretty limited. This isn&rsquo;t a full Storage Spaces Direct sizing tool—it&rsquo;s focused on workload sizing, not hardware detail.</p>
+<h3 id="workload-scenario-section">Workload Scenario Section</h3>
+<p>Next up is the workload scenario section, where you add the workloads you want to run. This is where Odin Sizer really shines for quick planning:</p>
+<ul>
+<li><strong>Azure Local VMs</strong>: Inputs for workload name, vCPUs per VM, memory per VM (GB), storage per VM (GB), and number of VMs.</li>
+<li><strong>Azure Virtual Desktop (AVD)</strong>: Choose a user profile (Light, Medium, Power), number of users, and see the per-profile specs (vCPUs, memory, storage).</li>
+<li><strong>AKS Arc Clusters</strong>: Name your workload, set the number of clusters, control plane node count/vCPUs/memory, and work node count/vCPUs/memory/storage.</li>
+</ul>
+<p>Here&rsquo;s how I tested it:</p>
+<p><strong>Scenario 1: 2-node Standard Cluster, Two-way Mirror</strong></p>
+<ul>
+<li>Nodes: 2</li>
+<li>Cluster type: Standard</li>
+<li>Storage resiliency: Two-way mirror</li>
+</ul>
+<p><strong>Azure Local VMs</strong></p>
+<ul>
+<li>4 vCPUs per VM</li>
+<li>16 GB memory per VM</li>
+<li>100 GB storage per VM</li>
+<li>10 VMs</li>
+</ul>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20223647.png"></p>
+<p><strong>Azure Virtual Desktop</strong></p>
+<ul>
+<li>Workload: Azure Virtual Desktop</li>
+<li>User profile: Power Users</li>
+<li>Number of users: 50</li>
+<li>(Profile specs: 2 vCPUs/user, 8 GB RAM/user, 80 GB storage/user)</li>
+</ul>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20223706.png"></p>
+<p><strong>AKS Arc Clusters</strong></p>
+<ul>
+<li>Workload: AKS Arc Cluster</li>
+<li>Number of clusters: 5</li>
+<li>Control plane: 3 nodes, 4 vCPUs, 8 GB RAM per node</li>
+<li>Work nodes: 3 per cluster, 8 vCPUs, 16 GB RAM, 200 GB storage per node</li>
+</ul>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20223512.png"></p>
+<p>As you add each scenario, the requirements summary and graphs update in real time—very handy for visualizing the impact of your choices.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20223534.png"></p>
+<h3 id="sizing-notes--observations">Sizing Notes &amp; Observations</h3>
+<p>The tool provides some helpful notes at the bottom:</p>
+<blockquote>
+<p>N+1 capacity: Requirements calculated assuming 1 node is available during maintenance
 Storage resiliency: Two-way mirror (2x raw storage)
 vCPU calculations assume 4:1 overcommit ratio
-Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p></blockquote><p>I do wonder if the tool fully accounts for nodes being taken offline for updates, and whether it shows what workloads can run on a single node in a two-node cluster. There&rsquo;s definitely room for more detail and flexibility here, especially for those of us who do a lot of small, 2-node deployments.</p><h3 id=room-for-growth--community-momentum>Room for Growth & Community Momentum</h3><p>Overall, Odin Sizer is a fantastic start! It&rsquo;s not as deep as some vendor tools (like <a href=https://thankful-coast-075a8e20f.1.azurestaticapps.net/>Peter Teeling&rsquo;s Sizing Tool</a>), but it&rsquo;s open, community-driven, and improving fast. I&rsquo;d love to see more storage input options and maybe even some of the features from those more mature tools in the future.</p><p>If you&rsquo;re reading this and want to help, jump in! Community feedback and contributions will make Odin Sizer even better for everyone planning Azure Local deployments.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20225040.png></p><hr><h2 id=odin-knowledge>Odin Knowledge</h2><p>The Knowledge section is Odin&rsquo;s comprehensive documentation hub but here&rsquo;s the key insight: it&rsquo;s currently laser-focused on a single, critical topic. The sidebar is titled <strong>&ldquo;Odin for Azure Local | Outbound Connectivity Guide v1.0&rdquo;</strong>, which tells me this is a deep dive into one of the most complex aspects of Azure Local deployments rather than a broad knowledge base.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20210041.png></p><h3 id=what-youll-learn>What You&rsquo;ll Learn</h3><p>The guide opens with a clear summary of what&rsquo;s covered:</p><ul><li><strong>Architecture Components</strong>: Understanding core components including Azure Local machines, Arc Gateway, proxies, and networking infrastructure</li><li><strong>Traffic Categorization</strong>: Distinguishing between different types of network traffic and their routing paths</li><li><strong>Configuration Steps</strong>: Setting up proxies, firewall rules, and Arc Gateway registration</li><li><strong>Best Practices</strong>: When to use each architecture based on your requirements</li></ul><h3 id=sidebar-navigation>Sidebar Navigation</h3><p>The sidebar breaks down into focused sections:</p><ul><li>Overview</li><li>Architecture Comparison</li><li>When to Use</li><li>Private Endpoints Scenarios</li><li>Reserved Subnets (ARB/AKS)</li><li>Traffic Flows Comparison</li><li>Traffic Categories</li><li>AKS Subnet Requirements</li><li>Configuration</li></ul><h3 id=public-path-vs-private-path-the-core-decision>Public Path vs. Private Path: The Core Decision</h3><p>The heart of this guide is helping you choose between two connectivity architectures:</p><p><strong>Public Path</strong> (4 options available now):</p><ul><li>Traffic routes to Azure via public internet</li><li>Uses on-premises proxy and firewall infrastructure</li><li>Arc Gateway recommended to reduce firewall rules from hundreds to fewer than 30 endpoints</li><li>Options range from no proxy/no Arc Gateway (simplest) to proxy + Arc Gateway (best security)</li></ul><p><strong>Private Path</strong> (coming soon):</p><ul><li>Traffic routes through ExpressRoute or Site-to-Site VPN—no public internet exposure</li><li>Requires Azure Firewall Explicit Proxy hosted in Azure</li><li>Arc Gateway required for HTTPS traffic</li><li>Single validated configuration (no mix-and-match options)</li></ul><p>The guide includes detailed comparison tables, traffic flow diagrams for each step (bypass, HTTP, HTTPS, ARB, AKS, VMs), and clear guidance on when to choose each architecture.</p><h3 id=arc-gateway-benefits>Arc Gateway Benefits</h3><p>One of the standout sections covers why Arc Gateway matters:</p><ul><li><strong>Better Security</strong>: Fewer open connections reduce attack surface; firewall rules drop from hundreds to fewer than 30 endpoints</li><li><strong>Easier Setup</strong>: Leverage existing network infrastructure while Arc Gateway manages Azure connectivity</li><li><strong>Simpler Management</strong>: Fewer endpoints means easier tracking and troubleshooting</li></ul><h3 id=private-endpoints-deep-dive>Private Endpoints Deep Dive</h3><p>The guide goes into excellent detail on Private Endpoints configuration for:</p><ul><li>Azure Key Vault (keep public during deployment, restrict after)</li><li>Azure Storage/Blob (required for 2-node cloud witness)</li><li>Azure Container Registry (no wildcards supported—specific FQDNs required)</li><li>Azure Site Recovery (two routing options with SSL inspection considerations)</li></ul><p>It also warns about reserved IP ranges for Arc Resource Bridge (10.244.0.0/16, 10.96.0.0/12)—if your private endpoints overlap these ranges, traffic will fail.</p><h3 id=configuration-scripts>Configuration Scripts</h3><p>The guide includes ready-to-use PowerShell scripts for all four Public Path registration options, complete with proxy bypass examples and verification commands.</p><h3 id=my-take>My Take</h3><p>Scanning through this Knowledge section, I&rsquo;m impressed by the depth. It&rsquo;s not trying to cover everything—it&rsquo;s doing one topic extremely well. For anyone wrestling with Azure Local networking decisions, especially around Arc Gateway, private connectivity, and firewall rules, this is genuinely useful documentation.</p><p>I&rsquo;d love to see Odin expand this approach to other complex topics (storage architecture, SDN configuration, identity options), but as a focused v1.0 on outbound connectivity, it delivers.</p><hr><h2 id=odin-designer-main-configuration-wizard>Odin Designer (Main Configuration Wizard)</h2><p>Last but not least—and what I think is the most important part of Odin—is the <strong>Designer</strong>!</p><blockquote><p><em><strong>The following section I have tried to keep up to date since I frist started to use Odin. However the team updating this tool is fixing and updating recommenations very fast and things that we had recommened to change have already been changed.</strong></em></p></blockquote><p>The tool opens with a statement about what Odin is:</p><blockquote><p>Odin, the Norse god embodying strategic thinking and architecture, is your guide for Azure Local deployments. This Optimal Deployment and Infrastructure Navigator provides a decision tree interface to select an Azure Local deployment type, and instance design using validated architecture and network configuration.</p></blockquote><p>From my viewpoint—someone who already has a lot of the deployment automated and pretty decent documentation built around design and implementation—I was very impressed with the Designer out of the box. I ran into some UI issues, but those can be fixed. Since this is not fully released and not an official Microsoft product, it&rsquo;s something that can be of use for those just starting their journey with Azure Local.</p><p>That said, whoever uses this tool needs a good understanding and core knowledge of Hyper-V, Storage Spaces Direct, and the basics of what Azure Local is, what Software Defined Networking is, Active Directory, and so on.</p><p><strong>There&rsquo;s also a big disclaimer at the top of the page—please read it!</strong></p><blockquote><p>Disclaimer: This tool is provided as-is, without Microsoft support. Odin is an experimental project that accelerates skills and knowledge ramp up for Azure Local, and helps IT architects validate cluster design configurations.</p></blockquote><p>The Designer is split into sections. On the right side of the page is a progress and configuration summary section that updates as you make your selections. In some ways, this is an Azure Local Planning &ldquo;Choose Your Own Adventure&rdquo; being led by the Norwegian God Odin!</p><p>Let&rsquo;s walk through each section.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20230614.png></p><h3 id=section-01-deployment-type>Section 01: Deployment Type</h3><p>Each option enables other options with various different choices. The deployment types are:</p><ul><li><strong>Hyperconverged</strong>: What we&rsquo;re all used to with Azure Stack HCI, Windows Storage Spaces Direct, vSAN, and now Azure Local. Hyperconverged means compute, storage, and network together.</li><li><strong>Multi-Rack Clusters</strong>: Just went GA in the 2601 release of Azure Local.</li><li><strong>Disconnected</strong>: Air-gapped operation with local management.</li><li><strong>M365 Local</strong>: Microsoft&rsquo;s new sovereign cloud solution.</li></ul><p>For this blog, I&rsquo;m picking <strong>Hyperconverged</strong> as my deployment type.</p><p><em>Note: With each section there are help and information links that are very useful.</em></p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20230631.png></p><h3 id=section-02-azure-cloud>Section 02: Azure Cloud</h3><p>Options include:</p><ul><li>Azure Commercial (Public Cloud)</li><li>Azure Government</li><li>Azure China</li></ul><p>I don&rsquo;t know if Azure Local is even supported in Azure China yet—it may be in Private Preview. Azure Government was announced not long ago but is only in one region at this time. Azure Public only has two US regions available for Azure Local currently.</p><p>I&rsquo;ll pick <strong>Azure Commercial</strong> for Step 2.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20230757.png></p><h3 id=section-03-region>Section 03: Region</h3><p>As soon as I select Azure Commercial, step three becomes active. This is where I pick what region I&rsquo;m placing my Azure Local resources in. I&rsquo;ll choose <strong>South Central US</strong>—the only other US region is East US at this time.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20230832.png></p><h3 id=section-04-cluster-configuration>Section 04: Cluster Configuration</h3><p>Options include:</p><ul><li><strong>Hyperconverged Low Capacity</strong> — <a href=https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2>Still in preview</a></li><li><strong>Hyperconverged</strong> — Standard configuration</li><li><strong>Hyperconverged Rack Aware</strong> — <a href=https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview>Just went GA in build 2601</a></li></ul><p>I&rsquo;m selecting <strong>Hyperconverged</strong>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20231147.png></p><h3 id=section-05-cluster-size>Section 05: Cluster Size</h3><p>For this blog, I&rsquo;m picking <strong>3 nodes</strong>. Most of my clusters have been 2-node deployments, but I wanted to pick 3 nodes because it gives us more options in upcoming steps like witness configuration, mirroring options, and so on.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20231215.png></p><h3 id=section-055-cloud-witness>Section 05.5: Cloud Witness</h3><p>For two nodes, a witness is a must. However, with 3 or more nodes you don&rsquo;t technically have to have a witness. I don&rsquo;t understand why not—in my mind, even a 3-node cluster should have a witness. In fact, my 4-node clusters still use a witness.</p><p>More info on <a href=https://learn.microsoft.com/windows-server/failover-clustering/deploy-quorum-witness>cluster witnesses</a>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20231324.png></p><h3 id=section-06-storage-connectivity>Section 06: Storage Connectivity</h3><p>Here we have a big decision that should have already been made before you even start. Did you buy expensive top-of-rack switches that may be overkill in price just for 2 or 3 node solutions?</p><p>For some people, the cost of 2 top-of-rack switches that meet Microsoft&rsquo;s networking requirements can lead to a big price tag for this project. Hence why you can do <strong>switchless</strong>.</p><p>Switchless doesn&rsquo;t mean you don&rsquo;t need switches—you still need switches for management and compute traffic, but those requirements are not as rigid. Switchless just means the storage is connected on network adapters that are connected directly between nodes and not going through a switch. This is great for 2 or 3 node solutions. Some do it with 4, but more nodes means more network adapters, which means higher cost.</p><p>Something to keep in mind is growth. If you&rsquo;re going to scale out these clusters past 3 nodes, I would stay with storage switched. If you don&rsquo;t and have to grow later, this means a redeployment of your cluster.</p><p>I&rsquo;m going to do <strong>Storage Switched</strong>. Once selected, the step expands to allow ToR Switch Config. The options are single ToR switch or dual ToR switches. <strong>Never go single. Never, never, never.</strong> I&rsquo;ll choose <strong>Dual ToR Switches</strong> for redundancy.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20231941.png></p><h3 id=section-07-network-adapter-ports>Section 07: Network Adapter Ports</h3><p>There&rsquo;s a lot to this decision that one should make before even ordering the hardware.</p><p>Normally, people order either Intel or Nvidia network adapters. For Dell, as an example, all my nodes come with two Nvidia ConnectX-6 network adapters (the ones that support 100 Gb). Each network adapter has 2 ports. My Dells also come with a Broadcom network adapter with two ports at 1 Gb.</p><p>In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I&rsquo;m selecting <strong>6 ports</strong>.</p><p>Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.</p><p>I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE.</p><p>This is one of the areas that the ODIN team quickly updated after some recommendatoins. Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct. However since last week this has changeed.
+Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)</p>
+</blockquote>
+<p>I do wonder if the tool fully accounts for nodes being taken offline for updates, and whether it shows what workloads can run on a single node in a two-node cluster. There&rsquo;s definitely room for more detail and flexibility here, especially for those of us who do a lot of small, 2-node deployments.</p>
+<h3 id="room-for-growth--community-momentum">Room for Growth &amp; Community Momentum</h3>
+<p>Overall, Odin Sizer is a fantastic start! It&rsquo;s not as deep as some vendor tools (like <a href="https://thankful-coast-075a8e20f.1.azurestaticapps.net/">Peter Teeling&rsquo;s Sizing Tool</a>), but it&rsquo;s open, community-driven, and improving fast. I&rsquo;d love to see more storage input options and maybe even some of the features from those more mature tools in the future.</p>
+<p>If you&rsquo;re reading this and want to help, jump in! Community feedback and contributions will make Odin Sizer even better for everyone planning Azure Local deployments.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20225040.png"></p>
+<hr>
+<h2 id="odin-knowledge">Odin Knowledge</h2>
+<p>The Knowledge section is Odin&rsquo;s comprehensive documentation hub but here&rsquo;s the key insight: it&rsquo;s currently laser-focused on a single, critical topic. The sidebar is titled <strong>&ldquo;Odin for Azure Local | Outbound Connectivity Guide v1.0&rdquo;</strong>, which tells me this is a deep dive into one of the most complex aspects of Azure Local deployments rather than a broad knowledge base.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20210041.png"></p>
+<h3 id="what-youll-learn">What You&rsquo;ll Learn</h3>
+<p>The guide opens with a clear summary of what&rsquo;s covered:</p>
+<ul>
+<li><strong>Architecture Components</strong>: Understanding core components including Azure Local machines, Arc Gateway, proxies, and networking infrastructure</li>
+<li><strong>Traffic Categorization</strong>: Distinguishing between different types of network traffic and their routing paths</li>
+<li><strong>Configuration Steps</strong>: Setting up proxies, firewall rules, and Arc Gateway registration</li>
+<li><strong>Best Practices</strong>: When to use each architecture based on your requirements</li>
+</ul>
+<h3 id="sidebar-navigation">Sidebar Navigation</h3>
+<p>The sidebar breaks down into focused sections:</p>
+<ul>
+<li>Overview</li>
+<li>Architecture Comparison</li>
+<li>When to Use</li>
+<li>Private Endpoints Scenarios</li>
+<li>Reserved Subnets (ARB/AKS)</li>
+<li>Traffic Flows Comparison</li>
+<li>Traffic Categories</li>
+<li>AKS Subnet Requirements</li>
+<li>Configuration</li>
+</ul>
+<h3 id="public-path-vs-private-path-the-core-decision">Public Path vs. Private Path: The Core Decision</h3>
+<p>The heart of this guide is helping you choose between two connectivity architectures:</p>
+<p><strong>Public Path</strong> (4 options available now):</p>
+<ul>
+<li>Traffic routes to Azure via public internet</li>
+<li>Uses on-premises proxy and firewall infrastructure</li>
+<li>Arc Gateway recommended to reduce firewall rules from hundreds to fewer than 30 endpoints</li>
+<li>Options range from no proxy/no Arc Gateway (simplest) to proxy + Arc Gateway (best security)</li>
+</ul>
+<p><strong>Private Path</strong> (coming soon):</p>
+<ul>
+<li>Traffic routes through ExpressRoute or Site-to-Site VPN—no public internet exposure</li>
+<li>Requires Azure Firewall Explicit Proxy hosted in Azure</li>
+<li>Arc Gateway required for HTTPS traffic</li>
+<li>Single validated configuration (no mix-and-match options)</li>
+</ul>
+<p>The guide includes detailed comparison tables, traffic flow diagrams for each step (bypass, HTTP, HTTPS, ARB, AKS, VMs), and clear guidance on when to choose each architecture.</p>
+<h3 id="arc-gateway-benefits">Arc Gateway Benefits</h3>
+<p>One of the standout sections covers why Arc Gateway matters:</p>
+<ul>
+<li><strong>Better Security</strong>: Fewer open connections reduce attack surface; firewall rules drop from hundreds to fewer than 30 endpoints</li>
+<li><strong>Easier Setup</strong>: Leverage existing network infrastructure while Arc Gateway manages Azure connectivity</li>
+<li><strong>Simpler Management</strong>: Fewer endpoints means easier tracking and troubleshooting</li>
+</ul>
+<h3 id="private-endpoints-deep-dive">Private Endpoints Deep Dive</h3>
+<p>The guide goes into excellent detail on Private Endpoints configuration for:</p>
+<ul>
+<li>Azure Key Vault (keep public during deployment, restrict after)</li>
+<li>Azure Storage/Blob (required for 2-node cloud witness)</li>
+<li>Azure Container Registry (no wildcards supported—specific FQDNs required)</li>
+<li>Azure Site Recovery (two routing options with SSL inspection considerations)</li>
+</ul>
+<p>It also warns about reserved IP ranges for Arc Resource Bridge (10.244.0.0/16, 10.96.0.0/12)—if your private endpoints overlap these ranges, traffic will fail.</p>
+<h3 id="configuration-scripts">Configuration Scripts</h3>
+<p>The guide includes ready-to-use PowerShell scripts for all four Public Path registration options, complete with proxy bypass examples and verification commands.</p>
+<h3 id="my-take">My Take</h3>
+<p>Scanning through this Knowledge section, I&rsquo;m impressed by the depth. It&rsquo;s not trying to cover everything—it&rsquo;s doing one topic extremely well. For anyone wrestling with Azure Local networking decisions, especially around Arc Gateway, private connectivity, and firewall rules, this is genuinely useful documentation.</p>
+<p>I&rsquo;d love to see Odin expand this approach to other complex topics (storage architecture, SDN configuration, identity options), but as a focused v1.0 on outbound connectivity, it delivers.</p>
+<hr>
+<h2 id="odin-designer-main-configuration-wizard">Odin Designer (Main Configuration Wizard)</h2>
+<p>Last but not least—and what I think is the most important part of Odin—is the <strong>Designer</strong>!</p>
+<blockquote>
+<p><em><strong>The following section I have tried to keep up to date since I frist started to use Odin.  However the team updating this tool is fixing and updating recommenations very fast and things that we had recommened to change have already been changed.</strong></em></p>
+</blockquote>
+<p>The tool opens with a statement about what Odin is:</p>
+<blockquote>
+<p>Odin, the Norse god embodying strategic thinking and architecture, is your guide for Azure Local deployments. This Optimal Deployment and Infrastructure Navigator provides a decision tree interface to select an Azure Local deployment type, and instance design using validated architecture and network configuration.</p>
+</blockquote>
+<p>From my viewpoint—someone who already has a lot of the deployment automated and pretty decent documentation built around design and implementation—I was very impressed with the Designer out of the box. I ran into some UI issues, but those can be fixed. Since this is not fully released and not an official Microsoft product, it&rsquo;s something that can be of use for those just starting their journey with Azure Local.</p>
+<p>That said, whoever uses this tool needs a good understanding and core knowledge of Hyper-V, Storage Spaces Direct, and the basics of what Azure Local is, what Software Defined Networking is, Active Directory, and so on.</p>
+<p><strong>There&rsquo;s also a big disclaimer at the top of the page—please read it!</strong></p>
+<blockquote>
+<p>Disclaimer: This tool is provided as-is, without Microsoft support. Odin is an experimental project that accelerates skills and knowledge ramp up for Azure Local, and helps IT architects validate cluster design configurations.</p>
+</blockquote>
+<p>The Designer is split into sections. On the right side of the page is a progress and configuration summary section that updates as you make your selections. In some ways, this is an Azure Local Planning &ldquo;Choose Your Own Adventure&rdquo; being led by the Norwegian God Odin!</p>
+<p>Let&rsquo;s walk through each section.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20230614.png"></p>
+<h3 id="section-01-deployment-type">Section 01: Deployment Type</h3>
+<p>Each option enables other options with various different choices. The deployment types are:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: What we&rsquo;re all used to with Azure Stack HCI, Windows Storage Spaces Direct, vSAN, and now Azure Local. Hyperconverged means compute, storage, and network together.</li>
+<li><strong>Multi-Rack Clusters</strong>: Just went GA in the 2601 release of Azure Local.</li>
+<li><strong>Disconnected</strong>: Air-gapped operation with local management.</li>
+<li><strong>M365 Local</strong>: Microsoft&rsquo;s new sovereign cloud solution.</li>
+</ul>
+<p>For this blog, I&rsquo;m picking <strong>Hyperconverged</strong> as my deployment type.</p>
+<p><em>Note: With each section there are help and information links that are very useful.</em></p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20230631.png"></p>
+<h3 id="section-02-azure-cloud">Section 02: Azure Cloud</h3>
+<p>Options include:</p>
+<ul>
+<li>Azure Commercial (Public Cloud)</li>
+<li>Azure Government</li>
+<li>Azure China</li>
+</ul>
+<p>I don&rsquo;t know if Azure Local is even supported in Azure China yet—it may be in Private Preview. Azure Government was announced not long ago but is only in one region at this time. Azure Public only has two US regions available for Azure Local currently.</p>
+<p>I&rsquo;ll pick <strong>Azure Commercial</strong> for Step 2.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20230757.png"></p>
+<h3 id="section-03-region">Section 03: Region</h3>
+<p>As soon as I select Azure Commercial, step three becomes active. This is where I pick what region I&rsquo;m placing my Azure Local resources in. I&rsquo;ll choose <strong>South Central US</strong>—the only other US region is East US at this time.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20230832.png"></p>
+<h3 id="section-04-cluster-configuration">Section 04: Cluster Configuration</h3>
+<p>Options include:</p>
+<ul>
+<li><strong>Hyperconverged Low Capacity</strong> — <a href="https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2">Still in preview</a></li>
+<li><strong>Hyperconverged</strong> — Standard configuration</li>
+<li><strong>Hyperconverged Rack Aware</strong> — <a href="https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview">Just went GA in build 2601</a></li>
+</ul>
+<p>I&rsquo;m selecting <strong>Hyperconverged</strong>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20231147.png"></p>
+<h3 id="section-05-cluster-size">Section 05: Cluster Size</h3>
+<p>For this blog, I&rsquo;m picking <strong>3 nodes</strong>. Most of my clusters have been 2-node deployments, but I wanted to pick 3 nodes because it gives us more options in upcoming steps like witness configuration, mirroring options, and so on.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20231215.png"></p>
+<h3 id="section-055-cloud-witness">Section 05.5: Cloud Witness</h3>
+<p>For two nodes, a witness is a must. However, with 3 or more nodes you don&rsquo;t technically have to have a witness. I don&rsquo;t understand why not—in my mind, even a 3-node cluster should have a witness. In fact, my 4-node clusters still use a witness.</p>
+<p>More info on <a href="https://learn.microsoft.com/windows-server/failover-clustering/deploy-quorum-witness">cluster witnesses</a>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20231324.png"></p>
+<h3 id="section-06-storage-connectivity">Section 06: Storage Connectivity</h3>
+<p>Here we have a big decision that should have already been made before you even start. Did you buy expensive top-of-rack switches that may be overkill in price just for 2 or 3 node solutions?</p>
+<p>For some people, the cost of 2 top-of-rack switches that meet Microsoft&rsquo;s networking requirements can lead to a big price tag for this project. Hence why you can do <strong>switchless</strong>.</p>
+<p>Switchless doesn&rsquo;t mean you don&rsquo;t need switches—you still need switches for management and compute traffic, but those requirements are not as rigid. Switchless just means the storage is connected on network adapters that are connected directly between nodes and not going through a switch. This is great for 2 or 3 node solutions. Some do it with 4, but more nodes means more network adapters, which means higher cost.</p>
+<p>Something to keep in mind is growth. If you&rsquo;re going to scale out these clusters past 3 nodes, I would stay with storage switched. If you don&rsquo;t and have to grow later, this means a redeployment of your cluster.</p>
+<p>I&rsquo;m going to do <strong>Storage Switched</strong>. Once selected, the step expands to allow ToR Switch Config. The options are single ToR switch or dual ToR switches. <strong>Never go single. Never, never, never.</strong> I&rsquo;ll choose <strong>Dual ToR Switches</strong> for redundancy.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20231941.png"></p>
+<h3 id="section-07-network-adapter-ports">Section 07: Network Adapter Ports</h3>
+<p>There&rsquo;s a lot to this decision that one should make before even ordering the hardware.</p>
+<p>Normally, people order either Intel or Nvidia network adapters. For Dell, as an example, all my nodes come with two Nvidia ConnectX-6 network adapters (the ones that support 100 Gb). Each network adapter has 2 ports. My Dells also come with a Broadcom network adapter with two ports at 1 Gb.</p>
+<p>In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I&rsquo;m selecting <strong>6 ports</strong>.</p>
+<p>Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.</p>
+<p>I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE.</p>
+<p>This is one of the areas that the ODIN team quickly updated after some recommendatoins.  Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct.  However since last week this has changeed.
 This is one of the areas that the ODIN team quickly updated after some recommendations. Last week, there was no way to name your network adapters the way they would show in the OS, so when you would export to ARM or other formats the naming was not correct. However, since last week this has changed.
-<img src=/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png></p><p>Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments. This is a very helpful update.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-04%20233013.png"></p>
+<p>Now we can actually name the nework adapters which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS and also the same name that we will use for ARM template deployments or Portal Deployments.  This is a very helpful update.
 Now we can actually name the network adapters, which is going to be a big help when we create our diagrams and ARM templates later. Now, I can see my 6 network adapters and ports, the names that will show up in the OS, and also the same name that we will use for ARM template deployments or Portal Deployments. This is a very helpful update.
-<img src=/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png></p><h3 id=section-08-network-traffic-intents>Section 08: Network Traffic Intents</h3><p>I&rsquo;m picking <strong>Custom</strong> for my network traffic intents. <a href=https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#step-3-determine-network-traffic-intents>More information on network intents</a>.</p><p>Immediately I see a <strong>NOT SUPPORTED</strong> message pop up:</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20232945.png></p><blockquote><p>At least 2 RDMA-enabled port(s) must be assigned to Storage traffic (SMB). Update Step 07 Port Configuration so RDMA is enabled on the ports used for Storage traffic.</p></blockquote><p>This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.</p><p>Next I play the match game of ports with intents:</p><ul><li><strong>Embedded NIC 1 and Embedded NIC 2</strong> → Management intent</li><li><strong>Slot 3 Port 1 and Slot 6 Port 2</strong> → Compute intent (on different adapters for HA)</li><li><strong>Slot 3 Port 2 and Port 6 Port 1</strong> → Storage intent (on different adapters for HA)</li></ul><p>For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20214555.png"></p>
+<h3 id="section-08-network-traffic-intents">Section 08: Network Traffic Intents</h3>
+<p>I&rsquo;m picking <strong>Custom</strong> for my network traffic intents. <a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#step-3-determine-network-traffic-intents">More information on network intents</a>.</p>
+<p>Immediately I see a <strong>NOT SUPPORTED</strong> message pop up:</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20232945.png"></p>
+<blockquote>
+<p>At least 2 RDMA-enabled port(s) must be assigned to Storage traffic (SMB). Update Step 07 Port Configuration so RDMA is enabled on the ports used for Storage traffic.</p>
+</blockquote>
+<p>This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.</p>
+<p>Next I play the match game of ports with intents:</p>
+<ul>
+<li><strong>Embedded NIC 1 and Embedded NIC 2</strong> → Management intent</li>
+<li><strong>Slot 3 Port 1 and Slot 6 Port 2</strong> → Compute intent (on different adapters for HA)</li>
+<li><strong>Slot 3 Port 2 and Port 6 Port 1</strong> → Storage intent (on different adapters for HA)</li>
+</ul>
+<p>For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physically cabling this is important to know.
 For HA and resiliency, I&rsquo;ll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physical cabling, this is important to know.
-<img src=/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png></p><p><strong>Why do I use three intents?</strong> In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We&rsquo;ve also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.</p><p>Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.</p><p>The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png"></p>
+<p><strong>Why do I use three intents?</strong> In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We&rsquo;ve also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.</p>
+<p>Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.</p>
+<p>The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.
 The last part of Section 08 covers <strong>overrides</strong> on those intents. Management and compute intents don&rsquo;t really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always set my jumbo frames to 9014—I&rsquo;m not sure why Microsoft defaults to 1514.
-<img src=/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png></p><p>For the storage intent, note the VLAN section. Since we&rsquo;re using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch—basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you&rsquo;d see 4 storage VLANs: 711, 712, 713, and 714.</p><p>Last for Section 08 is <strong>Storage Auto IP</strong>. In most cases, leave this default to enabled. There isn&rsquo;t really a need to statically assign the storage port IPs. Microsoft uses 10.71.1.x for port 1 and 10.71.2.x for port 2. <a href=https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#custom-ips-for-storage>More on custom storage IPs</a>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20234546.png></p><p><em>Before we move to Section 09, check the sidebar on the right—our progress is now 40% (8/20 decisions made) and we can see some of the configuration populated.</em></p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20234638.png></p><h3 id=section-09-outbound-connectivity>Section 09: Outbound Connectivity</h3><p>This is a section that in the near future will be important to have made major decisions around. This also is a section where the Knowledge section will help with decision making. <a href=https://learn.microsoft.com/azure/azure-local/concepts/firewall-requirements>More on firewall requirements</a>.</p><p>There&rsquo;s a <strong>Compare</strong> button that compares Public Path vs. Private Path:</p><p><strong>Public Path</strong></p><p><strong>Pros:</strong></p><ul><li>Simpler initial setup</li><li>Lower cost (no ExpressRoute/VPN required)</li><li>Uses existing on-premises proxy/firewall infrastructure</li><li>Multiple configuration options (4 scenarios)</li></ul><p><strong>Cons:</strong></p><ul><li>Requires public internet egress</li><li>Traffic routes through public endpoints</li><li>More firewall rules if not using Arc Gateway</li></ul><p><strong>Use Cases:</strong></p><ul><li>Standard deployments with reliable internet</li><li>Existing on-premises proxy/firewall infrastructure</li><li>Cost-sensitive environments</li><li>Public internet egress acceptable per security policy</li></ul><p><strong>Recommended:</strong> For most deployments with internet connectivity</p><hr><p><strong>Private Path (ExpressRoute)</strong></p><p><strong>Pros:</strong></p><ul><li>Zero public internet exposure</li><li>Traffic stays on private network</li><li>Azure Firewall provides centralized security</li><li>Highest security posture</li><li>Compliance-friendly for regulated industries</li></ul><p><strong>Cons:</strong></p><ul><li>Higher cost (ExpressRoute + Azure Firewall)</li><li>More complex initial setup</li><li>Requires Arc Gateway + Azure Firewall Explicit Proxy</li><li>ExpressRoute or Site-to-Site VPN required</li></ul><p><strong>Use Cases:</strong></p><ul><li>Zero public internet exposure required</li><li>Government, healthcare, financial industries</li><li>Existing ExpressRoute or Site-to-Site VPN</li><li>Regulatory/compliance requirements mandate private connectivity</li></ul><hr><p>For this blog I&rsquo;m selecting <strong>Public Internet</strong>. The Private Connection (ExpressRoute/VPN) option shows &ldquo;Coming Soon—Feature not available yet.&rdquo;</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20235159.png></p><h3 id=section-10-arc-gateway>Section 10: Arc Gateway</h3><p>All my deployments moving forward will use Arc Gateway. At the top of this section is a link to the <a href=https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html>connectivity guide</a> which is in the Knowledge section. There&rsquo;s also a Compare button:</p><p><strong>Arc Gateway Enabled</strong></p><p><strong>Pros:</strong></p><ul><li>Reduces firewall rules from hundreds to fewer than 30 endpoints</li><li>Enhanced security posture</li><li>Simpler firewall management</li><li>Required for Private Path (ExpressRoute)</li></ul><p><strong>Cons:</strong></p><ul><li>Additional Arc Gateway resource required</li><li>Slightly more complex initial setup</li></ul><p><strong>Use Cases:</strong></p><ul><li>Security-focused deployments</li><li>Limited internet egress policies</li><li>Private Path (ExpressRoute) deployments</li><li>Simplified firewall rule management</li></ul><p><strong>Recommended:</strong> Recommended for all deployments</p><hr><p><strong>Arc Gateway Disabled</strong></p><p><strong>Pros:</strong></p><ul><li>Simpler initial configuration</li><li>One less Azure resource to manage</li></ul><p><strong>Cons:</strong></p><ul><li>Hundreds of firewall rules required</li><li>More endpoints to manage and troubleshoot</li><li>Not supported for Private Path (ExpressRoute)</li></ul><p><strong>Use Cases:</strong></p><ul><li>Simple deployments with unrestricted internet</li><li>Testing and development environments</li></ul><p><strong>Recommended:</strong> For simple deployments only</p><hr><p>I use Arc Gateway for all my deployments now. I&rsquo;ll select <strong>Enable</strong>. <a href=https://learn.microsoft.com/azure/azure-local/deploy/deployment-azure-arc-gateway-overview>More on Arc Gateway</a>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20235540.png></p><h3 id=section-11-proxy-configuration>Section 11: Proxy Configuration</h3><p>I&rsquo;ll click <strong>Disable</strong>. This will come into play more once the private connection in Section 09 is released.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20235554.png></p><h3 id=section-12-private-endpoints>Section 12: Private Endpoints</h3><p><a href=https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html#private-endpoints>More information on private endpoints</a> is in the Knowledge section.</p><p>I&rsquo;ll choose <strong>Disabled</strong> for now. Some private endpoints are not yet supported with Azure Local, and the design and configuration for private endpoints needs more thought.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20235752.png></p><h3 id=section-13-management-connectivity>Section 13: Management Connectivity</h3><p>Here we pick static or DHCP-assigned IP addresses for our management network. I use <strong>Static</strong>—always have and won&rsquo;t change. If you choose DHCP, make sure you have a reservation set. You do not want your node IP addresses changing. That is bad!</p><p>When you click Static, it will need the node names and the node IP (CIDR) addresses.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-04%20235956.png></p><h3 id=section-14-management-vlan>Section 14: Management VLAN</h3><p>If you have to assign your network adapters a VLAN, this is where you specify it. In most cases the management VLAN is using 0 and handled by the ports on the switch.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20000253.png></p><h3 id=section-15-infrastructure-network>Section 15: Infrastructure Network</h3><p>This is a range of IPs needed for cluster infrastructure. One IP is used for the cluster IP, then 2 are used by the ARB VM, and the rest are used by the SDN network controller and other infrastructure services.</p><p><em>Note: The first IP in this range will be the cluster IP.</em></p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20000604.png></p><h3 id=section-16-storage-pool-configuration>Section 16: Storage Pool Configuration</h3><p>This is where you tell the deployment to create the infrastructure volume and then a user storage volume for each physical machine. Basically, it creates a Cluster Shared Volume named &ldquo;Infrastructure&rdquo; (about 250 GB), and if you select <strong>Express</strong>, in my 3-node case it will create 3 CSVs with generic names (UserStorage01, 02, 03) across the available storage in your storage pool.</p><p>For some this is good. I don&rsquo;t like this—I prefer to create my own storage after the cluster is deployed, so I&rsquo;ll select <strong>InfraOnly</strong>.</p><p>You also have a choice to keep existing storage, which means if these nodes had been a cluster and you&rsquo;re redeploying for some reason, that data will be preserved.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20000938.png></p><h3 id=section-17-active-directory>Section 17: Active Directory</h3><p>Options:</p><ul><li><strong>Active Directory Domain Services (AD)</strong> — Traditional identity</li><li><strong>Azure Key Vault for Identity (AD-less)</strong> — Local identity provider, still in preview</li></ul><p>I have deployed the Key Vault option and it seems to work. This helps if you have remote sites without AD infrastructure—you still need DNS but no AD.</p><p>For this blog, I&rsquo;ll pick <strong>Active Directory</strong>. Once selected, the section expands asking for:</p><ul><li>Active Directory name (not your Entra ID tenant)</li><li>OU path for cluster resources (LCM account, cluster nodes, cluster object)</li><li>Domain controller IP addresses</li></ul><p><a href=https://learn.microsoft.com/azure/azure-local/deploy/deployment-prep-active-directory#active-directory-preparation-module>More on AD preparation</a>.</p><blockquote><p><strong>Important:</strong> DNS servers cannot be changed after deployment. Ensure the configuration is correct before proceeding.</p></blockquote><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20001545.png></p><h3 id=section-18-security-configuration>Section 18: Security Configuration</h3><p>In most cases, select <strong>Recommended</strong>. I do not—I customize mine.</p><p>Why? Because I don&rsquo;t like WDAC!</p><p><a href=https://learn.microsoft.com/azure/azure-local/concepts/security-features>More on security for Azure Local</a>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20001703.png></p><h3 id=section-19-software-defined-networking>Section 19: Software Defined Networking</h3><p>Most people will select <strong>No SDN</strong> at this point and move on. For this blog, I&rsquo;ll select <strong>Enable SDN</strong>.</p><p>Once enabled, it shows SDN feature options. <a href=https://learn.microsoft.com/azure/azure-local/concepts/sdn-overview>Read about Azure Arc-managed SDN on Azure Local</a>.</p><p>The only two options supported by SDN managed by Azure Arc right now are:</p><ul><li><strong>Logical Networks (LNET)</strong></li><li><strong>Network Security Groups (NSG)</strong></li></ul><p>Once those are selected, click <strong>SDN Managed by Arc</strong>. At this time, do not select &ldquo;SDN managed by on-premises tools.&rdquo;</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20001928.png></p><h3 id=generating-reports-and-arm-templates>Generating Reports and ARM Templates</h3><p>Now we&rsquo;re ready to preview our cluster configuration! This pops up an overview of the config. If &ldquo;Configuration Complete&rdquo; is green at the bottom, click <strong>Generate Report</strong>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20002252.png></p><p>The report is broken into sections:</p><ul><li><strong>R1</strong>: Report metadata</li><li><strong>R2</strong>: Configuration Summary</li><li><strong>R3</strong>: Validation Summary</li><li><strong>R4</strong>: Decision and Rationale</li></ul><p>The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. For example, the diagram for storage is nice. You can see how the swtiches are mapped to each network intent and which ports below to each network intent.</p><p><img src=/img/azurelocal_odin/azure-local-diagram-dark-20260208-2159.svg></p><p>The outbound connectivity diagram is very nice as well.</p><p><img src=/img/azurelocal_odin/outbound-connectivity-dark-20260208-2202.svg></p><p>This is another section that the ODIN team took some suggestions and updated the tool. Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png"></p>
+<p>For the storage intent, note the VLAN section. Since we&rsquo;re using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch—basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you&rsquo;d see 4 storage VLANs: 711, 712, 713, and 714.</p>
+<p>Last for Section 08 is <strong>Storage Auto IP</strong>. In most cases, leave this default to enabled. There isn&rsquo;t really a need to statically assign the storage port IPs. Microsoft uses 10.71.1.x for port 1 and 10.71.2.x for port 2. <a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#custom-ips-for-storage">More on custom storage IPs</a>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234546.png"></p>
+<p><em>Before we move to Section 09, check the sidebar on the right—our progress is now 40% (8/20 decisions made) and we can see some of the configuration populated.</em></p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20234638.png"></p>
+<h3 id="section-09-outbound-connectivity">Section 09: Outbound Connectivity</h3>
+<p>This is a section that in the near future will be important to have made major decisions around. This also is a section where the Knowledge section will help with decision making. <a href="https://learn.microsoft.com/azure/azure-local/concepts/firewall-requirements">More on firewall requirements</a>.</p>
+<p>There&rsquo;s a <strong>Compare</strong> button that compares Public Path vs. Private Path:</p>
+<p><strong>Public Path</strong></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Simpler initial setup</li>
+<li>Lower cost (no ExpressRoute/VPN required)</li>
+<li>Uses existing on-premises proxy/firewall infrastructure</li>
+<li>Multiple configuration options (4 scenarios)</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires public internet egress</li>
+<li>Traffic routes through public endpoints</li>
+<li>More firewall rules if not using Arc Gateway</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Standard deployments with reliable internet</li>
+<li>Existing on-premises proxy/firewall infrastructure</li>
+<li>Cost-sensitive environments</li>
+<li>Public internet egress acceptable per security policy</li>
+</ul>
+<p><strong>Recommended:</strong> For most deployments with internet connectivity</p>
+<hr>
+<p><strong>Private Path (ExpressRoute)</strong></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Zero public internet exposure</li>
+<li>Traffic stays on private network</li>
+<li>Azure Firewall provides centralized security</li>
+<li>Highest security posture</li>
+<li>Compliance-friendly for regulated industries</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Higher cost (ExpressRoute + Azure Firewall)</li>
+<li>More complex initial setup</li>
+<li>Requires Arc Gateway + Azure Firewall Explicit Proxy</li>
+<li>ExpressRoute or Site-to-Site VPN required</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Zero public internet exposure required</li>
+<li>Government, healthcare, financial industries</li>
+<li>Existing ExpressRoute or Site-to-Site VPN</li>
+<li>Regulatory/compliance requirements mandate private connectivity</li>
+</ul>
+<hr>
+<p>For this blog I&rsquo;m selecting <strong>Public Internet</strong>. The Private Connection (ExpressRoute/VPN) option shows &ldquo;Coming Soon—Feature not available yet.&rdquo;</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20235159.png"></p>
+<h3 id="section-10-arc-gateway">Section 10: Arc Gateway</h3>
+<p>All my deployments moving forward will use Arc Gateway. At the top of this section is a link to the <a href="https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html">connectivity guide</a> which is in the Knowledge section. There&rsquo;s also a Compare button:</p>
+<p><strong>Arc Gateway Enabled</strong></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Reduces firewall rules from hundreds to fewer than 30 endpoints</li>
+<li>Enhanced security posture</li>
+<li>Simpler firewall management</li>
+<li>Required for Private Path (ExpressRoute)</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Additional Arc Gateway resource required</li>
+<li>Slightly more complex initial setup</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Security-focused deployments</li>
+<li>Limited internet egress policies</li>
+<li>Private Path (ExpressRoute) deployments</li>
+<li>Simplified firewall rule management</li>
+</ul>
+<p><strong>Recommended:</strong> Recommended for all deployments</p>
+<hr>
+<p><strong>Arc Gateway Disabled</strong></p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Simpler initial configuration</li>
+<li>One less Azure resource to manage</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Hundreds of firewall rules required</li>
+<li>More endpoints to manage and troubleshoot</li>
+<li>Not supported for Private Path (ExpressRoute)</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Simple deployments with unrestricted internet</li>
+<li>Testing and development environments</li>
+</ul>
+<p><strong>Recommended:</strong> For simple deployments only</p>
+<hr>
+<p>I use Arc Gateway for all my deployments now. I&rsquo;ll select <strong>Enable</strong>. <a href="https://learn.microsoft.com/azure/azure-local/deploy/deployment-azure-arc-gateway-overview">More on Arc Gateway</a>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20235540.png"></p>
+<h3 id="section-11-proxy-configuration">Section 11: Proxy Configuration</h3>
+<p>I&rsquo;ll click <strong>Disable</strong>. This will come into play more once the private connection in Section 09 is released.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20235554.png"></p>
+<h3 id="section-12-private-endpoints">Section 12: Private Endpoints</h3>
+<p><a href="https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html#private-endpoints">More information on private endpoints</a> is in the Knowledge section.</p>
+<p>I&rsquo;ll choose <strong>Disabled</strong> for now. Some private endpoints are not yet supported with Azure Local, and the design and configuration for private endpoints needs more thought.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20235752.png"></p>
+<h3 id="section-13-management-connectivity">Section 13: Management Connectivity</h3>
+<p>Here we pick static or DHCP-assigned IP addresses for our management network. I use <strong>Static</strong>—always have and won&rsquo;t change. If you choose DHCP, make sure you have a reservation set. You do not want your node IP addresses changing. That is bad!</p>
+<p>When you click Static, it will need the node names and the node IP (CIDR) addresses.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-04%20235956.png"></p>
+<h3 id="section-14-management-vlan">Section 14: Management VLAN</h3>
+<p>If you have to assign your network adapters a VLAN, this is where you specify it. In most cases the management VLAN is using 0 and handled by the ports on the switch.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20000253.png"></p>
+<h3 id="section-15-infrastructure-network">Section 15: Infrastructure Network</h3>
+<p>This is a range of IPs needed for cluster infrastructure. One IP is used for the cluster IP, then 2 are used by the ARB VM, and the rest are used by the SDN network controller and other infrastructure services.</p>
+<p><em>Note: The first IP in this range will be the cluster IP.</em></p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20000604.png"></p>
+<h3 id="section-16-storage-pool-configuration">Section 16: Storage Pool Configuration</h3>
+<p>This is where you tell the deployment to create the infrastructure volume and then a user storage volume for each physical machine. Basically, it creates a Cluster Shared Volume named &ldquo;Infrastructure&rdquo; (about 250 GB), and if you select <strong>Express</strong>, in my 3-node case it will create 3 CSVs with generic names (UserStorage01, 02, 03) across the available storage in your storage pool.</p>
+<p>For some this is good. I don&rsquo;t like this—I prefer to create my own storage after the cluster is deployed, so I&rsquo;ll select <strong>InfraOnly</strong>.</p>
+<p>You also have a choice to keep existing storage, which means if these nodes had been a cluster and you&rsquo;re redeploying for some reason, that data will be preserved.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20000938.png"></p>
+<h3 id="section-17-active-directory">Section 17: Active Directory</h3>
+<p>Options:</p>
+<ul>
+<li><strong>Active Directory Domain Services (AD)</strong> — Traditional identity</li>
+<li><strong>Azure Key Vault for Identity (AD-less)</strong> — Local identity provider, still in preview</li>
+</ul>
+<p>I have deployed the Key Vault option and it seems to work. This helps if you have remote sites without AD infrastructure—you still need DNS but no AD.</p>
+<p>For this blog, I&rsquo;ll pick <strong>Active Directory</strong>. Once selected, the section expands asking for:</p>
+<ul>
+<li>Active Directory name (not your Entra ID tenant)</li>
+<li>OU path for cluster resources (LCM account, cluster nodes, cluster object)</li>
+<li>Domain controller IP addresses</li>
+</ul>
+<p><a href="https://learn.microsoft.com/azure/azure-local/deploy/deployment-prep-active-directory#active-directory-preparation-module">More on AD preparation</a>.</p>
+<blockquote>
+<p><strong>Important:</strong> DNS servers cannot be changed after deployment. Ensure the configuration is correct before proceeding.</p>
+</blockquote>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20001545.png"></p>
+<h3 id="section-18-security-configuration">Section 18: Security Configuration</h3>
+<p>In most cases, select <strong>Recommended</strong>. I do not—I customize mine.</p>
+<p>Why? Because I don&rsquo;t like WDAC!</p>
+<p><a href="https://learn.microsoft.com/azure/azure-local/concepts/security-features">More on security for Azure Local</a>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20001703.png"></p>
+<h3 id="section-19-software-defined-networking">Section 19: Software Defined Networking</h3>
+<p>Most people will select <strong>No SDN</strong> at this point and move on. For this blog, I&rsquo;ll select <strong>Enable SDN</strong>.</p>
+<p>Once enabled, it shows SDN feature options. <a href="https://learn.microsoft.com/azure/azure-local/concepts/sdn-overview">Read about Azure Arc-managed SDN on Azure Local</a>.</p>
+<p>The only two options supported by SDN managed by Azure Arc right now are:</p>
+<ul>
+<li><strong>Logical Networks (LNET)</strong></li>
+<li><strong>Network Security Groups (NSG)</strong></li>
+</ul>
+<p>Once those are selected, click <strong>SDN Managed by Arc</strong>. At this time, do not select &ldquo;SDN managed by on-premises tools.&rdquo;</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20001928.png"></p>
+<h3 id="generating-reports-and-arm-templates">Generating Reports and ARM Templates</h3>
+<p>Now we&rsquo;re ready to preview our cluster configuration! This pops up an overview of the config. If &ldquo;Configuration Complete&rdquo; is green at the bottom, click <strong>Generate Report</strong>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20002252.png"></p>
+<p>The report is broken into sections:</p>
+<ul>
+<li><strong>R1</strong>: Report metadata</li>
+<li><strong>R2</strong>: Configuration Summary</li>
+<li><strong>R3</strong>: Validation Summary</li>
+<li><strong>R4</strong>: Decision and Rationale</li>
+</ul>
+<p>The report comes with nice detailed diagrams and is very thorough with many links to supporting documentation. The diagrams can be exported as SVG in light or dark mode. For example, the diagram for storage is nice.  You can see how the swtiches are mapped to each network intent and which ports below to each network intent.</p>
+<p><img src="/img/azurelocal_odin/azure-local-diagram-dark-20260208-2159.svg"></p>
+<p>The outbound connectivity diagram is very nice as well.</p>
+<p><img src="/img/azurelocal_odin/outbound-connectivity-dark-20260208-2202.svg"></p>
+<p>This is another section that the ODIN team took some suggestions and updated the tool.  Last week all we could do with these reports where being able print it, download as Word, or download/print as PDF. As of the current release, we can now export to Mark Down as well, which rocks for those of use who do nothing but Mark Down for documenation these days.
 This is another section that the ODIN team took some suggestions and updated the tool. Last week, all we could do with these reports was print them, download as Word, or download/print as PDF. As of the current release, we can now export to Markdown as well, which rocks for those of us who do nothing but Markdown for documentation these days.
-<img src=/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png></p><p>Over on the side menu to the right, there&rsquo;s a way to export the configuration to .json files.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20002856.png></p><p>Finally, the ability to <strong>Generate Cluster ARM Deployment Files</strong>.</p><p><img src=/img/azurelocal_odin/Screenshot%202026-02-05%20002907.png></p><p>When you click the button, another window opens: &ldquo;Odin for Azure Local - ARM Parameters JSON.&rdquo;</p><ul><li><strong>Section A1</strong>: Metadata</li><li><strong>Section A2</strong>: Enter your Tenant ID, Subscription ID, Resource Group, and deployment name</li></ul><p>Section A2 will ask for the following placeholder values:</p><ul><li>Cluster Name</li><li>Key Vault name</li><li>Diagnostic storage account name</li><li>Local admin credentials</li><li>Deployment (LCM) credentials</li><li>HCI resource provider object ID</li><li>Arc node resource IDs</li><li>OU path (optional)</li><li>Custom location name (optional)</li></ul><p>Once entered, click <strong>Update Parameters JSON</strong> and it will update the JSON file that can be seen in Section A5.</p><ul><li><strong>Section A3</strong>: Deploy to Azure button and links to sample ARM templates</li><li><strong>Section A4</strong>: Deployment Script Generation—export PowerShell scripts, Azure CLI scripts, and links to Bicep and Terraform examples</li><li><strong>Section A5</strong>: The Parameter file JSON—copy and paste into VS Code and replace values as needed</li><li><strong>Section A6</strong>: Integration Features—export Azure DevOps Pipeline template, GitHub Actions workflow, and a section about REST API for Automation (coming soon)</li></ul><h3 id=designer-final-thoughts>Designer: Final Thoughts</h3><p>The Designer is the heart of Odin. It walks you through 20 decision points, validates your choices against Microsoft&rsquo;s requirements, and generates documentation and deployment artifacts. For anyone learning Azure Local or validating a design, this is genuinely valuable.</p><p>The generic port naming is frustrating (I really want to see adapters and their ports grouped together), and some features are still &ldquo;coming soon.&rdquo; But the structured approach, the helpful comparison buttons, and the quality of the generated documentation make this a tool worth using.</p><p><strong>Things I&rsquo;d like to see changed or added:</strong></p><ol><li><p><strong>Export as Markdown</strong> - <strong>Implemented In Recent Release</strong> — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.</p></li><li><p><strong>Diagram export as Draw.io or Visio</strong> — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (<strong>Coming Soon!</strong>)</p></li><li><p><strong>Network Adapters with port mapping</strong> — <strong>Implemented In Recent Release</strong> - Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.</p></li><li><p><strong>Network Adapter names</strong> — <strong>Implemented In Recent Release</strong> - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.</p></li><li><p><strong>ARM template needs more work</strong> — The ARM template export is nice, but there&rsquo;s still a lot of manual work to do after export. More complete templates or better placeholders would help.</p></li></ol><hr><h2 id=summary-strengths-gaps--wishlist>Summary: Strengths, Gaps & Wishlist</h2><table><thead><tr><th>Feature</th><th>Status</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Core Tools</strong></td><td></td><td></td></tr><tr><td>Sizer Tool</td><td>Good</td><td>Capacity planning for workloads</td></tr><tr><td>Knowledge Base</td><td>Excellent</td><td>Comprehensive connectivity guidance</td></tr><tr><td>Designer Wizard</td><td>Good</td><td>19-step configuration process</td></tr><tr><td><strong>Strengths</strong></td><td></td><td></td></tr><tr><td>Network Intents</td><td>Excellent</td><td>Drag-and-drop, maps to Network ATC</td></tr><tr><td>Deployment Types</td><td>Good</td><td>Full scenario coverage</td></tr><tr><td>Identity Options</td><td>Good</td><td>AD or Key Vault</td></tr><tr><td>Security Config</td><td>Good</td><td>Secure defaults + customization</td></tr><tr><td>Reporting</td><td>Good</td><td>Design docs with decision logic</td></tr><tr><td><strong>Limitations</strong></td><td></td><td></td></tr><tr><td>Low Capacity Clusters</td><td>Caution</td><td><a href=https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2>Not GA</a>—verify before production</td></tr><tr><td>Network Adapter ID</td><td>Gap</td><td>Generic ports only—maintain your own mapping</td></tr><tr><td>ExpressRoute/VPN</td><td>Coming Soon</td><td>Private connectivity not yet available</td></tr><tr><td>Private Endpoints</td><td>Limited</td><td>Arc Resource Bridge not supported</td></tr><tr><td>SDN Features</td><td>Limited</td><td>Only 2 of 5 with Arc-managed SDN</td></tr><tr><td><strong>Wishlist</strong></td><td></td><td></td></tr><tr><td>Markdown Export</td><td>Completed</td><td>HTML only</td></tr><tr><td>Draw.io Export</td><td>Missing</td><td>SVG only</td></tr><tr><td>Full ARM Templates</td><td>Missing</td><td>Parameters only, no CI/CD pipelines</td></tr><tr><td>REST API</td><td>Missing</td><td>Not publicly documented</td></tr></tbody></table><hr><h2 id=who-should-use-odin>Who Should Use Odin?</h2><p><strong>Valuable for:</strong></p><ul><li>IT architects validating Azure Local design decisions</li><li>Pre-sales engineers building configuration proposals</li><li>Training and enablement teams learning Azure Local</li><li>Documentation efforts requiring baseline architecture</li></ul><p><strong>Not a replacement for:</strong></p><ul><li>Azure Portal deployment workflow</li><li>Hardware compatibility validation</li><li>Production deployment automation</li></ul><p><strong>Tips for success:</strong></p><ul><li>Use Odin early in planning to understand decision points</li><li>Don&rsquo;t rely on non-GA features for production</li><li>Maintain your own hardware mapping documentation</li><li>Verify SDN requirements before selecting features</li><li>Export and supplement generated documentation with your own details</li></ul><hr><h2 id=conclusion>Conclusion</h2><p>Odin for Azure Local is a valuable community tool for planning and learning, but remember its experimental status. The Sizer, Knowledge Base, and Designer work together to provide a comprehensive planning experience—from capacity estimation to connectivity architecture to configuration generation.</p><p>It&rsquo;s not perfect. Generic adapter naming is frustrating, SDN guidance needs clarity, and export capabilities are limited. But it&rsquo;s free, actively maintained (version 0.12.5), and provides a structured approach to Azure Local deployment planning.</p><p>Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
+<img src="/img/azurelocal_odin/Screenshot%202026-02-08%20220508.png"></p>
+<p>Over on the side menu to the right, there&rsquo;s a way to export the configuration to .json files.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20002856.png"></p>
+<p>Finally, the ability to <strong>Generate Cluster ARM Deployment Files</strong>.</p>
+<p><img src="/img/azurelocal_odin/Screenshot%202026-02-05%20002907.png"></p>
+<p>When you click the button, another window opens: &ldquo;Odin for Azure Local - ARM Parameters JSON.&rdquo;</p>
+<ul>
+<li><strong>Section A1</strong>: Metadata</li>
+<li><strong>Section A2</strong>: Enter your Tenant ID, Subscription ID, Resource Group, and deployment name</li>
+</ul>
+<p>Section A2 will ask for the following placeholder values:</p>
+<ul>
+<li>Cluster Name</li>
+<li>Key Vault name</li>
+<li>Diagnostic storage account name</li>
+<li>Local admin credentials</li>
+<li>Deployment (LCM) credentials</li>
+<li>HCI resource provider object ID</li>
+<li>Arc node resource IDs</li>
+<li>OU path (optional)</li>
+<li>Custom location name (optional)</li>
+</ul>
+<p>Once entered, click <strong>Update Parameters JSON</strong> and it will update the JSON file that can be seen in Section A5.</p>
+<ul>
+<li><strong>Section A3</strong>: Deploy to Azure button and links to sample ARM templates</li>
+<li><strong>Section A4</strong>: Deployment Script Generation—export PowerShell scripts, Azure CLI scripts, and links to Bicep and Terraform examples</li>
+<li><strong>Section A5</strong>: The Parameter file JSON—copy and paste into VS Code and replace values as needed</li>
+<li><strong>Section A6</strong>: Integration Features—export Azure DevOps Pipeline template, GitHub Actions workflow, and a section about REST API for Automation (coming soon)</li>
+</ul>
+<h3 id="designer-final-thoughts">Designer: Final Thoughts</h3>
+<p>The Designer is the heart of Odin. It walks you through 20 decision points, validates your choices against Microsoft&rsquo;s requirements, and generates documentation and deployment artifacts. For anyone learning Azure Local or validating a design, this is genuinely valuable.</p>
+<p>The generic port naming is frustrating (I really want to see adapters and their ports grouped together), and some features are still &ldquo;coming soon.&rdquo; But the structured approach, the helpful comparison buttons, and the quality of the generated documentation make this a tool worth using.</p>
+<p><strong>Things I&rsquo;d like to see changed or added:</strong></p>
+<ol>
+<li>
+<p><strong>Export as Markdown</strong> -  <strong>Implemented In Recent Release</strong> — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.</p>
+</li>
+<li>
+<p><strong>Diagram export as Draw.io or Visio</strong> — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (<strong>Coming Soon!</strong>)</p>
+</li>
+<li>
+<p><strong>Network Adapters with port mapping</strong> — <strong>Implemented In Recent Release</strong> -  Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.</p>
+</li>
+<li>
+<p><strong>Network Adapter names</strong> — <strong>Implemented In Recent Release</strong>  - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.</p>
+</li>
+<li>
+<p><strong>ARM template needs more work</strong> — The ARM template export is nice, but there&rsquo;s still a lot of manual work to do after export. More complete templates or better placeholders would help.</p>
+</li>
+</ol>
+<hr>
+<h2 id="summary-strengths-gaps--wishlist">Summary: Strengths, Gaps &amp; Wishlist</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core Tools</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sizer Tool</td>
+<td>Good</td>
+<td>Capacity planning for workloads</td>
+</tr>
+<tr>
+<td>Knowledge Base</td>
+<td>Excellent</td>
+<td>Comprehensive connectivity guidance</td>
+</tr>
+<tr>
+<td>Designer Wizard</td>
+<td>Good</td>
+<td>19-step configuration process</td>
+</tr>
+<tr>
+<td><strong>Strengths</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Network Intents</td>
+<td>Excellent</td>
+<td>Drag-and-drop, maps to Network ATC</td>
+</tr>
+<tr>
+<td>Deployment Types</td>
+<td>Good</td>
+<td>Full scenario coverage</td>
+</tr>
+<tr>
+<td>Identity Options</td>
+<td>Good</td>
+<td>AD or Key Vault</td>
+</tr>
+<tr>
+<td>Security Config</td>
+<td>Good</td>
+<td>Secure defaults + customization</td>
+</tr>
+<tr>
+<td>Reporting</td>
+<td>Good</td>
+<td>Design docs with decision logic</td>
+</tr>
+<tr>
+<td><strong>Limitations</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Low Capacity Clusters</td>
+<td>Caution</td>
+<td><a href="https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2">Not GA</a>—verify before production</td>
+</tr>
+<tr>
+<td>Network Adapter ID</td>
+<td>Gap</td>
+<td>Generic ports only—maintain your own mapping</td>
+</tr>
+<tr>
+<td>ExpressRoute/VPN</td>
+<td>Coming Soon</td>
+<td>Private connectivity not yet available</td>
+</tr>
+<tr>
+<td>Private Endpoints</td>
+<td>Limited</td>
+<td>Arc Resource Bridge not supported</td>
+</tr>
+<tr>
+<td>SDN Features</td>
+<td>Limited</td>
+<td>Only 2 of 5 with Arc-managed SDN</td>
+</tr>
+<tr>
+<td><strong>Wishlist</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Markdown Export</td>
+<td>Completed</td>
+<td>HTML only</td>
+</tr>
+<tr>
+<td>Draw.io Export</td>
+<td>Missing</td>
+<td>SVG only</td>
+</tr>
+<tr>
+<td>Full ARM Templates</td>
+<td>Missing</td>
+<td>Parameters only, no CI/CD pipelines</td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>Missing</td>
+<td>Not publicly documented</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="who-should-use-odin">Who Should Use Odin?</h2>
+<p><strong>Valuable for:</strong></p>
+<ul>
+<li>IT architects validating Azure Local design decisions</li>
+<li>Pre-sales engineers building configuration proposals</li>
+<li>Training and enablement teams learning Azure Local</li>
+<li>Documentation efforts requiring baseline architecture</li>
+</ul>
+<p><strong>Not a replacement for:</strong></p>
+<ul>
+<li>Azure Portal deployment workflow</li>
+<li>Hardware compatibility validation</li>
+<li>Production deployment automation</li>
+</ul>
+<p><strong>Tips for success:</strong></p>
+<ul>
+<li>Use Odin early in planning to understand decision points</li>
+<li>Don&rsquo;t rely on non-GA features for production</li>
+<li>Maintain your own hardware mapping documentation</li>
+<li>Verify SDN requirements before selecting features</li>
+<li>Export and supplement generated documentation with your own details</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Odin for Azure Local is a valuable community tool for planning and learning, but remember its experimental status. The Sizer, Knowledge Base, and Designer work together to provide a comprehensive planning experience—from capacity estimation to connectivity architecture to configuration generation.</p>
+<p>It&rsquo;s not perfect. Generic adapter naming is frustrating, SDN guidance needs clarity, and export capabilities are limited. But it&rsquo;s free, actively maintained (version 0.12.5), and provides a structured approach to Azure Local deployment planning.</p>
+<p>Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
 Use it as one tool in your planning toolkit—not as the sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
-<strong>Tool URL</strong>: <a href=https://azure.github.io/odinforazurelocal/>azure.github.io/odinforazurelocal</a></p><hr><h2 id=resources>Resources</h2><h3 id=odin-links>Odin Links:</h3><ul><li><a href=https://azure.github.io/odinforazurelocal/>Odin for Azure Local</a></li><li><a href=https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html>Odin Knowledge Base</a></li><li><a href=https://azure.github.io/odinforazurelocal/sizer/index.html>Odin Sizer</a></li></ul><h3 id=microsoft-documentation>Microsoft Documentation:</h3><ul><li><a href=https://learn.microsoft.com/azure/azure-local>Azure Local Overview</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/scalability-deployments>Azure Local Scalability Deployments</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2>Low Capacity System Requirements</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview>Rack Aware Cluster Overview</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations>Network Traffic Intents</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/deploy/deployment-local-identity-with-key-vault>Local Identity with Key Vault</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/concepts/firewall-requirements>Firewall Requirements</a></li><li><a href=https://learn.microsoft.com/azure/azure-local/concepts/security-features>Security Features</a></li></ul><hr><p><em>This review is based on Odin for Azure Local version 0.12.5. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em>
-<em>This review is based on Odin for Azure Local version 0.14.52. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em></p></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/arm-templates/ rel=tag>ARM Templates</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-local/ rel=tag>Azure Local</a></li><li class=tags__item><a class="tags__link btn" href=/tags/community-tools/ rel=tag>Community Tools</a></li><li class=tags__item><a class="tags__link btn" href=/tags/deployment-planning/ rel=tag>Deployment Planning</a></li><li class=tags__item><a class="tags__link btn" href=/tags/infrastructure-as-code/ rel=tag>Infrastructure as Code</a></li><li class=tags__item><a class="tags__link btn" href=/tags/odin/ rel=tag>ODIN</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/real-cost-virtualization/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>The Real Cost of Virtualization</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/myth-tech/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>The Myth of 'Old Tech'</p></a></div></nav><section class=comments><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//thisismydemo-cloud.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
-</label><input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/myth-tech/>The Myth of 'Old Tech'</a></li><li class=widget__item><a class=widget__link href=/post/odin-azure-local-community-tool-deep-dive/>Odin for Azure Local: A Community Tool Deep Dive</a></li><li class=widget__item><a class=widget__link href=/post/real-cost-virtualization/>The Real Cost of Virtualization</a></li><li class=widget__item><a class=widget__link href=/post/hyper-renaissance/>Welcome to the Hyper-V Renaissance</a></li><li class=widget__item><a class=widget__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/>VMware vSphere to Azure Local: Operator Feature Mapping</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/community-tools/>Community Tools</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/operations/>Operations</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server/>Windows Server</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/arm-templates/ title="ARM Templates">ARM Templates</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/community-tools/ title="Community Tools">Community Tools</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/deployment-planning/ title="Deployment Planning">Deployment Planning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-it/ title="Enterprise IT">Enterprise IT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-virtualization/ title="Enterprise Virtualization">Enterprise Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/feature-comparison/ title="Feature Comparison">Feature Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/migration/ title=Migration>Migration</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/odin/ title=ODIN>ODIN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vcf/ title=VCF>VCF</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMware VSphere">VMware VSphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
-<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
-<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 This Is My Demo.
-<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
+<strong>Tool URL</strong>: <a href="https://azure.github.io/odinforazurelocal/">azure.github.io/odinforazurelocal</a></p>
+<hr>
+<h2 id="resources">Resources</h2>
+<h3 id="odin-links">Odin Links:</h3>
+<ul>
+<li><a href="https://azure.github.io/odinforazurelocal/">Odin for Azure Local</a></li>
+<li><a href="https://azure.github.io/odinforazurelocal/docs/outbound-connectivity/index.html">Odin Knowledge Base</a></li>
+<li><a href="https://azure.github.io/odinforazurelocal/sizer/index.html">Odin Sizer</a></li>
+</ul>
+<h3 id="microsoft-documentation">Microsoft Documentation:</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/azure/azure-local">Azure Local Overview</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/scalability-deployments">Azure Local Scalability Deployments</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2">Low Capacity System Requirements</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview">Rack Aware Cluster Overview</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations">Network Traffic Intents</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/deploy/deployment-local-identity-with-key-vault">Local Identity with Key Vault</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/concepts/firewall-requirements">Firewall Requirements</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-local/concepts/security-features">Security Features</a></li>
+</ul>
+<hr>
+<p><em>This review is based on Odin for Azure Local version 0.12.5. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em>
+<em>This review is based on Odin for Azure Local version 0.14.52. The tool is experimental and not officially supported by Microsoft. Features and capabilities may change in future versions.</em></p>
+<!-- 
+SCREENSHOT CHECKLIST - Capture these from the tool:
+
+[ ] Main landing page showing disclaimer
+[ ] Network Adapter Ports showing generic Port 1, Port 2 naming
+[ ] Network Traffic Intents drag-and-drop interface
+[ ] Outbound Connectivity showing ExpressRoute/VPN "Coming Soon"
+[ ] Private Endpoints showing Arc Resource Bridge "Not supported"
+[ ] SDN Enable showing the 5 feature options
+[ ] SDN Management selection (Arc vs On-Premises)
+[ ] Identity selection (AD vs Key Vault)
+[ ] Security configuration options
+[ ] Generated design document example
+[ ] Generated diagram (SVG output)
+
+-->
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/arm-templates/" rel="tag">ARM Templates</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-local/" rel="tag">Azure Local</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/community-tools/" rel="tag">Community Tools</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/deployment-planning/" rel="tag">Deployment Planning</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/infrastructure-as-code/" rel="tag">Infrastructure as Code</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/odin/" rel="tag">ODIN</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/real-cost-virtualization/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">The Real Cost of Virtualization</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/myth-tech/" rel="next">
+			<span class="pager__subtitle">&thinsp;»</span>
+			<p class="pager__title">The Myth of &#39;Old Tech&#39;</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/myth-tech/">The Myth of &#39;Old Tech&#39;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/case-studies/">Case Studies</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/community-tools/">Community Tools</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/edge-computing/">Edge Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/future-planning/">Future Planning</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/migration/">Migration</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/strategy/">Strategy</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server/">Windows Server</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/active-directory/" title="Active Directory">Active Directory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm-templates/" title="ARM Templates">ARM Templates</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bandwidth-limitations/" title="Bandwidth Limitations">Bandwidth Limitations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/case-studies/" title="Case Studies">Case Studies</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/change-management/" title="Change Management">Change Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/disconnected-operations/" title="Disconnected Operations">Disconnected Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/edge-computing/" title="Edge Computing">Edge Computing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-it/" title="Enterprise IT">Enterprise IT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-virtualization/" title="Enterprise Virtualization">Enterprise Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/feature-comparison/" title="Feature Comparison">Feature Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/future-planning/" title="Future Planning">Future Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hybrid-strategy/" title="Hybrid Strategy">Hybrid Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-strategy/" title="Microsoft Strategy">Microsoft Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/odin/" title="ODIN">ODIN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/roadmap/" title="Roadmap">Roadmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scripts/" title="Scripts">Scripts</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcf/" title="VCF">VCF</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/workgroup-clusters/" title="Workgroup Clusters">Workgroup Clusters</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

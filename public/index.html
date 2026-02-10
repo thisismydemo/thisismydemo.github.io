@@ -1,135 +1,610 @@
-<!doctype html><html class=no-js lang=en><head><meta name=generator content="Hugo 0.129.0"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>This Is My Demo</title>
-<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?"><meta property="og:url" content="http://thisismydemo.cloud/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="This Is My Demo"><meta property="og:description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?"><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="This Is My Demo"><meta name=twitter:description content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml href=/index.xml title="This Is My Demo"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class="main list" role=main><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/myth-tech/><img class=thumbnail__image src=/img/hyper-v-renaissance/banner-main.png alt="The Myth of 'Old Tech'"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/myth-tech/ rel=bookmark>The Myth of 'Old Tech'</a></h2><p class="list__lead post__lead">Is Hyper-V Dead????</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2026-02-09T18:00:00Z>February 09, 2026</time>
-<time class=meta__text datetime=2026-02-09T03:27:02Z>(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a>, <a class=meta__link href=/categories/windows-server/ rel=category>Windows Server</a></span></div></div></header><div class="content list__excerpt post__content clearfix">&ldquo;Hyper-V? That&rsquo;s legacy tech. It can&rsquo;t compete with VMware.&rdquo;
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.129.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?">
+		<meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="This Is My Demo">
+  <meta property="og:description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="This Is My Demo">
+  <meta name="twitter:description" content="Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="alternate" type="application/rss+xml" href="/index.xml" title="This Is My Demo">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main list" role="main">
+	<article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/myth-tech/">
+		<img class="thumbnail__image" src="/img/hyper-v-renaissance/banner-main.png" alt="The Myth of &#39;Old Tech&#39;">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/myth-tech/" rel="bookmark">
+			The Myth of &#39;Old Tech&#39;
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Is Hyper-V Dead????</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-09T18:00:00Z">February 09, 2026</time>
+	<time class="meta__text" datetime="2026-02-10T03:38:18Z">(: February 10, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>, <a class="meta__link" href="/categories/windows-server/" rel="category">Windows Server</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		&ldquo;Hyper-V? That&rsquo;s legacy tech. It can&rsquo;t compete with VMware. &lsquo;Hyper-V is dead,&rsquo; isn&rsquo;t it?&rdquo;
 I&rsquo;ve heard this sentiment more times than I can count. In hallway conversations at conferences, in architecture review meetings, in vendor comparison spreadsheets filled with red X marks in the Hyper-V column. For years, this perception has been the default position—sometimes justified, often not.
-In this third post of the Hyper-V Renaissance series, we&rsquo;re going to dismantle this myth systematically. Not with marketing claims, but with verified specifications, feature-by-feature comparisons, and honest assessments of where Hyper-V excels and where it still trails.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/odin-azure-local-community-tool-deep-dive/><img class=thumbnail__image src=/img/azurelocal_odin/odin-logo.png alt="Odin for Azure Local: A Community Tool Deep Dive"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/odin-azure-local-community-tool-deep-dive/ rel=bookmark>Odin for Azure Local: A Community Tool Deep Dive</a></h2><p class="list__lead post__lead">The Optimal Deployment and Infrastructure Navigator</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2026-02-09T15:00:00Z>February 09, 2026</time>
-<time class=meta__text datetime=2026-02-09T18:07:08Z>(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/azure-local/ rel=category>Azure Local</a>, <a class=meta__link href=/categories/community-tools/ rel=category>Community Tools</a></span></div></div></header><div class="content list__excerpt post__content clearfix">I&rsquo;m in the middle of writing The Hyper-V Renaissance—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It&rsquo;s been consuming most of my writing time, and I&rsquo;ve been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
-But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/real-cost-virtualization/><img class=thumbnail__image src=/img/hyper-v-renaissance/banner-main.png alt="The Real Cost of Virtualization"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/real-cost-virtualization/ rel=bookmark>The Real Cost of Virtualization</a></h2><p class="list__lead post__lead">TCO Comparison - VMware, Azure Local, and Hyper-V</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2026-02-07T00:09:59Z>February 07, 2026</time>
-<time class=meta__text datetime=2026-02-07T00:10:08Z>(: February 07, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a>, <a class=meta__link href=/categories/windows-server/ rel=category>Windows Server</a></span></div></div></header><div class="content list__excerpt post__content clearfix">The invoice arrived, and the meeting quickly followed.
+In this third post of the Hyper-V Renaissance series, we&rsquo;re going to dismantle this myth systematically.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/odin-azure-local-community-tool-deep-dive/">
+		<img class="thumbnail__image" src="/img/azurelocal_odin/odin-logo.png" alt="Odin for Azure Local: A Community Tool Deep Dive">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/odin-azure-local-community-tool-deep-dive/" rel="bookmark">
+			Odin for Azure Local: A Community Tool Deep Dive
+			</a>
+		</h2>
+		<p class="list__lead post__lead">The Optimal Deployment and Infrastructure Navigator</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-09T15:00:00Z">February 09, 2026</time>
+	<time class="meta__text" datetime="2026-02-09T18:07:08Z">(: February 09, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/azure-local/" rel="category">Azure Local</a>, <a class="meta__link" href="/categories/community-tools/" rel="category">Community Tools</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		I&rsquo;m in the middle of writing The Hyper-V Renaissance—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It&rsquo;s been consuming most of my writing time, and I&rsquo;ve been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
+But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/real-cost-virtualization/">
+		<img class="thumbnail__image" src="/img/hyper-v-renaissance/banner-main.png" alt="The Real Cost of Virtualization">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/real-cost-virtualization/" rel="bookmark">
+			The Real Cost of Virtualization
+			</a>
+		</h2>
+		<p class="list__lead post__lead">TCO Comparison - VMware, Azure Local, and Hyper-V</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-07T00:09:59Z">February 07, 2026</time>
+	<time class="meta__text" datetime="2026-02-07T00:10:08Z">(: February 07, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>, <a class="meta__link" href="/categories/windows-server/" rel="category">Windows Server</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		The invoice arrived, and the meeting quickly followed.
 For nearly two decades, the &ldquo;cost of virtualization&rdquo; was a line item we grumbled about but accepted. It was the &ldquo;VMware Tax,&rdquo; the price of admission for a stable, feature-rich datacenter. But in the wake of the Broadcom acquisition and the subsequent licensing overhaul, that tax has, for many organizations, turned into a ransom.
-This isn&rsquo;t just about price hikes. It&rsquo;s about a fundamental shift in how infrastructure is consumed.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/hyper-renaissance/><img class=thumbnail__image src=/img/hyper-v-renaissance/banner-main.png alt="Welcome to the Hyper-V Renaissance"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/hyper-renaissance/ rel=bookmark>Welcome to the Hyper-V Renaissance</a></h2><p class="list__lead post__lead">Why It's Time to Reevaluate Microsoft's On-Prem Champion</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2026-02-04T05:14:22Z>February 04, 2026</time>
-<time class=meta__text datetime=2026-02-06T22:43:48Z>(: February 06, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a>, <a class=meta__link href=/categories/windows-server/ rel=category>Windows Server</a></span></div></div></header><div class="content list__excerpt post__content clearfix">Introduction A Perfect Storm Creates Opportunity If you&rsquo;ve been watching the virtualization market over the past eighteen months, you&rsquo;ve witnessed something extraordinary: a once-stable industry thrown into chaos by a single acquisition. When Broadcom completed its $69 billion purchase of VMware in November 2023, few anticipated how dramatically—and rapidly—the landscape would shift. What followed wasn&rsquo;t just a pricing adjustment; it was a fundamental restructuring that has sent shockwaves through data centers worldwide.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/><img class=thumbnail__image src=/img/vsphere-vs-azure-local/comparison-banner.png alt="VMware vSphere to Azure Local: Operator Feature Mapping"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/vmware-vsphere-vs-azure-local-feature-comparison/ rel=bookmark>VMware vSphere to Azure Local: Operator Feature Mapping</a></h2><p class="list__lead post__lead">This blog is for admins and operators: a practical, side‑by‑side mapping from what you did in vSphere (vMotion, DRS, snapshots, SRM, NSX, vCenter) to what you’ll use in Azure Local (Live Migration, Failover Clustering, checkpoints, ASR/Hyper‑V Replica, WAC/Azure Portal).</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-07-29T14:00:00Z>July 29, 2025</time>
-<time class=meta__text datetime=2025-08-29T14:29:53Z>(: August 29, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/operations/ rel=category>Operations</a></span></div></div></header><div class="content list__excerpt post__content clearfix">From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.
-This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/comparing-ai-fun-test-ai-capabilities/><img class=thumbnail__image src=/img/ai/funwithai/blogbanner.png alt="Comparing AI: A fun test of AI capabilities"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/comparing-ai-fun-test-ai-capabilities/ rel=bookmark>Comparing AI: A fun test of AI capabilities</a></h2><p class="list__lead post__lead">What happens when you throw the same chaotic brain dump at five different AI models? Join me for an entertaining battle royale between OpenAI GPT-4.5, Google Gemini 2.5 Pro, Claude Sonnet 4, Grok AI, and Microsoft Copilot as they attempt to decode my scattered thoughts about GitHub Copilot Chat configuration. It's like 'The Hunger Games' but for artificial intelligence!</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-07-15T20:24:14Z>July 15, 2025</time>
-<time class=meta__text datetime=2025-07-15T20:25:04Z>(: July 15, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/technology/ rel=category>Technology</a>, <a class=meta__link href=/categories/ai/ rel=category>AI</a>, <a class=meta__link href=/categories/comparison/ rel=category>Comparison</a>, <a class=meta__link href=/categories/github-copilot/ rel=category>GitHub Copilot</a></span></div></div></header><div class="content list__excerpt post__content clearfix">Welcome to My AI Battle Royale! 🥊 Picture this: I&rsquo;m sitting at my desk, drowning in my own scattered thoughts about GitHub Copilot Chat configurations, when I had what can only be described as a &ldquo;brilliant&rdquo; idea. Why not throw my messy brain dump at some of the world&rsquo;s most advanced AI models and see who comes out on top?
-So here we are – welcome to my completely unscientific, totally biased, but hopefully entertaining comparison of AI capabilities!</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/beyond-cloud-feature-face-off-part-iv/><img class=thumbnail__image src=/img/rethinkvmware/part4banner.png alt="Beyond the Cloud: Feature Face-Off - Part IV"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/beyond-cloud-feature-face-off-part-iv/ rel=bookmark>Beyond the Cloud: Feature Face-Off - Part IV</a></h2><p class="list__lead post__lead">Broadcom's VMware acquisition changed the game—not just pricing, but the entire virtualization landscape. This deep-dive comparison reveals that Windows Server 2025 delivers 90% of VMware's capabilities at 30% of the cost—but the devil is in the remaining 10%.</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-07-02T00:01:27Z>July 02, 2025</time>
-<time class=meta__text datetime=2025-07-02T00:03:44Z>(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/feature-comparison/ rel=category>Feature Comparison</a>, <a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a></span></div></div></header><div class="content list__excerpt post__content clearfix">The Enterprise Reality Check As we&rsquo;ve established in previous posts, the post-Broadcom VMware landscape has fundamentally shifted the conversation around enterprise virtualization. No longer can organizations simply renew their vSphere licenses and move on—pricing has increased dramatically, licensing models have changed, and many customers are being pushed toward VMware Cloud Foundation whether they need all its components or not.
-But beyond cost considerations lies a critical question: Does Windows Server Failover Clustering with Hyper-V actually deliver the enterprise features that keep VMware entrenched in so many data centers?</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/cloud-hardware-considerations-part-iii/><img class=thumbnail__image src=/img/rethinkvmware/hardware-part3-banner.png alt="Beyond the Cloud: Hardware Considerations - Part III"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/cloud-hardware-considerations-part-iii/ rel=bookmark>Beyond the Cloud: Hardware Considerations - Part III</a></h2><p class="list__lead post__lead">Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K+, and VMware VCF 9.0 deprecates older hardware anyway. This analysis provides a framework for making hardware decisions that fit your organization's timeline and budget constraints.</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-06-26T12:52:40Z>June 26, 2025</time>
-<time class=meta__text datetime=2025-07-02T00:01:40Z>(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/hardware/ rel=category>Hardware</a>, <a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a></span></div></div></header><div class="content list__excerpt post__content clearfix">(Note: AVS – Azure VMware Solution – is not covered in detail here since it&rsquo;s essentially outsourcing VMware onto Azure&rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)
-Hardware Considerations: Build Your Cloud on Your Terms Series Recap: In Part 1 of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/><img class=thumbnail__image src=/img/rethinkvmware/part2banner.png alt="Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/ rel=bookmark>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</a></h2><p class="list__lead post__lead">Virtualization licensing just got complicated. With VMware's Broadcom acquisition driving 3x cost increases and Microsoft introducing new subscription models, IT leaders need a clear roadmap. This blog provides the analysis and insights you need to make informed decisions that align with your budget and strategy.</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-06-24T14:02:32Z>June 24, 2025</time>
-<time class=meta__text datetime=2025-07-02T00:01:40Z>(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/licensing/ rel=category>Licensing</a>, <a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a></span></div></div></header><div class="content list__excerpt post__content clearfix">Welcome to Part 2 of our &ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.
-A key factor driving those cost differences was how each platform&rsquo;s licensing model works.</div></article><article class="list__item post"><figure class="list__thumbnail thumbnail"><a class=thumbnail__link href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/><img class=thumbnail__image src=/img/rethinkvmware/capex_banner.png alt="Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I"></a></figure><header class=list__header><h2 class="list__title post__title"><a href=/post/capex-subscription-tco-modeling-hyper-azure-local-avs/ rel=bookmark>Beyond the Cloud: CapEx vs Subscription TCO Analysis - Part I</a></h2><p class="list__lead post__lead">Which stack is cheapest over five years for a 100 VM footprint? A detailed TCO analysis of Hyper-V, Azure VMware Solution, and Azure Local.</p><div class="list__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-06-11T12:45:00Z>June 11, 2025</time>
-<time class=meta__text datetime=2025-07-02T00:01:40Z>(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/cloud-computing/ rel=category>Cloud Computing</a>, <a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/cost-analysis/ rel=category>Cost Analysis</a></span></div></div></header><div class="content list__excerpt post__content clearfix">Introduction In our previous blog post, we explored why organizations are reconsidering their virtualization strategy post-VMware and highlighted the often-overlooked value of Windows Server Failover Clustering with Hyper-V. Now, in this first follow-up post of the "Beyond the Cloud: The Case for On-Premises Virtualization" series, we dive into the financial side of that decision. Specifically, we will compare the five-year Total Cost of Ownership (TCO) for three possible platforms to run a 100-Virtual Machine (VM) workload:</div></article></main><div class=pagination><span class="pagination__item pagination__item--current">1/8</span>
-<a class="pagination__item pagination__item--next btn" href=/page/2/>»</a></div></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
-</label><input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/myth-tech/>The Myth of 'Old Tech'</a></li><li class=widget__item><a class=widget__link href=/post/odin-azure-local-community-tool-deep-dive/>Odin for Azure Local: A Community Tool Deep Dive</a></li><li class=widget__item><a class=widget__link href=/post/real-cost-virtualization/>The Real Cost of Virtualization</a></li><li class=widget__item><a class=widget__link href=/post/hyper-renaissance/>Welcome to the Hyper-V Renaissance</a></li><li class=widget__item><a class=widget__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/>VMware vSphere to Azure Local: Operator Feature Mapping</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/community-tools/>Community Tools</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/operations/>Operations</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server/>Windows Server</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/arm-templates/ title="ARM Templates">ARM Templates</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/community-tools/ title="Community Tools">Community Tools</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/deployment-planning/ title="Deployment Planning">Deployment Planning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-it/ title="Enterprise IT">Enterprise IT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-virtualization/ title="Enterprise Virtualization">Enterprise Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/feature-comparison/ title="Feature Comparison">Feature Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/migration/ title=Migration>Migration</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/odin/ title=ODIN>ODIN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vcf/ title=VCF>VCF</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMware VSphere">VMware VSphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
-<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
-<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 This Is My Demo.
-<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
+This isn&rsquo;t just about price hikes. It&rsquo;s about a fundamental shift in how infrastructure is consumed.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/hyper-renaissance/">
+		<img class="thumbnail__image" src="/img/hyper-v-renaissance/banner-main.png" alt="Welcome to the Hyper-V Renaissance">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/hyper-renaissance/" rel="bookmark">
+			Welcome to the Hyper-V Renaissance
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Why It&#39;s Time to Reevaluate Microsoft&#39;s On-Prem Champion</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-04T05:14:22Z">February 04, 2026</time>
+	<time class="meta__text" datetime="2026-02-06T22:43:48Z">(: February 06, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>, <a class="meta__link" href="/categories/windows-server/" rel="category">Windows Server</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Introduction A Perfect Storm Creates Opportunity If you&rsquo;ve been watching the virtualization market over the past eighteen months, you&rsquo;ve witnessed something extraordinary: a once-stable industry thrown into chaos by a single acquisition. When Broadcom completed its $69 billion purchase of VMware in November 2023, few anticipated how dramatically—and rapidly—the landscape would shift. What followed wasn&rsquo;t just a pricing adjustment; it was a fundamental restructuring that has sent shockwaves through data centers worldwide.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">
+		<img class="thumbnail__image" src="/img/rethinkvmware/part9banner.png" alt="Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/" rel="bookmark">
+			Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX
+			</a>
+		</h2>
+		<p class="list__lead post__lead">How upcoming Windows Server &amp; Azure Local releases will shape long-term hybrid strategy and on-premises virtualization.</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-10-15T12:00:00Z">October 15, 2025</time>
+	<time class="meta__text" datetime="2025-06-25T17:35:23Z">(: June 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/strategy/" rel="category">Strategy</a>, <a class="meta__link" href="/categories/future-planning/" rel="category">Future Planning</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Coming Soon This blog post is part of the &ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo; series and will cover:
+Windows Server Roadmap: Upcoming features and long-term vision Azure Local Evolution: Next-generation capabilities and integration Hybrid Strategy: Microsoft&rsquo;s direction for on-premises and cloud integration Container Integration: Kubernetes and container platform roadmap AI and ML Integration: Edge AI capabilities in future releases Security Enhancements: Zero trust and advanced security features Management Tools: Future of System Center and Azure management Investment Guidance: Planning for long-term technology adoption Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp; Rugged Part VII: Beyond the Cloud: ESXi to Hyper-V in 30 Days Part VIII: Beyond the Cloud: Three Paths Off VMware Part IX: What&rsquo;s Next for Microsoft On-Prem - Windows Server &amp; Azure Local (This Post - Coming Soon) This post is currently in development.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/beyond-cloud-three-paths-off-vmware-part-viii/">
+		<img class="thumbnail__image" src="/img/rethinkvmware/part8banner.png" alt="Beyond the Cloud: Three Paths Off VMware - Part VIII">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/beyond-cloud-three-paths-off-vmware-part-viii/" rel="bookmark">
+			Beyond the Cloud: Three Paths Off VMware - Part VIII
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Mini case studies on cost savings, performance wins, and operational trade-offs from real VMware migration journeys.</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-10-01T12:00:00Z">October 01, 2025</time>
+	<time class="meta__text" datetime="2025-06-25T17:35:23Z">(: June 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/case-studies/" rel="category">Case Studies</a>, <a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Coming Soon This blog post is part of the &ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo; series and will cover:
+Case Study 1 - Hyper-V Migration: Manufacturing company&rsquo;s on-premises transformation Case Study 2 - Azure VMware Solution: Financial services cloud-first approach Case Study 3 - Azure Local: Healthcare hybrid infrastructure modernization Cost Analysis: Actual savings and unexpected expenses from each path Performance Comparisons: Real-world benchmarks and user experience Operational Trade-offs: Day-to-day management differences Lessons Learned: What worked, what didn&rsquo;t, and key recommendations Decision Framework: Choosing the right path for your organization Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp; Rugged Part VII: Beyond the Cloud: ESXi to Hyper-V in 30 Days Part VIII: Three Paths Off VMware - Real World Journeys (This Post - Coming Soon) This post is currently in development.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/beyond-cloud-esxi-hyperv-30-days-part-vii/">
+		<img class="thumbnail__image" src="/img/rethinkvmware/part7banner.png" alt="Beyond the Cloud: ESXi to Hyper-V in 30 Days - Part VII">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/beyond-cloud-esxi-hyperv-30-days-part-vii/" rel="bookmark">
+			Beyond the Cloud: ESXi to Hyper-V in 30 Days - Part VII
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Scripts, storage cut-over, and user impact mitigation for a low-risk sprint from ESXi to Hyper-V in 30 days.</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-09-15T12:00:00Z">September 15, 2025</time>
+	<time class="meta__text" datetime="2025-06-25T17:35:23Z">(: June 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/migration/" rel="category">Migration</a>, <a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Coming Soon This blog post is part of the &ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo; series and will cover:
+30-Day Migration Timeline: Week-by-week project plan and milestones Pre-Migration Assessment: Inventory scripts and compatibility checking Storage Migration Strategies: Cut-over approaches and data protection VM Conversion Process: P2V and V2V migration techniques Network Configuration: VLAN and switch configuration migration Testing and Validation: Performance benchmarking and functionality testing User Impact Mitigation: Communication strategies and rollback procedures Automation Scripts: PowerShell and other tools for streamlined migration Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Beyond the Cloud: Disconnected &amp; Rugged Part VII: ESXi to Hyper-V in 30 Days - A Pilot Migration Playbook (This Post - Coming Soon) This post is currently in development.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/beyond-cloud-disconnected-rugged-part-vi/">
+		<img class="thumbnail__image" src="/img/rethinkvmware/part6banner.png" alt="Beyond the Cloud: Disconnected &amp; Rugged - Part VI">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/beyond-cloud-disconnected-rugged-part-vi/" rel="bookmark">
+			Beyond the Cloud: Disconnected &amp; Rugged - Part VI
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Choosing the best option when bandwidth is scarce and AD isn&#39;t feasible - Azure Local vs. Workgroup Clusters at the Edge.</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-09-01T12:00:00Z">September 01, 2025</time>
+	<time class="meta__text" datetime="2025-06-25T17:35:23Z">(: June 25, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/edge-computing/" rel="category">Edge Computing</a>, <a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Coming Soon This blog post is part of the &ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&rdquo; series and will cover:
+Edge Computing Scenarios: When traditional connectivity isn&rsquo;t available Azure Local at the Edge: Capabilities and limitations in disconnected scenarios Workgroup Cluster Architecture: Building resilient clusters without domain controllers Bandwidth Considerations: Optimizing for limited connectivity Local Authentication: Managing security without Active Directory Synchronization Strategies: Handling intermittent connectivity Use Case Analysis: Manufacturing, remote sites, and mobile deployments Series Navigation Introduction: Beyond the Cloud: Rethinking Virtualization Post-VMware Part I: Beyond the Cloud: CapEx vs Subscription TCO Analysis Part II: Beyond the Cloud: 2025 Virtualization Licensing Guide Part III: Beyond the Cloud: Hardware Considerations Part IV: Beyond the Cloud: Feature Face-Off Part V: Beyond the Cloud: Arc Enable Everything Part VI: Disconnected &amp; Rugged - Azure Local vs.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/vmware-vsphere-vs-azure-local-feature-comparison/">
+		<img class="thumbnail__image" src="/img/vsphere-vs-azure-local/comparison-banner.png" alt="VMware vSphere to Azure Local: Operator Feature Mapping">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/vmware-vsphere-vs-azure-local-feature-comparison/" rel="bookmark">
+			VMware vSphere to Azure Local: Operator Feature Mapping
+			</a>
+		</h2>
+		<p class="list__lead post__lead">This blog is for admins and operators: a practical, side‑by‑side mapping from what you did in vSphere (vMotion, DRS, snapshots, SRM, NSX, vCenter) to what you’ll use in Azure Local (Live Migration, Failover Clustering, checkpoints, ASR/Hyper‑V Replica, WAC/Azure Portal).</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-07-29T14:00:00Z">July 29, 2025</time>
+	<time class="meta__text" datetime="2025-08-29T14:29:53Z">(: August 29, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/operations/" rel="category">Operations</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		From VMware vSphere to Azure Local: What Changes and Where to Click The industry shift away from VMware has accelerated dramatically. Organizations worldwide are evaluating alternatives, driven by licensing changes, acquisition uncertainty, and evolving business needs. For many enterprises, this transition represents both a significant operational challenge and a strategic opportunity to modernize their virtualization infrastructure.
+This blog addresses the practical reality facing infrastructure teams: when organizational decisions mandate a platform change, success depends on understanding exactly how daily operations translate to the new environment.
+	</div>
+</article><article class="list__item post">
+	
+	<figure class="list__thumbnail thumbnail">
+		<a class="thumbnail__link" href="/post/comparing-ai-fun-test-ai-capabilities/">
+		<img class="thumbnail__image" src="/img/ai/funwithai/blogbanner.png" alt="Comparing AI: A fun test of AI capabilities">
+		</a>
+	</figure>
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/comparing-ai-fun-test-ai-capabilities/" rel="bookmark">
+			Comparing AI: A fun test of AI capabilities
+			</a>
+		</h2>
+		<p class="list__lead post__lead">What happens when you throw the same chaotic brain dump at five different AI models? Join me for an entertaining battle royale between OpenAI GPT-4.5, Google Gemini 2.5 Pro, Claude Sonnet 4, Grok AI, and Microsoft Copilot as they attempt to decode my scattered thoughts about GitHub Copilot Chat configuration. It&#39;s like &#39;The Hunger Games&#39; but for artificial intelligence!</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-07-15T20:24:14Z">July 15, 2025</time>
+	<time class="meta__text" datetime="2025-07-15T20:25:04Z">(: July 15, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/technology/" rel="category">Technology</a>, <a class="meta__link" href="/categories/ai/" rel="category">AI</a>, <a class="meta__link" href="/categories/comparison/" rel="category">Comparison</a>, <a class="meta__link" href="/categories/github-copilot/" rel="category">GitHub Copilot</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Welcome to My AI Battle Royale! 🥊 Picture this: I&rsquo;m sitting at my desk, drowning in my own scattered thoughts about GitHub Copilot Chat configurations, when I had what can only be described as a &ldquo;brilliant&rdquo; idea. Why not throw my messy brain dump at some of the world&rsquo;s most advanced AI models and see who comes out on top?
+So here we are – welcome to my completely unscientific, totally biased, but hopefully entertaining comparison of AI capabilities!
+	</div>
+</article>
+</main>
+
+<div class="pagination">
+	<span class="pagination__item pagination__item--current">1/8</span>
+	<a class="pagination__item pagination__item--next btn" href="/page/2/">»</a>
+</div>
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/myth-tech/">The Myth of &#39;Old Tech&#39;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/beyond-cloud-whats-next-microsoft-on-prem-part-ix/">Beyond the Cloud: What&#39;s Next for Microsoft On-Prem - Part IX</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/case-studies/">Case Studies</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/community-tools/">Community Tools</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/edge-computing/">Edge Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/future-planning/">Future Planning</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/migration/">Migration</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/strategy/">Strategy</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server/">Windows Server</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/active-directory/" title="Active Directory">Active Directory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm-templates/" title="ARM Templates">ARM Templates</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bandwidth-limitations/" title="Bandwidth Limitations">Bandwidth Limitations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/case-studies/" title="Case Studies">Case Studies</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/change-management/" title="Change Management">Change Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/disconnected-operations/" title="Disconnected Operations">Disconnected Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/edge-computing/" title="Edge Computing">Edge Computing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-it/" title="Enterprise IT">Enterprise IT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-virtualization/" title="Enterprise Virtualization">Enterprise Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/feature-comparison/" title="Feature Comparison">Feature Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/future-planning/" title="Future Planning">Future Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hybrid-strategy/" title="Hybrid Strategy">Hybrid Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-strategy/" title="Microsoft Strategy">Microsoft Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/odin/" title="ODIN">ODIN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/roadmap/" title="Roadmap">Roadmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scripts/" title="Scripts">Scripts</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcf/" title="VCF">VCF</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/workgroup-clusters/" title="Workgroup Clusters">Workgroup Clusters</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
