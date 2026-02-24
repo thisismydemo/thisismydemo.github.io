@@ -6,7 +6,7 @@ series: The Hyper-V Renaissance
 series_post: 1
 series_total: 19
 draft: false
-lastmod: 2026-02-06T22:43:48.620Z
+lastmod: 2026-02-24T16:11:40.681Z
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: hyper-renaissance
@@ -36,7 +36,7 @@ If you've been watching the virtualization market over the past eighteen months,
 
 Meanwhile, Hyper-V—which **has been a serious enterprise virtualization platform since the Windows Server 2012 and 2016 releases**—received substantial enhancements with **Windows Server 2025** in November 2024. Despite persistent rumors of its demise, Hyper-V **has never been "dead."** It has powered production workloads for over a decade and continues to run **every virtual machine in Microsoft's Azure cloud**. The timing of these 2025 enhancements couldn't be more significant. For IT professionals and architects now questioning their virtualization strategy, there's never been a better moment to reevaluate Microsoft's on-premises champion.
 
-This is the first post in a 19-part series that will take you from strategic evaluation through production deployment. Whether you're a VMware veteran considering alternatives, an Azure Local evaluator questioning subscription costs, or an infrastructure architect designing new deployments—this series is for you.
+This is the first post in a 20-part series that will take you from strategic evaluation through production deployment. Whether you're a VMware veteran considering alternatives, an Azure Local evaluator questioning subscription costs, or an infrastructure architect designing new deployments—this series is for you.
 
 Welcome to the Hyper-V Renaissance.
 
@@ -78,7 +78,7 @@ Perpetual license holders with expired support contracts have received **cease-a
 # Is This Series for You?
 ## A Decision Tree
 
-Before committing to an 18-post journey, let's determine if this series matches your situation.
+Before committing to a 20-post journey, let's determine if this series matches your situation.
 
 ## This Series IS for You If:
 
@@ -299,40 +299,41 @@ For a typical mid-size deployment—say, four hosts with 64 cores each (256 tota
 
 ---
 
-# What This Series Will Cover
+## What This Series Will Cover
 
-Over 19 posts across four sections, I'll take you from evaluation through production deployment:
+Over 20 posts across four sections, I'll take you from evaluation through production deployment:
 
 ## The Case for Change (Posts 1-4)
 
-- **Post 1** (This post): Introduction, market context, and series roadmap
-- **Post 2**: The Real Cost of Virtualization—TCO comparison with calculator template
-- **Post 3**: The Myth of "Old Tech"—feature comparison and specification verification
-- **Post 4**: Reusing Your Existing VMware Hosts—hardware validation process
+* **Post 1** (This post): Introduction, market context, and series roadmap
+* **Post 2**: The Real Cost of Virtualization—TCO comparison with calculator template
+* **Post 3**: The Myth of "Old Tech"—feature comparison and specification verification
+* **Post 4**: Reusing Your Existing VMware Hosts—hardware validation process
 
 ## Foundation Building (Posts 5-8)
 
-- **Post 5**: Build and Validate a Cluster-Ready Host—PowerShell deployment with comprehensive validation
-- **Post 6**: Three-Tier Storage Integration—universal principles plus Pure Storage example
-- **Post 7**: Migrating VMs from VMware to Hyper-V—conversion tools, procedures, and validation
-- **Post 8**: POC Like You Mean It—complete hands-on cluster you can build this afternoon
+* **Post 5**: Build and Validate a Cluster-Ready Host—PowerShell deployment with comprehensive validation
+* **Post 6**: Three-Tier Storage Integration—universal principles plus Pure Storage example
+* **Post 7**: Migrating VMs from VMware to Hyper-V—conversion tools, procedures, and validation
+* **Post 8**: POC Like You Mean It—complete hands-on cluster you can build this afternoon
 
-## Production Architecture (Posts 9-15)
+## Production Architecture (Posts 9-17)
 
-- **Post 9**: Monitoring and Observability—from built-in tools to Prometheus/Grafana, including when SCVMM justifies its cost
-- **Post 10**: Security Architecture—cluster hardening and VM isolation
-- **Post 11**: Management Tools for Production: WAC vMode, WAC, SCVMM, PowerShell for day-2 operations
-- **Post 12**: Storage Architecture Deep Dive—advanced patterns and CSV internals
-- **Post 13**: Backup and Disaster Recovery Strategies—comprehensive data protection
-- **Post 14**: Live Migration Internals—mechanics, optimization, and troubleshooting
-- **Post 15**: WSFC at Scale—multi-site clusters, cluster sets, and large deployments
+* **Post 9**: Monitoring and Observability—from built-in tools to Prometheus/Grafana, including when SCVMM justifies its cost
+* **Post 10**: Security Architecture—cluster hardening and VM isolation
+* **Post 11**: Management Tools for Production—Windows Admin Center (WAC), SCVMM, PowerShell for day-2 operations
+* **Post 12**: Storage Architecture Deep Dive—advanced patterns and CSV internals
+* **Post 13**: Backup Strategies for Hyper-V—comprehensive backup planning with Veeam, Azure Backup, and native tools
+* **Post 14**: Multi-Site Resilience—Hyper-V Replica, Storage Replica, Campus Clusters, and SAN replication strategies
+* **Post 15**: Live Migration Internals—mechanics, optimization, and troubleshooting
+* **Post 16**: WSFC at Scale—cluster sets and large deployments
+* **Post 17**: Hybrid Without the Handcuffs—selective Azure integration
 
-## Strategy & Automation (Posts 16-19)
+## Strategy & Automation (Posts 18-20)
 
-- **Post 16**: Hybrid Without the Handcuffs—selective Azure integration
-- **Post 17**: S2D vs. Three-Tier and When Azure Local Makes Sense—honest platform comparison
-- **Post 18**: PowerShell Automation Patterns (2026 Edition)—DSC, remoting, and CI/CD integration
-- **Post 19**: Infrastructure as Code with Ansible and Terraform—IaC patterns with realistic expectations
+* **Post 18**: S2D vs. Three-Tier and When Azure Local Makes Sense—honest platform comparison
+* **Post 19**: PowerShell Automation Patterns (2026 Edition)—DSC, remoting, and CI/CD integration
+* **Post 20**: Infrastructure as Code with Ansible and Terraform—IaC patterns with realistic expectations
 
 ---
 
