@@ -1,115 +1,1163 @@
-<!doctype html><html class=no-js lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Beyond the Cloud: Hardware Considerations - Part III - This Is My Demo</title>
-<script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K+ in Azure Local nodes? Real costs & VMware VCF 9.0 impact."><meta property="og:url" content="http://thisismydemo.cloud/post/cloud-hardware-considerations-part-iii/"><meta property="og:site_name" content="This Is My Demo"><meta property="og:title" content="Beyond the Cloud: Hardware Considerations - Part III"><meta property="og:description" content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K+ in Azure Local nodes? Real costs & VMware VCF 9.0 impact."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-06-26T12:52:40+00:00"><meta property="article:modified_time" content="2025-07-02T00:01:40+00:00"><meta property="article:tag" content="Hardware"><meta property="article:tag" content="Storage"><meta property="article:tag" content="SAN"><meta property="article:tag" content="Validated Nodes"><meta property="article:tag" content="Infrastructure"><meta property="article:tag" content="Hyper-V"><meta name=twitter:card content="summary"><meta name=twitter:title content="Beyond the Cloud: Hardware Considerations - Part III"><meta name=twitter:description content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K+ in Azure Local nodes? Real costs & VMware VCF 9.0 impact."><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/css/style.css><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-C78KZ1DN40"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-C78KZ1DN40")}</script></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class=logo><a class=logo__link href=/ title="This Is My Demo" rel=home><div class="logo__item logo__text"><div class=logo__title>This Is My Demo</div><div class=logo__tagline>Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
-<span class=menu__btn-title tabindex=-1></span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/about/><span class=menu__text>About</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Beyond the Cloud: Hardware Considerations - Part III</h1><p class=post__lead>Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K+, and VMware VCF 9.0 deprecates older hardware anyway. This analysis provides a framework for making hardware decisions that fit your organization's timeline and budget constraints.</p><div class="post__meta meta"><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2025-06-26T12:52:40Z>June 26, 2025</time>
-<time class=meta__text datetime=2025-07-02T00:01:40Z>(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/categories/infrastructure/ rel=category>Infrastructure</a>, <a class=meta__link href=/categories/hardware/ rel=category>Hardware</a>, <a class=meta__link href=/categories/virtualization/ rel=category>Virtualization</a></span></div></div></header><figure class="post__thumbnail thumbnail"><img class=thumbnail__image src=/img/rethinkvmware/hardware-part3-banner.png alt="Beyond the Cloud: Hardware Considerations - Part III"></figure><div class="content post__content clearfix"><p><em>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&rsquo;s essentially outsourcing VMware onto Azure&rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)</em></p><h1 id=hardware-considerations-build-your-cloud-on-your-terms>Hardware Considerations: Build Your Cloud on Your Terms</h1><p><strong>Series Recap:</strong> In <strong>Part 1</strong> of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs. subscription models across on-premises Hyper-V, Azure Local (formerly Azure Stack HCI), and Azure VMware Solution (AVS). In <strong>Part 2</strong>, we dove into licensing – analyzing how VMware vSphere licensing stacks up against Microsoft&rsquo;s offerings (Windows Server and Azure Local) in 2025, and what those licensing differences mean for choosing a virtualization platform. These earlier posts highlighted that organizations leaving VMware have viable Microsoft-based alternatives that can reduce costs and simplify licensing. Now, in <strong>Part 3</strong>, we turn to the <strong>infrastructure</strong> question: <strong>What are your hardware options when &ldquo;rethinking virtualization&rdquo; away from VMware?</strong> Can you reuse your <strong>existing servers and storage</strong>, or are you forced into buying <strong>new, validated hardware nodes</strong>? How do Microsoft&rsquo;s two on-premises solutions – <strong>Windows Server Hyper-V with Failover Clustering (WSFC)</strong> and <strong>Azure Local</strong> – compare in terms of hardware requirements? We&rsquo;ll explore scenarios for customers looking to leave VMware, whether they&rsquo;re <strong>not ready for a hardware refresh</strong> or <strong>planning a refresh alongside the migration</strong>, and we&rsquo;ll also briefly touch on upcoming <strong>VMware Cloud Foundation 9.0</strong> hardware needs.</p><h2 id=series-navigation>Series Navigation</h2><ul><li><strong>Introduction</strong>: <a href=https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/>Beyond the Cloud: Rethinking Virtualization Post-VMware</a></li><li><strong>Part I</strong>: <a href=https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/>Beyond the Cloud: CapEx vs Subscription TCO Analysis</a></li><li><strong>Part II</strong>: <a href=https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/>Beyond the Cloud: 2025 Virtualization Licensing Guide</a></li><li><strong>Part III</strong>: Hardware Considerations - Build Your Cloud on Your Terms <em>(This Post)</em></li><li><strong>Part IV</strong>: <a href=https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/>Beyond the Cloud: Feature Face-Off - Part IV</a></li></ul><hr><h2 id=table-of-contents>Table of Contents</h2><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#hardware-considerations-build-your-cloud-on-your-terms>Hardware Considerations: Build Your Cloud on Your Terms</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#series-navigation>Series Navigation</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#table-of-contents>Table of Contents</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#reuse-vs-refresh-the-hardware-dilemma>Reuse vs. Refresh: The Hardware Dilemma</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#path-1-reuse-existing-hardware>Path 1: Reuse Existing Hardware</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#path-2-refresh-with-new-hardware>Path 2: Refresh with New Hardware</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#making-the-decision-framework-and-considerations>Making the Decision: Framework and Considerations</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#hardware-investment-comparison>Hardware Investment Comparison</a></li></ul></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#windows-server-on-existing-infrastructure-san-or-s2d>Windows Server on Existing Infrastructure: SAN or S2D?</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#traditional-san-based-cluster-reuse-your-san>Traditional SAN-based Cluster (Reuse Your SAN)</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#storage-spaces-direct-hyper-converged-cluster>Storage Spaces Direct (Hyper-Converged) Cluster</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#san-vs-s2d-technical-comparison>SAN vs S2D: Technical Comparison</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#mixed-server-environments-windows-servers-flexibility-advantage>Mixed Server Environments: Windows Server&rsquo;s Flexibility Advantage</a></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#azure-local-new-hardware-and-validated-nodes>Azure Local: New Hardware and Validated Nodes</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#azure-local-pricing-what-it-really-costs>Azure Local Pricing: What It Really Costs</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#current-azure-local-catalog-vendor-solutions>Current Azure Local Catalog: Vendor Solutions</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#hardware-and-infrastructure-requirements>Hardware and Infrastructure Requirements</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#network-infrastructure-beyond-basic-connectivity>Network Infrastructure: Beyond Basic Connectivity</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#mandatory-network-standards-compliance>Mandatory Network Standards Compliance</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#realistic-network-investment>Realistic Network Investment</a></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#azure-local-vs-windows-server-decision-matrix>Azure Local vs. Windows Server: Decision Matrix</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#when-azure-local-makes-sense-real-scenarios>When Azure Local Makes Sense: Real Scenarios</a></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#vmware-cloud-foundation-90>VMware Cloud Foundation 9.0</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#new-hardware-requirements-for-esxi-90>New Hardware Requirements for ESXi 9.0</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#device-deprecation-impact>Device Deprecation Impact</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#cost-and-planning-implications>Cost and Planning Implications</a></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#side-by-side-comparison>Side-by-Side Comparison</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#conclusion-choose-the-path-that-fits-your-needs>Conclusion: Choose the Path that Fits Your Needs</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#quick-decision-framework>Quick Decision Framework</a></li></ul></li><li><a href=/post/cloud-hardware-considerations-part-iii/#my-personal-recommendations-the-windows-server-advantage>My Personal Recommendations: The Windows Server Advantage</a><ul><li><a href=/post/cloud-hardware-considerations-part-iii/#for-the-budget-conscious-most-organizations>For the Budget-Conscious (Most Organizations)</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#for-the-pragmatic-it-professional>For the Pragmatic IT Professional</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#for-organizations-seeking-true-independence>For Organizations Seeking True Independence</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#the-arc-enabled-middle-ground>The Arc-Enabled Middle Ground</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#cost-reality-check>Cost Reality Check</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#when-azure-local-actually-makes-sense>When Azure Local Actually Makes Sense</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#bottom-line-recommendation>Bottom Line Recommendation</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#microsoft-official-documentation>Microsoft Official Documentation</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#industry-analysis--comparisons>Industry Analysis & Comparisons</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#hardware-vendor-documentation>Hardware Vendor Documentation</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#vmwarebroadcom-resources>VMware/Broadcom Resources</a></li><li><a href=/post/cloud-hardware-considerations-part-iii/#cost-analysis--technical-comparisons>Cost Analysis & Technical Comparisons</a></li></ul></li></ul></li></ul><hr><h2 id=reuse-vs-refresh-the-hardware-dilemma>Reuse vs. Refresh: The Hardware Dilemma</h2><p>When considering your post-VMware virtualization strategy, one of the first questions organizations face is whether to reuse existing hardware or invest in new equipment. This decision significantly impacts both initial costs and long-term operational success.</p><p><strong>The VMware Hardware Timeline Factor:</strong> What makes this decision particularly urgent for many organizations is VMware&rsquo;s accelerating hardware obsolescence timeline. With VMware Cloud Foundation 9.0 and ESXi 9.0, VMware is deprecating significant numbers of older server components (storage controllers, network adapters, etc.) that were supported in vSphere 7 and 8. Organizations staying with VMware face their own hardware refresh timeline pressure – you can&rsquo;t simply renew VMware licenses and keep running on the same hardware indefinitely. VMware&rsquo;s compatibility guides now warn that upgrading to ESXi 9.0 with unsupported devices can result in <strong>loss of storage or network access</strong>, forcing hardware replacement before the upgrade. This creates a unique situation: <strong>both staying with VMware and moving to Azure Local may require new hardware</strong>, but for different reasons and on different timelines.</p><h3 id=path-1-reuse-existing-hardware>Path 1: Reuse Existing Hardware</h3><p>If your current servers and storage ran VMware vSphere reliably, you might prefer to repurpose them for the new solution. This path favors a platform that is flexible with hardware compatibility. Microsoft&rsquo;s traditional Windows Server + Hyper-V is very accommodating here – it can run on a wide range of commodity servers and supports classic external SAN storage for clusters.</p><p>In fact, Windows Server 2025 (with Hyper-V and Failover Clustering) offers much greater flexibility to leverage existing gear than Azure Local does. If your goal is to maximize use of existing hardware, the Windows Server route is often the best choice. It allows clustering with either shared storage (e.g., an iSCSI or FC SAN or NAS) or with internal disks via Storage Spaces Direct – giving you options to integrate with whatever infrastructure you already have.</p><p><strong>The Hidden Advantage:</strong> What many organizations don&rsquo;t realize is that choosing Windows Server Hyper-V doesn&rsquo;t just give you immediate VMware exit options – it gives you <strong>timeline control</strong>. You can migrate away from VMware immediately using existing hardware, then gradually modernize your infrastructure over months or years rather than being forced into a forklift upgrade to meet someone else&rsquo;s deadline.</p><h3 id=path-2-refresh-with-new-hardware>Path 2: Refresh with New Hardware</h3><p>Some organizations align their hardware refresh cycle with moving off VMware. Microsoft&rsquo;s Azure Local is positioned as a modern hyper-converged solution, but it almost always requires new hardware to meet its certified solution requirements.</p><p>Azure Local runs on specific validated node configurations – typically turnkey integrated systems from OEM partners (Dell, HPE, Lenovo, etc.) – rather than just any random server. In fact, Microsoft notes that you can only repurpose existing servers for Azure Local if they exactly match a current validated node profile in the Azure Local Catalog.</p><blockquote><p><strong>💡 Key Insight</strong></p><p>In approximately <strong>99.9% of cases</strong>, existing hardware will not meet the stringent requirements for Azure Local deployment. This statistic, while seemingly harsh, reflects the reality of modern hyperconverged infrastructure demands.</p></blockquote><p>In practice, unless your older servers were originally purchased as a supported HCI solution, this is rarely the case. The Azure Local program emphasizes using approved hardware to ensure stability – following the validated hardware path helps avoid &ldquo;ghost chasing&rdquo; of obscure firmware issues under load. OEMs provide jointly supported solutions, and Microsoft &ldquo;highly recommends&rdquo; integrated systems that come pre-built and pre-tested for Azure Local.</p><p><strong>Current Azure Local Catalog State:</strong> As of late 2024, the catalog includes:</p><ul><li><strong>100+ validated hardware configurations</strong> from leading vendors</li><li><strong>New low-specification options</strong> for smaller deployments</li><li><strong>Expanded processor support</strong> including Intel and AMD latest generations</li><li><strong>Flexible storage configurations</strong> accommodating various workload types</li></ul><p>However, the catalog&rsquo;s expansion doesn&rsquo;t change the fundamental reality: existing enterprise hardware rarely meets the precise specifications required for certification. The result is a rock-solid platform, but at the cost of being locked into new hardware purchases in the near term.</p><h3 id=making-the-decision-framework-and-considerations>Making the Decision: Framework and Considerations</h3><p>When evaluating your hardware refresh strategy, consider this decision flow:</p><ol><li><p><strong>Audit Current Hardware</strong> - CPU generation and features, memory type and capacity, storage configuration and performance, network capabilities</p></li><li><p><strong>Compare Against Requirements</strong> - Check Azure Local hardware catalog, identify gaps and compatibility issues, calculate upgrade costs vs. replacement</p></li><li><p><strong>Evaluate Business Impact</strong> - Deployment timeline requirements, performance expectations, support and maintenance needs, budget constraints</p></li><li><p><strong>Consider External Pressures</strong> - VMware upgrade deadlines and deprecated hardware, budget approval timelines, vendor delivery schedules for new hardware</p></li></ol><h4 id=hardware-investment-comparison>Hardware Investment Comparison</h4><table><thead><tr><th>Approach</th><th>Initial Cost</th><th>Long-term TCO</th><th>Risk Level</th><th>Timeline Control</th></tr></thead><tbody><tr><td><strong>Reuse Existing (Windows Server)</strong></td><td>Low</td><td>Medium</td><td>Low-Medium</td><td>High</td></tr><tr><td><strong>Refresh with Certified (Azure Local)</strong></td><td>High</td><td>Low</td><td>Low</td><td>Low</td></tr><tr><td><strong>VMware VCF 9.0 Upgrade</strong></td><td>Medium</td><td>High</td><td>Medium</td><td>Low</td></tr></tbody></table><p><strong>Key Considerations:</strong></p><ul><li><strong>Reuse Existing</strong>: Immediate VMware exit capability, gradual modernization on your timeline</li><li><strong>Refresh with Certified</strong>: Modern infrastructure but forced timeline and significant upfront investment</li><li><strong>VMware Upgrade</strong>: Hardware refresh required anyway, but ongoing licensing costs and vendor lock-in</li></ul><p>In short, Windows Server Hyper-V (WSFC) offers a &ldquo;build your cloud on your terms&rdquo; approach – you can likely reuse your existing mix of servers and storage – whereas Azure Local usually mandates a clean slate with new, homogenized hardware. Next, we&rsquo;ll compare these options in detail: using Windows Server on your current infrastructure (either with your SAN or with Storage Spaces Direct) versus rolling out Azure Local on vendor-validated nodes.</p><hr><h2 id=windows-server-on-existing-infrastructure-san-or-s2d>Windows Server on Existing Infrastructure: SAN or S2D?</h2><p>One of the strengths of the Windows Server Failover Clustering approach is its <strong>hardware flexibility</strong>. You have two architecture choices for storage when using WSFC + Hyper-V:</p><h3 id=traditional-san-based-cluster-reuse-your-san>Traditional SAN-based Cluster (Reuse Your SAN)</h3><p>If you have an existing Fibre Channel or iSCSI SAN that&rsquo;s still performant and supported, you can continue to leverage it with a Windows Server Hyper-V cluster. Microsoft fully supports &ldquo;traditional infrastructure&rdquo; setups where VMs on a Windows cluster use an external shared SAN/NAS for storage.</p><p><strong>How the Architecture Works:</strong> In this model, each Hyper-V host connects to the SAN LUNs (or shares) and those LUNs are configured as Cluster Shared Volumes (CSVs) accessible by all nodes. This essentially replicates the VMware + SAN design with a different hypervisor. The benefit is obvious: you <strong>protect your prior investments</strong> in storage.</p><p><strong>Real-World Example:</strong> For example, if you recently bought an all-flash SAN that has years of life left, moving to WSFC/Hyper-V lets you <strong>swap the hypervisor but keep the storage</strong> – an incremental migration that minimizes new spend. Administrators who are comfortable with their SAN vendor&rsquo;s tools and best practices can stick with what they know, just integrating it with Windows instead of ESXi.</p><p><strong>The Azure Local Contrast:</strong> Microsoft explicitly acknowledges that Windows Server remains ideal for these scenarios (multiple hosts clustered with a shared disk array), whereas Azure Local <strong>does not support external SAN storage</strong> at all. In fact, Azure Local&rsquo;s reliance on Storage Spaces Direct means it <strong>cannot use</strong> a fibre channel or iSCSI SAN for VM storage – there&rsquo;s no option for multi-path shared LUNs in Azure Local&rsquo;s design.</p><p><strong>Technical Implementation:</strong> Windows Server, on the other hand, can certainly use SAN/NAS storage for clustering, including using multi-path IO (MPIO) with identical HBAs across nodes for robust SAN connectivity. If you have a reliable SAN and processes built around it, <strong>WSFC lets you keep that architecture</strong> while moving away from VMware.</p><p><strong>Perfect Timing Scenario:</strong> This path is especially attractive for organizations facing a VMware license deadline but whose hardware (servers <em>and</em> SAN) is not due for refresh – you can transition to Hyper-V on your existing hosts, connect them to the existing SAN, and avoid a costly all-at-once hardware purchase.</p><h3 id=storage-spaces-direct-hyper-converged-cluster>Storage Spaces Direct (Hyper-Converged) Cluster</h3><p>For organizations that don&rsquo;t have an external SAN, or who want to move toward a hyper-converged model using <strong>local disks</strong>, Windows Server Datacenter edition offers <strong>Storage Spaces Direct (S2D)</strong> as an option. S2D allows a WSFC cluster to pool internal drives on each host into a distributed, highly-available storage array – conceptually similar to VMware vSAN.</p><p><strong>The Core Appeal:</strong> The appeal of S2D is that you can eliminate the external SAN and use commodity disks (SSD/NVMe) inside the Hyper-V hosts to get SAN-like performance. If your existing VMware hosts have ample drive bays (or you&rsquo;re willing to add some storage to them), you could repurpose those servers into an S2D cluster.</p><p><strong>Hardware Considerations:</strong> This route might require some updates – e.g., adding SSDs or NVMe disks, and ensuring you have a high-bandwidth network between nodes (10 GbE or higher is recommended, with RDMA for best results). It&rsquo;s also ideal to use identical or very similar servers for S2D clusters, although it&rsquo;s not a strict requirement; Microsoft recommends matching hardware for consistency, and cluster validation will flag major discrepancies, but it doesn&rsquo;t require the nodes to be identical models. In practice, successful S2D deployments typically use the same make/model servers with consistent drives and NICs for predictable performance.</p><p><strong>Cost & Management Advantages:</strong> Assuming your hardware meets the requirements, S2D can be a cost-effective way to get an all-software-defined infrastructure. Because S2D is built into Windows Server, you avoid the expense of an external SAN array. In fact, a Hyper-V cluster with S2D is often <strong>much cheaper than buying a new high-end SAN</strong> from a vendor. You&rsquo;re using industry-standard drives and controllers, and the &ldquo;SAN intelligence&rdquo; is provided by Windows Server itself.</p><p><strong>Administrative Benefits:</strong> Administration can also be simpler: storage management is unified with the OS (PowerShell, Windows Admin Center, etc.) instead of dealing with separate SAN management GUIs.</p><p><strong>Resiliency Considerations:</strong> On the flip side, be mindful of the cluster size and resiliency: a <strong>2-node S2D cluster</strong> is possible (with witness) but uses simple two-way mirroring (50% capacity efficiency), whereas 3+ nodes enable more efficient resiliency (like three-way mirror or parity) and higher uptime during maintenance.</p><p><strong>Hardware Requirements for Existing Infrastructure:</strong> If reusing existing hardware for S2D, ensure the controllers are in HBA mode (pass-through) and not RAID, and that any older NICs are capable of the throughput needed – a 1 Gbps network is technically supported but will be a bottleneck; 10 Gbps+ and RDMA is strongly recommended for HCI scenarios.</p><p><strong>The Gradual Modernization Path:</strong> In summary, <strong>Windows Server S2D</strong> gives you a path to hyper-converged infrastructure without forcing new hardware purchases – you can <em>gradually</em> modernize by, say, adding some SSDs and 10/25 Gb NICs to your existing servers rather than replacing everything outright. Many organizations find that attractive when budgets are tight. And if you <em>do</em> decide to buy new servers for a Hyper-V cluster, you can do so on your own terms (any hardware on the Windows Server HCL that passes cluster validation is supported) rather than being limited to HCI-certified nodes.</p><h3 id=san-vs-s2d-technical-comparison>SAN vs S2D: Technical Comparison</h3><table><thead><tr><th>Factor</th><th><strong>Traditional SAN</strong></th><th><strong>Storage Spaces Direct (S2D)</strong></th></tr></thead><tbody><tr><td><strong>Hardware Investment</strong></td><td>Preserve existing SAN</td><td>Add local drives, upgrade networking</td></tr><tr><td><strong>Network Requirements</strong></td><td>Lower (SAN fabric handles storage traffic)</td><td>Higher (10+ GbE, RDMA recommended)</td></tr><tr><td><strong>Management Interface</strong></td><td>Separate SAN vendor tools</td><td>Unified with Windows (PowerShell, WAC)</td></tr><tr><td><strong>Hardware Flexibility</strong></td><td>Any certified servers</td><td>Identical/similar servers preferred</td></tr><tr><td><strong>Storage Controllers</strong></td><td>Any supported configuration</td><td>Must be HBA mode (no RAID)</td></tr><tr><td><strong>Capacity Efficiency</strong></td><td>SAN-dependent</td><td>50% (2-node) to better (3+ nodes)</td></tr><tr><td><strong>Cost Model</strong></td><td>Existing investment + server refresh</td><td>Gradual modernization possible</td></tr></tbody></table><h3 id=mixed-server-environments-windows-servers-flexibility-advantage>Mixed Server Environments: Windows Server&rsquo;s Flexibility Advantage</h3><p>It&rsquo;s worth noting that Windows Server clusters can tolerate a degree of hardware heterogeneity. It&rsquo;s generally best practice to use homogeneous nodes in a cluster, but Microsoft support&rsquo;s stance is simply that all components must be certified for Windows Server and the cluster must pass validation.</p><p><strong>What This Means in Practice:</strong> That means you could have, for example, two slightly different server models or memory sizes in one cluster, and as long as they function well together (and you might enable CPU compatibility mode for live migrations across different CPU generations), it&rsquo;s a supported config. Many Hyper-V deployments over the years have mixed hardware during transitions (adding newer nodes to an old cluster during upgrades, etc.).</p><p><strong>Real-World CPU Compatibility Scenarios:</strong> Here are common mixed-hardware scenarios where Windows Server&rsquo;s flexibility shines:</p><ul><li><strong>Generational Upgrades:</strong> Mixing Intel Xeon E5-2600 v3 (Haswell) with E5-2600 v4 (Broadwell) processors in the same cluster by enabling CPU compatibility mode to mask newer instruction sets</li><li><strong>Vendor Transitions:</strong> Running Dell PowerEdge R730 servers alongside HPE ProLiant DL380 Gen9 servers, as long as both pass cluster validation</li><li><strong>Memory Configurations:</strong> Having some nodes with 128GB RAM and others with 256GB RAM, allowing workload placement based on memory requirements</li><li><strong>Phased Refreshes:</strong> Adding newer servers with NVMe storage to an existing cluster with SATA SSDs, gradually migrating workloads to higher-performance nodes</li><li><strong>CPU Socket Differences:</strong> Mixing dual-socket and quad-socket servers in the same cluster (though VM sizing must be planned accordingly)</li></ul><p><strong>Azure Local&rsquo;s Strict Requirements:</strong> <strong>Azure Local, by contrast, requires uniformity</strong> – the official requirement is that <em>&ldquo;all servers must be the same manufacturer and model&rdquo;</em> in an HCI cluster. The HCI operating system expects symmetric hardware for storage pooling and uses an image-based lifecycle approach, so mixing server types is not part of its design.</p><p><strong>Bottom Line:</strong> In short, WSFC gives you more wiggle room to <strong>mix and match hardware to a degree</strong> (helpful when repurposing existing gear), whereas Azure Local expects essentially identical nodes (typically delivered as a batch from an OEM) for each cluster.</p><hr><h2 id=azure-local-new-hardware-and-validated-nodes>Azure Local: New Hardware and Validated Nodes</h2><p>Azure Local (formerly Azure Stack HCI) is Microsoft&rsquo;s premier hybrid cloud-integrated HCI platform – but it comes with strict hardware prescriptions and significant cost implications. If you&rsquo;re considering this route as your VMware replacement, here are the key hardware considerations:</p><h3 id=azure-local-pricing-what-it-really-costs>Azure Local Pricing: What It Really Costs</h3><p>Azure Local operates on a <strong>dual subscription model</strong> that organizations must understand before committing:</p><blockquote><p><strong>💰 Azure Local Total Cost Breakdown</strong></p><ul><li><strong>Azure Local Service</strong>: $10/core/month (mandatory for all physical cores)</li><li><strong>Windows Server Licensing</strong>: $23.30/core/month (unless using existing licenses with Software Assurance)</li><li><strong>Hardware Investment</strong>: New validated nodes required in most cases</li></ul></blockquote><p><strong>Real-World Cost Example</strong>: A typical 4-node cluster with dual 16-core processors (128 total cores):</p><ul><li>Azure Local service: $1,280/month</li><li>Windows Server licensing: $2,982/month (if new licenses needed)</li><li><strong>Total monthly cost</strong>: $4,262 before hardware amortization</li></ul><p>Compare this to Windows Server perpetual licensing, where you pay once and own the license indefinitely (with optional Software Assurance for updates).</p><h3 id=current-azure-local-catalog-vendor-solutions>Current Azure Local Catalog: Vendor Solutions</h3><p>The Azure Local catalog has expanded significantly in 2024-2025:</p><table><thead><tr><th><strong>Vendor</strong></th><th><strong>Solution Lines</strong></th><th><strong>Deployment Types</strong></th><th><strong>Key Advantages</strong></th></tr></thead><tbody><tr><td><strong>Dell</strong></td><td>PowerEdge (AX, VX series)</td><td>2-16 nodes, ROBO to datacenter</td><td>Integrated APEX support, lifecycle management</td></tr><tr><td><strong>HPE</strong></td><td>ProLiant DL145 Gen11, Apollo</td><td>Edge-optimized, full rack solutions</td><td>HPE GreenLake integration, hybrid management</td></tr><tr><td><strong>Lenovo</strong></td><td>ThinkAgile MX1020/MX1021</td><td>2-node edge, branch office focus</td><td>Pre-configured appliances, simplified deployment</td></tr><tr><td><strong>DataON</strong></td><td>AZS series</td><td>Storage-optimized configurations</td><td>High-density storage, cost-effective options</td></tr></tbody></table><p><strong>Key Reality Check</strong>: While the catalog offers variety, <strong>delivery timelines</strong> for validated nodes can be 8-16 weeks, potentially impacting your VMware exit timeline.</p><h3 id=hardware-and-infrastructure-requirements>Hardware and Infrastructure Requirements</h3><ul><li><strong>Validated Hardware Only:</strong> Azure Local is <strong>sold as a solution</strong>, not just software. Microsoft works with hardware partners to provide a catalog of validated node configurations and integrated systems. In fact, you cannot simply install Azure Local on any random server and call it a supported production deployment – it needs to align with a supported combination of components (CPU, drives, NICs, firmware, etc.). As noted earlier, existing servers can only be used if they <strong>exactly match a current validated node profile</strong> in the Azure Local Catalog. For the vast majority of environments, this means <strong>buying new nodes</strong> that are listed in the Azure Local Catalog. These are often sold in pre-configured clusters of 2, 4, or more nodes, with all identical hardware. This ensures that the cluster will pass Microsoft&rsquo;s HCI validation and that you have a single throat to choke for support (often the OEM will handle first-line support for the hardware, with Microsoft covering the software). The emphasis on validated hardware is to ensure reliability – Microsoft and OEMs run extensive stress tests on these configurations. Deploying on something off-list risks hitting firmware or driver issues under load, which is why <em>&ldquo;following the validated hardware path&rdquo;</em> is strongly urged. In the HCI world, an misbehaving component can bring big headaches, so Microsoft&rsquo;s stance (echoed by partners like Dell) is to stick to known-good builds to <strong>avoid playing whack-a-mole with obscure hardware issues</strong>.</li></ul><p><strong>Current Azure Local Catalog State:</strong> As of late 2024, the catalog includes:</p><ul><li><strong>100+ validated hardware configurations</strong> from leading vendors</li><li><strong>New low-specification options</strong> for smaller deployments</li><li><strong>Expanded processor support</strong> including Intel and AMD latest generations</li><li><strong>Flexible storage configurations</strong> accommodating various workload types</li></ul><p>However, the catalog&rsquo;s expansion doesn&rsquo;t change the fundamental reality: existing enterprise hardware rarely meets the precise specifications required for certification. The result is a rock-solid platform, but at the cost of being locked into new hardware purchases in the near term.</p><blockquote><p><strong>🚫 Critical Limitation: No External SAN Support</strong></p><p>Azure Local <strong>cannot integrate with existing SAN infrastructure</strong>. Unlike Windows Server Failover Clustering, which supports both SAN and hyper-converged storage, Azure Local is <strong>Storage Spaces Direct only</strong>.</p><p><strong>Impact</strong>: If you have a recently purchased SAN with years of useful life remaining, Azure Local provides no migration path to preserve that investment. Your storage investment becomes a sunk cost.</p></blockquote><ul><li><strong>Hyper-Converged Storage (No SAN):</strong> Azure Local&rsquo;s architecture is inherently hyper-converged – it <strong>requires Storage Spaces Direct</strong> using local disks in each node. Unlike a Windows Server cluster, <strong>you cannot use an external SAN</strong> with Azure Local for your VM storage. The system will not even allow adding a shared LUN to the cluster; all storage must be direct-attached to the hosts (or in a single-node scenario, attached JBOD, but not shared between nodes). This means that if you have an existing SAN, Azure Local provides no way to incorporate it – that storage would become effectively sidelined (perhaps used for backups or secondary storage, but not for the HCI cluster&rsquo;s primary workloads). Azure Local&rsquo;s philosophy is to instead use internal NVMe, SSD, and possibly HDDs to create a software-defined pool. This delivers excellent performance (especially with all-flash NVMe configurations) and simplifies management to one layer. But it reinforces that moving to Azure Local is a <strong>full infrastructure replacement</strong>: new servers <em>with their own internal storage</em> handle everything. It&rsquo;s an all-in-one approach.</li></ul><h3 id=network-infrastructure-beyond-basic-connectivity>Network Infrastructure: Beyond Basic Connectivity</h3><p>Azure Local&rsquo;s hyper-converged architecture places significant demands on your network infrastructure:</p><h4 id=mandatory-network-standards-compliance>Mandatory Network Standards Compliance</h4><ul><li><strong>IEEE 802.1Q</strong>: VLAN support (required in all scenarios)</li><li><strong>IEEE 802.1Qbb</strong>: Priority Flow Control for lossless storage traffic</li><li><strong>IEEE 802.1Qaz</strong>: Enhanced Transmission Selection for QoS</li><li><strong>IEEE 802.1AB</strong>: Link Layer Discovery Protocol for troubleshooting</li></ul><h4 id=realistic-network-investment>Realistic Network Investment</h4><p>Many VMware environments running on 1GbE will require <strong>complete network refresh</strong> for Azure Local:</p><table><thead><tr><th><strong>Current Network</strong></th><th><strong>Required Upgrade</strong></th><th><strong>Estimated Investment</strong></th></tr></thead><tbody><tr><td>1GbE switches</td><td>10/25GbE with DCB support</td><td>$15,000-50,000+</td></tr><tr><td>Basic 10GbE</td><td>RDMA-capable 25/100GbE</td><td>$25,000-75,000+</td></tr><tr><td>Legacy switching</td><td>Complete ToR refresh</td><td>$50,000-150,000+</td></tr></tbody></table><p><strong>Critical Point</strong>: Unlike Windows Server clusters that can work with existing network infrastructure, Azure Local <strong>mandates</strong> specific network capabilities that older environments typically lack.</p><ul><li><p><strong>Network Requirements:</strong> Given the heavy reliance on east-west traffic for S2D replication, Azure Local has higher network demands. Realistically, 10 GbE is the minimum, and 25–100 Gb networks with RDMA are recommended for all-flash scenarios. Many older VMware deployments on 1 GbE won&rsquo;t meet Azure Local&rsquo;s performance needs. Thus, adopting HCI might involve upgrading network switches and NICs along with the servers. (Windows Server clusters with a SAN can sometimes get by with lower network throughput since the heavy lifting is offloaded to the SAN fabric; HCI pushes that onto the cluster network.)</p></li><li><p><strong>Lifecycle and Updates:</strong> Azure Local is delivered as an OS with frequent feature updates (semi-annual releases). OEM integrated systems often include streamlined update tools (e.g., firmware + driver + OS updates in one workflow). This is a benefit of buying into the validated model: you get a cohesive experience for patching. However, it also underscores that <strong>older hardware may not be able to catch up</strong> – each new HCI release might drop support for out-of-date devices. (For instance, if an older RAID controller or NIC isn&rsquo;t re-certified by the OEM for the latest HCI version, you might not be able to upgrade that cluster without hardware changes. This is similar to what VMware is doing with vSphere – more on that shortly.)</p></li></ul><h3 id=azure-local-vs-windows-server-decision-matrix>Azure Local vs. Windows Server: Decision Matrix</h3><table><thead><tr><th><strong>Factor</strong></th><th><strong>Azure Local</strong></th><th><strong>Windows Server 2025</strong></th><th><strong>Decision Criteria</strong></th></tr></thead><tbody><tr><td><strong>Upfront Hardware Cost</strong></td><td>$200,000-500,000+ (new validated nodes)</td><td>$0-50,000 (minor upgrades)</td><td>Budget availability for major refresh</td></tr><tr><td><strong>Monthly Operating Cost</strong></td><td>$4,000-15,000+ (subscription fees)</td><td>$0-2,000 (maintenance only)</td><td>Preference for CapEx vs OpEx</td></tr><tr><td><strong>Timeline to Production</strong></td><td>12-20 weeks (hardware + deployment)</td><td>2-8 weeks (migration planning)</td><td>VMware deadline pressure</td></tr><tr><td><strong>Storage Investment Protection</strong></td><td>Cannot reuse existing SAN</td><td>Full SAN compatibility</td><td>Value of existing storage infrastructure</td></tr><tr><td><strong>Network Infrastructure</strong></td><td>Requires modern DCB-capable switching</td><td>Works with existing network gear</td><td>Network refresh budget availability</td></tr></tbody></table><h3 id=when-azure-local-makes-sense-real-scenarios>When Azure Local Makes Sense: Real Scenarios</h3><p><strong>Scenario 1: Greenfield Deployment</strong></p><ul><li>New datacenter or major refresh already planned</li><li>Budget allocated for modern infrastructure</li><li>Strong Azure integration requirements</li><li><strong>Verdict</strong>: Azure Local is ideal</li></ul><p><strong>Scenario 2: VMware Refugee with Recent Hardware</strong></p><ul><li>Servers purchased within last 3-4 years</li><li>Existing SAN with remaining lifespan</li><li>Tight budget constraints</li><li><strong>Verdict</strong>: Windows Server is the pragmatic choice</li></ul><p><strong>Scenario 3: Distributed Branch Offices</strong></p><ul><li>Multiple small sites needing HCI</li><li>Limited local IT expertise</li><li>Cloud management requirements</li><li><strong>Verdict</strong>: Azure Local&rsquo;s validated appliances shine here</li></ul><p><strong>Scenario 4: Mixed Environment Transition</strong></p><ul><li>Gradual VMware migration over 12-24 months</li><li>Varying hardware ages across environment</li><li>Need to maintain operations during transition</li><li><strong>Verdict</strong>: Windows Server provides necessary flexibility</li></ul><p>In summary, Azure Local is a powerful solution if you&rsquo;re aiming for a <strong>modern, cloud-connected datacenter</strong> and are willing (and able) to invest in <strong>new infrastructure that meets the spec</strong>. It shines in scenarios like distributed branch office deployments, edge locations, or a fresh private cloud build that needs Azure integration. But for customers coming from VMware who have a lot of sunk cost in their current hardware, HCI&rsquo;s hardware requirements can be a tough pill – it&rsquo;s essentially a <strong>forklift upgrade</strong> in many cases. This is exactly why we&rsquo;ve been highlighting the Windows Server alternative in this series: it lets you incrementally adopt new technology on your timeline. Microsoft&rsquo;s marketing might paint Azure Local as the only forward path, but as we see, <strong>WSFC/Hyper-V offers a more hardware-agnostic approach</strong> that can be just as viable, especially during transition periods.</p><hr><h2 id=vmware-cloud-foundation-90>VMware Cloud Foundation 9.0</h2><p>VMware Cloud Foundation 9.0 was announced and became generally available on <strong>June 17, 2025</strong>. When I hear about a new version, my first instinct is to go and check the compatibility guides to see what impact this might have on hardware.</p><p>VCF 9.0 requires ESXi 9.0 to be installed, which introduces several significant hardware requirement changes that could impact your infrastructure planning and budget.</p><h3 id=new-hardware-requirements-for-esxi-90>New Hardware Requirements for ESXi 9.0</h3><table><thead><tr><th>Component</th><th>ESXi 8.0</th><th>ESXi 9.0</th><th>Impact</th></tr></thead><tbody><tr><td><strong>Boot Media</strong></td><td>32 GB minimum</td><td><strong>128 GB minimum</strong></td><td>4x increase - likely for container runtime support</td></tr><tr><td><strong>Boot Method</strong></td><td>BIOS or UEFI</td><td><strong>UEFI only</strong></td><td>Legacy BIOS no longer supported</td></tr><tr><td><strong>Memory</strong></td><td>4 GB minimum</td><td><strong>8 GB minimum</strong></td><td>2x increase for base functionality</td></tr><tr><td><strong>CPU Architecture</strong></td><td>x86-64</td><td>x86-64 with enhanced features</td><td>Some older CPUs deprecated</td></tr></tbody></table><blockquote><p><strong>💡 Key Insight</strong>: The 128 GB boot media requirement represents the most significant change. This likely supports the new container runtime included in ESXi 9.0, but it means your existing 32-64 GB boot drives won&rsquo;t be sufficient.</p></blockquote><h3 id=device-deprecation-impact>Device Deprecation Impact</h3><p>VMware has deprecated a significant number of devices and adapters for ESXi 9.0, documented in <a href=https://knowledge.broadcom.com/external/article/391170/esxi-9-list-of-deprecated-and-removed-de.html>KB 391170</a>. The deprecation affects:</p><ul><li><strong>Network Cards</strong>: Several Intel and Broadcom NICs</li><li><strong>Storage Controllers</strong>: Legacy RAID controllers and HBAs</li><li><strong>Server Platforms</strong>: Older generation servers from major vendors</li></ul><p><strong>Understanding Deprecation Levels</strong>:</p><ul><li><strong>Restricted</strong>: Device functions but with limited support</li><li><strong>End of Life (EOL)</strong>: Device completely unsupported</li></ul><h3 id=cost-and-planning-implications>Cost and Planning Implications</h3><p><strong>Immediate Costs</strong>:</p><ul><li>Boot media upgrades: ~$50-200 per server for enterprise SSDs</li><li>Memory upgrades: ~$100-500 per server (if below 8GB)</li><li>Network/storage adapters: $200-2,000 per server for replacements</li></ul><p><strong>Planning Timeline</strong>:</p><ul><li><strong>Q3 2025</strong>: Audit current hardware against KB 391170</li><li><strong>Q4 2025</strong>: Budget for necessary upgrades</li><li><strong>Q1 2026</strong>: Begin staged hardware updates</li><li><strong>Q2-Q3 2026</strong>: VCF 9.0 deployment window</li></ul><blockquote><p><strong>⚠️ Critical Decision Point</strong>: If you&rsquo;re running older hardware, you might find that multiple devices are no longer supported. This could force an unplanned hardware refresh cycle that significantly impacts your infrastructure budget and timeline.</p></blockquote><p>The key question is: what does this mean for your existing infrastructure? Run the compatibility assessment now to avoid deployment surprises later.</p><hr><h2 id=side-by-side-comparison>Side-by-Side Comparison</h2><p>To crystallize the differences, here&rsquo;s a side-by-side look at hardware considerations for <strong>Windows Server (WSFC) vs. Azure Local</strong>, along with a note on VMware&rsquo;s requirements:</p><table><thead><tr><th><strong>Comparison Factor</strong></th><th><strong>Windows Server 2022/2025</strong><br><em>Hyper-V + Failover Cluster (WSFC)</em></th><th><strong>Azure Local</strong><br><em>Hyper-Converged HCI OS</em></th><th><strong>VMware vSphere/VCF 9.0</strong><br><em>(for comparison)</em></th></tr></thead><tbody><tr><td><strong>Hardware Flexibility</strong></td><td><strong>High:</strong> Can reuse existing servers (even mixed models, if compatible). Supports broad range of certified hardware.</td><td><strong>Low:</strong> Generally <strong>requires new, vendor-validated nodes</strong>. Existing hardware only usable if it exactly matches a supported config. Uniform servers (same model) required in cluster.</td><td><strong>Medium:</strong> vSphere supports a wide hardware range <em>in general</em>, but <strong>upgrading to 9.0 will drop support for many older devices</strong> (e.g., some HBAs, NICs). Likely requires hardware refresh or component upgrades for older servers.</td></tr><tr><td><strong>Storage Architecture</strong></td><td>Flexible: Use <strong>external SAN/NAS</strong> or <strong>Storage Spaces Direct</strong> (local disks) – your choice. Can integrate with existing Fibre Channel/iSCSI storage (Azure Local cannot).</td><td><strong>Hyper-converged only:</strong> Uses <strong>Storage Spaces Direct</strong> with internal drives. <strong>No support for external SAN</strong> or shared SAS enclosures. All nodes use local SSD/NVMe for storage, replicated across cluster.</td><td>Flexible: Supports traditional SAN/NAS or vSAN (HCI) if you have appropriate licenses. vSAN (like S2D) requires local disks and usually homogeneous nodes, whereas using a SAN is still an option in vSphere (one reason some may stick with VMware).</td></tr><tr><td><strong>Hardware Requirements</strong></td><td>Standard Windows Server HCL certification for NICs, HBAs, etc. <strong>Cluster validation</strong> must pass on chosen config. Recommended to use similar servers, but not strictly required.</td><td>Must purchase from <strong>Azure Local Catalog</strong> of solutions. Typically 2-16 nodes, all-flash or hybrid drives, with 10–100 GbE RDMA networking. <strong>Strict validation</strong> – non-certified components (RAID cards, older NICs) are not allowed. Ongoing Azure subscription per core for the OS.</td><td><strong>Requires devices on VMware&rsquo;s compatibility list.</strong> ESXi 9.0 deprecates certain older devices – they&rsquo;ll operate in 8.x but must be replaced before 9.0. Otherwise, standard x86 server requirements (similar to WSFC in CPU/RAM needs).</td></tr><tr><td><strong>Ideal Use Case</strong></td><td>Best when you want to <strong>maximize existing investments</strong> – e.g., keep using a current SAN or defer new hardware costs. Also suitable for mixed environments and gradual upgrades.</td><td>Best when undertaking a <strong>full infrastructure refresh</strong> and wanting a cloud-integrated solution. Ideal if you plan to modernize to HCI and can invest in new hardware that aligns with Azure&rsquo;s hybrid vision.</td><td>Best if you intend to <strong>stay with VMware</strong> and are willing to refresh hardware as needed. (If you have a significant investment in VMware-specific tooling and skills, you may prefer this route, but watch out for Broadcom/VMware&rsquo;s licensing and support changes.)</td></tr></tbody></table><p><em>(Note: AVS – Azure VMware Solution – is not covered in detail here since it’s essentially outsourcing VMware onto Azure’s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure’s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)</em></p><h2 id=conclusion-choose-the-path-that-fits-your-needs>Conclusion: Choose the Path that Fits Your Needs</h2><p>As you plan your post-VMware journey, the hardware dimension is as important as cost and licensing. Microsoft’s two on-premises offerings present two different philosophies:</p><ul><li><p><strong>Windows Server + Hyper-V (WSFC)</strong> empowers you to <strong>build your cloud on <em>your</em> terms</strong> – you can start with what you have and evolve gradually. It’s a proven, enterprise-grade platform that, despite getting less hype these days, continues to run mission-critical workloads worldwide. This path is about <strong>pragmatism</strong>: if you’re staring down a VMware exit but don’t have the budget (or desire) to rip-and-replace your infrastructure, WSFC lets you transition to a supported, modern virtualization platform with minimal hardware changes. You can always perform a phased hardware refresh later, on your schedule (for instance, replace aging servers with newer ones for your Hyper-V cluster over time, without changing the software stack).</p></li><li><p><strong>Azure Local</strong> offers a more <strong>prescriptive, cloud-connected</strong> on-prem solution – great for organizations that want the latest tech and tight Azure integration, and are ready to invest in that upfront. It brings the benefits of hyper-converged design and Azure Arc management, but it’s less forgiving of legacy gear. This path makes sense if you’ve decided to modernize your data center and have budget allocated for new HCI nodes (or if your existing hardware is truly at end-of-life and <em>needs</em> replacement anyway). It’s the route Microsoft’s sales teams will often promote for “transforming” your on-premises environment.</p></li></ul><p>Ultimately, the choice comes down to your <strong>business requirements and timelines</strong>. If avoiding a big capital spend and extending equipment lifespan is a priority, then leveraging Windows Server 2025 with Hyper-V on your existing hardware can be a smart move – it provides a <strong>fully supported platform</strong> without forcing you into new purchases. If, on the other hand, you desire a cutting-edge, cloud-hybrid infrastructure and are prepared to standardize on new hardware, Azure Local can deliver that experience (just go in with eyes open about the ongoing subscription and the one-time hardware costs).</p><h3 id=quick-decision-framework>Quick Decision Framework</h3><p>Use this simple flowchart to guide your hardware strategy:</p><p><strong>Start Here: What&rsquo;s your primary constraint?</strong></p><p>🔸 <strong>Budget/Timeline Pressure?</strong> → <strong>Windows Server 2025</strong></p><ul><li>Reuse existing servers and SAN</li><li>Immediate VMware exit possible</li><li>Gradual modernization on your terms</li></ul><p>🔸 <strong>Need Modern Infrastructure?</strong> → <strong>Evaluate Further:</strong></p><ul><li><strong>Have recent SAN investment?</strong> → <strong>Windows Server 2025</strong> (protect SAN investment)</li><li><strong>Ready for full refresh + cloud integration?</strong> → <strong>Azure Local</strong></li><li><strong>Complex VMware environment?</strong> → <strong>Windows Server 2025</strong> (flexibility during transition)</li></ul><p>🔸 <strong>Staying with VMware?</strong> → <strong>Plan Hardware Refresh</strong></p><ul><li>Audit against KB 391170 by Q3 2025</li><li>Budget for ESXi 9.0 compatibility upgrades</li><li>Consider Windows Server as backup plan</li></ul><p><strong>Key Decision Points:</strong></p><ol><li><strong>Can you afford 12-20 weeks for new hardware delivery?</strong> (Azure Local requirement)</li><li><strong>Do you have a recent SAN that Azure Local can&rsquo;t use?</strong> (Drives toward Windows Server)</li><li><strong>Is your VMware deadline forcing immediate decisions?</strong> (Windows Server provides fastest path)</li></ol><p>Remember that there&rsquo;s no one-size-fits-all &ldquo;better&rdquo; option. It&rsquo;s about aligning the solution to your organization&rsquo;s needs. The good news is that <strong>Microsoft gives you both options</strong> – just don&rsquo;t let the marketing convince you that you <em>must</em> go the Azure Local route. As this series argues, <strong>Windows Server + Hyper-V remains a rock-solid alternative</strong> for those who want to run VMs on-premises without the cloud bells and whistles.</p><p>In our next post, <strong>Part IV: Feature Face-Off</strong>, we&rsquo;ll dive into a head-to-head comparison of enterprise features – DRS vs. Live Migration, Fault Tolerance capabilities, backup ecosystem integration, and Hyper-V&rsquo;s unique Guarded Fabric security advantages. Spoiler: Hyper-V has evolved significantly and includes enterprise capabilities that sometimes get overlooked in the VMware-dominated conversation.</p><hr><h2 id=my-personal-recommendations-the-windows-server-advantage>My Personal Recommendations: The Windows Server Advantage</h2><p>Having worked with organizations through countless virtualization migrations, I&rsquo;ll be direct: <strong>Windows Server 2025 with Hyper-V is often the smartest path for most VMware refugees</strong>. Here&rsquo;s why I consistently recommend it over Azure Local for the majority of post-VMware scenarios:</p><h3 id=for-the-budget-conscious-most-organizations>For the Budget-Conscious (Most Organizations)</h3><p>If you&rsquo;re facing VMware&rsquo;s new licensing costs and timeline pressures, Windows Server lets you <strong>escape immediately without a hardware forklift</strong>. Your existing servers that ran VMware reliably will almost certainly run Hyper-V just fine. Your SAN investment? Protected. Your networking gear? Probably adequate.</p><p>This isn&rsquo;t about settling for &ldquo;good enough&rdquo; – it&rsquo;s about being smart with capital allocation. Windows Server 2025 Datacenter gives you enterprise-grade virtualization with features that rival (and sometimes exceed) VMware&rsquo;s capabilities, all while preserving your hardware investments.</p><p><strong>Real Cost Example</strong>: A typical 4-node cluster with 128 cores:</p><ul><li><strong>Windows Server Datacenter</strong>: $20,800 (one-time purchase) + ~$4,000/year (Software Assurance)</li><li><strong>Azure Local</strong>: $15,360/year (service) + $35,798/year (Windows licensing) = $51,158/year</li><li><strong>3-Year TCO Difference</strong>: Windows Server saves ~$140,000 over Azure Local</li></ul><h3 id=for-the-pragmatic-it-professional>For the Pragmatic IT Professional</h3><p>Let&rsquo;s talk reality. Azure Local sounds impressive in Microsoft&rsquo;s marketing materials, but it forces you into a very specific hardware model at a very specific time. What if your budget approval process takes months? What if your preferred vendor can&rsquo;t deliver validated nodes quickly? What if your existing SAN still has three years of useful life?</p><p>Windows Server doesn&rsquo;t care – it works with what you have <strong>today</strong> and scales with your actual business timeline, not Microsoft&rsquo;s sales cycle. <strong>Hardware delivery reality</strong>: Azure Local validated nodes typically require 8-16 weeks delivery, while Windows Server can be deployed on existing hardware in days.</p><h3 id=for-organizations-seeking-true-independence>For Organizations Seeking True Independence</h3><p>Here&rsquo;s something the cloud vendors don&rsquo;t want you to realize: <strong>disconnected scenarios still matter</strong>. Not every workload needs to phone home to Azure. Windows Server clusters can run completely offline if needed – no internet dependency, no cloud billing surprises, no questions about data sovereignty. You control the entire stack.</p><h3 id=the-arc-enabled-middle-ground>The Arc-Enabled Middle Ground</h3><p>That said, if you <em>want</em> some cloud benefits without the Azure Local hardware restrictions, Windows Server 2025 with <strong>Azure Arc</strong> gives you the best of both worlds.</p><p><strong>Azure Arc for Servers</strong> provides:</p><ul><li><strong>Pricing</strong>: $6/server/month for basic management</li><li><strong>Capabilities</strong>: Unified monitoring, policy enforcement, Azure Backup integration</li><li><strong>No Hardware Restrictions</strong>: Works on any Windows Server deployment</li><li><strong>Optional Integration</strong>: Enable selectively rather than mandatory from day one</li></ul><p><strong>Arc-Enabled SCVMM: Enterprise Management Without Hardware Lock-In</strong></p><p>For organizations wanting Azure Local-class management capabilities, <strong>System Center Virtual Machine Manager (SCVMM) with Azure Arc</strong> delivers enterprise-grade virtualization management that rivals what Azure Local provides:</p><p><strong>SCVMM + Arc Integration Features</strong>:</p><ul><li><strong>Unified Management</strong>: Single pane of glass for multi-site Hyper-V environments</li><li><strong>Cloud Integration</strong>: Azure Arc-enabled SCVMM connects your on-premises infrastructure to Azure services</li><li><strong>Automated Provisioning</strong>: Template-based VM deployment across multiple clusters</li><li><strong>Policy Management</strong>: Consistent governance across hybrid environments</li><li><strong>Backup Integration</strong>: Native Azure Backup for VMs without additional agents</li><li><strong>Update Management</strong>: Coordinated patching through Azure Update Management</li></ul><p><strong>The Enterprise Advantage</strong>: Arc-enabled SCVMM provides many of the same centralized management, monitoring, and automation capabilities that make Azure Local attractive, but without forcing you into validated hardware constraints. You get:</p><ul><li><strong>Multi-cluster orchestration</strong> across different server models</li><li><strong>Hybrid cloud services</strong> integration on your existing infrastructure</li><li><strong>Enterprise-grade automation</strong> and self-service capabilities</li><li><strong>Azure services consumption</strong> without infrastructure replacement</li></ul><p>Arc-enabled Hyper-V clusters with SCVMM can provide many of the &ldquo;hybrid cloud&rdquo; benefits that Azure Local promises, without requiring validated nodes or ongoing per-core OS subscriptions. This approach gives you enterprise virtualization management that scales from branch offices to data centers, all while preserving your hardware investments.</p><h3 id=cost-reality-check>Cost Reality Check</h3><p>Yes, Azure Local&rsquo;s per-core subscription model might look attractive on paper, especially if you&rsquo;re comparing it to VMware&rsquo;s new pricing. But factor in the <strong>mandatory new hardware costs</strong> and the reality that you&rsquo;re locked into that subscription model forever. With Windows Server, you buy the license once (or use existing licenses with Software Assurance), and your ongoing costs are just maintenance and support – not a monthly subscription that increases every time you add CPU cores.</p><h3 id=when-azure-local-actually-makes-sense>When Azure Local Actually Makes Sense</h3><p>To be fair, Azure Local isn&rsquo;t wrong for everyone. Here are scenarios where it genuinely makes sense:</p><p><strong>✅ Azure Local is Right When:</strong></p><ul><li><strong>Greenfield deployment</strong> with budget for new infrastructure</li><li><strong>Branch offices</strong> needing simplified, appliance-like management</li><li><strong>Strong Azure integration requirements</strong> from day one</li><li><strong>Limited IT staff</strong> who benefit from OEM-managed lifecycle</li><li><strong>Regulatory requirements</strong> that favor cloud-connected compliance tools</li></ul><p><strong>❌ Azure Local is Wrong When:</strong></p><ul><li><strong>Recent SAN investment</strong> that still has useful life</li><li><strong>Budget constraints</strong> limiting major infrastructure refresh</li><li><strong>Mixed hardware environment</strong> that needs gradual modernization</li><li><strong>Air-gapped requirements</strong> or data sovereignty concerns</li><li><strong>VMware deadline pressure</strong> requiring immediate migration</li></ul><h3 id=bottom-line-recommendation>Bottom Line Recommendation</h3><p>Don&rsquo;t let Microsoft&rsquo;s marketing push you toward Azure Local unless you genuinely need a full infrastructure refresh and have budget allocated for it. <strong>Windows Server + Hyper-V is still the enterprise workhorse</strong> that powers countless production environments worldwide. It&rsquo;s proven, flexible, and respects your existing investments.</p><p>Sometimes the best cloud strategy is knowing when <strong>not</strong> to chase the latest cloud-native trend. For most VMware refugees, Windows Server 2025 provides the perfect balance: enterprise-grade virtualization without vendor lock-in, modern capabilities without mandatory subscriptions, and cloud integration when you want it – not when marketing demands it.</p><p><strong>The Reality Check</strong>: Microsoft&rsquo;s sales teams will push Azure Local because it generates recurring revenue. But you&rsquo;re not optimizing for Microsoft&rsquo;s business model – you&rsquo;re optimizing for your organization&rsquo;s success. Choose accordingly.</p><hr><p><strong>References:</strong></p><h3 id=microsoft-official-documentation>Microsoft Official Documentation</h3><ol><li><p>Microsoft Learn – <em>&ldquo;System requirements for Azure Local (23H2)&rdquo;</em> (2024) – <a href=https://learn.microsoft.com/en-us/azure-stack/hci/concepts/system-requirements>Azure Local hardware requirements and validated configurations</a></p></li><li><p>Microsoft Learn – <em>&ldquo;Failover clustering hardware requirements and storage options&rdquo;</em> (2024) – <a href=https://learn.microsoft.com/en-us/windows-server/failover-clustering/clustering-requirements>Windows Server clustering compatibility and validation requirements</a></p></li><li><p>Microsoft Docs – <em>&ldquo;Storage Spaces Direct overview&rdquo;</em> (2024) – <a href=https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview>Hyper-converged infrastructure design and implementation guide</a></p></li></ol><h3 id=industry-analysis--comparisons>Industry Analysis & Comparisons</h3><ol start=4><li><p>Francesco Molfese – <em>&ldquo;Windows Server 2025 vs. Azure Local: Who Wins the Virtualization Challenge?&rdquo;</em> (Sep 2024) – <a href=https://francescomolfese.it/en/category/windows-server-2025/>Hardware compatibility analysis</a> – Windows Server offers greater flexibility for reusing existing hardware compared to Azure Local&rsquo;s strict validation requirements.</p></li><li><p>Microsoft IT Ops Talk – <em>&ldquo;Azure Stack HCI Hybrid is built-in: How does it really work?&rdquo;</em> (2024) – <a href=https://learn.microsoft.com/en-us/shows/IT-Ops-Talk/OPS112-Azure-Stack-HCI-Hybrid-is-built-in-How-does-it-really-work>Official Microsoft session</a> – Existing hardware can only be reused for Azure Local if it <strong>exactly matches a current validated node</strong>; otherwise new certified hardware is required.</p></li></ol><h3 id=hardware-vendor-documentation>Hardware Vendor Documentation</h3><ol start=6><li><p>Dell Technologies – <em>&ldquo;Azure Local planning and deployment guide&rdquo;</em> (2024) – <a href=https://www.dell.com/en-us/dt/solutions/cloud/azure-stack-hci.htm>Comprehensive hardware sizing and validation guidance</a> – Emphasizes following the <strong>validated hardware path</strong> to avoid compatibility issues.</p></li><li><p>HPE – <em>&ldquo;Azure Local solutions catalog and best practices&rdquo;</em> (2024) – <a href=https://www.hpe.com/us/en/solutions/cloud/azure-stack.html>ProLiant and Apollo validated configurations</a> – Hardware delivery timelines and GreenLake integration options.</p></li><li><p>Lenovo – <em>&ldquo;ThinkAgile MX Azure Local appliances&rdquo;</em> (2024) – <a href=https://www.lenovo.com/us/en/servers-storage/solutions/microsoft-azure-stack/>Pre-configured edge and branch office solutions</a> – Simplified deployment for distributed environments.</p></li></ol><h3 id=vmwarebroadcom-resources>VMware/Broadcom Resources</h3><ol start=9><li><p>Broadcom Knowledge Base – <em>&ldquo;ESXi 9.0 deprecated and removed device drivers&rdquo;</em> (KB#391170, 2025) – <a href=https://knowledge.broadcom.com/external/article/391170/>Complete compatibility matrix</a> – Critical warning: upgrading to ESXi 9.0 with <strong>unsupported (EOL) devices</strong> can result in loss of storage or network access.</p></li><li><p>VMware vSphere 9.0 – <em>&ldquo;Hardware compatibility and upgrade planning&rdquo;</em> (2025) – <a href=https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0.html>Official vSphere 9.0 documentation</a> – Requirements for boot media (128GB), UEFI-only support, and increased memory minimums for container runtime support.</p></li></ol><h3 id=cost-analysis--technical-comparisons>Cost Analysis & Technical Comparisons</h3><ol start=11><li><p>Brandon Lee, BDRSuite – <em>&ldquo;Windows Server Hyper-V: SAN vs. Storage Spaces Direct&rdquo;</em> (2017) – <a href=https://www.virtualizationhowto.com/2017/09/differences-storage-spaces-storage-spaces-direct/>Technical comparison analysis</a> – Storage Spaces Direct often <strong>much cheaper than high-end SANs</strong>, with unified Windows Server management eliminating separate SAN administration tools.</p></li><li><p>Industry Cost Analysis – <em>&ldquo;Azure Local subscription model vs. Windows Server perpetual licensing&rdquo;</em> (2024) – <a href=https://www.bdrsuite.com/blog/hyper-v-storage-spaces-direct-disaggregated-vs-hyperconverged-deployments/>Comprehensive TCO comparison</a> – Real-world TCO comparison showing Windows Server can save $140,000+ over three years compared to Azure Local&rsquo;s dual subscription model.</p></li></ol></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/tags/hardware/ rel=tag>Hardware</a></li><li class=tags__item><a class="tags__link btn" href=/tags/storage/ rel=tag>Storage</a></li><li class=tags__item><a class="tags__link btn" href=/tags/san/ rel=tag>SAN</a></li><li class=tags__item><a class="tags__link btn" href=/tags/validated-nodes/ rel=tag>Validated Nodes</a></li><li class=tags__item><a class="tags__link btn" href=/tags/infrastructure/ rel=tag>Infrastructure</a></li><li class=tags__item><a class="tags__link btn" href=/tags/hyper-v/ rel=tag>Hyper-V</a></li><li class=tags__item><a class="tags__link btn" href=/tags/azure-local/ rel=tag>Azure Local</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="Kristopher J Turner avatar" src=/img/me.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name></span></div><div class=authorbox__description>Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/post/choosing-your-virtualization-platform-2025-licensing-analysis/ rel=prev><span class=pager__subtitle>«&#8201;</span><p class=pager__title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/post/beyond-cloud-feature-face-off-part-iv/ rel=next><span class=pager__subtitle>&#8201;»</span><p class=pager__title>Beyond the Cloud: Feature Face-Off - Part IV</p></a></div></nav><section class=comments><script src=https://giscus.app/client.js data-repo=thisismydemo/thisismydemo.github.io data-repo-id=R_kgDOIzLiFQ data-category=Announcements data-category-id=DIC_kwDOIzLiFc4C2wfM data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=en crossorigin=anonymous async></script></section></div><aside class=sidebar><div class="widget-search widget"><form class=widget-search__form role=search method=get action=https://google.com/search><label><input class=widget-search__field type=search placeholder name=q aria-label>
-</label><input class=widget-search__submit type=submit value=Search>
-<input type=hidden name=sitesearch value=http://thisismydemo.cloud/></form></div><div class="widget-recent widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/post/myth-tech/>The Myth of 'Old Tech'</a></li><li class=widget__item><a class=widget__link href=/post/odin-azure-local-community-tool-deep-dive/>Odin for Azure Local: A Community Tool Deep Dive</a></li><li class=widget__item><a class=widget__link href=/post/real-cost-virtualization/>The Real Cost of Virtualization</a></li><li class=widget__item><a class=widget__link href=/post/hyper-renaissance/>Welcome to the Hyper-V Renaissance</a></li><li class=widget__item><a class=widget__link href=/post/vmware-vsphere-vs-azure-local-feature-comparison/>VMware vSphere to Azure Local: Operator Feature Mapping</a></li></ul></div></div><div class="widget-categories widget"><h4 class=widget__title></h4><div class=widget__content><ul class=widget__list><li class=widget__item><a class=widget__link href=/categories/ai/>AI</a></li><li class=widget__item><a class=widget__link href=/categories/azure/>Azure</a></li><li class=widget__item><a class=widget__link href=/categories/azure-active-directory/>Azure Active Directory</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc/>Azure Arc</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-kubernetes/>Azure Arc-Enabled Kubernetes</a></li><li class=widget__item><a class=widget__link href=/categories/azure-arc-enabled-servers/>Azure Arc-Enabled Servers</a></li><li class=widget__item><a class=widget__link href=/categories/azure-files/>Azure Files</a></li><li class=widget__item><a class=widget__link href=/categories/azure-local/>Azure Local</a></li><li class=widget__item><a class=widget__link href=/categories/azure-percept-development-kit/>Azure Percept Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-site-recovery/>Azure Site Recovery</a></li><li class=widget__item><a class=widget__link href=/categories/azure-sphere-development-kit/>Azure Sphere Development Kit</a></li><li class=widget__item><a class=widget__link href=/categories/azure-stack-hci/>Azure Stack HCI</a></li><li class=widget__item><a class=widget__link href=/categories/cloud-computing/>Cloud Computing</a></li><li class=widget__item><a class=widget__link href=/categories/community-tools/>Community Tools</a></li><li class=widget__item><a class=widget__link href=/categories/comparison/>Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/cost-analysis/>Cost Analysis</a></li><li class=widget__item><a class=widget__link href=/categories/cross-tenant-synchronization/>Cross-Tenant Synchronization</a></li><li class=widget__item><a class=widget__link href=/categories/dfwsmug/>DFWSMUG</a></li><li class=widget__item><a class=widget__link href=/categories/entra-permissions-management/>Entra Permissions Management</a></li><li class=widget__item><a class=widget__link href=/categories/feature-comparison/>Feature Comparison</a></li><li class=widget__item><a class=widget__link href=/categories/festive-tech-calendar/>Festive Tech Calendar</a></li><li class=widget__item><a class=widget__link href=/categories/github-copilot/>GitHub Copilot</a></li><li class=widget__item><a class=widget__link href=/categories/hardware/>Hardware</a></li><li class=widget__item><a class=widget__link href=/categories/home-assistant/>Home Assistant</a></li><li class=widget__item><a class=widget__link href=/categories/infrastructure/>Infrastructure</a></li><li class=widget__item><a class=widget__link href=/categories/intune/>Intune</a></li><li class=widget__item><a class=widget__link href=/categories/intune-proactive-remediation/>Intune Proactive Remediation</a></li><li class=widget__item><a class=widget__link href=/categories/licensing/>Licensing</a></li><li class=widget__item><a class=widget__link href=/categories/microk8s/>MicroK8S</a></li><li class=widget__item><a class=widget__link href=/categories/microsoft-sentinel/>Microsoft Sentinel</a></li><li class=widget__item><a class=widget__link href=/categories/operations/>Operations</a></li><li class=widget__item><a class=widget__link href=/categories/technology/>Technology</a></li><li class=widget__item><a class=widget__link href=/categories/virtualization/>Virtualization</a></li><li class=widget__item><a class=widget__link href=/categories/vision-ai-developer-kit/>Vision AI Developer Kit</a></li><li class=widget__item><a class=widget__link href=/categories/windows-clustering/>WIndows Clustering</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server/>Windows Server</a></li><li class=widget__item><a class=widget__link href=/categories/windows-server-failover-cluster/>Windows Server Failover Cluster</a></li><li class=widget__item><a class=widget__link href=/categories/windows-terminal/>Windows Terminal</a></li></ul></div></div><div class="widget-taglist widget"><h4 class=widget__title></h4><div class=widget__content><a class="widget-taglist__link widget__link btn" href=/tags/ai/ title=AI>AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ai-comparison/ title="AI Comparison">AI Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ansible/ title=Ansible>Ansible</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/arm-templates/ title="ARM Templates">ARM Templates</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/artificial-intelligence/ title="Artificial Intelligence">Artificial Intelligence</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/avs/ title=AVS>AVS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/aws/ title=AWS>AWS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure/ title=Azure>Azure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-ad/ title="Azure AD">Azure AD</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc/ title="Azure Arc">Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-data-services/ title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-kubernetes/ title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-enabled-servers/ title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-arc-mas/ title="Azure Arc-Mas">Azure Arc-Mas</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-bastion/ title="Azure Bastion">Azure Bastion</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-devops/ title="Azure DevOps">Azure DevOps</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-files/ title="Azure Files">Azure Files</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-iot/ title="Azure IoT">Azure IoT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-kubernetes-service/ title="Azure Kubernetes Service">Azure Kubernetes Service</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-local/ title="Azure Local">Azure Local</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-grafana/ title="Azure Managed Grafana">Azure Managed Grafana</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-managed-prometheus/ title="Azure Managed Prometheus">Azure Managed Prometheus</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-monitor/ title="Azure Monitor">Azure Monitor</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept/ title="Azure Percept">Azure Percept</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-percept-development-kit/ title="Azure Percept Development Kit">Azure Percept Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-site-recovery/ title="Azure Site Recovery">Azure Site Recovery</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere/ title="Azure Sphere">Azure Sphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-sphere-development-kit/ title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-stack-hci/ title="Azure Stack HCI">Azure Stack HCI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/azure-vmware-solution/ title="Azure VMware Solution">Azure VMware Solution</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/claude-sonnet/ title="Claude Sonnet">Claude Sonnet</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cloud-family/ title="Cloud Family">Cloud Family</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/community-tools/ title="Community Tools">Community Tools</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/containers-insights/ title="Containers Insights">Containers Insights</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-analysis/ title="Cost Analysis">Cost Analysis</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cost-optimization/ title="Cost Optimization">Cost Optimization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/cross-tenant-synchronization/ title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dell-apex/ title="Dell APEX">Dell APEX</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/deployment-planning/ title="Deployment Planning">Deployment Planning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/dfwsmug/ title=DFWSMUG>DFWSMUG</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/endpoint-management/ title="Endpoint Management">Endpoint Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-features/ title="Enterprise Features">Enterprise Features</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-it/ title="Enterprise IT">Enterprise IT</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/enterprise-virtualization/ title="Enterprise Virtualization">Enterprise Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/entra-permissions-management/ title="Entra Permissions Management">Entra Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/feature-comparison/ title="Feature Comparison">Feature Comparison</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/festive-tech-calendar/ title="Festive Tech Calendar">Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/freshservice/ title=FreshService>FreshService</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/front-matter/ title="Front Matter">Front Matter</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github/ title=GitHub>GitHub</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-copilot-chat/ title="GitHub Copilot Chat">GitHub Copilot Chat</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/github-pages/ title="GitHub Pages">GitHub Pages</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-cloud-platform/ title="Google Cloud Platform">Google Cloud Platform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/google-gemini/ title="Google Gemini">Google Gemini</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/gpt-4.5/ title=GPT-4.5>GPT-4.5</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/grok-ai/ title="Grok AI">Grok AI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hardware/ title=Hardware>Hardware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-assistant/ title="Home Assistant">Home Assistant</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/home-automation/ title="Home Automation">Home Automation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hugo/ title=Hugo>Hugo</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/hyper-v/ title=Hyper-V>Hyper-V</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure/ title=Infrastructure>Infrastructure</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/infrastructure-as-code/ title="Infrastructure as Code">Infrastructure as Code</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/intune/ title=Intune>Intune</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/iot-edge/ title="Iot Edge">Iot Edge</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/kubernetes/ title=Kubernetes>Kubernetes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/licensing/ title=Licensing>Licensing</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/linux/ title=Linux>Linux</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/maas/ title=MaaS>MaaS</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/machine-learning/ title="Machine Learning">Machine Learning</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsk8s/ title=MicrosK8S>MicrosK8S</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft/ title=Microsoft>Microsoft</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-copilot/ title="Microsoft Copilot">Microsoft Copilot</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-entra/ title="Microsoft Entra">Microsoft Entra</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/microsoft-sentinel/ title="Microsoft Sentinel">Microsoft Sentinel</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/migration/ title=Migration>Migration</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/multicloud-connector-enabled-by-azure-arc/ title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/odin/ title=ODIN>ODIN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/openai/ title=OpenAI>OpenAI</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/permissions-management/ title="Permissions Management">Permissions Management</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/poractive-remediation/ title="Poractive Remediation">Poractive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/powershell/ title=PowerShell>PowerShell</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/proactive-remediation/ title="Proactive Remediation">Proactive Remediation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/rdp/ title=RDP>RDP</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/san/ title=SAN>SAN</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/scvmm/ title=SCVMM>SCVMM</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/ssh/ title=SSH>SSH</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/storage/ title=Storage>Storage</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/tco/ title=TCO>TCO</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/technology/ title=Technology>Technology</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/terraform/ title=Terraform>Terraform</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-festive-tech-calendar/ title="The Festive Tech Calendar">The Festive Tech Calendar</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/the-microsoft-425show/ title="The Microsoft 425Show">The Microsoft 425Show</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/validated-nodes/ title="Validated Nodes">Validated Nodes</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vcf/ title=VCF>VCF</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/virtualization/ title=Virtualization>Virtualization</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vision-ai-developer-kit/ title="Vision AI Developer Kit">Vision AI Developer Kit</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware/ title=VMware>VMware</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-cloud-foundation/ title="VMware Cloud Foundation">VMware Cloud Foundation</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/vmware-vsphere/ title="VMware VSphere">VMware VSphere</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wac/ title=WAC>WAC</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-admin-center/ title="WIndows Admin Center">WIndows Admin Center</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server/ title="Windows Server">Windows Server</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-2025/ title="Windows Server 2025">Windows Server 2025</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-server-failover-cluster/ title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/windows-terminal/ title="Windows Terminal">Windows Terminal</a>
-<a class="widget-taglist__link widget__link btn" href=/tags/wsfc/ title=WSFC>WSFC</a></div></div><div class="widget-social widget"><h4 class="widget-social__title widget__title"></h4><div class="widget-social__content widget__content"><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=LinkedIn rel="noopener noreferrer" href=https://linkedin.com/in/KristopherJTurner target=_blank><svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0 40v272c0 21.9 18.1 40 40 40h272c21.9.0 40-18.1 40-40V40c0-21.9-18.1-40-40-40H40C18.1.0.0 18.1.0 40zm312-8c4.6.0 8 3.4 8 8v272c0 4.6-3.4 8-8 8H40c-4.6.0-8-3.4-8-8V40c0-4.6 3.4-8 8-8H312zM59.5 87c0 15.2 12.3 27.5 27.5 27.5s27.5-12.3 27.5-27.5S102.2 59.5 87 59.5 59.5 71.8 59.5 87zM187 157h-1v-21h-45v152h47v-75c0-19.8 3.9-39 28.5-39 24.2.0 24.5 22.4 24.5 40v74h47v-83.5c0-40.9-8.7-72-56.5-72-23 0-38.2 12.6-44.5 24.5zM64 288h47.5V136H64V288z"/></svg>
-<span>LinkedIn</span></a></div><div class="widget-social__item widget__item"><a class="widget-social__link widget__link btn" title=GitHub rel="noopener noreferrer" href=https://github.com/thisismydemo target=_blank><svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0C85.9.0.0 85.8.0 191.7c0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2.0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8.0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7.0.0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4.0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5.0 25.6-.2 46.3-.2 52.6.0 5.1 3.5 11.1 13.2 9.2C329 348.2 384 276.4 384 191.7 384 85.8 298 0 192 0z"/></svg>
-<span>GitHub</span></a></div></div></div></aside></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2026 This Is My Demo.
-<span class=footer__copyright-credits></span></div></div></footer></div><script async defer src=/js/menu.js></script></body></html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Beyond the Cloud: Hardware Considerations - Part III - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K&#43; in Azure Local nodes? Real costs &amp; VMware VCF 9.0 impact.">
+		<meta property="og:url" content="http://localhost:1313/post/cloud-hardware-considerations-part-iii/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Beyond the Cloud: Hardware Considerations - Part III">
+  <meta property="og:description" content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K&#43; in Azure Local nodes? Real costs &amp; VMware VCF 9.0 impact.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-06-26T12:52:40+00:00">
+    <meta property="article:modified_time" content="2025-07-02T00:01:40+00:00">
+    <meta property="article:tag" content="Hardware">
+    <meta property="article:tag" content="Storage">
+    <meta property="article:tag" content="SAN">
+    <meta property="article:tag" content="Validated Nodes">
+    <meta property="article:tag" content="Infrastructure">
+    <meta property="article:tag" content="Hyper-V">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Beyond the Cloud: Hardware Considerations - Part III">
+  <meta name="twitter:description" content="Hardware decisions make or break VMware exits. Reuse existing SANs with Windows Server or invest $200K&#43; in Azure Local nodes? Real costs &amp; VMware VCF 9.0 impact.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Beyond the Cloud: Hardware Considerations - Part III</h1>
+			<p class="post__lead">Your VMware exit hardware strategy determines both timeline and budget. Windows Server offers maximum flexibility with existing infrastructure, Azure Local requires validated nodes costing $200K-500K&#43;, and VMware VCF 9.0 deprecates older hardware anyway. This analysis provides a framework for making hardware decisions that fit your organization&#39;s timeline and budget constraints.</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2025-06-26T12:52:40Z">June 26, 2025</time>
+	<time class="meta__text" datetime="2025-07-02T00:01:40Z">(: July 02, 2025)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/infrastructure/" rel="category">Infrastructure</a>, <a class="meta__link" href="/categories/hardware/" rel="category">Hardware</a>, <a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/rethinkvmware/hardware-part3-banner.png" alt="Beyond the Cloud: Hardware Considerations - Part III">
+		
+	</figure><div class="content post__content clearfix">
+			<p><em>(Note: AVS – Azure VMware Solution – is not covered in detail here since it&rsquo;s essentially outsourcing VMware onto Azure&rsquo;s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure&rsquo;s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)</em></p>
+<h1 id="hardware-considerations-build-your-cloud-on-your-terms">Hardware Considerations: Build Your Cloud on Your Terms</h1>
+<p><strong>Series Recap:</strong> In <strong>Part 1</strong> of this series, we examined the total cost of ownership (TCO) implications of different post-VMware paths, comparing capital expenditure vs. subscription models across on-premises Hyper-V, Azure Local (formerly Azure Stack HCI), and Azure VMware Solution (AVS). In <strong>Part 2</strong>, we dove into licensing – analyzing how VMware vSphere licensing stacks up against Microsoft&rsquo;s offerings (Windows Server and Azure Local) in 2025, and what those licensing differences mean for choosing a virtualization platform. These earlier posts highlighted that organizations leaving VMware have viable Microsoft-based alternatives that can reduce costs and simplify licensing. Now, in <strong>Part 3</strong>, we turn to the <strong>infrastructure</strong> question: <strong>What are your hardware options when &ldquo;rethinking virtualization&rdquo; away from VMware?</strong> Can you reuse your <strong>existing servers and storage</strong>, or are you forced into buying <strong>new, validated hardware nodes</strong>? How do Microsoft&rsquo;s two on-premises solutions – <strong>Windows Server Hyper-V with Failover Clustering (WSFC)</strong> and <strong>Azure Local</strong> – compare in terms of hardware requirements? We&rsquo;ll explore scenarios for customers looking to leave VMware, whether they&rsquo;re <strong>not ready for a hardware refresh</strong> or <strong>planning a refresh alongside the migration</strong>, and we&rsquo;ll also briefly touch on upcoming <strong>VMware Cloud Foundation 9.0</strong> hardware needs.</p>
+<h2 id="series-navigation">Series Navigation</h2>
+<ul>
+<li><strong>Introduction</strong>: <a href="https://thisismydemo.cloud/post/rethinking-virtualization-post-vmware/">Beyond the Cloud: Rethinking Virtualization Post-VMware</a></li>
+<li><strong>Part I</strong>: <a href="https://thisismydemo.cloud/post/capex-subscription-tco-modeling-hyper-azure-local-avs/">Beyond the Cloud: CapEx vs Subscription TCO Analysis</a></li>
+<li><strong>Part II</strong>: <a href="https://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/">Beyond the Cloud: 2025 Virtualization Licensing Guide</a></li>
+<li><strong>Part III</strong>: Hardware Considerations - Build Your Cloud on Your Terms <em>(This Post)</em></li>
+<li><strong>Part IV</strong>: <a href="https://thisismydemo.cloud/post/beyond-cloud-feature-face-off-part-iv/">Beyond the Cloud: Feature Face-Off - Part IV</a></li>
+</ul>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#hardware-considerations-build-your-cloud-on-your-terms">Hardware Considerations: Build Your Cloud on Your Terms</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#series-navigation">Series Navigation</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#table-of-contents">Table of Contents</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#reuse-vs-refresh-the-hardware-dilemma">Reuse vs. Refresh: The Hardware Dilemma</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#path-1-reuse-existing-hardware">Path 1: Reuse Existing Hardware</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#path-2-refresh-with-new-hardware">Path 2: Refresh with New Hardware</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#making-the-decision-framework-and-considerations">Making the Decision: Framework and Considerations</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#hardware-investment-comparison">Hardware Investment Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#windows-server-on-existing-infrastructure-san-or-s2d">Windows Server on Existing Infrastructure: SAN or S2D?</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#traditional-san-based-cluster-reuse-your-san">Traditional SAN-based Cluster (Reuse Your SAN)</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#storage-spaces-direct-hyper-converged-cluster">Storage Spaces Direct (Hyper-Converged) Cluster</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#san-vs-s2d-technical-comparison">SAN vs S2D: Technical Comparison</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#mixed-server-environments-windows-servers-flexibility-advantage">Mixed Server Environments: Windows Server&rsquo;s Flexibility Advantage</a></li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#azure-local-new-hardware-and-validated-nodes">Azure Local: New Hardware and Validated Nodes</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#azure-local-pricing-what-it-really-costs">Azure Local Pricing: What It Really Costs</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#current-azure-local-catalog-vendor-solutions">Current Azure Local Catalog: Vendor Solutions</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#hardware-and-infrastructure-requirements">Hardware and Infrastructure Requirements</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#network-infrastructure-beyond-basic-connectivity">Network Infrastructure: Beyond Basic Connectivity</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#mandatory-network-standards-compliance">Mandatory Network Standards Compliance</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#realistic-network-investment">Realistic Network Investment</a></li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#azure-local-vs-windows-server-decision-matrix">Azure Local vs. Windows Server: Decision Matrix</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#when-azure-local-makes-sense-real-scenarios">When Azure Local Makes Sense: Real Scenarios</a></li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#vmware-cloud-foundation-90">VMware Cloud Foundation 9.0</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#new-hardware-requirements-for-esxi-90">New Hardware Requirements for ESXi 9.0</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#device-deprecation-impact">Device Deprecation Impact</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#cost-and-planning-implications">Cost and Planning Implications</a></li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#side-by-side-comparison">Side-by-Side Comparison</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#conclusion-choose-the-path-that-fits-your-needs">Conclusion: Choose the Path that Fits Your Needs</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#quick-decision-framework">Quick Decision Framework</a></li>
+</ul>
+</li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#my-personal-recommendations-the-windows-server-advantage">My Personal Recommendations: The Windows Server Advantage</a>
+<ul>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#for-the-budget-conscious-most-organizations">For the Budget-Conscious (Most Organizations)</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#for-the-pragmatic-it-professional">For the Pragmatic IT Professional</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#for-organizations-seeking-true-independence">For Organizations Seeking True Independence</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#the-arc-enabled-middle-ground">The Arc-Enabled Middle Ground</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#cost-reality-check">Cost Reality Check</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#when-azure-local-actually-makes-sense">When Azure Local Actually Makes Sense</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#bottom-line-recommendation">Bottom Line Recommendation</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#microsoft-official-documentation">Microsoft Official Documentation</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#industry-analysis--comparisons">Industry Analysis &amp; Comparisons</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#hardware-vendor-documentation">Hardware Vendor Documentation</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#vmwarebroadcom-resources">VMware/Broadcom Resources</a></li>
+<li><a href="/post/cloud-hardware-considerations-part-iii/#cost-analysis--technical-comparisons">Cost Analysis &amp; Technical Comparisons</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="reuse-vs-refresh-the-hardware-dilemma">Reuse vs. Refresh: The Hardware Dilemma</h2>
+<p>When considering your post-VMware virtualization strategy, one of the first questions organizations face is whether to reuse existing hardware or invest in new equipment. This decision significantly impacts both initial costs and long-term operational success.</p>
+<p><strong>The VMware Hardware Timeline Factor:</strong> What makes this decision particularly urgent for many organizations is VMware&rsquo;s accelerating hardware obsolescence timeline. With VMware Cloud Foundation 9.0 and ESXi 9.0, VMware is deprecating significant numbers of older server components (storage controllers, network adapters, etc.) that were supported in vSphere 7 and 8. Organizations staying with VMware face their own hardware refresh timeline pressure – you can&rsquo;t simply renew VMware licenses and keep running on the same hardware indefinitely. VMware&rsquo;s compatibility guides now warn that upgrading to ESXi 9.0 with unsupported devices can result in <strong>loss of storage or network access</strong>, forcing hardware replacement before the upgrade. This creates a unique situation: <strong>both staying with VMware and moving to Azure Local may require new hardware</strong>, but for different reasons and on different timelines.</p>
+<h3 id="path-1-reuse-existing-hardware">Path 1: Reuse Existing Hardware</h3>
+<p>If your current servers and storage ran VMware vSphere reliably, you might prefer to repurpose them for the new solution. This path favors a platform that is flexible with hardware compatibility. Microsoft&rsquo;s traditional Windows Server + Hyper-V is very accommodating here – it can run on a wide range of commodity servers and supports classic external SAN storage for clusters.</p>
+<p>In fact, Windows Server 2025 (with Hyper-V and Failover Clustering) offers much greater flexibility to leverage existing gear than Azure Local does. If your goal is to maximize use of existing hardware, the Windows Server route is often the best choice. It allows clustering with either shared storage (e.g., an iSCSI or FC SAN or NAS) or with internal disks via Storage Spaces Direct – giving you options to integrate with whatever infrastructure you already have.</p>
+<p><strong>The Hidden Advantage:</strong> What many organizations don&rsquo;t realize is that choosing Windows Server Hyper-V doesn&rsquo;t just give you immediate VMware exit options – it gives you <strong>timeline control</strong>. You can migrate away from VMware immediately using existing hardware, then gradually modernize your infrastructure over months or years rather than being forced into a forklift upgrade to meet someone else&rsquo;s deadline.</p>
+<h3 id="path-2-refresh-with-new-hardware">Path 2: Refresh with New Hardware</h3>
+<p>Some organizations align their hardware refresh cycle with moving off VMware. Microsoft&rsquo;s Azure Local is positioned as a modern hyper-converged solution, but it almost always requires new hardware to meet its certified solution requirements.</p>
+<p>Azure Local runs on specific validated node configurations – typically turnkey integrated systems from OEM partners (Dell, HPE, Lenovo, etc.) – rather than just any random server. In fact, Microsoft notes that you can only repurpose existing servers for Azure Local if they exactly match a current validated node profile in the Azure Local Catalog.</p>
+<blockquote>
+<p><strong>💡 Key Insight</strong></p>
+<p>In approximately <strong>99.9% of cases</strong>, existing hardware will not meet the stringent requirements for Azure Local deployment. This statistic, while seemingly harsh, reflects the reality of modern hyperconverged infrastructure demands.</p>
+</blockquote>
+<p>In practice, unless your older servers were originally purchased as a supported HCI solution, this is rarely the case. The Azure Local program emphasizes using approved hardware to ensure stability – following the validated hardware path helps avoid &ldquo;ghost chasing&rdquo; of obscure firmware issues under load. OEMs provide jointly supported solutions, and Microsoft &ldquo;highly recommends&rdquo; integrated systems that come pre-built and pre-tested for Azure Local.</p>
+<p><strong>Current Azure Local Catalog State:</strong> As of late 2024, the catalog includes:</p>
+<ul>
+<li><strong>100+ validated hardware configurations</strong> from leading vendors</li>
+<li><strong>New low-specification options</strong> for smaller deployments</li>
+<li><strong>Expanded processor support</strong> including Intel and AMD latest generations</li>
+<li><strong>Flexible storage configurations</strong> accommodating various workload types</li>
+</ul>
+<p>However, the catalog&rsquo;s expansion doesn&rsquo;t change the fundamental reality: existing enterprise hardware rarely meets the precise specifications required for certification. The result is a rock-solid platform, but at the cost of being locked into new hardware purchases in the near term.</p>
+<h3 id="making-the-decision-framework-and-considerations">Making the Decision: Framework and Considerations</h3>
+<p>When evaluating your hardware refresh strategy, consider this decision flow:</p>
+<ol>
+<li>
+<p><strong>Audit Current Hardware</strong> - CPU generation and features, memory type and capacity, storage configuration and performance, network capabilities</p>
+</li>
+<li>
+<p><strong>Compare Against Requirements</strong> - Check Azure Local hardware catalog, identify gaps and compatibility issues, calculate upgrade costs vs. replacement</p>
+</li>
+<li>
+<p><strong>Evaluate Business Impact</strong> - Deployment timeline requirements, performance expectations, support and maintenance needs, budget constraints</p>
+</li>
+<li>
+<p><strong>Consider External Pressures</strong> - VMware upgrade deadlines and deprecated hardware, budget approval timelines, vendor delivery schedules for new hardware</p>
+</li>
+</ol>
+<h4 id="hardware-investment-comparison">Hardware Investment Comparison</h4>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Initial Cost</th>
+<th>Long-term TCO</th>
+<th>Risk Level</th>
+<th>Timeline Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reuse Existing (Windows Server)</strong></td>
+<td>Low</td>
+<td>Medium</td>
+<td>Low-Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Refresh with Certified (Azure Local)</strong></td>
+<td>High</td>
+<td>Low</td>
+<td>Low</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>VMware VCF 9.0 Upgrade</strong></td>
+<td>Medium</td>
+<td>High</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li><strong>Reuse Existing</strong>: Immediate VMware exit capability, gradual modernization on your timeline</li>
+<li><strong>Refresh with Certified</strong>: Modern infrastructure but forced timeline and significant upfront investment</li>
+<li><strong>VMware Upgrade</strong>: Hardware refresh required anyway, but ongoing licensing costs and vendor lock-in</li>
+</ul>
+<p>In short, Windows Server Hyper-V (WSFC) offers a &ldquo;build your cloud on your terms&rdquo; approach – you can likely reuse your existing mix of servers and storage – whereas Azure Local usually mandates a clean slate with new, homogenized hardware. Next, we&rsquo;ll compare these options in detail: using Windows Server on your current infrastructure (either with your SAN or with Storage Spaces Direct) versus rolling out Azure Local on vendor-validated nodes.</p>
+<hr>
+<h2 id="windows-server-on-existing-infrastructure-san-or-s2d">Windows Server on Existing Infrastructure: SAN or S2D?</h2>
+<p>One of the strengths of the Windows Server Failover Clustering approach is its <strong>hardware flexibility</strong>. You have two architecture choices for storage when using WSFC + Hyper-V:</p>
+<h3 id="traditional-san-based-cluster-reuse-your-san">Traditional SAN-based Cluster (Reuse Your SAN)</h3>
+<p>If you have an existing Fibre Channel or iSCSI SAN that&rsquo;s still performant and supported, you can continue to leverage it with a Windows Server Hyper-V cluster. Microsoft fully supports &ldquo;traditional infrastructure&rdquo; setups where VMs on a Windows cluster use an external shared SAN/NAS for storage.</p>
+<p><strong>How the Architecture Works:</strong> In this model, each Hyper-V host connects to the SAN LUNs (or shares) and those LUNs are configured as Cluster Shared Volumes (CSVs) accessible by all nodes. This essentially replicates the VMware + SAN design with a different hypervisor. The benefit is obvious: you <strong>protect your prior investments</strong> in storage.</p>
+<p><strong>Real-World Example:</strong> For example, if you recently bought an all-flash SAN that has years of life left, moving to WSFC/Hyper-V lets you <strong>swap the hypervisor but keep the storage</strong> – an incremental migration that minimizes new spend. Administrators who are comfortable with their SAN vendor&rsquo;s tools and best practices can stick with what they know, just integrating it with Windows instead of ESXi.</p>
+<p><strong>The Azure Local Contrast:</strong> Microsoft explicitly acknowledges that Windows Server remains ideal for these scenarios (multiple hosts clustered with a shared disk array), whereas Azure Local <strong>does not support external SAN storage</strong> at all. In fact, Azure Local&rsquo;s reliance on Storage Spaces Direct means it <strong>cannot use</strong> a fibre channel or iSCSI SAN for VM storage – there&rsquo;s no option for multi-path shared LUNs in Azure Local&rsquo;s design.</p>
+<p><strong>Technical Implementation:</strong> Windows Server, on the other hand, can certainly use SAN/NAS storage for clustering, including using multi-path IO (MPIO) with identical HBAs across nodes for robust SAN connectivity. If you have a reliable SAN and processes built around it, <strong>WSFC lets you keep that architecture</strong> while moving away from VMware.</p>
+<p><strong>Perfect Timing Scenario:</strong> This path is especially attractive for organizations facing a VMware license deadline but whose hardware (servers <em>and</em> SAN) is not due for refresh – you can transition to Hyper-V on your existing hosts, connect them to the existing SAN, and avoid a costly all-at-once hardware purchase.</p>
+<h3 id="storage-spaces-direct-hyper-converged-cluster">Storage Spaces Direct (Hyper-Converged) Cluster</h3>
+<p>For organizations that don&rsquo;t have an external SAN, or who want to move toward a hyper-converged model using <strong>local disks</strong>, Windows Server Datacenter edition offers <strong>Storage Spaces Direct (S2D)</strong> as an option. S2D allows a WSFC cluster to pool internal drives on each host into a distributed, highly-available storage array – conceptually similar to VMware vSAN.</p>
+<p><strong>The Core Appeal:</strong> The appeal of S2D is that you can eliminate the external SAN and use commodity disks (SSD/NVMe) inside the Hyper-V hosts to get SAN-like performance. If your existing VMware hosts have ample drive bays (or you&rsquo;re willing to add some storage to them), you could repurpose those servers into an S2D cluster.</p>
+<p><strong>Hardware Considerations:</strong> This route might require some updates – e.g., adding SSDs or NVMe disks, and ensuring you have a high-bandwidth network between nodes (10 GbE or higher is recommended, with RDMA for best results). It&rsquo;s also ideal to use identical or very similar servers for S2D clusters, although it&rsquo;s not a strict requirement; Microsoft recommends matching hardware for consistency, and cluster validation will flag major discrepancies, but it doesn&rsquo;t require the nodes to be identical models. In practice, successful S2D deployments typically use the same make/model servers with consistent drives and NICs for predictable performance.</p>
+<p><strong>Cost &amp; Management Advantages:</strong> Assuming your hardware meets the requirements, S2D can be a cost-effective way to get an all-software-defined infrastructure. Because S2D is built into Windows Server, you avoid the expense of an external SAN array. In fact, a Hyper-V cluster with S2D is often <strong>much cheaper than buying a new high-end SAN</strong> from a vendor. You&rsquo;re using industry-standard drives and controllers, and the &ldquo;SAN intelligence&rdquo; is provided by Windows Server itself.</p>
+<p><strong>Administrative Benefits:</strong> Administration can also be simpler: storage management is unified with the OS (PowerShell, Windows Admin Center, etc.) instead of dealing with separate SAN management GUIs.</p>
+<p><strong>Resiliency Considerations:</strong> On the flip side, be mindful of the cluster size and resiliency: a <strong>2-node S2D cluster</strong> is possible (with witness) but uses simple two-way mirroring (50% capacity efficiency), whereas 3+ nodes enable more efficient resiliency (like three-way mirror or parity) and higher uptime during maintenance.</p>
+<p><strong>Hardware Requirements for Existing Infrastructure:</strong> If reusing existing hardware for S2D, ensure the controllers are in HBA mode (pass-through) and not RAID, and that any older NICs are capable of the throughput needed – a 1 Gbps network is technically supported but will be a bottleneck; 10 Gbps+ and RDMA is strongly recommended for HCI scenarios.</p>
+<p><strong>The Gradual Modernization Path:</strong> In summary, <strong>Windows Server S2D</strong> gives you a path to hyper-converged infrastructure without forcing new hardware purchases – you can <em>gradually</em> modernize by, say, adding some SSDs and 10/25 Gb NICs to your existing servers rather than replacing everything outright. Many organizations find that attractive when budgets are tight. And if you <em>do</em> decide to buy new servers for a Hyper-V cluster, you can do so on your own terms (any hardware on the Windows Server HCL that passes cluster validation is supported) rather than being limited to HCI-certified nodes.</p>
+<h3 id="san-vs-s2d-technical-comparison">SAN vs S2D: Technical Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th><strong>Traditional SAN</strong></th>
+<th><strong>Storage Spaces Direct (S2D)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hardware Investment</strong></td>
+<td>Preserve existing SAN</td>
+<td>Add local drives, upgrade networking</td>
+</tr>
+<tr>
+<td><strong>Network Requirements</strong></td>
+<td>Lower (SAN fabric handles storage traffic)</td>
+<td>Higher (10+ GbE, RDMA recommended)</td>
+</tr>
+<tr>
+<td><strong>Management Interface</strong></td>
+<td>Separate SAN vendor tools</td>
+<td>Unified with Windows (PowerShell, WAC)</td>
+</tr>
+<tr>
+<td><strong>Hardware Flexibility</strong></td>
+<td>Any certified servers</td>
+<td>Identical/similar servers preferred</td>
+</tr>
+<tr>
+<td><strong>Storage Controllers</strong></td>
+<td>Any supported configuration</td>
+<td>Must be HBA mode (no RAID)</td>
+</tr>
+<tr>
+<td><strong>Capacity Efficiency</strong></td>
+<td>SAN-dependent</td>
+<td>50% (2-node) to better (3+ nodes)</td>
+</tr>
+<tr>
+<td><strong>Cost Model</strong></td>
+<td>Existing investment + server refresh</td>
+<td>Gradual modernization possible</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mixed-server-environments-windows-servers-flexibility-advantage">Mixed Server Environments: Windows Server&rsquo;s Flexibility Advantage</h3>
+<p>It&rsquo;s worth noting that Windows Server clusters can tolerate a degree of hardware heterogeneity. It&rsquo;s generally best practice to use homogeneous nodes in a cluster, but Microsoft support&rsquo;s stance is simply that all components must be certified for Windows Server and the cluster must pass validation.</p>
+<p><strong>What This Means in Practice:</strong> That means you could have, for example, two slightly different server models or memory sizes in one cluster, and as long as they function well together (and you might enable CPU compatibility mode for live migrations across different CPU generations), it&rsquo;s a supported config. Many Hyper-V deployments over the years have mixed hardware during transitions (adding newer nodes to an old cluster during upgrades, etc.).</p>
+<p><strong>Real-World CPU Compatibility Scenarios:</strong> Here are common mixed-hardware scenarios where Windows Server&rsquo;s flexibility shines:</p>
+<ul>
+<li><strong>Generational Upgrades:</strong> Mixing Intel Xeon E5-2600 v3 (Haswell) with E5-2600 v4 (Broadwell) processors in the same cluster by enabling CPU compatibility mode to mask newer instruction sets</li>
+<li><strong>Vendor Transitions:</strong> Running Dell PowerEdge R730 servers alongside HPE ProLiant DL380 Gen9 servers, as long as both pass cluster validation</li>
+<li><strong>Memory Configurations:</strong> Having some nodes with 128GB RAM and others with 256GB RAM, allowing workload placement based on memory requirements</li>
+<li><strong>Phased Refreshes:</strong> Adding newer servers with NVMe storage to an existing cluster with SATA SSDs, gradually migrating workloads to higher-performance nodes</li>
+<li><strong>CPU Socket Differences:</strong> Mixing dual-socket and quad-socket servers in the same cluster (though VM sizing must be planned accordingly)</li>
+</ul>
+<p><strong>Azure Local&rsquo;s Strict Requirements:</strong> <strong>Azure Local, by contrast, requires uniformity</strong> – the official requirement is that <em>&ldquo;all servers must be the same manufacturer and model&rdquo;</em> in an HCI cluster. The HCI operating system expects symmetric hardware for storage pooling and uses an image-based lifecycle approach, so mixing server types is not part of its design.</p>
+<p><strong>Bottom Line:</strong> In short, WSFC gives you more wiggle room to <strong>mix and match hardware to a degree</strong> (helpful when repurposing existing gear), whereas Azure Local expects essentially identical nodes (typically delivered as a batch from an OEM) for each cluster.</p>
+<hr>
+<h2 id="azure-local-new-hardware-and-validated-nodes">Azure Local: New Hardware and Validated Nodes</h2>
+<p>Azure Local (formerly Azure Stack HCI) is Microsoft&rsquo;s premier hybrid cloud-integrated HCI platform – but it comes with strict hardware prescriptions and significant cost implications. If you&rsquo;re considering this route as your VMware replacement, here are the key hardware considerations:</p>
+<h3 id="azure-local-pricing-what-it-really-costs">Azure Local Pricing: What It Really Costs</h3>
+<p>Azure Local operates on a <strong>dual subscription model</strong> that organizations must understand before committing:</p>
+<blockquote>
+<p><strong>💰 Azure Local Total Cost Breakdown</strong></p>
+<ul>
+<li><strong>Azure Local Service</strong>: $10/core/month (mandatory for all physical cores)</li>
+<li><strong>Windows Server Licensing</strong>: $23.30/core/month (unless using existing licenses with Software Assurance)</li>
+<li><strong>Hardware Investment</strong>: New validated nodes required in most cases</li>
+</ul>
+</blockquote>
+<p><strong>Real-World Cost Example</strong>: A typical 4-node cluster with dual 16-core processors (128 total cores):</p>
+<ul>
+<li>Azure Local service: $1,280/month</li>
+<li>Windows Server licensing: $2,982/month (if new licenses needed)</li>
+<li><strong>Total monthly cost</strong>: $4,262 before hardware amortization</li>
+</ul>
+<p>Compare this to Windows Server perpetual licensing, where you pay once and own the license indefinitely (with optional Software Assurance for updates).</p>
+<h3 id="current-azure-local-catalog-vendor-solutions">Current Azure Local Catalog: Vendor Solutions</h3>
+<p>The Azure Local catalog has expanded significantly in 2024-2025:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Vendor</strong></th>
+<th><strong>Solution Lines</strong></th>
+<th><strong>Deployment Types</strong></th>
+<th><strong>Key Advantages</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dell</strong></td>
+<td>PowerEdge (AX, VX series)</td>
+<td>2-16 nodes, ROBO to datacenter</td>
+<td>Integrated APEX support, lifecycle management</td>
+</tr>
+<tr>
+<td><strong>HPE</strong></td>
+<td>ProLiant DL145 Gen11, Apollo</td>
+<td>Edge-optimized, full rack solutions</td>
+<td>HPE GreenLake integration, hybrid management</td>
+</tr>
+<tr>
+<td><strong>Lenovo</strong></td>
+<td>ThinkAgile MX1020/MX1021</td>
+<td>2-node edge, branch office focus</td>
+<td>Pre-configured appliances, simplified deployment</td>
+</tr>
+<tr>
+<td><strong>DataON</strong></td>
+<td>AZS series</td>
+<td>Storage-optimized configurations</td>
+<td>High-density storage, cost-effective options</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Reality Check</strong>: While the catalog offers variety, <strong>delivery timelines</strong> for validated nodes can be 8-16 weeks, potentially impacting your VMware exit timeline.</p>
+<h3 id="hardware-and-infrastructure-requirements">Hardware and Infrastructure Requirements</h3>
+<ul>
+<li><strong>Validated Hardware Only:</strong> Azure Local is <strong>sold as a solution</strong>, not just software. Microsoft works with hardware partners to provide a catalog of validated node configurations and integrated systems. In fact, you cannot simply install Azure Local on any random server and call it a supported production deployment – it needs to align with a supported combination of components (CPU, drives, NICs, firmware, etc.). As noted earlier, existing servers can only be used if they <strong>exactly match a current validated node profile</strong> in the Azure Local Catalog. For the vast majority of environments, this means <strong>buying new nodes</strong> that are listed in the Azure Local Catalog. These are often sold in pre-configured clusters of 2, 4, or more nodes, with all identical hardware. This ensures that the cluster will pass Microsoft&rsquo;s HCI validation and that you have a single throat to choke for support (often the OEM will handle first-line support for the hardware, with Microsoft covering the software). The emphasis on validated hardware is to ensure reliability – Microsoft and OEMs run extensive stress tests on these configurations. Deploying on something off-list risks hitting firmware or driver issues under load, which is why <em>&ldquo;following the validated hardware path&rdquo;</em> is strongly urged. In the HCI world, an misbehaving component can bring big headaches, so Microsoft&rsquo;s stance (echoed by partners like Dell) is to stick to known-good builds to <strong>avoid playing whack-a-mole with obscure hardware issues</strong>.</li>
+</ul>
+<p><strong>Current Azure Local Catalog State:</strong> As of late 2024, the catalog includes:</p>
+<ul>
+<li><strong>100+ validated hardware configurations</strong> from leading vendors</li>
+<li><strong>New low-specification options</strong> for smaller deployments</li>
+<li><strong>Expanded processor support</strong> including Intel and AMD latest generations</li>
+<li><strong>Flexible storage configurations</strong> accommodating various workload types</li>
+</ul>
+<p>However, the catalog&rsquo;s expansion doesn&rsquo;t change the fundamental reality: existing enterprise hardware rarely meets the precise specifications required for certification. The result is a rock-solid platform, but at the cost of being locked into new hardware purchases in the near term.</p>
+<blockquote>
+<p><strong>🚫 Critical Limitation: No External SAN Support</strong></p>
+<p>Azure Local <strong>cannot integrate with existing SAN infrastructure</strong>. Unlike Windows Server Failover Clustering, which supports both SAN and hyper-converged storage, Azure Local is <strong>Storage Spaces Direct only</strong>.</p>
+<p><strong>Impact</strong>: If you have a recently purchased SAN with years of useful life remaining, Azure Local provides no migration path to preserve that investment. Your storage investment becomes a sunk cost.</p>
+</blockquote>
+<ul>
+<li><strong>Hyper-Converged Storage (No SAN):</strong> Azure Local&rsquo;s architecture is inherently hyper-converged – it <strong>requires Storage Spaces Direct</strong> using local disks in each node. Unlike a Windows Server cluster, <strong>you cannot use an external SAN</strong> with Azure Local for your VM storage. The system will not even allow adding a shared LUN to the cluster; all storage must be direct-attached to the hosts (or in a single-node scenario, attached JBOD, but not shared between nodes). This means that if you have an existing SAN, Azure Local provides no way to incorporate it – that storage would become effectively sidelined (perhaps used for backups or secondary storage, but not for the HCI cluster&rsquo;s primary workloads). Azure Local&rsquo;s philosophy is to instead use internal NVMe, SSD, and possibly HDDs to create a software-defined pool. This delivers excellent performance (especially with all-flash NVMe configurations) and simplifies management to one layer. But it reinforces that moving to Azure Local is a <strong>full infrastructure replacement</strong>: new servers <em>with their own internal storage</em> handle everything. It&rsquo;s an all-in-one approach.</li>
+</ul>
+<h3 id="network-infrastructure-beyond-basic-connectivity">Network Infrastructure: Beyond Basic Connectivity</h3>
+<p>Azure Local&rsquo;s hyper-converged architecture places significant demands on your network infrastructure:</p>
+<h4 id="mandatory-network-standards-compliance">Mandatory Network Standards Compliance</h4>
+<ul>
+<li><strong>IEEE 802.1Q</strong>: VLAN support (required in all scenarios)</li>
+<li><strong>IEEE 802.1Qbb</strong>: Priority Flow Control for lossless storage traffic</li>
+<li><strong>IEEE 802.1Qaz</strong>: Enhanced Transmission Selection for QoS</li>
+<li><strong>IEEE 802.1AB</strong>: Link Layer Discovery Protocol for troubleshooting</li>
+</ul>
+<h4 id="realistic-network-investment">Realistic Network Investment</h4>
+<p>Many VMware environments running on 1GbE will require <strong>complete network refresh</strong> for Azure Local:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Current Network</strong></th>
+<th><strong>Required Upgrade</strong></th>
+<th><strong>Estimated Investment</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1GbE switches</td>
+<td>10/25GbE with DCB support</td>
+<td>$15,000-50,000+</td>
+</tr>
+<tr>
+<td>Basic 10GbE</td>
+<td>RDMA-capable 25/100GbE</td>
+<td>$25,000-75,000+</td>
+</tr>
+<tr>
+<td>Legacy switching</td>
+<td>Complete ToR refresh</td>
+<td>$50,000-150,000+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical Point</strong>: Unlike Windows Server clusters that can work with existing network infrastructure, Azure Local <strong>mandates</strong> specific network capabilities that older environments typically lack.</p>
+<ul>
+<li>
+<p><strong>Network Requirements:</strong> Given the heavy reliance on east-west traffic for S2D replication, Azure Local has higher network demands. Realistically, 10 GbE is the minimum, and 25–100 Gb networks with RDMA are recommended for all-flash scenarios. Many older VMware deployments on 1 GbE won&rsquo;t meet Azure Local&rsquo;s performance needs. Thus, adopting HCI might involve upgrading network switches and NICs along with the servers. (Windows Server clusters with a SAN can sometimes get by with lower network throughput since the heavy lifting is offloaded to the SAN fabric; HCI pushes that onto the cluster network.)</p>
+</li>
+<li>
+<p><strong>Lifecycle and Updates:</strong> Azure Local is delivered as an OS with frequent feature updates (semi-annual releases). OEM integrated systems often include streamlined update tools (e.g., firmware + driver + OS updates in one workflow). This is a benefit of buying into the validated model: you get a cohesive experience for patching. However, it also underscores that <strong>older hardware may not be able to catch up</strong> – each new HCI release might drop support for out-of-date devices. (For instance, if an older RAID controller or NIC isn&rsquo;t re-certified by the OEM for the latest HCI version, you might not be able to upgrade that cluster without hardware changes. This is similar to what VMware is doing with vSphere – more on that shortly.)</p>
+</li>
+</ul>
+<h3 id="azure-local-vs-windows-server-decision-matrix">Azure Local vs. Windows Server: Decision Matrix</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Factor</strong></th>
+<th><strong>Azure Local</strong></th>
+<th><strong>Windows Server 2025</strong></th>
+<th><strong>Decision Criteria</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Upfront Hardware Cost</strong></td>
+<td>$200,000-500,000+ (new validated nodes)</td>
+<td>$0-50,000 (minor upgrades)</td>
+<td>Budget availability for major refresh</td>
+</tr>
+<tr>
+<td><strong>Monthly Operating Cost</strong></td>
+<td>$4,000-15,000+ (subscription fees)</td>
+<td>$0-2,000 (maintenance only)</td>
+<td>Preference for CapEx vs OpEx</td>
+</tr>
+<tr>
+<td><strong>Timeline to Production</strong></td>
+<td>12-20 weeks (hardware + deployment)</td>
+<td>2-8 weeks (migration planning)</td>
+<td>VMware deadline pressure</td>
+</tr>
+<tr>
+<td><strong>Storage Investment Protection</strong></td>
+<td>Cannot reuse existing SAN</td>
+<td>Full SAN compatibility</td>
+<td>Value of existing storage infrastructure</td>
+</tr>
+<tr>
+<td><strong>Network Infrastructure</strong></td>
+<td>Requires modern DCB-capable switching</td>
+<td>Works with existing network gear</td>
+<td>Network refresh budget availability</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-azure-local-makes-sense-real-scenarios">When Azure Local Makes Sense: Real Scenarios</h3>
+<p><strong>Scenario 1: Greenfield Deployment</strong></p>
+<ul>
+<li>New datacenter or major refresh already planned</li>
+<li>Budget allocated for modern infrastructure</li>
+<li>Strong Azure integration requirements</li>
+<li><strong>Verdict</strong>: Azure Local is ideal</li>
+</ul>
+<p><strong>Scenario 2: VMware Refugee with Recent Hardware</strong></p>
+<ul>
+<li>Servers purchased within last 3-4 years</li>
+<li>Existing SAN with remaining lifespan</li>
+<li>Tight budget constraints</li>
+<li><strong>Verdict</strong>: Windows Server is the pragmatic choice</li>
+</ul>
+<p><strong>Scenario 3: Distributed Branch Offices</strong></p>
+<ul>
+<li>Multiple small sites needing HCI</li>
+<li>Limited local IT expertise</li>
+<li>Cloud management requirements</li>
+<li><strong>Verdict</strong>: Azure Local&rsquo;s validated appliances shine here</li>
+</ul>
+<p><strong>Scenario 4: Mixed Environment Transition</strong></p>
+<ul>
+<li>Gradual VMware migration over 12-24 months</li>
+<li>Varying hardware ages across environment</li>
+<li>Need to maintain operations during transition</li>
+<li><strong>Verdict</strong>: Windows Server provides necessary flexibility</li>
+</ul>
+<p>In summary, Azure Local is a powerful solution if you&rsquo;re aiming for a <strong>modern, cloud-connected datacenter</strong> and are willing (and able) to invest in <strong>new infrastructure that meets the spec</strong>. It shines in scenarios like distributed branch office deployments, edge locations, or a fresh private cloud build that needs Azure integration. But for customers coming from VMware who have a lot of sunk cost in their current hardware, HCI&rsquo;s hardware requirements can be a tough pill – it&rsquo;s essentially a <strong>forklift upgrade</strong> in many cases. This is exactly why we&rsquo;ve been highlighting the Windows Server alternative in this series: it lets you incrementally adopt new technology on your timeline. Microsoft&rsquo;s marketing might paint Azure Local as the only forward path, but as we see, <strong>WSFC/Hyper-V offers a more hardware-agnostic approach</strong> that can be just as viable, especially during transition periods.</p>
+<hr>
+<h2 id="vmware-cloud-foundation-90">VMware Cloud Foundation 9.0</h2>
+<p>VMware Cloud Foundation 9.0 was announced and became generally available on <strong>June 17, 2025</strong>. When I hear about a new version, my first instinct is to go and check the compatibility guides to see what impact this might have on hardware.</p>
+<p>VCF 9.0 requires ESXi 9.0 to be installed, which introduces several significant hardware requirement changes that could impact your infrastructure planning and budget.</p>
+<h3 id="new-hardware-requirements-for-esxi-90">New Hardware Requirements for ESXi 9.0</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>ESXi 8.0</th>
+<th>ESXi 9.0</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Boot Media</strong></td>
+<td>32 GB minimum</td>
+<td><strong>128 GB minimum</strong></td>
+<td>4x increase - likely for container runtime support</td>
+</tr>
+<tr>
+<td><strong>Boot Method</strong></td>
+<td>BIOS or UEFI</td>
+<td><strong>UEFI only</strong></td>
+<td>Legacy BIOS no longer supported</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>4 GB minimum</td>
+<td><strong>8 GB minimum</strong></td>
+<td>2x increase for base functionality</td>
+</tr>
+<tr>
+<td><strong>CPU Architecture</strong></td>
+<td>x86-64</td>
+<td>x86-64 with enhanced features</td>
+<td>Some older CPUs deprecated</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>💡 Key Insight</strong>: The 128 GB boot media requirement represents the most significant change. This likely supports the new container runtime included in ESXi 9.0, but it means your existing 32-64 GB boot drives won&rsquo;t be sufficient.</p>
+</blockquote>
+<h3 id="device-deprecation-impact">Device Deprecation Impact</h3>
+<p>VMware has deprecated a significant number of devices and adapters for ESXi 9.0, documented in <a href="https://knowledge.broadcom.com/external/article/391170/esxi-9-list-of-deprecated-and-removed-de.html">KB 391170</a>. The deprecation affects:</p>
+<ul>
+<li><strong>Network Cards</strong>: Several Intel and Broadcom NICs</li>
+<li><strong>Storage Controllers</strong>: Legacy RAID controllers and HBAs</li>
+<li><strong>Server Platforms</strong>: Older generation servers from major vendors</li>
+</ul>
+<p><strong>Understanding Deprecation Levels</strong>:</p>
+<ul>
+<li><strong>Restricted</strong>: Device functions but with limited support</li>
+<li><strong>End of Life (EOL)</strong>: Device completely unsupported</li>
+</ul>
+<h3 id="cost-and-planning-implications">Cost and Planning Implications</h3>
+<p><strong>Immediate Costs</strong>:</p>
+<ul>
+<li>Boot media upgrades: ~$50-200 per server for enterprise SSDs</li>
+<li>Memory upgrades: ~$100-500 per server (if below 8GB)</li>
+<li>Network/storage adapters: $200-2,000 per server for replacements</li>
+</ul>
+<p><strong>Planning Timeline</strong>:</p>
+<ul>
+<li><strong>Q3 2025</strong>: Audit current hardware against KB 391170</li>
+<li><strong>Q4 2025</strong>: Budget for necessary upgrades</li>
+<li><strong>Q1 2026</strong>: Begin staged hardware updates</li>
+<li><strong>Q2-Q3 2026</strong>: VCF 9.0 deployment window</li>
+</ul>
+<blockquote>
+<p><strong>⚠️ Critical Decision Point</strong>: If you&rsquo;re running older hardware, you might find that multiple devices are no longer supported. This could force an unplanned hardware refresh cycle that significantly impacts your infrastructure budget and timeline.</p>
+</blockquote>
+<p>The key question is: what does this mean for your existing infrastructure? Run the compatibility assessment now to avoid deployment surprises later.</p>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>To crystallize the differences, here&rsquo;s a side-by-side look at hardware considerations for <strong>Windows Server (WSFC) vs. Azure Local</strong>, along with a note on VMware&rsquo;s requirements:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Comparison Factor</strong></th>
+<th><strong>Windows Server 2022/2025</strong><br><em>Hyper-V + Failover Cluster (WSFC)</em></th>
+<th><strong>Azure Local</strong><br><em>Hyper-Converged HCI OS</em></th>
+<th><strong>VMware vSphere/VCF 9.0</strong><br><em>(for comparison)</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hardware Flexibility</strong></td>
+<td><strong>High:</strong> Can reuse existing servers (even mixed models, if compatible). Supports broad range of certified hardware.</td>
+<td><strong>Low:</strong> Generally <strong>requires new, vendor-validated nodes</strong>. Existing hardware only usable if it exactly matches a supported config. Uniform servers (same model) required in cluster.</td>
+<td><strong>Medium:</strong> vSphere supports a wide hardware range <em>in general</em>, but <strong>upgrading to 9.0 will drop support for many older devices</strong> (e.g., some HBAs, NICs). Likely requires hardware refresh or component upgrades for older servers.</td>
+</tr>
+<tr>
+<td><strong>Storage Architecture</strong></td>
+<td>Flexible: Use <strong>external SAN/NAS</strong> or <strong>Storage Spaces Direct</strong> (local disks) – your choice. Can integrate with existing Fibre Channel/iSCSI storage (Azure Local cannot).</td>
+<td><strong>Hyper-converged only:</strong> Uses <strong>Storage Spaces Direct</strong> with internal drives. <strong>No support for external SAN</strong> or shared SAS enclosures. All nodes use local SSD/NVMe for storage, replicated across cluster.</td>
+<td>Flexible: Supports traditional SAN/NAS or vSAN (HCI) if you have appropriate licenses. vSAN (like S2D) requires local disks and usually homogeneous nodes, whereas using a SAN is still an option in vSphere (one reason some may stick with VMware).</td>
+</tr>
+<tr>
+<td><strong>Hardware Requirements</strong></td>
+<td>Standard Windows Server HCL certification for NICs, HBAs, etc. <strong>Cluster validation</strong> must pass on chosen config. Recommended to use similar servers, but not strictly required.</td>
+<td>Must purchase from <strong>Azure Local Catalog</strong> of solutions. Typically 2-16 nodes, all-flash or hybrid drives, with 10–100 GbE RDMA networking. <strong>Strict validation</strong> – non-certified components (RAID cards, older NICs) are not allowed. Ongoing Azure subscription per core for the OS.</td>
+<td><strong>Requires devices on VMware&rsquo;s compatibility list.</strong> ESXi 9.0 deprecates certain older devices – they&rsquo;ll operate in 8.x but must be replaced before 9.0. Otherwise, standard x86 server requirements (similar to WSFC in CPU/RAM needs).</td>
+</tr>
+<tr>
+<td><strong>Ideal Use Case</strong></td>
+<td>Best when you want to <strong>maximize existing investments</strong> – e.g., keep using a current SAN or defer new hardware costs. Also suitable for mixed environments and gradual upgrades.</td>
+<td>Best when undertaking a <strong>full infrastructure refresh</strong> and wanting a cloud-integrated solution. Ideal if you plan to modernize to HCI and can invest in new hardware that aligns with Azure&rsquo;s hybrid vision.</td>
+<td>Best if you intend to <strong>stay with VMware</strong> and are willing to refresh hardware as needed. (If you have a significant investment in VMware-specific tooling and skills, you may prefer this route, but watch out for Broadcom/VMware&rsquo;s licensing and support changes.)</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Note: AVS – Azure VMware Solution – is not covered in detail here since it’s essentially outsourcing VMware onto Azure’s hardware. That involves a different calculus: you avoid buying hardware entirely, but you pay cloud rental fees and must fit into Azure’s instance constraints. In this post, we focus on on-premises alternatives where you control the hardware.)</em></p>
+<h2 id="conclusion-choose-the-path-that-fits-your-needs">Conclusion: Choose the Path that Fits Your Needs</h2>
+<p>As you plan your post-VMware journey, the hardware dimension is as important as cost and licensing. Microsoft’s two on-premises offerings present two different philosophies:</p>
+<ul>
+<li>
+<p><strong>Windows Server + Hyper-V (WSFC)</strong> empowers you to <strong>build your cloud on <em>your</em> terms</strong> – you can start with what you have and evolve gradually. It’s a proven, enterprise-grade platform that, despite getting less hype these days, continues to run mission-critical workloads worldwide. This path is about <strong>pragmatism</strong>: if you’re staring down a VMware exit but don’t have the budget (or desire) to rip-and-replace your infrastructure, WSFC lets you transition to a supported, modern virtualization platform with minimal hardware changes. You can always perform a phased hardware refresh later, on your schedule (for instance, replace aging servers with newer ones for your Hyper-V cluster over time, without changing the software stack).</p>
+</li>
+<li>
+<p><strong>Azure Local</strong> offers a more <strong>prescriptive, cloud-connected</strong> on-prem solution – great for organizations that want the latest tech and tight Azure integration, and are ready to invest in that upfront. It brings the benefits of hyper-converged design and Azure Arc management, but it’s less forgiving of legacy gear. This path makes sense if you’ve decided to modernize your data center and have budget allocated for new HCI nodes (or if your existing hardware is truly at end-of-life and <em>needs</em> replacement anyway). It’s the route Microsoft’s sales teams will often promote for “transforming” your on-premises environment.</p>
+</li>
+</ul>
+<p>Ultimately, the choice comes down to your <strong>business requirements and timelines</strong>. If avoiding a big capital spend and extending equipment lifespan is a priority, then leveraging Windows Server 2025 with Hyper-V on your existing hardware can be a smart move – it provides a <strong>fully supported platform</strong> without forcing you into new purchases. If, on the other hand, you desire a cutting-edge, cloud-hybrid infrastructure and are prepared to standardize on new hardware, Azure Local can deliver that experience (just go in with eyes open about the ongoing subscription and the one-time hardware costs).</p>
+<h3 id="quick-decision-framework">Quick Decision Framework</h3>
+<p>Use this simple flowchart to guide your hardware strategy:</p>
+<p><strong>Start Here: What&rsquo;s your primary constraint?</strong></p>
+<p>🔸 <strong>Budget/Timeline Pressure?</strong> → <strong>Windows Server 2025</strong></p>
+<ul>
+<li>Reuse existing servers and SAN</li>
+<li>Immediate VMware exit possible</li>
+<li>Gradual modernization on your terms</li>
+</ul>
+<p>🔸 <strong>Need Modern Infrastructure?</strong> → <strong>Evaluate Further:</strong></p>
+<ul>
+<li><strong>Have recent SAN investment?</strong> → <strong>Windows Server 2025</strong> (protect SAN investment)</li>
+<li><strong>Ready for full refresh + cloud integration?</strong> → <strong>Azure Local</strong></li>
+<li><strong>Complex VMware environment?</strong> → <strong>Windows Server 2025</strong> (flexibility during transition)</li>
+</ul>
+<p>🔸 <strong>Staying with VMware?</strong> → <strong>Plan Hardware Refresh</strong></p>
+<ul>
+<li>Audit against KB 391170 by Q3 2025</li>
+<li>Budget for ESXi 9.0 compatibility upgrades</li>
+<li>Consider Windows Server as backup plan</li>
+</ul>
+<p><strong>Key Decision Points:</strong></p>
+<ol>
+<li><strong>Can you afford 12-20 weeks for new hardware delivery?</strong> (Azure Local requirement)</li>
+<li><strong>Do you have a recent SAN that Azure Local can&rsquo;t use?</strong> (Drives toward Windows Server)</li>
+<li><strong>Is your VMware deadline forcing immediate decisions?</strong> (Windows Server provides fastest path)</li>
+</ol>
+<p>Remember that there&rsquo;s no one-size-fits-all &ldquo;better&rdquo; option. It&rsquo;s about aligning the solution to your organization&rsquo;s needs. The good news is that <strong>Microsoft gives you both options</strong> – just don&rsquo;t let the marketing convince you that you <em>must</em> go the Azure Local route. As this series argues, <strong>Windows Server + Hyper-V remains a rock-solid alternative</strong> for those who want to run VMs on-premises without the cloud bells and whistles.</p>
+<p>In our next post, <strong>Part IV: Feature Face-Off</strong>, we&rsquo;ll dive into a head-to-head comparison of enterprise features – DRS vs. Live Migration, Fault Tolerance capabilities, backup ecosystem integration, and Hyper-V&rsquo;s unique Guarded Fabric security advantages. Spoiler: Hyper-V has evolved significantly and includes enterprise capabilities that sometimes get overlooked in the VMware-dominated conversation.</p>
+<hr>
+<h2 id="my-personal-recommendations-the-windows-server-advantage">My Personal Recommendations: The Windows Server Advantage</h2>
+<p>Having worked with organizations through countless virtualization migrations, I&rsquo;ll be direct: <strong>Windows Server 2025 with Hyper-V is often the smartest path for most VMware refugees</strong>. Here&rsquo;s why I consistently recommend it over Azure Local for the majority of post-VMware scenarios:</p>
+<h3 id="for-the-budget-conscious-most-organizations">For the Budget-Conscious (Most Organizations)</h3>
+<p>If you&rsquo;re facing VMware&rsquo;s new licensing costs and timeline pressures, Windows Server lets you <strong>escape immediately without a hardware forklift</strong>. Your existing servers that ran VMware reliably will almost certainly run Hyper-V just fine. Your SAN investment? Protected. Your networking gear? Probably adequate.</p>
+<p>This isn&rsquo;t about settling for &ldquo;good enough&rdquo; – it&rsquo;s about being smart with capital allocation. Windows Server 2025 Datacenter gives you enterprise-grade virtualization with features that rival (and sometimes exceed) VMware&rsquo;s capabilities, all while preserving your hardware investments.</p>
+<p><strong>Real Cost Example</strong>: A typical 4-node cluster with 128 cores:</p>
+<ul>
+<li><strong>Windows Server Datacenter</strong>: $20,800 (one-time purchase) + ~$4,000/year (Software Assurance)</li>
+<li><strong>Azure Local</strong>: $15,360/year (service) + $35,798/year (Windows licensing) = $51,158/year</li>
+<li><strong>3-Year TCO Difference</strong>: Windows Server saves ~$140,000 over Azure Local</li>
+</ul>
+<h3 id="for-the-pragmatic-it-professional">For the Pragmatic IT Professional</h3>
+<p>Let&rsquo;s talk reality. Azure Local sounds impressive in Microsoft&rsquo;s marketing materials, but it forces you into a very specific hardware model at a very specific time. What if your budget approval process takes months? What if your preferred vendor can&rsquo;t deliver validated nodes quickly? What if your existing SAN still has three years of useful life?</p>
+<p>Windows Server doesn&rsquo;t care – it works with what you have <strong>today</strong> and scales with your actual business timeline, not Microsoft&rsquo;s sales cycle. <strong>Hardware delivery reality</strong>: Azure Local validated nodes typically require 8-16 weeks delivery, while Windows Server can be deployed on existing hardware in days.</p>
+<h3 id="for-organizations-seeking-true-independence">For Organizations Seeking True Independence</h3>
+<p>Here&rsquo;s something the cloud vendors don&rsquo;t want you to realize: <strong>disconnected scenarios still matter</strong>. Not every workload needs to phone home to Azure. Windows Server clusters can run completely offline if needed – no internet dependency, no cloud billing surprises, no questions about data sovereignty. You control the entire stack.</p>
+<h3 id="the-arc-enabled-middle-ground">The Arc-Enabled Middle Ground</h3>
+<p>That said, if you <em>want</em> some cloud benefits without the Azure Local hardware restrictions, Windows Server 2025 with <strong>Azure Arc</strong> gives you the best of both worlds.</p>
+<p><strong>Azure Arc for Servers</strong> provides:</p>
+<ul>
+<li><strong>Pricing</strong>: $6/server/month for basic management</li>
+<li><strong>Capabilities</strong>: Unified monitoring, policy enforcement, Azure Backup integration</li>
+<li><strong>No Hardware Restrictions</strong>: Works on any Windows Server deployment</li>
+<li><strong>Optional Integration</strong>: Enable selectively rather than mandatory from day one</li>
+</ul>
+<p><strong>Arc-Enabled SCVMM: Enterprise Management Without Hardware Lock-In</strong></p>
+<p>For organizations wanting Azure Local-class management capabilities, <strong>System Center Virtual Machine Manager (SCVMM) with Azure Arc</strong> delivers enterprise-grade virtualization management that rivals what Azure Local provides:</p>
+<p><strong>SCVMM + Arc Integration Features</strong>:</p>
+<ul>
+<li><strong>Unified Management</strong>: Single pane of glass for multi-site Hyper-V environments</li>
+<li><strong>Cloud Integration</strong>: Azure Arc-enabled SCVMM connects your on-premises infrastructure to Azure services</li>
+<li><strong>Automated Provisioning</strong>: Template-based VM deployment across multiple clusters</li>
+<li><strong>Policy Management</strong>: Consistent governance across hybrid environments</li>
+<li><strong>Backup Integration</strong>: Native Azure Backup for VMs without additional agents</li>
+<li><strong>Update Management</strong>: Coordinated patching through Azure Update Management</li>
+</ul>
+<p><strong>The Enterprise Advantage</strong>: Arc-enabled SCVMM provides many of the same centralized management, monitoring, and automation capabilities that make Azure Local attractive, but without forcing you into validated hardware constraints. You get:</p>
+<ul>
+<li><strong>Multi-cluster orchestration</strong> across different server models</li>
+<li><strong>Hybrid cloud services</strong> integration on your existing infrastructure</li>
+<li><strong>Enterprise-grade automation</strong> and self-service capabilities</li>
+<li><strong>Azure services consumption</strong> without infrastructure replacement</li>
+</ul>
+<p>Arc-enabled Hyper-V clusters with SCVMM can provide many of the &ldquo;hybrid cloud&rdquo; benefits that Azure Local promises, without requiring validated nodes or ongoing per-core OS subscriptions. This approach gives you enterprise virtualization management that scales from branch offices to data centers, all while preserving your hardware investments.</p>
+<h3 id="cost-reality-check">Cost Reality Check</h3>
+<p>Yes, Azure Local&rsquo;s per-core subscription model might look attractive on paper, especially if you&rsquo;re comparing it to VMware&rsquo;s new pricing. But factor in the <strong>mandatory new hardware costs</strong> and the reality that you&rsquo;re locked into that subscription model forever. With Windows Server, you buy the license once (or use existing licenses with Software Assurance), and your ongoing costs are just maintenance and support – not a monthly subscription that increases every time you add CPU cores.</p>
+<h3 id="when-azure-local-actually-makes-sense">When Azure Local Actually Makes Sense</h3>
+<p>To be fair, Azure Local isn&rsquo;t wrong for everyone. Here are scenarios where it genuinely makes sense:</p>
+<p><strong>✅ Azure Local is Right When:</strong></p>
+<ul>
+<li><strong>Greenfield deployment</strong> with budget for new infrastructure</li>
+<li><strong>Branch offices</strong> needing simplified, appliance-like management</li>
+<li><strong>Strong Azure integration requirements</strong> from day one</li>
+<li><strong>Limited IT staff</strong> who benefit from OEM-managed lifecycle</li>
+<li><strong>Regulatory requirements</strong> that favor cloud-connected compliance tools</li>
+</ul>
+<p><strong>❌ Azure Local is Wrong When:</strong></p>
+<ul>
+<li><strong>Recent SAN investment</strong> that still has useful life</li>
+<li><strong>Budget constraints</strong> limiting major infrastructure refresh</li>
+<li><strong>Mixed hardware environment</strong> that needs gradual modernization</li>
+<li><strong>Air-gapped requirements</strong> or data sovereignty concerns</li>
+<li><strong>VMware deadline pressure</strong> requiring immediate migration</li>
+</ul>
+<h3 id="bottom-line-recommendation">Bottom Line Recommendation</h3>
+<p>Don&rsquo;t let Microsoft&rsquo;s marketing push you toward Azure Local unless you genuinely need a full infrastructure refresh and have budget allocated for it. <strong>Windows Server + Hyper-V is still the enterprise workhorse</strong> that powers countless production environments worldwide. It&rsquo;s proven, flexible, and respects your existing investments.</p>
+<p>Sometimes the best cloud strategy is knowing when <strong>not</strong> to chase the latest cloud-native trend. For most VMware refugees, Windows Server 2025 provides the perfect balance: enterprise-grade virtualization without vendor lock-in, modern capabilities without mandatory subscriptions, and cloud integration when you want it – not when marketing demands it.</p>
+<p><strong>The Reality Check</strong>: Microsoft&rsquo;s sales teams will push Azure Local because it generates recurring revenue. But you&rsquo;re not optimizing for Microsoft&rsquo;s business model – you&rsquo;re optimizing for your organization&rsquo;s success. Choose accordingly.</p>
+<hr>
+<p><strong>References:</strong></p>
+<h3 id="microsoft-official-documentation">Microsoft Official Documentation</h3>
+<ol>
+<li>
+<p>Microsoft Learn – <em>&ldquo;System requirements for Azure Local (23H2)&rdquo;</em> (2024) – <a href="https://learn.microsoft.com/en-us/azure-stack/hci/concepts/system-requirements">Azure Local hardware requirements and validated configurations</a></p>
+</li>
+<li>
+<p>Microsoft Learn – <em>&ldquo;Failover clustering hardware requirements and storage options&rdquo;</em> (2024) – <a href="https://learn.microsoft.com/en-us/windows-server/failover-clustering/clustering-requirements">Windows Server clustering compatibility and validation requirements</a></p>
+</li>
+<li>
+<p>Microsoft Docs – <em>&ldquo;Storage Spaces Direct overview&rdquo;</em> (2024) – <a href="https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview">Hyper-converged infrastructure design and implementation guide</a></p>
+</li>
+</ol>
+<h3 id="industry-analysis--comparisons">Industry Analysis &amp; Comparisons</h3>
+<ol start="4">
+<li>
+<p>Francesco Molfese – <em>&ldquo;Windows Server 2025 vs. Azure Local: Who Wins the Virtualization Challenge?&rdquo;</em> (Sep 2024) – <a href="https://francescomolfese.it/en/category/windows-server-2025/">Hardware compatibility analysis</a> – Windows Server offers greater flexibility for reusing existing hardware compared to Azure Local&rsquo;s strict validation requirements.</p>
+</li>
+<li>
+<p>Microsoft IT Ops Talk – <em>&ldquo;Azure Stack HCI Hybrid is built-in: How does it really work?&rdquo;</em> (2024) – <a href="https://learn.microsoft.com/en-us/shows/IT-Ops-Talk/OPS112-Azure-Stack-HCI-Hybrid-is-built-in-How-does-it-really-work">Official Microsoft session</a> – Existing hardware can only be reused for Azure Local if it <strong>exactly matches a current validated node</strong>; otherwise new certified hardware is required.</p>
+</li>
+</ol>
+<h3 id="hardware-vendor-documentation">Hardware Vendor Documentation</h3>
+<ol start="6">
+<li>
+<p>Dell Technologies – <em>&ldquo;Azure Local planning and deployment guide&rdquo;</em> (2024) – <a href="https://www.dell.com/en-us/dt/solutions/cloud/azure-stack-hci.htm">Comprehensive hardware sizing and validation guidance</a> – Emphasizes following the <strong>validated hardware path</strong> to avoid compatibility issues.</p>
+</li>
+<li>
+<p>HPE – <em>&ldquo;Azure Local solutions catalog and best practices&rdquo;</em> (2024) – <a href="https://www.hpe.com/us/en/solutions/cloud/azure-stack.html">ProLiant and Apollo validated configurations</a> – Hardware delivery timelines and GreenLake integration options.</p>
+</li>
+<li>
+<p>Lenovo – <em>&ldquo;ThinkAgile MX Azure Local appliances&rdquo;</em> (2024) – <a href="https://www.lenovo.com/us/en/servers-storage/solutions/microsoft-azure-stack/">Pre-configured edge and branch office solutions</a> – Simplified deployment for distributed environments.</p>
+</li>
+</ol>
+<h3 id="vmwarebroadcom-resources">VMware/Broadcom Resources</h3>
+<ol start="9">
+<li>
+<p>Broadcom Knowledge Base – <em>&ldquo;ESXi 9.0 deprecated and removed device drivers&rdquo;</em> (KB#391170, 2025) – <a href="https://knowledge.broadcom.com/external/article/391170/">Complete compatibility matrix</a> – Critical warning: upgrading to ESXi 9.0 with <strong>unsupported (EOL) devices</strong> can result in loss of storage or network access.</p>
+</li>
+<li>
+<p>VMware vSphere 9.0 – <em>&ldquo;Hardware compatibility and upgrade planning&rdquo;</em> (2025) – <a href="https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0.html">Official vSphere 9.0 documentation</a> – Requirements for boot media (128GB), UEFI-only support, and increased memory minimums for container runtime support.</p>
+</li>
+</ol>
+<h3 id="cost-analysis--technical-comparisons">Cost Analysis &amp; Technical Comparisons</h3>
+<ol start="11">
+<li>
+<p>Brandon Lee, BDRSuite – <em>&ldquo;Windows Server Hyper-V: SAN vs. Storage Spaces Direct&rdquo;</em> (2017) – <a href="https://www.virtualizationhowto.com/2017/09/differences-storage-spaces-storage-spaces-direct/">Technical comparison analysis</a> – Storage Spaces Direct often <strong>much cheaper than high-end SANs</strong>, with unified Windows Server management eliminating separate SAN administration tools.</p>
+</li>
+<li>
+<p>Industry Cost Analysis – <em>&ldquo;Azure Local subscription model vs. Windows Server perpetual licensing&rdquo;</em> (2024) – <a href="https://www.bdrsuite.com/blog/hyper-v-storage-spaces-direct-disaggregated-vs-hyperconverged-deployments/">Comprehensive TCO comparison</a> – Real-world TCO comparison showing Windows Server can save $140,000+ over three years compared to Azure Local&rsquo;s dual subscription model.</p>
+</li>
+</ol>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hardware/" rel="tag">Hardware</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/storage/" rel="tag">Storage</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/san/" rel="tag">SAN</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/validated-nodes/" rel="tag">Validated Nodes</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/infrastructure/" rel="tag">Infrastructure</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hyper-v/" rel="tag">Hyper-V</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-local/" rel="tag">Azure Local</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/choosing-your-virtualization-platform-2025-licensing-analysis/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/beyond-cloud-feature-face-off-part-iv/" rel="next">
+			<span class="pager__subtitle">&thinsp;»</span>
+			<p class="pager__title">Beyond the Cloud: Feature Face-Off - Part IV</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/management-tools-hyperv/">Management Tools for Production Hyper-V—WAC, SCVMM, System Center</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/myth-tech/">The Myth of &#39;Old Tech&#39;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/case-studies/">Case Studies</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/community-tools/">Community Tools</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/edge-computing/">Edge Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/future-planning/">Future Planning</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/management/">Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/migration/">Migration</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/strategy/">Strategy</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server/">Windows Server</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/active-directory/" title="Active Directory">Active Directory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm-templates/" title="ARM Templates">ARM Templates</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bandwidth-limitations/" title="Bandwidth Limitations">Bandwidth Limitations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/case-studies/" title="Case Studies">Case Studies</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/change-management/" title="Change Management">Change Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/configuration-manager/" title="Configuration Manager">Configuration Manager</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/day-2-operations/" title="Day-2 Operations">Day-2 Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/disconnected-operations/" title="Disconnected Operations">Disconnected Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/edge-computing/" title="Edge Computing">Edge Computing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-it/" title="Enterprise IT">Enterprise IT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-virtualization/" title="Enterprise Virtualization">Enterprise Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/feature-comparison/" title="Feature Comparison">Feature Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/future-planning/" title="Future Planning">Future Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hybrid-strategy/" title="Hybrid Strategy">Hybrid Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/management/" title="Management">Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-strategy/" title="Microsoft Strategy">Microsoft Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/odin/" title="ODIN">ODIN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/operations-manager/" title="Operations Manager">Operations Manager</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/roadmap/" title="Roadmap">Roadmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scripts/" title="Scripts">Scripts</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/system-center/" title="System Center">System Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcf/" title="VCF">VCF</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/workgroup-clusters/" title="Workgroup Clusters">Workgroup Clusters</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -6,12 +6,12 @@
     <description>Recent content in System Center on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Feb 2026 00:03:19 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Feb 2026 03:28:50 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/system-center/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Management Tools for Production Hyper-V—WAC, SCVMM, System Center</title>
       <link>http://localhost:1313/post/management-tools-hyperv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/management-tools-hyperv/</guid>
       <description>Introduction: Why Dedicated Management Tooling Matters in Production [Coming soon]&#xA;Management Tool Landscape: Native vs. Enterprise vs. Cloud [Coming soon]&#xA;Windows Admin Center: Capabilities, V-Mode Deployment, Gateway Architecture Core Capabilities [Coming soon]&#xA;V-Mode Deployment [Coming soon]&#xA;Extension Ecosystem [Coming soon]&#xA;SCVMM: VM Lifecycle, Networking Integration, Storage Management VM Lifecycle Management [Coming soon]&#xA;Networking Integration [Coming soon]&#xA;Storage Management and Library/Templates [Coming soon]&#xA;Scale Considerations [Coming soon]&#xA;System Center (OpsMgr/ConfigMgr): Monitoring Integration, Patch Management, Compliance Operations Manager Integration [Coming soon]</description>
     </item>

@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VMware Cloud Foundation on This Is My Demo</title><link>http://thisismydemo.cloud/tags/vmware-cloud-foundation/</link><description>Recent content in VMware Cloud Foundation on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 10 Feb 2026 03:38:18 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/vmware-cloud-foundation/index.xml" rel="self" type="application/rss+xml"/><item><title>The Myth of 'Old Tech'</title><link>http://thisismydemo.cloud/post/myth-tech/</link><pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate><guid>http://thisismydemo.cloud/post/myth-tech/</guid><description>&amp;ldquo;Hyper-V? That&amp;rsquo;s legacy tech. It can&amp;rsquo;t compete with VMware. &amp;lsquo;Hyper-V is dead,&amp;rsquo; isn&amp;rsquo;t it?&amp;rdquo;
-I&amp;rsquo;ve heard this sentiment more times than I can count. In hallway conversations at conferences, in architecture review meetings, in vendor comparison spreadsheets filled with red X marks in the Hyper-V column. For years, this perception has been the default position—sometimes justified, often not.
-In this third post of the Hyper-V Renaissance series, we&amp;rsquo;re going to dismantle this myth systematically.</description></item><item><title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title><link>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link><pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate><guid>http://thisismydemo.cloud/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid><description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.
-A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VMware Cloud Foundation on This Is My Demo</title>
+    <link>http://localhost:1313/tags/vmware-cloud-foundation/</link>
+    <description>Recent content in VMware Cloud Foundation on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 10 Feb 2026 03:38:18 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vmware-cloud-foundation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Myth of &#39;Old Tech&#39;</title>
+      <link>http://localhost:1313/post/myth-tech/</link>
+      <pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/myth-tech/</guid>
+      <description>&amp;ldquo;Hyper-V? That&amp;rsquo;s legacy tech. It can&amp;rsquo;t compete with VMware. &amp;lsquo;Hyper-V is dead,&amp;rsquo; isn&amp;rsquo;t it?&amp;rdquo;&#xA;I&amp;rsquo;ve heard this sentiment more times than I can count. In hallway conversations at conferences, in architecture review meetings, in vendor comparison spreadsheets filled with red X marks in the Hyper-V column. For years, this perception has been the default position—sometimes justified, often not.&#xA;In this third post of the Hyper-V Renaissance series, we&amp;rsquo;re going to dismantle this myth systematically.</description>
+    </item>
+    <item>
+      <title>Beyond the Cloud: 2025 Virtualization Licensing Guide - Part II</title>
+      <link>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</link>
+      <pubDate>Tue, 24 Jun 2025 14:02:32 +0000</pubDate>
+      <guid>http://localhost:1313/post/choosing-your-virtualization-platform-2025-licensing-analysis/</guid>
+      <description>Welcome to Part 2 of our &amp;ldquo;Beyond the Cloud: The Case for On-Premises Virtualization&amp;rdquo; series. In our introductory post, we explored why organizations are reconsidering their virtualization strategies post-VMware acquisition. In Part 1, we conducted a detailed five-year Total Cost of Ownership (TCO) analysis comparing Windows Hyper-V, Azure VMware Solution (AVS), and Azure Local, revealing how different cost structures impact long-term budgets.&#xA;A key factor driving those cost differences was how each platform&amp;rsquo;s licensing model works.</description>
+    </item>
+  </channel>
+</rss>

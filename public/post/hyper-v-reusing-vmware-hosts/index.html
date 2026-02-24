@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Reusing Your Existing VMware Hosts - This Is My Demo</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Practical guidance on repurposing existing VMware hardware for Hyper-V deployments including compatibility validation and driver considerations.">
+		<meta property="og:url" content="http://localhost:1313/post/hyper-v-reusing-vmware-hosts/">
+  <meta property="og:site_name" content="This Is My Demo">
+  <meta property="og:title" content="Reusing Your Existing VMware Hosts">
+  <meta property="og:description" content="Practical guidance on repurposing existing VMware hardware for Hyper-V deployments including compatibility validation and driver considerations.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-02-24T16:47:24+00:00">
+    <meta property="article:modified_time" content="2026-02-24T16:47:33+00:00">
+    <meta property="article:tag" content="Hyper-V">
+    <meta property="article:tag" content="Windows Server 2025">
+    <meta property="article:tag" content="VMware">
+    <meta property="article:tag" content="VMware Cloud Foundation">
+    <meta property="article:tag" content="VCF">
+    <meta property="article:tag" content="Azure Local">
+
+		
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Reusing Your Existing VMware Hosts">
+  <meta name="twitter:description" content="Practical guidance on repurposing existing VMware hardware for Hyper-V deployments including compatibility validation and driver considerations.">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="This Is My Demo" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">This Is My Demo</div>
+					<div class="logo__tagline">Another blog about clouds... Private Clouds, Public Clouds, Hybrid Clouds, and pretty little fluffy clouds?</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1"></span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Reusing Your Existing VMware Hosts</h1>
+			<p class="post__lead">Hardware Compatibility and Repurposing Strategy</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2026-02-24T16:47:24Z">February 24, 2026</time>
+	<time class="meta__text" datetime="2026-02-24T16:47:33Z">(: February 24, 2026)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/virtualization/" rel="category">Virtualization</a>, <a class="meta__link" href="/categories/windows-server/" rel="category">Windows Server</a>, <a class="meta__link" href="/categories/hardware/" rel="category">Hardware</a>
+	</span>
+</div></div>
+		</header>
+		
+	<figure class="post__thumbnail thumbnail">
+		
+		<img class="thumbnail__image" src="/img/hyper-v-renaissance/banner-main.png" alt="Reusing Your Existing VMware Hosts">
+		
+	</figure><div class="content post__content clearfix">
+			<p>The servers sitting in your datacenter right now—the Dell PowerEdges, the HPE ProLiants, the Lenovo ThinkSystems—were designed to run hypervisors. Not a specific hypervisor. <em>Any</em> hypervisor.</p>
+<p>This might seem obvious, but it&rsquo;s worth stating clearly: <strong>enterprise server hardware is hypervisor-agnostic</strong>. The same CPUs, memory, storage controllers, and network adapters that run ESXi today will run Hyper-V tomorrow. You&rsquo;re not abandoning hardware investments when you change virtualization platforms—you&rsquo;re simply loading different software.</p>
+<p>And here&rsquo;s the irony: it may be VMware—not Hyper-V—that&rsquo;s threatening your hardware investments.</p>
+<p>In this fourth post of the <strong>Hyper-V Renaissance</strong> series, we&rsquo;re going to make the case that your existing VMware infrastructure is ready for Hyper-V. Not with step-by-step deployment procedures (that&rsquo;s coming in <a href="/post/build-validate-cluster-ready-host">Post 5</a>), but by demonstrating that the hardware barrier to switching is far lower than most people assume.</p>
+<hr>
+<h2 id="why-server-hardware-is-universal">Why Server Hardware is Universal</h2>
+<p>Modern enterprise servers from Dell, HPE, Lenovo, Cisco, and other major vendors are designed against industry standards—not proprietary hypervisor requirements:</p>
+<ul>
+<li><strong>x86-64 architecture</strong> with virtualization extensions (Intel VT-x, AMD-V)</li>
+<li><strong>UEFI firmware</strong> with Secure Boot capability</li>
+<li><strong>Standard storage interfaces</strong> (SAS, SATA, NVMe, Fibre Channel, iSCSI)</li>
+<li><strong>Standard networking</strong> (Ethernet, with optional RDMA capabilities)</li>
+<li><strong>IPMI/BMC management</strong> (iDRAC, iLO, XCC, CIMC)</li>
+</ul>
+<p>VMware ESXi and Windows Server both run on this same hardware foundation. The hypervisor is just software that sits on top. Your Dell R750 doesn&rsquo;t care whether it&rsquo;s booting ESXi or Windows Server 2025—it presents the same CPUs, the same memory, the same PCIe devices to either operating system.</p>
+<p>This isn&rsquo;t theoretical. Every major server OEM certifies their hardware for <em>both</em> VMware and Windows Server. The same hardware models appear in both the <a href="https://compatibilityguide.broadcom.com/">Broadcom Compatibility Guide (BCG)</a> and the <a href="https://www.windowsservercatalog.com/">Windows Server Catalog</a>.</p>
+<hr>
+<h2 id="the-vcf-hardware-deprecation-reality">The VCF Hardware Deprecation Reality</h2>
+<p>Here&rsquo;s where the story gets interesting—and where the pressure on your hardware investment is actually coming from.</p>
+<p>Broadcom has replaced the legacy VMware Hardware Compatibility List (HCL) with the Broadcom Compatibility Guide (BCG). With the transition to VCF 9.0 and ESXi 9.0, Broadcom has <strong>deprecated and end-of-lifed</strong> hardware that was previously supported—both I/O devices (<a href="https://knowledge.broadcom.com/external/article/391170">KB 391170</a>) and CPU platforms (<a href="https://knowledge.broadcom.com/external/article/428874">KB 428874</a>). Some deprecated hardware will be removed entirely in the next major VCF release.</p>
+<p>What does this mean in practice? Servers and components that ran ESXi 7 and 8 perfectly well are being pushed toward end-of-support under VCF 9.0. If you want to stay current on VMware, you may be forced into a hardware refresh—not because the hardware is failing, but because the software vendor decided to stop supporting it.</p>
+<p>Meanwhile, <strong>that same hardware runs Windows Server 2025 without issue</strong>. Microsoft&rsquo;s hardware requirements are straightforward and broadly compatible. Your servers may actually have a <em>longer</em> supported life under Windows Server 2025 than they would under future VMware releases.</p>
+<p>The hardware refresh pressure is coming from the VMware side, not the Hyper-V side.</p>
+<p>And it&rsquo;s not just hardware deprecation. VCF 9.0 also deprecated <strong>vSphere Virtual Volumes (vVols)</strong>, which will be removed in a future release. If your storage architecture was built around vVols, that&rsquo;s another forced change coming from the VMware side—one that has nothing to do with hardware age or capability.</p>
+<hr>
+<h2 id="windows-server-2025-hardware-requirements">Windows Server 2025 Hardware Requirements</h2>
+<p>Let&rsquo;s look at what Windows Server 2025 actually requires. If your servers meet these specs—and any enterprise hardware from the last 5-7 years almost certainly does—you&rsquo;re good.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Minimum</th>
+<th>Recommended for Hyper-V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong></td>
+<td>1.4 GHz 64-bit with SLAT</td>
+<td>2+ GHz, multiple cores</td>
+</tr>
+<tr>
+<td><strong>CPU Instructions</strong></td>
+<td>NX, DEP, CMPXCHG16b, LAHF/SAHF, PrefetchW, <strong>SSE4.2</strong>, <strong>POPCNT</strong></td>
+<td>Same (mandatory)</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>512 MB (Core), 2 GB (Desktop Experience)</td>
+<td>4+ GB for host OS; size for VM density</td>
+</tr>
+<tr>
+<td><strong>RAM Type</strong></td>
+<td><strong>ECC (Error Correcting Code)</strong> required for physical hosts</td>
+<td>ECC mandatory</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>32 GB minimum</td>
+<td>64+ GB recommended; separate VM storage</td>
+</tr>
+<tr>
+<td><strong>Network</strong></td>
+<td>Gigabit Ethernet (PCIe-compliant)</td>
+<td>10+ GbE; redundant paths</td>
+</tr>
+<tr>
+<td><strong>Virtualization Extensions</strong></td>
+<td>Required for Hyper-V role</td>
+<td>Intel VT-x/VT-d or AMD-V/AMD-Vi</td>
+</tr>
+<tr>
+<td><strong>UEFI</strong></td>
+<td>Required for Secure Boot</td>
+<td>UEFI 2.3.1c+ recommended</td>
+</tr>
+<tr>
+<td><strong>TPM</strong></td>
+<td>TPM 2.0 recommended</td>
+<td>Required for Shielded VMs, BitLocker</td>
+</tr>
+</tbody>
+</table>
+<p><strong>New in Windows Server 2025</strong>: The <strong>SSE4.2</strong> and <strong>POPCNT</strong> CPU instruction requirements are new compared to Windows Server 2022. These instructions have been available since Intel Nehalem (2008) and AMD Barcelona (2007), so any server purchased for VMware in the last 15 years supports them. This is effectively a non-issue for enterprise hardware.</p>
+<p><strong>ECC RAM</strong>: Windows Server 2025 requires ECC memory for physical host installations. Enterprise servers universally use ECC—this is only a concern if you&rsquo;re repurposing desktop or workstation hardware for lab use.</p>
+<p><strong>Secured-core Server</strong>: For organizations with advanced security requirements, Windows Server 2025 supports <a href="https://learn.microsoft.com/en-us/windows-server/security/secured-core-server">Secured-core server</a>, which requires UEFI Secure Boot, TPM 2.0, IOMMU (VT-d/AMD-Vi), and Dynamic Root of Trust for Measurement (DRTM). Most current-generation enterprise servers support this, but verify if it&rsquo;s a requirement for your environment.</p>
+<p><strong>The bottom line</strong>: if your hardware runs ESXi today, it meets or exceeds Windows Server 2025 requirements.</p>
+<hr>
+<h2 id="component-compatibility-what-actually-matters">Component Compatibility: What Actually Matters</h2>
+<p>While the servers themselves are universal, individual components deserve attention. Not all components that work under ESXi have identical feature parity under Windows. Here&rsquo;s where to focus your evaluation.</p>
+<h3 id="storage-controllers-non-issue">Storage Controllers: Non-Issue</h3>
+<p>Enterprise storage controllers from Dell (PERC), HPE (Smart Array), Lenovo (ThinkSystem RAID), and Broadcom (MegaRAID) have excellent Windows Server support with inbox drivers. This is rarely a problem area.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Common Controllers</th>
+<th>Windows Server 2025</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dell</strong></td>
+<td>PERC H755, H755N, H355, BOSS-S2</td>
+<td>✅ Supported</td>
+<td>Inbox drivers; vendor drivers add management tools</td>
+</tr>
+<tr>
+<td><strong>HPE</strong></td>
+<td>P816i-a, P408i-a, NS204i-p</td>
+<td>✅ Supported</td>
+<td>Inbox drivers; HPE SSA for advanced diagnostics</td>
+</tr>
+<tr>
+<td><strong>Lenovo</strong></td>
+<td>930-8i, 930-16i, 940-8i</td>
+<td>✅ Supported</td>
+<td>Inbox drivers; XClarity integration with vendor drivers</td>
+</tr>
+<tr>
+<td><strong>Broadcom (LSI)</strong></td>
+<td>MegaRAID 9500 series</td>
+<td>✅ Supported</td>
+<td>Vendor drivers recommended for StorCLI tools</td>
+</tr>
+</tbody>
+</table>
+<p>Boot controllers (Dell BOSS, HPE NS204i, Lenovo ThinkSystem M.2) are all well-supported. If your servers boot ESXi from these devices, they&rsquo;ll boot Windows Server too.</p>
+<h3 id="fibre-channel-hbas-non-issue">Fibre Channel HBAs: Non-Issue</h3>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Common HBAs</th>
+<th>Windows Server 2025</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broadcom/Emulex</strong></td>
+<td>LPe35000, LPe36000</td>
+<td>✅ Supported</td>
+<td>Mature Windows support</td>
+</tr>
+<tr>
+<td><strong>Marvell/QLogic</strong></td>
+<td>QLE2770, QLE2870</td>
+<td>✅ Supported</td>
+<td>Mature Windows support</td>
+</tr>
+</tbody>
+</table>
+<p>FC HBAs from major vendors have had Windows support for decades. This is a non-issue.</p>
+<h3 id="network-adapters-the-one-area-to-validate-carefully">Network Adapters: The One Area to Validate Carefully</h3>
+<p>This is where VMware-to-Hyper-V transitions most commonly encounter friction. Basic connectivity is almost never a problem—inbox Windows drivers work for virtually all enterprise NICs. The issues arise with <strong>advanced features</strong>, particularly RDMA.</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Common NICs</th>
+<th>Basic Connectivity</th>
+<th>RDMA Support</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Intel</strong></td>
+<td>E810, X710, XXV710</td>
+<td>✅ Inbox driver</td>
+<td>✅ iWARP, RoCEv2</td>
+<td>Vendor driver required for RDMA/SR-IOV</td>
+</tr>
+<tr>
+<td><strong>Mellanox/NVIDIA</strong></td>
+<td>ConnectX-6, ConnectX-7</td>
+<td>✅ Inbox driver</td>
+<td>✅ RoCEv2</td>
+<td>WinOF-2 driver required for full features</td>
+</tr>
+<tr>
+<td><strong>Broadcom</strong></td>
+<td>P2100G, N1100T</td>
+<td>✅ Inbox driver</td>
+<td>✅ RoCEv2</td>
+<td>Good Windows support</td>
+</tr>
+<tr>
+<td><strong>QLogic/Marvell</strong></td>
+<td>FastLinQ QL45000</td>
+<td>✅ Inbox driver</td>
+<td>✅ RoCEv2, iWARP</td>
+<td>Good Windows support</td>
+</tr>
+<tr>
+<td><strong>Chelsio</strong></td>
+<td>T6 series</td>
+<td>✅ Inbox driver</td>
+<td>✅ iWARP</td>
+<td>Good Windows support</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The key distinction</strong>: inbox Windows drivers get your NICs connected and passing traffic. But if you need RDMA for live migration acceleration or SMB Direct storage traffic, you&rsquo;ll need the vendor&rsquo;s full driver package—not the inbox driver from Windows Update. This isn&rsquo;t a compatibility problem; it&rsquo;s a &ldquo;download the right driver&rdquo; problem.</p>
+<p><strong>RDMA protocol matters</strong>: Some NICs support RDMA under ESXi but require different firmware or configuration for Windows RDMA. If RDMA is part of your architecture, validate it during your proof of concept (<a href="/post/poc-hyper-v-cluster">Post 8</a>). If you&rsquo;re not planning to use RDMA, this is irrelevant.</p>
+<p><strong>VMware-specific NICs</strong>: Rare, but if you have NICs specifically designed for VMware (certain Cisco VIC configurations, for example), verify Windows driver availability. Most enterprise NICs aren&rsquo;t VMware-specific, so this affects very few environments.</p>
+<h3 id="gpus-good-news-with-nuance">GPUs: Good News with Nuance</h3>
+<p>If your VMware hosts have GPUs for VDI, AI/ML, or graphics workloads, they&rsquo;ll work under Windows Server 2025. The question is <em>how</em> they&rsquo;ll work—specifically whether they support GPU partitioning (GPU-P) or only full passthrough (DDA).</p>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>GPU Series</th>
+<th>DDA (Passthrough)</th>
+<th>GPU-P (Partitioning)</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NVIDIA</strong></td>
+<td>A2, A10, A16, A40</td>
+<td>✅</td>
+<td>✅ Validated</td>
+<td>Microsoft-documented GPU-P models</td>
+</tr>
+<tr>
+<td><strong>NVIDIA</strong></td>
+<td>A100</td>
+<td>✅</td>
+<td>MIG only</td>
+<td>Uses MIG, not SR-IOV partitioning</td>
+</tr>
+<tr>
+<td><strong>NVIDIA</strong></td>
+<td>L40S, T4</td>
+<td>✅</td>
+<td>Verify</td>
+<td>Check with NVIDIA for GPU-P status</td>
+</tr>
+<tr>
+<td><strong>NVIDIA</strong></td>
+<td>RTX 4000/5000 series</td>
+<td>✅</td>
+<td>DDA only</td>
+<td>Workstation GPUs; GPU-P not validated</td>
+</tr>
+<tr>
+<td><strong>AMD</strong></td>
+<td>Instinct MI series</td>
+<td>✅</td>
+<td>Limited</td>
+<td>Verify specific model with AMD</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GPU-P</strong> is Microsoft&rsquo;s native GPU partitioning technology in Windows Server 2025. It uses SR-IOV to divide a physical GPU into isolated fractions shared across multiple VMs—no additional Microsoft licensing required. However, for <strong>live migration with GPU-P</strong>, Microsoft&rsquo;s documentation requires <strong>NVIDIA vGPU Software v18.x or later</strong> drivers, obtained from NVIDIA&rsquo;s enterprise licensing program. If your GPUs don&rsquo;t support GPU-P, <strong>DDA (Discrete Device Assignment)</strong> provides full GPU passthrough to a single VM using existing drivers.</p>
+<p>As we covered in <a href="/post/hyper-v-myth-old-tech">Post 3</a>, GPU-P with live migration and HA support is a significant Hyper-V differentiator that VMware&rsquo;s vSphere component doesn&rsquo;t offer natively.</p>
+<hr>
+<h2 id="biosuefi-the-one-setting-thats-probably-different">BIOS/UEFI: The One Setting That&rsquo;s Probably Different</h2>
+<p>Most BIOS settings that work for ESXi also work for Hyper-V. Virtualization extensions, IOMMU, boot mode—these should already be configured correctly on your VMware hosts. But there&rsquo;s one common difference worth calling out.</p>
+<p><strong>Secure Boot</strong> is often <strong>disabled</strong> on VMware hosts because ESXi historically had complications with Secure Boot on some platforms. Windows Server 2025 benefits significantly from Secure Boot being <strong>enabled</strong>—it&rsquo;s a requirement for Secured-core server and Shielded VM host attestation. When you repurpose a VMware host, enabling Secure Boot is a recommended step.</p>
+<p>Other settings to verify (most should already be correct):</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>ESXi Typical</th>
+<th>Windows/Hyper-V Optimal</th>
+<th>Action Needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VT-x/AMD-V</strong></td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>No change</td>
+</tr>
+<tr>
+<td><strong>VT-d/AMD-Vi (IOMMU)</strong></td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>No change</td>
+</tr>
+<tr>
+<td><strong>SR-IOV</strong></td>
+<td>Varies</td>
+<td>Enabled (if using RDMA/GPU-P)</td>
+<td>Verify</td>
+</tr>
+<tr>
+<td><strong>Secure Boot</strong></td>
+<td>Often Disabled</td>
+<td><strong>Enabled</strong></td>
+<td><strong>Likely change needed</strong></td>
+</tr>
+<tr>
+<td><strong>TPM</strong></td>
+<td>Varies</td>
+<td>Enabled</td>
+<td>Verify</td>
+</tr>
+<tr>
+<td><strong>Boot Mode</strong></td>
+<td>UEFI</td>
+<td>UEFI</td>
+<td>No change</td>
+</tr>
+<tr>
+<td><strong>Power Profile</strong></td>
+<td>Performance</td>
+<td>Performance</td>
+<td>No change</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="vendor-resources-your-oem-has-you-covered">Vendor Resources: Your OEM Has You Covered</h2>
+<p>Every major server vendor provides tools and documentation for Windows Server deployment. These are worth bookmarking—they&rsquo;ll be valuable when you reach the hands-on posts in this series.</p>
+<h3 id="dell-technologies">Dell Technologies</h3>
+<p>Dell provides <strong>Lifecycle Controller</strong> for driver injection during OS deployment and <strong>Dell Repository Manager</strong> for creating custom driver repositories. Dell Command | Deploy Driver Packs provide pre-packaged Windows Server driver bundles. Start at <a href="https://www.dell.com/support">Dell Support</a> or the <a href="https://infohub.delltechnologies.com">Dell InfoHub</a> for deployment guides.</p>
+<h3 id="hpe-hewlett-packard-enterprise">HPE (Hewlett Packard Enterprise)</h3>
+<p>HPE&rsquo;s <strong>Service Pack for ProLiant (SPP)</strong> is a comprehensive firmware and driver bundle that includes Windows-tested drivers. <strong>Intelligent Provisioning</strong> (embedded in iLO) automates driver injection during OS install. Start at <a href="https://support.hpe.com">HPE Support Center</a>.</p>
+<h3 id="lenovo">Lenovo</h3>
+<p>Lenovo&rsquo;s <strong>XClarity Administrator</strong> handles fleet-wide firmware updates, and <strong>Lenovo Press</strong> publishes excellent deployment guides—including a detailed <a href="https://lenovopress.lenovo.com/lp2198-implementing-hyper-v-on-microsoft-windows-server-2025">Implementing Hyper-V on Windows Server 2025</a> paper that&rsquo;s worth reading before you start building. Start at <a href="https://lenovopress.lenovo.com">Lenovo Press</a>.</p>
+<h3 id="cisco-ucs">Cisco (UCS)</h3>
+<p>For Cisco UCS environments, service profiles can be reconfigured for Hyper-V without hardware changes. Verify VIC (Virtual Interface Card) firmware supports Windows RDMA if needed—VIC RDMA under Windows may require specific firmware versions different from what you ran under ESXi. Use the <a href="https://ucshcltool.cloudapps.cisco.com/public/">Cisco UCS HCL Tool</a> to verify compatibility.</p>
+<hr>
+<h2 id="the-validation-approach-preview">The Validation Approach (Preview)</h2>
+<p>We&rsquo;re not going to walk through the full validation process here—that&rsquo;s what <a href="/post/build-validate-cluster-ready-host">Post 5: Build and Validate a Cluster-Ready Host</a> is for. But here&rsquo;s the approach you&rsquo;ll follow:</p>
+<p><strong>Phase 1: Inventory</strong> — Document your current VMware host hardware from vCenter (models, CPUs, NICs, storage controllers, GPUs). We&rsquo;ll provide PowerCLI scripts for this.</p>
+<p><strong>Phase 2: Firmware</strong> — Update firmware to current versions using vendor tools (Lifecycle Controller, SPP, XClarity). Do this while still running ESXi—it reduces variables later.</p>
+<p><strong>Phase 3: Test</strong> — Install Windows Server 2025 on a representative test server. Verify all hardware is detected, install Hyper-V, create a test VM. We&rsquo;ll provide a comprehensive validation script.</p>
+<p><strong>Phase 4: Validate specifics</strong> — Test RDMA if you need it, verify storage connectivity (iSCSI/FC/SMB), confirm all NICs work with vendor drivers. This feeds into your proof-of-concept in <a href="/post/poc-hyper-v-cluster">Post 8</a>.</p>
+<p>The validation script and detailed procedures are coming. For now, the message is simple: <strong>the hardware barrier is low</strong>. Your servers are ready.</p>
+<hr>
+<h2 id="the-hardware-compatibility-checklist">The Hardware Compatibility Checklist</h2>
+<p>Use this checklist to do a quick assessment of each host you&rsquo;re considering for Hyper-V. If you can check most of these boxes from your existing vCenter inventory—without even touching the hardware—you have your answer.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Expected Result</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Server from major OEM</strong> (Dell, HPE, Lenovo, Cisco)</td>
+<td>Yes</td>
+<td>Enterprise hardware is universally compatible</td>
+</tr>
+<tr>
+<td><strong>Purchased within last 7 years</strong></td>
+<td>Yes</td>
+<td>Meets all WS2025 CPU instruction requirements</td>
+</tr>
+<tr>
+<td><strong>64-bit CPU with VT-x/AMD-V</strong></td>
+<td>Already enabled for ESXi</td>
+<td>Required for Hyper-V</td>
+</tr>
+<tr>
+<td><strong>ECC RAM</strong></td>
+<td>Standard on all enterprise servers</td>
+<td>Required for WS2025 physical hosts</td>
+</tr>
+<tr>
+<td><strong>UEFI boot mode</strong></td>
+<td>Likely already configured</td>
+<td>Required for Secure Boot, Gen2 VMs</td>
+</tr>
+<tr>
+<td><strong>TPM 2.0 present</strong></td>
+<td>Most servers since ~2017</td>
+<td>Recommended; required for Shielded VMs</td>
+</tr>
+<tr>
+<td><strong>NICs from major vendor</strong> (Intel, Mellanox, Broadcom)</td>
+<td>Yes</td>
+<td>Inbox drivers for connectivity; vendor drivers for RDMA</td>
+</tr>
+<tr>
+<td><strong>Storage controllers from OEM</strong> (PERC, Smart Array, etc.)</td>
+<td>Yes</td>
+<td>Inbox drivers work; vendor drivers for management tools</td>
+</tr>
+<tr>
+<td><strong>Listed in Windows Server Catalog</strong></td>
+<td>Check <a href="https://www.windowsservercatalog.com">windowsservercatalog.com</a></td>
+<td>Not listed ≠ won&rsquo;t work; just means formal cert may be pending</td>
+</tr>
+</tbody>
+</table>
+<p>If you&rsquo;re running enterprise hardware from the last 5-7 years, the answer to almost every item above is &ldquo;yes&rdquo; before you even check.</p>
+<hr>
+<h2 id="the-bottom-line">The Bottom Line</h2>
+<p>Three posts ago, we established that the <a href="/post/real-cost-virtualization">money makes sense</a>. Two posts ago, we showed that the <a href="/post/hyper-v-myth-old-tech">technology holds up</a>. Now we&rsquo;ve addressed the third common objection: <strong>&ldquo;But we&rsquo;d have to buy new hardware.&rdquo;</strong></p>
+<p>No, you don&rsquo;t.</p>
+<p>Your Dell PowerEdges, HPE ProLiants, and Lenovo ThinkSystems are hypervisor-agnostic. They ran ESXi. They&rsquo;ll run Windows Server 2025. The drivers exist. The vendor support exists. The Windows Server Catalog lists the same hardware.</p>
+<p>And here&rsquo;s the kicker: with VCF 9.0 deprecating hardware support for older CPU platforms and I/O devices, <strong>staying on VMware may be what forces a hardware refresh</strong>. Hyper-V extends the useful life of your existing investment.</p>
+<p>The business case for the Hyper-V Renaissance rests on three pillars: cost advantage, technical capability, and hardware preservation. We&rsquo;ve now covered all three.</p>
+<hr>
+<h2 id="whats-next">What&rsquo;s Next</h2>
+<p>With the &ldquo;Case for Change&rdquo; complete, it&rsquo;s time to start building. The next four posts shift from <em>why</em> to <em>how</em>.</p>
+<p>In <strong><a href="/post/build-validate-cluster-ready-host">Post 5: Build and Validate a Cluster-Ready Host</a></strong>, we&rsquo;ll deploy Windows Server 2025 with Hyper-V from scratch using PowerShell—including the hardware validation scripts, driver installation, networking setup, and comprehensive testing procedures we previewed here. Everything scripted, everything repeatable.</p>
+<p>Time to turn hardware into a hypervisor.</p>
+<hr>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><strong>Series Repository:</strong> <a href="https://github.com/thisismydemo/hyper-v-renaissance">github.com/thisismydemo/hyper-v-renaissance</a></li>
+<li><strong>Previous Posts:</strong>
+<ul>
+<li><a href="/post/hyper-v-renaissance">Post 1: Welcome to the Hyper-V Renaissance</a></li>
+<li><a href="/post/real-cost-virtualization">Post 2: The Real Cost of Virtualization</a></li>
+<li><a href="/post/hyper-v-myth-old-tech">Post 3: The Myth of &ldquo;Old Tech&rdquo;</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="vendor-resources">Vendor Resources</h3>
+<ul>
+<li><strong>Dell:</strong> <a href="https://infohub.delltechnologies.com">Dell Technologies InfoHub</a> | <a href="https://www.dell.com/support">Dell Support</a></li>
+<li><strong>HPE:</strong> <a href="https://support.hpe.com">HPE Support Center</a> | <a href="https://support.hpe.com/connect/s/softwaredetails?language=en_US&collectionId=MTX-2c4b50d7b7b04e4a">Service Pack for ProLiant</a></li>
+<li><strong>Lenovo:</strong> <a href="https://lenovopress.lenovo.com">Lenovo Press</a> | <a href="https://lenovopress.lenovo.com/lp2198-implementing-hyper-v-on-microsoft-windows-server-2025">Implementing Hyper-V on WS2025</a></li>
+<li><strong>Microsoft:</strong> <a href="https://www.windowsservercatalog.com">Windows Server Catalog</a></li>
+</ul>
+<h3 id="microsoft-documentation">Microsoft Documentation</h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/get-started/hardware-requirements">Hardware Requirements for Windows Server</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/host-hardware-requirements">System Requirements for Hyper-V on Windows Server</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/gpu-partitioning">GPU Partitioning</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/security/secured-core-server">Secured-core Server</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/supported-linux-and-freebsd-virtual-machines-for-hyper-v-on-windows">Supported Linux Distributions for Hyper-V</a></li>
+</ul>
+<h3 id="vmwarebroadcom-documentation-for-reference">VMware/Broadcom Documentation (for reference)</h3>
+<ul>
+<li><a href="https://compatibilityguide.broadcom.com/">Broadcom Compatibility Guide (BCG)</a></li>
+<li><a href="https://knowledge.broadcom.com/external/article/391170">VCF 9.0 Deprecated I/O Devices (KB 391170)</a></li>
+<li><a href="https://knowledge.broadcom.com/external/article/428874">VCF 9.0 Deprecated CPU Platforms (KB 428874)</a></li>
+</ul>
+<hr>
+<p><strong>Series Navigation</strong><br>
+← Previous: <a href="/post/hyper-v-myth-old-tech">Post 3 - The Myth of &ldquo;Old Tech&rdquo;</a><br>
+→ Next: <a href="/post/build-validate-cluster-ready-host">Post 5 - Build and Validate a Cluster-Ready Host</a></p>
+<hr>
+<p><em>Post 4 of 18 in The Hyper-V Renaissance series</em><br>
+<em>Last updated: February 2026</em></p>
+<hr>
+<p><em>Disclaimer: Hardware compatibility information is based on vendor documentation and general enterprise server standards as of early 2026. Always verify specific model compatibility with your hardware vendor and test on representative hardware before production deployment. VMware/VCF hardware deprecation status should be verified against the Broadcom Compatibility Guide at evaluation time.</em></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hyper-v/" rel="tag">Hyper-V</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/windows-server-2025/" rel="tag">Windows Server 2025</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vmware/" rel="tag">VMware</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vmware-cloud-foundation/" rel="tag">VMware Cloud Foundation</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/vcf/" rel="tag">VCF</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/azure-local/" rel="tag">Azure Local</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hardware-compatibility/" rel="tag">Hardware Compatibility</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/migration/" rel="tag">Migration</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/server-hardware/" rel="tag">Server Hardware</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/three-tier-architecture/" rel="tag">Three-Tier Architecture</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Kristopher J Turner avatar" src="/img/me.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Kristopher Turner is a Microsoft MVP in Azure, a Microsoft Certified Trainer (MCT), and a Product Technology Architect at TierPoint, where he focuses on delivering innovative cloud and infrastructure solutions. With expertise spanning Azure Stack HCI, Azure Arc, Kubernetes, and disaster recovery strategies using ASR, Kristopher bridges on-premises and cloud technologies to drive digital transformation. A sought-after speaker and thought leader, he frequently presents on hybrid architectures, cloud-native technologies, and monitoring solutions, sharing insights from his extensive experience in modern IT infrastructure.
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/myth-tech/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">The Myth of &#39;Old Tech&#39;</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://localhost:1313/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-v-reusing-vmware-hosts/">Reusing Your Existing VMware Hosts</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/myth-tech/">The Myth of &#39;Old Tech&#39;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/odin-azure-local-community-tool-deep-dive/">Odin for Azure Local: A Community Tool Deep Dive</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/real-cost-virtualization/">The Real Cost of Virtualization</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/hyper-renaissance/">Welcome to the Hyper-V Renaissance</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/ai/">AI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure/">Azure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-active-directory/">Azure Active Directory</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc/">Azure Arc</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-kubernetes/">Azure Arc-Enabled Kubernetes</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-arc-enabled-servers/">Azure Arc-Enabled Servers</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-files/">Azure Files</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-local/">Azure Local</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-percept-development-kit/">Azure Percept Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-site-recovery/">Azure Site Recovery</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-sphere-development-kit/">Azure Sphere Development Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/azure-stack-hci/">Azure Stack HCI</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/case-studies/">Case Studies</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cloud-computing/">Cloud Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/community-tools/">Community Tools</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/comparison/">Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cost-analysis/">Cost Analysis</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/cross-tenant-synchronization/">Cross-Tenant Synchronization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/dfwsmug/">DFWSMUG</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/edge-computing/">Edge Computing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/entra-permissions-management/">Entra Permissions Management</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/feature-comparison/">Feature Comparison</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/festive-tech-calendar/">Festive Tech Calendar</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/future-planning/">Future Planning</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/github-copilot/">GitHub Copilot</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/hardware/">Hardware</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/home-assistant/">Home Assistant</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/infrastructure/">Infrastructure</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune/">Intune</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/intune-proactive-remediation/">Intune Proactive Remediation</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/licensing/">Licensing</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microk8s/">MicroK8S</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/microsoft-sentinel/">Microsoft Sentinel</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/migration/">Migration</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/operations/">Operations</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/strategy/">Strategy</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/technology/">Technology</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/virtualization/">Virtualization</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/vision-ai-developer-kit/">Vision AI Developer Kit</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-clustering/">WIndows Clustering</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server/">Windows Server</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-server-failover-cluster/">Windows Server Failover Cluster</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows-terminal/">Windows Terminal</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title"></h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/active-directory/" title="Active Directory">Active Directory</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai/" title="AI">AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ai-comparison/" title="AI Comparison">AI Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ansible/" title="Ansible">Ansible</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-scvmm/" title="Arc-Enabled SCVMM">Arc-Enabled SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arc-enabled-servers/" title="Arc-Enabled Servers">Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/arm-templates/" title="ARM Templates">ARM Templates</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/artificial-intelligence/" title="Artificial Intelligence">Artificial Intelligence</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/avs/" title="AVS">AVS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/aws/" title="AWS">AWS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure/" title="Azure">Azure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-ad/" title="Azure AD">Azure AD</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc/" title="Azure Arc">Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-data-services/" title="Azure Arc-Enabled Data Services">Azure Arc-Enabled Data Services</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-kubernetes/" title="Azure Arc-Enabled Kubernetes">Azure Arc-Enabled Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-enabled-servers/" title="Azure Arc-Enabled Servers">Azure Arc-Enabled Servers</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-arc-mas/" title="Azure Arc-Mas">Azure Arc-Mas</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-bastion/" title="Azure Bastion">Azure Bastion</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-devops/" title="Azure DevOps">Azure DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-files/" title="Azure Files">Azure Files</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-iot/" title="Azure IoT">Azure IoT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-kubernetes-service/" title="Azure Kubernetes Service">Azure Kubernetes Service</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-local/" title="Azure Local">Azure Local</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-grafana/" title="Azure Managed Grafana">Azure Managed Grafana</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-managed-prometheus/" title="Azure Managed Prometheus">Azure Managed Prometheus</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-monitor/" title="Azure Monitor">Azure Monitor</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept/" title="Azure Percept">Azure Percept</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-percept-development-kit/" title="Azure Percept Development Kit">Azure Percept Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-site-recovery/" title="Azure Site Recovery">Azure Site Recovery</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere/" title="Azure Sphere">Azure Sphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-sphere-development-kit/" title="Azure Sphere Development Kit">Azure Sphere Development Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-stack-hci/" title="Azure Stack HCI">Azure Stack HCI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/azure-vmware-solution/" title="Azure VMware Solution">Azure VMware Solution</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/bandwidth-limitations/" title="Bandwidth Limitations">Bandwidth Limitations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/case-studies/" title="Case Studies">Case Studies</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/change-management/" title="Change Management">Change Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/claude-sonnet/" title="Claude Sonnet">Claude Sonnet</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cloud-family/" title="Cloud Family">Cloud Family</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/community-tools/" title="Community Tools">Community Tools</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/containers-insights/" title="Containers Insights">Containers Insights</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-analysis/" title="Cost Analysis">Cost Analysis</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-optimization/" title="Cost Optimization">Cost Optimization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cost-savings/" title="Cost Savings">Cost Savings</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/cross-tenant-synchronization/" title="Cross-Tenant Synchronization">Cross-Tenant Synchronization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dell-apex/" title="Dell APEX">Dell APEX</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/deployment-planning/" title="Deployment Planning">Deployment Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/dfwsmug/" title="DFWSMUG">DFWSMUG</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/disconnected-operations/" title="Disconnected Operations">Disconnected Operations</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/edge-computing/" title="Edge Computing">Edge Computing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/endpoint-management/" title="Endpoint Management">Endpoint Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-features/" title="Enterprise Features">Enterprise Features</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-it/" title="Enterprise IT">Enterprise IT</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-management/" title="Enterprise Management">Enterprise Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/enterprise-virtualization/" title="Enterprise Virtualization">Enterprise Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/entra-permissions-management/" title="Entra Permissions Management">Entra Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/esxi/" title="ESXi">ESXi</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/feature-comparison/" title="Feature Comparison">Feature Comparison</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/festive-tech-calendar/" title="Festive Tech Calendar">Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/freshservice/" title="FreshService">FreshService</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/front-matter/" title="Front Matter">Front Matter</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/future-planning/" title="Future Planning">Future Planning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github/" title="GitHub">GitHub</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-copilot-chat/" title="GitHub Copilot Chat">GitHub Copilot Chat</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/github-pages/" title="GitHub Pages">GitHub Pages</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-cloud-platform/" title="Google Cloud Platform">Google Cloud Platform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/google-gemini/" title="Google Gemini">Google Gemini</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/gpt-4.5/" title="GPT-4.5">GPT-4.5</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/grok-ai/" title="Grok AI">Grok AI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware/" title="Hardware">Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hardware-compatibility/" title="Hardware Compatibility">Hardware Compatibility</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-assistant/" title="Home Assistant">Home Assistant</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/home-automation/" title="Home Automation">Home Automation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="Hugo">Hugo</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hybrid-strategy/" title="Hybrid Strategy">Hybrid Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hyper-v/" title="Hyper-V">Hyper-V</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure/" title="Infrastructure">Infrastructure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/infrastructure-as-code/" title="Infrastructure as Code">Infrastructure as Code</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/intune/" title="Intune">Intune</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/iot-edge/" title="Iot Edge">Iot Edge</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/kubernetes/" title="Kubernetes">Kubernetes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/licensing/" title="Licensing">Licensing</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/maas/" title="MaaS">MaaS</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/machine-learning/" title="Machine Learning">Machine Learning</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsk8s/" title="MicrosK8S">MicrosK8S</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft/" title="Microsoft">Microsoft</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-copilot/" title="Microsoft Copilot">Microsoft Copilot</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-entra/" title="Microsoft Entra">Microsoft Entra</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-sentinel/" title="Microsoft Sentinel">Microsoft Sentinel</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microsoft-strategy/" title="Microsoft Strategy">Microsoft Strategy</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/migration/" title="Migration">Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/multicloud-connector-enabled-by-azure-arc/" title="Multicloud Connector Enabled by Azure Arc">Multicloud Connector Enabled by Azure Arc</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/odin/" title="ODIN">ODIN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/openai/" title="OpenAI">OpenAI</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/performance/" title="Performance">Performance</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/permissions-management/" title="Permissions Management">Permissions Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pilot-project/" title="Pilot Project">Pilot Project</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/policy-management/" title="Policy Management">Policy Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/poractive-remediation/" title="Poractive Remediation">Poractive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/powershell/" title="PowerShell">PowerShell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/proactive-remediation/" title="Proactive Remediation">Proactive Remediation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/rdp/" title="RDP">RDP</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/roadmap/" title="Roadmap">Roadmap</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/san/" title="SAN">SAN</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scripts/" title="Scripts">Scripts</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/scvmm/" title="SCVMM">SCVMM</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/server-hardware/" title="Server Hardware">Server Hardware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/ssh/" title="SSH">SSH</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage/" title="Storage">Storage</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/storage-migration/" title="Storage Migration">Storage Migration</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tco/" title="TCO">TCO</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/technology/" title="Technology">Technology</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/terraform/" title="Terraform">Terraform</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-festive-tech-calendar/" title="The Festive Tech Calendar">The Festive Tech Calendar</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/the-microsoft-425show/" title="The Microsoft 425Show">The Microsoft 425Show</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/three-tier-architecture/" title="Three-Tier Architecture">Three-Tier Architecture</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/unified-management/" title="Unified Management">Unified Management</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/validated-nodes/" title="Validated Nodes">Validated Nodes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vcf/" title="VCF">VCF</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/virtualization/" title="Virtualization">Virtualization</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vision-ai-developer-kit/" title="Vision AI Developer Kit">Vision AI Developer Kit</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware/" title="VMware">VMware</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-alternative/" title="VMware Alternative">VMware Alternative</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-cloud-foundation/" title="VMware Cloud Foundation">VMware Cloud Foundation</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/vmware-vsphere/" title="VMware VSphere">VMware VSphere</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wac/" title="WAC">WAC</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-admin-center/" title="Windows Admin Center">Windows Admin Center</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server/" title="Windows Server">Windows Server</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-2025/" title="Windows Server 2025">Windows Server 2025</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-server-failover-cluster/" title="Windows Server Failover Cluster">Windows Server Failover Cluster</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/windows-terminal/" title="Windows Terminal">Windows Terminal</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/workgroup-clusters/" title="Workgroup Clusters">Workgroup Clusters</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/wsfc/" title="WSFC">WSFC</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title"></h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/KristopherJTurner" target="_blank">
+				<svg class="widget-social__link-icon icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg>
+				<span>LinkedIn</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/thisismydemo" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2026 This Is My Demo.
+			<span class="footer__copyright-credits"></span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

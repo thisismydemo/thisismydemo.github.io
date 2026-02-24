@@ -18,7 +18,7 @@ tags:
   - Deployment Planning
   - Infrastructure as Code
   - ODIN
-lastmod: 2026-02-09T18:07:08.654Z
+lastmod: 2026-02-24T19:21:17.306Z
 ---
 
 I'm in the middle of writing [The Hyper-V Renaissance](/post/hyper-v-renaissance)—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It's been consuming most of my writing time, and I've been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
@@ -41,9 +41,26 @@ I've spent some time clicking through every option, and I want to share what I f
 - [What Is Odin for Azure Local?](#what-is-odin-for-azure-local)
 - [The Three Pillars of Odin](#the-three-pillars-of-odin)
 - [Odin Sizer Tool](#odin-sizer-tool)
-  - [First Impressions \& Inputs](#first-impressions--inputs)
-  - [Workload Scenario Section](#workload-scenario-section)
-  - [Sizing Notes \& Observations](#sizing-notes--observations)
+  - [Workload Scenario](#workload-scenario)
+  - [Recommended Cluster Configuration](#recommended-cluster-configuration)
+    - [Single Node](#single-node)
+    - [Standard Cluster](#standard-cluster)
+    - [Rack Aware Cluster](#rack-aware-cluster)
+  - [Physical Node Hardware Configuration](#physical-node-hardware-configuration)
+    - [CPU Configuration](#cpu-configuration)
+    - [Memory Configuration](#memory-configuration)
+    - [GPU Configuration](#gpu-configuration)
+    - [Advanced Settings](#advanced-settings)
+    - [Storage Configuration](#storage-configuration)
+    - [Disk Configuration](#disk-configuration)
+  - [Requirements Summary \& Output](#requirements-summary--output)
+    - [What You See Before Adding Workloads](#what-you-see-before-adding-workloads)
+    - [What Changes When You Add Workloads](#what-changes-when-you-add-workloads)
+    - [🆕 Configure In Designer — The Big One](#-configure-in-designer--the-big-one)
+    - [Capacity Usage for Workload](#capacity-usage-for-workload)
+    - [Estimated Power, Heat \& Rack Space](#estimated-power-heat--rack-space)
+    - [Azure Local Instance - Sizing Notes](#azure-local-instance---sizing-notes)
+    - [Export \& Session Options](#export--session-options)
   - [Room for Growth \& Community Momentum](#room-for-growth--community-momentum)
 - [Odin Knowledge](#odin-knowledge)
   - [What You'll Learn](#what-youll-learn)
@@ -133,83 +150,298 @@ Each tool can be used independently, but they work best together: use the Sizer 
 
 **Preview Release:** This tool helps you estimate Azure Local cluster requirements based on workload scenarios. Results are estimates and should be validated with your hardware vendor.
 
-I'm genuinely excited to see a community-driven sizing tool for Azure Local! Odin's Sizer is a fresh step in the right direction—making it easier for architects and engineers to get a quick sense of what their clusters might need, even if it's still a work in progress.
+> **📝 Section Updated — February 24, 2026:** This section has been rewritten to reflect the current Odin Sizer (version 0.17.04). The tool has changed significantly since this post was first published.
 
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20210102.png)
+I'm genuinely excited to see a community-driven sizing tool for Azure Local. Odin's Sizer is a practical, scenario-focused start: you can add workloads (Azure Local VMs, AVD, AKS Arc clusters), set node counts and VM profiles, and define per-node storage capacity (disks per node, capacity per disk, and disk type). Requirement summaries and live capacity graphs update in real time, and the page offers a Word report plus a browser print/"Save as PDF" option while saving session state in the browser—handy for quick planning and comparisons.
 
-### First Impressions & Inputs
 
-The Sizer starts with the basics, just like any good sizing tool:
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20125016.png)
 
-- Number of nodes
-- Cluster type (Standard Cluster or Rack Aware Cluster—just hit GA in January!)
-- Storage resiliency (Two-way or Three-way mirror)
+### Workload Scenario
 
-One thing I immediately noticed: there's no way to specify the number of disks per node, disk type (NVMe, SSD, etc.), or disk size. Maybe those options appear later, but as of now, storage input is pretty limited. This isn't a full Storage Spaces Direct sizing tool—it's focused on workload sizing, not hardware detail.
+The first panel is where you build your demand picture. Click a workload type to add it:
 
-### Workload Scenario Section
+| Workload | Inputs |
+|---|---|
+| **Azure Local VMs** | Workload name, vCPUs per VM, memory per VM (GB), storage per VM (GB), number of VMs |
+| **AKS Arc Clusters** | Number of clusters, control plane node count / vCPUs / memory, work node count / vCPUs / memory / storage |
+| **Azure Virtual Desktop** | User profile (Light / Medium / Power), number of users, per-profile specs (vCPUs, memory, storage) |
 
-Next up is the workload scenario section, where you add the workloads you want to run. This is where Odin Sizer really shines for quick planning:
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20135304.png)
 
-- **Azure Local VMs**: Inputs for workload name, vCPUs per VM, memory per VM (GB), storage per VM (GB), and number of VMs.
-- **Azure Virtual Desktop (AVD)**: Choose a user profile (Light, Medium, Power), number of users, and see the per-profile specs (vCPUs, memory, storage).
-- **AKS Arc Clusters**: Name your workload, set the number of clusters, control plane node count/vCPUs/memory, and work node count/vCPUs/memory/storage.
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20135411.png)
 
-Here's how I tested it:
+### Recommended Cluster Configuration
 
-**Scenario 1: 2-node Standard Cluster, Two-way Mirror**
+Once you've added workloads, you define your cluster topology. The **Cluster Type** selection drives the behavior of every other input in this panel, so it's the first decision you make. There are three options: **Standard Cluster**, **Single Node**, and **Rack Aware Cluster**.
 
-- Nodes: 2
-- Cluster type: Standard
-- Storage resiliency: Two-way mirror
+#### Single Node
 
-**Azure Local VMs**
-- 4 vCPUs per VM
-- 16 GB memory per VM
-- 100 GB storage per VM
-- 10 VMs
+Selecting Single Node locks the physical node count to **1** (grayed out — not editable). The **Allow for Future Growth** toggle remains available. Storage Resiliency expands to include a simplified option not available on multi-node clusters:
 
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20223647.png)
+| Storage Resiliency Option | Description |
+|---|---|
+| **Two-way mirror** | Standard mirrored resiliency |
+| **Simple (no fault tolerance)** | Single drive, single pool — no redundancy |
 
-**Azure Virtual Desktop**
-- Workload: Azure Virtual Desktop
-- User profile: Power Users
-- Number of users: 50
-- (Profile specs: 2 vCPUs/user, 8 GB RAM/user, 80 GB storage/user)
+> **Tip:** Single node clusters will always incur workload downtime during updates. No N+1 capacity is available.
 
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20223706.png)
+#### Standard Cluster
 
-**AKS Arc Clusters**
-- Workload: AKS Arc Cluster
-- Number of clusters: 5
-- Control plane: 3 nodes, 4 vCPUs, 8 GB RAM per node
-- Work nodes: 3 per cluster, 8 vCPUs, 16 GB RAM, 200 GB storage per node
+The standard multi-node path. Physical node count is selectable from **2 to 16 nodes**. The **Allow for Future Growth** toggle is available. Storage Resiliency options unlock based on node count:
 
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20223512.png)
+| Node Count | Available Storage Resiliency |
+|---|---|
+| 2 nodes | Two-way mirror |
+| 3–16 nodes | Two-way mirror, Three-way mirror |
 
-As you add each scenario, the requirements summary and graphs update in real time—very handy for visualizing the impact of your choices.
+> **Tip:** Minimum N+1 capacity must be reserved for Compute and Memory when applying updates (ability to drain a node). Single Node clusters will always incur workload downtime during updates.
 
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20223534.png)
+#### Rack Aware Cluster
 
-### Sizing Notes & Observations
+Rack Aware changes the node selector to a **per-rack** model. Nodes per rack are limited to fixed options: **2, 4, or 8** (maximum 8 per rack). Storage Resiliency is determined entirely by the per-rack node count:
 
-The tool provides some helpful notes at the bottom:
+| Nodes per Rack | Available Storage Resiliency |
+|---|---|
+| 2 | Two-way mirror only |
+| 4 | Four-way mirror only |
+| 6 | Four-way mirror only |
+| 8 | Four-way mirror only |
 
-> N+1 capacity: Requirements calculated assuming 1 node is available during maintenance
-> Storage resiliency: Two-way mirror (2x raw storage)
-> vCPU calculations assume 4:1 overcommit ratio
-> Minimum per node: 32 GB RAM, 4 cores (Azure Local requirements)
+> **Tip:** Minimum N+1 capacity must be reserved for Compute and Memory when applying updates (ability to drain a node). Single Node clusters will always incur workload downtime during updates.
 
-I do wonder if the tool fully accounts for nodes being taken offline for updates, and whether it shows what workloads can run on a single node in a two-node cluster. There's definitely room for more detail and flexibility here, especially for those of us who do a lot of small, 2-node deployments.
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20135456.png)
+
+### Physical Node Hardware Configuration
+
+This is where the Sizer has matured significantly since it launched. The **Physical Node(s) - Example Hardware Configuration** panel lets you spec out actual server hardware, and the tool maps those specs directly to usable capacity in real time.
+
+#### CPU Configuration
+
+| Field | Options |
+|---|---|
+| **CPU Manufacturer** | Intel, AMD, Intel (Edge) |
+| **CPU Generation** | Populated dynamically based on manufacturer selection |
+| **CPU Cores per Socket** | Populated dynamically based on generation selection |
+| **CPU Sockets** | 1 or 2 (Azure Local OEM-certified hardware supports 1 or 2 sockets only) |
+
+CPU generation options by manufacturer:
+
+| Manufacturer | Available Generations |
+|---|---|
+| **Intel** | 4th Gen Xeon® Scalable (Sapphire Rapids), 5th Gen Xeon® Scalable (Emerald Rapids) |
+| **Intel (Edge)** | Xeon® D-2700 (Ice Lake-D) — 4–20 cores, DDR4-3200, for edge/rugged deployments |
+| **AMD** | Multiple EPYC generations, including 5th Gen EPYC Turin (up to 192 cores/socket, 384 dual-socket) |
+
+> **💡 AMD Tip:** When Intel cores and sockets are maxed and compute utilization reaches ≥80% at the baseline 4:1 overcommit ratio, the Sizer adds a note in the Sizing Notes panel suggesting AMD EPYC Turin as an alternative. Turin offers up to 192 cores per socket (384 dual-socket), which can resolve compute pressure without escalating the vCPU overcommit ratio to 5:1 or 6:1.
+
+#### Memory Configuration
+
+Memory per Node is a dropdown using server-realistic DIMM-symmetric values:
+
+| Supported Values |
+|---|
+| 64 GB, 128 GB, 192 GB, 256 GB, 384 GB, 512 GB, 768 GB, 1024 GB, 1536 GB, 2048 GB, 3072 GB, 4096 GB |
+
+> **Note:** 32 GB per node is reserved for Azure Local OS and management overhead and is excluded from workload-available memory in all capacity calculations.
+
+#### GPU Configuration
+
+| Field | Options |
+|---|---|
+| **GPUs per Node** | 0, 1, or 2 |
+| **GPU Type** | NVIDIA A2 (16 GB VRAM, 60W), A16 (64 GB VRAM, 250W), L4 (24 GB VRAM, 72W), L40 (48 GB VRAM, 300W), L40S (48 GB VRAM, 350W) |
+
+GPU Type only appears when GPUs per Node is set to 1 or 2.
+
+#### Advanced Settings
+
+| Field | Options |
+|---|---|
+| **vCPU Overcommit Ratio** | 1:1, 2:1, 4:1 (default), 5:1, 6:1 |
+
+The Sizer will auto-escalate the overcommit ratio (4:1 → 5:1 → 6:1) when cores and sockets are maxed and compute utilization exceeds 90%. A warning appears in the Sizing Notes when this occurs. You can manually set and lock the ratio to override auto-escalation.
+
+#### Storage Configuration
+
+| Field | Options |
+|---|---|
+| **Storage Configuration** | All-Flash (recommended), Mixed All-Flash (NVMe + SSD), Hybrid (SSD/NVMe + HDD) |
+| **Storage Tiering** | Populated dynamically based on storage configuration |
+
+Available tiering options by storage configuration:
+
+| Storage Config | Tiering Options |
+|---|---|
+| **All-Flash** | No cache — All NVMe as capacity; No cache — All SSD as capacity |
+| **Mixed All-Flash** | NVMe as cache — SSD as capacity |
+| **Hybrid** | SSD as cache — HDD as capacity; NVMe as cache — HDD as capacity |
+
+> **Note:** Single-node clusters only support All-Flash storage — Hybrid is blocked by the tool.
+
+#### Disk Configuration
+
+Standard disk sizes available across all tiers: **960 GB, 1.92 TB, 3.84 TB, 7.68 TB, 15.36 TB**
+
+**All-Flash (single-tier):**
+
+| Field | Options |
+|---|---|
+| **Capacity Disks per Node** | 2–24 |
+| **Capacity per Disk** | 960 GB / 1.92 TB / 3.84 TB / 7.68 TB / 15.36 TB |
+
+**Mixed All-Flash or Hybrid (two-tier):**
+
+| Field | Options |
+|---|---|
+| **Cache Disks per Node** | 2–8 |
+| **Capacity per Cache Disk** | 960 GB / 1.92 TB / 3.84 TB / 7.68 TB / 15.36 TB |
+| **Capacity Disks per Node** | 2–16 |
+| **Capacity per Disk** | 960 GB / 1.92 TB / 3.84 TB / 7.68 TB / 15.36 TB |
+
+> **Note:** Hybrid storage enforces a 1:2 cache-to-capacity disk ratio. Total drive bays per 2U chassis are capped at 24 (8 cache + 16 capacity). All-Flash configurations support up to 24 capacity disks per node.
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20135638.png)
+
+### Requirements Summary & Output
+
+This is where the Sizer earns its keep. The output panel on the right side of the page is fully live — every change you make to workloads, cluster configuration, or hardware specs recalculates instantly. No submit button, no page reload. It's reactive from the moment you land on the page.
+
+But the output panel is not static. It changes significantly as you work, and two sections only appear once you've added workloads. That's intentional — the Sizer is showing you results that are actually meaningful to your specific scenario.
+
+#### What You See Before Adding Workloads
+
+When you first open the Sizer, the output panel shows placeholder zeroes across Requirements Summary and Per-Node Requirements, with empty capacity bars. The Sizing Notes panel simply tells you to add workloads. The Power & Rack section and the Configure In Designer button are both hidden entirely — they only exist once there's something worth showing.
+
+#### What Changes When You Add Workloads
+
+Once you add your first workload, the panel comes alive:
+
+| Output Element | Behaviour |
+|---|---|
+| **Requirements Summary cards** | Updates to show aggregate vCPUs, Memory, Storage, and Workload count across all workloads |
+| **Per-Node Requirements (with N+1)** | Shows Physical Cores, Memory, Raw Storage, and Usable Storage per node — with one node already subtracted for maintenance |
+| **Capacity Usage Bars** | Live visual meters for Compute, Memory, and Usable Storage — turn red at ≥ 90% utilization |
+| **Estimated Power, Heat & Rack Space** | Appears for the first time — see below |
+| **Configure In Designer button** | Appears for the first time — the big one, see below |
+| **Sizing Notes** | Populates with cluster config, hardware summary, resiliency details, and any warnings or recommendations |
+
+> **Tip:** The N+1 calculation is always active. Per-node requirements assume one node is offline for servicing — so if you have 4 nodes, the Sizer sizes everything as if only 3 are available. If any capacity bar hits ≥ 90%, the configuration is flagged and you'll need to add nodes, increase per-node hardware, or reduce workloads before you can proceed to the Designer.
+
+---
+
+#### 🆕 Configure In Designer — The Big One
+
+This is brand new, and it changes everything about how the Sizer fits into your workflow.
+
+Not long ago, the Sizer and the Odin Designer were two completely separate tools. You'd size your cluster in the Sizer, note down your settings, then go manually re-enter all of it into the Designer from scratch. That gap was a real friction point — especially after spending time getting your hardware config and workloads dialled in.
+
+That's gone now. The **Configure In Designer** button is the bridge that connects them, and it only appears once you have workloads configured — which makes sense, because there's nothing to hand off until you've built something worth handing off.
+
+When you click it, the Sizer packages **everything** — your cluster type, node count, resiliency setting, CPU manufacturer and generation, core count, socket count, memory, GPU, disk configuration, vCPU overcommit ratio, future growth buffer, and every single workload you've added — and launches the Odin Designer wizard with it all pre-populated. Not a partial handoff. Everything. You don't re-enter a single value.
+
+> *"Continue to add additional workloads, if required. Once complete, open the Designer wizard pre-configured with this cluster and hardware sizer settings."*
+
+This is the kind of feature that sounds small in a changelog but is a genuine quality-of-life leap in practice. If you've used both tools before, you'll feel it immediately.
+
+**The button has guardrails built in — it won't let you proceed with a bad config:**
+
+| State | What It Means |
+|---|---|
+| **Enabled** | All resources (Compute, Memory, Storage) are below 90% utilization — safe to proceed |
+| **Disabled / greyed out** | One or more resources are at ≥ 90% — the tooltip tells you exactly which ones. Fix utilization first |
+| **Blocked entirely** | Storage exceeds Azure Local supported limits (400 TB/machine or 4 PB per pool) — both export and Designer access are blocked until corrected |
+
+When it passes the cluster type to the Designer, it maps as follows:
+
+| Sizer Cluster Type | Designer Scale |
+|---|---|
+| Standard Cluster | Hyperconverged (medium) |
+| Single Node | Hyperconverged (medium) |
+| Rack-Aware Cluster | rack_aware |
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20140118.png)
+
+---
+
+#### Capacity Usage for Workload
+
+This section shows four live progress bars, each updating in real time as you adjust workloads and hardware. Every bar shows a percentage fill, the current consumed value, and the total available — so you can see exactly where headroom is tight at a glance.
+
+| Bar | What It Measures | Detail |
+|---|---|---|
+| **Azure Local hyperconverged instance size** | Nodes used vs. cluster maximum | Shows current node count against max (16 for Standard, 8 for Rack-Aware, 1 for Single Node). Includes a note: *"includes N+1 node count, for servicing and redundancy"* |
+| **Compute (vCPUs) - Consumed** | vCPUs required vs. vCPUs available | Based on physical cores × vCPU overcommit ratio × effective nodes (N+1 applied) |
+| **Memory - Consumed** | Workload memory vs. available node memory | 32 GB host overhead deducted per node before calculating available memory |
+| **Usable Storage - Consumed** | Workload storage vs. usable capacity | Accounts for resiliency multiplier, Infrastructure_1 volume (256 GB reserved), and S2D repair reservation |
+
+Any bar that reaches ≥ 90% turns red and triggers a warning banner — and disables the Configure In Designer button until resolved.
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20140335.png)
+
+---
+
+#### Estimated Power, Heat & Rack Space
+
+The second section that appears only after workloads are added. This is the Sizer doing the data centre math for you — estimating how much power your cluster will draw, how much heat it will generate, and how many rack units it will consume.
+
+| Field | How It's Estimated |
+|---|---|
+| **Per-Node Power (est.)** | CPU TDP scaled to selected core count (40% base + 60% proportional to cores) × sockets, plus 4W per DIMM (1 DIMM per 32 GB RAM), 8W per NVMe/SSD disk or 12W per HDD, 16W for 2× OS boot disks, GPU TDP × count per node, and 150W base overhead for motherboard, fans, NICs, BMC, and PSU efficiency loss |
+| **Total Cluster Power (est.)** | Per-Node Power × node count |
+| **Total BTU/hr (est.)** | Total Watts × 3.412 |
+| **Rack Units (est.)** | 2U per node, plus 2U for 2× Top-of-Rack switches on multi-node clusters (no switch overhead for single-node) |
+
+> **Important:** These are TDP-based estimates only. Real-world power consumption varies by workload intensity, hardware design, and OEM implementation. The Sizer itself says it best: *"Consult your preferred OEM hardware partner for accurate power and rack planning."* Use these numbers for early-stage data centre capacity conversations, not final facility design.
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20140354.png)
+
+---
+
+#### Azure Local Instance - Sizing Notes
+
+This is one of the most underappreciated parts of the Sizer. Below the Power & Rack section sits a dynamic, auto-generated bullet list that builds a complete plain-English narrative of your sizing configuration — every decision the Sizer has made, every reservation it has applied, every warning it needs to surface. It's the Sizer explaining its own work.
+
+The notes update live with every change. Here's what gets generated and why:
+
+| Note | What It's Telling You |
+|---|---|
+| **N+1 cluster summary** | Always first. States your node count and confirms how many nodes are assumed available during servicing — e.g. *"10 x Node Cluster — hardware requirements calculated assuming 9 nodes available during servicing / maintenance"* |
+| **Per-node hardware config** | Summarises the CPU, core count, socket count, and RAM for each node — e.g. *"Intel® Xeon® 6 (Granite Rapids) — 64 cores × 2 socket(s) = 128 physical cores, 1536 GB RAM"* |
+| **GPU config** | Only shown when GPUs are configured — e.g. *"GPU: 2 × NVIDIA A16 (64 GB VRAM, 250W TDP) per node"* |
+| **Future growth buffer** | Confirms the growth % applied to all workload calculations |
+| **Storage resiliency** | Full description of the chosen mirror type, efficiency, and fault tolerance |
+| **Storage layout** | Exact disk config per node — count, type, and size — e.g. *"9× NVMe capacity disks per node (3.84 TB each)"* |
+| **vCPU overcommit ratio** | States the ratio in use — or warns if it was auto-escalated above the default 4:1 |
+| **ℹ️ Infrastructure_1 volume** | Flags that 256 GB usable capacity is reserved by Storage Spaces Direct and has been deducted from available storage |
+| **ℹ️ S2D Resiliency Repair** | Explains the raw storage pool reservation for Storage Spaces Direct repair jobs — up to 4 × capacity disks deducted from usable storage |
+| **ℹ️ Host overhead** | Confirms 32 GB RAM per node is reserved for the Azure Local OS and management stack, excluded from workload memory |
+| **ℹ️ Network** | Reminds you that multi-node Azure Local requires RDMA-capable NICs (25 GbE+ recommended) with dedicated NICs for east-west storage traffic |
+| **ℹ️ Boot drive** | Only shown for nodes with > 768 GB RAM — recommends a 400 GB+ OS disk |
+| **⚠️ Warnings** | If compute, memory, or storage utilization hits ≥ 90%, explicit warnings appear here naming the overloaded resource and what to do about it |
+| **💡 AMD tip** | If you're on Intel with maxed cores and compute is ≥ 80% at baseline 4:1 ratio, the Sizer suggests switching to AMD EPYC Turin for additional core headroom |
+
+The Sizing Notes are also fully included in the Word export — so when you hand a report to a stakeholder or OEM partner, every assumption and reservation is documented in plain language, not buried in a spreadsheet.
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20140411.png)
+
+---
+
+#### Export & Session Options
+
+| Option | How It Works |
+|---|---|
+| **Save as PDF** | Triggers the browser print dialog — save to PDF from there |
+| **Download Word** | Generates a complete Word-format sizing report including cluster config, hardware config, requirements summary, per-node breakdown, capacity utilization, workload list, and all sizing notes |
+| **Auto-Save** | Your entire session — workloads, hardware settings, cluster config — is automatically saved to the browser. Closing and reopening the page will offer to resume where you left off |
+
+![](/img/azurelocal_odin/Screenshot%202026-02-24%20140424.png)
 
 ### Room for Growth & Community Momentum
 
-Overall, Odin Sizer is a fantastic start! It's not as deep as some vendor tools (like [Peter Teeling's Sizing Tool](https://thankful-coast-075a8e20f.1.azurestaticapps.net/)), but it's open, community-driven, and improving fast. I'd love to see more storage input options and maybe even some of the features from those more mature tools in the future.
+Since I first wrote about the Sizer, the team has added full hardware specification inputs — CPU manufacturer and generation, memory, GPU, disk count, disk capacity, and disk type — which changes this from a rough workload estimator into something much closer to a real pre-sales sizing tool. It's still Preview and you should validate with your OEM, but the pace of improvement is impressive. When the Sizer first launched, hardware inputs were minimal and it fell well short of dedicated tools like [Pieter Teeling's Sizer](https://sizer.teeling.ai/) (part of his broader Azure Local work at [teeling.ai](https://www.teeling.ai/)). Recent updates have closed those gaps, with full CPU, memory, GPU, and disk specification inputs now in place, it's genuinely comparable for most pre-sales Azure Local sizing scenarios.
 
-If you're reading this and want to help, jump in! Community feedback and contributions will make Odin Sizer even better for everyone planning Azure Local deployments.
-
-![](/img/azurelocal_odin/Screenshot%202026-02-04%20225040.png)
-
+---
 ---
 
 ## Odin Knowledge

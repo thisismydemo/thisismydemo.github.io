@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Azure Managed Prometheus on This Is My Demo</title><link>http://thisismydemo.cloud/tags/azure-managed-prometheus/</link><description>Recent content in Azure Managed Prometheus on This Is My Demo</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 29 Sep 2023 20:26:05 +0000</lastBuildDate><atom:link href="http://thisismydemo.cloud/tags/azure-managed-prometheus/index.xml" rel="self" type="application/rss+xml"/><item><title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</title><link>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</link><pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate><guid>http://thisismydemo.cloud/post/microk8s-cluster-manged-azure-part-ii-monitoring/</guid><description>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.
-At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Managed Prometheus on This Is My Demo</title>
+    <link>http://localhost:1313/tags/azure-managed-prometheus/</link>
+    <description>Recent content in Azure Managed Prometheus on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 Sep 2023 20:26:05 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/azure-managed-prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My MicroK8s Cluster Is Now Manged by Azure. What is next? - Part II - Monitoring</title>
+      <link>http://localhost:1313/post/microk8s-cluster-manged-azure-part-ii-monitoring/</link>
+      <pubDate>Fri, 29 Sep 2023 20:26:05 +0000</pubDate>
+      <guid>http://localhost:1313/post/microk8s-cluster-manged-azure-part-ii-monitoring/</guid>
+      <description>This is next blog in a series of blogs I just started that share my experiences with integrating Azure services with my on-premises deployment of MicroK8s Kubernetes cluster running in WSL. These blog series are an extension of another blog series I did called MicroK8S and WSL Managed by Azure Arc.&#xA;At a high level there is a lot of Azure Services we can integrate and use with our Kubernetes clusters running anywhere, such as on-premises, or even GCP and AWS.</description>
+    </item>
+  </channel>
+</rss>
