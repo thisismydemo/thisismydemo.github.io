@@ -1,7 +1,7 @@
 ---
 title: Reusing Your Existing VMware Hosts
 description: Practical guidance on repurposing existing VMware hardware for Hyper-V deployments including compatibility validation and driver considerations.
-date: 2026-03-22T05:39:30.352Z
+date: 2026-03-22T05:53:25.857Z
 series: The Hyper-V Renaissance
 series_post: 4
 series_total: 18
@@ -26,7 +26,7 @@ tags:
     - Migration
     - Server Hardware
     - Three-Tier Architecture
-lastmod: 2026-03-22T05:40:20.688Z
+lastmod: 2026-03-22T05:58:13.509Z
 ---
 The servers sitting in your datacenter right now, the Dell PowerEdges, the HPE ProLiants, and the Lenovo ThinkSystems, were designed to run hypervisors, not a specific hypervisor. Any hypervisor.
 
@@ -131,7 +131,7 @@ Let's look at what Windows Server 2025 actually requires. If your servers meet t
 |-----------|---------|-------------------------|
 | **CPU** | 1.4 GHz 64-bit with SLAT | 2+ GHz, multiple cores |
 | **CPU Instructions** | NX, DEP, CMPXCHG16b, LAHF/SAHF, PrefetchW, **SSE4.2**, **POPCNT** | Same (mandatory) |
-| **RAM** | 512 MB (Core), 2 GB (Desktop Experience) | 4+ GB for host OS; size for VM density |
+| **RAM** | 2 GB (Server Core), 2 GB (Desktop Experience) | 4+ GB for host OS; size for VM density |
 | **RAM Type** | **ECC (Error Correcting Code) or similar technology** for physical hosts | ECC required |
 | **Storage** | 32 GB minimum | 64+ GB recommended; separate VM storage |
 | **Network** | Gigabit Ethernet (PCIe-compliant) | 10+ GbE; redundant paths |
@@ -199,9 +199,9 @@ If your VMware hosts have GPUs for VDI, AI/ML, or graphics workloads, they'll wo
 
 | Vendor | GPU Series | DDA (Passthrough) | GPU-P (Partitioning) | Notes |
 |--------|------------|-------------------|---------------------|-------|
-| **NVIDIA** | A2, A10, A16, A40 | ✅ | ✅ Validated | Microsoft-documented GPU-P models |
+| **NVIDIA** | A2, A10, A16, A40, L2, L4, L40, L40S | ✅ | ✅ Validated | Microsoft-documented GPU-P models |
 | **NVIDIA** | A100 | ✅ | MIG only | Uses MIG, not SR-IOV partitioning |
-| **NVIDIA** | L40S, T4 | ✅ | Verify | Check with NVIDIA for GPU-P status |
+| **NVIDIA** | T4 | ✅ | DDA only | Not in official GPU-P supported list; use DDA |
 | **NVIDIA** | RTX 4000/5000 series | ✅ | DDA only | Workstation GPUs; GPU-P not validated |
 | **AMD** | Instinct MI series | ✅ | Limited | Verify specific model with AMD |
 
@@ -371,7 +371,7 @@ Time to turn hardware into a hypervisor.
 ---
 
 *Post 4 of 18 in The Hyper-V Renaissance series*  
-*Last updated: February 2026*
+*Last updated: March 2026*
 
 ---
 
