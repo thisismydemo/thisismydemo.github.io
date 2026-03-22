@@ -6,12 +6,12 @@
     <description>Recent content in Three-Tier Architecture on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Feb 2026 16:47:33 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 05:22:37 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/three-tier-architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reusing Your Existing VMware Hosts</title>
       <link>http://localhost:1313/post/hyper-v-reusing-vmware-hosts/</link>
-      <pubDate>Tue, 24 Feb 2026 16:47:24 +0000</pubDate>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
       <guid>http://localhost:1313/post/hyper-v-reusing-vmware-hosts/</guid>
       <description>The servers sitting in your datacenter right now—the Dell PowerEdges, the HPE ProLiants, the Lenovo ThinkSystems—were designed to run hypervisors. Not a specific hypervisor. Any hypervisor.&#xA;This might seem obvious, but it&amp;rsquo;s worth stating clearly: enterprise server hardware is hypervisor-agnostic. The same CPUs, memory, storage controllers, and network adapters that run ESXi today will run Hyper-V tomorrow. You&amp;rsquo;re not abandoning hardware investments when you change virtualization platforms—you&amp;rsquo;re simply loading different software.</description>
     </item>

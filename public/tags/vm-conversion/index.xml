@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VM Conversion on This Is My Demo</title>
+    <link>http://localhost:1313/tags/vm-conversion/</link>
+    <description>Recent content in VM Conversion on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Feb 2026 13:47:39 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vm-conversion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating VMs from VMware to Hyper-V</title>
+      <link>http://localhost:1313/post/hyper-v-migrating-vms-vmware/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-migrating-vms-vmware/</guid>
+      <description>Summary Complete guide to converting and migrating virtual machines from VMware vSphere to Hyper-V. Covers conversion tools (Microsoft Virtual Machine Converter alternatives, Veeam, StarWind V2V, manual methods), pre-conversion preparation, driver injection, post-conversion validation, and common pitfalls. Addresses both online and offline migration scenarios.&#xA;Key Deliverables: Migration tool comparison matrix, pre-migration assessment checklist, conversion procedure guide, post-migration validation script&#xA;Repository: All scripts, calculators, and resources available at github.com/thisismydemo/hyper-v-renaissance&#xA;DRAFT - Content to be developed</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pure Storage on This Is My Demo</title>
+    <link>http://localhost:1313/tags/pure-storage/</link>
+    <description>Recent content in Pure Storage on This Is My Demo</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 Feb 2026 13:47:39 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pure-storage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Three-Tier Storage Integration</title>
+      <link>http://localhost:1313/post/hyper-v-three-tier-storage/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-three-tier-storage/</guid>
+      <description>Summary Practical guide to integrating external storage arrays with Hyper-V clusters. Covers universal principles (iSCSI vs. Fibre Channel vs. SMB3 decision framework, MPIO configuration, LUN presentation best practices) with Pure Storage as a detailed implementation example. Demonstrates why three-tier architecture remains relevant for specific workloads. This is the &amp;ldquo;getting connected&amp;rdquo; post—advanced architecture patterns come later.&#xA;Key Deliverables: Storage protocol decision matrix, MPIO configuration guide, Pure Storage + Hyper-V reference configuration, vendor resource links</description>
+    </item>
+  </channel>
+</rss>

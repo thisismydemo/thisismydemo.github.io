@@ -6,12 +6,40 @@
     <description>Recent content in Hyper-V on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Feb 2026 16:11:40 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 05:22:37 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/hyper-v/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reusing Your Existing VMware Hosts</title>
+      <link>http://localhost:1313/post/hyper-v-reusing-vmware-hosts/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-reusing-vmware-hosts/</guid>
+      <description>The servers sitting in your datacenter right now—the Dell PowerEdges, the HPE ProLiants, the Lenovo ThinkSystems—were designed to run hypervisors. Not a specific hypervisor. Any hypervisor.&#xA;This might seem obvious, but it&amp;rsquo;s worth stating clearly: enterprise server hardware is hypervisor-agnostic. The same CPUs, memory, storage controllers, and network adapters that run ESXi today will run Hyper-V tomorrow. You&amp;rsquo;re not abandoning hardware investments when you change virtualization platforms—you&amp;rsquo;re simply loading different software.</description>
+    </item>
+    <item>
+      <title>Migrating VMs from VMware to Hyper-V</title>
+      <link>http://localhost:1313/post/hyper-v-migrating-vms-vmware/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-migrating-vms-vmware/</guid>
+      <description>Summary Complete guide to converting and migrating virtual machines from VMware vSphere to Hyper-V. Covers conversion tools (Microsoft Virtual Machine Converter alternatives, Veeam, StarWind V2V, manual methods), pre-conversion preparation, driver injection, post-conversion validation, and common pitfalls. Addresses both online and offline migration scenarios.&#xA;Key Deliverables: Migration tool comparison matrix, pre-migration assessment checklist, conversion procedure guide, post-migration validation script&#xA;Repository: All scripts, calculators, and resources available at github.com/thisismydemo/hyper-v-renaissance&#xA;DRAFT - Content to be developed</description>
+    </item>
+    <item>
+      <title>Three-Tier Storage Integration</title>
+      <link>http://localhost:1313/post/hyper-v-three-tier-storage/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-three-tier-storage/</guid>
+      <description>Summary Practical guide to integrating external storage arrays with Hyper-V clusters. Covers universal principles (iSCSI vs. Fibre Channel vs. SMB3 decision framework, MPIO configuration, LUN presentation best practices) with Pure Storage as a detailed implementation example. Demonstrates why three-tier architecture remains relevant for specific workloads. This is the &amp;ldquo;getting connected&amp;rdquo; post—advanced architecture patterns come later.&#xA;Key Deliverables: Storage protocol decision matrix, MPIO configuration guide, Pure Storage + Hyper-V reference configuration, vendor resource links</description>
+    </item>
+    <item>
+      <title>Build and Validate a Cluster-Ready Host</title>
+      <link>http://localhost:1313/post/hyper-v-build-validate-cluster-host/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/hyper-v-build-validate-cluster-host/</guid>
+      <description>Summary Step-by-step guide to deploying a Hyper-V host ready for clustering using PowerShell, including comprehensive pre-production validation. Covers Windows Server 2025 installation, Hyper-V role configuration, networking setup, storage preparation, and validation procedures. Includes network adapter teaming validation, RDMA configuration testing, storage connectivity verification, and Test-Cluster execution. Emphasizes automation and repeatability—every step scriptable.&#xA;Key Deliverables: Complete PowerShell deployment script, validation script collection, pass/fail checklist template, configuration checklist&#xA;Repository: All scripts, calculators, and resources available at github.</description>
+    </item>
     <item>
       <title>Management Tools for Production Hyper-V—WAC, SCVMM, System Center</title>
       <link>http://localhost:1313/post/management-tools-hyperv/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/management-tools-hyperv/</guid>
       <description>Introduction: Why Dedicated Management Tooling Matters in Production [Coming soon]&#xA;Management Tool Landscape: Native vs. Enterprise vs. Cloud [Coming soon]&#xA;Windows Admin Center: Capabilities, V-Mode Deployment, Gateway Architecture Core Capabilities [Coming soon]&#xA;V-Mode Deployment [Coming soon]&#xA;Extension Ecosystem [Coming soon]&#xA;SCVMM: VM Lifecycle, Networking Integration, Storage Management VM Lifecycle Management [Coming soon]&#xA;Networking Integration [Coming soon]&#xA;Storage Management and Library/Templates [Coming soon]&#xA;Scale Considerations [Coming soon]&#xA;System Center (OpsMgr/ConfigMgr): Monitoring Integration, Patch Management, Compliance Operations Manager Integration [Coming soon]</description>
     </item>

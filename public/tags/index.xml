@@ -6,75 +6,215 @@
     <description>Recent content in Tags on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Feb 2026 16:11:40 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 05:22:37 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure Local</title>
+      <link>http://localhost:1313/tags/azure-local/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/azure-local/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hardware Compatibility</title>
+      <link>http://localhost:1313/tags/hardware-compatibility/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/hardware-compatibility/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hyper-V</title>
+      <link>http://localhost:1313/tags/hyper-v/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Migration</title>
+      <link>http://localhost:1313/tags/migration/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/migration/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Server Hardware</title>
+      <link>http://localhost:1313/tags/server-hardware/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/server-hardware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Three-Tier Architecture</title>
+      <link>http://localhost:1313/tags/three-tier-architecture/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/three-tier-architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VCF</title>
+      <link>http://localhost:1313/tags/vcf/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vcf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VMware</title>
+      <link>http://localhost:1313/tags/vmware/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vmware/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VMware Cloud Foundation</title>
+      <link>http://localhost:1313/tags/vmware-cloud-foundation/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vmware-cloud-foundation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows Server 2025</title>
+      <link>http://localhost:1313/tags/windows-server-2025/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/tags/windows-server-2025/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>V2V</title>
+      <link>http://localhost:1313/tags/v2v/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/v2v/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VM Conversion</title>
+      <link>http://localhost:1313/tags/vm-conversion/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vm-conversion/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fibre Channel</title>
+      <link>http://localhost:1313/tags/fibre-channel/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/fibre-channel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ISCSI</title>
+      <link>http://localhost:1313/tags/iscsi/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/iscsi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pure Storage</title>
+      <link>http://localhost:1313/tags/pure-storage/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/pure-storage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SMB3</title>
+      <link>http://localhost:1313/tags/smb3/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/smb3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Storage</title>
+      <link>http://localhost:1313/tags/storage/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/storage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automation</title>
+      <link>http://localhost:1313/tags/automation/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/automation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clustering</title>
+      <link>http://localhost:1313/tags/clustering/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/clustering/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PowerShell</title>
+      <link>http://localhost:1313/tags/powershell/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/powershell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Validation</title>
+      <link>http://localhost:1313/tags/validation/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/validation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Configuration Manager</title>
       <link>http://localhost:1313/tags/configuration-manager/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/configuration-manager/</guid>
       <description></description>
     </item>
     <item>
       <title>Day-2 Operations</title>
       <link>http://localhost:1313/tags/day-2-operations/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/day-2-operations/</guid>
       <description></description>
     </item>
     <item>
       <title>Enterprise IT</title>
       <link>http://localhost:1313/tags/enterprise-it/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/enterprise-it/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hyper-V</title>
-      <link>http://localhost:1313/tags/hyper-v/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hyper-v/</guid>
       <description></description>
     </item>
     <item>
       <title>Management</title>
       <link>http://localhost:1313/tags/management/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/management/</guid>
       <description></description>
     </item>
     <item>
       <title>Operations Manager</title>
       <link>http://localhost:1313/tags/operations-manager/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/operations-manager/</guid>
       <description></description>
     </item>
     <item>
       <title>SCVMM</title>
       <link>http://localhost:1313/tags/scvmm/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/scvmm/</guid>
       <description></description>
     </item>
     <item>
       <title>System Center</title>
       <link>http://localhost:1313/tags/system-center/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/system-center/</guid>
       <description></description>
     </item>
     <item>
       <title>WAC</title>
       <link>http://localhost:1313/tags/wac/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/wac/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows Admin Center</title>
       <link>http://localhost:1313/tags/windows-admin-center/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/windows-admin-center/</guid>
       <description></description>
     </item>
@@ -93,45 +233,10 @@
       <description></description>
     </item>
     <item>
-      <title>VCF</title>
-      <link>http://localhost:1313/tags/vcf/</link>
-      <pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/vcf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VMware</title>
-      <link>http://localhost:1313/tags/vmware/</link>
-      <pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/vmware/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VMware Cloud Foundation</title>
-      <link>http://localhost:1313/tags/vmware-cloud-foundation/</link>
-      <pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/vmware-cloud-foundation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows Server 2025</title>
-      <link>http://localhost:1313/tags/windows-server-2025/</link>
-      <pubDate>Mon, 09 Feb 2026 18:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/windows-server-2025/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>ARM Templates</title>
       <link>http://localhost:1313/tags/arm-templates/</link>
       <pubDate>Mon, 09 Feb 2026 15:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/arm-templates/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Azure Local</title>
-      <link>http://localhost:1313/tags/azure-local/</link>
-      <pubDate>Mon, 09 Feb 2026 15:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/azure-local/</guid>
       <description></description>
     </item>
     <item>
@@ -188,20 +293,6 @@
       <link>http://localhost:1313/tags/infrastructure/</link>
       <pubDate>Wed, 04 Feb 2026 05:14:22 +0000</pubDate>
       <guid>http://localhost:1313/tags/infrastructure/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Migration</title>
-      <link>http://localhost:1313/tags/migration/</link>
-      <pubDate>Wed, 04 Feb 2026 05:14:22 +0000</pubDate>
-      <guid>http://localhost:1313/tags/migration/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>PowerShell</title>
-      <link>http://localhost:1313/tags/powershell/</link>
-      <pubDate>Wed, 04 Feb 2026 05:14:22 +0000</pubDate>
-      <guid>http://localhost:1313/tags/powershell/</guid>
       <description></description>
     </item>
     <item>
@@ -517,13 +608,6 @@
       <link>http://localhost:1313/tags/san/</link>
       <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
       <guid>http://localhost:1313/tags/san/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Storage</title>
-      <link>http://localhost:1313/tags/storage/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://localhost:1313/tags/storage/</guid>
       <description></description>
     </item>
     <item>

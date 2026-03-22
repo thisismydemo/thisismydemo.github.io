@@ -3,92 +3,232 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2026-02-24T16:42:47+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-02-24T16:42:47+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/azure-local/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/configuration-manager/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/categories/hardware/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/day-2-operations/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/enterprise-it/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <loc>http://localhost:1313/tags/hardware-compatibility/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/hyper-v/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/management/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/tags/migration/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/management/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/post/hyper-v-reusing-vmware-hosts/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/post/management-tools-hyperv/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/operations-manager/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/scvmm/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/system-center/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/tags/server-hardware/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/three-tier-architecture/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/vcf/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/virtualization/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/wac/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/tags/vmware/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/windows-admin-center/</loc>
-    <lastmod>2026-02-09T03:28:50+00:00</lastmod>
+    <loc>http://localhost:1313/tags/vmware-cloud-foundation/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/windows-server/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/windows-server-2025/</loc>
+    <lastmod>2026-03-22T05:22:37+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/hyper-v-migrating-vms-vmware/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/migration/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/v2v/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/vm-conversion/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/fibre-channel/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/iscsi/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/pure-storage/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/smb3/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/storage/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/storage/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/hyper-v-three-tier-storage/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/automation/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/hyper-v-build-validate-cluster-host/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/clustering/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/powershell/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/validation/</loc>
+    <lastmod>2026-02-04T13:47:39+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/configuration-manager/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/day-2-operations/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/enterprise-it/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/management/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/management/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/management-tools-hyperv/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/operations-manager/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/scvmm/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/system-center/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/wac/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/windows-admin-center/</loc>
+    <lastmod>2026-02-24T16:50:51+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -107,68 +247,43 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/vcf/</loc>
-    <lastmod>2026-02-10T03:38:18+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/vmware/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/vmware-cloud-foundation/</loc>
-    <lastmod>2026-02-10T03:38:18+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/windows-server-2025/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>http://localhost:1313/tags/arm-templates/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/azure-local/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/azure-local/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/community-tools/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/community-tools/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/deployment-planning/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/infrastructure-as-code/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/odin/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/odin-azure-local-community-tool-deep-dive/</loc>
-    <lastmod>2026-02-09T18:07:08+00:00</lastmod>
+    <lastmod>2026-02-24T19:21:17+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -193,16 +308,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/infrastructure/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/migration/</loc>
-    <lastmod>2026-02-24T16:11:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2026-02-24T16:11:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -303,11 +408,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/esxi/</loc>
-    <lastmod>2025-06-25T17:35:23+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/categories/migration/</loc>
     <lastmod>2025-06-25T17:35:23+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -542,17 +642,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/hardware/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>http://localhost:1313/tags/san/</loc>
-    <lastmod>2025-07-02T00:01:40+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/tags/storage/</loc>
     <lastmod>2025-07-02T00:01:40+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

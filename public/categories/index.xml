@@ -6,27 +6,55 @@
     <description>Recent content in Categories on This Is My Demo</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Feb 2026 16:11:40 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2026 05:22:37 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Management</title>
-      <link>http://localhost:1313/categories/management/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/management/</guid>
+      <title>Hardware</title>
+      <link>http://localhost:1313/categories/hardware/</link>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
+      <guid>http://localhost:1313/categories/hardware/</guid>
       <description></description>
     </item>
     <item>
       <title>Virtualization</title>
       <link>http://localhost:1313/categories/virtualization/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
       <guid>http://localhost:1313/categories/virtualization/</guid>
       <description></description>
     </item>
     <item>
       <title>Windows Server</title>
       <link>http://localhost:1313/categories/windows-server/</link>
-      <pubDate>Wed, 11 Feb 2026 05:00:00 +0000</pubDate>
+      <pubDate>Sun, 22 Mar 2026 05:22:17 +0000</pubDate>
       <guid>http://localhost:1313/categories/windows-server/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Migration</title>
+      <link>http://localhost:1313/categories/migration/</link>
+      <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/migration/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Storage</title>
+      <link>http://localhost:1313/categories/storage/</link>
+      <pubDate>Wed, 11 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/storage/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PowerShell</title>
+      <link>http://localhost:1313/categories/powershell/</link>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/powershell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Management</title>
+      <link>http://localhost:1313/categories/management/</link>
+      <pubDate>Fri, 27 Feb 2026 05:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/management/</guid>
       <description></description>
     </item>
     <item>
@@ -69,13 +97,6 @@
       <link>http://localhost:1313/categories/case-studies/</link>
       <pubDate>Wed, 01 Oct 2025 12:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/case-studies/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Migration</title>
-      <link>http://localhost:1313/categories/migration/</link>
-      <pubDate>Mon, 15 Sep 2025 12:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/categories/migration/</guid>
       <description></description>
     </item>
     <item>
@@ -132,13 +153,6 @@
       <link>http://localhost:1313/categories/feature-comparison/</link>
       <pubDate>Wed, 02 Jul 2025 00:01:27 +0000</pubDate>
       <guid>http://localhost:1313/categories/feature-comparison/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hardware</title>
-      <link>http://localhost:1313/categories/hardware/</link>
-      <pubDate>Thu, 26 Jun 2025 12:52:40 +0000</pubDate>
-      <guid>http://localhost:1313/categories/hardware/</guid>
       <description></description>
     </item>
     <item>
