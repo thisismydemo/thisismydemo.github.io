@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="860" height="320" fill="#f8fafc" rx="8"/>
+  <text x="430" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">Three Infrastructure Approaches — Architecture Comparison</text>
+
+  <!-- Three-Tier -->
+  <rect x="20" y="50" width="260" height="250" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="150" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">Three-Tier (SAN)</text>
+
+  <rect x="40" y="88" width="100" height="44" rx="4" fill="#fff" stroke="#86efac" stroke-width="1"/>
+  <text x="90" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 1</text>
+  <text x="90" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute only</text>
+
+  <rect x="160" y="88" width="100" height="44" rx="4" fill="#fff" stroke="#86efac" stroke-width="1"/>
+  <text x="210" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 2</text>
+  <text x="210" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute only</text>
+
+  <rect x="40" y="148" width="220" height="44" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="150" y="168" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">iSCSI / FC / SMB3 Network</text>
+  <text x="150" y="182" text-anchor="middle" font-size="8" fill="#64748b">MPIO redundant paths</text>
+
+  <rect x="40" y="204" width="220" height="50" rx="4" fill="#fef9c3" stroke="#facc15" stroke-width="1.5"/>
+  <text x="150" y="224" text-anchor="middle" font-size="10" font-weight="700" fill="#854d0e">External SAN Array</text>
+  <text x="150" y="240" text-anchor="middle" font-size="8" fill="#854d0e">Independent scaling, data services</text>
+  <text x="150" y="250" text-anchor="middle" font-size="8" fill="#854d0e">Snapshots, replication, dedup</text>
+
+  <text x="150" y="280" text-anchor="middle" font-size="9" fill="#16a34a">Standard or Datacenter edition</text>
+  <text x="150" y="293" text-anchor="middle" font-size="9" font-weight="600" fill="#16a34a">Reuse existing SAN — $0 storage</text>
+
+  <!-- S2D -->
+  <rect x="300" y="50" width="260" height="250" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="430" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#1e40af">S2D (Hyperconverged)</text>
+
+  <rect x="320" y="88" width="100" height="70" rx="4" fill="#fff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="370" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 1</text>
+  <text x="370" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute</text>
+  <rect x="330" y="130" width="80" height="18" rx="3" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="370" y="143" text-anchor="middle" font-size="7" fill="#1e40af">NVMe/SSD</text>
+
+  <rect x="440" y="88" width="100" height="70" rx="4" fill="#fff" stroke="#93c5fd" stroke-width="1"/>
+  <text x="490" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 2</text>
+  <text x="490" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute</text>
+  <rect x="450" y="130" width="80" height="18" rx="3" fill="#dbeafe" stroke="#93c5fd"/>
+  <text x="490" y="143" text-anchor="middle" font-size="7" fill="#1e40af">NVMe/SSD</text>
+
+  <rect x="320" y="172" width="220" height="44" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="430" y="190" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">RDMA Cluster Network</text>
+  <text x="430" y="204" text-anchor="middle" font-size="8" fill="#64748b">S2D pool spans all nodes</text>
+
+  <text x="430" y="235" text-anchor="middle" font-size="9" fill="#64748b">Storage on same servers as compute</text>
+  <text x="430" y="248" text-anchor="middle" font-size="9" fill="#64748b">Identical drives required across nodes</text>
+
+  <text x="430" y="275" text-anchor="middle" font-size="9" fill="#1e40af">Datacenter edition required</text>
+  <text x="430" y="288" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">Perpetual license — no subscription</text>
+
+  <!-- Azure Local -->
+  <rect x="580" y="50" width="260" height="250" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="710" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#6b21a8">Azure Local</text>
+
+  <rect x="600" y="88" width="100" height="70" rx="4" fill="#fff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="650" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 1</text>
+  <text x="650" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute</text>
+  <rect x="610" y="130" width="80" height="18" rx="3" fill="#f3e8ff" stroke="#c4b5fd"/>
+  <text x="650" y="143" text-anchor="middle" font-size="7" fill="#6b21a8">NVMe/SSD</text>
+
+  <rect x="720" y="88" width="100" height="70" rx="4" fill="#fff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="770" y="108" text-anchor="middle" font-size="9" font-weight="600" fill="#1e293b">Host 2</text>
+  <text x="770" y="122" text-anchor="middle" font-size="8" fill="#64748b">Compute</text>
+  <rect x="730" y="130" width="80" height="18" rx="3" fill="#f3e8ff" stroke="#c4b5fd"/>
+  <text x="770" y="143" text-anchor="middle" font-size="7" fill="#6b21a8">NVMe/SSD</text>
+
+  <rect x="600" y="172" width="220" height="44" rx="4" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="710" y="190" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8">S2D + Azure Integration</text>
+  <text x="710" y="204" text-anchor="middle" font-size="8" fill="#64748b">AKS, AVD, Arc VMs, Monitor</text>
+
+  <text x="710" y="235" text-anchor="middle" font-size="9" fill="#64748b">S2D storage + Azure management</text>
+  <text x="710" y="248" text-anchor="middle" font-size="9" fill="#64748b">Azure connectivity required</text>
+
+  <text x="710" y="275" text-anchor="middle" font-size="9" fill="#6b21a8">$10/core/month ($0 with AHB)</text>
+  <text x="710" y="288" text-anchor="middle" font-size="9" font-weight="600" fill="#6b21a8">Subscription — includes Azure services</text>
+</svg>

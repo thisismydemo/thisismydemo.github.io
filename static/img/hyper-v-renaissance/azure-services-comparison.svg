@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="820" height="520" fill="#f8fafc" rx="8"/>
+  <text x="410" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">Azure Services — Azure Local vs. Hyper-V + Arc</text>
+  <text x="410" y="46" text-anchor="middle" font-size="11" fill="#64748b">Which Azure services are available on each platform?</text>
+
+  <!-- Column headers -->
+  <rect x="300" y="58" width="150" height="36" rx="4" fill="#7c3aed"/>
+  <text x="375" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Azure Local</text>
+  <rect x="460" y="58" width="150" height="36" rx="4" fill="#2563eb"/>
+  <text x="535" y="80" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Hyper-V + Arc</text>
+  <rect x="620" y="58" width="180" height="36" rx="4" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="710" y="80" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Arc Cost</text>
+
+  <!-- Rows -->
+  <!-- Row 1 -->
+  <rect x="15" y="100" width="280" height="28" rx="3" fill="#fff" stroke="#e2e8f0"/>
+  <text x="25" y="118" font-size="10" font-weight="600" fill="#1e293b">Azure Portal VM Management</text>
+  <text x="375" y="118" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="118" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="118" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+
+  <!-- Row 2 -->
+  <rect x="15" y="132" width="280" height="28" rx="3" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="25" y="150" font-size="10" font-weight="600" fill="#1e293b">Azure RBAC for VMs</text>
+  <text x="375" y="150" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="150" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+
+  <!-- Row 3 -->
+  <rect x="15" y="164" width="280" height="28" rx="3" fill="#fff" stroke="#e2e8f0"/>
+  <text x="25" y="182" font-size="10" font-weight="600" fill="#1e293b">Azure Policy</text>
+  <text x="375" y="182" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="182" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="182" text-anchor="middle" font-size="10" fill="#475569">Free (audit) / $6 (enforce)</text>
+
+  <!-- Row 4 -->
+  <rect x="15" y="196" width="280" height="28" rx="3" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="25" y="214" font-size="10" font-weight="600" fill="#1e293b">Azure Update Manager</text>
+  <text x="375" y="214" text-anchor="middle" font-size="10" fill="#16a34a">Included</text>
+  <text x="535" y="214" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="214" text-anchor="middle" font-size="10" fill="#475569">$5/server/mo (free w/ P2)</text>
+
+  <!-- Row 5 -->
+  <rect x="15" y="228" width="280" height="28" rx="3" fill="#fff" stroke="#e2e8f0"/>
+  <text x="25" y="246" font-size="10" font-weight="600" fill="#1e293b">Defender for Cloud</text>
+  <text x="375" y="246" text-anchor="middle" font-size="10" fill="#475569">Additional cost</text>
+  <text x="535" y="246" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="246" text-anchor="middle" font-size="10" fill="#475569">$5-15/server/mo</text>
+
+  <!-- Row 6 -->
+  <rect x="15" y="260" width="280" height="28" rx="3" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="25" y="278" font-size="10" font-weight="600" fill="#1e293b">Azure Monitor</text>
+  <text x="375" y="278" text-anchor="middle" font-size="10" fill="#16a34a">50+ metrics</text>
+  <text x="535" y="278" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="278" text-anchor="middle" font-size="10" fill="#475569">~$2.76/GB ingested</text>
+
+  <!-- Row 7 -->
+  <rect x="15" y="292" width="280" height="28" rx="3" fill="#fff" stroke="#e2e8f0"/>
+  <text x="25" y="310" font-size="10" font-weight="600" fill="#1e293b">Azure Backup (MABS)</text>
+  <text x="375" y="310" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="310" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="310" text-anchor="middle" font-size="10" fill="#475569">$5-10/instance/mo + vault</text>
+
+  <!-- Row 8 -->
+  <rect x="15" y="324" width="280" height="28" rx="3" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="25" y="342" font-size="10" font-weight="600" fill="#1e293b">Azure Site Recovery</text>
+  <text x="375" y="342" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="342" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="342" text-anchor="middle" font-size="10" fill="#475569">$25/instance/mo</text>
+
+  <!-- Row 9 -->
+  <rect x="15" y="356" width="280" height="28" rx="3" fill="#fff" stroke="#e2e8f0"/>
+  <text x="25" y="374" font-size="10" font-weight="600" fill="#1e293b">IaC (ARM / Bicep / Terraform)</text>
+  <text x="375" y="374" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="535" y="374" text-anchor="middle" font-size="12" fill="#16a34a">&#10003;</text>
+  <text x="710" y="374" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+
+  <!-- Row 10 — ESUs -->
+  <rect x="15" y="388" width="280" height="28" rx="3" fill="#fef9c3" stroke="#facc15"/>
+  <text x="25" y="406" font-size="10" font-weight="600" fill="#854d0e">Extended Security Updates (ESUs)</text>
+  <text x="375" y="406" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Free</text>
+  <text x="535" y="406" text-anchor="middle" font-size="10" fill="#f59e0b">Pay-as-you-go</text>
+  <text x="710" y="406" text-anchor="middle" font-size="10" fill="#475569">~$327/core/yr</text>
+
+  <!-- Row 11 — AVD -->
+  <rect x="15" y="420" width="280" height="28" rx="3" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="25" y="438" font-size="10" font-weight="600" fill="#991b1b">Azure Virtual Desktop (on-prem)</text>
+  <text x="375" y="438" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Included</text>
+  <text x="535" y="438" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">&#10007;</text>
+  <text x="710" y="438" text-anchor="middle" font-size="10" fill="#dc2626">Not available</text>
+
+  <!-- Row 12 — AKS -->
+  <rect x="15" y="452" width="280" height="28" rx="3" fill="#fef2f2" stroke="#fca5a5"/>
+  <text x="25" y="470" font-size="10" font-weight="600" fill="#991b1b">AKS (long-term)</text>
+  <text x="375" y="470" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Free</text>
+  <text x="535" y="470" text-anchor="middle" font-size="10" fill="#f59e0b">Retiring by 2028</text>
+  <text x="710" y="470" text-anchor="middle" font-size="10" fill="#dc2626">Deprecated on WS</text>
+
+  <!-- Summary bar -->
+  <rect x="15" y="490" width="790" height="22" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="410" y="505" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">9 of 12 Azure services available on Hyper-V + Arc — most at equivalent or lower cost</text>
+</svg>
