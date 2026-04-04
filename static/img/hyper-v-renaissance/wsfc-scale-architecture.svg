@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="800" height="340" fill="#f8fafc" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">WSFC Scale — Single Cluster vs. Multiple Clusters</text>
+
+  <!-- Left: Single Large Cluster -->
+  <rect x="20" y="50" width="360" height="270" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="200" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#991b1b">Single 32-Node Cluster</text>
+
+  <!-- Nodes grid -->
+  <g transform="translate(35, 85)">
+    <rect x="0" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="20" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N1</text>
+    <rect x="44" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="64" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N2</text>
+    <rect x="88" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="108" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N3</text>
+    <rect x="132" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="152" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N4</text>
+    <rect x="176" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="196" y="16" text-anchor="middle" font-size="8" fill="#991b1b">...</text>
+    <rect x="220" y="0" width="40" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="240" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N31</text>
+    <rect x="264" y="0" width="56" height="24" rx="3" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="292" y="16" text-anchor="middle" font-size="8" fill="#991b1b">N32</text>
+  </g>
+
+  <text x="200" y="130" text-anchor="middle" font-size="10" fill="#991b1b">One failure domain — all 8,000 VMs affected</text>
+
+  <!-- Cons list -->
+  <text x="40" y="155" font-size="10" fill="#dc2626">&#10005; CAU: 16+ hours to patch all nodes</text>
+  <text x="40" y="172" font-size="10" fill="#dc2626">&#10005; Blast radius: entire estate at risk</text>
+  <text x="40" y="189" font-size="10" fill="#dc2626">&#10005; Monitoring: more noise, harder to triage</text>
+  <text x="40" y="206" font-size="10" fill="#dc2626">&#10005; Management: single admin domain</text>
+
+  <!-- Pros -->
+  <text x="40" y="232" font-size="10" fill="#16a34a">&#10003; Simple: one cluster to manage</text>
+  <text x="40" y="249" font-size="10" fill="#16a34a">&#10003; Free VM mobility across all nodes</text>
+  <text x="40" y="266" font-size="10" fill="#16a34a">&#10003; Single storage domain</text>
+
+  <text x="200" y="302" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">Works, but operational overhead grows</text>
+
+  <!-- Right: Multiple Smaller Clusters -->
+  <rect x="420" y="50" width="360" height="270" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="600" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">4 × 8-Node Clusters (Cluster Set)</text>
+
+  <!-- Four mini clusters -->
+  <rect x="435" y="82" width="155" height="44" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="512" y="100" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">Cluster A (8 nodes)</text>
+  <text x="512" y="114" text-anchor="middle" font-size="8" fill="#64748b">2,000 VMs — Tier 1</text>
+
+  <rect x="605" y="82" width="155" height="44" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="682" y="100" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">Cluster B (8 nodes)</text>
+  <text x="682" y="114" text-anchor="middle" font-size="8" fill="#64748b">2,000 VMs — Tier 2</text>
+
+  <rect x="435" y="132" width="155" height="44" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="512" y="150" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">Cluster C (8 nodes)</text>
+  <text x="512" y="164" text-anchor="middle" font-size="8" fill="#64748b">2,000 VMs — Dev/Test</text>
+
+  <rect x="605" y="132" width="155" height="44" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="682" y="150" text-anchor="middle" font-size="9" font-weight="600" fill="#166534">Cluster D (8 nodes)</text>
+  <text x="682" y="164" text-anchor="middle" font-size="8" fill="#64748b">2,000 VMs — DMZ</text>
+
+  <text x="600" y="195" text-anchor="middle" font-size="10" fill="#166534">Independent failure domains — isolated blast radius</text>
+
+  <!-- Pros -->
+  <text x="435" y="218" font-size="10" fill="#16a34a">&#10003; CAU: 4 hours each (parallel)</text>
+  <text x="435" y="235" font-size="10" fill="#16a34a">&#10003; Blast radius: limited to one cluster</text>
+  <text x="435" y="252" font-size="10" fill="#16a34a">&#10003; Fault isolation by workload tier</text>
+  <text x="435" y="269" font-size="10" fill="#16a34a">&#10003; Cluster set: cross-cluster VM mobility</text>
+
+  <!-- Cons -->
+  <text x="435" y="292" font-size="10" fill="#f59e0b">&#9888; More clusters to manage (cluster set helps)</text>
+
+  <text x="600" y="308" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">Recommended for 16+ nodes</text>
+</svg>
