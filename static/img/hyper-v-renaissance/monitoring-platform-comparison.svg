@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#64748b"/></marker>
+    <marker id="arr-b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563eb"/></marker>
+    <marker id="arr-g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#16a34a"/></marker>
+    <marker id="arr-p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7c3aed"/></marker>
+  </defs>
+
+  <rect width="960" height="520" fill="#f8fafc" rx="8"/>
+  <text x="480" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Monitoring Platform Architectures — Side by Side</text>
+
+  <!-- ========== COLUMN 1: SCOM ========== -->
+  <rect x="20" y="50" width="295" height="455" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="167" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">SCOM</text>
+  <text x="167" y="90" text-anchor="middle" font-size="10" fill="#3b82f6">Enterprise On-Premises</text>
+
+  <!-- SCOM: Hosts -->
+  <rect x="52" y="108" width="230" height="48" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="167" y="128" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Hyper-V Hosts</text>
+  <text x="167" y="144" text-anchor="middle" font-size="10" fill="#64748b">SCOM Agent installed</text>
+
+  <line x1="167" y1="156" x2="167" y2="178" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr-b)"/>
+
+  <!-- SCOM: Mgmt Server -->
+  <rect x="52" y="180" width="230" height="48" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="167" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Management Server</text>
+  <text x="167" y="216" text-anchor="middle" font-size="10" fill="#64748b">Rules, monitors, discovery</text>
+
+  <line x1="167" y1="228" x2="167" y2="250" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr-b)"/>
+
+  <!-- SCOM: SQL -->
+  <rect x="52" y="252" width="230" height="48" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="167" y="272" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">SQL Server</text>
+  <text x="167" y="288" text-anchor="middle" font-size="10" fill="#64748b">OpsDB + Data Warehouse</text>
+
+  <line x1="167" y1="300" x2="167" y2="322" stroke="#2563eb" stroke-width="1.2" marker-end="url(#arr-b)"/>
+
+  <!-- SCOM: Console -->
+  <rect x="52" y="324" width="110" height="55" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="107" y="348" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">Console</text>
+  <text x="107" y="362" text-anchor="middle" font-size="9" fill="#64748b">Dashboards</text>
+  <text x="107" y="374" text-anchor="middle" font-size="9" fill="#64748b">Alerts</text>
+
+  <rect x="172" y="324" width="110" height="55" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.2"/>
+  <text x="227" y="348" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">SSRS</text>
+  <text x="227" y="362" text-anchor="middle" font-size="9" fill="#64748b">Reports</text>
+  <text x="227" y="374" text-anchor="middle" font-size="9" fill="#64748b">Compliance</text>
+
+  <!-- SCOM: Alerting -->
+  <rect x="52" y="392" width="230" height="40" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+  <text x="167" y="410" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">Email / SNMP / ITSM Connectors</text>
+  <text x="167" y="424" text-anchor="middle" font-size="9" fill="#a16207">Alert notifications &amp; escalation</text>
+
+  <line x1="107" y1="379" x2="107" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="227" y1="379" x2="227" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Labels -->
+  <text x="167" y="462" text-anchor="middle" font-size="10" fill="#1e40af">System Center License</text>
+  <text x="167" y="476" text-anchor="middle" font-size="10" fill="#1e40af">+ SQL Server</text>
+  <rect x="52" y="486" width="230" height="14" rx="3" fill="#2563eb"/>
+  <text x="167" y="497" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">On-Premises</text>
+
+  <!-- ========== COLUMN 2: Prometheus + Grafana ========== -->
+  <rect x="332" y="50" width="295" height="455" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="479" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">Prometheus + Grafana</text>
+  <text x="479" y="90" text-anchor="middle" font-size="10" fill="#22c55e">Open Source On-Premises</text>
+
+  <!-- Prom: Hosts -->
+  <rect x="364" y="108" width="230" height="48" rx="4" fill="#fff" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="479" y="128" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Hyper-V Hosts</text>
+  <text x="479" y="144" text-anchor="middle" font-size="10" fill="#64748b">windows_exporter :9182</text>
+
+  <line x1="479" y1="156" x2="479" y2="178" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arr-g)"/>
+
+  <!-- Prom: Prometheus -->
+  <rect x="364" y="180" width="230" height="48" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="479" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Prometheus Server</text>
+  <text x="479" y="216" text-anchor="middle" font-size="10" fill="#64748b">Scrape, TSDB storage, rules</text>
+
+  <line x1="479" y1="228" x2="479" y2="250" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arr-g)"/>
+
+  <!-- Prom: Loki (optional) -->
+  <rect x="364" y="252" width="110" height="48" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="419" y="272" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">Loki</text>
+  <text x="419" y="288" text-anchor="middle" font-size="9" fill="#64748b">Log aggregation</text>
+
+  <rect x="484" y="252" width="110" height="48" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="539" y="272" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">Alertmanager</text>
+  <text x="539" y="288" text-anchor="middle" font-size="9" fill="#64748b">Routing &amp; notify</text>
+
+  <line x1="419" y1="300" x2="419" y2="322" stroke="#16a34a" stroke-width="1" marker-end="url(#arr-g)"/>
+  <line x1="539" y1="300" x2="539" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Prom: Grafana -->
+  <rect x="364" y="324" width="230" height="55" rx="4" fill="#fff" stroke="#16a34a" stroke-width="1.2"/>
+  <text x="479" y="348" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Grafana</text>
+  <text x="479" y="364" text-anchor="middle" font-size="10" fill="#64748b">Dashboards — metrics + logs</text>
+  <text x="479" y="378" text-anchor="middle" font-size="10" fill="#64748b">Unified query interface</text>
+
+  <!-- Prom: Alerting -->
+  <rect x="364" y="392" width="230" height="40" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+  <text x="479" y="410" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">Email / Teams / PagerDuty / Webhooks</text>
+  <text x="479" y="424" text-anchor="middle" font-size="9" fill="#a16207">Flexible routing &amp; silencing</text>
+
+  <line x1="420" y1="379" x2="420" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Labels -->
+  <text x="479" y="462" text-anchor="middle" font-size="10" fill="#166534">Free — Open Source</text>
+  <text x="479" y="476" text-anchor="middle" font-size="10" fill="#166534">Self-hosted infrastructure</text>
+  <rect x="364" y="486" width="230" height="14" rx="3" fill="#16a34a"/>
+  <text x="479" y="497" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">On-Premises</text>
+
+  <!-- ========== COLUMN 3: Azure Monitor ========== -->
+  <rect x="644" y="50" width="295" height="455" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+  <text x="791" y="74" text-anchor="middle" font-size="14" font-weight="700" fill="#6b21a8">Azure Monitor</text>
+  <text x="791" y="90" text-anchor="middle" font-size="10" fill="#a855f7">Cloud-Hosted</text>
+
+  <!-- Azure: Hosts -->
+  <rect x="676" y="108" width="230" height="48" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="791" y="128" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Hyper-V Hosts</text>
+  <text x="791" y="144" text-anchor="middle" font-size="10" fill="#64748b">Azure Arc + AMA agent</text>
+
+  <line x1="791" y1="156" x2="791" y2="178" stroke="#7c3aed" stroke-width="1.2" marker-end="url(#arr-p)"/>
+
+  <!-- Azure: DCR -->
+  <rect x="676" y="180" width="230" height="48" rx="4" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="791" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Data Collection Rules</text>
+  <text x="791" y="216" text-anchor="middle" font-size="10" fill="#64748b">Perf counters + event logs</text>
+
+  <line x1="791" y1="228" x2="791" y2="250" stroke="#7c3aed" stroke-width="1.2" marker-end="url(#arr-p)"/>
+
+  <!-- Azure: Log Analytics -->
+  <rect x="676" y="252" width="230" height="48" rx="4" fill="#f3e8ff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="791" y="272" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Log Analytics Workspace</text>
+  <text x="791" y="288" text-anchor="middle" font-size="10" fill="#64748b">KQL queries, retention</text>
+
+  <line x1="791" y1="300" x2="791" y2="322" stroke="#7c3aed" stroke-width="1.2" marker-end="url(#arr-p)"/>
+
+  <!-- Azure: Workbooks -->
+  <rect x="676" y="324" width="110" height="55" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="731" y="348" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">Workbooks</text>
+  <text x="731" y="362" text-anchor="middle" font-size="9" fill="#64748b">Dashboards</text>
+  <text x="731" y="374" text-anchor="middle" font-size="9" fill="#64748b">Visualizations</text>
+
+  <rect x="796" y="324" width="110" height="55" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="851" y="348" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">Alert Rules</text>
+  <text x="851" y="362" text-anchor="middle" font-size="9" fill="#64748b">Metric &amp; log</text>
+  <text x="851" y="374" text-anchor="middle" font-size="9" fill="#64748b">alerts</text>
+
+  <!-- Azure: Alerting -->
+  <rect x="676" y="392" width="230" height="40" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+  <text x="791" y="410" text-anchor="middle" font-size="10" font-weight="600" fill="#92400e">Action Groups</text>
+  <text x="791" y="424" text-anchor="middle" font-size="9" fill="#a16207">Email, SMS, webhooks, Logic Apps</text>
+
+  <line x1="731" y1="379" x2="731" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="851" y1="379" x2="851" y2="392" stroke="#f59e0b" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- Labels -->
+  <text x="791" y="462" text-anchor="middle" font-size="10" fill="#6b21a8">~$2.30/GB ingested</text>
+  <text x="791" y="476" text-anchor="middle" font-size="10" fill="#6b21a8">Azure subscription required</text>
+  <rect x="676" y="486" width="230" height="14" rx="3" fill="#7c3aed"/>
+  <text x="791" y="497" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Cloud-Hosted</text>
+</svg>

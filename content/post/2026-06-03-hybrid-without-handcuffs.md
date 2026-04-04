@@ -1,10 +1,10 @@
 ---
 title: Hybrid Without the Handcuffs
 description: How to integrate with Azure services selectively without committing to Azure Local's full model or subscription lock-in.
-date: 2026-06-01T00:00:00.000Z
+date: 2026-06-03T00:00:00.000Z
 series: The Hyper-V Renaissance
-series_post: 9
-series_total: 18
+series_post: 17
+series_total: 20
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post

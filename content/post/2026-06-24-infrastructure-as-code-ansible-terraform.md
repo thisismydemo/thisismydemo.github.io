@@ -1,10 +1,10 @@
 ---
 title: Infrastructure as Code with Ansible and Terraform
 description: Infrastructure-as-Code for Hyper-V using industry-standard tools with realistic assessment of tooling maturity and production readiness.
-date: 2026-07-03T00:00:00.000Z
+date: 2026-06-24T00:00:00.000Z
 series: The Hyper-V Renaissance
-series_post: 18
-series_total: 18
+series_post: 20
+series_total: 20
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post

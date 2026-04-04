@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#666"/></marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2563eb"/></marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#16a34a"/></marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#ea580c"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="620" fill="#f8fafc" rx="8"/>
+
+  <!-- Title -->
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="700" fill="#1e293b">Observability Architecture for Hyper-V</text>
+  <text x="480" y="56" text-anchor="middle" font-size="12" fill="#64748b">Three Pillars — Data Sources — Collection — Visualization &amp; Alerting</text>
+
+  <!-- === ROW 1: DATA SOURCES (Hyper-V Infrastructure) === -->
+  <rect x="30" y="80" width="900" height="140" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="480" y="100" text-anchor="middle" font-size="13" font-weight="600" fill="#475569">HYPER-V INFRASTRUCTURE — DATA SOURCES</text>
+
+  <!-- Hyper-V Host box -->
+  <rect x="55" y="112" width="200" height="95" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="155" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Hyper-V Host</text>
+  <text x="155" y="150" text-anchor="middle" font-size="10" fill="#64748b">Performance Counters</text>
+  <text x="155" y="164" text-anchor="middle" font-size="10" fill="#64748b">CPU, Memory, Storage, Network</text>
+  <text x="155" y="182" text-anchor="middle" font-size="10" fill="#2563eb">&#9632; Metrics</text>
+  <text x="155" y="198" text-anchor="middle" font-size="10" fill="#ea580c">&#9632; Traces (I/O path)</text>
+
+  <!-- Event Logs box -->
+  <rect x="280" y="112" width="200" height="95" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="380" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Event Logs</text>
+  <text x="380" y="150" text-anchor="middle" font-size="10" fill="#64748b">VMMS, Worker, Config</text>
+  <text x="380" y="164" text-anchor="middle" font-size="10" fill="#64748b">StorageVSP, VmSwitch</text>
+  <text x="380" y="182" text-anchor="middle" font-size="10" fill="#16a34a">&#9632; Logs</text>
+  <text x="380" y="198" text-anchor="middle" font-size="10" fill="#ea580c">&#9632; Traces (event chains)</text>
+
+  <!-- Cluster box -->
+  <rect x="505" y="112" width="200" height="95" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="605" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Failover Cluster</text>
+  <text x="605" y="150" text-anchor="middle" font-size="10" fill="#64748b">Node State, CSV Health</text>
+  <text x="605" y="164" text-anchor="middle" font-size="10" fill="#64748b">Quorum, Failover Events</text>
+  <text x="605" y="182" text-anchor="middle" font-size="10" fill="#2563eb">&#9632; Metrics</text>
+  <text x="605" y="198" text-anchor="middle" font-size="10" fill="#16a34a">&#9632; Logs</text>
+
+  <!-- Storage Array box -->
+  <rect x="730" y="112" width="175" height="95" rx="5" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="817" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#1e293b">Storage Array</text>
+  <text x="817" y="150" text-anchor="middle" font-size="10" fill="#64748b">Latency, IOPS</text>
+  <text x="817" y="164" text-anchor="middle" font-size="10" fill="#64748b">Path Health, Errors</text>
+  <text x="817" y="182" text-anchor="middle" font-size="10" fill="#2563eb">&#9632; Metrics</text>
+
+  <!-- === ROW 2: COLLECTION AGENTS === -->
+  <rect x="30" y="240" width="900" height="100" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="480" y="260" text-anchor="middle" font-size="13" font-weight="600" fill="#1e40af">COLLECTION LAYER</text>
+
+  <rect x="70" y="272" width="160" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="150" y="294" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">SCOM Agent</text>
+  <text x="150" y="310" text-anchor="middle" font-size="10" fill="#64748b">Management Pack rules</text>
+
+  <rect x="260" y="272" width="160" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="340" y="294" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">windows_exporter</text>
+  <text x="340" y="310" text-anchor="middle" font-size="10" fill="#64748b">hyperv collector :9182</text>
+
+  <rect x="450" y="272" width="160" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="530" y="294" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">Promtail / Loki</text>
+  <text x="530" y="310" text-anchor="middle" font-size="10" fill="#64748b">Log shipping agent</text>
+
+  <rect x="640" y="272" width="180" height="52" rx="5" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="730" y="294" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">Azure Monitor Agent</text>
+  <text x="730" y="310" text-anchor="middle" font-size="10" fill="#64748b">DCR-based collection</text>
+
+  <!-- Arrows from sources to collection -->
+  <line x1="155" y1="207" x2="150" y2="272" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="207" x2="340" y2="272" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="605" y1="207" x2="530" y2="272" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <line x1="817" y1="207" x2="730" y2="272" stroke="#666" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- === ROW 3: STORAGE / PLATFORMS === -->
+  <rect x="30" y="360" width="900" height="100" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="480" y="380" text-anchor="middle" font-size="13" font-weight="600" fill="#166534">STORAGE &amp; PROCESSING</text>
+
+  <rect x="55" y="392" width="200" height="52" rx="5" fill="#fff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="155" y="414" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">SCOM Database</text>
+  <text x="155" y="430" text-anchor="middle" font-size="10" fill="#64748b">SQL Server (OpsDB + DW)</text>
+
+  <rect x="280" y="392" width="200" height="52" rx="5" fill="#fff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="380" y="414" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">Prometheus TSDB</text>
+  <text x="380" y="430" text-anchor="middle" font-size="10" fill="#64748b">Time-series + Loki index</text>
+
+  <rect x="630" y="392" width="200" height="52" rx="5" fill="#fff" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="730" y="414" text-anchor="middle" font-size="11" font-weight="600" fill="#166534">Log Analytics Workspace</text>
+  <text x="730" y="430" text-anchor="middle" font-size="10" fill="#64748b">Azure-hosted, KQL queries</text>
+
+  <!-- Arrows from collection to storage -->
+  <line x1="150" y1="324" x2="155" y2="392" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <line x1="340" y1="324" x2="380" y2="392" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <line x1="530" y1="324" x2="380" y2="392" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+  <line x1="730" y1="324" x2="730" y2="392" stroke="#16a34a" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+
+  <!-- === ROW 4: VISUALIZATION & ALERTING === -->
+  <rect x="30" y="480" width="900" height="120" rx="6" fill="#fefce8" stroke="#fde68a" stroke-width="1"/>
+  <text x="480" y="500" text-anchor="middle" font-size="13" font-weight="600" fill="#854d0e">VISUALIZATION &amp; ALERTING</text>
+
+  <rect x="55" y="514" width="170" height="70" rx="5" fill="#fff" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="140" y="538" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">SCOM Console</text>
+  <text x="140" y="554" text-anchor="middle" font-size="10" fill="#64748b">Dashboards, Alerts</text>
+  <text x="140" y="568" text-anchor="middle" font-size="10" fill="#64748b">SSRS Reports</text>
+
+  <rect x="250" y="514" width="170" height="70" rx="5" fill="#fff" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="335" y="538" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">Grafana</text>
+  <text x="335" y="554" text-anchor="middle" font-size="10" fill="#64748b">Dashboards, Panels</text>
+  <text x="335" y="568" text-anchor="middle" font-size="10" fill="#64748b">Unified metrics + logs</text>
+
+  <rect x="445" y="514" width="170" height="70" rx="5" fill="#fff" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="530" y="538" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">Alertmanager</text>
+  <text x="530" y="554" text-anchor="middle" font-size="10" fill="#64748b">Email, Teams, PagerDuty</text>
+  <text x="530" y="568" text-anchor="middle" font-size="10" fill="#64748b">Routing &amp; escalation</text>
+
+  <rect x="640" y="514" width="200" height="70" rx="5" fill="#fff" stroke="#ea580c" stroke-width="1.5"/>
+  <text x="740" y="538" text-anchor="middle" font-size="11" font-weight="600" fill="#9a3412">Azure Workbooks</text>
+  <text x="740" y="554" text-anchor="middle" font-size="10" fill="#64748b">Dashboards, Alert Rules</text>
+  <text x="740" y="568" text-anchor="middle" font-size="10" fill="#64748b">Action Groups</text>
+
+  <!-- Arrows from storage to visualization -->
+  <line x1="155" y1="444" x2="140" y2="514" stroke="#ea580c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+  <line x1="380" y1="444" x2="335" y2="514" stroke="#ea580c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+  <line x1="380" y1="444" x2="530" y2="514" stroke="#ea580c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+  <line x1="730" y1="444" x2="740" y2="514" stroke="#ea580c" stroke-width="1.2" marker-end="url(#arrow-orange)"/>
+
+  <!-- Legend -->
+  <rect x="30" y="602" width="10" height="10" fill="#2563eb" rx="2"/>
+  <text x="45" y="611" font-size="10" fill="#475569">Metrics</text>
+  <rect x="100" y="602" width="10" height="10" fill="#16a34a" rx="2"/>
+  <text x="115" y="611" font-size="10" fill="#475569">Logs</text>
+  <rect x="155" y="602" width="10" height="10" fill="#ea580c" rx="2"/>
+  <text x="170" y="611" font-size="10" fill="#475569">Traces</text>
+</svg>
