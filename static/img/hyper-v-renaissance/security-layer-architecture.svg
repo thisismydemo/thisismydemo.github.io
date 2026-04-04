@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="720" height="560" fill="#f8fafc" rx="8"/>
+
+  <!-- Title -->
+  <text x="360" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1e293b">Hyper-V Security — Defense in Depth</text>
+  <text x="360" y="48" text-anchor="middle" font-size="11" fill="#64748b">Nested layers from hardware through VM isolation</text>
+
+  <!-- Layer 6 (outermost): Hardware -->
+  <rect x="20" y="65" width="680" height="480" rx="10" fill="#fef2f2" stroke="#fca5a5" stroke-width="2"/>
+  <text x="360" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#991b1b">HARDWARE — UEFI Secure Boot &#8226; TPM 2.0 &#8226; Measured Boot</text>
+  <rect x="630" y="70" width="60" height="18" rx="4" fill="#991b1b"/>
+  <text x="660" y="82" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 1</text>
+
+  <!-- Layer 5: Hypervisor / VBS -->
+  <rect x="45" y="96" width="630" height="420" rx="9" fill="#fef9c3" stroke="#facc15" stroke-width="1.8"/>
+  <text x="360" y="117" text-anchor="middle" font-size="12" font-weight="700" fill="#854d0e">HYPERVISOR (VBS) — Virtual Secure Mode &#8226; HVCI &#8226; Secure Kernel</text>
+  <rect x="605" y="101" width="60" height="18" rx="4" fill="#854d0e"/>
+  <text x="635" y="113" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 1</text>
+
+  <!-- Layer 4: Management OS -->
+  <rect x="70" y="128" width="580" height="360" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.8"/>
+  <text x="360" y="149" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">MANAGEMENT OS — Credential Guard &#8226; Defender &#8226; Firewall &#8226; Audit</text>
+  <rect x="580" y="133" width="60" height="18" rx="4" fill="#1e40af"/>
+  <text x="610" y="145" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 1</text>
+
+  <!-- Layer 3: Cluster -->
+  <rect x="95" y="160" width="530" height="300" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.8"/>
+  <text x="360" y="181" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">CLUSTER — SMB Encryption &#8226; BitLocker on CSV &#8226; Network Roles &#8226; ACLs</text>
+  <rect x="555" y="165" width="60" height="18" rx="4" fill="#166534"/>
+  <text x="585" y="177" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 1-2</text>
+
+  <!-- Layer 2: VM Boundary -->
+  <rect x="120" y="195" width="480" height="235" rx="6" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1.8"/>
+  <text x="360" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#6b21a8">VM BOUNDARY — Secure Boot &#8226; vTPM &#8226; Guest VBS &#8226; Network Isolation</text>
+  <rect x="530" y="200" width="60" height="18" rx="4" fill="#6b21a8"/>
+  <text x="560" y="212" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 2</text>
+
+  <!-- VM boxes inside the boundary -->
+  <rect x="145" y="232" width="140" height="80" rx="5" fill="#fff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="215" y="255" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">VM 1</text>
+  <text x="215" y="272" text-anchor="middle" font-size="9" fill="#64748b">Secure Boot On</text>
+  <text x="215" y="286" text-anchor="middle" font-size="9" fill="#64748b">vTPM Enabled</text>
+  <text x="215" y="300" text-anchor="middle" font-size="9" fill="#64748b">Guest VBS Active</text>
+
+  <rect x="300" y="232" width="140" height="80" rx="5" fill="#fff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="370" y="255" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">VM 2</text>
+  <text x="370" y="272" text-anchor="middle" font-size="9" fill="#64748b">Secure Boot On</text>
+  <text x="370" y="286" text-anchor="middle" font-size="9" fill="#64748b">VLAN 200</text>
+  <text x="370" y="300" text-anchor="middle" font-size="9" fill="#64748b">DHCP Guard On</text>
+
+  <rect x="455" y="232" width="130" height="80" rx="5" fill="#fff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="520" y="255" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">VM 3</text>
+  <text x="520" y="272" text-anchor="middle" font-size="9" fill="#64748b">Secure Boot On</text>
+  <text x="520" y="286" text-anchor="middle" font-size="9" fill="#64748b">Port ACLs</text>
+  <text x="520" y="300" text-anchor="middle" font-size="9" fill="#64748b">Router Guard On</text>
+
+  <!-- Isolation arrows between VMs -->
+  <line x1="288" y1="272" x2="297" y2="272" stroke="#dc2626" stroke-width="2"/>
+  <line x1="290" y1="265" x2="290" y2="279" stroke="#dc2626" stroke-width="2"/>
+  <line x1="443" y1="272" x2="452" y2="272" stroke="#dc2626" stroke-width="2"/>
+  <line x1="445" y1="265" x2="445" y2="279" stroke="#dc2626" stroke-width="2"/>
+  <text x="293" y="260" text-anchor="middle" font-size="8" fill="#dc2626">isolated</text>
+  <text x="448" y="260" text-anchor="middle" font-size="8" fill="#dc2626">isolated</text>
+
+  <!-- Layer 1 (innermost, dashed): Advanced / HGS -->
+  <rect x="145" y="330" width="440" height="85" rx="6" fill="#fff7ed" stroke="#f97316" stroke-width="1.8" stroke-dasharray="6 3"/>
+  <text x="365" y="352" text-anchor="middle" font-size="12" font-weight="700" fill="#c2410c">ADVANCED — Host Guardian Service &#8226; Shielded VMs</text>
+  <rect x="515" y="335" width="60" height="18" rx="4" fill="#c2410c"/>
+  <text x="545" y="347" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">Tier 3</text>
+
+  <text x="365" y="372" text-anchor="middle" font-size="10" fill="#9a3412">TPM Attestation &#8226; Encrypted VM State &#8226; Encrypted VHDX</text>
+  <text x="365" y="388" text-anchor="middle" font-size="10" fill="#9a3412">Protects against compromised fabric administrators</text>
+  <text x="365" y="404" text-anchor="middle" font-size="10" font-style="italic" fill="#ea580c">Evaluate against your threat model — significant infrastructure investment</text>
+
+  <!-- Legend -->
+  <rect x="20" y="530" width="680" height="22" rx="4" fill="#f1f5f9"/>
+  <text x="35" y="545" font-size="10" fill="#475569">Solid borders = achievable for most organizations</text>
+  <text x="410" y="545" font-size="10" fill="#475569">Dashed border = evaluate based on threat model</text>
+</svg>

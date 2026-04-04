@@ -1,7 +1,7 @@
 ---
 title: Monitoring and Observability—From Built-In to Best-of-Breed
 description: Comprehensive monitoring and observability strategy covering SCOM, Prometheus, Grafana, Azure Monitor, and native Windows tools for production Hyper-V environments.
-date: 2026-04-04T19:44:09.101Z
+date: 2026-04-04T22:10:54.394Z
 series: The Hyper-V Renaissance
 series_post: 9
 series_total: 20
@@ -12,19 +12,19 @@ slug: hyper-v-monitoring-observability
 lead: SCOM, Prometheus, Grafana, and the Metrics That Matter
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Monitoring
-    - Windows Server
+  - Virtualization
+  - Monitoring
+  - Windows Server
 tags:
-    - Hyper-V
-    - Monitoring
-    - Observability
-    - SCOM
-    - Prometheus
-    - Grafana
-    - Azure Monitor
-    - PowerShell
-lastmod: 2026-04-04T19:44:11.114Z
+  - Hyper-V
+  - Monitoring
+  - Observability
+  - SCOM
+  - Prometheus
+  - Grafana
+  - Azure Monitor
+  - PowerShell
+lastmod: 2026-04-04T22:11:02.771Z
 ---
 
 You built the cluster. You connected the storage. You migrated the VMs. Everything's running.
