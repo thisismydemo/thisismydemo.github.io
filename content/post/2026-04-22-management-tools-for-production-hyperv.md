@@ -407,9 +407,11 @@ The key capabilities:
 | Environment | Recommended Stack | Why |
 |-------------|-------------------|-----|
 | **1-5 hosts** | WAC aMode + Hyper-V Manager + PowerShell | Simple, free, sufficient for small environments |
-| **5-20 hosts** | WAC aMode + vMode (lab/preview) + FCM + PowerShell | WAC for daily management, FCM for cluster ops, vMode for evaluation |
+| **5-20 hosts** | WAC aMode + FCM + PowerShell. Test vMode in lab. | WAC for daily management, FCM for cluster ops. Evaluate vMode for future switch. |
 | **20-50 hosts** | WAC vMode (when GA) + FCM + PowerShell. Evaluate SCVMM. | vMode covers fabric management at this scale. Add SCVMM if you need DRS or templates. |
-| **50+ hosts** | SCVMM + WAC + FCM + PowerShell | Full enterprise stack. SCVMM for fabric management, WAC for day-to-day. |
+| **50+ hosts** | SCVMM + WAC vMode + FCM + PowerShell | Full enterprise stack. SCVMM for DRS and fabric networking, vMode for daily ops. |
+
+> **aMode vs. vMode:** WAC Administration Mode is still a fully valid and production-supported tool today. However, Virtualization Mode is where Microsoft is investing for Hyper-V management going forward. Plan your path accordingly: use aMode in production now, evaluate vMode in your lab, and switch to vMode when GA lands. You run one or the other — not both.
 
 ### By VMware Migration Stage
 
@@ -418,8 +420,8 @@ The key capabilities:
 | **Evaluating Hyper-V** | WAC aMode + PowerShell — zero cost to start |
 | **Building POC** | WAC aMode + FCM — everything from Post 8 |
 | **Migrating VMs** | WAC aMode with VM Conversion Extension — online migration from VMware |
-| **First production cluster** | WAC aMode + FCM + PowerShell + vMode in lab |
-| **Scaling out** | WAC vMode (when GA) or SCVMM depending on requirements |
+| **First production cluster** | WAC aMode + FCM + PowerShell. Test vMode in lab. |
+| **Scaling out** | Switch to WAC vMode (when GA) or add SCVMM depending on requirements |
 
 ### The Decision That Matters
 
