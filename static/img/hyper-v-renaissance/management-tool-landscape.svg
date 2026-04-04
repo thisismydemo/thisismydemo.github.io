@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 480" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="860" height="480" fill="#f8fafc" rx="8"/>
+
+  <!-- Title -->
+  <text x="430" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">Management Tool Capability Matrix</text>
+  <text x="430" y="46" text-anchor="middle" font-size="11" fill="#64748b">Which tool covers which capability?</text>
+
+  <!-- Column headers -->
+  <rect x="200" y="58" width="100" height="40" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="250" y="75" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Hyper-V</text>
+  <text x="250" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Manager</text>
+
+  <rect x="305" y="58" width="100" height="40" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="355" y="75" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Failover</text>
+  <text x="355" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Cluster Mgr</text>
+
+  <rect x="410" y="58" width="100" height="40" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="460" y="75" text-anchor="middle" font-size="9" font-weight="700" fill="#1e40af">WAC</text>
+  <text x="460" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#1e40af">aMode</text>
+
+  <rect x="515" y="58" width="100" height="40" rx="4" fill="#2563eb" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="565" y="75" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">WAC</text>
+  <text x="565" y="88" text-anchor="middle" font-size="9" font-weight="600" fill="#fff">vMode</text>
+
+  <rect x="620" y="58" width="100" height="40" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="670" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#166534">SCVMM</text>
+
+  <rect x="725" y="58" width="110" height="40" rx="4" fill="#fef9c3" stroke="#facc15" stroke-width="1.5"/>
+  <text x="780" y="82" text-anchor="middle" font-size="9" font-weight="700" fill="#854d0e">PowerShell</text>
+
+  <!-- Row labels and cells -->
+  <!-- Helper: full = ●, partial = ◐, none = ○ -->
+
+  <!-- Row 1: VM Lifecycle -->
+  <rect x="15" y="103" width="180" height="30" rx="3" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="122" font-size="10" font-weight="600" fill="#1e293b">VM Lifecycle (create/modify/delete)</text>
+  <text x="250" y="122" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="355" y="122" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="122" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="565" y="122" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="670" y="122" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="122" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+
+  <!-- Row 2: Multi-host fabric view -->
+  <rect x="15" y="136" width="180" height="30" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="155" font-size="10" font-weight="600" fill="#1e293b">Multi-Host Fabric View</text>
+  <text x="250" y="155" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="155" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="460" y="155" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="565" y="155" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="670" y="155" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="155" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+
+  <!-- Row 3: Live Migration -->
+  <rect x="15" y="169" width="180" height="30" rx="3" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="188" font-size="10" font-weight="600" fill="#1e293b">Live Migration</text>
+  <text x="250" y="188" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="188" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="460" y="188" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="565" y="188" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="670" y="188" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="188" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+
+  <!-- Row 4: Cluster Operations -->
+  <rect x="15" y="202" width="180" height="30" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="221" font-size="10" font-weight="600" fill="#1e293b">Cluster Ops (quorum, CAU, drain)</text>
+  <text x="250" y="221" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="221" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="460" y="221" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="565" y="221" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="670" y="221" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="221" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+
+  <!-- Row 5: VM Templates -->
+  <rect x="15" y="235" width="180" height="30" rx="3" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="254" font-size="10" font-weight="600" fill="#1e293b">VM Templates &amp; Library</text>
+  <text x="250" y="254" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="254" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="254" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="565" y="254" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="670" y="254" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="254" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+
+  <!-- Row 6: DRS / Auto Load Balancing -->
+  <rect x="15" y="268" width="180" height="30" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="287" font-size="10" font-weight="600" fill="#1e293b">Auto Load Balancing (DRS)</text>
+  <text x="250" y="287" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="287" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="287" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="565" y="287" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="670" y="287" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="287" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+
+  <!-- Row 7: Fabric Networking -->
+  <rect x="15" y="301" width="180" height="30" rx="3" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="320" font-size="10" font-weight="600" fill="#1e293b">Fabric Networking (Logical Switch)</text>
+  <text x="250" y="320" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="320" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="320" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="565" y="320" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="670" y="320" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="320" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+
+  <!-- Row 8: VM Console Access -->
+  <rect x="15" y="334" width="180" height="30" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="353" font-size="10" font-weight="600" fill="#1e293b">VM Console Access</text>
+  <text x="250" y="353" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="355" y="353" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="353" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="565" y="353" text-anchor="middle" font-size="14" fill="#f59e0b">◐</text>
+  <text x="670" y="353" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="780" y="353" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+
+  <!-- Row 9: Web-Based (Browser) -->
+  <rect x="15" y="367" width="180" height="30" rx="3" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="386" font-size="10" font-weight="600" fill="#1e293b">Web-Based (Browser)</text>
+  <text x="250" y="386" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="355" y="386" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="460" y="386" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="565" y="386" text-anchor="middle" font-size="14" fill="#16a34a">●</text>
+  <text x="670" y="386" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+  <text x="780" y="386" text-anchor="middle" font-size="14" fill="#dc2626">○</text>
+
+  <!-- Row 10: Cost -->
+  <rect x="15" y="400" width="180" height="30" rx="3" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="25" y="419" font-size="10" font-weight="600" fill="#1e293b">Additional License Cost</text>
+  <text x="250" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+  <text x="355" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+  <text x="460" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+  <text x="565" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+  <text x="670" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626">SC License</text>
+  <text x="780" y="419" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Free</text>
+
+  <!-- Legend -->
+  <rect x="15" y="445" width="830" height="28" rx="4" fill="#f1f5f9"/>
+  <text x="35" y="463" font-size="12" fill="#16a34a">●</text>
+  <text x="50" y="463" font-size="10" fill="#475569">Full support</text>
+  <text x="150" y="463" font-size="12" fill="#f59e0b">◐</text>
+  <text x="165" y="463" font-size="10" fill="#475569">Partial / basic</text>
+  <text x="280" y="463" font-size="12" fill="#dc2626">○</text>
+  <text x="295" y="463" font-size="10" fill="#475569">Not available</text>
+  <text x="430" y="463" font-size="10" fill="#475569">vMode column reflects Public Preview status — GA targeted Q2 2026</text>
+</svg>

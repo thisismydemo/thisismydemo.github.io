@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 420" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="780" height="420" fill="#f8fafc" rx="8"/>
+
+  <!-- Title -->
+  <text x="390" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#1e293b">WAC Virtualization Mode (vMode) — Architecture</text>
+
+  <!-- Admin browsers -->
+  <rect x="20" y="55" width="140" height="55" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="90" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Admin Browsers</text>
+  <text x="90" y="94" text-anchor="middle" font-size="10" fill="#64748b">HTTPS (any device)</text>
+
+  <!-- Arrow: browser → gateway -->
+  <line x1="160" y1="82" x2="218" y2="82" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a1)"/>
+  <defs><marker id="a1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563eb"/></marker></defs>
+  <text x="189" y="74" text-anchor="middle" font-size="9" fill="#2563eb">HTTPS</text>
+
+  <!-- vMode Appliance -->
+  <rect x="220" y="45" width="280" height="130" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="360" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="#1e40af">vMode Management Server</text>
+  <text x="360" y="80" text-anchor="middle" font-size="10" fill="#3b82f6">Dedicated server (not on Hyper-V host)</text>
+
+  <!-- Gateway -->
+  <rect x="235" y="92" width="120" height="38" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="295" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Web Gateway</text>
+  <text x="295" y="122" text-anchor="middle" font-size="9" fill="#64748b">Auth &amp; routing</text>
+
+  <!-- PostgreSQL -->
+  <rect x="370" y="92" width="120" height="38" rx="4" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="430" y="108" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">PostgreSQL</text>
+  <text x="430" y="122" text-anchor="middle" font-size="9" fill="#64748b">Inventory DB</text>
+
+  <!-- Label -->
+  <text x="360" y="155" text-anchor="middle" font-size="9" fill="#64748b">4 vCPU / 8 GB RAM / 10 GB disk / WS2025</text>
+
+  <!-- Scale label -->
+  <rect x="540" y="55" width="220" height="55" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="650" y="75" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">Up to 1,000 hosts</text>
+  <text x="650" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">Up to 25,000 VMs</text>
+  <text x="650" y="105" text-anchor="middle" font-size="10" fill="#16a34a">No additional licensing cost</text>
+
+  <!-- Arrows: gateway → hosts -->
+  <line x1="295" y1="175" x2="135" y2="225" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="360" y1="175" x2="360" y2="225" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a1)"/>
+  <line x1="425" y1="175" x2="585" y2="225" stroke="#2563eb" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <text x="360" y="200" text-anchor="middle" font-size="10" font-weight="600" fill="#2563eb">TLS 1.3 — Port 6516</text>
+  <text x="360" y="214" text-anchor="middle" font-size="10" fill="#64748b">Host Agent Communication</text>
+
+  <!-- Host 1 -->
+  <rect x="30" y="225" width="210" height="175" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="30" y="225" width="210" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="135" y="244" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Hyper-V Host 1 (Cluster A)</text>
+
+  <rect x="42" y="262" width="55" height="20" rx="3" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="69" y="276" text-anchor="middle" font-size="8" font-weight="600" fill="#1e40af">Agent</text>
+
+  <rect x="105" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="130" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 1</text>
+  <rect x="160" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="185" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 2</text>
+  <rect x="105" y="298" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="130" y="317" text-anchor="middle" font-size="8" fill="#6b21a8">VM 3</text>
+  <rect x="160" y="298" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="185" y="317" text-anchor="middle" font-size="8" fill="#6b21a8">VM 4</text>
+
+  <rect x="42" y="340" width="186" height="24" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="135" y="356" text-anchor="middle" font-size="9" fill="#166534">SET Switch &amp; Storage</text>
+
+  <text x="135" y="392" text-anchor="middle" font-size="9" fill="#64748b">Standalone or Cluster member</text>
+
+  <!-- Host 2 -->
+  <rect x="255" y="225" width="210" height="175" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="255" y="225" width="210" height="28" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="360" y="244" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">Hyper-V Host 2 (Cluster A)</text>
+
+  <rect x="267" y="262" width="55" height="20" rx="3" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="294" y="276" text-anchor="middle" font-size="8" font-weight="600" fill="#1e40af">Agent</text>
+
+  <rect x="330" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="355" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 5</text>
+  <rect x="385" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="410" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 6</text>
+  <rect x="330" y="298" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="355" y="317" text-anchor="middle" font-size="8" fill="#6b21a8">VM 7</text>
+  <rect x="385" y="298" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="410" y="317" text-anchor="middle" font-size="8" fill="#6b21a8">VM 8</text>
+
+  <rect x="267" y="340" width="186" height="24" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="360" y="356" text-anchor="middle" font-size="9" fill="#166534">SET Switch &amp; Storage</text>
+
+  <!-- Host 3 (different cluster) -->
+  <rect x="480" y="225" width="210" height="175" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="480" y="225" width="210" height="28" rx="6" fill="#fef9c3" stroke="#facc15" stroke-width="1.5"/>
+  <text x="585" y="244" text-anchor="middle" font-size="11" font-weight="600" fill="#854d0e">Standalone Host 3</text>
+
+  <rect x="492" y="262" width="55" height="20" rx="3" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="519" y="276" text-anchor="middle" font-size="8" font-weight="600" fill="#1e40af">Agent</text>
+
+  <rect x="555" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="580" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 9</text>
+  <rect x="610" y="262" width="50" height="30" rx="3" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="635" y="281" text-anchor="middle" font-size="8" fill="#6b21a8">VM 10</text>
+
+  <rect x="492" y="340" width="186" height="24" rx="3" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="585" y="356" text-anchor="middle" font-size="9" fill="#166534">SET Switch &amp; Storage</text>
+
+  <text x="585" y="392" text-anchor="middle" font-size="9" fill="#854d0e">Clusters AND standalone hosts</text>
+
+  <!-- N+more indicator -->
+  <text x="728" y="310" text-anchor="middle" font-size="24" fill="#94a3b8">...</text>
+  <text x="728" y="335" text-anchor="middle" font-size="9" fill="#94a3b8">up to</text>
+  <text x="728" y="348" text-anchor="middle" font-size="9" fill="#94a3b8">1,000</text>
+</svg>
