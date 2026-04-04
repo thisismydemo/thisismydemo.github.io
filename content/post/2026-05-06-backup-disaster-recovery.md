@@ -1,7 +1,7 @@
 ---
-title: "Backup Strategies for Hyper-V"
+title: Backup Strategies for Hyper-V
 description: Comprehensive backup architecture covering VSS, Veeam, Commvault, Rubrik, HYCU, Azure Backup, and RPO/RTO planning.
-date: 2026-05-06T00:00:00.000Z
+date: 2026-03-31T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 13
 series_total: 20
@@ -24,7 +24,7 @@ tags:
     - HYCU
     - Azure Backup
     - VSS
-lastmod: 2026-05-06T00:00:00.000Z
+lastmod: 2026-04-04T23:06:16.296Z
 ---
 
 Untested backups aren't backups. They're hope.

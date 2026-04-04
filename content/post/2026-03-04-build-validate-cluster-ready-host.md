@@ -1,7 +1,7 @@
 ---
 title: Build and Validate a Cluster-Ready Host
 description: Step-by-step PowerShell guide to deploying a Hyper-V host ready for clustering with comprehensive pre-production validation procedures.
-date: 2026-04-01T19:01:10.000Z
+date: 2026-03-23T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 5
 series_total: 20
@@ -22,7 +22,7 @@ tags:
     - PowerShell
     - Automation
     - Validation
-lastmod: 2026-04-04T19:07:19.414Z
+lastmod: 2026-04-04T22:25:34.991Z
 ---
 
 This is where the keyboards come out.

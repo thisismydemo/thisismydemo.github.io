@@ -1,7 +1,7 @@
 ---
 title: "Multi-Site Resilience"
 description: Hyper-V Replica, Storage Replica, Campus Clusters, and SAN replication for multi-site protection.
-date: 2026-05-13T00:00:00.000Z
+date: 2026-04-01T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 14
 series_total: 20

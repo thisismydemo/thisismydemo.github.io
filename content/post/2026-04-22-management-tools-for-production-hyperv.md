@@ -1,7 +1,7 @@
 ---
 title: Management Tools for Production Hyper-V
 description: Complete guide to Hyper-V management tools — WAC vMode, SCVMM, Failover Cluster Manager, and PowerShell.
-date: 2026-04-03T00:00:00.000Z
+date: 2026-03-29T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 11
 series_total: 20

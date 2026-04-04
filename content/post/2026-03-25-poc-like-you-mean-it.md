@@ -1,7 +1,7 @@
 ---
 title: POC Like You Mean It—A Hands-On Hyper-V Cluster You Can Build This Afternoon
 description: Complete workshop-style guide to building a functional Hyper-V cluster from scratch as a confidence-building checkpoint.
-date: 2026-04-04T16:01:00.000Z
+date: 2026-03-26T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 8
 series_total: 20
@@ -21,7 +21,7 @@ tags:
     - POC
     - Lab
     - Hands-On
-lastmod: 2026-04-04T19:07:32.113Z
+lastmod: 2026-04-04T22:27:27.933Z
 ---
 
 If you can build it in a POC, you can build it in production.

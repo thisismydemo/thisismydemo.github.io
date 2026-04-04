@@ -1,7 +1,7 @@
 ---
 title: "WSFC at Scale"
 description: Scaling Windows Server Failover Clustering — cluster sets, CAU, stretched clusters, anti-affinity, and 64-node architecture.
-date: 2026-05-27T00:00:00.000Z
+date: 2026-04-03T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 16
 series_total: 20

@@ -1,7 +1,7 @@
 ---
 title: S2D vs. Three-Tier and When Azure Local Makes Sense
 description: Fair technical comparison of infrastructure approaches—Storage Spaces Direct, traditional three-tier, and Azure Local with decision framework.
-date: 2026-06-10T00:00:00.000Z
+date: 2026-04-04T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 18
 series_total: 20

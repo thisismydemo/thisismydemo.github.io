@@ -1,7 +1,7 @@
 ---
 title: Migrating VMs from VMware to Hyper-V
 description: Complete guide to converting and migrating virtual machines from VMware vSphere to Hyper-V including tools, procedures, and validation.
-date: 2026-04-03T19:01:30.000Z
+date: 2026-03-25T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 7
 series_total: 20
@@ -21,7 +21,7 @@ tags:
     - Migration
     - VM Conversion
     - V2V
-lastmod: 2026-04-04T19:07:26.916Z
+lastmod: 2026-04-04T22:26:56.194Z
 ---
 
 You've built the case, validated the hardware, configured the hosts, and connected the storage. Now comes the part everyone's been waiting for (and dreading): actually moving the virtual machines.

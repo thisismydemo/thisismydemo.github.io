@@ -1,7 +1,7 @@
 ---
 title: Storage Architecture Deep Dive
 description: Advanced CSV internals, storage tiering, protocol selection, and the cost case for three-tier SAN with Hyper-V.
-date: 2026-04-04T00:00:00.000Z
+date: 2026-03-30T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 12
 series_total: 20
@@ -23,7 +23,7 @@ tags:
   - Fibre Channel
   - SMB3
   - SAN
-lastmod: 2026-04-04T23:02:37.884Z
+lastmod: 2026-04-04T23:06:40.415Z
 ---
 
 Post 6 got your storage connected. This post explains how it actually works — and why the architecture decisions you make here determine whether your Hyper-V cluster performs like an enterprise platform or stumbles under load.

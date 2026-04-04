@@ -1,7 +1,7 @@
 ---
 title: Security Architecture for Hyper-V Clusters
 description: Security architecture for Hyper-V covering threat models, VBS, cluster hardening, VM isolation, and Shielded VMs.
-date: 2026-04-15T00:00:00.000Z
+date: 2026-03-28T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 10
 series_total: 20
@@ -22,7 +22,7 @@ tags:
     - Shielded VMs
     - VBS
     - Compliance
-lastmod: 2026-04-04T22:11:10.672Z
+lastmod: 2026-04-04T22:28:49.888Z
 ---
 
 A Hyper-V host is the most valuable target on your network.
