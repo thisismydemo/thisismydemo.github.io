@@ -1,7 +1,7 @@
 ---
 title: "Beyond the Cloud: Disconnected & Rugged - Part VI"
 description: Azure Local vs. Workgroup Clusters at the Edge - choosing the best option when bandwidth is scarce and Active Directory isn't feasible.
-date: 2025-09-01T12:00:00.000Z
+date: 2025-10-01T12:00:00.000Z
 preview: /img/rethinkvmware/part6banner.png
 draft: true
 tags:
@@ -18,7 +18,7 @@ categories:
 thumbnail: /img/rethinkvmware/part6banner.png
 lead: Choosing the best option when bandwidth is scarce and AD isn't feasible - Azure Local vs. Workgroup Clusters at the Edge.
 slug: beyond-cloud-disconnected-rugged-part-vi
-lastmod: 2025-06-25T17:35:23.897Z
+lastmod: 2026-04-04T17:48:14.455Z
 ---
 
 ## Coming Soon

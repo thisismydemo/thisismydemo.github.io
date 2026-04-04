@@ -8,3 +8,7 @@ resources/_gen/
 # OS
 .DS_Store
 Thumbs.db
+
+# AI / local planning files
+.claude/
+hyperv-renaissance-blog-series-plan-v3.md

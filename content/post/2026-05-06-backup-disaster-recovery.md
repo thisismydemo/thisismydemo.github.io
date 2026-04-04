@@ -1,10 +1,10 @@
 ---
 title: Backup and Disaster Recovery Strategies
 description: Complete backup and DR planning for Hyper-V environments including native approaches, third-party solutions, and cloud integration.
-date: 2026-04-29T00:00:00.000Z
+date: 2026-05-06T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 13
-series_total: 18
+series_total: 20
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -12,17 +12,17 @@ slug: hyper-v-backup-disaster-recovery
 lead: RPO/RTO Planning and Testing Procedures
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Backup
-    - Disaster Recovery
+  - Virtualization
+  - Backup
+  - Disaster Recovery
 tags:
-    - Hyper-V
-    - Backup
-    - Disaster Recovery
-    - Azure Backup
-    - Veeam
-    - Hyper-V Replica
-lastmod: 2026-02-04T13:47:39.045Z
+  - Hyper-V
+  - Backup
+  - Disaster Recovery
+  - Azure Backup
+  - Veeam
+  - Hyper-V Replica
+lastmod: 2026-04-04T17:48:14.525Z
 ---
 
 ## Summary

@@ -22,7 +22,7 @@ tags:
     - TCO
     - Licensing
     - Cost Analysis
-lastmod: 2026-02-07T00:10:08.395Z
+lastmod: 2026-04-04T19:05:28.935Z
 ---
 
 The invoice arrived, and the meeting quickly followed.
@@ -33,7 +33,7 @@ This isn't just about price hikes. It's about a fundamental shift in how infrast
 
 In this second post of the **Hyper-V Renaissance** series, we are going to look at the numbers. Not the marketing fluff, but the cold, hard Total Cost of Ownership (TCO) comparisons between three distinct paths: staying with **VMware**, adopting **Azure Local** (formerly Azure Stack HCI), or making the move to **Windows Server 2025 Hyper-V**.
 
-> **Note:** To help you run these numbers for your specific environment, I've created a **TCO Calculator** (Excel) available in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/tools).
+> **Note:** To help you run these numbers for your specific environment, I've created a **TCO Calculator** (Excel) available in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/01-case-for-change/post-2-tco).
 
 ---
 
@@ -623,7 +623,7 @@ Spoiler: It's not old tech. It runs Azure.
 
 ## Resources
 
-- **TCO Calculator (Excel):** [github.com/thisismydemo/hyper-v-renaissance/tools](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/tools)
+- **TCO Calculator (Excel):** [github.com/thisismydemo/hyper-v-renaissance/01-case-for-change/post-2-tco](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/01-case-for-change/post-2-tco)
 - **Series Repository:** [github.com/thisismydemo/hyper-v-renaissance](https://github.com/thisismydemo/hyper-v-renaissance)
 - **Post 1:** [Welcome to the Hyper-V Renaissance](/post/hyper-renaissance)
 

@@ -1,7 +1,7 @@
 ---
 title: "Beyond the Cloud: Three Paths Off VMware - Part VIII"
 description: Real world journeys of Hyper-V, AVS & Azure Local - mini case studies on cost savings, performance wins, and operational trade-offs from actual migrations.
-date: 2025-10-01T12:00:00.000Z
+date: 2025-11-01T12:00:00.000Z
 preview: /img/rethinkvmware/part8banner.png
 draft: true
 tags:
@@ -19,7 +19,7 @@ categories:
 thumbnail: /img/rethinkvmware/part8banner.png
 lead: Mini case studies on cost savings, performance wins, and operational trade-offs from real VMware migration journeys.
 slug: beyond-cloud-three-paths-off-vmware-part-viii
-lastmod: 2025-06-25T17:35:23.905Z
+lastmod: 2026-04-04T17:48:14.433Z
 ---
 
 ## Coming Soon

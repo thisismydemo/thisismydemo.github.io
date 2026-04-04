@@ -1,7 +1,7 @@
 ---
 title: "Beyond the Cloud: ESXi to Hyper-V in 30 Days - Part VII"
 description: A pilot migration playbook with scripts, storage cut-over strategies, and user impact mitigation for a low-risk sprint from VMware to Hyper-V.
-date: 2025-09-15T12:00:00.000Z
+date: 2025-10-15T12:00:00.000Z
 preview: /img/rethinkvmware/part7banner.png
 draft: true
 tags:
@@ -19,7 +19,7 @@ categories:
 thumbnail: /img/rethinkvmware/part7banner.png
 lead: Scripts, storage cut-over, and user impact mitigation for a low-risk sprint from ESXi to Hyper-V in 30 days.
 slug: beyond-cloud-esxi-hyperv-30-days-part-vii
-lastmod: 2025-06-25T17:35:23.900Z
+lastmod: 2026-04-04T17:48:14.439Z
 ---
 
 ## Coming Soon

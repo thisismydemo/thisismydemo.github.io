@@ -1,10 +1,10 @@
 ---
 title: Storage Architecture Deep Dive
 description: Advanced storage architecture patterns for enterprise Hyper-V deployments including CSV internals and performance optimization.
-date: 2026-04-22T00:00:00.000Z
+date: 2026-04-29T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 12
-series_total: 18
+series_total: 20
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -12,16 +12,16 @@ slug: hyper-v-storage-architecture-deep-dive
 lead: CSV, Tiering, and Performance Optimization
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Storage
-    - Windows Server
+  - Virtualization
+  - Storage
+  - Windows Server
 tags:
-    - Hyper-V
-    - Storage
-    - CSV
-    - Performance
-    - Architecture
-lastmod: 2026-02-04T13:47:39.041Z
+  - Hyper-V
+  - Storage
+  - CSV
+  - Performance
+  - Architecture
+lastmod: 2026-04-04T17:48:14.515Z
 ---
 
 ## Summary

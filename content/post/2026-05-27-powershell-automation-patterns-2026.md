@@ -1,7 +1,7 @@
 ---
 title: PowerShell Automation Patterns (2026 Edition)
 description: Comprehensive PowerShell automation for Hyper-V operations including DSC, remoting patterns, and CI/CD integration.
-date: 2026-05-27T00:00:00.000Z
+date: 2026-06-27T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 17
 series_total: 18
@@ -12,17 +12,17 @@ slug: hyper-v-powershell-automation-2026
 lead: DSC, Remoting, and CI/CD Integration
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - PowerShell
-    - Automation
+  - Virtualization
+  - PowerShell
+  - Automation
 tags:
-    - Hyper-V
-    - PowerShell
-    - Automation
-    - DSC
-    - CI/CD
-    - DevOps
-lastmod: 2026-02-04T13:47:39.068Z
+  - Hyper-V
+  - PowerShell
+  - Automation
+  - DSC
+  - CI/CD
+  - DevOps
+lastmod: 2026-04-04T17:48:14.534Z
 ---
 
 ## Summary

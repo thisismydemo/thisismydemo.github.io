@@ -1,7 +1,7 @@
 ---
 title: "Beyond the Cloud: What's Next for Microsoft On-Prem - Part IX"
 description: Windows Server & Azure Local roadmap - how upcoming releases will shape long-term hybrid strategy and the future of on-premises virtualization.
-date: 2025-10-15T12:00:00.000Z
+date: 2025-11-15T12:00:00.000Z
 preview: /img/rethinkvmware/part9banner.png
 draft: true
 tags:
@@ -18,7 +18,7 @@ categories:
 thumbnail: /img/rethinkvmware/part9banner.png
 lead: How upcoming Windows Server & Azure Local releases will shape long-term hybrid strategy and on-premises virtualization.
 slug: beyond-cloud-whats-next-microsoft-on-prem-part-ix
-lastmod: 2025-06-25T17:35:23.911Z
+lastmod: 2026-04-04T17:48:14.449Z
 ---
 
 ## Coming Soon

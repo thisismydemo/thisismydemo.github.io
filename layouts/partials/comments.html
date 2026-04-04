@@ -1,4 +1,4 @@
-{{ if and (index .Params "comments" | default "true") (not .Site.IsServer) }}
+{{ if and (index .Params "comments" | default "true") (not hugo.IsServer) }}
 <section class="comments">
 	<script src="https://giscus.app/client.js"
 		data-repo="thisismydemo/thisismydemo.github.io"

@@ -26,7 +26,7 @@ tags:
     - Migration
     - Server Hardware
     - Three-Tier Architecture
-lastmod: 2026-03-22T05:58:13.509Z
+lastmod: 2026-04-04T19:05:28.941Z
 ---
 The servers sitting in your datacenter right now, the Dell PowerEdges, the HPE ProLiants, and the Lenovo ThinkSystems, were designed to run hypervisors, not a specific hypervisor. Any hypervisor.
 
@@ -288,7 +288,7 @@ We're not going to walk through the full validation process here—that's what [
 
 **Phase 4: Validate specifics** — Test RDMA if you need it, verify storage connectivity (iSCSI/FC/SMB), confirm all NICs work with vendor drivers. This feeds into your proof-of-concept in [Post 8](/post/poc-hyper-v-cluster).
 
-> **Series Assets:** The pre-migration **validation script** and **driver compatibility matrix template** for your environment are available in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/tools), and we'll walk through using them hands-on in [Post 5](/post/build-validate-cluster-ready-host).
+> **Series Assets:** The pre-migration **validation script** and **driver compatibility matrix template** for your environment are available in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/01-case-for-change/post-4-reuse-vmware), and we'll walk through using them hands-on in [Post 5](/post/build-validate-cluster-ready-host).
 
 ---
 
@@ -364,13 +364,13 @@ Time to turn hardware into a hypervisor.
 
 ---
 
-**Series Navigation**  
-← Previous: [Post 3 - The Myth of "Old Tech"](/post/hyper-v-myth-old-tech)  
+**Series Navigation**
+← Previous: [Post 3 - The Myth of "Old Tech"](/post/hyper-v-myth-old-tech)
 → Next: [Post 5 - Build and Validate a Cluster-Ready Host](/post/build-validate-cluster-ready-host)
 
 ---
 
-*Post 4 of 18 in The Hyper-V Renaissance series*  
+*Post 4 of 18 in The Hyper-V Renaissance series*
 *Last updated: March 2026*
 
 ---

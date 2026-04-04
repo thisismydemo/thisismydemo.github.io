@@ -1,7 +1,7 @@
 ---
 title: Hybrid Without the Handcuffs
 description: How to integrate with Azure services selectively without committing to Azure Local's full model or subscription lock-in.
-date: 2026-04-01T00:00:00.000Z
+date: 2026-06-01T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 9
 series_total: 18
@@ -12,17 +12,17 @@ slug: hyper-v-hybrid-azure-integration
 lead: Selective Azure Adoption Without Lock-In
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Azure
-    - Hybrid
+  - Virtualization
+  - Azure
+  - Hybrid
 tags:
-    - Hyper-V
-    - Azure
-    - Azure Arc
-    - Azure Backup
-    - Azure Site Recovery
-    - Hybrid Cloud
-lastmod: 2026-02-04T13:47:39.025Z
+  - Hyper-V
+  - Azure
+  - Azure Arc
+  - Azure Backup
+  - Azure Site Recovery
+  - Hybrid Cloud
+lastmod: 2026-04-04T17:48:14.462Z
 ---
 
 ## Summary

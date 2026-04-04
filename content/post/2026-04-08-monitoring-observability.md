@@ -1,7 +1,7 @@
 ---
 title: Monitoring and Observability—From Built-In to Best-of-Breed
 description: Comprehensive monitoring and observability strategy with tiered approach from native Windows tools to Azure Monitor and Prometheus.
-date: 2026-04-08T00:00:00.000Z
+date: 2026-05-08T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 10
 series_total: 18
@@ -12,18 +12,18 @@ slug: hyper-v-monitoring-observability
 lead: Windows Admin Center, Azure Monitor, and Prometheus
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Monitoring
-    - Windows Server
+  - Virtualization
+  - Monitoring
+  - Windows Server
 tags:
-    - Hyper-V
-    - Monitoring
-    - Windows Admin Center
-    - Azure Monitor
-    - Prometheus
-    - Grafana
-    - PowerShell
-lastmod: 2026-02-04T13:47:39.030Z
+  - Hyper-V
+  - Monitoring
+  - Windows Admin Center
+  - Azure Monitor
+  - Prometheus
+  - Grafana
+  - PowerShell
+lastmod: 2026-04-04T17:48:14.464Z
 ---
 
 ## Summary

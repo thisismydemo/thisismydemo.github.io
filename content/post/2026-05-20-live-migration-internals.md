@@ -1,10 +1,10 @@
 ---
 title: Live Migration Internals and Optimization
 description: Behind-the-scenes look at Hyper-V live migration mechanics including Windows Server 2025 improvements and performance optimization.
-date: 2026-05-06T00:00:00.000Z
+date: 2026-05-20T00:00:00.000Z
 series: The Hyper-V Renaissance
-series_post: 14
-series_total: 18
+series_post: 15
+series_total: 20
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -12,15 +12,15 @@ slug: hyper-v-live-migration-internals
 lead: Memory Pre-Copy, RDMA, and Compression
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Windows Server
+  - Virtualization
+  - Windows Server
 tags:
-    - Hyper-V
-    - Live Migration
-    - RDMA
-    - Performance
-    - Windows Server 2025
-lastmod: 2026-02-04T13:47:39.050Z
+  - Hyper-V
+  - Live Migration
+  - RDMA
+  - Performance
+  - Windows Server 2025
+lastmod: 2026-04-04T17:48:14.519Z
 ---
 
 ## Summary

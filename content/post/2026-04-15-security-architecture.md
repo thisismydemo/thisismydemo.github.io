@@ -1,7 +1,7 @@
 ---
 title: Security Architecture for Hyper-V Clusters
 description: Comprehensive security guide covering cluster-level hardening, VM-level isolation, and compliance requirements for Hyper-V environments.
-date: 2026-04-15T00:00:00.000Z
+date: 2026-05-15T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 11
 series_total: 18
@@ -12,17 +12,17 @@ slug: hyper-v-security-architecture
 lead: Hardening, VBS, and Shielded VMs
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Security
-    - Windows Server
+  - Virtualization
+  - Security
+  - Windows Server
 tags:
-    - Hyper-V
-    - Security
-    - Credential Guard
-    - Shielded VMs
-    - VBS
-    - Compliance
-lastmod: 2026-02-04T13:47:39.037Z
+  - Hyper-V
+  - Security
+  - Credential Guard
+  - Shielded VMs
+  - VBS
+  - Compliance
+lastmod: 2026-04-04T17:48:14.550Z
 ---
 
 ## Summary
