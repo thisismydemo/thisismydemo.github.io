@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="800" height="340" fill="#f8fafc" rx="8"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">PowerShell Automation Architecture</text>
+
+  <defs><marker id="pa" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563eb"/></marker></defs>
+
+  <!-- Layer 1: Configuration -->
+  <rect x="20" y="55" width="180" height="115" rx="6" fill="#fef9c3" stroke="#facc15" stroke-width="1.5"/>
+  <text x="110" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#854d0e">Configuration</text>
+  <text x="110" y="95" text-anchor="middle" font-size="9" fill="#1e293b">environment.*.json</text>
+  <text x="110" y="110" text-anchor="middle" font-size="9" fill="#1e293b">DSC v3 YAML configs</text>
+  <text x="110" y="125" text-anchor="middle" font-size="9" fill="#1e293b">Naming standards</text>
+  <text x="110" y="145" text-anchor="middle" font-size="9" fill="#64748b">Single source of truth</text>
+  <text x="110" y="160" text-anchor="middle" font-size="9" fill="#64748b">Version controlled</text>
+
+  <line x1="200" y1="112" x2="225" y2="112" stroke="#2563eb" stroke-width="1.5" marker-end="url(#pa)"/>
+
+  <!-- Layer 2: Modules -->
+  <rect x="227" y="55" width="180" height="115" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="317" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Modules</text>
+  <text x="317" y="95" text-anchor="middle" font-size="9" fill="#1e293b">HVAutomation module</text>
+  <text x="317" y="110" text-anchor="middle" font-size="9" fill="#1e293b">Get / Test / Set pattern</text>
+  <text x="317" y="125" text-anchor="middle" font-size="9" fill="#1e293b">Pester 5.x tests</text>
+  <text x="317" y="145" text-anchor="middle" font-size="9" fill="#64748b">Idempotent functions</text>
+  <text x="317" y="160" text-anchor="middle" font-size="9" fill="#64748b">SupportsShouldProcess</text>
+
+  <line x1="407" y1="112" x2="432" y2="112" stroke="#2563eb" stroke-width="1.5" marker-end="url(#pa)"/>
+
+  <!-- Layer 3: Orchestration -->
+  <rect x="434" y="55" width="170" height="115" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="519" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">Orchestration</text>
+  <text x="519" y="95" text-anchor="middle" font-size="9" fill="#1e293b">Invoke-Command</text>
+  <text x="519" y="110" text-anchor="middle" font-size="9" fill="#1e293b">PSSession / CIM</text>
+  <text x="519" y="125" text-anchor="middle" font-size="9" fill="#1e293b">ForEach -Parallel</text>
+  <text x="519" y="145" text-anchor="middle" font-size="9" fill="#64748b">Multi-host execution</text>
+  <text x="519" y="160" text-anchor="middle" font-size="9" fill="#64748b">SecretManagement</text>
+
+  <line x1="604" y1="112" x2="629" y2="112" stroke="#2563eb" stroke-width="1.5" marker-end="url(#pa)"/>
+
+  <!-- Layer 4: Pipelines -->
+  <rect x="631" y="55" width="150" height="115" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="706" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#6b21a8">Pipelines</text>
+  <text x="706" y="95" text-anchor="middle" font-size="9" fill="#1e293b">GitHub Actions</text>
+  <text x="706" y="110" text-anchor="middle" font-size="9" fill="#1e293b">GitLab CI</text>
+  <text x="706" y="125" text-anchor="middle" font-size="9" fill="#1e293b">Azure DevOps</text>
+  <text x="706" y="145" text-anchor="middle" font-size="9" fill="#64748b">Self-hosted runners</text>
+  <text x="706" y="160" text-anchor="middle" font-size="9" fill="#64748b">Lint → Test → Remediate</text>
+
+  <!-- Target: Hyper-V Hosts -->
+  <rect x="200" y="210" width="400" height="55" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="400" y="233" text-anchor="middle" font-size="12" font-weight="700" fill="#1e293b">Hyper-V Cluster Nodes</text>
+  <text x="400" y="252" text-anchor="middle" font-size="10" fill="#64748b">PSRemoting (WinRM / SSH) from self-hosted runner</text>
+
+  <line x1="519" y1="170" x2="400" y2="210" stroke="#16a34a" stroke-width="1.5" marker-end="url(#pa)"/>
+
+  <!-- Maturity path -->
+  <rect x="20" y="285" width="760" height="42" rx="5" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="400" y="303" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">Automation Maturity Path</text>
+  <text x="100" y="320" text-anchor="middle" font-size="9" fill="#854d0e">L1: Manual Scripts</text>
+  <text x="250" y="320" text-anchor="middle" font-size="9" fill="#854d0e">L2: Variables File</text>
+  <text x="400" y="320" text-anchor="middle" font-size="9" fill="#1e40af">L3: Get/Test/Set Module</text>
+  <text x="550" y="320" text-anchor="middle" font-size="9" fill="#166534">L4: DSC v3</text>
+  <text x="700" y="320" text-anchor="middle" font-size="9" fill="#6b21a8">L5: CI/CD Pipelines</text>
+
+  <line x1="155" y1="316" x2="190" y2="316" stroke="#94a3b8" stroke-width="1"/>
+  <text x="173" y="314" text-anchor="middle" font-size="8" fill="#94a3b8">→</text>
+  <line x1="305" y1="316" x2="340" y2="316" stroke="#94a3b8" stroke-width="1"/>
+  <text x="323" y="314" text-anchor="middle" font-size="8" fill="#94a3b8">→</text>
+  <line x1="460" y1="316" x2="495" y2="316" stroke="#94a3b8" stroke-width="1"/>
+  <text x="478" y="314" text-anchor="middle" font-size="8" fill="#94a3b8">→</text>
+  <line x1="600" y1="316" x2="640" y2="316" stroke="#94a3b8" stroke-width="1"/>
+  <text x="620" y="314" text-anchor="middle" font-size="8" fill="#94a3b8">→</text>
+</svg>
