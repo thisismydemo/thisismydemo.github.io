@@ -1,5 +1,5 @@
 ---
-title: POC Like You Mean It—A Hands-On Hyper-V Cluster You Can Build This Afternoon
+title: POC Like You Mean It, A Hands-On Hyper-V Cluster You Can Build This Afternoon
 description: Complete workshop-style guide to building a functional Hyper-V cluster from scratch as a confidence-building checkpoint.
 date: 2026-03-26T00:00:00.000Z
 series: The Hyper-V Renaissance
@@ -322,7 +322,7 @@ Get-ClusterResource | Where-Object { $_.ResourceType -eq "Physical Disk" } |
     Format-Table Name, State, OwnerNode -AutoSize
 
 # Convert cluster disks to Cluster Shared Volumes
-# (Skip the quorum disk — that stays as a regular cluster disk)
+# (Skip the quorum disk ,  that stays as a regular cluster disk)
 $ClusterDisks = Get-ClusterResource |
     Where-Object { $_.ResourceType -eq "Physical Disk" -and $_.Name -notlike "*Quorum*" }
 
@@ -352,7 +352,7 @@ if ($QuorumResource) {
 # Option B: File Share Witness (if you have a file server)
 # Set-ClusterQuorum -FileShareWitness "\\fileserver\ClusterQuorum"
 
-# Option C: Cloud Witness (Azure storage account — great for production)
+# Option C: Cloud Witness (Azure storage account ,  great for production)
 # Set-ClusterQuorum -CloudWitness `
 #     -AccountName "storageaccountname" `
 #     -AccessKey "storageaccountkey" `
@@ -661,7 +661,7 @@ This POC proves the concept. Here's what you'd add or change for a production de
 
 In roughly three hours, you've built a fully functional Hyper-V failover cluster from bare metal. You've deployed Windows Server 2025, configured SET networking, connected shared storage, created a failover cluster, deployed a highly available VM, and proven that live migration and automatic failover work.
 
-This is the same architecture pattern that runs production workloads in thousands of organizations. The difference between your POC and production is scale, redundancy, and operational maturity—not fundamental architecture.
+This is the same architecture pattern that runs production workloads in thousands of organizations. The difference between your POC and production is scale, redundancy, and operational maturity, not fundamental architecture.
 
 You're ready for production planning.
 
@@ -700,7 +700,7 @@ Next up is **Production Architecture** (Posts 9-16), where we go deep on monitor
 ---
 
 **Series Navigation**
-← Previous: [Post 7 — Migrating VMs from VMware to Hyper-V](/post/migrating-vms-vmware-hyper-v)
-→ Next: [Post 9 — Monitoring and Observability](/post/monitoring-observability)
+← Previous: [Post 7 ,  Migrating VMs from VMware to Hyper-V](/post/migrating-vms-vmware-hyper-v)
+→ Next: [Post 9 ,  Monitoring and Observability](/post/monitoring-observability)
 
 ---

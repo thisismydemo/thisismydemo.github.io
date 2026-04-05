@@ -27,11 +27,11 @@ lastmod: 2026-04-05T02:14:44.684Z
 
 Not everything needs to be hyper-converged.
 
-There's a strong narrative in the infrastructure world that three-tier architecture—separate compute, network, and storage tiers—is outdated. That hyper-converged infrastructure (HCI) is the only path forward. That separating your storage from your compute is a legacy pattern.
+There's a strong narrative in the infrastructure world that three-tier architecture, separate compute, network, and storage tiers, is outdated. That hyper-converged infrastructure (HCI) is the only path forward. That separating your storage from your compute is a legacy pattern.
 
 That narrative is incomplete.
 
-Three-tier architecture remains the right answer for many workloads and many organizations. If you have an existing SAN investment, if your workloads require deterministic storage performance, if you need storage-level replication for disaster recovery, or if your team has deep storage operations expertise—three-tier isn't just viable, it's often superior.
+Three-tier architecture remains the right answer for many workloads and many organizations. If you have an existing SAN investment, if your workloads require deterministic storage performance, if you need storage-level replication for disaster recovery, or if your team has deep storage operations expertise, three-tier isn't just viable, it's often superior.
 
 In this sixth post of the **Hyper-V Renaissance** series, we're going to connect your freshly built Hyper-V hosts to external storage arrays. We'll cover the universal principles that apply regardless of vendor, then walk through a detailed Pure Storage implementation as a reference example.
 
@@ -83,7 +83,7 @@ The first decision is which storage protocol to use. Each has trade-offs:
 - Your storage team has deep FC operational experience
 
 **Choose SMB3 when:**
-- Your storage target supports SMB3 (e.g., Windows-based file servers, NetApp, Dell EMC)
+- Your storage target supports SMB3 (e.g. Windows-based file servers, NetApp, Dell EMC)
 - You want file-level access rather than block-level
 - You're using SMB Direct (RDMA) for high-performance file access
 - Hyper-V VMs will use SMB shares for VM storage (supported configuration)
@@ -122,7 +122,7 @@ Get-NetAdapterAdvancedProperty -Name "vEthernet (Storage)" `
 ping -f -l 8972 10.10.30.100
 ```
 
-> **Important:** Jumbo frames must be configured consistently on every device in the path—host NIC, physical switch ports, and storage array ports. A single device with standard MTU (1500) will cause fragmentation and degrade performance.
+> **Important:** Jumbo frames must be configured consistently on every device in the path, host NIC, physical switch ports, and storage array ports. A single device with standard MTU (1500) will cause fragmentation and degrade performance.
 
 ### 4. Flow Control
 
@@ -508,7 +508,7 @@ In the next post, **[Post 7: Migrating VMs from VMware to Hyper-V](/post/migrati
 ---
 
 **Series Navigation**
-← Previous: [Post 5 — Build and Validate a Cluster-Ready Host](/post/build-validate-cluster-ready-host)
-→ Next: [Post 7 — Migrating VMs from VMware to Hyper-V](/post/migrating-vms-vmware-hyper-v)
+← Previous: [Post 5 ,  Build and Validate a Cluster-Ready Host](/post/build-validate-cluster-ready-host)
+→ Next: [Post 7 ,  Migrating VMs from VMware to Hyper-V](/post/migrating-vms-vmware-hyper-v)
 
 ---

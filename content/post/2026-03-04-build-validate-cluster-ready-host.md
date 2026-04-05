@@ -27,7 +27,7 @@ lastmod: 2026-04-05T02:14:44.686Z
 
 This is where the keyboards come out.
 
-Posts 1 through 4 made the business case, dismantled the myths, and confirmed your hardware is ready. Now it's time to build something. In this fifth post of the **Hyper-V Renaissance** series, we're going to take a bare-metal server—or a freshly wiped former VMware host—and turn it into a production-ready Hyper-V node that's fully validated for cluster membership.
+Posts 1 through 4 made the business case, dismantled the myths, and confirmed your hardware is ready. Now it's time to build something. In this fifth post of the **Hyper-V Renaissance** series, we're going to take a bare-metal server, or a freshly wiped former VMware host, and turn it into a production-ready Hyper-V node that's fully validated for cluster membership.
 
 Every step is scripted. Every configuration is documented. If you can't reproduce it with PowerShell, it doesn't belong in a production deployment.
 
@@ -71,7 +71,7 @@ Before you begin, ensure you have the following:
 
 Install Windows Server 2025 Datacenter from your preferred media. If you're automating at scale, use an unattended answer file or your existing deployment solution (MDT, SCCM/MECM, or PXE). For a single host build, a standard interactive install works fine.
 
-**Server Core vs. Desktop Experience**: Server Core is the recommended deployment option for Hyper-V hosts. It has a smaller attack surface, fewer updates, and lower resource overhead. Everything we do in this guide works on both options. If your team isn't comfortable with Server Core yet, Desktop Experience works—you can always convert later.
+**Server Core vs. Desktop Experience**: Server Core is the recommended deployment option for Hyper-V hosts. It has a smaller attack surface, fewer updates, and lower resource overhead. Everything we do in this guide works on both options. If your team isn't comfortable with Server Core yet, Desktop Experience works, you can always convert later.
 
 Once Windows is installed and you've set the local administrator password, connect via RDP or the console and open an elevated PowerShell session.
 
@@ -654,9 +654,9 @@ Write-Host "`nValidation report saved to: $($ReportPath.FullName)" -ForegroundCo
 
 The validation report uses three indicators:
 
-- **Green checkmark**: Test passed — configuration meets Microsoft requirements.
-- **Yellow triangle**: Warning — the configuration works but doesn't meet all best practices. Investigate these, but they don't block cluster creation.
-- **Red X**: Failure — this issue must be resolved before creating the cluster. Common failures include mismatched drivers between nodes, network connectivity issues, or storage path problems.
+- **Green checkmark**: Test passed ,  configuration meets Microsoft requirements.
+- **Yellow triangle**: Warning ,  the configuration works but doesn't meet all best practices. Investigate these, but they don't block cluster creation.
+- **Red X**: Failure ,  this issue must be resolved before creating the cluster. Common failures include mismatched drivers between nodes, network connectivity issues, or storage path problems.
 
 **Keep the validation report.** Microsoft Support will request it if you ever open a cluster-related support case.
 
@@ -777,7 +777,7 @@ The most common network warning is nodes having different network configurations
 
 You now have a fully configured, validated Hyper-V host ready for cluster membership. Repeat this process on each additional node, keeping configurations consistent across all nodes.
 
-In the next post, **[Post 6: Three-Tier Storage Integration](/post/three-tier-storage-integration)**, we'll connect your hosts to external storage arrays using iSCSI, Fibre Channel, and SMB3—covering universal principles that work with any vendor and including a detailed Pure Storage reference implementation.
+In the next post, **[Post 6: Three-Tier Storage Integration](/post/three-tier-storage-integration)**, we'll connect your hosts to external storage arrays using iSCSI, Fibre Channel, and SMB3, covering universal principles that work with any vendor and including a detailed Pure Storage reference implementation.
 
 The foundation is laid. Time to connect the storage.
 
@@ -803,7 +803,7 @@ The foundation is laid. Time to connect the storage.
 ---
 
 **Series Navigation**
-← Previous: [Post 4 — Reusing Your Existing VMware Hosts](/post/reusing-existing-vmware-hosts)
-→ Next: [Post 6 — Three-Tier Storage Integration](/post/three-tier-storage-integration)
+← Previous: [Post 4 ,  Reusing Your Existing VMware Hosts](/post/reusing-existing-vmware-hosts)
+→ Next: [Post 6 ,  Three-Tier Storage Integration](/post/three-tier-storage-integration)
 
 ---

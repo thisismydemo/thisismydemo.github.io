@@ -1,28 +1,28 @@
 ---
 title: WSFC at Scale
-description: Scaling Windows Server Failover Clustering — cluster sets, CAU, stretched clusters, anti-affinity, and 64-node architecture.
+description: Scaling Windows Server Failover Clustering ,  cluster sets, CAU, stretched clusters, anti-affinity, and 64-node architecture.
 date: 2026-04-03T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 16
 series_total: 21
-draft: true
+draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: wsfc-at-scale
 lead: Cluster Sets, Cluster-Aware Updating, and the 64-Node Architecture
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Windows Server
-    - Clustering
+  - Virtualization
+  - Windows Server
+  - Clustering
 tags:
-    - Hyper-V
-    - WSFC
-    - Cluster Sets
-    - Cluster-Aware Updating
-    - Stretched Clusters
-    - Scale
-lastmod: 2026-04-05T02:14:44.712Z
+  - Hyper-V
+  - WSFC
+  - Cluster Sets
+  - Cluster-Aware Updating
+  - Stretched Clusters
+  - Scale
+lastmod: 2026-04-05T17:46:25.847Z
 ---
 
 A two-node cluster is an architecture decision. A 64-node cluster is a lifestyle choice.
@@ -33,7 +33,7 @@ Scaling Hyper-V is also where the economics need to stay honest. The goal is not
 
 Windows Server 2025 supports up to 64 nodes and 8,000 running VMs per cluster. Those are impressive numbers, but they're maximums, not recommendations. The real architectural questions are: when does a single cluster become unwieldy? When do you split into multiple clusters? How do you manage patching across 64 nodes without downtime? How do you keep domain controllers on separate hosts from each other?
 
-This is the architecture of scale — not just the maximums, but the operational realities.
+This is the architecture of scale ,  not just the maximums, but the operational realities.
 
 In this sixteenth and final post of the **Production Architecture** section, we'll cover cluster sets, Cluster-Aware Updating, stretched clusters, anti-affinity rules, and the practical guidance for scaling Hyper-V infrastructure from a single cluster to a multi-cluster estate.
 
@@ -56,7 +56,7 @@ Before discussing architecture, establish the ceiling:
 | **Memory per Gen 2 VM** | 240 TB |
 | **Checkpoints per VM** | 50 |
 
-These are tested and supported limits. In practice, most organizations operate well below them — and for good reasons.
+These are tested and supported limits. In practice, most organizations operate well below them ,  and for good reasons.
 
 ---
 
@@ -66,7 +66,7 @@ The first architectural decision at scale is whether to add nodes to your existi
 
 ![WSFC Scale Architecture](/img/hyper-v-renaissance/wsfc-scale-architecture.svg)
 
-### Scale Up — Larger Clusters
+### Scale Up ,  Larger Clusters
 
 **When it makes sense:**
 - All nodes share the same storage (SAN)
@@ -79,7 +79,7 @@ The first architectural decision at scale is whether to add nodes to your existi
 - **Blast radius grows.** A cluster-wide event (quorum loss, storage failure affecting all CSVs) affects every VM. In a 64-node cluster, that's potentially 8,000 VMs.
 - **Monitoring complexity increases.** More nodes means more metrics, more events, more alert noise. Your monitoring platform (Post 9) must scale with the cluster.
 
-### Scale Out — Multiple Smaller Clusters
+### Scale Out ,  Multiple Smaller Clusters
 
 **When it makes sense:**
 - You need fault isolation between workload groups
@@ -94,7 +94,7 @@ The first architectural decision at scale is whether to add nodes to your existi
 
 ---
 
-## Cluster Sets — Managing Multiple Clusters as One
+## Cluster Sets ,  Managing Multiple Clusters as One
 
 Cluster sets solve the "I need multiple clusters but I want to manage them together" problem. Introduced in Windows Server 2019, a cluster set groups multiple independent failover clusters into a logical unit with cross-cluster capabilities.
 
@@ -127,7 +127,7 @@ Cluster sets solve the "I need multiple clusters but I want to manage them toget
 | **Processor compatibility** | Same vendor (Intel or AMD) across all members, or processor compatibility mode enabled |
 | **Scale** | Tested and supported up to 64 total nodes across all member clusters |
 
-### Limitations — Be Honest
+### Limitations ,  Be Honest
 
 - **No automatic cross-cluster failover.** If a member cluster fails, VMs do NOT automatically migrate to another member cluster. Cross-cluster moves are manual or scripted. Within a single member cluster, WSFC HA works normally.
 - **S2D doesn't span across members.** Each cluster has its own storage pool. For cross-cluster storage resilience, use Storage Replica between members.
@@ -142,7 +142,7 @@ Cluster sets solve the "I need multiple clusters but I want to manage them toget
 
 ---
 
-## Cluster-Aware Updating — Zero-Downtime Patching
+## Cluster-Aware Updating ,  Zero-Downtime Patching
 
 Cluster-Aware Updating (CAU) orchestrates rolling updates across cluster nodes with zero downtime for highly available workloads. This is how you patch a production Hyper-V cluster without taking any VMs offline.
 
@@ -150,13 +150,13 @@ Cluster-Aware Updating (CAU) orchestrates rolling updates across cluster nodes w
 
 CAU processes nodes one at a time through a coordinated sequence:
 
-1. **Pause node** — put the node into maintenance mode
-2. **Drain roles** — live-migrate all VMs and cluster roles off the node to other nodes
-3. **Install updates** — apply Windows Updates, hotfixes, or custom updates
-4. **Restart** — reboot if required
-5. **Resume node** — bring the node back into the cluster
-6. **Restore roles** — optionally move VMs back to the original node
-7. **Move to next node** — repeat for every node in the cluster
+1. **Pause node** ,  put the node into maintenance mode
+2. **Drain roles** ,  live-migrate all VMs and cluster roles off the node to other nodes
+3. **Install updates** ,  apply Windows Updates, hotfixes, or custom updates
+4. **Restart** ,  reboot if required
+5. **Resume node** ,  bring the node back into the cluster
+6. **Restore roles** ,  optionally move VMs back to the original node
+7. **Move to next node** ,  repeat for every node in the cluster
 
 Because VMs live-migrate off each node before updates are applied, continuously available workloads experience no interruption. The end result: a fully patched cluster with zero VM downtime.
 
@@ -164,7 +164,7 @@ Because VMs live-migrate off each node before updates are applied, continuously 
 
 | Mode | Description | Best For |
 |------|-------------|----------|
-| **Self-updating** | CAU runs as a cluster role. Updates on a configured schedule (daily/weekly/monthly). Fully automated — no external coordination needed. | Production — set it and forget it |
+| **Self-updating** | CAU runs as a cluster role. Updates on a configured schedule (daily/weekly/monthly). Fully automated ,  no external coordination needed. | Production ,  set it and forget it |
 | **Remote-updating** | An external Update Coordinator computer triggers updates on-demand. No CAU role on the cluster. | Server Core environments, manual/controlled patching, testing |
 
 ### CAU Configuration
@@ -172,7 +172,7 @@ Because VMs live-migrate off each node before updates are applied, continuously 
 | Setting | Recommendation |
 |---------|---------------|
 | **Schedule** | Weekly or monthly maintenance window aligned with your organization's patch policy |
-| **Max retries per node** | 3 (default) — if a node fails to update after 3 attempts, CAU flags it and moves on |
+| **Max retries per node** | 3 (default) ,  if a node fails to update after 3 attempts, CAU flags it and moves on |
 | **Update source** | WSUS for managed environments, Windows Update for smaller deployments |
 | **Pre/post update scripts** | Use for custom validation, backup triggers, or notification automation |
 | **Updating Run Profile** | Save as a reusable profile and apply consistently across clusters |
@@ -189,7 +189,7 @@ For large clusters, CAU's sequential approach means patching takes time proporti
 | 32 | 16 hours | 32 hours |
 | 64 | 32 hours | 64 hours |
 
-This is why large environments benefit from multiple smaller clusters — four 8-node clusters can all be patched in parallel (4 hours each) instead of one 32-node cluster taking 16+ hours sequentially.
+This is why large environments benefit from multiple smaller clusters ,  four 8-node clusters can all be patched in parallel (4 hours each) instead of one 32-node cluster taking 16+ hours sequentially.
 
 ### CAU Plug-In Architecture
 
@@ -205,7 +205,7 @@ Dell, HPE, and Lenovo provide CAU plug-ins for their server platforms, enabling 
 
 ---
 
-## Stretched Clusters — Multi-Site with Automatic Failover
+## Stretched Clusters ,  Multi-Site with Automatic Failover
 
 Stretched clusters span a single WSFC cluster across two physical sites with automatic failover between sites. Combined with synchronous Storage Replica, they provide zero data loss and automatic VM recovery during a site failure.
 
@@ -223,9 +223,9 @@ Stretched clusters span a single WSFC cluster across two physical sites with aut
 
 Windows Server 2025 supports **site-aware failover policies**:
 
-- **Preferred site** — VMs are assigned a preferred site. After a failover, the cluster automatically migrates VMs back to their preferred site when it recovers.
-- **Fault domains** — nodes are assigned to fault domains representing each site. The cluster keeps VMs distributed across sites based on anti-affinity and placement rules.
-- **Quorum witness placement** — for a two-site stretched cluster, the quorum witness must be in a third location. This prevents a single-site failure from causing quorum loss.
+- **Preferred site** ,  VMs are assigned a preferred site. After a failover, the cluster automatically migrates VMs back to their preferred site when it recovers.
+- **Fault domains** ,  nodes are assigned to fault domains representing each site. The cluster keeps VMs distributed across sites based on anti-affinity and placement rules.
+- **Quorum witness placement** ,  for a two-site stretched cluster, the quorum witness must be in a third location. This prevents a single-site failure from causing quorum loss.
 
 ### When Stretched Clusters Make Sense
 
@@ -243,9 +243,9 @@ Windows Server 2025 supports **site-aware failover policies**:
 
 ---
 
-## Anti-Affinity Rules — Keeping VMs Apart
+## Anti-Affinity Rules ,  Keeping VMs Apart
 
-Anti-affinity rules tell the cluster to keep specific VMs on separate hosts. This is critical for high availability of redundant workloads — you don't want both domain controllers on the same host, because a single host failure would take out both.
+Anti-affinity rules tell the cluster to keep specific VMs on separate hosts. This is critical for high availability of redundant workloads ,  you don't want both domain controllers on the same host, because a single host failure would take out both.
 
 ### How Anti-Affinity Works
 
@@ -253,10 +253,10 @@ The `AntiAffinityClassNames` property on cluster groups assigns a class name. Gr
 
 | Enforcement | Behavior | When to Use |
 |-------------|----------|-------------|
-| **Soft (default)** | Best-effort — cluster tries to separate VMs but will co-locate them if no other option exists (e.g., N-1 host failure) | Most scenarios — provides separation without risking availability |
-| **Hard** | Strict — VMs with matching class names will NEVER run on the same node. If they can't be separated, one goes Offline. | Critical workloads where co-location is worse than an offline VM |
+| **Soft (default)** | Best-effort ,  cluster tries to separate VMs but will co-locate them if no other option exists (e.g. N-1 host failure) | Most scenarios ,  provides separation without risking availability |
+| **Hard** | Strict ,  VMs with matching class names will NEVER run on the same node. If they can't be separated, one goes Offline. | Critical workloads where co-location is worse than an offline VM |
 
-**Hard enforcement:** Set `(Get-Cluster).ClusterEnforcedAntiAffinity = 1`. Use with caution in small clusters — in a 2-node cluster, if one node fails, the hard rule will keep one VM offline rather than co-locate both on the surviving node.
+**Hard enforcement:** Set `(Get-Cluster).ClusterEnforcedAntiAffinity = 1`. Use with caution in small clusters ,  in a 2-node cluster, if one node fails, the hard rule will keep one VM offline rather than co-locate both on the surviving node.
 
 ### Common Anti-Affinity Patterns
 
@@ -271,7 +271,7 @@ The `AntiAffinityClassNames` property on cluster groups assigns a class name. Gr
 
 Anti-affinity can be combined with **preferred owners** for more granular placement:
 - Anti-affinity keeps VMs on different nodes
-- Preferred owners guide VMs to specific nodes (e.g., DC-01 prefers Node 1, DC-02 prefers Node 2)
+- Preferred owners guide VMs to specific nodes (e.g. DC-01 prefers Node 1, DC-02 prefers Node 2)
 
 Together, they provide predictable VM placement while ensuring separation.
 
@@ -285,11 +285,11 @@ Scale requires documented, repeatable procedures. Here are the operational runbo
 
 | Step | Action | Verify |
 |------|--------|--------|
-| 1 | Notify — inform the team of planned maintenance | Ticket/change request created |
-| 2 | Pause node — `Suspend-ClusterNode -Drain` | All VMs migrated off, node shows "Paused" |
-| 3 | Perform maintenance — updates, firmware, hardware | Maintenance complete |
-| 4 | Resume node — `Resume-ClusterNode -Failback Immediate` | Node shows "Up" |
-| 5 | Verify — check cluster health, VM health, CSV state | All green |
+| 1 | Notify ,  inform the team of planned maintenance | Ticket/change request created |
+| 2 | Pause node ,  `Suspend-ClusterNode -Drain` | All VMs migrated off, node shows "Paused" |
+| 3 | Perform maintenance ,  updates, firmware, hardware | Maintenance complete |
+| 4 | Resume node ,  `Resume-ClusterNode -Failback Immediate` | Node shows "Up" |
+| 5 | Verify ,  check cluster health, VM health, CSV state | All green |
 
 ### Capacity Planning Runbook
 
@@ -334,7 +334,7 @@ The pattern: **multiple smaller clusters managed as a set > one massive cluster.
 
 ---
 
-## Production Architecture — Complete
+## Production Architecture ,  Complete
 
 This post concludes the Production Architecture section of the Hyper-V Renaissance series. Over eight posts, we've covered:
 
@@ -349,7 +349,7 @@ This post concludes the Production Architecture section of the Hyper-V Renaissan
 | 15 | Live Migration Internals |
 | 16 | WSFC at Scale |
 
-The foundation is built. The production architecture is in place. Next up is the **Strategy & Automation** section (Posts 17-20), where we shift from "how to build it" to "how to decide and automate" — hybrid Azure integration, S2D vs. three-tier decision frameworks, PowerShell automation patterns, and infrastructure as code.
+The foundation is built. The production architecture is in place. Next up is the **Strategy & Automation** section (Posts 17-20), where we shift from "how to build it" to "how to decide and automate" ,  hybrid Azure integration, S2D vs. three-tier decision frameworks, PowerShell automation patterns, and infrastructure as code.
 
 ---
 
@@ -368,7 +368,7 @@ The foundation is built. The production architecture is in place. Next up is the
 ---
 
 **Series Navigation**
-← Previous: [Post 15 — Live Migration Internals](/post/live-migration-internals)
-→ Next: [Post 17 — Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration)
+← Previous: [Post 15 ,  Live Migration Internals](/post/live-migration-internals)
+→ Next: [Post 17 ,  Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration)
 
 ---

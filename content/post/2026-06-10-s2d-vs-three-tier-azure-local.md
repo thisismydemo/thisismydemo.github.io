@@ -5,30 +5,30 @@ date: 2026-04-04T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 18
 series_total: 21
-draft: true
+draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: hyper-v-s2d-three-tier-azure-local
-lead: The Honest Comparison — Performance, Cost, and When Each Approach Wins
+lead: The Honest Comparison ,  Performance, Cost, and When Each Approach Wins
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Azure
-    - Azure Local
+  - Azure
+  - Azure Local
 tags:
-    - Azure
-    - Azure Local
-    - Windows Server
-    - PowerShell
-lastmod: 2026-04-05T02:14:44.721Z
+  - Azure
+  - Azure Local
+  - Windows Server
+  - PowerShell
+lastmod: 2026-04-05T17:46:25.854Z
 ---
 
-This series advocates for on-premises Hyper-V with three-tier SAN architecture. But intellectual honesty — and the credibility of everything we've written — demands that we evaluate every option fairly. Storage Spaces Direct and Azure Local have legitimate use cases. Three-tier isn't always the right answer.
+This series advocates for on-premises Hyper-V with three-tier SAN architecture. But intellectual honesty ,  and the credibility of everything we've written ,  demands that we evaluate every option fairly. Storage Spaces Direct and Azure Local have legitimate use cases. Three-tier isn't always the right answer.
 
 The cost lens matters, though. For many organizations leaving VMware, the decision is not just about technical elegance. It is about whether Azure Local's host fee and potential hardware refresh are justified, or whether reusing existing compute and existing SAN is the smarter move for the workloads they actually run.
 
 Here is a factual comparison of three infrastructure approaches so you can choose the right one for your environment, not the one that any vendor (including this series) is selling you.
 
-In this eighteenth post of the **Hyper-V Renaissance** series, we'll compare Storage Spaces Direct, traditional three-tier with external SAN, and Azure Local across performance, failure domains, cost, operational complexity, and appropriate use cases — with diagrams and numbers, not marketing.
+In this eighteenth post of the **Hyper-V Renaissance** series, we'll compare Storage Spaces Direct, traditional three-tier with external SAN, and Azure Local across performance, failure domains, cost, operational complexity, and appropriate use cases ,  with diagrams and numbers, not marketing.
 
 > **Repository:** Cost comparison calculators, workload assessment templates, and decision framework tools are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-18-s2d-three-tier-azure-local).
 
@@ -40,7 +40,7 @@ In this eighteenth post of the **Hyper-V Renaissance** series, we'll compare Sto
 
 ### Storage Spaces Direct (S2D)
 
-Software-defined storage built into Windows Server. Pools direct-attached NVMe, SSD, or HDD across 2-16 cluster nodes into a unified storage layer. Hyperconverged — compute and storage share the same servers.
+Software-defined storage built into Windows Server. Pools direct-attached NVMe, SSD, or HDD across 2-16 cluster nodes into a unified storage layer. Hyperconverged ,  compute and storage share the same servers.
 
 **Windows Server 2025 improvements:**
 - Native NVMe stack: up to 80% more IOPS and 45% lower CPU per I/O vs WS2022
@@ -57,7 +57,7 @@ Software-defined storage built into Windows Server. Pools direct-attached NVMe, 
 
 Separate compute hosts connect to external storage arrays (Pure Storage, Dell PowerStore, NetApp, HPE) via iSCSI, Fibre Channel, or SMB3. Storage is independent from compute.
 
-**No WS2025 storage licensing required** — the SAN is an independent appliance. Windows Server Standard or Datacenter on the compute nodes.
+**No WS2025 storage licensing required** ,  the SAN is an independent appliance. Windows Server Standard or Datacenter on the compute nodes.
 
 **Requirements:** SAN array with Hyper-V integration. MPIO for redundant paths. Any Windows Server edition.
 
@@ -79,8 +79,8 @@ Microsoft's hybrid cloud platform. Runs on the WS2025 kernel with Azure integrat
 
 | Metric | S2D All-NVMe | External SAN All-Flash | Notes |
 |--------|-------------|----------------------|-------|
-| **Random read latency** | Sub-100 microseconds (local node) | 200-500 microseconds (network hop) | S2D wins on local reads — data locality advantage |
-| **Random write latency** | Sub-100 microseconds (cache tier) | 100-300 microseconds (controller cache) | Comparable — SAN controller cache is purpose-built |
+| **Random read latency** | Sub-100 microseconds (local node) | 200-500 microseconds (network hop) | S2D wins on local reads ,  data locality advantage |
+| **Random write latency** | Sub-100 microseconds (cache tier) | 100-300 microseconds (controller cache) | Comparable ,  SAN controller cache is purpose-built |
 | **IOPS per node** | Up to 13.7M (Microsoft benchmark) | Depends on array; midrange 500K-2M | S2D benchmark is synthetic; real workloads are lower |
 | **Sequential throughput** | 500+ GB/s (cluster aggregate) | Constrained by FC/iSCSI fabric | SAN fabric is shared; S2D uses dedicated RDMA |
 | **CPU overhead** | Storage consumes host CPU (mitigated by RDMA) | Near-zero host CPU for storage I/O | SAN offloads storage processing entirely |
@@ -91,7 +91,7 @@ Local reads on the owner node bypass the network entirely. The VM's data is on t
 
 ### When SAN Outperforms S2D
 
-Remote reads — when a VM runs on Node A but its data resides on Node B — traverse the cluster network even with RDMA. SAN provides consistent latency regardless of which host accesses data because all hosts access the array through dedicated storage paths. Dedicated storage controllers handle rebuild, replication, and snapshots without consuming host CPU. For mixed workloads across many hosts, SAN avoids the "noisy neighbor" CPU contention that S2D can experience when storage operations compete with VM workloads for the same processors.
+Remote reads ,  when a VM runs on Node A but its data resides on Node B ,  traverse the cluster network even with RDMA. SAN provides consistent latency regardless of which host accesses data because all hosts access the array through dedicated storage paths. Dedicated storage controllers handle rebuild, replication, and snapshots without consuming host CPU. For mixed workloads across many hosts, SAN avoids the "noisy neighbor" CPU contention that S2D can experience when storage operations compete with VM workloads for the same processors.
 
 ---
 
@@ -109,16 +109,16 @@ Remote reads — when a VM runs on Node A but its data resides on Node B — tra
 
 | Failure | Response | Impact |
 |---------|----------|--------|
-| **Disk failure** | RAID group or erasure-coded set rebuilds within the array | **Zero host impact** — rebuild is entirely within the array |
+| **Disk failure** | RAID group or erasure-coded set rebuilds within the array | **Zero host impact** ,  rebuild is entirely within the array |
 | **Controller failure** | Dual-controller active/active or active/passive failover | Sub-second failover, transparent to hosts |
 | **Path failure** | MPIO with multiple FC/iSCSI paths | Automatic path failover, no VM impact |
 | **Site failure** | Array-based synchronous/async replication to remote site | Orchestrated failover (Post 14) |
 
-**The key difference:** S2D rebuilds consume host CPU and cluster network bandwidth — the same resources your VMs are using. SAN rebuilds are contained entirely within the array's dedicated hardware. For large rebuilds (multi-TB), this matters.
+**The key difference:** S2D rebuilds consume host CPU and cluster network bandwidth ,  the same resources your VMs are using. SAN rebuilds are contained entirely within the array's dedicated hardware. For large rebuilds (multi-TB), this matters.
 
 ---
 
-## Cost Comparison — 4 Hosts, 64 Cores Each, 3-Year TCO
+## Cost Comparison ,  4 Hosts, 64 Cores Each, 3-Year TCO
 
 This is where the decision often gets made. All numbers are approximate and based on publicly available pricing as of early 2026.
 
@@ -127,7 +127,7 @@ This is where the decision often gets made. All numbers are approximate and base
 | Component | Cost | Notes |
 |-----------|------|-------|
 | Windows Server 2025 Datacenter (perpetual) | ~$24,620 (4 hosts × 64 cores) | One-time purchase with SA |
-| SAN storage | **$0 additional** | Existing investment — already amortized |
+| SAN storage | **$0 additional** | Existing investment ,  already amortized |
 | SAN maintenance (annual) | ~$15,000-30,000/year | Depends on vendor/contract |
 | **3-year total** | **~$69,620-$114,620** | Perpetual license + SAN maintenance |
 
@@ -167,7 +167,7 @@ This is where the decision often gets made. All numbers are approximate and base
 | **Azure Local (no AHB)** | $346,893 | $386,893 |
 | **Azure Local (with AHB)** | $64,620 | $104,620 |
 
-**The takeaway:** With Azure Hybrid Benefit, Azure Local costs are comparable to S2D (both need new drives). Without AHB, Azure Local is 3-5x more expensive. Three-tier with existing SAN is the cheapest path when you already own the storage — the SAN is a sunk cost that carries forward.
+**The takeaway:** With Azure Hybrid Benefit, Azure Local costs are comparable to S2D (both need new drives). Without AHB, Azure Local is 3-5x more expensive. Three-tier with existing SAN is the cheapest path when you already own the storage ,  the SAN is a sunk cost that carries forward.
 
 > **Important:** These numbers exclude Azure services (Defender, Monitor, Backup, ASR) which cost the same regardless of platform. They also exclude operational labor costs, which vary by organization.
 
@@ -182,43 +182,43 @@ This is where the decision often gets made. All numbers are approximate and base
 | **Update process** | Independent: patch hosts and array separately | Cluster-Aware Updating for hosts; manual drive firmware | Azure Update Manager orchestrates full stack |
 | **Monitoring** | Vendor tools + SCOM / Grafana (Post 9) | WAC + Health Service + PerfMon | Azure Monitor (50+ built-in metrics) |
 | **Day-2 simplicity** | Medium (mature but two systems) | Medium (single system but broader skill) | Highest (cloud-managed) but cloud-dependent |
-| **Air-gap capability** | Full — zero internet required | Full — zero internet required | Limited — 30-day sync required; disconnected mode needs special approval |
+| **Air-gap capability** | Full ,  zero internet required | Full ,  zero internet required | Limited ,  30-day sync required; disconnected mode needs special approval |
 
 ---
 
-## Decision Framework — When Each Approach Wins
+## Decision Framework ,  When Each Approach Wins
 
 ![Infrastructure Decision Framework](/img/hyper-v-renaissance/infrastructure-decision-framework.svg)
 
 ### Three-Tier Wins When
 
-- **You have an existing SAN investment** with remaining useful life — the storage cost is already amortized
-- **You need array-level data services** — hardware snapshots, thin clones, synchronous replication handled by dedicated controllers
-- **Your organization has dedicated storage team expertise** — separation of duties is a feature, not a limitation
-- **You need to scale compute and storage independently** — add hosts without touching storage, or expand storage without adding servers
-- **Air-gapped or SCIF environments** with zero internet connectivity — no Azure dependency, no 30-day sync
-- **Windows Server Standard edition is sufficient** — fewer VMs per host, lower licensing cost. S2D requires Datacenter.
+- **You have an existing SAN investment** with remaining useful life ,  the storage cost is already amortized
+- **You need array-level data services** ,  hardware snapshots, thin clones, synchronous replication handled by dedicated controllers
+- **Your organization has dedicated storage team expertise** ,  separation of duties is a feature, not a limitation
+- **You need to scale compute and storage independently** ,  add hosts without touching storage, or expand storage without adding servers
+- **Air-gapped or SCIF environments** with zero internet connectivity ,  no Azure dependency, no 30-day sync
+- **Windows Server Standard edition is sufficient** ,  fewer VMs per host, lower licensing cost. S2D requires Datacenter.
 
 ### S2D Wins When
 
-- **No existing SAN infrastructure** — greenfield deployment where buying a SAN adds unnecessary cost and complexity
-- **ROBO or edge deployments** — 2-3 node clusters where a SAN is impractical (small offices, factory floors, retail locations)
-- **You want hyperconverged simplicity without cloud dependency** — one system to manage, perpetual licensing
-- **Local NVMe performance matters** — data locality provides the lowest possible read latency for workloads pinned to a node
+- **No existing SAN infrastructure** ,  greenfield deployment where buying a SAN adds unnecessary cost and complexity
+- **ROBO or edge deployments** ,  2-3 node clusters where a SAN is impractical (small offices, factory floors, retail locations)
+- **You want hyperconverged simplicity without cloud dependency** ,  one system to manage, perpetual licensing
+- **Local NVMe performance matters** ,  data locality provides the lowest possible read latency for workloads pinned to a node
 - **Budget favors perpetual licensing** over recurring subscription
 
 ### Azure Local Wins When
 
-- **Azure-first strategy** with hybrid cloud as the operating model — your organization is committed to Azure management
-- **You need AKS or AVD on-premises** — these are Azure Local exclusives (AVD permanently, AKS long-term)
+- **Azure-first strategy** with hybrid cloud as the operating model ,  your organization is committed to Azure management
+- **You need AKS or AVD on-premises** ,  these are Azure Local exclusives (AVD permanently, AKS long-term)
 - **Unified Azure Portal management** across cloud and edge is a priority for your operations team
 - **Your team already manages Azure** and wants consistent tooling, RBAC, and policy across all infrastructure
-- **You have Azure Hybrid Benefit** — with SA on Datacenter, the platform cost drops to $0, making the total cost comparable to S2D
-- **Automatic lifecycle management** matters more than flexibility — Azure Local handles updates, monitoring, and policy automatically
+- **You have Azure Hybrid Benefit** ,  with SA on Datacenter, the platform cost drops to $0, making the total cost comparable to S2D
+- **Automatic lifecycle management** matters more than flexibility ,  Azure Local handles updates, monitoring, and policy automatically
 
 ---
 
-## The Hybrid Path — You Don't Have to Choose Just One
+## The Hybrid Path ,  You Don't Have to Choose Just One
 
 The approaches aren't mutually exclusive. Many organizations run multiple architectures for different use cases:
 
@@ -232,13 +232,13 @@ The approaches aren't mutually exclusive. Many organizations run multiple archit
 
 The key insight from this series: **your primary datacenter with existing SAN infrastructure is best served by three-tier Hyper-V.** The SAN is already paid for. Windows Server licensing is a fraction of VCF or Azure Local (without AHB). And Azure Arc brings the cloud management services you need without the platform tax (Post 17).
 
-For new builds without existing storage, S2D and Azure Local both have merit — the decision comes down to whether you want perpetual (S2D) or subscription with Azure integration (Azure Local).
+For new builds without existing storage, S2D and Azure Local both have merit ,  the decision comes down to whether you want perpetual (S2D) or subscription with Azure integration (Azure Local).
 
 ---
 
 ## Next Steps
 
-With the infrastructure decision made, the final two posts in the series focus on automation. In the next post, **[Post 19: PowerShell Automation Patterns](/post/hyper-v-powershell-automation-2026)**, we'll cover DSC for configuration management, idempotent scripting, module development, and CI/CD integration — the patterns that make "PowerShell Returned to Its Throne" more than a tagline.
+With the infrastructure decision made, the final two posts in the series focus on automation. In the next post, **[Post 19: PowerShell Automation Patterns](/post/hyper-v-powershell-automation-2026)**, we'll cover DSC for configuration management, idempotent scripting, module development, and CI/CD integration ,  the patterns that make "PowerShell Returned to Its Throne" more than a tagline.
 
 ---
 
@@ -257,15 +257,15 @@ With the infrastructure decision made, the final two posts in the series focus o
 - [Campus Clusters announcement](https://techcommunity.microsoft.com/blog/failoverclustering/announcing-support-for-s2d-campus-cluster-on-windows-server-2025/4477075)
 
 ### Related Posts
-- [Post 6: Three-Tier Storage Integration](/post/three-tier-storage-integration) — basic SAN connectivity
-- [Post 12: Storage Architecture Deep Dive](/post/storage-architecture-deep-dive) — CSV internals, tiering, cost case
-- [Post 14: Multi-Site Resilience](/post/multi-site-resilience) — replication strategies across platforms
-- [Post 17: Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration) — Azure services on traditional Hyper-V
+- [Post 6: Three-Tier Storage Integration](/post/three-tier-storage-integration) ,  basic SAN connectivity
+- [Post 12: Storage Architecture Deep Dive](/post/storage-architecture-deep-dive) ,  CSV internals, tiering, cost case
+- [Post 14: Multi-Site Resilience](/post/multi-site-resilience) ,  replication strategies across platforms
+- [Post 17: Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration) ,  Azure services on traditional Hyper-V
 
 ---
 
 **Series Navigation**
-← Previous: [Post 17 — Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration)
-→ Next: [Post 19 — PowerShell Automation Patterns](/post/hyper-v-powershell-automation-2026)
+← Previous: [Post 17 ,  Hybrid Without the Handcuffs](/post/hyper-v-hybrid-azure-integration)
+→ Next: [Post 19 ,  PowerShell Automation Patterns](/post/hyper-v-powershell-automation-2026)
 
 ---

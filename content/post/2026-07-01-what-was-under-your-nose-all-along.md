@@ -1,28 +1,28 @@
 ---
 title: What Was Under Your Nose All Along
-description: The final Hyper-V Renaissance wrap-up — why VMware customers are reevaluating, why Azure Local is not always the right Microsoft answer, and why Hyper-V often wins on fit and TCO.
+description: The final Hyper-V Renaissance wrap-up ,  why VMware customers are reevaluating, why Azure Local is not always the right Microsoft answer, and why Hyper-V often wins on fit and TCO.
 date: 2026-04-05T02:16:29.852Z
 series: The Hyper-V Renaissance
 series_post: 21
 series_total: 21
-draft: true
+draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: hyper-v-under-your-nose-all-along
 lead: Why Hyper-V Often Fits Better Than VCF 9 or Azure Local
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-    - Virtualization
-    - Windows Server
-    - Azure
+  - Virtualization
+  - Windows Server
+  - Azure
 tags:
-    - Hyper-V
-    - Windows Server 2025
-    - VMware
-    - Azure Local
-    - TCO
-    - Infrastructure Strategy
-lastmod: 2026-04-05T02:27:05.020Z
+  - Hyper-V
+  - Windows Server 2025
+  - VMware
+  - Azure Local
+  - TCO
+  - Infrastructure Strategy
+lastmod: 2026-04-05T17:46:25.864Z
 ---
 
 The series started with a simple question: if so many organizations are unhappy with the VMware commercial path they are on, where should they go next?
@@ -253,6 +253,6 @@ If you want to revisit the full journey from business case to implementation, he
 ---
 
 **Series Navigation**
-← Previous: [Post 20 — Infrastructure as Code with Ansible and Terraform](/post/hyper-v-iac-ansible-terraform)
+← Previous: [Post 20 ,  Infrastructure as Code with Ansible and Terraform](/post/hyper-v-iac-ansible-terraform)
 
 ---

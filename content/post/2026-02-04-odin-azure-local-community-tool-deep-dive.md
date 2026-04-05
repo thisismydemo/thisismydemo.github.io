@@ -1,6 +1,6 @@
 ---
 title: "Odin for Azure Local: A Community Tool Deep Dive"
-description: An in-depth review of Microsoft's community-built Azure Local configuration wizard—what works, what's coming, and the gaps you need to know about.
+description: An in-depth review of Microsoft's community-built Azure Local configuration wizard, what works, what's coming, and the gaps you need to know about.
 date: 2026-02-09T15:00:00.598Z
 draft: false
 preview: /img/azurelocal_odin/odin-logo.png
@@ -21,15 +21,15 @@ tags:
 lastmod: 2026-02-24T19:21:17.306Z
 ---
 
-I'm in the middle of writing [The Hyper-V Renaissance](/post/hyper-v-renaissance)—an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It's been consuming most of my writing time, and I've been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
+I'm in the middle of writing [The Hyper-V Renaissance](/post/hyper-v-renaissance), an 18-part series making the case for traditional Hyper-V with Windows Server 2025 as a serious virtualization platform. It's been consuming most of my writing time, and I've been heads-down on TCO comparisons, cluster builds, and PowerShell automation.
 
 But sometimes you stumble across something that deserves its own post, and you have to step away from the main project for a minute.
 
-There's a new community tool for Azure Local that's worth your attention. It's called **Odin**—the "**O**ptimal **D**eployment and **I**nfrastructure **N**avigator"—and it's hosted right on Microsoft's GitHub. Before you get too excited, let me set expectations: this tool comes with a clear disclaimer that it's provided "as-is, without Microsoft support." It's experimental.
+There's a new community tool for Azure Local that's worth your attention. It's called **Odin**, the "**O**ptimal **D**eployment and **I**nfrastructure **N**avigator", and it's hosted right on Microsoft's GitHub. Before you get too excited, let me set expectations: this tool comes with a clear disclaimer that it's provided "as-is, without Microsoft support." It's experimental.
 
 But it's also genuinely useful, and it reveals some interesting things about where Azure Local is headed.
 
-I've spent some time clicking through every option, and I want to share what I found—the good, the gaps, and the "coming soon" features that hint at Microsoft's roadmap. Then it's back to the Hyper-V series.
+I've spent some time clicking through every option, and I want to share what I found, the good, the gaps, and the "coming soon" features that hint at Microsoft's roadmap. Then it's back to the Hyper-V series.
 
 **Tool URL**: [azure.github.io/odinforazurelocal](https://azure.github.io/odinforazurelocal/)
 
@@ -56,7 +56,7 @@ I've spent some time clicking through every option, and I want to share what I f
   - [Requirements Summary \& Output](#requirements-summary--output)
     - [What You See Before Adding Workloads](#what-you-see-before-adding-workloads)
     - [What Changes When You Add Workloads](#what-changes-when-you-add-workloads)
-    - [🆕 Configure In Designer — The Big One](#-configure-in-designer--the-big-one)
+    - [🆕 Configure In Designer ,  The Big One](#-configure-in-designer--the-big-one)
     - [Capacity Usage for Workload](#capacity-usage-for-workload)
     - [Estimated Power, Heat \& Rack Space](#estimated-power-heat--rack-space)
     - [Azure Local Instance - Sizing Notes](#azure-local-instance---sizing-notes)
@@ -106,7 +106,7 @@ I've spent some time clicking through every option, and I want to share what I f
 
 ## What Is Odin for Azure Local?
 
-Odin is a browser-based wizard that walks you through the decisions required to configure an Azure Local deployment. It's a decision tree—you make selections, and it guides you through the implications of those choices.
+Odin is a browser-based wizard that walks you through the decisions required to configure an Azure Local deployment. It's a decision tree, you make selections, and it guides you through the implications of those choices.
 
 The tool covers:
 
@@ -136,9 +136,9 @@ As an open-source, community-built tool hosted on GitHub (`https://github.com/az
 
 Odin is built around three interconnected tools that address different phases of Azure Local planning:
 
-1. **Designer** — The main configuration wizard that generates deployment parameters and documentation
-2. **Knowledge Base** — Deep-dive documentation on connectivity, networking, and architecture decisions
-3. **Sizer Tool** — Capacity planning and workload estimation before you buy hardware
+1. **Designer** ,  The main configuration wizard that generates deployment parameters and documentation
+2. **Knowledge Base** ,  Deep-dive documentation on connectivity, networking, and architecture decisions
+3. **Sizer Tool** ,  Capacity planning and workload estimation before you buy hardware
 
 Each tool can be used independently, but they work best together: use the Sizer to understand your capacity needs, reference the Knowledge Base when you hit complex networking decisions, and run through the Designer to generate your baseline configuration. Let's look at each one.
 
@@ -150,9 +150,9 @@ Each tool can be used independently, but they work best together: use the Sizer 
 
 **Preview Release:** This tool helps you estimate Azure Local cluster requirements based on workload scenarios. Results are estimates and should be validated with your hardware vendor.
 
-> **📝 Section Updated — February 24, 2026:** This section has been rewritten to reflect the current Odin Sizer (version 0.17.04). The tool has changed significantly since this post was first published.
+> **📝 Section Updated ,  February 24, 2026:** This section has been rewritten to reflect the current Odin Sizer (version 0.17.04). The tool has changed significantly since this post was first published.
 
-I'm genuinely excited to see a community-driven sizing tool for Azure Local. Odin's Sizer is a practical, scenario-focused start: you can add workloads (Azure Local VMs, AVD, AKS Arc clusters), set node counts and VM profiles, and define per-node storage capacity (disks per node, capacity per disk, and disk type). Requirement summaries and live capacity graphs update in real time, and the page offers a Word report plus a browser print/"Save as PDF" option while saving session state in the browser—handy for quick planning and comparisons.
+I'm genuinely excited to see a community-driven sizing tool for Azure Local. Odin's Sizer is a practical, scenario-focused start: you can add workloads (Azure Local VMs, AVD, AKS Arc clusters), set node counts and VM profiles, and define per-node storage capacity (disks per node, capacity per disk, and disk type). Requirement summaries and live capacity graphs update in real time, and the page offers a Word report plus a browser print/"Save as PDF" option while saving session state in the browser, handy for quick planning and comparisons.
 
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-24%20125016.png)
@@ -177,12 +177,12 @@ Once you've added workloads, you define your cluster topology. The **Cluster Typ
 
 #### Single Node
 
-Selecting Single Node locks the physical node count to **1** (grayed out — not editable). The **Allow for Future Growth** toggle remains available. Storage Resiliency expands to include a simplified option not available on multi-node clusters:
+Selecting Single Node locks the physical node count to **1** (grayed out ,  not editable). The **Allow for Future Growth** toggle remains available. Storage Resiliency expands to include a simplified option not available on multi-node clusters:
 
 | Storage Resiliency Option | Description |
 |---|---|
 | **Two-way mirror** | Standard mirrored resiliency |
-| **Simple (no fault tolerance)** | Single drive, single pool — no redundancy |
+| **Simple (no fault tolerance)** | Single drive, single pool ,  no redundancy |
 
 > **Tip:** Single node clusters will always incur workload downtime during updates. No N+1 capacity is available.
 
@@ -230,7 +230,7 @@ CPU generation options by manufacturer:
 | Manufacturer | Available Generations |
 |---|---|
 | **Intel** | 4th Gen Xeon® Scalable (Sapphire Rapids), 5th Gen Xeon® Scalable (Emerald Rapids) |
-| **Intel (Edge)** | Xeon® D-2700 (Ice Lake-D) — 4–20 cores, DDR4-3200, for edge/rugged deployments |
+| **Intel (Edge)** | Xeon® D-2700 (Ice Lake-D) ,  4–20 cores, DDR4-3200, for edge/rugged deployments |
 | **AMD** | Multiple EPYC generations, including 5th Gen EPYC Turin (up to 192 cores/socket, 384 dual-socket) |
 
 > **💡 AMD Tip:** When Intel cores and sockets are maxed and compute utilization reaches ≥80% at the baseline 4:1 overcommit ratio, the Sizer adds a note in the Sizing Notes panel suggesting AMD EPYC Turin as an alternative. Turin offers up to 192 cores per socket (384 dual-socket), which can resolve compute pressure without escalating the vCPU overcommit ratio to 5:1 or 6:1.
@@ -273,11 +273,11 @@ Available tiering options by storage configuration:
 
 | Storage Config | Tiering Options |
 |---|---|
-| **All-Flash** | No cache — All NVMe as capacity; No cache — All SSD as capacity |
-| **Mixed All-Flash** | NVMe as cache — SSD as capacity |
-| **Hybrid** | SSD as cache — HDD as capacity; NVMe as cache — HDD as capacity |
+| **All-Flash** | No cache ,  All NVMe as capacity; No cache ,  All SSD as capacity |
+| **Mixed All-Flash** | NVMe as cache ,  SSD as capacity |
+| **Hybrid** | SSD as cache ,  HDD as capacity; NVMe as cache ,  HDD as capacity |
 
-> **Note:** Single-node clusters only support All-Flash storage — Hybrid is blocked by the tool.
+> **Note:** Single-node clusters only support All-Flash storage ,  Hybrid is blocked by the tool.
 
 #### Disk Configuration
 
@@ -305,13 +305,13 @@ Standard disk sizes available across all tiers: **960 GB, 1.92 TB, 3.84 TB, 7.68
 
 ### Requirements Summary & Output
 
-This is where the Sizer earns its keep. The output panel on the right side of the page is fully live — every change you make to workloads, cluster configuration, or hardware specs recalculates instantly. No submit button, no page reload. It's reactive from the moment you land on the page.
+This is where the Sizer earns its keep. The output panel on the right side of the page is fully live ,  every change you make to workloads, cluster configuration, or hardware specs recalculates instantly. No submit button, no page reload. It's reactive from the moment you land on the page.
 
-But the output panel is not static. It changes significantly as you work, and two sections only appear once you've added workloads. That's intentional — the Sizer is showing you results that are actually meaningful to your specific scenario.
+But the output panel is not static. It changes significantly as you work, and two sections only appear once you've added workloads. That's intentional ,  the Sizer is showing you results that are actually meaningful to your specific scenario.
 
 #### What You See Before Adding Workloads
 
-When you first open the Sizer, the output panel shows placeholder zeroes across Requirements Summary and Per-Node Requirements, with empty capacity bars. The Sizing Notes panel simply tells you to add workloads. The Power & Rack section and the Configure In Designer button are both hidden entirely — they only exist once there's something worth showing.
+When you first open the Sizer, the output panel shows placeholder zeroes across Requirements Summary and Per-Node Requirements, with empty capacity bars. The Sizing Notes panel simply tells you to add workloads. The Power & Rack section and the Configure In Designer button are both hidden entirely ,  they only exist once there's something worth showing.
 
 #### What Changes When You Add Workloads
 
@@ -320,37 +320,37 @@ Once you add your first workload, the panel comes alive:
 | Output Element | Behaviour |
 |---|---|
 | **Requirements Summary cards** | Updates to show aggregate vCPUs, Memory, Storage, and Workload count across all workloads |
-| **Per-Node Requirements (with N+1)** | Shows Physical Cores, Memory, Raw Storage, and Usable Storage per node — with one node already subtracted for maintenance |
-| **Capacity Usage Bars** | Live visual meters for Compute, Memory, and Usable Storage — turn red at ≥ 90% utilization |
-| **Estimated Power, Heat & Rack Space** | Appears for the first time — see below |
-| **Configure In Designer button** | Appears for the first time — the big one, see below |
+| **Per-Node Requirements (with N+1)** | Shows Physical Cores, Memory, Raw Storage, and Usable Storage per node ,  with one node already subtracted for maintenance |
+| **Capacity Usage Bars** | Live visual meters for Compute, Memory, and Usable Storage ,  turn red at ≥ 90% utilization |
+| **Estimated Power, Heat & Rack Space** | Appears for the first time ,  see below |
+| **Configure In Designer button** | Appears for the first time ,  the big one, see below |
 | **Sizing Notes** | Populates with cluster config, hardware summary, resiliency details, and any warnings or recommendations |
 
-> **Tip:** The N+1 calculation is always active. Per-node requirements assume one node is offline for servicing — so if you have 4 nodes, the Sizer sizes everything as if only 3 are available. If any capacity bar hits ≥ 90%, the configuration is flagged and you'll need to add nodes, increase per-node hardware, or reduce workloads before you can proceed to the Designer.
+> **Tip:** The N+1 calculation is always active. Per-node requirements assume one node is offline for servicing ,  so if you have 4 nodes, the Sizer sizes everything as if only 3 are available. If any capacity bar hits ≥ 90%, the configuration is flagged and you'll need to add nodes, increase per-node hardware, or reduce workloads before you can proceed to the Designer.
 
 ---
 
-#### 🆕 Configure In Designer — The Big One
+#### 🆕 Configure In Designer ,  The Big One
 
 This is brand new, and it changes everything about how the Sizer fits into your workflow.
 
-Not long ago, the Sizer and the Odin Designer were two completely separate tools. You'd size your cluster in the Sizer, note down your settings, then go manually re-enter all of it into the Designer from scratch. That gap was a real friction point — especially after spending time getting your hardware config and workloads dialled in.
+Not long ago, the Sizer and the Odin Designer were two completely separate tools. You'd size your cluster in the Sizer, note down your settings, then go manually re-enter all of it into the Designer from scratch. That gap was a real friction point ,  especially after spending time getting your hardware config and workloads dialled in.
 
-That's gone now. The **Configure In Designer** button is the bridge that connects them, and it only appears once you have workloads configured — which makes sense, because there's nothing to hand off until you've built something worth handing off.
+That's gone now. The **Configure In Designer** button is the bridge that connects them, and it only appears once you have workloads configured ,  which makes sense, because there's nothing to hand off until you've built something worth handing off.
 
-When you click it, the Sizer packages **everything** — your cluster type, node count, resiliency setting, CPU manufacturer and generation, core count, socket count, memory, GPU, disk configuration, vCPU overcommit ratio, future growth buffer, and every single workload you've added — and launches the Odin Designer wizard with it all pre-populated. Not a partial handoff. Everything. You don't re-enter a single value.
+When you click it, the Sizer packages **everything** ,  your cluster type, node count, resiliency setting, CPU manufacturer and generation, core count, socket count, memory, GPU, disk configuration, vCPU overcommit ratio, future growth buffer, and every single workload you've added ,  and launches the Odin Designer wizard with it all pre-populated. Not a partial handoff. Everything. You don't re-enter a single value.
 
 > *"Continue to add additional workloads, if required. Once complete, open the Designer wizard pre-configured with this cluster and hardware sizer settings."*
 
 This is the kind of feature that sounds small in a changelog but is a genuine quality-of-life leap in practice. If you've used both tools before, you'll feel it immediately.
 
-**The button has guardrails built in — it won't let you proceed with a bad config:**
+**The button has guardrails built in ,  it won't let you proceed with a bad config:**
 
 | State | What It Means |
 |---|---|
-| **Enabled** | All resources (Compute, Memory, Storage) are below 90% utilization — safe to proceed |
-| **Disabled / greyed out** | One or more resources are at ≥ 90% — the tooltip tells you exactly which ones. Fix utilization first |
-| **Blocked entirely** | Storage exceeds Azure Local supported limits (400 TB/machine or 4 PB per pool) — both export and Designer access are blocked until corrected |
+| **Enabled** | All resources (Compute, Memory, Storage) are below 90% utilization ,  safe to proceed |
+| **Disabled / greyed out** | One or more resources are at ≥ 90% ,  the tooltip tells you exactly which ones. Fix utilization first |
+| **Blocked entirely** | Storage exceeds Azure Local supported limits (400 TB/machine or 4 PB per pool) ,  both export and Designer access are blocked until corrected |
 
 When it passes the cluster type to the Designer, it maps as follows:
 
@@ -366,7 +366,7 @@ When it passes the cluster type to the Designer, it maps as follows:
 
 #### Capacity Usage for Workload
 
-This section shows four live progress bars, each updating in real time as you adjust workloads and hardware. Every bar shows a percentage fill, the current consumed value, and the total available — so you can see exactly where headroom is tight at a glance.
+This section shows four live progress bars, each updating in real time as you adjust workloads and hardware. Every bar shows a percentage fill, the current consumed value, and the total available ,  so you can see exactly where headroom is tight at a glance.
 
 | Bar | What It Measures | Detail |
 |---|---|---|
@@ -375,7 +375,7 @@ This section shows four live progress bars, each updating in real time as you ad
 | **Memory - Consumed** | Workload memory vs. available node memory | 32 GB host overhead deducted per node before calculating available memory |
 | **Usable Storage - Consumed** | Workload storage vs. usable capacity | Accounts for resiliency multiplier, Infrastructure_1 volume (256 GB reserved), and S2D repair reservation |
 
-Any bar that reaches ≥ 90% turns red and triggers a warning banner — and disables the Configure In Designer button until resolved.
+Any bar that reaches ≥ 90% turns red and triggers a warning banner ,  and disables the Configure In Designer button until resolved.
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-24%20140335.png)
 
@@ -383,7 +383,7 @@ Any bar that reaches ≥ 90% turns red and triggers a warning banner — and dis
 
 #### Estimated Power, Heat & Rack Space
 
-The second section that appears only after workloads are added. This is the Sizer doing the data centre math for you — estimating how much power your cluster will draw, how much heat it will generate, and how many rack units it will consume.
+The second section that appears only after workloads are added. This is the Sizer doing the data centre math for you ,  estimating how much power your cluster will draw, how much heat it will generate, and how many rack units it will consume.
 
 | Field | How It's Estimated |
 |---|---|
@@ -400,28 +400,28 @@ The second section that appears only after workloads are added. This is the Size
 
 #### Azure Local Instance - Sizing Notes
 
-This is one of the most underappreciated parts of the Sizer. Below the Power & Rack section sits a dynamic, auto-generated bullet list that builds a complete plain-English narrative of your sizing configuration — every decision the Sizer has made, every reservation it has applied, every warning it needs to surface. It's the Sizer explaining its own work.
+This is one of the most underappreciated parts of the Sizer. Below the Power & Rack section sits a dynamic, auto-generated bullet list that builds a complete plain-English narrative of your sizing configuration ,  every decision the Sizer has made, every reservation it has applied, every warning it needs to surface. It's the Sizer explaining its own work.
 
 The notes update live with every change. Here's what gets generated and why:
 
 | Note | What It's Telling You |
 |---|---|
-| **N+1 cluster summary** | Always first. States your node count and confirms how many nodes are assumed available during servicing — e.g. *"10 x Node Cluster — hardware requirements calculated assuming 9 nodes available during servicing / maintenance"* |
-| **Per-node hardware config** | Summarises the CPU, core count, socket count, and RAM for each node — e.g. *"Intel® Xeon® 6 (Granite Rapids) — 64 cores × 2 socket(s) = 128 physical cores, 1536 GB RAM"* |
-| **GPU config** | Only shown when GPUs are configured — e.g. *"GPU: 2 × NVIDIA A16 (64 GB VRAM, 250W TDP) per node"* |
+| **N+1 cluster summary** | Always first. States your node count and confirms how many nodes are assumed available during servicing ,  e.g. *"10 x Node Cluster ,  hardware requirements calculated assuming 9 nodes available during servicing / maintenance"* |
+| **Per-node hardware config** | Summarises the CPU, core count, socket count, and RAM for each node ,  e.g. *"Intel® Xeon® 6 (Granite Rapids) ,  64 cores × 2 socket(s) = 128 physical cores, 1536 GB RAM"* |
+| **GPU config** | Only shown when GPUs are configured ,  e.g. *"GPU: 2 × NVIDIA A16 (64 GB VRAM, 250W TDP) per node"* |
 | **Future growth buffer** | Confirms the growth % applied to all workload calculations |
 | **Storage resiliency** | Full description of the chosen mirror type, efficiency, and fault tolerance |
-| **Storage layout** | Exact disk config per node — count, type, and size — e.g. *"9× NVMe capacity disks per node (3.84 TB each)"* |
-| **vCPU overcommit ratio** | States the ratio in use — or warns if it was auto-escalated above the default 4:1 |
+| **Storage layout** | Exact disk config per node ,  count, type, and size ,  e.g. *"9× NVMe capacity disks per node (3.84 TB each)"* |
+| **vCPU overcommit ratio** | States the ratio in use ,  or warns if it was auto-escalated above the default 4:1 |
 | **ℹ️ Infrastructure_1 volume** | Flags that 256 GB usable capacity is reserved by Storage Spaces Direct and has been deducted from available storage |
-| **ℹ️ S2D Resiliency Repair** | Explains the raw storage pool reservation for Storage Spaces Direct repair jobs — up to 4 × capacity disks deducted from usable storage |
+| **ℹ️ S2D Resiliency Repair** | Explains the raw storage pool reservation for Storage Spaces Direct repair jobs ,  up to 4 × capacity disks deducted from usable storage |
 | **ℹ️ Host overhead** | Confirms 32 GB RAM per node is reserved for the Azure Local OS and management stack, excluded from workload memory |
 | **ℹ️ Network** | Reminds you that multi-node Azure Local requires RDMA-capable NICs (25 GbE+ recommended) with dedicated NICs for east-west storage traffic |
-| **ℹ️ Boot drive** | Only shown for nodes with > 768 GB RAM — recommends a 400 GB+ OS disk |
+| **ℹ️ Boot drive** | Only shown for nodes with > 768 GB RAM ,  recommends a 400 GB+ OS disk |
 | **⚠️ Warnings** | If compute, memory, or storage utilization hits ≥ 90%, explicit warnings appear here naming the overloaded resource and what to do about it |
 | **💡 AMD tip** | If you're on Intel with maxed cores and compute is ≥ 80% at baseline 4:1 ratio, the Sizer suggests switching to AMD EPYC Turin for additional core headroom |
 
-The Sizing Notes are also fully included in the Word export — so when you hand a report to a stakeholder or OEM partner, every assumption and reservation is documented in plain language, not buried in a spreadsheet.
+The Sizing Notes are also fully included in the Word export ,  so when you hand a report to a stakeholder or OEM partner, every assumption and reservation is documented in plain language, not buried in a spreadsheet.
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-24%20140411.png)
 
@@ -431,15 +431,15 @@ The Sizing Notes are also fully included in the Word export — so when you hand
 
 | Option | How It Works |
 |---|---|
-| **Save as PDF** | Triggers the browser print dialog — save to PDF from there |
+| **Save as PDF** | Triggers the browser print dialog ,  save to PDF from there |
 | **Download Word** | Generates a complete Word-format sizing report including cluster config, hardware config, requirements summary, per-node breakdown, capacity utilization, workload list, and all sizing notes |
-| **Auto-Save** | Your entire session — workloads, hardware settings, cluster config — is automatically saved to the browser. Closing and reopening the page will offer to resume where you left off |
+| **Auto-Save** | Your entire session ,  workloads, hardware settings, cluster config ,  is automatically saved to the browser. Closing and reopening the page will offer to resume where you left off |
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-24%20140424.png)
 
 ### Room for Growth & Community Momentum
 
-Since I first wrote about the Sizer, the team has added full hardware specification inputs — CPU manufacturer and generation, memory, GPU, disk count, disk capacity, and disk type — which changes this from a rough workload estimator into something much closer to a real pre-sales sizing tool. It's still Preview and you should validate with your OEM, but the pace of improvement is impressive. When the Sizer first launched, hardware inputs were minimal and it fell well short of dedicated tools like [Pieter Teeling's Sizer](https://sizer.teeling.ai/) (part of his broader Azure Local work at [teeling.ai](https://www.teeling.ai/)). Recent updates have closed those gaps, with full CPU, memory, GPU, and disk specification inputs now in place, it's genuinely comparable for most pre-sales Azure Local sizing scenarios.
+Since I first wrote about the Sizer, the team has added full hardware specification inputs ,  CPU manufacturer and generation, memory, GPU, disk count, disk capacity, and disk type ,  which changes this from a rough workload estimator into something much closer to a real pre-sales sizing tool. It's still Preview and you should validate with your OEM, but the pace of improvement is impressive. When the Sizer first launched, hardware inputs were minimal and it fell well short of dedicated tools like [Pieter Teeling's Sizer](https://sizer.teeling.ai/) (part of his broader Azure Local work at [teeling.ai](https://www.teeling.ai/)). Recent updates have closed those gaps, with full CPU, memory, GPU, and disk specification inputs now in place, it's genuinely comparable for most pre-sales Azure Local sizing scenarios.
 
 ---
 ---
@@ -484,7 +484,7 @@ The heart of this guide is helping you choose between two connectivity architect
 - Options range from no proxy/no Arc Gateway (simplest) to proxy + Arc Gateway (best security)
 
 **Private Path** (coming soon):
-- Traffic routes through ExpressRoute or Site-to-Site VPN—no public internet exposure
+- Traffic routes through ExpressRoute or Site-to-Site VPN, no public internet exposure
 - Requires Azure Firewall Explicit Proxy hosted in Azure
 - Arc Gateway required for HTTPS traffic
 - Single validated configuration (no mix-and-match options)
@@ -505,10 +505,10 @@ The guide goes into excellent detail on Private Endpoints configuration for:
 
 - Azure Key Vault (keep public during deployment, restrict after)
 - Azure Storage/Blob (required for 2-node cloud witness)
-- Azure Container Registry (no wildcards supported—specific FQDNs required)
+- Azure Container Registry (no wildcards supported, specific FQDNs required)
 - Azure Site Recovery (two routing options with SSL inspection considerations)
 
-It also warns about reserved IP ranges for Arc Resource Bridge (10.244.0.0/16, 10.96.0.0/12)—if your private endpoints overlap these ranges, traffic will fail.
+It also warns about reserved IP ranges for Arc Resource Bridge (10.244.0.0/16, 10.96.0.0/12), if your private endpoints overlap these ranges, traffic will fail.
 
 ### Configuration Scripts
 
@@ -516,7 +516,7 @@ The guide includes ready-to-use PowerShell scripts for all four Public Path regi
 
 ### My Take
 
-Scanning through this Knowledge section, I'm impressed by the depth. It's not trying to cover everything—it's doing one topic extremely well. For anyone wrestling with Azure Local networking decisions, especially around Arc Gateway, private connectivity, and firewall rules, this is genuinely useful documentation.
+Scanning through this Knowledge section, I'm impressed by the depth. It's not trying to cover everything, it's doing one topic extremely well. For anyone wrestling with Azure Local networking decisions, especially around Arc Gateway, private connectivity, and firewall rules, this is genuinely useful documentation.
 
 I'd love to see Odin expand this approach to other complex topics (storage architecture, SDN configuration, identity options), but as a focused v1.0 on outbound connectivity, it delivers.
 
@@ -524,7 +524,7 @@ I'd love to see Odin expand this approach to other complex topics (storage archi
 
 ## Odin Designer (Main Configuration Wizard)
 
-Last but not least—and what I think is the most important part of Odin—is the **Designer**!
+Last but not least, and what I think is the most important part of Odin, is the **Designer**!
 
 > ***The following section I have tried to keep up to date since I frist started to use Odin.  However the team updating this tool is fixing and updating recommenations very fast and things that we had recommened to change have already been changed.***
 
@@ -534,11 +534,11 @@ The tool opens with a statement about what Odin is:
 
 > Odin, the Norse god embodying strategic thinking and architecture, is your guide for Azure Local deployments. This Optimal Deployment and Infrastructure Navigator provides a decision tree interface to select an Azure Local deployment type, and instance design using validated architecture and network configuration.
 
-From my viewpoint—someone who already has a lot of the deployment automated and pretty decent documentation built around design and implementation—I was very impressed with the Designer out of the box. I ran into some UI issues, but those can be fixed. Since this is not fully released and not an official Microsoft product, it's something that can be of use for those just starting their journey with Azure Local.
+From my viewpoint, someone who already has a lot of the deployment automated and pretty decent documentation built around design and implementation, I was very impressed with the Designer out of the box. I ran into some UI issues, but those can be fixed. Since this is not fully released and not an official Microsoft product, it's something that can be of use for those just starting their journey with Azure Local.
 
 That said, whoever uses this tool needs a good understanding and core knowledge of Hyper-V, Storage Spaces Direct, and the basics of what Azure Local is, what Software Defined Networking is, Active Directory, and so on.
 
-**There's also a big disclaimer at the top of the page—please read it!**
+**There's also a big disclaimer at the top of the page, please read it!**
 
 > Disclaimer: This tool is provided as-is, without Microsoft support. Odin is an experimental project that accelerates skills and knowledge ramp up for Azure Local, and helps IT architects validate cluster design configurations.
 
@@ -570,7 +570,7 @@ Options include:
 - Azure Government
 - Azure China
 
-I don't know if Azure Local is even supported in Azure China yet—it may be in Private Preview. Azure Government was announced not long ago but is only in one region at this time. Azure Public only has two US regions available for Azure Local currently.
+I don't know if Azure Local is even supported in Azure China yet, it may be in Private Preview. Azure Government was announced not long ago but is only in one region at this time. Azure Public only has two US regions available for Azure Local currently.
 
 I'll pick **Azure Commercial** for Step 2.
 
@@ -578,16 +578,16 @@ I'll pick **Azure Commercial** for Step 2.
 
 ### Section 03: Region
 
-As soon as I select Azure Commercial, step three becomes active. This is where I pick what region I'm placing my Azure Local resources in. I'll choose **South Central US**—the only other US region is East US at this time.
+As soon as I select Azure Commercial, step three becomes active. This is where I pick what region I'm placing my Azure Local resources in. I'll choose **South Central US**, the only other US region is East US at this time.
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20230832.png)
 
 ### Section 04: Cluster Configuration
 
 Options include:
-- **Hyperconverged Low Capacity** — [Still in preview](https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2)
-- **Hyperconverged** — Standard configuration
-- **Hyperconverged Rack Aware** — [Just went GA in build 2601](https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview)
+- **Hyperconverged Low Capacity** ,  [Still in preview](https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2)
+- **Hyperconverged** ,  Standard configuration
+- **Hyperconverged Rack Aware** ,  [Just went GA in build 2601](https://learn.microsoft.com/azure/azure-local/concepts/rack-aware-cluster-overview)
 
 I'm selecting **Hyperconverged**.
 
@@ -601,7 +601,7 @@ For this blog, I'm picking **3 nodes**. Most of my clusters have been 2-node dep
 
 ### Section 05.5: Cloud Witness
 
-For two nodes, a witness is a must. However, with 3 or more nodes you don't technically have to have a witness. I don't understand why not—in my mind, even a 3-node cluster should have a witness. In fact, my 4-node clusters still use a witness.
+For two nodes, a witness is a must. However, with 3 or more nodes you don't technically have to have a witness. I don't understand why not, in my mind, even a 3-node cluster should have a witness. In fact, my 4-node clusters still use a witness.
 
 More info on [cluster witnesses](https://learn.microsoft.com/windows-server/failover-clustering/deploy-quorum-witness).
 
@@ -613,7 +613,7 @@ Here we have a big decision that should have already been made before you even s
 
 For some people, the cost of 2 top-of-rack switches that meet Microsoft's networking requirements can lead to a big price tag for this project. Hence why you can do **switchless**.
 
-Switchless doesn't mean you don't need switches—you still need switches for management and compute traffic, but those requirements are not as rigid. Switchless just means the storage is connected on network adapters that are connected directly between nodes and not going through a switch. This is great for 2 or 3 node solutions. Some do it with 4, but more nodes means more network adapters, which means higher cost.
+Switchless doesn't mean you don't need switches, you still need switches for management and compute traffic, but those requirements are not as rigid. Switchless just means the storage is connected on network adapters that are connected directly between nodes and not going through a switch. This is great for 2 or 3 node solutions. Some do it with 4, but more nodes means more network adapters, which means higher cost.
 
 Something to keep in mind is growth. If you're going to scale out these clusters past 3 nodes, I would stay with storage switched. If you don't and have to grow later, this means a redeployment of your cluster.
 
@@ -629,7 +629,7 @@ Normally, people order either Intel or Nvidia network adapters. For Dell, as an 
 
 In most cases, we just use the Nvidia ConnectX adapters giving me 4 ports. For this demo, because I can, I'm selecting **6 ports**.
 
-Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable—highly important for storage intents.
+Once I select 6 ports, section 7 expands giving us our port configuration. Here is where we can declare the port speeds and if they are RDMA capable, highly important for storage intents.
 
 I did some custom edits on Port 1 and Port 2. Those two ports represent the two ports on my Broadcom 1 Gb network adapters. The rest I leave as 25 GbE even though my switch and cards can handle 100 GbE. 
 
@@ -652,7 +652,7 @@ Immediately I see a **NOT SUPPORTED** message pop up:
 
 > At least 2 RDMA-enabled port(s) must be assigned to Storage traffic (SMB). Update Step 07 Port Configuration so RDMA is enabled on the ports used for Storage traffic.
 
-This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine—those two ports are going to be for management traffic anyway.
+This is expected since I marked my Embedded NIC 1 and Embedded NIC 2 as not being RDMA compatible. This is fine, those two ports are going to be for management traffic anyway.
 
 Next I play the match game of ports with intents:
 
@@ -664,21 +664,21 @@ For HA and resiliency, I'll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switc
 For HA and resiliency, I'll have cabled Slot 3 Port 1 and Slot 6 Port 2 to Switch 00, and Slot 3 Port 2 and Slot 6 Port 1 to Switch 01. That way if a card goes out or a switch goes down, I still have physical connectivity between my nodes and my top-of-rack switch. Also, with our Dell AX-760 the Network Adapter in Slot 6 is upside down. For physical cabling, this is important to know.
 ![](/img/azurelocal_odin/Screenshot%202026-02-08%20215416.png)
 
-**Why do I use three intents?** In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases—like where I work—my company manages the management network, but the customer manages everything on top of the hypervisors. We've also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.
+**Why do I use three intents?** In most cases I normally just do 2 (compute/management + storage) and sometimes just 1 fully converged intent. But in some cases, like where I work, my company manages the management network, but the customer manages everything on top of the hypervisors. We've also deployed 3 intents where we had management/compute, storage, and then another separate compute intent.
 
-Other examples: you may have requirements to physically separate your networks for various reasons—legacy backup networks, different switches, and so on.
+Other examples: you may have requirements to physically separate your networks for various reasons, legacy backup networks, different switches, and so on.
 
-The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014—I'm not sure why Microsoft defaults to 1514.
-The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always set my jumbo frames to 9014—I'm not sure why Microsoft defaults to 1514.
+The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always bump my jumbo frames to 9014, I'm not sure why Microsoft defaults to 1514.
+The last part of Section 08 covers **overrides** on those intents. Management and compute intents don't really need RoCEv2 or iWARP. Jumbo frames may come into play with compute. I always set my jumbo frames to 9014, I'm not sure why Microsoft defaults to 1514.
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20234244.png)
 
-For the storage intent, note the VLAN section. Since we're using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch—basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you'd see 4 storage VLANs: 711, 712, 713, and 714.
+For the storage intent, note the VLAN section. Since we're using only two ports for the storage intent, we only need 2 storage VLANs. These VLANs are not routable past the top-of-rack switch, basically just east/west on those switches. Microsoft defaults to VLAN 711 and 712. In a fully converged solution with 4 ports for storage/compute/management, you'd see 4 storage VLANs: 711, 712, 713, and 714.
 
 Last for Section 08 is **Storage Auto IP**. In most cases, leave this default to enabled. There isn't really a need to statically assign the storage port IPs. Microsoft uses 10.71.1.x for port 1 and 10.71.2.x for port 2. [More on custom storage IPs](https://learn.microsoft.com/azure/azure-local/plan/cloud-deployment-network-considerations#custom-ips-for-storage).
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20234546.png)
 
-*Before we move to Section 09, check the sidebar on the right—our progress is now 40% (8/20 decisions made) and we can see some of the configuration populated.*
+*Before we move to Section 09, check the sidebar on the right, our progress is now 40% (8/20 decisions made) and we can see some of the configuration populated.*
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20234638.png)
 
@@ -734,7 +734,7 @@ There's a **Compare** button that compares Public Path vs. Private Path:
 
 ---
 
-For this blog I'm selecting **Public Internet**. The Private Connection (ExpressRoute/VPN) option shows "Coming Soon—Feature not available yet."
+For this blog I'm selecting **Public Internet**. The Private Connection (ExpressRoute/VPN) option shows "Coming Soon, Feature not available yet."
 
 ![](/img/azurelocal_odin/Screenshot%202026-02-04%20235159.png)
 
@@ -803,7 +803,7 @@ I'll choose **Disabled** for now. Some private endpoints are not yet supported w
 
 ### Section 13: Management Connectivity
 
-Here we pick static or DHCP-assigned IP addresses for our management network. I use **Static**—always have and won't change. If you choose DHCP, make sure you have a reservation set. You do not want your node IP addresses changing. That is bad!
+Here we pick static or DHCP-assigned IP addresses for our management network. I use **Static**, always have and won't change. If you choose DHCP, make sure you have a reservation set. You do not want your node IP addresses changing. That is bad!
 
 When you click Static, it will need the node names and the node IP (CIDR) addresses.
 
@@ -827,7 +827,7 @@ This is a range of IPs needed for cluster infrastructure. One IP is used for the
 
 This is where you tell the deployment to create the infrastructure volume and then a user storage volume for each physical machine. Basically, it creates a Cluster Shared Volume named "Infrastructure" (about 250 GB), and if you select **Express**, in my 3-node case it will create 3 CSVs with generic names (UserStorage01, 02, 03) across the available storage in your storage pool.
 
-For some this is good. I don't like this—I prefer to create my own storage after the cluster is deployed, so I'll select **InfraOnly**.
+For some this is good. I don't like this, I prefer to create my own storage after the cluster is deployed, so I'll select **InfraOnly**.
 
 You also have a choice to keep existing storage, which means if these nodes had been a cluster and you're redeploying for some reason, that data will be preserved.
 
@@ -836,10 +836,10 @@ You also have a choice to keep existing storage, which means if these nodes had 
 ### Section 17: Active Directory
 
 Options:
-- **Active Directory Domain Services (AD)** — Traditional identity
-- **Azure Key Vault for Identity (AD-less)** — Local identity provider, still in preview
+- **Active Directory Domain Services (AD)** ,  Traditional identity
+- **Azure Key Vault for Identity (AD-less)** ,  Local identity provider, still in preview
 
-I have deployed the Key Vault option and it seems to work. This helps if you have remote sites without AD infrastructure—you still need DNS but no AD.
+I have deployed the Key Vault option and it seems to work. This helps if you have remote sites without AD infrastructure, you still need DNS but no AD.
 
 For this blog, I'll pick **Active Directory**. Once selected, the section expands asking for:
 - Active Directory name (not your Entra ID tenant)
@@ -854,7 +854,7 @@ For this blog, I'll pick **Active Directory**. Once selected, the section expand
 
 ### Section 18: Security Configuration
 
-In most cases, select **Recommended**. I do not—I customize mine.
+In most cases, select **Recommended**. I do not, I customize mine.
 
 Why? Because I don't like WDAC!
 
@@ -929,9 +929,9 @@ Section A2 will ask for the following placeholder values:
 Once entered, click **Update Parameters JSON** and it will update the JSON file that can be seen in Section A5.
 
 - **Section A3**: Deploy to Azure button and links to sample ARM templates
-- **Section A4**: Deployment Script Generation—export PowerShell scripts, Azure CLI scripts, and links to Bicep and Terraform examples
-- **Section A5**: The Parameter file JSON—copy and paste into VS Code and replace values as needed
-- **Section A6**: Integration Features—export Azure DevOps Pipeline template, GitHub Actions workflow, and a section about REST API for Automation (coming soon)
+- **Section A4**: Deployment Script Generation, export PowerShell scripts, Azure CLI scripts, and links to Bicep and Terraform examples
+- **Section A5**: The Parameter file JSON, copy and paste into VS Code and replace values as needed
+- **Section A6**: Integration Features, export Azure DevOps Pipeline template, GitHub Actions workflow, and a section about REST API for Automation (coming soon)
 
 ### Designer: Final Thoughts
 
@@ -941,12 +941,12 @@ The generic port naming is frustrating (I really want to see adapters and their 
 
 **Things I'd like to see changed or added:**
 
-1. **Export as Markdown** -  **Implemented In Recent Release** — Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.
+1. **Export as Markdown** -  **Implemented In Recent Release** ,  Right now you can only export as Word or PDF. Markdown export would be much more useful for those of us who work in code-based documentation systems.
 
-2. **Diagram export as Draw.io or Visio** — The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (**Coming Soon!**)
-3. **Network Adapters with port mapping** — **Implemented In Recent Release** -  Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.
-4. **Network Adapter names** — **Implemented In Recent Release**  - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.
-5. **ARM template needs more work** — The ARM template export is nice, but there's still a lot of manual work to do after export. More complete templates or better placeholders would help.
+2. **Diagram export as Draw.io or Visio** ,  The diagrams are nice, but SVG-only export is limiting. Draw.io or Visio formats would allow for easier editing and integration into existing documentation. (**Coming Soon!**)
+3. **Network Adapters with port mapping** ,  **Implemented In Recent Release** -  Show which port is on which network adapter. This is important for the ARM template and for anyone cabling a cluster.
+4. **Network Adapter names** ,  **Implemented In Recent Release**  - Let us name the adapters, not just Port 1, Port 2, etc. This is also important for deployment and makes the generated documentation much more useful.
+5. **ARM template needs more work** ,  The ARM template export is nice, but there's still a lot of manual work to do after export. More complete templates or better placeholders would help.
 
 ---
 
@@ -965,8 +965,8 @@ The generic port naming is frustrating (I really want to see adapters and their 
 | Security Config | Good | Secure defaults + customization |
 | Reporting | Good | Design docs with decision logic |
 | **Limitations** |  |  |
-| Low Capacity Clusters | Caution | [Not GA](https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2)—verify before production |
-| Network Adapter ID | Gap | Generic ports only—maintain your own mapping |
+| Low Capacity Clusters | Caution | [Not GA](https://learn.microsoft.com/azure/azure-local/concepts/system-requirements-small-23h2), verify before production |
+| Network Adapter ID | Gap | Generic ports only, maintain your own mapping |
 | ExpressRoute/VPN | Coming Soon | Private connectivity not yet available |
 | Private Endpoints | Limited | Arc Resource Bridge not supported |
 | SDN Features | Limited | Only 2 of 5 with Arc-managed SDN |
@@ -1002,12 +1002,12 @@ The generic port naming is frustrating (I really want to see adapters and their 
 
 ## Conclusion
 
-Odin for Azure Local is a valuable community tool for planning and learning, but remember its experimental status. The Sizer, Knowledge Base, and Designer work together to provide a comprehensive planning experience—from capacity estimation to connectivity architecture to configuration generation.
+Odin for Azure Local is a valuable community tool for planning and learning, but remember its experimental status. The Sizer, Knowledge Base, and Designer work together to provide a comprehensive planning experience, from capacity estimation to connectivity architecture to configuration generation.
 
 It's not perfect. Generic adapter naming is frustrating, SDN guidance needs clarity, and export capabilities are limited. But it's free, actively maintained (version 0.12.5), and provides a structured approach to Azure Local deployment planning.
 
-Use it as one tool in your planning toolkit—not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
-Use it as one tool in your planning toolkit—not as the sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
+Use it as one tool in your planning toolkit, not as sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
+Use it as one tool in your planning toolkit, not as the sole source of truth, but as a way to organize thinking and generate baseline documentation. The Network Intent visualization and Knowledge Base alone make it worth exploring.
 **Tool URL**: [azure.github.io/odinforazurelocal](https://azure.github.io/odinforazurelocal/)
 
 ---
