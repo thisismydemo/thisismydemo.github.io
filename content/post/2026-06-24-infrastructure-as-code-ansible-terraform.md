@@ -1,5 +1,5 @@
 ---
-title: "Infrastructure as Code with Ansible and Terraform"
+title: Infrastructure as Code with Ansible and Terraform
 description: Ansible, Terraform, and PowerShell for Hyper-V IaC — three approaches with honest maturity assessments.
 date: 2026-04-04T16:00:00.000Z
 series: The Hyper-V Renaissance
@@ -20,7 +20,7 @@ tags:
     - Azure DevOps
     - PowerShell
     - Windows Server
-lastmod: 2026-04-04T17:48:14.545Z
+lastmod: 2026-04-05T01:30:46.196Z
 ---
 
 Post 19 built an automation practice around PowerShell — modules, DSC v3, CI/CD pipelines. For many organizations, that's enough. PowerShell is native, it's free, it covers 100% of Hyper-V functionality, and your Windows team already knows it.
@@ -29,7 +29,19 @@ But some organizations have standardized on Ansible for configuration management
 
 This final post in the **Hyper-V Renaissance** series provides an honest assessment of three IaC approaches for Hyper-V: Ansible alone, Terraform with PowerShell, and Terraform with Ansible. We'll cover what each tool can and cannot do, how mature the Hyper-V integration is, how to build pipelines for each, and when to choose which.
 
-> **Repository:** Ansible playbook templates, Terraform module scaffolding, and pipeline examples are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform). Automation files will be developed iteratively — the directory structure is ready for contributions.
+> **Repository:** The full Post 20 companion deliverables are in the [Post 20 folder](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform), including the [README](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/README.md), the [execution walkthrough](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/EXECUTION-WALKTHROUGH.md), [Ansible examples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/ansible), [Terraform examples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/terraform), [PowerShell helpers](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/scripts), and [pipeline samples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/pipelines).
+
+### Companion Deliverables
+
+If you want to use the code from this post directly, start with these files in the toolkit:
+
+- **Orientation and run order:** [README.md](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/README.md) and [EXECUTION-WALKTHROUGH.md](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/EXECUTION-WALKTHROUGH.md)
+- **Ansible host configuration:** [ansible/playbooks/configure-hyperv-host.yml](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/ansible/playbooks/configure-hyperv-host.yml)
+- **Ansible VM provisioning example:** [ansible/playbooks/provision-vm.yml](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/ansible/playbooks/provision-vm.yml)
+- **Terraform lab environment:** [terraform/environments/lab](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/terraform/environments/lab)
+- **Terraform reusable VM module:** [terraform/modules/hyperv-vm](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/terraform/modules/hyperv-vm)
+- **PowerShell helpers:** [Initialize-HyperVIacHost.ps1](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/scripts/Initialize-HyperVIacHost.ps1) and [Invoke-HyperVGuestBootstrap.ps1](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/scripts/Invoke-HyperVGuestBootstrap.ps1)
+- **Decision docs:** [IAC-PATTERNS.md](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/IAC-PATTERNS.md) and [TOOLING-DECISION-GUIDE.md](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/TOOLING-DECISION-GUIDE.md)
 
 ---
 
@@ -245,13 +257,13 @@ Because the Hyper-V provider has gaps, the practical pattern is:
 resource "hyperv_machine_instance" "web_server" {
   name       = "vm-web-prod-sea01-001"
   generation = 2
-  
+
   processor { count = 4 }
   memory {
     startup = 4096
     dynamic_memory { enabled = true; minimum = 2048; maximum = 8192 }
   }
-  
+
   hard_disk { path = "C:\\ClusterStorage\\Volume1\\VHDs\\vm-web-prod-sea01-001.vhdx" }
   network_adapter { switch_name = "vsw-set-prod" }
 
@@ -427,6 +439,8 @@ Now go build something.
 
 ## Resources
 
+- **Post 20 Toolkit Folder:** [github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform)
+- **Execution Walkthrough:** [EXECUTION-WALKTHROUGH.md](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/EXECUTION-WALKTHROUGH.md)
 - **Series Repository:** [github.com/thisismydemo/hyper-v-renaissance](https://github.com/thisismydemo/hyper-v-renaissance)
 
 ### Ansible Documentation
