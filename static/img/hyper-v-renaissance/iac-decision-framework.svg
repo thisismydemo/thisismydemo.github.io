@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Segoe UI, Arial, sans-serif">
-  <rect width="720" height="420" fill="#f8fafc" rx="8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="720" height="400" fill="#f8fafc" rx="8"/>
   <text x="360" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e293b">IaC Decision Framework for Hyper-V</text>
 
   <!-- Start -->
@@ -61,29 +61,28 @@
   <!-- Terraform path -->
   <rect x="505" y="115" width="175" height="50" rx="5" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
   <text x="592" y="137" text-anchor="middle" font-size="11" font-weight="700" fill="#6b21a8">Terraform</text>
-  <text x="592" y="153" text-anchor="middle" font-size="9" fill="#64748b">taliesins/hyperv or azurerm</text>
+  <text x="592" y="153" text-anchor="middle" font-size="9" fill="#64748b">taliesins/hyperv provider</text>
 
   <line x1="592" y1="165" x2="592" y2="190" stroke="#64748b" stroke-width="1"/>
   <rect x="505" y="190" width="175" height="36" rx="18" fill="#475569"/>
-  <text x="592" y="213" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">On Azure Local?</text>
+  <text x="592" y="213" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Need config management?</text>
 
   <line x1="545" y1="226" x2="530" y2="255" stroke="#64748b" stroke-width="1"/>
   <line x1="640" y1="226" x2="655" y2="255" stroke="#64748b" stroke-width="1"/>
-  <text x="530" y="248" text-anchor="middle" font-size="9" font-weight="600" fill="#64748b">No</text>
-  <text x="655" y="248" text-anchor="middle" font-size="9" font-weight="600" fill="#7c3aed">Yes</text>
+  <text x="530" y="248" text-anchor="middle" font-size="9" font-weight="600" fill="#64748b">PS/DSC only</text>
+  <text x="655" y="248" text-anchor="middle" font-size="9" font-weight="600" fill="#64748b">Full stack</text>
 
   <rect x="480" y="255" width="110" height="40" rx="5" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.5"/>
   <text x="535" y="278" text-anchor="middle" font-size="10" font-weight="600" fill="#6b21a8">TF + PS/DSC</text>
-  <text x="535" y="290" text-anchor="middle" font-size="9" fill="#64748b">Community provider</text>
+  <text x="535" y="290" text-anchor="middle" font-size="9" fill="#64748b">Provision + config</text>
 
-  <rect x="600" y="255" width="110" height="40" rx="5" fill="#faf5ff" stroke="#7c3aed" stroke-width="2"/>
-  <text x="655" y="278" text-anchor="middle" font-size="10" font-weight="700" fill="#6b21a8">TF AzureRM</text>
-  <text x="655" y="290" text-anchor="middle" font-size="9" fill="#64748b">Enterprise-grade</text>
+  <rect x="600" y="255" width="110" height="40" rx="5" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="655" y="278" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">TF + Ansible</text>
+  <text x="655" y="290" text-anchor="middle" font-size="9" fill="#64748b">Full IaC stack</text>
 
   <!-- Bottom summary -->
-  <rect x="20" y="320" width="680" height="80" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="360" y="342" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">The Bottom Line</text>
-  <text x="360" y="362" text-anchor="middle" font-size="10" fill="#1e293b">PowerShell + DSC v3 covers 100% of Hyper-V. Add tools only when they solve a problem you have.</text>
-  <text x="360" y="380" text-anchor="middle" font-size="10" fill="#64748b">Ansible → multi-platform config management. Terraform → declarative provisioning with state. Both → large, complex environments.</text>
-  <text x="360" y="396" text-anchor="middle" font-size="10" font-style="italic" fill="#475569">Don't add tools for the sake of adding tools.</text>
+  <rect x="20" y="315" width="680" height="68" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="360" y="337" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">The Bottom Line</text>
+  <text x="360" y="357" text-anchor="middle" font-size="10" fill="#1e293b">PowerShell + DSC v3 covers 100% of Hyper-V. Add tools only when they solve a problem you have.</text>
+  <text x="360" y="375" text-anchor="middle" font-size="10" font-style="italic" fill="#475569">Don't add tools for the sake of adding tools.</text>
 </svg>

@@ -230,7 +230,7 @@ The community provider `taliesins/hyperv` (v1.2.1, February 2024) connects to Hy
 
 **The honest assessment:** This is a community project with 259 GitHub stars and no corporate backing. Recent releases are dependency updates, not feature additions. It's functional for basic VM lifecycle (create, modify, destroy) but it is not a production-grade, enterprise-supported provider. **Test thoroughly in your environment before relying on it.**
 
-For organizations heavily invested in Terraform, the `azurerm` provider on Azure Local is the enterprise-grade path — Azure Verified Modules exist for `azurestackhci-virtualmachineinstance`. But that requires Azure Local, not standalone Hyper-V.
+**For organizations also running Azure Local** (covered in Post 18), the `azurerm` provider offers an enterprise-grade Terraform experience via Arc. But this series focuses on standalone Hyper-V — and for that, the community provider plus PowerShell is the practical path.
 
 ### The Pattern: Terraform Provisions, PowerShell/DSC Configures
 
@@ -293,12 +293,12 @@ For on-prem Hyper-V environments without Azure, **MinIO** (S3-compatible object 
 - **Your team already uses Terraform** for cloud or other infrastructure — extend it to on-prem rather than maintaining separate tooling
 - **Declarative VM lifecycle** — you want "these 50 VMs should exist" expressed in code, with Terraform handling creates, updates, and destroys
 - **State tracking matters** — you need to know exactly what Terraform created and destroy it cleanly when decommissioning
-- **Combined with Azure Local** — the `azurerm` provider on Azure Local is enterprise-grade Terraform for Hyper-V via Arc
+- **Combined with Arc-enabled SCVMM** — Terraform can provision VMs via the Azure Arc control plane using ARM/Bicep patterns (Post 17)
 
 ### When Terraform Is Not the Best Fit
 
 - **Configuration management** — Terraform provisions resources but doesn't manage ongoing configuration. You need Ansible or DSC for drift remediation.
-- **Pure Hyper-V (no Azure Local)** — the community provider is functional but not enterprise-grade. PowerShell provides more complete coverage.
+- **Advanced Hyper-V features** — the community provider doesn't cover clustering, CSVs, or live migration. PowerShell provides more complete coverage.
 - **Cluster operations** — the provider doesn't support clustering, CSVs, or live migration. PowerShell is required.
 - **Small environments** — Terraform's state management overhead isn't justified for 2-5 hosts and a handful of VMs.
 
@@ -394,7 +394,6 @@ All pipelines use self-hosted runners with network access to on-prem Hyper-V hos
 | **Existing Ansible investment** | Ansible with `microsoft.hyperv` + `dsc3` | Extend existing tooling, single config management platform |
 | **Existing Terraform investment** | Terraform + PowerShell/DSC v3 | Terraform provisions, PowerShell configures, familiar workflow |
 | **DevOps team, multi-platform** | Terraform + Ansible | Terraform for provisioning, Ansible for configuration, both mature |
-| **Azure Local deployment** | Terraform AzureRM provider | Enterprise-grade, Azure Verified Modules, full Arc integration |
 | **Small environment (< 10 hosts)** | PowerShell alone | Simplest option, no overhead, direct access to everything |
 | **Large environment (50+ hosts)** | Ansible or Terraform + Ansible | Scale requires automation platforms with inventory management and RBAC |
 
@@ -404,7 +403,7 @@ All pipelines use self-hosted runners with network access to on-prem Hyper-V hos
 
 **Ansible** is the strongest third-party option. Mature Windows support, the new `microsoft.hyperv` collection, the `dsc3` module bridging to DSC v3, and production-ready WinRM connectivity make it a solid choice — especially if you already use Ansible.
 
-**Terraform** is functional but limited for standalone Hyper-V. The community provider handles basic VM lifecycle but lacks cluster operations and advanced features. It's most valuable when combined with PowerShell/DSC for configuration, or when you're on Azure Local using the enterprise-grade `azurerm` provider.
+**Terraform** is functional but limited for Hyper-V. The community provider handles basic VM lifecycle but lacks cluster operations and advanced features. It's most valuable when combined with PowerShell/DSC for the configuration layer that the provider doesn't cover.
 
 **Don't add tools for the sake of adding tools.** If PowerShell covers your needs, use PowerShell. Add Ansible when you need cross-platform configuration management. Add Terraform when you need declarative provisioning with state tracking. Each tool should solve a problem you actually have, not a problem you might have someday.
 
