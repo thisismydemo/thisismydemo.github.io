@@ -4,7 +4,7 @@ description: Practical guidance on repurposing existing VMware hardware for Hype
 date: 2026-03-22T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 4
-series_total: 18
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -26,7 +26,7 @@ tags:
     - Migration
     - Server Hardware
     - Three-Tier Architecture
-lastmod: 2026-04-04T22:24:56.712Z
+lastmod: 2026-04-05T02:14:44.704Z
 ---
 The servers sitting in your datacenter right now, the Dell PowerEdges, the HPE ProLiants, and the Lenovo ThinkSystems, were designed to run hypervisors, not a specific hypervisor. Any hypervisor.
 

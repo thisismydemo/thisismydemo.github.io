@@ -4,7 +4,7 @@ description: Comprehensive monitoring and observability strategy covering SCOM, 
 date: 2026-03-27T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 9
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -24,7 +24,7 @@ tags:
     - Grafana
     - Azure Monitor
     - PowerShell
-lastmod: 2026-04-04T22:28:25.877Z
+lastmod: 2026-04-05T02:14:44.689Z
 ---
 
 You built the cluster. You connected the storage. You migrated the VMs. Everything's running.
@@ -32,6 +32,8 @@ You built the cluster. You connected the storage. You migrated the VMs. Everythi
 Now how do you know it's healthy at 3am?
 
 Moving from "it works in the lab" to "it runs in production" isn't about adding more VMs. It's about proving your environment is healthy, knowing when it's not, and understanding *why* before your users file a ticket. That requires observability — not a dashboard you glance at, but a system that collects, correlates, and alerts on the data your infrastructure produces.
+
+That matters even more if you're reading this series because VMware Cloud Foundation pricing forced a rethink, but Azure Local plus new validated hardware still doesn't make financial sense. Hyper-V on hardware you already own only wins the business case if you can operate it with the same discipline you expected from the platform you left.
 
 In this ninth post of the **Hyper-V Renaissance** series — and the first in the Production Architecture section — we'll define what observability means for a Hyper-V environment, map the metrics and logs that matter, and walk through the monitoring platforms that fit on-premises deployments at every scale.
 

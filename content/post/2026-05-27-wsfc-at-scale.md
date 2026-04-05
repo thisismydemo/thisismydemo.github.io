@@ -1,10 +1,10 @@
 ---
-title: "WSFC at Scale"
+title: WSFC at Scale
 description: Scaling Windows Server Failover Clustering — cluster sets, CAU, stretched clusters, anti-affinity, and 64-node architecture.
 date: 2026-04-03T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 16
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -22,12 +22,14 @@ tags:
     - Cluster-Aware Updating
     - Stretched Clusters
     - Scale
-lastmod: 2026-05-27T00:00:00.000Z
+lastmod: 2026-04-05T02:14:44.712Z
 ---
 
 A two-node cluster is an architecture decision. A 64-node cluster is a lifestyle choice.
 
 Posts 5 through 8 built your first cluster. Posts 9 through 15 hardened, monitored, secured, and protected it. This post asks the question that comes next: what happens when you need more?
+
+Scaling Hyper-V is also where the economics need to stay honest. The goal is not to recreate every premium reference architecture just because it exists. The goal is to scale a platform that is already cheaper than the VCF path and often more flexible than an Azure Local design that assumes new hardware and a new recurring bill.
 
 Windows Server 2025 supports up to 64 nodes and 8,000 running VMs per cluster. Those are impressive numbers, but they're maximums, not recommendations. The real architectural questions are: when does a single cluster become unwieldy? When do you split into multiple clusters? How do you manage patching across 64 nodes without downtime? How do you keep domain controllers on separate hosts from each other?
 

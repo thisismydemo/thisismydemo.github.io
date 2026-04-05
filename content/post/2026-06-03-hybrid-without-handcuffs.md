@@ -1,10 +1,10 @@
 ---
-title: "Hybrid Without the Handcuffs"
+title: Hybrid Without the Handcuffs
 description: Azure Arc services on Hyper-V — get Azure Local capabilities without the subscription lock-in.
 date: 2026-04-03T12:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 17
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -23,18 +23,18 @@ tags:
     - Azure Monitor
     - Windows Server
     - PowerShell
-lastmod: 2026-04-04T17:48:14.462Z
+lastmod: 2026-04-05T02:14:44.716Z
 ---
 
 "But what about all the cloud stuff Azure Local gets?"
 
 It's the first objection every decision-maker raises when you propose traditional Hyper-V over Azure Local. Azure Local comes with AKS, Azure Virtual Desktop, Azure Portal VM management, Azure Monitor, Azure Update Manager, Defender for Cloud — all integrated. How do you compete with that on standalone Hyper-V?
 
-The answer: **you don't need Azure Local to get most of those services.** Azure Arc brings the same Azure management plane to your existing Hyper-V infrastructure — selectively, incrementally, and without a per-core-per-month platform tax. You pick the services that add value. You skip the ones that don't. You never commit to a subscription you can't walk away from.
+The answer: **you don't need Azure Local to get most of those services.** Azure Arc brings much of the same Azure management plane to your existing Hyper-V infrastructure — selectively, incrementally, and without taking on the Azure Local platform fee just to reach the Azure control plane. You pick the services that add value. You skip the ones that don't. You keep control over where the monthly bill starts.
 
 This is the post that closes the gap. In this seventeenth post of the **Hyper-V Renaissance** series, we'll map every Azure service available on Azure Local to its equivalent on Arc-enabled Hyper-V, compare costs honestly, and show you exactly what you gain and what you give up.
 
-> **Repository:** Arc enrollment scripts, cost comparison calculators, and service configuration guides are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-17-hybrid).
+> **Repository:** Arc enrollment scripts, cost comparison calculators, and service configuration guides are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-17-hybrid-without-handcuffs).
 
 ---
 

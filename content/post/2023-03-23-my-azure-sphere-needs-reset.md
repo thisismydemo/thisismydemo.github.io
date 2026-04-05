@@ -13,6 +13,7 @@ categories:
 lastmod: 2023-03-23T20:16:21.344Z
 thumbnail: /img/azspherereset/Screenshot 2023-03-23 150752.png
 lead: How do you recover an Azure Sphere Development kit?
+slug: my-azure-sphere-needs-reset
 ---
 
 So I needed to break out my Azure SPhere Development kit again that I haven't touched in a very long time.  Since then, the tenant my Azure Sphere was registered to has changed, and along with other things like my memory in my aging head, I couldn't remember for the life of me how to access the kit.

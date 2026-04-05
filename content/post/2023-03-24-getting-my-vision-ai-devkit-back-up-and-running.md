@@ -13,6 +13,7 @@ categories:
 lastmod: 2023-03-24T02:29:35.019Z
 thumbnail: /img/visionaidevkit/devkitimage.png
 lead: ""
+slug: getting-my-vision-ai-devkit-back-up-and-running
 ---
 
 Since I failed terribly at getting my old Azure Sphere Development kit up and running as documented in previous blogs I decided to move on to my [Vision AI DevKit](https://azure.github.io/Vision-AI-DevKit-Pages/docs/Get_Started/).  This has been a trusty workhorse for me in the past assisting with many demos. However, just like my other devices, I haven't used this in a while, now I need to reset it and set it up again.

@@ -12,6 +12,7 @@ categories:
 lastmod: 2023-03-24T01:19:29.368Z
 thumbnail: /img/azsphereregister/register_004.png
 lead: Yet another piece of Microsoft Hardware that is going into the rock draw
+slug: is-my-azure-sphere-a-rock-now
 ---
 
 In a previous blog I wrote about having to recover my Azure Sphere Development Kit. So I decided to right one on what to do with it once I have recovered it. So this blog continues from [My Azure Sphere Needs Reset?](https://www.thisismydemo.cloud/post/my-azure-sphere-needs-reset/)

@@ -4,7 +4,7 @@ description: Step-by-step PowerShell guide to deploying a Hyper-V host ready for
 date: 2026-03-23T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 5
-series_total: 20
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -22,7 +22,7 @@ tags:
     - PowerShell
     - Automation
     - Validation
-lastmod: 2026-04-04T22:25:34.991Z
+lastmod: 2026-04-05T02:14:44.686Z
 ---
 
 This is where the keyboards come out.

@@ -13,6 +13,7 @@ categories:
   - Azure Percept Development Kit
 lastmod: 2023-04-01T02:42:12.001Z
 thumbnail: /img/preceptdkupdate/perceptupdate_005.png
+slug: applying-the-final-firmware-update-for-the-azure-percept-dk
 lead: Trying to save my Azure Percept DK from becoming yet another Microsoft
   hardware in my rock draw.
 ---

@@ -4,7 +4,7 @@ description: Ansible, Terraform, and PowerShell for Hyper-V IaC — three approa
 date: 2026-04-04T16:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 20
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -20,14 +20,14 @@ tags:
     - Azure DevOps
     - PowerShell
     - Windows Server
-lastmod: 2026-04-05T01:30:46.196Z
+lastmod: 2026-04-05T02:14:44.702Z
 ---
 
 Post 19 built an automation practice around PowerShell — modules, DSC v3, CI/CD pipelines. For many organizations, that's enough. PowerShell is native, it's free, it covers 100% of Hyper-V functionality, and your Windows team already knows it.
 
 But some organizations have standardized on Ansible for configuration management across Linux and Windows. Others use Terraform for all infrastructure provisioning. And some want both — Terraform for creating resources, Ansible for configuring them. The question isn't "which tool is best" — it's "which tool fits your team, your existing investments, and your Hyper-V use case."
 
-This final post in the **Hyper-V Renaissance** series provides an honest assessment of three IaC approaches for Hyper-V: Ansible alone, Terraform with PowerShell, and Terraform with Ansible. We'll cover what each tool can and cannot do, how mature the Hyper-V integration is, how to build pipelines for each, and when to choose which.
+This twentieth post in the **Hyper-V Renaissance** series provides an honest assessment of three IaC approaches for Hyper-V: Ansible alone, Terraform with PowerShell, and Terraform with Ansible. We'll cover what each tool can and cannot do, how mature the Hyper-V integration is, how to build pipelines for each, and when to choose which.
 
 > **Repository:** The full Post 20 companion deliverables are in the [Post 20 folder](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform), including the [README](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/README.md), the [execution walkthrough](https://github.com/thisismydemo/hyper-v-renaissance/blob/main/04-strategy-automation/post-20-iac-ansible-terraform/EXECUTION-WALKTHROUGH.md), [Ansible examples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/ansible), [Terraform examples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/terraform), [PowerShell helpers](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/scripts), and [pipeline samples](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-20-iac-ansible-terraform/pipelines).
 
@@ -421,9 +421,9 @@ All pipelines use self-hosted runners with network access to on-prem Hyper-V hos
 
 ---
 
-## The Hyper-V Renaissance — Series Complete
+## The Hyper-V Renaissance — One Final Step
 
-This is the twentieth and final post in the series. Over twenty posts, we've demonstrated that Hyper-V with Windows Server 2025 is a mature, enterprise-ready virtualization platform that deserves serious consideration — whether you're migrating from VMware, evaluating alternatives to Azure Local, or building new infrastructure.
+This is the twentieth post in the series, not the end of the argument. Over twenty posts, we've demonstrated that Hyper-V with Windows Server 2025 is a mature, enterprise-ready virtualization platform that deserves serious consideration — whether you're migrating from VMware, evaluating alternatives to Azure Local, or building new infrastructure.
 
 The series covered:
 - **The Case for Change** (Posts 1-4) — market context, TCO, capabilities, hardware reuse
@@ -433,7 +433,9 @@ The series covered:
 
 The tools are mature. The costs are lower. The automation is real. PowerShell returned to its throne.
 
-Now go build something.
+One more post wraps the whole series together and answers the strategic question that sat underneath every build guide, cost model, and comparison table: why Hyper-V so often ends up being the better fit when the VMware bill no longer works and Azure Local still asks you to buy into more platform than you need.
+
+Read that final wrap-up next, then go build something.
 
 ---
 
@@ -465,5 +467,6 @@ Now go build something.
 
 **Series Navigation**
 ← Previous: [Post 19 — PowerShell Automation Patterns](/post/hyper-v-powershell-automation-2026)
+→ Next: [Post 21 — What Was Under Your Nose All Along](/post/hyper-v-under-your-nose-all-along)
 
 ---

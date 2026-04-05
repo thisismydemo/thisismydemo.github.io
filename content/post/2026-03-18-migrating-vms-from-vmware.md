@@ -4,7 +4,7 @@ description: Complete guide to converting and migrating virtual machines from VM
 date: 2026-03-25T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 7
-series_total: 20
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -21,7 +21,7 @@ tags:
     - Migration
     - VM Conversion
     - V2V
-lastmod: 2026-04-04T22:26:56.194Z
+lastmod: 2026-04-05T02:14:44.691Z
 ---
 
 You've built the case, validated the hardware, configured the hosts, and connected the storage. Now comes the part everyone's been waiting for (and dreading): actually moving the virtual machines.

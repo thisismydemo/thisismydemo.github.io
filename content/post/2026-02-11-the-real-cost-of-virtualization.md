@@ -4,7 +4,7 @@ description: A no-nonsense TCO comparison across VMware, Azure Local, and Hyper-
 date: 2026-02-07T00:09:59.022Z
 series: The Hyper-V Renaissance
 series_post: 2
-series_total: 18
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -22,7 +22,7 @@ tags:
     - TCO
     - Licensing
     - Cost Analysis
-lastmod: 2026-04-04T19:05:28.935Z
+lastmod: 2026-04-05T02:14:44.700Z
 ---
 
 The invoice arrived, and the meeting quickly followed.

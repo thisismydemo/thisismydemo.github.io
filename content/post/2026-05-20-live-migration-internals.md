@@ -1,10 +1,10 @@
 ---
-title: "Live Migration Internals and Optimization"
+title: Live Migration Internals and Optimization
 description: Deep dive into Hyper-V live migration mechanics, memory pre-copy, WS2025 improvements, and troubleshooting.
 date: 2026-04-02T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 15
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -20,16 +20,18 @@ tags:
     - Performance
     - RDMA
     - Optimization
-lastmod: 2026-05-20T00:00:00.000Z
+lastmod: 2026-04-05T02:14:44.719Z
 ---
 
 Live migration is the capability that makes Hyper-V clustering genuinely useful. Without it, maintenance means VM downtime. With it, VMs move between hosts transparently — users don't notice, applications don't interrupt, connections don't drop. But "it works" isn't enough for production. You need to understand *how* it works, what affects performance, and what Windows Server 2025 changed.
 
 VMware admins know this as vMotion. The Hyper-V equivalent is functionally identical — the VM moves from one host to another while running — but the internal mechanics differ, and the WS2025 improvements are significant.
 
+That matters because maintenance windows are part of the cost story. If you are trying to preserve existing hardware, existing SAN investment, and operational continuity while stepping away from VCF pricing, live migration performance is one of the features that decides whether the platform still feels enterprise-class on Monday morning.
+
 In this fifteenth post of the **Hyper-V Renaissance** series, we'll look behind the curtain at live migration's memory pre-copy algorithm, network transfer mechanics, the final switchover blackout, and the WS2025 improvements that make live migration faster and more resilient than ever.
 
-> **Repository:** Migration optimization scripts, troubleshooting tools, and migration time estimation calculators are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-15-migration).
+> **Repository:** Migration optimization scripts, troubleshooting tools, and migration time estimation calculators are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-15-live-migration).
 
 ---
 
@@ -210,7 +212,7 @@ For routine production migrations, always use shared storage (CSVs) to avoid sto
 | `0x800705B4` timeout | Symbolic links left from a previous crashed migration | Clean up orphaned symlinks in VM storage path |
 | "Cannot access VHD" | CSV not accessible on destination | Verify CSV is Online on all nodes: `Get-ClusterSharedVolume` |
 
-> **Full troubleshooting scripts** including pre-migration compatibility checks (`Compare-VM`) and migration event log analysis are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-15-migration).
+> **Full troubleshooting scripts** including pre-migration compatibility checks (`Compare-VM`) and migration event log analysis are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-15-live-migration).
 
 ---
 

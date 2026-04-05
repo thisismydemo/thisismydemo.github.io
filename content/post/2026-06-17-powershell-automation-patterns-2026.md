@@ -1,10 +1,10 @@
 ---
-title: "PowerShell Automation Patterns (2026 Edition)"
+title: PowerShell Automation Patterns (2026 Edition)
 description: PowerShell 7 automation for Hyper-V — DSC v3, idempotent modules, CI/CD pipelines, and SecretManagement.
 date: 2026-04-04T08:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 19
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -19,7 +19,7 @@ tags:
     - Azure
     - Azure DevOps
     - Windows Server
-lastmod: 2026-04-04T17:48:14.534Z
+lastmod: 2026-04-05T02:14:44.739Z
 ---
 
 "PowerShell Returned to Its Throne" isn't just a series tagline. It's the architectural reality.
@@ -422,7 +422,7 @@ Each level solves a real problem. Level 2 alone eliminates most copy-paste error
 
 ## Next Steps
 
-PowerShell is the automation foundation for Hyper-V. But it's not the only IaC tool in the ecosystem. In the final post of the series, **[Post 20: Infrastructure as Code with Ansible and Terraform](/post/hyper-v-iac-ansible-terraform)**, we'll cover Ansible playbooks for Windows/Hyper-V management and the Terraform community provider — with an honest assessment of maturity and when each tool makes sense alongside or instead of PowerShell.
+PowerShell is the automation foundation for Hyper-V. But it's not the only IaC tool in the ecosystem. In the next post, **[Post 20: Infrastructure as Code with Ansible and Terraform](/post/hyper-v-iac-ansible-terraform)**, we'll cover Ansible playbooks for Windows/Hyper-V management and the Terraform community provider — with an honest assessment of maturity and when each tool makes sense alongside or instead of PowerShell.
 
 PowerShell returned to its throne. The question is how far you take it.
 

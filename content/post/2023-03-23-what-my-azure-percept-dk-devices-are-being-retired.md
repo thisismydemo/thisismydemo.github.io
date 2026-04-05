@@ -12,6 +12,9 @@ categories:
 lastmod: 2023-03-24T14:14:23.153Z
 thumbnail: /img/perceptdkreset/Screenshot 2023-03-24 090855.png
 lead: ""
+slug: what-my-azure-percept-dk-devices-are-being-retired
+aliases:
+  - /post/what!-my-azure-percept-dk-devices-are-being-retired/
 ---
 
 So recently I started working on another IoT project which lead me to breaking out all my old development kits.  I previously wrote a blog called  [My Azure Sphere Needs Reset](https://www.thisismydemo.cloud/post/my-azure-sphere-needs-reset/) where I walked through recovering an old Azure Sphere Development Kit I had. So I decided to write another few blogs following how I had to do the same with all my devices since I couldn't really remember any of the configurations and some of these devices had been configured for long gone IoT Hubs and tenants that don't exist anymore.

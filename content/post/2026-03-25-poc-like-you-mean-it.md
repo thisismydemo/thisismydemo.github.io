@@ -4,7 +4,7 @@ description: Complete workshop-style guide to building a functional Hyper-V clus
 date: 2026-03-26T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 8
-series_total: 20
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -21,7 +21,7 @@ tags:
     - POC
     - Lab
     - Hands-On
-lastmod: 2026-04-04T22:27:27.933Z
+lastmod: 2026-04-05T02:14:44.693Z
 ---
 
 If you can build it in a POC, you can build it in production.

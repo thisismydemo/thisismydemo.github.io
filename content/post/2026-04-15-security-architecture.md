@@ -4,7 +4,7 @@ description: Security architecture for Hyper-V covering threat models, VBS, clus
 date: 2026-03-28T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 10
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -22,7 +22,7 @@ tags:
     - Shielded VMs
     - VBS
     - Compliance
-lastmod: 2026-04-04T22:28:49.888Z
+lastmod: 2026-04-05T02:14:44.695Z
 ---
 
 A Hyper-V host is the most valuable target on your network.
@@ -30,6 +30,8 @@ A Hyper-V host is the most valuable target on your network.
 Compromise a workstation, you get one user's data. Compromise an application server, you get one application's data. Compromise a Hyper-V host, you get *every virtual machine running on it* — their memory, their disks, their network traffic. Compromise the cluster, and you get them all.
 
 The hypervisor is the trust boundary. Everything above it — every VM, every guest OS, every application — depends on the integrity of what's below. Security architecture for Hyper-V isn't about checking boxes on a hardening guide. It's about understanding what you're protecting, what you're protecting it from, and which layers of defense map to which threats.
+
+If you're leaving VMware because the VCF 9 bill stopped making sense, security is one of the places where the economics of traditional Hyper-V matter. You can keep using existing hardware, existing storage, and familiar Windows security controls without taking on a new platform tax just to get back to a defensible baseline.
 
 In this tenth post of the **Hyper-V Renaissance** series, we'll build that understanding layer by layer. We start with the threat model, explain how Windows Server 2025's security technologies actually work, and then map each defense to specific attack scenarios. We'll separate the achievable hardening that every organization should implement from the advanced features that require deliberate investment — and we'll be honest about where that line is.
 

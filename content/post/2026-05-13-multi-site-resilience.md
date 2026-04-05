@@ -1,10 +1,10 @@
 ---
-title: "Multi-Site Resilience"
+title: Multi-Site Resilience
 description: Hyper-V Replica, Storage Replica, Campus Clusters, and SAN replication for multi-site protection.
 date: 2026-04-01T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 14
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -23,7 +23,7 @@ tags:
     - Disaster Recovery
     - Pure Storage
     - Replication
-lastmod: 2026-05-13T00:00:00.000Z
+lastmod: 2026-04-05T02:14:44.718Z
 ---
 
 Post 13 protects your data with backups. This post protects your services with replication.
@@ -32,9 +32,11 @@ Backups recover data — you restore a VM from yesterday's backup and accept the
 
 Windows Server 2025 and the Hyper-V ecosystem give you multiple replication technologies, each with different RPO/RTO characteristics, complexity, and cost. The right choice depends on your requirements, not on which technology sounds most impressive.
 
+That is especially important if your broader strategy is to leave VMware licensing behind without immediately replacing it with a new platform bill. The practical win for many organizations is not "buy everything new." It is pairing Hyper-V with the replication approach that matches the business requirement and the storage they already trust.
+
 In this fourteenth post of the **Hyper-V Renaissance** series, we'll cover every major multi-site resilience strategy available for Hyper-V, from built-in Windows Server features to SAN-level replication, with a decision framework that maps your requirements to the right technology.
 
-> **Repository:** DR runbook templates, Hyper-V Replica configuration scripts, and Storage Replica deployment guides are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-14-resilience).
+> **Repository:** DR runbook templates, Hyper-V Replica configuration scripts, and Storage Replica deployment guides are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-14-multi-site-resilience).
 
 ---
 
@@ -299,7 +301,7 @@ A DR strategy you haven't tested is hope, not a plan. Schedule regular tests for
 | **Failback procedure** | Semi-annually | Reverse replication and return to primary site — this is where most DR plans fail |
 | **Runbook walkthrough** | Annually | Full tabletop exercise — walk through the entire DR runbook with the operations team |
 
-> **DR runbook templates** and testing checklists are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-14-resilience).
+> **DR runbook templates** and testing checklists are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-14-multi-site-resilience).
 
 ---
 

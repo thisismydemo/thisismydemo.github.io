@@ -1,10 +1,10 @@
 ---
-title: "S2D vs. Three-Tier and When Azure Local Makes Sense"
+title: S2D vs. Three-Tier and When Azure Local Makes Sense
 description: Fair technical comparison of S2D, three-tier SAN, and Azure Local with cost, performance, and decision framework.
 date: 2026-04-04T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 18
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -13,22 +13,24 @@ lead: The Honest Comparison — Performance, Cost, and When Each Approach Wins
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
     - Azure
-    - Azure Stack HCI
+    - Azure Local
 tags:
     - Azure
-    - Azure Stack HCI
+    - Azure Local
     - Windows Server
     - PowerShell
-lastmod: 2026-04-04T17:48:14.541Z
+lastmod: 2026-04-05T02:14:44.721Z
 ---
 
 This series advocates for on-premises Hyper-V with three-tier SAN architecture. But intellectual honesty — and the credibility of everything we've written — demands that we evaluate every option fairly. Storage Spaces Direct and Azure Local have legitimate use cases. Three-tier isn't always the right answer.
+
+The cost lens matters, though. For many organizations leaving VMware, the decision is not just about technical elegance. It is about whether Azure Local's host fee and potential hardware refresh are justified, or whether reusing existing compute and existing SAN is the smarter move for the workloads they actually run.
 
 Here is a factual comparison of three infrastructure approaches so you can choose the right one for your environment, not the one that any vendor (including this series) is selling you.
 
 In this eighteenth post of the **Hyper-V Renaissance** series, we'll compare Storage Spaces Direct, traditional three-tier with external SAN, and Azure Local across performance, failure domains, cost, operational complexity, and appropriate use cases — with diagrams and numbers, not marketing.
 
-> **Repository:** Cost comparison calculators, workload assessment templates, and decision framework tools are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-18-comparison).
+> **Repository:** Cost comparison calculators, workload assessment templates, and decision framework tools are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/04-strategy-automation/post-18-s2d-three-tier-azure-local).
 
 ---
 

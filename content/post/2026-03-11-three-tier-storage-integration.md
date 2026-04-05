@@ -4,7 +4,7 @@ description: Practical guide to integrating external storage arrays with Hyper-V
 date: 2026-03-24T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 6
-series_total: 20
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -22,7 +22,7 @@ tags:
     - Fibre Channel
     - SMB3
     - Pure Storage
-lastmod: 2026-04-04T22:26:13.461Z
+lastmod: 2026-04-05T02:14:44.684Z
 ---
 
 Not everything needs to be hyper-converged.

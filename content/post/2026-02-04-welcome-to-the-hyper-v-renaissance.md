@@ -4,9 +4,9 @@ description: VMware's Broadcom pricing crisis creates opportunity. Explore Hyper
 date: 2026-02-04T05:14:22.386Z
 series: The Hyper-V Renaissance
 series_post: 1
-series_total: 19
+series_total: 21
 draft: false
-lastmod: 2026-02-24T16:11:40.681Z
+lastmod: 2026-04-05T02:14:44.735Z
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
 slug: hyper-renaissance
@@ -36,7 +36,7 @@ If you've been watching the virtualization market over the past eighteen months,
 
 Meanwhile, Hyper-V—which **has been a serious enterprise virtualization platform since the Windows Server 2012 and 2016 releases**—received substantial enhancements with **Windows Server 2025** in November 2024. Despite persistent rumors of its demise, Hyper-V **has never been "dead."** It has powered production workloads for over a decade and continues to run **every virtual machine in Microsoft's Azure cloud**. The timing of these 2025 enhancements couldn't be more significant. For IT professionals and architects now questioning their virtualization strategy, there's never been a better moment to reevaluate Microsoft's on-premises champion.
 
-This is the first post in a 20-part series that will take you from strategic evaluation through production deployment. Whether you're a VMware veteran considering alternatives, an Azure Local evaluator questioning subscription costs, or an infrastructure architect designing new deployments—this series is for you.
+This is the first post in a 21-part series that will take you from strategic evaluation through production deployment. Whether you're a VMware veteran considering alternatives, an Azure Local evaluator questioning subscription costs, or an infrastructure architect designing new deployments—this series is for you.
 
 Welcome to the Hyper-V Renaissance.
 

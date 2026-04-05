@@ -4,7 +4,7 @@ description: Directly confronting the perception that Hyper-V is outdated. Windo
 date: 2026-02-09T18:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 3
-series_total: 18
+series_total: 21
 draft: false
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -12,17 +12,17 @@ slug: myth-tech
 lead: Is Hyper-V Dead????
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-   - Virtualization
-   - Windows Server
+    - Virtualization
+    - Windows Server
 tags:
-   - Hyper-V
-   - Windows Server 2025
-   - VMware
-   - VMware Cloud Foundation
-   - VCF
-   - Feature Comparison
-   - Enterprise Virtualization
-lastmod: 2026-02-10T03:38:18.377Z
+    - Hyper-V
+    - Windows Server 2025
+    - VMware
+    - VMware Cloud Foundation
+    - VCF
+    - Feature Comparison
+    - Enterprise Virtualization
+lastmod: 2026-04-05T02:14:44.730Z
 ---
 
 "Hyper-V? That's legacy tech. It can't compete with VMware. 'Hyper-V is dead,' isn't it?"
@@ -589,8 +589,8 @@ In the next post, **[Post 4: Reusing Your Existing VMware Hosts](/post/reusing-v
 
 ---
 
-**Series Navigation**  
-← Previous: [Post 2 — The Real Cost of Virtualization](/post/real-cost-virtualization)  
+**Series Navigation**
+← Previous: [Post 2 — The Real Cost of Virtualization](/post/real-cost-virtualization)
 → Next: [Post 4 — Reusing Your Existing VMware Hosts](/post/reusing-vmware-hosts-hyper-v)
 
 *Post 3 of 18 in The Hyper-V Renaissance series — Last updated: February 2026*

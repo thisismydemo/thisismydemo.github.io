@@ -4,7 +4,7 @@ description: Comprehensive backup architecture covering VSS, Veeam, Commvault, R
 date: 2026-03-31T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 13
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -24,7 +24,7 @@ tags:
     - HYCU
     - Azure Backup
     - VSS
-lastmod: 2026-04-04T23:06:16.296Z
+lastmod: 2026-04-05T02:14:44.710Z
 ---
 
 Untested backups aren't backups. They're hope.
@@ -33,9 +33,11 @@ Every organization says backup is important. Few treat it as an architecture dec
 
 This post focuses specifically on **data protection and recovery** — getting copies of your VMs off the production storage and into a location where you can restore from them. Replication-based DR strategies (Hyper-V Replica, Storage Replica, SAN-level replication) are covered separately in [Post 14: Multi-Site Resilience](/post/multi-site-resilience), which complements this post.
 
+That distinction matters in this series because cost pressure is what got most readers here in the first place. Hyper-V on existing hosts and an existing SAN can be materially cheaper than a VCF 9 renewal or an Azure Local refresh, but only if your backup and recovery posture stays production-grade. Cheap infrastructure with weak recovery discipline is not a savings story.
+
 In this thirteenth post of the **Hyper-V Renaissance** series, we'll map the backup landscape for Hyper-V, explain how backup integration works at the hypervisor level, evaluate the leading solutions honestly, and build an RPO/RTO planning framework.
 
-> **Repository:** Backup validation scripts, RPO/RTO planning worksheets, and solution comparison templates are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-13-backup).
+> **Repository:** Backup validation scripts, RPO/RTO planning worksheets, and solution comparison templates are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-13-backup-dr).
 
 ---
 

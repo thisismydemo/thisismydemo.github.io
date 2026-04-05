@@ -4,7 +4,7 @@ description: Advanced CSV internals, storage tiering, protocol selection, and th
 date: 2026-03-30T00:00:00.000Z
 series: The Hyper-V Renaissance
 series_post: 12
-series_total: 20
+series_total: 21
 draft: true
 preview: /img/hyper-v-renaissance/banner-main.png
 fmContentType: post
@@ -12,27 +12,29 @@ slug: storage-architecture-deep-dive
 lead: CSV Internals, Tiering Strategies, and the SAN Cost Advantage
 thumbnail: /img/hyper-v-renaissance/banner-main.png
 categories:
-  - Virtualization
-  - Storage
-  - Windows Server
+    - Virtualization
+    - Storage
+    - Windows Server
 tags:
-  - Hyper-V
-  - Storage
-  - CSV
-  - iSCSI
-  - Fibre Channel
-  - SMB3
-  - SAN
-lastmod: 2026-04-04T23:06:40.415Z
+    - Hyper-V
+    - Storage
+    - CSV
+    - iSCSI
+    - Fibre Channel
+    - SMB3
+    - SAN
+lastmod: 2026-04-05T02:14:44.714Z
 ---
 
 Post 6 got your storage connected. This post explains how it actually works — and why the architecture decisions you make here determine whether your Hyper-V cluster performs like an enterprise platform or stumbles under load.
 
-Storage is where the three-tier Hyper-V story gets strongest. Your existing SAN investment — the FlashArrays, the PowerStores, the NetApp filers — carries forward without additional storage licensing. No vSAN subscription. No S2D requiring identical disk configurations on every node. No per-core-per-month storage fees. The storage you already own and operate works with Hyper-V exactly as it works with VMware: present LUNs, configure MPIO, format volumes. The difference is what sits on top of it — and that's what this post is about.
+Storage is where the three-tier Hyper-V story gets strongest. Your existing SAN investment — the FlashArrays, the PowerStores, the NetApp filers — carries forward without additional storage licensing. No vSAN subscription. No S2D requiring identical disk configurations on every node. No platform fee just to connect storage you already own. The storage you already operate works with Hyper-V exactly as it worked with VMware: present LUNs, configure MPIO, format volumes, and build around proven operational patterns. The difference is what sits on top of it — and that's what this post is about.
+
+If the VMware renewal made you revisit the stack, and Azure Local looks attractive until the host subscription and potential hardware refresh hit the spreadsheet, this is the architectural middle ground that often wins: keep the storage you trust, change the hypervisor layer, and avoid paying twice for capabilities you already bought.
 
 In this twelfth post of the **Hyper-V Renaissance** series, we'll go deep on Cluster Shared Volume internals, storage protocol architecture, tiering design, and the cost case that makes three-tier Hyper-V the most economical path for organizations with existing SAN infrastructure.
 
-> **Repository:** Storage architecture decision tools, CSV troubleshooting scripts, and performance baseline templates are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-12-storage).
+> **Repository:** Storage architecture decision tools, CSV troubleshooting scripts, and performance baseline templates are in the [series repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-12-storage-architecture).
 
 ---
 
@@ -77,7 +79,7 @@ There are two sub-modes of redirected I/O:
 Get-ClusterSharedVolumeState | Select-Object Name, Node, StateInfo, FileSystemRedirectedIOReason
 ```
 
-> **Critical rule:** CSVs formatted with **ReFS on SAN storage always operate in redirected I/O mode** regardless of storage connectivity. For SAN-backed clusters, always format CSVs with **NTFS** to get direct I/O. ReFS on SAN is valid only when redirected I/O performance is acceptable (rare in production).
+> **Practical rule:** For SAN-backed CSVs, validate the filesystem choice against current Microsoft guidance, backup tooling support, and your storage vendor's recommendations. NTFS remains the conservative default for general-purpose SAN-backed CSV workloads because it avoids unpleasant surprises in mixed environments. ReFS can still be the right choice in specific designs, but don't assume it is the universal default just because it is common in S2D and Azure Local conversations.
 
 ### The Coordinator Node
 
@@ -283,7 +285,7 @@ Get-ClusterNetwork | Format-Table Name, State, Role -AutoSize
 **Step 5: Check for coordinator issues**
 If metadata operations are slow (file creation, VM startup), the coordinator node may be overloaded or have degraded storage connectivity. Move CSV ownership to a healthy node.
 
-> **Full troubleshooting scripts** with automated diagnostic collection are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-12-storage).
+> **Full troubleshooting scripts** with automated diagnostic collection are in the [companion repository](https://github.com/thisismydemo/hyper-v-renaissance/tree/main/03-production-architecture/post-12-storage-architecture).
 
 ---
 
