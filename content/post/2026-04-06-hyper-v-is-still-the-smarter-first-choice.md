@@ -2,7 +2,7 @@
 title: Hyper-V Is Still the Smarter First Choice
 description: Evidence-backed comparison of VMware VCF, Azure Local, Hyper-V on SAN, and Hyper-V on S2D covering migration paths, storage flexibility, resilience, and TCO.
 date: 2026-04-06T12:00:00.000Z
-draft: true
+draft: false
 preview: /img/hyper-v-answer/hyper-v-smarter-first-choice-hero.png
 fmContentType: post
 slug: hyper-v-smarter-first-choice
@@ -24,7 +24,7 @@ tags:
     - Storage Spaces Direct
     - SAN
     - Pure Storage
-lastmod: 2026-04-07T06:30:42.947Z
+lastmod: 2026-04-07T14:11:49.810Z
 ---
 
 Azure Local is not the default VMware exit path. Neither is VMware Cloud Foundation the unquestioned benchmark it was two years ago. And yet the industry keeps framing the VMware exodus as a binary choice: stay and pay, or move to Microsoft's preferred Azure-connected platform. Both options serve somebody's agenda. Neither starts from the question that actually matters to infrastructure operators: *what do I need, and what's the cheapest way to get it without creating new dependencies?*
@@ -55,7 +55,7 @@ What changed under Broadcom is not just pricing. It's the entire purchasing mode
 
 - Perpetual licenses eliminated. All customers forced to subscription-only
 - Industry-reported ~8,000 VMware SKUs consolidated to a handful of bundles. VCF 9 forces NSX + vSAN whether you need them or not
-- VCF 9 deprecates older CPUs (Ivy Bridge, Haswell, Broadwell, Skylake), forcing hardware refresh even if your servers are perfectly functional
+- VCF 9 deprecates older CPUs (Ivy Bridge, Haswell, Broadwell, and earlier), forcing hardware refresh even if your servers are perfectly functional
 - VCF 9's management stack alone requires **48 vCPUs, 194 GB RAM, and 3.2 TB of provisioned storage** for a Simple (single-node) deployment, and **~118 vCPUs, ~473 GB RAM, and ~5.7 TB** for an HA (production) deployment where NSX Manager, VCF Operations, and VCF Automation are clustered at three nodes each ([source: William Lam, Distinguished Platform Engineering Architect, VCF Division at Broadcom](https://williamlam.com/2025/06/minimal-resources-for-deploying-vcf-9-0-in-a-lab.html)). VCF Automation alone in HA consumes 72 vCPUs and 288 GB RAM.
 - OEMs are choosing NOT to re-certify older platforms for VCF, narrowing the supported hardware base
 
@@ -157,7 +157,7 @@ This is the core comparison. Every row starts from a VCF capability or assumptio
 | **Live migration** | Non-disruptive host maintenance, load balancing | Fully supported within cluster. | Fully supported. Compression, RDMA offload, shared-nothing options in WS2025. | Fully supported within S2D cluster. | **Near parity.** Live migration is mature across all platforms. Not a VCF-exclusive advantage. |
 | **Host maintenance workflows** | How disruptive is patching and hardware work? | Lifecycle Manager via Azure portal or PowerShell only. **CAU is explicitly unsupported** on Azure Local — Microsoft lists "Manual runs of Cluster-Aware Updating" in the [unsupported interfaces for updates](https://learn.microsoft.com/en-us/azure/azure-local/update/about-updates-23h2). | Cluster-Aware Updating (CAU). Drain, patch, resume. SCVMM can orchestrate. | Same as SAN—CAU plus optional SCVMM orchestration. | VCF lifecycle manager is more integrated. Hyper-V CAU is entirely functional but less elegant. All platforms achieve rolling maintenance without VM downtime. |
 | **Storage migration for running VMs** | Moving workloads without forcing all storage decisions on day one | **Not applicable.** | **Strongest answer.** Storage Live Migration moves VHDs between CSVs, LUNs, or SMB shares with zero downtime. Array-native tools add further flexibility. Workloads can land on interim storage and migrate later. | **Not applicable.** | **Hyper-V on SAN wins decisively.** Azure Local has no storage migration capability by design — its HCI architecture makes the concept meaningless. Hyper-V on SAN gives you full freedom to move data between storage targets without downtime. |
-| **VMware-to-target migration** | How fast and clean is the exit from VMware? | Azure Migrate supported. Must land on S2D or preview FC SAN. Hardware must be Azure Local validated. | Azure Migrate, SCVMM V2V, third-party tools (Veeam, Zerto). Land on any supported SAN target. **No hardware catalog restriction.** | Azure Migrate, SCVMM V2V, third-party tools. Land on S2D storage. | **Hyper-V on SAN is the easiest first landing zone** when preserving storage optionality matters. No hardware catalog lock. No per-core subscription on day one. |
+| **VMware-to-target migration** | How fast and clean is the exit from VMware? | Azure Migrate supported. Must land on S2D or preview FC SAN. Hardware must be Azure Local validated. | SCVMM V2V, third-party tools (Veeam, Zerto, Carbonite). Land on any supported SAN target. **No hardware catalog restriction.** | SCVMM V2V, third-party tools (Veeam, Zerto). Land on S2D storage. | **Hyper-V on SAN is the easiest first landing zone** when preserving storage optionality matters. No hardware catalog lock. No per-core subscription on day one. |
 
 ### Storage and Data Services
 
