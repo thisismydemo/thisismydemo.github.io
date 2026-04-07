@@ -39,7 +39,7 @@
         {
           "title": "preview",
           "name": "preview",
-          "type": "string"
+          "type": "image"
         },
         {
           "title": "lastmod",
