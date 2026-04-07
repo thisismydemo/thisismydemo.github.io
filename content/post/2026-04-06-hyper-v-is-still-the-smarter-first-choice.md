@@ -24,7 +24,7 @@ tags:
     - Storage Spaces Direct
     - SAN
     - Pure Storage
-lastmod: 2026-04-07T01:56:35.113Z
+lastmod: 2026-04-07T01:58:56.061Z
 ---
 
 Azure Local is not the default VMware exit path. Neither is VMware Cloud Foundation the unquestioned benchmark it was two years ago. And yet the industry keeps framing the VMware exodus as a binary choice: stay and pay, or move to Microsoft's preferred Azure-connected platform. Both options serve somebody's agenda. Neither starts from the question that actually matters to infrastructure operators: *what do I need, and what's the cheapest way to get it without creating new dependencies?*
