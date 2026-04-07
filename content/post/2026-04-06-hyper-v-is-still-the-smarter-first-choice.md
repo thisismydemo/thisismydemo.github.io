@@ -24,18 +24,20 @@ tags:
     - Storage Spaces Direct
     - SAN
     - Pure Storage
-lastmod: 2026-04-07T01:58:56.061Z
+lastmod: 2026-04-07T03:38:40.921Z
 ---
 
 Azure Local is not the default VMware exit path. Neither is VMware Cloud Foundation the unquestioned benchmark it was two years ago. And yet the industry keeps framing the VMware exodus as a binary choice: stay and pay, or move to Microsoft's preferred Azure-connected platform. Both options serve somebody's agenda. Neither starts from the question that actually matters to infrastructure operators: *what do I need, and what's the cheapest way to get it without creating new dependencies?*
 
 For many Windows-heavy organizations—the ones running 50, 100, 500 VMs on existing servers and SANs—the answer to that question is the same answer it has been for a decade. It's Hyper-V. Not Azure Local. Not VCF. Hyper-V, running on Windows Server 2025, backed by the storage infrastructure you already own, managed by the tools you already know.
 
-Microsoft's own documentation agrees. From [Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-local/migrate/migration-options-vmware-hci):
+Microsoft's own documentation agrees. The official [Compare Azure Local to Windows Server](https://learn.microsoft.com/en-us/azure/azure-local/concepts/compare-windows-server) page on Microsoft Learn explicitly recommends Windows Server for:
 
-> *"When replacing a datacenter primarily running VMware, Azure Local is typically not the optimal solution."*
+> - Hosting Hyper-V VMs
+> - **Flexible storage architectures such as SANs** or hyperconverged infrastructure with Storage Spaces Direct
+> - Supporting **extensive hardware compatibility, including broad support for SANs, legacy hardware, and drivers**
 
-Read that again. Microsoft is telling you that Azure Local is not the best VMware replacement for datacenter workloads. And yet Azure Local is exactly what Microsoft's sales motion pushes first. This post exists to explain why Hyper-V deserves to be your first evaluation, not your last resort.
+Microsoft is telling you—in their own documentation—that Windows Server is the right choice for traditional infrastructure setups like VMs connected to a SAN, which Azure Local does not support. And yet Azure Local is exactly what Microsoft's sales motion pushes first. This post exists to explain why Hyper-V deserves to be your first evaluation, not your last resort.
 
 ---
 
@@ -45,20 +47,20 @@ Two narratives dominate the VMware exit conversation right now, and both are des
 
 ### The VMware Narrative: Pay Up or Leave
 
-Broadcom's $69 billion acquisition of VMware in November 2023 has fundamentally reshaped the virtualization market. The numbers tell the story:
+Broadcom's $69 billion acquisition of VMware in November 2023 (enterprise value including assumed debt) has fundamentally reshaped the virtualization market. The numbers tell the story:
 
-- **150–1,050% license cost increases** reported by customers transitioning to the new model
+- **Cost increases of 150% to over 1,000%** reported in extreme cases; CloudBolt's 2026 CII study found **59% of customers experienced increases over 25%**, with **14% exceeding 100%** ([CloudBolt CII Reality Report](https://www.cloudbolt.io/cii-report-the-mass-exodus-that-never-was/), January 2026)
 - **72-core minimum** per order, effective April 2025—whether your CPUs have 16 cores or 72, you pay for 72
-- **99% of VMware customers concerned** about the acquisition's impact (CloudBolt survey)
-- **4,500 authorized partners gutted to ~300** globally, decimating the support and services ecosystem
-- **20% late renewal penalty** if subscriptions aren't renewed by the anniversary date
+- **99% of VMware customers expressed concern** about the acquisition's impact in 2024; **85% remain concerned** about future price increases in 2026 ([CloudBolt CII Reality Report](https://www.cloudbolt.io/cii-report-the-mass-exodus-that-never-was/), January 2026, 302 IT decision-makers surveyed)
+- **Industry-reported partner reduction from 4,500+ authorized partners to 12 Pinnacle and ~300 Premier in the US**, decimating the support and services ecosystem
+- **Widely reported late renewal penalties of up to 25%** if subscriptions aren't renewed by the anniversary date
 
 What changed under Broadcom is not just pricing. It's the entire purchasing model:
 
 - Perpetual licenses eliminated—all customers forced to subscription-only
-- ~168 product bundles consolidated to 4—VCF 9 forces NSX + vSAN whether you need them or not
+- Industry-reported ~8,000 VMware SKUs consolidated to a handful of bundles—VCF 9 forces NSX + vSAN whether you need them or not
 - VCF 9 deprecates older CPUs (Ivy Bridge, Haswell, Broadwell, Skylake)—forcing hardware refresh even if your servers are perfectly functional
-- VCF 9's management stack alone requires **48 vCPUs, 194 GB RAM, and 3.2 TB of storage** just to run the platform overhead
+- VCF 9's management stack alone requires **48 vCPUs, 194 GB RAM, and 3.2 TB of provisioned storage** for a Simple (single-node) deployment—and **~118 vCPUs, ~473 GB RAM, and ~5.7 TB** for an HA (production) deployment where NSX Manager, VCF Operations, and VCF Automation are clustered at three nodes each ([source: William Lam, Distinguished Platform Engineering Architect, VCF Division at Broadcom](https://williamlam.com/2025/06/minimal-resources-for-deploying-vcf-9-0-in-a-lab.html)). VCF Automation alone in HA consumes 72 vCPUs and 288 GB RAM.
 - OEMs are choosing NOT to re-certify older platforms for VCF, narrowing the supported hardware base
 
 The message from Broadcom is clear: pay massively more for a stack you may not fully need, refresh your hardware whether or not it's end-of-life, and accept that the partner ecosystem you relied on has been gutted. Customers face a forced decision: absorb massive increases or migrate.
@@ -72,7 +74,7 @@ Azure Local carries its own baggage:
 - **$10/physical core/month** subscription—a recurring platform rent that never stops
 - **Validated catalog hardware required**—you cannot simply reuse your existing VMware servers unless they happen to appear in the Azure Local catalog, and validated nodes typically run $200K–$500K+ for a 4-node deployment
 - **S2D local disks only** for storage (FC SAN support in limited preview as of November 2025, with only Dell PowerFlex GA—no iSCSI SAN support)
-- **Azure connectivity required**—30-day grace period if connectivity is lost, then workloads stop
+- **Azure connectivity required**—if connectivity is lost, existing VMs continue running normally but new VMs cannot be created until Azure Local syncs again (reduced functionality mode). Microsoft also offers a [Disconnected operations](https://learn.microsoft.com/en-us/azure/azure-local/overview#disconnected-operations) option that brings the control plane on-premises for permanently disconnected scenarios (separate commercial arrangement).
 - **No stretch cluster support** since 23H2
 - **No Azure-Local-to-Azure-Local VM replication**—the symmetric site-to-site DR story many buyers assume exists simply does not
 - **Hypervisor-only**—you cannot run full Windows Server roles on the host, unlike traditional Hyper-V
@@ -111,15 +113,15 @@ Before we compare platforms, let's reset the baseline. Windows Server 2025 Hyper
 |------------|---------------------|--------------|-----------|
 | **Max vCPUs per VM** | 2,048 | 768 | Hyper-V — 2.7x more compute per VM |
 | **Max RAM per VM** | 240 TB | 24 TB | Hyper-V — 10x more memory per VM |
-| **Max Cluster Nodes** | 64 (WSFC + SAN) | 96 (vSphere) / 16 (Azure Local) | Hyper-V on SAN exceeds Azure Local by 4x |
+| **Max Cluster Nodes** | 64 (WSFC + SAN) | 96 (vSphere without vSAN) / 64 (vSAN cluster) / 16 (Azure Local) | Hyper-V on SAN matches vSAN cluster max; exceeds Azure Local by 4x |
 | **Max VMs per Cluster** | ~8,000 | ~8,000 | Tie |
-| **GPU Partitioning (GPU-P)** | Native, with live migration and HA | Requires NVIDIA GRID licensing | Hyper-V — no extra GPU licensing |
+| **GPU Partitioning (GPU-P)** | Native in Windows Server 2025. Live migration with GPU-P requires NVIDIA vGPU Software v18.x+ (commercial license). | Requires NVIDIA vGPU licensing for GPU passthrough and vMotion. | Hyper-V — native GPU-P at OS level; both platforms require NVIDIA licensing for live migration with GPU. |
 | **Storage Replica** | Built-in sync/async block replication | No equivalent without vSAN stretch | Hyper-V — included free |
 | **Network ATC** | Declarative NIC teaming, RDMA, QoS, VLAN | VMware NSX (bundled and mandatory in VCF 9) | Hyper-V — automated network intent |
 
 **Also included in Windows Server 2025 Datacenter at no extra cost:**
 
-Live Migration (zero-downtime VM moves), Cluster Shared Volumes (CSV), Hyper-V Replica (VM-level DR), Storage Spaces Direct (HCI option), Shielded VMs / VBS / Credential Guard, Workgroup clusters (no AD required), Windows Admin Center + vMode (FREE), S2D thin provisioning (new in 2025), accelerated disk resync, cloud witness for quorum, and unlimited Windows Server guest VMs.
+Live Migration (zero-downtime VM moves), Cluster Shared Volumes (CSV), Hyper-V Replica (VM-level DR), Storage Spaces Direct (HCI option), Shielded VMs / VBS / Credential Guard, Workgroup clusters (no AD required), [Windows Admin Center: Virtualization Mode (vMode)](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/virtualization-mode-unlocked/4487896) (FREE, Public Preview), S2D thin provisioning (new in 2025), accelerated disk resync, cloud witness for quorum, and unlimited Windows Server guest VMs.
 
 ---
 
@@ -137,7 +139,7 @@ This is the #1 differentiator. Customers keep their existing servers, existing S
 
 **What VCF 9 and Azure Local require:**
 
-*VMware VCF 9:* BCG-certified hardware only. Older CPUs deprecated. OEMs choosing NOT to re-certify older platforms. Forces NSX installation regardless of need. Management overhead alone consumes 48 vCPUs, 194 GB RAM, 3.2 TB storage.
+*VMware VCF 9:* BCG-certified hardware only. Older CPUs deprecated. OEMs choosing NOT to re-certify older platforms. Forces NSX installation regardless of need. Management overhead alone consumes 48 vCPUs, 194 GB RAM, 3.2 TB storage in a Simple deployment—scaling to ~118 vCPUs, ~473 GB RAM, ~5.7 TB in a production HA configuration.
 
 *Azure Local:* Validated nodes ONLY (Dell AX, HPE, Lenovo). $200K–$500K+ for typical 4-node deployment. Cannot reuse existing VMware server hardware unless it appears in the catalog. No external SAN support (S2D local disks only, FC SAN in limited preview).
 
@@ -177,7 +179,7 @@ This is the core comparison. Every row starts from a VCF capability or assumptio
 
 | VCF Capability | Why It Matters | Azure Local | Hyper-V on SAN | Hyper-V on S2D | Verdict |
 |----------------|----------------|-------------|----------------|----------------|---------|
-| **Hypervisor-level replication** | VM replication without storage dependency | No native equivalent. No Azure-Local-to-Azure-Local VM replication exists. | **Hyper-V Replica.** Async VM replication. 30-second to 15-minute intervals. Free. | **Hyper-V Replica.** Same capabilities. | **Hyper-V wins clearly.** Hyper-V Replica provides simple, free, built-in VM DR. |
+| **Hypervisor-level replication** | VM replication without storage dependency | Hyper-V Replica is technically available at the OS level (documented for Azure Local 2311.2+), but it is not integrated into Azure Local's management plane, not exposed through Azure portal, and not part of Azure Local's supported operational model. No Azure-portal-managed Azure-Local-to-Azure-Local VM replication exists. | **Hyper-V Replica.** Async VM replication. 30-second to 15-minute intervals. Free. | **Hyper-V Replica.** Same capabilities. | **Hyper-V wins clearly.** Hyper-V Replica provides simple, free, built-in VM DR that is fully integrated into the management experience. Azure Local has it at the OS level but not operationally. |
 | **Storage-level replication** | Site resilience, planned migration, failback | Storage Replica in stretched cluster configs. No array-native option. | **Broadest choice.** Storage Replica + array-native replication. Dual replication layers. | Storage Replica (sync/async). Single replication layer. | **Hyper-V on SAN offers the deepest replication toolkit.** |
 | **Campus / multi-site clustering** | Near-metro, campus, or two-datacenter resilience | **No stretch cluster support since 23H2 (2311 release).** This is a confirmed, documented breaking change from Azure Local. Within a single site, rack-aware fault domains allow node placement across physical racks for rack-level fault tolerance. | **Mature WSFC multi-site (stretched) cluster support on Windows Server.** Site-aware failover policies prefer the local site under normal conditions and fail over to the secondary site on failure. Backed by a shared FC or iSCSI SAN with synchronous replication, or a dual-fabric active/active SAN. Supported since WS2016, current through WS2025. Microsoft's official term is “stretched cluster” or “multi-site cluster”—"campus cluster" is informal industry usage. | S2D-backed stretched cluster using Storage Replica for cross-site volume replication. Supported in Windows Server 2019 with S2D and later. Requires planning for network latency, quorum witness placement, and post-failover rebalancing. **Windows Server only**—not available in Azure Local. | **Windows Server Hyper-V (both SAN and S2D) is the only current Microsoft platform with a documented and supported multi-site cluster story.** Azure Local dropped this capability at 23H2. |
 | **Site failover and failback** | How recovery actually works | ASR (Azure-directed only). No native site-to-site failover between Azure Local instances. | Hyper-V Replica failover. Storage Replica failover. SAN-native failover. ASR. **Multiple options.** | Hyper-V Replica failover. Storage Replica failover. ASR. | **Hyper-V offers more on-prem-to-on-prem recovery flexibility.** Azure Local pushes toward Azure-directed recovery. |
@@ -234,11 +236,11 @@ This summary table crystallizes the operational differences:
 | **Stretch Clusters** | ✗ Dropped in 23H2 | ✓ Full support + Storage Replica |
 | **External SAN** | ✗ S2D local disks only (FC preview) | ✓ FC, iSCSI, SMB3 — any SAN |
 | **Max Cluster Nodes** | △ 16 nodes | ✓ 64 nodes (SAN) |
-| **Air-Gapped Operation** | ✗ 30-day Azure sync required | ✓ Fully offline, no dependency |
+| **Air-Gapped Operation** | ✗ Azure connectivity required (reduced functionality mode if disconnected; Disconnected operations option available separately) | ✓ Fully offline, no dependency |
 | **Server Roles on Host** | ✗ Hypervisor-only | ✓ Full Windows Server roles |
 | **Licensing Model** | △ $10/core/mo subscription | ✓ Perpetual (buy once) |
 | **Hardware Requirement** | ✗ Validated nodes only ($200K+) | ✓ Any Windows Server HCL ($0) |
-| **Guest VM Licensing** | △ Separate cost per VM | ✓ Unlimited (Datacenter) |
+| **Guest VM Licensing** | △ Per-physical-core subscription (covers unlimited guests) | ✓ Unlimited (Datacenter) |
 
 ---
 
@@ -250,7 +252,7 @@ One of the biggest reasons people default to VMware is the belief that Hyper-V l
 
 | Capability | VMware VCF | Azure Local | Hyper-V Native Only | Hyper-V + WAC | Hyper-V + SCVMM | Verdict |
 |------------|-----------|-------------|---------------------|---------------|-----------------|---------|
-| **Primary management experience** | vCenter—single pane. Mature, polished, deeply integrated. | Azure portal for VM and cluster lifecycle. CLI and PowerShell for ops. WAC preview via Arc. | Fragmented. Hyper-V Manager, FCM, PowerShell. | Improved. Web-based cluster and VM management. Covers 70-80% of daily tasks. WAC vMode adds modern VM operations. | **Closest to vCenter.** Multi-host, multi-cluster, VM library, networking, storage fabric. | VMware leads on polish. SCVMM is capable but aging. WAC + vMode is promising. Azure Local pushes to the Azure portal. |
+| **Primary management experience** | vCenter—single pane. Mature, polished, deeply integrated. | Azure portal for VM and cluster lifecycle. CLI and PowerShell for ops. WAC preview via Arc. | Fragmented. Hyper-V Manager, FCM, PowerShell. | Improved. Web-based cluster and VM management. Covers 70-80% of daily tasks. WAC [Virtualization Mode (vMode)](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/virtualization-mode-unlocked/4487896) adds modern VM operations. | **Closest to vCenter.** Multi-host, multi-cluster, VM library, networking, storage fabric. | VMware leads on polish. SCVMM is capable but aging. WAC + vMode is promising. Azure Local pushes to the Azure portal. |
 | **Cluster deployment** | SDDC Manager automates bring-up. | Azure portal-driven. Cloud-validated. Hardware must match catalog. | Manual. PowerShell or FCM. Flexible but labor-intensive. | WAC assists cluster creation. Improves over pure manual. | SCVMM provides fabric onboarding and bare-metal deployment. | VCF and Azure Local more turnkey. Hyper-V more flexible but more engineering on day one. |
 | **Multi-cluster visibility** | vCenter manages multiple clusters. Aria extends to fleet. | Azure portal fleet-level view across all Arc instances. | Weakest. Each cluster independent. | Limited per-gateway. | SCVMM manages multiple clusters. Arc-enabled SCVMM extends to Azure portal. | Hyper-V at scale needs SCVMM or Arc-enabled SCVMM. Native-only isn't viable for multi-cluster. |
 | **Patching / lifecycle** | VCF Lifecycle Manager. Tested bundles. | Azure Local Lifecycle Manager. Updates via Azure. | CAU handles rolling updates. Manual firmware/driver. | WAC surfaces CAU integration. | SCVMM can orchestrate. WSUS/SCCM integration. | Hyper-V patching works. Not as turnkey as VCF or Azure Local lifecycle managers. |
@@ -310,9 +312,9 @@ Once VMs are on Hyper-V, the DR story isn't just adequate—it's multi-layered i
 
 Azure Local has no equivalent. There is no Azure-Local-to-Azure-Local VM replication feature.
 
-**Storage Replica** provides synchronous or asynchronous block-level replication between volumes. Available in Datacenter edition, it's the foundation of stretch cluster designs.
+**Storage Replica** provides synchronous or asynchronous block-level replication between volumes. Available in both Datacenter edition (unlimited volumes and sizes) and Standard edition (single volume, 2 TB max per volume). The full-featured Datacenter implementation is the foundation of stretch cluster designs.
 
-**Array-native replication** (Hyper-V on SAN) adds a third layer. Organizations running Pure Storage ActiveCluster, NetApp MetroCluster, Dell SRDF, or HPE Peer Persistence maintain their existing storage-level replication alongside Hyper-V Replica and Storage Replica. Three independent replication layers, each solving a different RPO/RTO requirement.
+**Array-native replication** (Hyper-V on SAN) adds a third layer. Organizations running Pure Storage ActiveCluster, NetApp MetroCluster, Dell PowerMax SRDF, or HPE Peer Persistence maintain their existing storage-level replication alongside Hyper-V Replica and Storage Replica. Three independent replication layers, each solving a different RPO/RTO requirement.
 
 #### Quick Reference: Data Protection Comparison
 
@@ -320,7 +322,7 @@ Azure Local has no equivalent. There is no Azure-Local-to-Azure-Local VM replica
 |--------------|---------------|----------------|-------------|
 | **VM-level replication** | ✓ Hyper-V Replica (free, built-in) | ✓ Hyper-V Replica (free, built-in) | ✗ No native VM-to-VM replication |
 | **Volume-level replication** | ✓ Storage Replica (sync/async) | ✓ Storage Replica (sync/async) | Limited |
-| **Array-native replication** | ✓ Pure ActiveCluster, NetApp MetroCluster, Dell SRDF, HPE Peer Persistence | ✗ Not applicable | ✗ Not applicable |
+| **Array-native replication** | ✓ Pure ActiveCluster, NetApp MetroCluster, Dell PowerMax SRDF, HPE Peer Persistence | ✗ Not applicable | ✗ Not applicable |
 | **RPO = 0 option** | ✓ Array active/active (SAN-layer) | ✗ No | ✗ No |
 | **Azure-directed DR** | ✓ ASR (optional add-on) | ✓ ASR (optional add-on) | ✓ ASR (primary path) |
 | **On-prem site-to-site DR** | ✓ Multiple independent options | ✓ Storage Replica + Hyper-V Replica | ✗ No native path |
@@ -330,7 +332,7 @@ Azure Local has no equivalent. There is no Azure-Local-to-Azure-Local VM replica
 
 All platforms support rolling maintenance—drain VMs, patch, bring back, next node. The difference is orchestration.
 
-**VCF** provides the most integrated lifecycle through SDDC Manager and vSphere Update Manager—but remember, that management stack alone consumes 48 vCPUs, 194 GB RAM, and 3.2 TB just to operate.
+**VCF** provides the most integrated lifecycle through SDDC Manager and vSphere Update Manager—but remember, that management stack alone consumes 48 vCPUs, 194 GB RAM, and 3.2 TB in a minimal deployment, scaling to ~118 vCPUs and ~473 GB RAM in production HA.
 
 **Azure Local** delivers updates through Lifecycle Manager from the Azure portal, integrating OS, drivers, and firmware per the OEM's Solution Builder Extension. Smooth, but requires Azure connectivity.
 
@@ -403,12 +405,14 @@ This section uses the actual calculated figures from the TCO model—not generic
 | Cost Model | Hybrid Subscription ($10/core/month) |
 | Annual Host Cost | $30,720/year (host fee only) |
 | 5-Year Host Cost | **$153,600** (strictly the host rent) |
-| Guest Licensing | ~$71,500/year (Windows Server Guest Subscription — $71.5k/yr for 100 VMs) |
+| Guest Licensing | ~$71,500/year (Windows Server subscription at $23.30/physical core/month × 256 cores — covers unlimited Windows Server guest VMs) |
 | 5-Year Guest Cost | **~$357,500** |
 | Hardware | **~$240,000** (requires new validated All-NVMe nodes) |
 | SAN Support | No — S2D local disks only |
 | Max Nodes | 16 (no stretch clusters) |
 | **5-Year Total Cost of Ownership** | **~$751,100** (Host + Guest + Hardware) |
+
+> **Important: Azure Hybrid Benefit can dramatically change this math.** If the customer already holds Windows Server Datacenter licenses with active Software Assurance—the same assumption used in the Hyper-V column below—Azure Hybrid Benefit waives both the $10/core/month host fee and the Windows Server guest subscription. Under AHB, the Azure Local 5-year cost becomes: $240,000 (hardware) + $0 (host) + $0 (guest) = **~$240,000**. This makes Azure Local cost-competitive with Hyper-V on SAN when existing hardware cannot be reused. The TCO table above shows Azure Local **without** AHB to illustrate the cost for customers who do not have existing Datacenter SA licenses. Both scenarios should be evaluated.
 
 ### Hyper-V + WSFC (Windows Server Datacenter)
 
@@ -467,7 +471,7 @@ SCVMM still works. It still has capabilities nothing else in the Microsoft stack
 
 ### 3. Windows Admin Center shows future promise but does not equal present-day parity.
 
-WAC has improved meaningfully as a cluster and VM management interface. WAC vMode adds modern VM operations capabilities at no cost. The preview integration with Azure Local through Arc shows a direction that could eventually provide a modern, web-based management experience. But today, WAC does not replace SCVMM, does not replace Failover Cluster Manager for all scenarios, and is not a vCenter equivalent. Treating WAC as the answer to the management gap overstates where it is today.
+WAC has improved meaningfully as a cluster and VM management interface. WAC [Virtualization Mode (vMode)](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/virtualization-mode-unlocked/4487896) adds modern VM operations capabilities at no cost. The preview integration with Azure Local through Arc shows a direction that could eventually provide a modern, web-based management experience. But today, WAC does not replace SCVMM, does not replace Failover Cluster Manager for all scenarios, and is not a vCenter equivalent. Treating WAC as the answer to the management gap overstates where it is today.
 
 ### 4. Hyper-V wins on flexibility and economics more than on polish.
 
@@ -489,7 +493,7 @@ Azure Local is the right answer when the customer explicitly wants what Azure Lo
 
 - **A validated, Azure-managed HCI platform** with a single operational model from Microsoft and the OEM. Customers who want turnkey HCI with cloud-connected lifecycle management will find Azure Local delivers exactly that.
 - **Azure-aligned identity, policy, and governance** through native Arc integration. Organizations standardizing on Azure RBAC, Azure Policy, and Azure Monitor as their management plane will find Azure Local naturally integrated.
-- **Azure Kubernetes Service on-premises.** Azure Kubernetes Service (AKS) enabled by Azure Arc on Azure Local—known as AKS Arc—provides on-premises Kubernetes with Azure Resource Manager-managed lifecycle, including Arc-native deployment, updates, and monitoring. This is a genuine differentiator for organizations standardizing on Kubernetes with Azure-managed operations. **Transparency note:** AKS Arc on Windows Server (standalone, not Azure Local) is being retired in stages—Windows Server 2019 node pool support ended March 2026; Windows Server 2022 node pool support ends March 2027. AKS Arc on Azure Local remains the fully supported and recommended path going forward.
+- **Azure Kubernetes Service on-premises.** Azure Kubernetes Service (AKS) enabled by Azure Arc on Azure Local—known as AKS Arc—provides on-premises Kubernetes with Azure Resource Manager-managed lifecycle, including Arc-native deployment, updates, and monitoring. This is a genuine differentiator for organizations standardizing on Kubernetes with Azure-managed operations. AKS Arc is included at no additional charge on Azure Local with the 2402 release and later (effective January 2025). **Transparency note:** AKS Arc on Windows Server (standalone, not Azure Local) is being retired in stages—Windows Server 2019 node pool support ended March 2026; Windows Server 2022 node pool support ends March 2027; Windows Server 2019, 2022, and 2025 as host operating systems are all being deprecated by March 2028. The full AKS Arc architecture on Windows Server is being wound down. AKS Arc on Azure Local remains the fully supported and recommended path going forward.
 - **A greenfield HCI deployment** with no existing SAN investment where the customer wants Microsoft-native clustered storage with cloud management.
 - **Subscription-model preference.** Some organizations genuinely prefer OpEx subscription billing over perpetual CapEx licensing.
 
@@ -521,7 +525,7 @@ The buying logic:
 
 **If you explicitly want Azure-connected operations, AKS on-premises, or validated HCI with cloud lifecycle management**, Azure Local is a strong choice—for those specific requirements.
 
-**If you need the absolute highest management polish today**, VMware VCF still delivers that—at a cost that has become increasingly difficult to justify, and with a management overhead that now consumes 48 vCPUs, 194 GB RAM, and 3.2 TB before you run your first workload.
+**If you need the absolute highest management polish today**, VMware VCF still delivers that—at a cost that has become increasingly difficult to justify, and with a management overhead that now consumes 48–118 vCPUs, 194–473 GB RAM, and 3.2–5.7 TB (Simple to HA) before you run your first workload.
 
 The server stays. The SAN stays. The network stays. Only the hypervisor changes.
 

@@ -24,7 +24,7 @@ tags:
   - Failover Cluster Manager
   - PowerShell
   - Management
-lastmod: 2026-04-05T17:46:25.805Z
+lastmod: 2026-04-07T03:50:50.766Z
 ---
 
 In VMware, you had vCenter. One console, one login, everything managed ,  hosts, VMs, networking, storage, templates, live migration, HA, monitoring. You opened the vSphere Client and the entire virtualization fabric was in front of you.
@@ -71,6 +71,8 @@ WAC Virtualization Mode (vMode) is the most significant development in Hyper-V m
 
 This is not a minor WAC update. It's a fundamentally different architecture designed to answer the vCenter question directly.
 
+> **Important:** Microsoft [backported Network ATC to Windows Server 2022](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/intent-matters-configuring-network-atc-in-windows-admin-center-virtualization-mo/4502389). vMode users managing WS2022 hosts can configure host networking through ATC the same way WS2025 users can. This is massive for VMware migrations where organizations landed on WS2022 and can't immediately upgrade to WS2025.
+
 ### What vMode Solves
 
 Traditional WAC (Administration Mode) is a general-purpose Windows Server management tool. It connects to individual servers or clusters via WinRM, runs commands, and returns results. It's stateless ,  it doesn't maintain its own inventory or track changes over time. It works well for managing a handful of servers but wasn't designed for fabric-scale virtualization management.
@@ -104,11 +106,13 @@ vMode runs as an appliance-style deployment on a dedicated management server:
 | **Coexistence** | Can run on shared server | Must be on dedicated server |
 
 **Prerequisites:**
-- Domain-joined Windows Server 2025 (Standard or Datacenter)
-- Dedicated server ,  cannot coexist with aMode WAC or run on a managed Hyper-V host
+- **vMode gateway:** Domain-joined Windows Server 2025 (Standard or Datacenter)
+- **Managed hosts:** Windows Server 2025 or Windows Server 2022 (N-1 OS support model)
+- Dedicated server — cannot coexist with aMode WAC or run on a managed Hyper-V host
 - Minimum 4 vCPUs, 8 GB RAM, 10 GB free disk
 - DNS resolution via FQDN
 - Same Active Directory domain as managed hosts
+- **Exactly one software prerequisite:** Visual C++ Redistributable (one `winget` command) and one host requirement (SMB firewall rule). Everything else is handled by the installer. Compare that to VCF deployments that can take hours or days.
 - Setup completes in under 10 minutes
 
 ### What You Can Manage Today
@@ -130,6 +134,54 @@ vMode's Public Preview already provides substantial capabilities:
 | Global search across all resources | Available |
 | Logical resource groups (production, lab, staging) | Available |
 
+### Network Intent Templates
+
+One of vMode's most operationally significant features is **Network Intent Templates** — Microsoft's direct answer to vCenter Host Profiles and Distributed Switch policy consistency.
+
+You define an abstract networking blueprint once: management intent, compute intent, storage intent, with specific overrides like Jumbo Frame sizes, DCB settings, and RDMA configuration. Then you apply that same template to every new host or cluster you onboard. Define once, reuse everywhere.
+
+In [Public Preview 2](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/intent-matters-configuring-network-atc-in-windows-admin-center-virtualization-mo/4502389), templates persist between sessions. By GA, full CRUD operations (create, read, update, delete) are planned. If you manage multiple clusters with identical networking requirements, this eliminates the per-host configuration drift that has plagued Hyper-V deployments.
+
+### SAN Storage Wizard Automation
+
+vMode's [Add Resource storage wizard](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-storage-for-hyper-v-hosts-in-vmode/4504263) automates what has historically been one of the most tedious parts of Hyper-V deployment: SAN LUN provisioning for clusters.
+
+The wizard auto-discovers all SAN LUNs visible to your cluster nodes and categorizes them:
+
+| Category | What It Means | Action |
+|----------|---------------|--------|
+| **Ready** | Already configured as CSVs | No action needed |
+| **Auto-configure** | Raw LUNs ready for automation | vMode brings the disk online, initializes it, partitions it, creates the CSV, and enables CSV cache — all from one wizard page |
+| **Manual** | Needs human decision | Presented for manual configuration |
+
+For auto-configure disks: you provision a new LUN per cluster node from your SAN, point vMode at the cluster, and it handles everything from raw disk to production CSV. This is the kind of operational simplification that VMware admins expect and Hyper-V has historically lacked.
+
+### NAS/SMB Auto-Delegation for Live Migration
+
+Historically one of the most painful manual steps in Hyper-V deployment. When using SMB file shares for VM storage, every cluster node needs proper SMB permissions AND constrained delegation configured in Active Directory for live migration to work. Getting this wrong means live migration silently fails — and debugging it is miserable.
+
+vMode's [storage wizard](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-storage-for-hyper-v-hosts-in-vmode/4504263) auto-configures SMB file share permissions for all nodes needed for live migration AND auto-enables SMB constrained delegation in Active Directory — a one-click experience. If it can't complete the delegation (insufficient AD permissions), it tells you exactly what's missing rather than failing silently.
+
+This alone eliminates one of the biggest VMware admin complaints about Hyper-V setup complexity.
+
+### Compute Onboarding Automation
+
+vMode's [compute configuration](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-compute-in-windows-admin-center-virtualization-mode/4508891) handles the full Hyper-V host build-out in a single guided wizard:
+
+**Auto-installs:**
+- Hyper-V role
+- Network ATC
+- Data Center Bridging
+- Failover Clustering
+- MPIO (if SAN is detected)
+- AD RSAT PowerShell
+
+**Auto-removes:** All non-essential Windows features to reduce attack surface and minimize patching overhead.
+
+**For existing clusters:** Handles node drain and rolling reboots automatically — you don't need to manually drain nodes, install roles, and reboot one at a time.
+
+The result is a sub-10-minute path from bare Windows Server to a fully configured, clustered Hyper-V host with networking, storage, and compute ready for VMs. That's what the "sub-10-minute deployment" claim actually means in practice.
+
 ### What's Coming
 
 The vMode roadmap includes capabilities that will close remaining gaps:
@@ -138,11 +190,20 @@ The vMode roadmap includes capabilities that will close remaining gaps:
 |------------|--------|
 | VM templates | Public Preview 2 |
 | Hyper-V Replica integration (DR management) | Public Preview 2 |
+| Persistent Network Intent Templates | Public Preview 2 |
+| Dedicated Networking view | Public Preview 2 |
 | Azure Arc integration | GA |
 | SDN management tools | GA |
-| Storage and networking profiles | GA |
+| Storage profiles (manage SAN/NAS/HCI devices directly) | GA |
+| Network profiles (manage SDN components) | GA |
+| Compute profiles (VM management experience) | GA |
+| Full CRUD for Network Intent Templates | GA |
 | Linked-mode HA for the gateway | Planned |
 | VM-level RBAC | Planned |
+| Auto-update: gateway updates automatically push agent updates to all managed hosts | Planned |
+| Gateway self-update (PaaS-style self-maintaining appliance) | Roadmap |
+
+> **Public Preview 2 is imminent.** Microsoft's [latest WAC blog post](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-compute-in-windows-admin-center-virtualization-mode/4508891) (April 2026) confirms PP2 is dropping "very soon" with the features listed above. Evaluate against PP2, not PP1.
 
 ### vMode vs. vCenter ,  Honest Comparison
 
@@ -159,13 +220,29 @@ The vMode roadmap includes capabilities that will close remaining gaps:
 | Web-based console | Yes | Yes | Yes |
 | Licensing cost | VCF license ($$$$) | **Free** | **Free** |
 
-**Where vMode wins:** Zero licensing cost, sub-10-minute deployment, native PowerShell integration, VM Conversion extension for VMware migration, and it's built specifically for Windows Server 2025.
+**Where vMode wins:** Zero licensing cost, sub-10-minute deployment, native PowerShell integration, VM Conversion extension for VMware migration, Network Intent Templates for consistent host configuration, SAN/NAS storage automation, SMB delegation automation, automatic role installation with attack surface reduction, and it's built specifically for Windows Server 2025 (with WS2022 support via N-1 model).
 
 **Where vCenter still leads:** DRS-equivalent automation (requires SCVMM), VM-level RBAC (planned for vMode), mature template library (coming in PP2), and ecosystem maturity.
 
+### Partner Extensibility
+
+vMode supports partner extensions specifically designed for virtualization workflows. These are separate from aMode extensions and purpose-built for the virtualization context:
+
+- **Self-service portals** — Delegated VM provisioning for teams and departments
+- **Backup integration** — Direct backup orchestration from the virtualization console
+- **Server hardware management** — BIOS, firmware, BMC management inline with host operations
+- **Storage provisioning** — SAN/NAS vendor-specific provisioning from the vMode UI
+- **Networking appliance management** — Physical switch and firewall integration
+
+This extensibility model means the partner ecosystem can build vMode-specific tools, not just generic WAC extensions. As vMode adoption grows, expect vendor-specific extensions from Dell, Lenovo, HPE, Pure, NetApp, and others.
+
+### Offline and Air-Gapped Extension Updates
+
+Both vMode and aMode support offline extension installation — download extension packages from a connected machine and install them on your air-gapped vMode gateway. This matters for regulated environments (government, financial, healthcare) where the management server has no internet access.
+
 ### Start Using vMode Now
 
-vMode is in Public Preview ,  not yet supported for production workloads. But that doesn't mean you should wait for GA to learn it. Deploy it in a lab or dev environment today:
+vMode is in Public Preview with Public Preview 2 imminent — not yet supported for production workloads. But that doesn't mean you should wait for GA to learn it. Deploy it in a lab or dev environment today:
 
 1. The architecture is different from anything you've used before (agents, PostgreSQL, dedicated appliance)
 2. The workflow for managing VMs, hosts, and clusters is new ,  get your muscle memory started
@@ -453,7 +530,15 @@ You've got the keys to the kingdom. Time to understand what's underneath.
 - [Introducing WAC vMode ,  Microsoft Ignite 2025](https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/introducing-windows-admin-center-virtualization-mode-vmode/4471024)
 - [WAC 2511 GA announcement](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/windows-admin-center-version-2511-is-now-generally-available/4477048)
 - [VM Conversion Extension overview](https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/use/vm-conversion-extension-overview)
-
+### WAC vMode Technical Blog Series (Microsoft Tech Community)
+- [Virtualization Mode Unlocked](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/virtualization-mode-unlocked/4487896) — Introduction and vision
+- [WAC Architectural Changes: 1-Mode, 2-Mode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/windows-admin-center-architectural-changes/4488583) — aMode vs. vMode architecture
+- [vMode Preview Build Updated (PP2)](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/the-windows-admin-center-virtualization-mode-preview-build-has-been-updated/4489878) — Public Preview 2 announcement
+- [Installing WAC: Virtualization Mode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/installing-windows-admin-center-virtualization-mode/4496405) — Installation walkthrough
+- [Resource Onboarding in vMode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/resource-onboarding-using-windows-admin-center-virtualization-mode/4500281) — Add Resource wizard and N-1 OS support
+- [Configuring Network ATC in vMode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/intent-matters-configuring-network-atc-in-windows-admin-center-virtualization-mo/4502389) — Network Intent Templates
+- [Configuring Storage in vMode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-storage-for-hyper-v-hosts-in-vmode/4504263) — SAN/NAS automation and SMB delegation
+- [Configuring Compute in vMode](https://techcommunity.microsoft.com/blog/windows-admin-center-blog/configuring-compute-in-windows-admin-center-virtualization-mode/4508891) — Role installation and cluster onboarding
 ### Microsoft Documentation ,  SCVMM
 - [What's new in SCVMM 2025](https://learn.microsoft.com/en-us/system-center/vmm/whats-new-in-vmm?view=sc-vmm-2025)
 - [SCVMM system requirements](https://learn.microsoft.com/en-us/system-center/vmm/system-requirements?view=sc-vmm-2025)
