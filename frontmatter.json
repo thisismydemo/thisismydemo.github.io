@@ -68,13 +68,16 @@
   "frontMatter.content.publicFolder": "static",
   "frontMatter.content.pageFolders": [
     {
-      "title": "post",
-      "path": "[[workspace]]/content/post",
-      "previewPath": "post"
+      "title": "Posts",
+      "path": "[[workspace]]/content/post"
+    },
+    {
+      "title": "Pages",
+      "path": "[[workspace]]/content"
     }
   ],
   "frontMatter.content.autoUpdateDate": true,
   "frontMatter.preview.host": "http://localhost:1313",
   "frontMatter.content.fmHighlight": true,
-  "frontMatter.dashboard.openOnStart": true
+  "frontMatter.dashboard.openOnStart": false
 }

@@ -15,19 +15,6 @@
 		"markdown.preview.linkify": true,
 		"markdown.extension.toc.levels": "2..6",
 		"markdown.extension.preview.autoShowPreviewToSide": false,
-		"frontMatter.content.publicFolder": "static",
-		"frontMatter.content.pageFolders": [
-			{
-				"title": "Posts",
-				"path": "[[workspace]]/content/post"
-			},
-			{
-				"title": "Pages",
-				"path": "[[workspace]]/content"
-			}
-		],
-		"frontMatter.dashboard.openOnStart": false,
-		"frontMatter.preview.host": "http://localhost:1313",
 		"files.exclude": {
 			"**/public/**": true,
 			"**/resources/**": true,
