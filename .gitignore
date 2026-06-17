@@ -10,5 +10,7 @@ resources/_gen/
 Thumbs.db
 
 # AI / local planning files
-.claude/
 hyperv-renaissance-blog-series-plan-v3.md
+
+.claude/logs/
+.claude/settings.local.json
