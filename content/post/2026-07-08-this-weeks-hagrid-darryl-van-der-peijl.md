@@ -27,6 +27,8 @@ This week's Hagrid goes to **Darryl van der Peijl**.
 
 If you run anything Azure Local, you already know Darryl. He runs the community Azure Local Slack and the monthly Azure Local Insider newsletter — the connective tissue of this community, where people share what's new, what's broken, and what's next. He's a 12x Microsoft MVP and CTO at Splitbrain. He's also the brains behind the **Hybrid Platform Conference** — a one-day Azure Local & hybrid cloud event in Amsterdam (Sept 28, 2026 at Hotel Casa), with a free virtual edition to follow.
 
+<!--more-->
+
 ![Darryl van der Peijl — Week 1 Hagrid Award winner](/img/hagrid_awards/darryl-van-der-peijl-card.png)
 
 **Why Darryl earns a Hagrid:** he runs the Azure Local community Slack and the monthly Azure Local Insider newsletter — and founded the Hybrid Platform Conference in Amsterdam.
