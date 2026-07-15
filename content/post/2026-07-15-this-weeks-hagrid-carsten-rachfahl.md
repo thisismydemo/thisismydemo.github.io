@@ -2,7 +2,7 @@
 title: "This Week's Hagrid: Carsten Rachfahl"
 description: Week 2 of The Hagrid Awards celebrates Carsten Rachfahl for their work in the Microsoft hybrid cloud community — Hyper-V / Azure Local.
 date: 2026-07-15T17:00:00.821Z
-lastmod: 2026-07-15T17:41:33.778Z
+lastmod: 2026-07-15T17:50:22.173Z
 author: Kristopher Turner (Country Cloud Boy)
 series: The Hagrid Awards
 series_post: 2
