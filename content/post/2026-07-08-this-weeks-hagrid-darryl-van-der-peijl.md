@@ -2,12 +2,17 @@
 title: "This Week's Hagrid: Darryl van der Peijl"
 description: Week 1 of The Hagrid Awards celebrates Darryl van der Peijl for his work in the Microsoft hybrid cloud community.
 date: 2026-07-08T09:00:00.000Z
+lastmod: 2026-07-15T17:30:06.168Z
+author: Kristopher Turner (Country Cloud Boy)
+series: The Hagrid Awards
+series_post: 1
+series_total: 10
 draft: false
-preview: img/hagrid_awards/darryl-van-der-peijl-card.png
+preview: /img/hagrid_awards/hagrid-week1-darryl-van-der-peijl-banner.png
+thumbnail: /img/hagrid_awards/hagrid-week1-darryl-van-der-peijl-banner.png
 fmContentType: post
 slug: hagrid-week-1-darryl-van-der-peijl
 lead: Week 1 of The Hagrid Awards goes to Darryl van der Peijl — the connective tissue of the Azure Local community.
-thumbnail: /img/hagrid_awards/thegiantguardianofthecloud.png
 categories:
     - The Hagrid Awards
 tags:
@@ -16,12 +21,13 @@ tags:
     - Azure Arc
     - Hybrid Cloud
     - The Hagrid Awards
-lastmod: 2026-07-08T16:53:56.843Z
 ---
 
 This week's Hagrid goes to **Darryl van der Peijl**.
 
 If you run anything Azure Local, you already know Darryl. He runs the community Azure Local Slack and the monthly Azure Local Insider newsletter — the connective tissue of this community, where people share what's new, what's broken, and what's next. He's a 12x Microsoft MVP and CTO at Splitbrain. He's also the brains behind the **Hybrid Platform Conference** — a one-day Azure Local & hybrid cloud event in Amsterdam (Sept 28, 2026 at Hotel Casa), with a free virtual edition to follow.
+
+<!--more-->
 
 ![Darryl van der Peijl — Week 1 Hagrid Award winner](/img/hagrid_awards/darryl-van-der-peijl-card.png)
 
