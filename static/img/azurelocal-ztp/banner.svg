@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Azure Local ZTP: zero-touch provisioning for Azure Local">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00264D"/>
+      <stop offset="60%" stop-color="#0063B1"/>
+      <stop offset="100%" stop-color="#1A86D8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#FFFFFF" stroke-width="1" opacity="0.06">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <text x="80" y="150" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="600" fill="#9FD0FF" letter-spacing="3">AZURE LOCAL TOOLS</text>
+  <text x="80" y="250" font-family="'Segoe UI', Arial, sans-serif" font-size="92" font-weight="700" fill="#FFFFFF">Azure Local ZTP</text>
+  <text x="82" y="312" font-family="'Segoe UI', Arial, sans-serif" font-size="34" fill="#FFFFFF" opacity="0.92">Zero-touch provisioning, from bare machines</text>
+  <text x="82" y="356" font-family="'Segoe UI', Arial, sans-serif" font-size="34" fill="#FFFFFF" opacity="0.92">to provisioned, Arc-connected nodes</text>
+
+  <!-- stage strip -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="600" fill="#FFFFFF">
+    <g>
+      <rect x="80" y="440" width="150" height="56" rx="10" fill="#FFFFFF" opacity="0.14"/>
+      <text x="155" y="475" text-anchor="middle">Media</text>
+    </g>
+    <g>
+      <rect x="254" y="440" width="150" height="56" rx="10" fill="#FFFFFF" opacity="0.14"/>
+      <text x="329" y="475" text-anchor="middle">BMC boot</text>
+    </g>
+    <g>
+      <rect x="428" y="440" width="150" height="56" rx="10" fill="#FFFFFF" opacity="0.14"/>
+      <text x="503" y="475" text-anchor="middle">Vouchers</text>
+    </g>
+    <g>
+      <rect x="602" y="440" width="150" height="56" rx="10" fill="#FFFFFF" opacity="0.14"/>
+      <text x="677" y="475" text-anchor="middle">Azure claim</text>
+    </g>
+    <g>
+      <rect x="776" y="440" width="150" height="56" rx="10" fill="#FFFFFF" opacity="0.14"/>
+      <text x="851" y="475" text-anchor="middle">OS install</text>
+    </g>
+    <g>
+      <rect x="950" y="440" width="170" height="56" rx="10" fill="#2ECC71"/>
+      <text x="1035" y="475" text-anchor="middle" fill="#00264D">Handoff</text>
+    </g>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="3" opacity="0.6">
+    <line x1="232" y1="468" x2="252" y2="468"/>
+    <line x1="406" y1="468" x2="426" y2="468"/>
+    <line x1="580" y1="468" x2="600" y2="468"/>
+    <line x1="754" y1="468" x2="774" y2="468"/>
+    <line x1="928" y1="468" x2="948" y2="468"/>
+  </g>
+  <text x="80" y="560" font-family="'Segoe UI', Arial, sans-serif" font-size="24" fill="#FFFFFF" opacity="0.75">One file. One command. No USB stick. No one in the rack.</text>
+</svg>
